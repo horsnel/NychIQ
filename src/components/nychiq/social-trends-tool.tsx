@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 
 /* ── Constants ── */
-const PLATFORMS = ['All', 'TikTok', 'Twitter/X', 'Instagram', 'YouTube'] as const;
+const PLATFORMS = ['All', 'TikTok', 'X', 'Instagram', 'YouTube'] as const;
 type Platform = (typeof PLATFORMS)[number];
 
 const REGIONS = [
@@ -39,7 +39,7 @@ const REGIONS = [
 
 const PLATFORM_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   TikTok: { bg: 'bg-[rgba(255,0,80,0.1)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,0,80,0.2)]' },
-  'Twitter/X': { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]' },
+  'X': { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]' },
   Instagram: { bg: 'bg-[rgba(225,48,108,0.1)]', text: 'text-[#E1306C]', border: 'border-[rgba(225,48,108,0.2)]' },
   YouTube: { bg: 'bg-[rgba(255,0,0,0.1)]', text: 'text-[#FF0000]', border: 'border-[rgba(255,0,0,0.2)]' },
 };
@@ -69,11 +69,11 @@ interface TrendItem {
 /* ── Mock data ── */
 const MOCK_TRENDS: TrendItem[] = [
   { platform: 'TikTok', title: '#AfroBeatDanceChallenge2025', spike: 342, category: 'Music', engagement: { views: 4200000, likes: 890000, shares: 156000 }, crossingToYouTube: true },
-  { platform: 'Twitter/X', title: 'AI Coding Assistants comparison thread', spike: 218, category: 'Tech', engagement: { views: 3100000, likes: 124000, shares: 89000 }, crossingToYouTube: true },
+  { platform: 'X', title: 'AI Coding Assistants comparison thread', spike: 218, category: 'Tech', engagement: { views: 3100000, likes: 124000, shares: 89000 }, crossingToYouTube: true },
   { platform: 'Instagram', title: 'Minimalist home office setups 2025', spike: 156, category: 'Lifestyle', engagement: { views: 1800000, likes: 267000, shares: 45000 }, crossingToYouTube: true },
   { platform: 'TikTok', title: 'Street food ASMR Lagos edition', spike: 287, category: 'Food', engagement: { views: 5600000, likes: 1200000, shares: 234000 }, crossingToYouTube: true },
   { platform: 'YouTube', title: 'Building a $1M business from scratch', spike: 89, category: 'Education', engagement: { views: 2400000, likes: 189000, shares: 34000 }, crossingToYouTube: false },
-  { platform: 'Twitter/X', title: 'Premier League transfer window rumors', spike: 198, category: 'Sports', engagement: { views: 4700000, likes: 210000, shares: 156000 }, crossingToYouTube: false },
+  { platform: 'X', title: 'Premier League transfer window rumors', spike: 198, category: 'Sports', engagement: { views: 4700000, likes: 210000, shares: 156000 }, crossingToYouTube: false },
   { platform: 'Instagram', title: 'Thrifting haul finds in Lagos markets', spike: 167, category: 'Fashion', engagement: { views: 2100000, likes: 345000, shares: 67000 }, crossingToYouTube: true },
   { platform: 'TikTok', title: 'Stand-up comedy clips going viral', spike: 412, category: 'Comedy', engagement: { views: 8900000, likes: 2100000, shares: 456000 }, crossingToYouTube: true },
 ];
@@ -96,10 +96,10 @@ export function SocialTrendsTool() {
     if (!ok) { setLoading(false); return; }
 
     try {
-      const prompt = `You are a social media trend analyst. Analyze the latest trending topics across TikTok, Twitter/X, Instagram, and YouTube for the ${region} region${platform !== 'All' ? `, focused on ${platform}` : ''}.
+      const prompt = `You are a social media trend analyst. Analyze the latest trending topics across TikTok, X, Instagram, and YouTube for the ${region} region${platform !== 'All' ? `, focused on ${platform}` : ''}.
 
 Return a JSON array of 8 trend objects with these exact fields:
-- "platform": one of "TikTok", "Twitter/X", "Instagram", "YouTube"
+- "platform": one of "TikTok", "X", "Instagram", "YouTube"
 - "title": the trend topic or hashtag
 - "spike": percentage spike (number, e.g. 342)
 - "category": one of "Comedy", "Music", "Tech", "Gaming", "Fashion", "Food", "Sports", "News", "Lifestyle", "Education"
@@ -136,7 +136,7 @@ Return ONLY the JSON array, no other text.`;
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Cross-Platform Trends</h2>
-              <p className="text-xs text-[#888888] mt-0.5">TikTok, Twitter/X, Instagram, YouTube trends before they blow up</p>
+              <p className="text-xs text-[#888888] mt-0.5">TikTok, X, Instagram, YouTube trends before they blow up</p>
             </div>
           </div>
 

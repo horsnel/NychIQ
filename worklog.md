@@ -598,6 +598,33 @@ Built 3 complete Pre-Upload Forensics Studio tool components as defined in the S
 
 ---
 
+## Task 3: Replace Twitter Icon with X (formerly Twitter) Icon
+**Date:** 2025-04-08
+**Agent:** fullstack-developer
+
+### Summary
+Replaced all instances of the old Twitter bird icon (from lucide-react) with a custom X (formerly Twitter) logo SVG component across the NychIQ platform. Updated text labels from "Twitter/X" to "X" or "X (Twitter)" where appropriate.
+
+### Work Log:
+- Created `src/components/ui/x-icon.tsx` — Custom XIcon component with official X logo SVG path, matching lucide-react size API (accepts `className`, `size` props, default 24px)
+- Updated `src/components/nychiq/company-page.tsx` — Removed `Twitter` from lucide-react imports, imported `XIcon`, updated SOCIAL_LINKS entry to use `icon: XIcon` and platform label to "X (Twitter)"
+- Updated `src/components/nychiq/ghost-tracker-tool.tsx` — Removed `Twitter` from lucide-react imports, imported `XIcon`, replaced all 3 `Twitter` references (mock data, analysis text, AI response fallback) with `XIcon` / "X (Twitter)"
+- Updated `src/components/nychiq/onboarding-questions.tsx` — Removed `Twitter` from lucide-react imports, imported `XIcon`, updated DISCOVERY_OPTIONS label to "X (Twitter)"
+- Updated `src/components/nychiq/social-mentions-tool.tsx` — Changed all "Twitter/X" text references to "X" (platform filter tabs, mock data, AI prompt, fallback styles)
+- Updated `src/components/nychiq/social-trends-tool.tsx` — Changed all "Twitter/X" text references to "X" (platform filter chips, mock data, AI prompt, subtitle description)
+- Updated `src/components/nychiq/monetization-roadmap-tool.tsx` — Changed "Cross-promote on Twitter/X" to "Cross-promote on X"
+- Verified: Zero remaining `Twitter` imports from lucide-react in the project
+
+### Stage Summary:
+- Old Twitter bird icon fully replaced with X logo
+- 3 component files updated (icon imports)
+- 3 additional files updated (text-only references)
+- XIcon component is reusable and matches lucide-react API
+- No remaining lucide-react Twitter imports anywhere in src/
+- Pre-existing lint issues unchanged (unrelated to this task)
+
+---
+
 ## Task 10: Intelligence & Competitor Tool Components (Niche Compare, Opportunity Heatmap, Revenue Roadmap, Ghost Tracker)
 **Date:** 2025-04-08
 **Agent:** Main Builder
@@ -720,3 +747,65 @@ Built 4 new AI-powered tool components for the Intelligence and Competitor categ
 - Dev server: Compiles successfully (200 OK)
 - Total routed tool components: 42 (39 + 3 new)
 - All 3 tools accessible via sidebar under "NYCHIQ STUDIO" section
+
+---
+
+## Task 2 (Revisited): Location Tracking & Country Detection
+**Date:** 2025-04-08
+**Agent:** fullstack-developer
+
+### Summary
+Implemented automatic country/location detection for the NychIQ platform using IP-based geolocation. This enables the app to automatically set the user's default region for trending video data, improving the out-of-box experience especially for African users. Added 5 new African countries to all region lists.
+
+### Files Created
+
+#### `src/hooks/use-geolocation.ts` (~120 lines)
+- **Export**: `useGeolocation` React hook
+- **Client-side only** (`'use client'` directive)
+- **Detection strategy**:
+  - On mount, reads cached region from localStorage key `nychiq_detected_region`
+  - If no valid cache (or expired after 24 hours), fetches `https://ipapi.co/json/` (free, no API key)
+  - Maps detected country code to app region codes (NG, GH, KE, ZA, TZ, EG, US, GB, IN, CA, DE, FR, BR, AU, JP)
+  - Caches result with timestamp for 24-hour validity
+- **Return type**: `{ detectedRegion: string | null, countryName: string | null, isDetecting: boolean, error: string | null }`
+- **Architecture**: Uses lazy `useState` initializer for synchronous cache reads to avoid the `react-hooks/set-state-in-effect` ESLint rule; async fetch only runs when no cached value exists
+
+### Files Modified
+
+#### `src/lib/store.ts`
+- Added `detectedRegion: string | null` to state interface
+- Added `setDetectedRegion: (region: string | null) => void` action
+- Added `detectedRegion` to `partialize` function for persistence
+- Initialized `detectedRegion` to `null`
+
+#### `src/components/nychiq/topbar.tsx`
+- Imported `useGeolocation` hook and `MapPin` icon
+- **REGIONS array expanded** from 10 to 15 countries with African countries first:
+  - NG, GH, KE, ZA, TZ, EG (African), US, GB, IN, CA, DE, FR, BR, AU, JP (International)
+- **Detected location indicator**: Shows a green pill with pulsing green dot, MapPin icon, and country name next to the country selector (hidden on mobile)
+- **Auto-region switching**: When geolocation detects a region and the current region is still the default 'US', automatically updates the store's `region` to the detected one
+- Stores detected region via `setDetectedRegion` for cross-component access
+
+#### `src/components/nychiq/settings-tool.tsx`
+- Imported `useGeolocation` hook and `MapPin` icon
+- **REGIONS array expanded** to match topbar (15 countries, African first)
+- **Auto-detected location display**: Shows a green-bordered info card above the region dropdown with:
+  - Pulsing green dot (live indicator)
+  - MapPin icon
+  - Label: "AUTO-DETECTED FROM YOUR BROWSER"
+  - Detected country name in green text
+- Reads `detectedRegion` from store as fallback if hook hasn't loaded yet
+
+### Design Consistency
+- Green accent `#00C48C` for location detection (matches status/live indicator color)
+- Pulsing dot animation uses existing `animate-ping` utility
+- All existing manual region selector functionality preserved
+- Auto-detect is a suggestion — user can still manually override
+
+### Technical Notes
+- IP geolocation API (`ipapi.co/json/`) is free, no API key required
+- 8-second timeout on IP API fetch to prevent hanging
+- 24-hour cache in localStorage to avoid redundant API calls
+- Graceful error handling — if detection fails, no UI disruption
+- ESLint passes with zero errors
+- Dev server compiles successfully (200 OK)

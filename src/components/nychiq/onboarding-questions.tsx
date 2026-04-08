@@ -6,7 +6,6 @@ import {
   Check,
   Sparkles,
   Play,
-  Twitter,
   Instagram,
   Monitor,
   Users,
@@ -16,11 +15,12 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNychIQStore } from '@/lib/store';
+import { XIcon } from '@/components/ui/x-icon';
 
 /* ── 8 discovery options ── */
 const DISCOVERY_OPTIONS = [
   { id: 'youtube', label: 'YouTube', icon: Play, color: '#E05252' },
-  { id: 'twitter', label: 'Twitter / X', icon: Twitter, color: '#4A9EFF' },
+  { id: 'twitter', label: 'X (Twitter)', icon: XIcon, color: '#4A9EFF' },
   { id: 'instagram', label: 'Instagram', icon: Instagram, color: '#E05252' },
   { id: 'tiktok', label: 'TikTok', icon: Monitor, color: '#00C48C' },
   { id: 'friend', label: 'Friend', icon: Users, color: '#9B72CF' },

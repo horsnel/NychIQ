@@ -1,13 +1,19 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut } from 'lucide-react';
+import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin } from 'lucide-react';
 import { useNychIQStore, TOOL_META, TOKEN_COSTS } from '@/lib/store';
 import { TokenPill } from './token-pill';
 import { cn } from '@/lib/utils';
+import { useGeolocation } from '@/hooks/use-geolocation';
 
 const REGIONS = [
   { code: 'NG', label: 'Nigeria' },
+  { code: 'GH', label: 'Ghana' },
+  { code: 'KE', label: 'Kenya' },
+  { code: 'ZA', label: 'South Africa' },
+  { code: 'TZ', label: 'Tanzania' },
+  { code: 'EG', label: 'Egypt' },
   { code: 'US', label: 'United States' },
   { code: 'GB', label: 'United Kingdom' },
   { code: 'IN', label: 'India' },
@@ -39,7 +45,27 @@ export function Topbar() {
     setRegion,
     searchFilter,
     setSearchFilter,
+    setDetectedRegion,
   } = useNychIQStore();
+
+  // Geolocation hook
+  const geo = useGeolocation();
+
+  // Auto-set region from detected location (only if still on default 'US')
+  const regionRef = useRef(region);
+  useEffect(() => { regionRef.current = region; }, [region]);
+  const geoRef = useRef(geo);
+  useEffect(() => { geoRef.current = geo; }, [geo]);
+
+  useEffect(() => {
+    const detected = geoRef.current.detectedRegion;
+    if (detected) {
+      setDetectedRegion(detected);
+      if (regionRef.current === 'US') {
+        setRegion(detected);
+      }
+    }
+  }, [geo.detectedRegion, geo.countryName, setDetectedRegion, setRegion]);
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -201,6 +227,20 @@ export function Topbar() {
           </button>
         ))}
       </div>
+
+      {/* Detected location indicator — hidden on mobile */}
+      {geo.detectedRegion && (
+        <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-md border border-[#00C48C]/20 bg-[rgba(0,196,140,0.06)]">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C48C] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00C48C]" />
+          </span>
+          <MapPin className="w-3 h-3 text-[#00C48C]" />
+          <span className="text-[11px] font-medium text-[#00C48C]">
+            {geo.countryName || geo.detectedRegion}
+          </span>
+        </div>
+      )}
 
       <div className="ml-auto flex items-center gap-2">
         {/* Refresh Button — conditionally shown */}

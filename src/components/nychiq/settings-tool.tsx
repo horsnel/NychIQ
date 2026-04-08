@@ -24,18 +24,26 @@ import {
   Share2,
   Users,
   Coins,
+  MapPin,
 } from 'lucide-react';
+import { useGeolocation } from '@/hooks/use-geolocation';
 
 const REGIONS = [
   { code: 'NG', label: 'Nigeria' },
-  { code: 'US', label: 'United States' },
-  { code: 'GB', label: 'United Kingdom' },
-  { code: 'IN', label: 'India' },
   { code: 'GH', label: 'Ghana' },
   { code: 'KE', label: 'Kenya' },
   { code: 'ZA', label: 'South Africa' },
+  { code: 'TZ', label: 'Tanzania' },
+  { code: 'EG', label: 'Egypt' },
+  { code: 'US', label: 'United States' },
+  { code: 'GB', label: 'United Kingdom' },
+  { code: 'IN', label: 'India' },
   { code: 'CA', label: 'Canada' },
+  { code: 'DE', label: 'Germany' },
+  { code: 'FR', label: 'France' },
+  { code: 'BR', label: 'Brazil' },
   { code: 'AU', label: 'Australia' },
+  { code: 'JP', label: 'Japan' },
 ];
 
 /* ── Toggle Switch ── */
@@ -99,11 +107,15 @@ export function SettingsTool() {
     region,
     workerUrl,
     referralCode,
+    detectedRegion,
     setRegion,
     setWorkerUrl,
     setReferralCode,
     logout,
   } = useNychIQStore();
+
+  // Geolocation hook for auto-detected location
+  const geo = useGeolocation();
 
   /* Local form state */
   const [displayName, setDisplayName] = useState(userName);
@@ -262,6 +274,23 @@ export function SettingsTool() {
               className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
             />
           </div>
+
+          {/* Auto-detected location indicator */}
+          {(geo.detectedRegion || detectedRegion) && (
+            <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(0,196,140,0.06)] border border-[#00C48C]/20 mb-3">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C48C] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00C48C]" />
+              </span>
+              <MapPin className="w-3.5 h-3.5 text-[#00C48C]" />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-medium text-[#00C48C]/70 uppercase tracking-wider">Auto-detected from your browser</span>
+                <span className="text-xs font-semibold text-[#00C48C]">
+                  {geo.countryName || detectedRegion}
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Default Region */}
           <div>

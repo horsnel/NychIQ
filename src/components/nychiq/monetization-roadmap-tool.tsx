@@ -142,7 +142,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
           'Focus on search-optimized "how-to" content',
           'Create 3 pillar videos that demonstrate expertise',
           'Engage every comment in the first hour of upload',
-          'Cross-promote on Twitter/X and relevant subreddits',
+          'Cross-promote on X and relevant subreddits',
         ],
       },
       {

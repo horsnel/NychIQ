@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { askAI } from '@/lib/api';
 import { copyToClipboard } from '@/lib/utils';
+import { XIcon } from '@/components/ui/x-icon';
 import {
   EyeOff,
   Search,
@@ -18,7 +19,6 @@ import {
   TrendingUp,
   Activity,
   Radio,
-  Twitter,
   Mail,
   GitCompare,
   Zap,
@@ -126,7 +126,7 @@ function mockGhost(channel: string): GhostResult {
       { videoTitle: `${channel} — How I Got 100K Subs`, detectedChange: 'End screen removed, CTA moved to first 30 seconds', detectedDate: '1 week ago', impact: 'positive' },
     ],
     offPlatform: [
-      { platform: 'Twitter/X', icon: Twitter, estimatedFollowers: `${Math.floor(Math.random() * 80) + 10}K`, growth: '+12% this month', activity: 'High — 3-5 tweets/day, active engagement' },
+      { platform: 'X (Twitter)', icon: XIcon, estimatedFollowers: `${Math.floor(Math.random() * 80) + 10}K`, growth: '+12% this month', activity: 'High — 3-5 posts/day, active engagement' },
       { platform: 'Newsletter', icon: Mail, estimatedFollowers: `${Math.floor(Math.random() * 30) + 5}K`, growth: '+8% this month', activity: 'Medium — weekly newsletter, 45% open rate' },
       { platform: 'Website/Blog', icon: Globe, estimatedFollowers: `${Math.floor(Math.random() * 20) + 2}K`, growth: '+5% this month', activity: 'Low — occasional blog posts' },
     ],
@@ -142,7 +142,7 @@ function mockGhost(channel: string): GhostResult {
       { label: 'Subscriber Conversion', them: '2.1%', you: '1.3%', diff: '+0.8%' },
       { label: 'Return Viewer Rate', them: '38%', you: '22%', diff: '+16%' },
     ],
-    analysis: `${channel} is rapidly increasing their upload cadence and shifting toward Shorts for discovery. Their Twitter/X presence is driving significant cross-platform traffic. Their A/B testing discipline is strong — they iterate on thumbnails within 24 hours. Key vulnerability: their long-form watch time may suffer as they shift to Shorts. Your opportunity: create higher-quality long-form content that fills the gap they're leaving behind.`,
+    analysis: `${channel} is rapidly increasing their upload cadence and shifting toward Shorts for discovery. Their X (Twitter) presence is driving significant cross-platform traffic. Their A/B testing discipline is strong — they iterate on thumbnails within 24 hours. Key vulnerability: their long-form watch time may suffer as they shift to Shorts. Your opportunity: create higher-quality long-form content that fills the gap they're leaving behind.`,
   };
 }
 
@@ -218,8 +218,8 @@ Return ONLY the JSON object, no other text.`;
           : [],
         offPlatform: Array.isArray(parsed.offPlatform)
           ? parsed.offPlatform.slice(0, 3).map((o: any) => ({
-              platform: o.platform || 'Twitter/X',
-              icon: Twitter,
+              platform: o.platform || 'X (Twitter)',
+              icon: XIcon,
               estimatedFollowers: o.estimatedFollowers || '10K',
               growth: o.growth || '+5%',
               activity: o.activity || 'Medium activity',

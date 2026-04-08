@@ -9,7 +9,7 @@ import {
   Activity, Image, ShieldCheck, BellRing, Radar, Stethoscope,
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, ChevronDown, ChevronRight,
-  Lock, X, Sparkles, Layers, Scan, Wrench, ScrollText,
+  Lock, X, Play, Layers, Scan, Wrench, ScrollText,
   Scale, Columns2, Grid3x3, Package, Target, EyeOff, Archive,
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
@@ -89,7 +89,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1E1E1E]">
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-black" />
+          <Play className="w-4 h-4 text-black fill-black ml-0.5" />
         </div>
         <span className="text-lg font-bold text-gradient-amber">NychIQ</span>
         <span className={cn('text-xs font-medium ml-auto', PLAN_COLORS[userPlan])}>

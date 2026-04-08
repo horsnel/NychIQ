@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import {
-  ArrowLeft, Sparkles, Mail, MapPin, Globe, Users, BarChart3,
+  ArrowLeft, Sparkles, Play, Mail, MapPin, Globe, Users, BarChart3,
   Target, Eye, Rocket, Zap, ChevronDown, ChevronUp,
   Briefcase, DollarSign, Heart, Shield, BookOpen, Coins,
-  Twitter, Instagram, Linkedin, Send, CheckCircle2, Star,
+  Instagram, Linkedin, Send, CheckCircle2, Star,
 } from 'lucide-react';
 import { useNychIQStore } from '@/lib/store';
+import { XIcon } from '@/components/ui/x-icon';
 import { toast } from 'sonner';
 
 /* ────────────────────────────── Config ────────────────────────────── */
@@ -63,7 +64,7 @@ const CONTACT_EMAILS = [
 ];
 
 const SOCIAL_LINKS = [
-  { platform: 'Twitter / X', handle: '@nychiq', icon: Twitter, color: '#E8E8E8' },
+  { platform: 'X (Twitter)', handle: '@nychiq', icon: XIcon, color: '#E8E8E8' },
   { platform: 'Instagram', handle: '@nychiq', icon: Instagram, color: '#E8E8E8' },
   { platform: 'LinkedIn', handle: '/company/nychiq', icon: Linkedin, color: '#4A9EFF' },
 ];
@@ -250,7 +251,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-[#F5A623]" />
+          <Play className="w-4 h-4 text-[#F5A623] fill-[#F5A623] ml-0.5" />
           <span className="text-sm font-bold text-gradient-amber">NychIQ</span>
         </div>
       </div>

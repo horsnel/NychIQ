@@ -23,11 +23,11 @@ import {
 } from 'lucide-react';
 
 /* ── Constants ── */
-const MENTION_PLATFORMS = ['All', 'Twitter/X', 'Reddit', 'TikTok', 'Instagram', 'News'] as const;
+const MENTION_PLATFORMS = ['All', 'X', 'Reddit', 'TikTok', 'Instagram', 'News'] as const;
 type MentionPlatform = (typeof MENTION_PLATFORMS)[number];
 
 const PLATFORM_STYLES: Record<string, { bg: string; text: string; border: string }> = {
-  'Twitter/X': { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]' },
+  'X': { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]' },
   Reddit: { bg: 'bg-[rgba(255,69,0,0.1)]', text: 'text-[#FF4500]', border: 'border-[rgba(255,69,0,0.2)]' },
   TikTok: { bg: 'bg-[rgba(255,0,80,0.1)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,0,80,0.2)]' },
   Instagram: { bg: 'bg-[rgba(225,48,108,0.1)]', text: 'text-[#E1306C]', border: 'border-[rgba(225,48,108,0.2)]' },
@@ -67,12 +67,12 @@ interface MentionItem {
 
 /* ── Mock data ── */
 const MOCK_MENTIONS: MentionItem[] = [
-  { platform: 'Twitter/X', text: 'Just discovered @MKBHD channel — the production quality is insane. Best tech reviews on YouTube by far.', author: '@techlover_ng', likes: 1243, retweets: 89, timestamp: '2h ago', sentiment: 'positive' },
+  { platform: 'X', text: 'Just discovered @MKBHD channel — the production quality is insane. Best tech reviews on YouTube by far.', author: '@techlover_ng', likes: 1243, retweets: 89, timestamp: '2h ago', sentiment: 'positive' },
   { platform: 'Reddit', text: 'Can we talk about how MrBeast has completely changed the YouTube landscape? The production budgets are crazy now.', author: 'u/video_analyst', likes: 3421, retweets: 156, timestamp: '5h ago', sentiment: 'neutral' },
   { platform: 'TikTok', text: 'This Nigerian creator on YouTube is literally teaching me Python for free. Thread of all his tutorials below 👇', author: '@devwithk', likes: 5672, retweets: 423, timestamp: '1d ago', sentiment: 'positive' },
   { platform: 'Instagram', text: 'Disappointing content from this YouTube channel lately. The quality has really dropped since they started posting daily.', author: '@mediacritic', likes: 892, retweets: 67, timestamp: '3h ago', sentiment: 'negative' },
   { platform: 'News', text: 'Top YouTube creator announces new streaming platform to rival Twitch. Industry analysts predict major shift in content creation.', author: 'TechCrunch', likes: 8901, retweets: 2100, timestamp: '8h ago', sentiment: 'neutral' },
-  { platform: 'Twitter/X', text: 'Okay but can we appreciate how Taylor Swift has leveraged YouTube Shorts to reach new audiences? Marketing genius.', author: '@musicinsider', likes: 2341, retweets: 178, timestamp: '6h ago', sentiment: 'positive' },
+  { platform: 'X', text: 'Okay but can we appreciate how Taylor Swift has leveraged YouTube Shorts to reach new audiences? Marketing genius.', author: '@musicinsider', likes: 2341, retweets: 178, timestamp: '6h ago', sentiment: 'positive' },
   { platform: 'Reddit', text: 'The algorithm change on YouTube is killing small channels. My views dropped 60% this month. Anyone else experiencing this?', author: 'u/smallcreator', likes: 1567, retweets: 234, timestamp: '12h ago', sentiment: 'negative' },
   { platform: 'TikTok', text: 'POV: You found the best cooking channel on YouTube and now you cook every meal from their recipes. No regrets 😂', author: '@foodie_ke', likes: 8234, retweets: 678, timestamp: '1d ago', sentiment: 'positive' },
 ];
@@ -99,7 +99,7 @@ export function SocialMentionsTool() {
       const prompt = `You are a social media intelligence analyst. Find recent mentions of the YouTube channel "${channelInput.trim()}" across social platforms.
 
 Return a JSON array of 8 mention objects with these exact fields:
-- "platform": one of "Twitter/X", "Reddit", "TikTok", "Instagram", "News"
+- "platform": one of "X", "Reddit", "TikTok", "Instagram", "News"
 - "text": the mention text (50-200 characters)
 - "author": the author handle or name
 - "likes": number of likes/ups (number)
@@ -231,7 +231,7 @@ Return ONLY the JSON array, no other text.`;
       {!loading && filteredMentions.length > 0 && (
         <div className="space-y-3 max-h-[720px] overflow-y-auto custom-scrollbar">
           {filteredMentions.map((mention, i) => {
-            const pStyle = PLATFORM_STYLES[mention.platform] || PLATFORM_STYLES['Twitter/X'];
+            const pStyle = PLATFORM_STYLES[mention.platform] || PLATFORM_STYLES['X'];
             const sStyle = SENTIMENT_STYLES[mention.sentiment] || SENTIMENT_STYLES.neutral;
             return (
               <div

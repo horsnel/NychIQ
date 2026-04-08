@@ -25,6 +25,7 @@ export interface NychIQState {
   /* Settings */
   workerUrl: string;
   region: string;
+  detectedRegion: string | null;
   referralCode: string;
 
   /* UI state */
@@ -55,6 +56,7 @@ export interface NychIQState {
   setSidebarOpen: (open: boolean) => void;
   setWorkerUrl: (url: string) => void;
   setRegion: (region: string) => void;
+  setDetectedRegion: (region: string | null) => void;
   setReferralCode: (code: string) => void;
   setMobileNavTab: (tab: string) => void;
   setSakuOpen: (open: boolean) => void;
@@ -217,6 +219,7 @@ export const useNychIQStore = create<NychIQState>()(
       // Settings
       workerUrl: '',
       region: 'US',
+      detectedRegion: null,
       referralCode: '',
 
       // UI state
@@ -339,6 +342,7 @@ export const useNychIQStore = create<NychIQState>()(
       setSidebarOpen: (open: boolean) => set({ sidebarOpen: open }),
       setWorkerUrl: (url: string) => set({ workerUrl: url }),
       setRegion: (region: string) => set({ region }),
+      setDetectedRegion: (region: string | null) => set({ detectedRegion: region }),
       setReferralCode: (code: string) => set({ referralCode: code }),
       setMobileNavTab: (tab: string) => set({ mobileNavTab: tab }),
       setSakuOpen: (open: boolean) => set({ sakuOpen: open }),
@@ -370,6 +374,7 @@ export const useNychIQStore = create<NychIQState>()(
         signupTimestamp: state.signupTimestamp,
         workerUrl: state.workerUrl,
         region: state.region,
+        detectedRegion: state.detectedRegion,
         referralCode: state.referralCode,
         searchFilter: state.searchFilter,
       }),

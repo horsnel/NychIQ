@@ -297,7 +297,7 @@ export function WelcomePage() {
                 <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
                   <Play className="w-4.5 h-4.5 text-black fill-black ml-0.5" />
                 </div>
-                <span className="text-xl font-bold tracking-tight text-gradient-amber">NYCHIQ</span>
+                <span className="text-xl font-bold tracking-tight text-gradient-amber">NychIQ</span>
               </button>
 
               {/* Center links - desktop */}
@@ -757,7 +757,7 @@ export function WelcomePage() {
             {/* Copyright */}
             <div className="mt-12 pt-6 border-t border-[#1A1A1A] text-center">
               <p className="text-xs text-[#444]">
-                &copy; 2026 Nychiq. All rights reserved.
+                &copy; 2026 NychIQ. All rights reserved.
               </p>
             </div>
           </div>
