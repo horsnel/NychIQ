@@ -114,7 +114,7 @@ function ShortsSkeleton() {
 
 /* ── Main Shorts Tool ── */
 export function ShortsTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [sortBy, setSortBy] = useState<SortOption>('views');
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -136,7 +136,7 @@ export function ShortsTool() {
 
     try {
       const res = await fetch(
-        `/api/youtube/search?part=snippet&q=trending shorts&type=video&maxResults=18&videoDuration=short`
+        `/api/youtube/search?part=snippet&q=trending shorts&type=video&maxResults=18&videoDuration=short&regionCode=${region}`
       );
       if (!res.ok) throw new Error(`Failed to fetch shorts (${res.status})`);
       const data = await res.json();
@@ -161,7 +161,7 @@ export function ShortsTool() {
     } finally {
       setLoading(false);
     }
-  }, [spendTokens, hasSpent]);
+  }, [spendTokens, hasSpent, region]);
 
   useEffect(() => {
     fetchShorts();
@@ -310,7 +310,7 @@ export function ShortsTool() {
 
       {/* Token cost footer */}
       <div className="text-center text-[11px] text-[#444444]">
-        Cost: {TOKEN_COSTS.shorts} tokens per load · Sort: {sortBy}
+        Cost: {TOKEN_COSTS.shorts} tokens per load · Region: {region} · Sort: {sortBy}
       </div>
     </div>
   );

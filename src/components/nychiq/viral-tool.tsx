@@ -59,7 +59,7 @@ function ScoreCircle({ score }: { score: number }) {
 
 /* ── Main Viral Tool ── */
 export function ViralTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [threshold, setThreshold] = useState<Threshold>('all');
   const [items, setItems] = useState<ViralItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,7 +81,7 @@ export function ViralTool() {
 
     try {
       const res = await fetch(
-        `/api/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=NG&maxResults=24`
+        `/api/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${region}&maxResults=24`
       );
       if (!res.ok) throw new Error(`Failed to fetch viral data (${res.status})`);
       const data = await res.json();
@@ -104,7 +104,7 @@ export function ViralTool() {
     } finally {
       setLoading(false);
     }
-  }, [spendTokens, hasSpent]);
+  }, [spendTokens, hasSpent, region]);
 
   useEffect(() => {
     fetchViral();
@@ -312,7 +312,7 @@ export function ViralTool() {
 
       {/* Token cost footer */}
       <div className="text-center text-[11px] text-[#444444]">
-        Cost: {TOKEN_COSTS.viral} token per load · Threshold: {threshold}
+        Cost: {TOKEN_COSTS.viral} token per load · Region: {region} · Threshold: {threshold}
       </div>
     </div>
   );

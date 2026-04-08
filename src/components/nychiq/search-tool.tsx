@@ -92,7 +92,7 @@ function mapStoreFilter(val: string): FilterType {
 
 /* ── Main Search Tool ── */
 export function SearchTool() {
-  const { spendTokens, searchFilter, setSearchFilter } = useNychIQStore();
+  const { spendTokens, searchFilter, setSearchFilter, region } = useNychIQStore();
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<FilterType>(mapStoreFilter(searchFilter));
 
@@ -126,6 +126,7 @@ export function SearchTool() {
         q: trimmed,
         maxResults: '20',
         type: filter === 'channel' ? 'channel' : 'video',
+        regionCode: region,
       });
 
       const res = await fetch(`/api/youtube/search?${params}`);
@@ -197,7 +198,7 @@ export function SearchTool() {
     } finally {
       setLoading(false);
     }
-  }, [query, filter, spendTokens]);
+  }, [query, filter, spendTokens, region]);
 
   return (
     <div className="space-y-5 animate-fade-in-up">
@@ -342,7 +343,7 @@ export function SearchTool() {
       {/* Token cost footer */}
       {searched && (
         <div className="text-center text-[11px] text-[#444444]">
-          Cost: {TOKEN_COSTS.search} tokens per search · Filter: {filter}
+          Cost: {TOKEN_COSTS.search} tokens per search · Region: {region} · Filter: {filter}
         </div>
       )}
     </div>

@@ -1,6 +1,16 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+/* ── SSR-safe storage ── */
+const ssrSafeStorage = typeof window !== 'undefined' ? window.localStorage : {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+  clear: () => {},
+  length: 0,
+  key: () => null,
+};
+
 /* ── Types ── */
 export type Plan = 'trial' | 'starter' | 'pro' | 'elite' | 'agency';
 export type PageId = 'welcome' | 'login' | 'app' | 'privacy' | 'terms' | 'refund' | 'cookies' | 'about' | 'contact' | 'careers' | 'changelog' | 'ob-questions' | 'ob-audit' | 'ob-extension';
@@ -362,6 +372,7 @@ export const useNychIQStore = create<NychIQState>()(
     }),
     {
       name: 'nychiq-store',
+      storage: ssrSafeStorage,
       partialize: (state) => ({
         currentPage: state.currentPage,
         activeTool: state.activeTool,

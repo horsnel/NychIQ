@@ -63,7 +63,7 @@ function RankBadge({ rank }: { rank: number }) {
 
 /* ── Main Rankings Tool ── */
 export function RankingsTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [tab, setTab] = useState<TabType>('videos');
   const [items, setItems] = useState<RankedVideo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -82,7 +82,7 @@ export function RankingsTool() {
     try {
       const type = tab === 'shorts' ? 'short,video' : 'video';
       const res = await fetch(
-        `/api/youtube/search?part=snippet&q=${tab === 'shorts' ? 'shorts trending' : tab === 'channels' ? 'top channels' : 'trending videos'}&type=${tab === 'channels' ? 'channel' : type}&maxResults=15&order=viewCount`
+        `/api/youtube/search?part=snippet&q=${tab === 'shorts' ? 'shorts trending' : tab === 'channels' ? 'top channels' : 'trending videos'}&type=${tab === 'channels' ? 'channel' : type}&maxResults=15&order=viewCount&regionCode=${region}`
       );
       if (!res.ok) throw new Error(`Failed to fetch rankings (${res.status})`);
       const data = await res.json();
@@ -104,7 +104,7 @@ export function RankingsTool() {
     } finally {
       setLoading(false);
     }
-  }, [tab, spendTokens]);
+  }, [tab, spendTokens, region]);
 
   useEffect(() => {
     fetchRankings();
@@ -265,7 +265,7 @@ export function RankingsTool() {
 
       {/* Token cost footer */}
       <div className="text-center text-[11px] text-[#444444]">
-        Cost: {TOKEN_COSTS.rankings} tokens per load · Tab: {tab}
+        Cost: {TOKEN_COSTS.rankings} tokens per load · Region: {region} · Tab: {tab}
       </div>
     </div>
   );

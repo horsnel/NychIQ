@@ -130,8 +130,8 @@ function TrendingHeader({
 
 /* ── Main Trending Tool ── */
 export function TrendingTool() {
-  const { spendTokens } = useNychIQStore();
-  const [selectedRegion, setSelectedRegion] = useState('NG');
+  const { spendTokens, region: storeRegion, setRegion } = useNychIQStore();
+  const [selectedRegion, setSelectedRegion] = useState(storeRegion || 'NG');
   const [sortBy, setSortBy] = useState<SortOption>('views');
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -180,7 +180,14 @@ export function TrendingTool() {
     } finally {
       setLoading(false);
     }
-  }, [selectedRegion, spendTokens, hasSpent]);
+  }, [selectedRegion, spendTokens, hasSpent, storeRegion]);
+
+  // Sync with store region when it changes (e.g., from geolocation detection)
+  useEffect(() => {
+    if (storeRegion && storeRegion !== selectedRegion) {
+      setSelectedRegion(storeRegion);
+    }
+  }, [storeRegion]);
 
   useEffect(() => {
     fetchTrending();
@@ -209,7 +216,7 @@ export function TrendingTool() {
       {/* Header */}
       <TrendingHeader
         selectedRegion={selectedRegion}
-        onRegionChange={setSelectedRegion}
+        onRegionChange={(r) => { setSelectedRegion(r); setRegion(r); }}
         sortBy={sortBy}
         onSortChange={setSortBy}
         onRefresh={fetchTrending}

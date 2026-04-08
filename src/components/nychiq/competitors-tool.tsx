@@ -42,7 +42,7 @@ interface StrategyAnalysis {
 
 /* ── Main Competitor Tool ── */
 export function CompetitorsTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [channelInput, setChannelInput] = useState('');
   const [channel, setChannel] = useState<string>('');
   const [profile, setProfile] = useState<ChannelProfile | null>(null);
@@ -72,7 +72,7 @@ export function CompetitorsTool() {
     try {
       // Fetch channel search results
       const res = await fetch(
-        `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=channel&maxResults=1`
+        `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=channel&maxResults=1&regionCode=${region}`
       );
       if (!res.ok) throw new Error(`Search failed (${res.status})`);
       const data = await res.json();
@@ -97,7 +97,7 @@ export function CompetitorsTool() {
 
         // Fetch latest videos
         const vidRes = await fetch(
-          `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=video&maxResults=6&order=date`
+          `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=video&maxResults=6&order=date&regionCode=${region}`
         );
         if (vidRes.ok) {
           const vidData = await vidRes.json();
@@ -135,7 +135,7 @@ export function CompetitorsTool() {
     } finally {
       setLoading(false);
     }
-  }, [channelInput, spendTokens]);
+  }, [channelInput, spendTokens, region]);
 
   const handleAnalyzeStrategy = async () => {
     if (!channel || !profile) return;
@@ -464,7 +464,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Token cost footer */}
       {profile && (
         <div className="text-center text-[11px] text-[#444444]">
-          Cost: {TOKEN_COSTS.competitor} tokens per channel track
+          Cost: {TOKEN_COSTS.competitor} tokens per channel track · Region: {region}
         </div>
       )}
     </div>

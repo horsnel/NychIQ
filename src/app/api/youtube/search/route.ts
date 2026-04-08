@@ -12,6 +12,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Query parameter "q" is required' }, { status: 400 });
   }
 
+  const regionCode = searchParams.get('regionCode') || '';
+
   const params = new URLSearchParams({
     part,
     q,
@@ -19,6 +21,9 @@ export async function GET(request: NextRequest) {
     type,
   });
 
+  if (regionCode) {
+    params.set('regionCode', regionCode);
+  }
   if (pageToken) {
     params.set('pageToken', pageToken);
   }
