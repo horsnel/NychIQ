@@ -32,35 +32,10 @@ const CPM_DATA: CPMEntry[] = [
   { niche: 'Gaming',          percentage: 19, cpm: 4.20,  change: 1.8,  color: '#888888' },
 ];
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#F5A623]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">CPM Estimator Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">
-          This feature requires the Elite plan or higher. Upgrade to access CPM analytics.
-        </p>
-        <button
-          onClick={() => setUpgradeModalOpen(true)}
-          className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
-        >
-          <Crown className="w-4 h-4" />
-          Upgrade Now
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /* ── Main CPM Tool ── */
 export function CPMTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
   const [monthlyViews, setMonthlyViews] = useState('100000');
   const [selectedNiche, setSelectedNiche] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -89,11 +64,6 @@ export function CPMTool() {
   const cpm = CPM_DATA[selectedNiche].cpm;
   const revenue = (views / 1000) * cpm;
   const yearlyRevenue = revenue * 12;
-
-  if (!canAccess('cpm')) {
-    return <PlanGate />;
-  }
-
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}

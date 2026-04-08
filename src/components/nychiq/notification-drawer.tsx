@@ -16,7 +16,7 @@ interface Notification {
 }
 
 const INITIAL_NOTIFS: Notification[] = [
-  { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 50 tokens.', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
+  { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 20 tokens. More tokens unlock over 3 days!', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
   { id: '2', title: 'Trending Alert', message: 'Your niche "Tech Reviews" has 3 viral videos today.', time: '2h ago', read: false, type: 'success', navigateTo: 'trending' },
   { id: '3', title: 'Token Low', message: 'You have less than 10 tokens remaining.', time: '1d ago', read: true, type: 'warning', navigateTo: 'usage' },
   { id: '4', title: 'Viral Score Updated', message: 'Channel viral score has been recalculated for your tracked niches.', time: '3h ago', read: false, type: 'system', navigateTo: 'dashboard' },

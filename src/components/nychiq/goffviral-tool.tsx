@@ -106,24 +106,6 @@ function formatHour(h: number): string {
   return `${h - 12}:00 PM`;
 }
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#9B72CF]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">GoffViral Predictor Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">This is an Agency-exclusive tool. Upgrade to the Agency plan to access the TikTok viral prediction model.</p>
-        <button onClick={() => setUpgradeModalOpen(true)} className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#9B72CF] text-white text-sm font-bold hover:bg-[#8A62BE] transition-colors">
-          <Crown className="w-4 h-4" /> Upgrade to Agency
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /* ── Loading Steps Animation ── */
 const LOADING_STEPS = [
@@ -216,7 +198,7 @@ function generateMockResult(inputs: GoffViralInputs): ViralResult {
 
 /* ── Main Component ── */
 export function GoffViralTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
 
   const [views, setViews] = useState('');
   const [likes, setLikes] = useState('');
@@ -317,9 +299,6 @@ Return ONLY the JSON object, no other text.`;
       setLoading(false);
     }
   };
-
-  if (!canAccess('goffviral')) return <PlanGate />;
-
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}

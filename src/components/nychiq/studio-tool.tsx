@@ -215,24 +215,6 @@ function ViralBadge({ score }: { score: number }) {
   );
 }
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#F5A623]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Studio Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">NychIQ Studio requires Starter plan or higher. Upgrade to access channel management, video SEO, and pre-upload tools.</p>
-        <button onClick={() => setUpgradeModalOpen(true)} className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors">
-          <Crown className="w-4 h-4" /> Upgrade Now
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /* ── Tabs Config ── */
 const TABS: { id: StudioTab; label: string; icon: React.ReactNode }[] = [
@@ -245,11 +227,7 @@ const TABS: { id: StudioTab; label: string; icon: React.ReactNode }[] = [
 
 /* ── Main Component ── */
 export function StudioTool() {
-  const { canAccess } = useNychIQStore();
-  const [activeTab, setActiveTab] = useState<StudioTab>('overview');
-
-  if (!canAccess('studio')) return <PlanGate />;
-
+    const [activeTab, setActiveTab] = useState<StudioTab>('overview');
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* Header */}

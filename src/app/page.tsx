@@ -11,6 +11,7 @@ import { TokenModal } from '@/components/nychiq/token-modal';
 import { NotificationDrawer } from '@/components/nychiq/notification-drawer';
 import { CommandBar } from '@/components/nychiq/command-bar';
 import { SakuPanel } from '@/components/nychiq/saku-panel';
+import { SakuDailyPopup } from '@/components/nychiq/saku-daily-popup';
 import { SakuFullPage } from '@/components/nychiq/saku-full-page';
 import { WelcomePage } from '@/components/nychiq/welcome-page';
 import { LoginPage } from '@/components/nychiq/login-page';
@@ -58,6 +59,7 @@ import { SocialCommentsTool } from '@/components/nychiq/social-comments-tool';
 import { SocialChannelsTool } from '@/components/nychiq/social-channels-tool';
 import { GoffViralTool } from '@/components/nychiq/goffviral-tool';
 import { AgencyDashboardTool } from '@/components/nychiq/agency-tool';
+import { PlanGate } from '@/components/nychiq/plan-gate';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
@@ -94,7 +96,13 @@ function ToolPlaceholder() {
 
 /* ── Tool router (renders the right tool based on activeTool) ── */
 function ToolRouter() {
-  const { activeTool } = useNychIQStore();
+  const { activeTool, canAccess } = useNychIQStore();
+
+  // Check plan access before rendering any tool
+  if (!canAccess(activeTool)) {
+    const label = TOOL_META[activeTool]?.label ?? activeTool;
+    return <PlanGate toolId={activeTool} toolLabel={label} />;
+  }
 
   switch (activeTool) {
     case 'dashboard':
@@ -175,6 +183,8 @@ function ToolRouter() {
       return <GoffViralTool />;
     case 'agency-dashboard':
       return <AgencyDashboardTool />;
+    case 'saku':
+      return <SakuFullPage />;
     default:
       return <ToolPlaceholder />;
   }
@@ -206,6 +216,9 @@ function AppShell() {
 
       {/* Saku full-page overlay */}
       <SakuFullPage />
+
+      {/* Saku daily popup */}
+      <SakuDailyPopup />
 
       {/* Modals & overlays */}
       <UpgradeModal />

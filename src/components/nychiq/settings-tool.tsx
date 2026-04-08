@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore } from '@/lib/store';
 import { copyToClipboard, getInitials } from '@/lib/utils';
+import { showToast } from '@/lib/toast';
 import {
   Settings,
   User,
@@ -19,6 +20,10 @@ import {
   AlertTriangle,
   Shield,
   Info,
+  Gift,
+  Share2,
+  Users,
+  Coins,
 } from 'lucide-react';
 
 const REGIONS = [
@@ -121,16 +126,23 @@ export function SettingsTool() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-  /* Generate referral code on mount if empty */
+  /* Generate referral code on mount if empty — use username prefix if available */
   useEffect(() => {
     if (!refCode) {
       const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
       let code = '';
-      for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      if (userName) {
+        // Derive from username: take first 3 chars, uppercase, strip non-alpha
+        const prefix = userName.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 3);
+        code = prefix;
+        while (code.length < 8) code += chars[Math.floor(Math.random() * chars.length)];
+      } else {
+        for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      }
       setRefCode(code);
       setReferralCode(code);
     }
-  }, [refCode, setReferralCode]);
+  }, [refCode, setReferralCode, userName]);
 
   /* Sync store values when they change externally */
   useEffect(() => { setDisplayName(userName); }, [userName]);
@@ -149,12 +161,32 @@ export function SettingsTool() {
   }, [selectedRegion, workerInput, setRegion, setWorkerUrl]);
 
   /* Copy referral link */
+  const referralLink = `https://nychiq.com/?ref=${refCode}`;
+
   const handleCopyRef = async () => {
-    const link = `https://nychiq.com/ref/${refCode}`;
-    const ok = await copyToClipboard(link);
+    const ok = await copyToClipboard(referralLink);
     if (ok) {
       setCopiedRef(true);
+      showToast('Referral link copied to clipboard!', 'success');
       setTimeout(() => setCopiedRef(false), 2500);
+    }
+  };
+
+  /* Share via native share API */
+  const handleShareRef = async () => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Join me on NychIQ',
+          text: `Sign up for NychIQ using my referral code ${refCode} and we both get +20 free tokens!`,
+          url: referralLink,
+        });
+      } catch {
+        // User cancelled or share failed — fall back to copy
+        await handleCopyRef();
+      }
+    } else {
+      await handleCopyRef();
     }
   };
 
@@ -317,29 +349,62 @@ export function SettingsTool() {
       {/* ── Referral Program Section ── */}
       <SectionCard
         title="Referral Program"
-        icon={<ChevronRight className="w-4 h-4 text-[#F5A623]" />}
+        icon={<Gift className="w-4 h-4 text-[#F5A623]" />}
       >
         <div className="space-y-3">
           <p className="text-sm text-[#888888]">
             Share your referral code and earn bonus tokens for every friend who signs up.
           </p>
-          <div className="flex items-center gap-3 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-            <div className="flex-1">
-              <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider">Your Referral Code</p>
-              <p className="text-lg font-bold text-[#F5A623] tracking-widest mt-0.5">{refCode}</p>
+
+          {/* Referral Stats */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+              <div className="p-1.5 rounded-md bg-[rgba(74,158,255,0.1)]">
+                <Users className="w-4 h-4 text-[#4A9EFF]" />
+              </div>
+              <div>
+                <p className="text-xs text-[#666666]">Referrals</p>
+                <p className="text-sm font-bold text-[#E8E8E8]">0</p>
+              </div>
             </div>
-            <button
-              onClick={handleCopyRef}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors shrink-0"
-            >
-              {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedRef ? 'Copied!' : 'Copy Referral Link'}
-            </button>
+            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+              <div className="p-1.5 rounded-md bg-[rgba(245,166,35,0.1)]">
+                <Coins className="w-4 h-4 text-[#F5A623]" />
+              </div>
+              <div>
+                <p className="text-xs text-[#666666]">Tokens Earned</p>
+                <p className="text-sm font-bold text-[#E8E8E8]">0</p>
+              </div>
+            </div>
           </div>
+
+          {/* Referral Code + Actions */}
+          <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+            <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Your Referral Code</p>
+            <p className="text-lg font-bold text-[#F5A623] tracking-widest mb-3">{refCode}</p>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleCopyRef}
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
+              >
+                {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copiedRef ? 'Copied!' : 'Copy Link'}
+              </button>
+              <button
+                onClick={handleShareRef}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#222222] text-[#888888] text-sm font-medium hover:border-[#333333] hover:text-[#E8E8E8] transition-colors"
+                title="Share referral link"
+              >
+                <Share2 className="w-4 h-4" />
+                Share
+              </button>
+            </div>
+          </div>
+
           <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(245,166,35,0.06)] border border-[rgba(245,166,35,0.15)]">
-            <span className="text-sm">🎁</span>
+            <Gift className="w-4 h-4 text-[#F5A623] shrink-0" />
             <p className="text-xs text-[#F5A623]">
-              You and your friend both get <span className="font-bold">+20 tokens</span>
+              You and your friend both get <span className="font-bold">+20 tokens</span> when they sign up!
             </p>
           </div>
         </div>

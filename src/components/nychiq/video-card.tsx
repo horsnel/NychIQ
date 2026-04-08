@@ -1,8 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, MoreVertical, ExternalLink } from 'lucide-react';
-import { cn, thumbUrl, vidDuration, fmtV, timeAgo, viralScore, sanitizeText, scoreClass } from '@/lib/utils';
+import { Play, MoreVertical, ExternalLink, Copy, SearchCode, MessageSquare } from 'lucide-react';
+import { cn, thumbUrl, vidDuration, fmtV, timeAgo, viralScore, sanitizeText, scoreClass, copyToClipboard } from '@/lib/utils';
+import { useNychIQStore } from '@/lib/store';
+import { showToast } from '@/lib/toast';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export interface VideoData {
   videoId: string;
@@ -61,6 +70,104 @@ function VideoCardSkeleton() {
 
 export { VideoCardSkeleton };
 
+function VideoContextMenu({ video }: { video: VideoData }) {
+  const { setActiveTool, setPage } = useNychIQStore();
+  const youtubeUrl = `https://youtube.com/watch?v=${video.videoId}`;
+
+  const handleOpenYouTube = () => {
+    window.open(youtubeUrl, '_blank', 'noopener');
+  };
+
+  const handleCopyTitle = async () => {
+    const ok = await copyToClipboard(video.title);
+    showToast(ok ? 'Title copied!' : 'Failed to copy title', ok ? 'success' : 'error');
+  };
+
+  const handleCopyUrl = async () => {
+    const ok = await copyToClipboard(youtubeUrl);
+    showToast(ok ? 'URL copied!' : 'Failed to copy URL', ok ? 'success' : 'error');
+  };
+
+  const handleCopyDescription = async () => {
+    const ok = await copyToClipboard(video.title);
+    showToast(ok ? 'Description copied!' : 'Failed to copy description', ok ? 'success' : 'error');
+  };
+
+  const handleGenerateSeo = () => {
+    setActiveTool('seo');
+    setPage('app');
+  };
+
+  const handleDeepChat = () => {
+    setActiveTool('deepchat');
+    setPage('app');
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className="absolute top-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
+          onClick={(e) => e.stopPropagation()}
+          aria-label="Video options"
+        >
+          <MoreVertical className="w-4 h-4 text-white" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        side="bottom"
+        align="end"
+        className="bg-[#111] border-[#222] min-w-[200px]"
+      >
+        <DropdownMenuItem
+          onClick={handleOpenYouTube}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <ExternalLink className="w-4 h-4" />
+          Open on YouTube
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuItem
+          onClick={handleCopyTitle}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <Copy className="w-4 h-4" />
+          Copy Title
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyUrl}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <Copy className="w-4 h-4" />
+          Copy URL
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyDescription}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <Copy className="w-4 h-4" />
+          Copy Description
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuItem
+          onClick={handleGenerateSeo}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <SearchCode className="w-4 h-4" />
+          Generate SEO
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleDeepChat}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <MessageSquare className="w-4 h-4" />
+          Analyse with Deep Chat
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export function VideoCard({ video, compact = false, showViralScore = false, onClick, className }: VideoCardProps) {
   const [imgError, setImgError] = useState(false);
   const vs = video.viralScore ? viralScore(video.viralScore) : null;
@@ -107,6 +214,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           {showViralScore && video.viralScore && video.viralScore >= 70 && (
             <ViralBadge score={video.viralScore} />
           )}
+          <VideoContextMenu video={video} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
           <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors">
@@ -169,6 +277,9 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
         {showViralScore && video.viralScore && video.viralScore >= 70 && (
           <ViralBadge score={video.viralScore} />
         )}
+
+        {/* 3-dots context menu */}
+        <VideoContextMenu video={video} />
       </div>
 
       {/* Info */}

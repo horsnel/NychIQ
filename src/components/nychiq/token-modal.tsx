@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { useNychIQStore, PLAN_TOKENS } from '@/lib/store';
+import { useNychIQStore } from '@/lib/store';
 
 export function TokenModal() {
   const { tokenModalOpen, setTokenModalOpen, tokenBalance, userPlan } = useNychIQStore();
@@ -44,7 +44,7 @@ export function TokenModal() {
               <Zap className="w-4 h-4 text-[#F5A623]" />
               <div>
                 <p className="text-xs font-medium text-[#E8E8E8]">Upgrade Plan</p>
-                <p className="text-[11px] text-[#888888]">Get up to {PLAN_TOKENS.agency.toLocaleString()} tokens/mo</p>
+                <p className="text-[11px] text-[#888888]">Get up to unlimited tokens with Elite or 20,000+ with Agency</p>
               </div>
             </div>
           </div>

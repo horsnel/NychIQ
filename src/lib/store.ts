@@ -28,6 +28,7 @@ export interface NychIQState {
   referralCode: string;
 
   /* UI state */
+  searchFilter: string;
   sidebarOpen: boolean;
   mobileNavTab: string;
   sakuOpen: boolean;
@@ -62,6 +63,7 @@ export interface NychIQState {
   setUpgradeModalOpen: (open: boolean) => void;
   setTokenModalOpen: (open: boolean) => void;
   setCommandBarOpen: (open: boolean) => void;
+  setSearchFilter: (filter: string) => void;
   setTrendingVideos: (videos: any[]) => void;
   setShorts: (videos: any[]) => void;
   canAccess: (tool: string) => boolean;
@@ -71,21 +73,21 @@ export interface NychIQState {
 export const TOKEN_COSTS: Record<string, number> = {
   dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0,
   viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2,
-  trending: 3, algorithm: 3, deepchat: 3, saku3x: 3, seo: 5, posttime: 5, shorts: 5,
-  ideas: 6, hook: 8, 'ab-test': 8, crossplatform: 8, niche: 8, search: 8, 'thumbnail-lab': 8,
-  sentiment: 10, competitor: 10, 'trend-alerts': 3,
+  trending: 3, algorithm: 3, deepchat: 3, seo: 5, posttime: 5, shorts: 5,
+  ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8,
+  'social-comments': 10, competitor: 10, 'trend-alerts': 3,
   script: 12, 'outlier-scout': 12, 'history-intel': 10, audit: 20,
-  strategy: 15, goffviral: 15, 'perf-forensics': 15, agency: 20,
+  strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20,
   'automation': 10, 'sponsorship-roi': 8, 'safe-check': 5, 'vph-tracker': 2, 'social-channels': 5,
 };
 
 /* ── Plan access levels ── */
-const PLAN_ACCESS: Record<Plan, string[]> = {
+export const PLAN_ACCESS: Record<Plan, string[]> = {
   trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage'],
   starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio'],
-  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation'],
-  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels'],
-  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'strategy', 'goffviral', 'agency-dashboard'],
+  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation'],
+  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels'],
+  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'strategy', 'goffviral', 'agency-dashboard'],
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
@@ -103,7 +105,7 @@ export const PLAN_TOKENS: Record<Plan, number> = {
   trial: 100,
   starter: 500,
   pro: 3500,
-  elite: 50000,
+  elite: 999999, // Unlimited
   agency: 20000,
 };
 
@@ -188,6 +190,7 @@ export const useNychIQStore = create<NychIQState>()(
       referralCode: '',
 
       // UI state
+      searchFilter: 'All',
       sidebarOpen: false,
       mobileNavTab: 'dashboard',
       sakuOpen: false,
@@ -314,6 +317,7 @@ export const useNychIQStore = create<NychIQState>()(
       setUpgradeModalOpen: (open: boolean) => set({ upgradeModalOpen: open }),
       setTokenModalOpen: (open: boolean) => set({ tokenModalOpen: open }),
       setCommandBarOpen: (open: boolean) => set({ commandBarOpen: open }),
+      setSearchFilter: (filter: string) => set({ searchFilter: filter }),
       setTrendingVideos: (videos: any[]) => set({ trendingVideos: videos }),
       setShorts: (videos: any[]) => set({ shorts: videos }),
 
@@ -337,6 +341,7 @@ export const useNychIQStore = create<NychIQState>()(
         workerUrl: state.workerUrl,
         region: state.region,
         referralCode: state.referralCode,
+        searchFilter: state.searchFilter,
       }),
     }
   )

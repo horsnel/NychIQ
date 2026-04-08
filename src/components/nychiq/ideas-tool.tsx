@@ -49,22 +49,9 @@ function viralColor(score: number) {
   return { color: '#888888', bg: 'rgba(136,136,136,0.1)', border: 'rgba(136,136,136,0.3)' };
 }
 
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4"><Lock className="w-7 h-7 text-[#F5A623]" /></div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Video Ideas Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">This feature requires the Pro plan or higher. Upgrade to generate viral video ideas.</p>
-        <button onClick={() => setUpgradeModalOpen(true)} className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"><Crown className="w-4 h-4" /> Upgrade Now</button>
-      </div>
-    </div>
-  );
-}
 
 export function IdeasTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
   const [niche, setNiche] = useState('');
   const [contentType, setContentType] = useState('Tutorial');
   const [ideas, setIdeas] = useState<VideoIdea[]>([]);
@@ -124,9 +111,6 @@ Return ONLY the JSON array.`;
       setLoading(false);
     }
   };
-
-  if (!canAccess('ideas')) return <PlanGate />;
-
   return (
     <div className="space-y-5 animate-fade-in-up">
       <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">

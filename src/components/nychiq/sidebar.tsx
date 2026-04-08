@@ -11,7 +11,7 @@ import {
   BarChart2, Settings, Coins, User, ChevronDown, ChevronRight,
   Lock, X, Sparkles,
 } from 'lucide-react';
-import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, type Plan } from '@/lib/store';
+import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
 /* ── Icon map ── */
@@ -33,6 +33,37 @@ const PLAN_COLORS: Record<Plan, string> = {
   elite: 'text-purple',
   agency: 'text-amber',
 };
+
+/* ── Plan hierarchy (lowest to highest) ── */
+const PLAN_HIERARCHY: Plan[] = ['trial', 'starter', 'pro', 'elite', 'agency'];
+
+/* ── Upsell badge info based on minimum plan required ── */
+type BadgeInfo = { text: string; color: string } | null;
+
+function getUpsellBadge(toolId: string, userPlan: Plan): BadgeInfo {
+  // Find the minimum plan that includes this tool
+  let minPlan: Plan | null = null;
+  for (const plan of PLAN_HIERARCHY) {
+    if (PLAN_ACCESS[plan]?.includes(toolId)) {
+      minPlan = plan;
+      break;
+    }
+  }
+  if (!minPlan || minPlan === 'trial') return null;
+
+  // If user's plan >= minPlan, they have access — no badge
+  const userRank = PLAN_HIERARCHY.indexOf(userPlan);
+  const minRank = PLAN_HIERARCHY.indexOf(minPlan);
+  if (userRank >= minRank) return null;
+
+  switch (minPlan) {
+    case 'starter': return { text: 'NEW', color: '#4A9EFF' };
+    case 'pro':     return { text: 'PRO+', color: '#F5A623' };
+    case 'elite':   return { text: 'ELITE+', color: '#9B72CF' };
+    case 'agency':  return { text: 'AGENCY', color: '#00C48C' };
+    default:        return null;
+  }
+}
 
 export function Sidebar() {
   const { activeTool, userPlan, sidebarOpen, setSidebarOpen, setActiveTool, setPage } = useNychIQStore();
@@ -86,13 +117,14 @@ export function Sidebar() {
                 {section.tools.map((tool) => {
                   const isActive = activeTool === tool.id;
                   const Icon = ICON_MAP[tool.icon] || LayoutDashboard;
-                  const canAccess = useNychIQStore.getState().canAccess(tool.id);
+                  const toolId = tool.id;
+                  const hasAccess = PLAN_ACCESS[userPlan]?.includes(toolId) ?? false;
 
                   return (
                     <button
                       key={tool.id}
                       onClick={() => {
-                        if (!canAccess) {
+                        if (!hasAccess) {
                           useNychIQStore.getState().setUpgradeModalOpen(true);
                           return;
                         }
@@ -108,7 +140,21 @@ export function Sidebar() {
                     >
                       <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F5A623]' : '')} />
                       <span className="truncate">{tool.label}</span>
-                      {!canAccess && (
+                      {!hasAccess && (() => {
+                        const badge = getUpsellBadge(toolId, userPlan);
+                        return badge ? (
+                          <span
+                            className="text-[8px] font-bold px-1 py-0 rounded ml-auto"
+                            style={{
+                              color: badge.color,
+                              backgroundColor: `${badge.color}18`,
+                            }}
+                          >
+                            {badge.text}
+                          </span>
+                        ) : null;
+                      })()}
+                      {!hasAccess && (
                         <Lock className="w-3 h-3 ml-auto text-text-muted shrink-0" />
                       )}
                     </button>

@@ -127,35 +127,10 @@ function TrendingHeader({
   );
 }
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#F5A623]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Trending Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">
-          Upgrade your plan to access live trending data across all regions.
-        </p>
-        <button
-          onClick={() => setUpgradeModalOpen(true)}
-          className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
-        >
-          <Crown className="w-4 h-4" />
-          Upgrade Plan
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /* ── Main Trending Tool ── */
 export function TrendingTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
   const [selectedRegion, setSelectedRegion] = useState('NG');
   const [sortBy, setSortBy] = useState<SortOption>('views');
   const [videos, setVideos] = useState<VideoData[]>([]);
@@ -208,10 +183,8 @@ export function TrendingTool() {
   }, [selectedRegion, spendTokens, hasSpent]);
 
   useEffect(() => {
-    if (canAccess('trending')) {
-      fetchTrending();
-    }
-  }, [selectedRegion, canAccess, fetchTrending]);
+    fetchTrending();
+  }, [selectedRegion, fetchTrending]);
 
   // Sort videos
   const sortedVideos = [...videos].sort((a, b) => {
@@ -224,11 +197,6 @@ export function TrendingTool() {
     }
     return 0;
   });
-
-  if (!canAccess('trending')) {
-    return <PlanGate />;
-  }
-
   // Compute stats
   const totalViews = videos.reduce((sum, v) => sum + (v.viewCount || 0), 0);
   const topViral = videos.reduce((max, v) => Math.max(max, v.viralScore || 0), 0);

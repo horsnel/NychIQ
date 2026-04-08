@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { VideoCard, VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { cn } from '@/lib/utils';
@@ -9,8 +9,6 @@ import {
   Film,
   LayoutGrid,
   UserPlus,
-  Crown,
-  Lock,
   AlertCircle,
   Loader2,
 } from 'lucide-react';
@@ -82,37 +80,26 @@ function EmptyState({ hasQuery }: { hasQuery: boolean }) {
   );
 }
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#F5A623]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Search Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">
-          Upgrade your plan to search YouTube for videos, shorts, and channels.
-        </p>
-        <button
-          onClick={() => setUpgradeModalOpen(true)}
-          className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
-        >
-          <Crown className="w-4 h-4" />
-          Upgrade Plan
-        </button>
-      </div>
-    </div>
-  );
+/* ── Map topbar filter values to internal filter keys ── */
+function mapStoreFilter(val: string): FilterType {
+  switch (val) {
+    case 'Videos': return 'video';
+    case 'Shorts': return 'short';
+    case 'Channels': return 'channel';
+    default: return 'all';
+  }
 }
 
 /* ── Main Search Tool ── */
 export function SearchTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens, searchFilter, setSearchFilter } = useNychIQStore();
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState<FilterType>('all');
+  const [filter, setFilter] = useState<FilterType>(mapStoreFilter(searchFilter));
+
+  // Sync internal filter with store's searchFilter
+  useEffect(() => {
+    setFilter(mapStoreFilter(searchFilter));
+  }, [searchFilter]);
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [channels, setChannels] = useState<ChannelResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -212,10 +199,6 @@ export function SearchTool() {
     }
   }, [query, filter, spendTokens]);
 
-  if (!canAccess('search')) {
-    return <PlanGate />;
-  }
-
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
@@ -265,7 +248,12 @@ export function SearchTool() {
             {FILTERS.map((f) => (
               <button
                 key={f.key}
-                onClick={() => setFilter(f.key)}
+                onClick={() => {
+                  setFilter(f.key);
+                  // Sync back to store (map internal key → topbar label)
+                  const labelMap: Record<string, string> = { all: 'All', video: 'Videos', short: 'Shorts', channel: 'Channels' };
+                  setSearchFilter(labelMap[f.key] || 'All');
+                }}
                 className={cn(
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   filter === f.key

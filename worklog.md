@@ -314,3 +314,119 @@ Conducted a full audit of the platform against the NychIQ specification document
 - TypeScript: Zero errors in src/
 - Next.js build: Compiled successfully
 - All 39 tool routes functional
+
+---
+
+## Task 6: Audit Round 2 — Bug Fixes + Content Pages + New Features
+**Date:** 2025-04-08
+**Agent:** Main Builder (5 parallel agents + manual fixes)
+
+### Summary
+Conducted a second comprehensive audit comparing the spec's 40 tools and 14 pages against the implementation. Found 12 bugs (6 critical), 8 placeholder pages, and several missing UX features. Fixed all bugs, filled all placeholder content, built 8 new features.
+
+### Bugs Fixed (12)
+
+#### Critical (6)
+1. **store.ts** — `script` tool missing from all PLAN_ACCESS arrays → permanently locked. Added to pro/elite/agency.
+2. **store.ts** — 4 wrong TOKEN_COSTS keys: `saku3x`→`saku`, `crossplatform`→`social-trends`, `sentiment`→`social-comments`, `agency`→`agency-dashboard`.
+3. **store.ts** — 3 missing TOKEN_COSTS entries: `social-mentions`, `social-comments`, `agency-dashboard`.
+4. **store.ts** — PLAN_TOKENS contradicted UI: trial (20 vs 100 vs 50), elite (50K > agency 20K). Fixed: elite=999999 (unlimited).
+5. **store.ts** — Initial tokenBalance=20 contradicted PLAN_TOKENS.trial=100 and welcome page "50 tokens". Kept 20 as staged initial, aligned PLAN_TOKENS.
+6. **Multiple files** — `spendTokens()` called with wrong key names in 4 tools (social-trends, social-mentions, social-comments, agency-tool).
+
+#### High (2)
+7. **sidebar.tsx** — `useNychIQStore.getState().canAccess()` non-reactive; lock icons wouldn't update on plan change. Changed to selector-based subscription.
+8. **page.tsx** — `saku` had no ToolRouter case → showed placeholder. Added `case 'saku': return <SakuFullPage />`.
+
+#### Medium (4)
+9. **notification-drawer.tsx** — Hardcoded "50 tokens" when actual initial is 20.
+10. **upgrade-modal.tsx** — Pro showed "2,500 tokens/mo" (should be 3,500), Elite "10,000" (now unlimited), Agency "50,000" (should be 20,000+).
+11. **topbar.tsx** — Search filter state was local and disconnected. Connected to store via `searchFilter`/`setSearchFilter`.
+12. **social-channels-tool.tsx** — Hardcoded `CHANNEL_TOKEN_COST=5` duplicated TOKEN_COSTS. Replaced with store import.
+
+### Content Pages Filled (8 pages)
+- **legal-page.tsx** — Rewrote with full legal content for all 4 types:
+  - Privacy Policy (~1,500 words): 9 sections covering data collection, YouTube API, GDPR, etc.
+  - Terms of Service (~1,800 words): 13 sections covering acceptance, subscriptions, IP, liability.
+  - Refund Policy (~1,100 words): 7 sections covering 7-day guarantee, renewals, exceptions.
+  - Cookie Policy (~1,000 words): 6 sections covering essential/analytics/third-party cookies.
+- **company-page.tsx** — Rewrote with full content for all 4 types:
+  - About: Hero, stats grid (40+ tools, 10M+ videos, 50K+ creators), "Why NychIQ" section, 4 team members, CTA.
+  - Contact: 4 email cards, 3 social links, FAQ accordion (4 items), contact form with toast.
+  - Careers: 3 job listings (ML Engineer, Frontend Dev, Growth Marketer) with requirements, benefits grid.
+  - Changelog: 7 version entries (v1.0.0 → v4.0.0) with vertical timeline and feature lists.
+
+### New Features Built (8)
+
+1. **Video 3-Dots Context Menu** (`video-card.tsx`)
+   - MoreVertical button appears on hover (top-right of thumbnail)
+   - 6 menu items: Open on YouTube, Copy Title, Copy URL, Copy Description, Generate SEO → SEO tool, Analyse with Deep Chat → Deep Chat tool
+   - Uses shadcn DropdownMenu, stops click propagation, shows toast on copy
+
+2. **Toast Notification System** (`src/lib/toast.ts`)
+   - `showToast(message, type)` utility wrapping sonner
+   - Supports info/success/error/warning types
+   - Sonner Toaster added to layout
+
+3. **Saku Daily Popup** (`saku-daily-popup.tsx`)
+   - Auto-shows 3 seconds after login (only on app page)
+   - 7 rotating daily insights (one per day of week)
+   - "Try It Now" navigates to relevant tool; "Dismiss" closes
+   - Once-per-day gating via localStorage
+
+4. **Sidebar Plan Badges** (`sidebar.tsx`)
+   - NEW (blue), PRO+ (amber), ELITE+ (purple), AGENCY (green) badges
+   - Only shown when user's plan is below required plan (upsell indicator)
+   - Fixed react-hooks/rules-of-hooks lint error (moved useNychIQStore out of .map())
+
+5. **Centralized PlanGate** (`plan-gate.tsx` + ToolRouter)
+   - New PlanGate component with plan icon, badge, tool label, price, unlock count
+   - Integrated into ToolRouter — all plan checks centralized (no more per-tool checks)
+   - Removed redundant canAccess() from 6 tool files (trending, shorts, rankings, viral, algorithm, agency)
+
+6. **Search Filter Connection** (topbar + search-tool + store)
+   - Added `searchFilter` to Zustand store with persistence
+   - Topbar search dropdown and filter chips now update store
+   - SearchTool reads and syncs with store's filter value
+
+7. **Store searchFilter field** (`store.ts`)
+   - New state: `searchFilter: string` (default 'All')
+   - New action: `setSearchFilter(filter)`
+   - Persisted to localStorage
+
+8. **PLAN_ACCESS exported** (`store.ts`)
+   - Exported PLAN_ACCESS for use in sidebar badge calculation
+
+### Files Created (3 new)
+- `src/components/nychiq/plan-gate.tsx`
+- `src/components/nychiq/saku-daily-popup.tsx`
+- `src/lib/toast.ts`
+
+### Files Modified (20+)
+- `src/lib/store.ts` — 6 critical fixes, exported PLAN_ACCESS, added searchFilter
+- `src/app/page.tsx` — PlanGate in ToolRouter, SakuDailyPopup in AppShell
+- `src/app/layout.tsx` — Sonner Toaster
+- `src/components/nychiq/video-card.tsx` — 3-dots context menu
+- `src/components/nychiq/sidebar.tsx` — Plan badges, reactive access check
+- `src/components/nychiq/topbar.tsx` — Store-connected search filters
+- `src/components/nychiq/upgrade-modal.tsx` — Corrected token counts
+- `src/components/nychiq/token-modal.tsx` — Corrected copy
+- `src/components/nychiq/notification-drawer.tsx` — Corrected token count
+- `src/components/nychiq/social-trends-tool.tsx` — Fixed spendTokens key
+- `src/components/nychiq/social-mentions-tool.tsx` — Fixed spendTokens key
+- `src/components/nychiq/social-comments-tool.tsx` — Fixed spendTokens key
+- `src/components/nychiq/agency-tool.tsx` — Fixed spendTokens key, removed canAccess
+- `src/components/nychiq/social-channels-tool.tsx` — Removed hardcoded cost
+- `src/components/nychiq/trending-tool.tsx` — Removed canAccess
+- `src/components/nychiq/shorts-tool.tsx` — Removed canAccess
+- `src/components/nychiq/rankings-tool.tsx` — Removed canAccess
+- `src/components/nychiq/viral-tool.tsx` — Removed canAccess
+- `src/components/nychiq/algorithm-tool.tsx` — Removed canAccess
+- `src/components/nychiq/legal-page.tsx` — Full content rewrite
+- `src/components/nychiq/company-page.tsx` — Full content rewrite
+
+### Build Status
+- TypeScript: Zero errors in src/
+- Next.js production build: Compiled successfully
+- Total components: 62 files in src/components/nychiq/
+- Total tool routes: 40 (including saku)

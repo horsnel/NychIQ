@@ -37,11 +37,12 @@ export function Topbar() {
     logout,
     region,
     setRegion,
+    searchFilter,
+    setSearchFilter,
   } = useNychIQStore();
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchFilter, setSearchFilter] = useState<FilterOption>('All');
   const [showSearchFilter, setShowSearchFilter] = useState(false);
   const searchFilterRef = useRef<HTMLDivElement>(null);
 
@@ -52,9 +53,6 @@ export function Topbar() {
   // Avatar dropdown state
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
-
-  // Active filter chip state
-  const [activeFilter, setActiveFilter] = useState<FilterOption>('All');
 
   const toolMeta = TOOL_META[activeTool];
   const pageTitle = toolMeta?.label ?? 'Dashboard';
@@ -191,10 +189,10 @@ export function Topbar() {
         {FILTER_OPTIONS.map((opt) => (
           <button
             key={opt}
-            onClick={() => setActiveFilter(opt)}
+            onClick={() => setSearchFilter(opt)}
             className={cn(
               'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
-              activeFilter === opt
+              searchFilter === opt
                 ? 'bg-[#F5A623] text-black border-[#F5A623]'
                 : 'bg-transparent text-[#888888] border-[#222222] hover:border-[#333333] hover:text-[#E8E8E8]'
             )}

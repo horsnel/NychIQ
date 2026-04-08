@@ -19,15 +19,15 @@ const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: str
   },
   {
     id: 'pro', name: 'Pro', icon: Rocket, color: '#F5A623',
-    features: ['2,500 tokens/mo', 'Everything in Starter', 'Niche Spy', 'Algorithm', 'SEO Optimizer', 'Hook Generator', 'AI Script Writer', 'Automation', 'Outlier Scout'],
+    features: ['3,500 tokens/mo', 'Everything in Starter', 'Niche Spy', 'Algorithm', 'SEO Optimizer', 'Hook Generator', 'AI Script Writer', 'Automation', 'Outlier Scout'],
   },
   {
     id: 'elite', name: 'Elite', icon: Shield, color: '#9B72CF',
-    features: ['10,000 tokens/mo', 'Everything in Pro', 'CPM Estimator', 'Channel Audit', 'Perf Forensics', 'History Intel', 'Safe Check', 'Social Intelligence'],
+    features: ['Unlimited tokens', 'Everything in Pro', 'CPM Estimator', 'Channel Audit', 'Perf Forensics', 'History Intel', 'Safe Check', 'Social Intelligence'],
   },
   {
     id: 'agency', name: 'Agency', icon: Building2, color: '#00C48C',
-    features: ['50,000 tokens/mo', 'Everything in Elite', 'Strategy Copier', 'GoffViral', 'Agency Dashboard', 'Dedicated support', 'API access'],
+    features: ['20,000+ tokens/mo', 'Everything in Elite', 'Strategy Copier', 'GoffViral', 'Agency Dashboard', 'Dedicated support', 'API access'],
   },
 ];
 

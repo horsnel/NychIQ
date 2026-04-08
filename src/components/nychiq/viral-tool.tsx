@@ -56,35 +56,10 @@ function ScoreCircle({ score }: { score: number }) {
   );
 }
 
-/* ── Plan Gate ── */
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-7 h-7 text-[#F5A623]" />
-        </div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Viral Predictor Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">
-          This feature requires the Starter plan or higher. Upgrade to unlock viral predictions.
-        </p>
-        <button
-          onClick={() => setUpgradeModalOpen(true)}
-          className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
-        >
-          <Crown className="w-4 h-4" />
-          Upgrade Now
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /* ── Main Viral Tool ── */
 export function ViralTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
   const [threshold, setThreshold] = useState<Threshold>('all');
   const [items, setItems] = useState<ViralItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -132,10 +107,8 @@ export function ViralTool() {
   }, [spendTokens, hasSpent]);
 
   useEffect(() => {
-    if (canAccess('viral')) {
-      fetchViral();
-    }
-  }, [canAccess, fetchViral]);
+    fetchViral();
+  }, [fetchViral]);
 
   // Filter by threshold
   const filtered = items.filter((item) => {
@@ -146,11 +119,6 @@ export function ViralTool() {
 
   // Sort by viral score descending
   const sorted = [...filtered].sort((a, b) => b.viralScore - a.viralScore);
-
-  if (!canAccess('viral')) {
-    return <PlanGate />;
-  }
-
   // Stats
   const avgScore = items.length > 0
     ? Math.round(items.reduce((s, v) => s + v.viralScore, 0) / items.length)

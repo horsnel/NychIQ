@@ -23,22 +23,9 @@ interface PostTimeResult {
   proTips: string[];
 }
 
-function PlanGate() {
-  const { setUpgradeModalOpen } = useNychIQStore();
-  return (
-    <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
-      <div className="max-w-sm w-full rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4"><Lock className="w-7 h-7 text-[#F5A623]" /></div>
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">Best Post Time Locked</h2>
-        <p className="text-sm text-[#888888] mb-6">Upgrade your plan to access optimal posting schedule analysis.</p>
-        <button onClick={() => setUpgradeModalOpen(true)} className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"><Crown className="w-4 h-4" /> Upgrade Now</button>
-      </div>
-    </div>
-  );
-}
 
 export function PostTimeTool() {
-  const { canAccess, spendTokens } = useNychIQStore();
+  const { spendTokens } = useNychIQStore();
   const [niche, setNiche] = useState('');
   const [region, setRegion] = useState('Nigeria');
   const [result, setResult] = useState<PostTimeResult | null>(null);
@@ -89,9 +76,6 @@ Return ONLY the JSON object.`;
       setLoading(false);
     }
   };
-
-  if (!canAccess('posttime')) return <PlanGate />;
-
   const heatmapData = result ? DAYS.map((day, i) => {
     const dayData = result.bestDays.find((d) => d.day === day);
     return HOURS.map(() => {
