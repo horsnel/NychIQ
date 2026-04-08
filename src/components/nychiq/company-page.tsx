@@ -251,8 +251,13 @@ export function CompanyPage({ type }: CompanyPageProps) {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <Play className="w-4 h-4 text-[#F5A623] fill-[#F5A623] ml-0.5" />
-          <span className="text-sm font-bold text-gradient-amber">NychIQ</span>
+          <div className="w-5 h-5 rounded-[3px] bg-[#F5A623] flex items-center justify-center">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+              <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+            </svg>
+          </div>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
         </div>
       </div>
 

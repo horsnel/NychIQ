@@ -129,7 +129,7 @@ export function OnboardingAudit() {
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
             <Sparkles className="w-4 h-4 text-black" />
           </div>
-          <span className="text-sm font-bold text-gradient-amber">NychIQ</span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">

@@ -11,6 +11,7 @@ import {
   BarChart2, Settings, Coins, User, ChevronDown, ChevronRight,
   Lock, X, Play, Layers, Scan, Wrench, ScrollText,
   Scale, Columns2, Grid3x3, Package, Target, EyeOff, Archive,
+  Sparkles,
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { cn } from '@/lib/utils';
@@ -87,11 +88,19 @@ export function Sidebar() {
   const navContent = (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1E1E1E]">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
-          <Play className="w-4 h-4 text-black fill-black ml-0.5" />
+      <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1A1A1A]">
+        <div className="w-10 h-10 rounded-[5px] bg-[#F5A623] flex items-center justify-center shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+            <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+          </svg>
         </div>
-        <span className="text-lg font-bold text-gradient-amber">NychIQ</span>
+        <div className="flex flex-col">
+          <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#E8E8E8' }}>
+            NY<span className="text-[#F5A623]">CHIQ</span>
+          </span>
+          <span className="text-[9px] text-[#888888] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
+        </div>
         <span className={cn('text-xs font-medium ml-auto', PLAN_COLORS[userPlan])}>
           {userPlan.toUpperCase()}
         </span>

@@ -46,10 +46,13 @@ export function LoginPage() {
           onClick={() => setPage('welcome')}
           className="flex items-center justify-center gap-2.5 mb-8 mx-auto group"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
-            <Play className="w-5 h-5 text-black fill-black ml-0.5" />
+          <div className="w-10 h-10 rounded-[5px] bg-[#F5A623] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+              <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+            </svg>
           </div>
-          <span className="text-xl font-bold text-gradient-amber">NychIQ</span>
+          <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
         </button>
 
         {/* Card */}

@@ -370,7 +370,7 @@ export function LegalPage({ type }: LegalPageProps) {
         </button>
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-[#F5A623]" />
-          <span className="text-sm font-bold text-gradient-amber">NychIQ</span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
         </div>
       </div>
 

@@ -294,10 +294,13 @@ export function WelcomePage() {
                 onClick={() => setPage('welcome')}
                 className="flex items-center gap-2.5 group"
               >
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
-                  <Play className="w-4.5 h-4.5 text-black fill-black ml-0.5" />
+                <div className="w-9 h-9 rounded-[5px] bg-[#F5A623] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+                    <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+                  </svg>
                 </div>
-                <span className="text-xl font-bold tracking-tight text-gradient-amber">NychIQ</span>
+                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
               </button>
 
               {/* Center links - desktop */}
@@ -660,10 +663,13 @@ export function WelcomePage() {
               {/* Brand */}
               <div className="col-span-2 sm:col-span-1">
                 <button onClick={() => setPage('welcome')} className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
-                    <Play className="w-4 h-4 text-black fill-black ml-0.5" />
+                  <div className="w-8 h-8 rounded-[5px] bg-[#F5A623] flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+                      <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+                    </svg>
                   </div>
-                  <span className="text-lg font-bold text-gradient-amber">NychIQ</span>
+                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
                 </button>
                 <p className="text-xs text-[#555] leading-relaxed max-w-[200px]">
                   AI-powered YouTube intelligence platform for creators who want to grow faster and smarter.
