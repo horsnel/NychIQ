@@ -1,0 +1,306 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  ArrowRight,
+  BarChart3,
+  Zap,
+  TrendingUp,
+  Sparkles,
+  Search,
+  Globe,
+  Check,
+  Play,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useNychIQStore } from '@/lib/store';
+
+/* ── Animated steps ── */
+const AUDIT_STEPS = [
+  { label: 'Connecting to YouTube...', icon: Globe, duration: 1200 },
+  { label: 'Analyzing video performance...', icon: BarChart3, duration: 1500 },
+  { label: 'Running SEO analysis...', icon: Search, duration: 1200 },
+  { label: 'Generating AI insights...', icon: Zap, duration: 1800 },
+  { label: 'Building report...', icon: Check, duration: 800 },
+];
+
+/* ── SVG Circular Gauge ── */
+function HealthGauge({ score }: { score: number }) {
+  const [animatedScore, setAnimatedScore] = useState(0);
+  const radius = 70;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (animatedScore / 100) * circumference;
+
+  useEffect(() => {
+    let current = 0;
+    const timer = setInterval(() => {
+      current += 2;
+      if (current >= score) {
+        current = score;
+        clearInterval(timer);
+      }
+      setAnimatedScore(current);
+    }, 20);
+    return () => clearInterval(timer);
+  }, [score]);
+
+  const getColor = () => {
+    if (score >= 80) return '#00C48C';
+    if (score >= 60) return '#F5A623';
+    if (score >= 40) return '#4A9EFF';
+    return '#E05252';
+  };
+
+  return (
+    <div className="relative inline-flex items-center justify-center">
+      <svg width="180" height="180" viewBox="0 0 180 180" className="transform -rotate-90">
+        {/* Background circle */}
+        <circle
+          cx="90"
+          cy="90"
+          r={radius}
+          stroke="#1A1A1A"
+          strokeWidth="8"
+          fill="none"
+        />
+        {/* Progress circle */}
+        <circle
+          cx="90"
+          cy="90"
+          r={radius}
+          stroke={getColor()}
+          strokeWidth="8"
+          fill="none"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          className="transition-all duration-100"
+          style={{
+            filter: `drop-shadow(0 0 6px ${getColor()}40)`,
+          }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center transform">
+        <span className="text-3xl font-extrabold" style={{ color: getColor() }}>
+          {animatedScore}
+        </span>
+        <span className="text-[10px] text-[#555] font-medium mt-0.5">/ 100</span>
+        <span className="text-[10px] text-[#888] font-semibold mt-1">Health Score</span>
+      </div>
+    </div>
+  );
+}
+
+export function OnboardingAudit() {
+  const { setPage } = useNychIQStore();
+  const [channelUrl, setChannelUrl] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [report, setReport] = useState(false);
+
+  const handleAudit = async () => {
+    if (!channelUrl.trim()) return;
+    setLoading(true);
+
+    // Animate through steps
+    for (let i = 0; i < AUDIT_STEPS.length; i++) {
+      setCurrentStep(i);
+      await new Promise((r) => setTimeout(r, AUDIT_STEPS[i].duration));
+    }
+
+    setLoading(false);
+    setReport(true);
+  };
+
+  const healthScore = 73;
+  const insights = [
+    'Your upload consistency is strong — posting every 3.2 days on average.',
+    'Video titles could be more click-optimized. Consider adding power words and numbers.',
+    'Thumbnail contrast scores are below average — increase text visibility.',
+    'Your audience retention drops significantly after the 2-minute mark.',
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#070707] flex flex-col">
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#111]">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
+            <Sparkles className="w-4 h-4 text-black" />
+          </div>
+          <span className="text-sm font-bold text-gradient-amber">NychIQ</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i <= 1 ? 'bg-[#F5A623]' : 'bg-[#222]'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-[10px] text-[#444] font-mono">2 of 3</span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6">
+        <div className="max-w-lg w-full">
+          {/* ── Input state ── */}
+          {!loading && !report && (
+            <div className="text-center animate-fade-in-up">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#F5A623]" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mb-2">Free Channel Audit</h2>
+              <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
+                Enter your YouTube channel URL to get a free AI-powered performance analysis.
+              </p>
+
+              <div className="space-y-4 max-w-sm mx-auto">
+                <div className="relative">
+                  <Play className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#444]" />
+                  <Input
+                    value={channelUrl}
+                    onChange={(e) => setChannelUrl(e.target.value)}
+                    placeholder="https://youtube.com/@yourchannel"
+                    className="pl-9 bg-[#111] border-[#222] text-[#E8E8E8] placeholder-[#444] h-12 text-center focus:border-[#F5A62355]"
+                    onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
+                  />
+                </div>
+
+                <div className="flex items-center justify-center gap-4 text-xs text-[#555]">
+                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#F5A623]" /> Viral Score</span>
+                  <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-[#00C48C]" /> Growth Tips</span>
+                  <span className="flex items-center gap-1"><Search className="w-3 h-3 text-[#4A9EFF]" /> SEO</span>
+                </div>
+
+                <Button
+                  className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  onClick={handleAudit}
+                  disabled={!channelUrl.trim()}
+                >
+                  Analyze Channel
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+
+                <button
+                  onClick={() => setPage('ob-extension')}
+                  className="text-xs text-[#444] hover:text-[#888] transition-colors"
+                >
+                  Skip for now →
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ── Loading state ── */}
+          {loading && (
+            <div className="text-center animate-fade-in-up">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#F5A623] animate-pulse" />
+              </div>
+              <h2 className="text-xl font-bold text-[#E8E8E8] mb-6">Analyzing Channel...</h2>
+
+              <div className="space-y-3 max-w-xs mx-auto">
+                {AUDIT_STEPS.map((step, i) => {
+                  const StepIcon = step.icon;
+                  const isActive = i === currentStep;
+                  const isDone = i < currentStep;
+                  return (
+                    <div
+                      key={i}
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border transition-all duration-300 ${
+                        isActive
+                          ? 'bg-[rgba(245,166,35,0.06)] border-[rgba(245,166,35,0.2)] text-[#F5A623]'
+                          : isDone
+                            ? 'bg-[rgba(0,196,140,0.06)] border-[rgba(0,196,140,0.15)] text-[#00C48C]'
+                            : 'bg-[#0A0A0A] border-[#1E1E1E] text-[#444]'
+                      }`}
+                    >
+                      {isDone ? (
+                        <Check className="w-4 h-4 shrink-0" />
+                      ) : (
+                        <StepIcon className={`w-4 h-4 shrink-0 ${isActive ? 'animate-pulse' : ''}`} />
+                      )}
+                      <span className="text-xs font-medium">{step.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ── Report state ── */}
+          {report && (
+            <div className="animate-fade-in-up">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-[#E8E8E8] mb-2">Audit Report</h2>
+                <p className="text-xs text-[#555] font-mono">{channelUrl}</p>
+              </div>
+
+              {/* Health Score Gauge */}
+              <div className="flex justify-center mb-8">
+                <HealthGauge score={healthScore} />
+              </div>
+
+              {/* AI Insights */}
+              <div className="bg-[#0A0A0A] border border-[#1E1E1E] rounded-xl p-5 mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="w-4 h-4 text-[#9B72CF]" />
+                  <span className="text-xs font-semibold text-[#9B72CF]">AI INSIGHTS</span>
+                </div>
+                <ul className="space-y-2.5">
+                  {insights.map((insight, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-[#888] leading-relaxed">
+                      <span className="w-1 h-1 rounded-full bg-[#F5A623] shrink-0 mt-1.5" />
+                      {insight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Stats pills */}
+              <div className="flex flex-wrap gap-2 mb-8 justify-center">
+                {[
+                  { label: 'Videos', value: '47', color: '#F5A623' },
+                  { label: 'Subscribers', value: '12.4K', color: '#00C48C' },
+                  { label: 'Avg Views', value: '3.2K', color: '#4A9EFF' },
+                  { label: 'Engagement', value: '6.8%', color: '#9B72CF' },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="px-3 py-2 rounded-lg bg-[#0A0A0A] border border-[#1E1E1E]"
+                  >
+                    <div className="text-sm font-bold" style={{ color: stat.color }}>{stat.value}</div>
+                    <div className="text-[10px] text-[#555]">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action */}
+              <div className="flex flex-col items-center gap-3">
+                <Button
+                  className="w-full max-w-xs bg-[#F5A623] text-black hover:bg-[#E6960F] h-11 font-semibold shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  onClick={() => setPage('ob-extension')}
+                >
+                  Continue
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                <button
+                  onClick={() => { setReport(false); setCurrentStep(-1); }}
+                  className="text-xs text-[#444] hover:text-[#888] transition-colors"
+                >
+                  ← Re-analyze another channel
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

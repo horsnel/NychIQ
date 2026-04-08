@@ -1,0 +1,428 @@
+'use client';
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNychIQStore } from '@/lib/store';
+import { copyToClipboard, getInitials } from '@/lib/utils';
+import {
+  Settings,
+  User,
+  Mail,
+  Globe,
+  Bell,
+  Link2,
+  Trash2,
+  LogOut,
+  Copy,
+  Check,
+  Save,
+  ChevronRight,
+  AlertTriangle,
+  Shield,
+  Info,
+} from 'lucide-react';
+
+const REGIONS = [
+  { code: 'NG', label: 'Nigeria' },
+  { code: 'US', label: 'United States' },
+  { code: 'GB', label: 'United Kingdom' },
+  { code: 'IN', label: 'India' },
+  { code: 'GH', label: 'Ghana' },
+  { code: 'KE', label: 'Kenya' },
+  { code: 'ZA', label: 'South Africa' },
+  { code: 'CA', label: 'Canada' },
+  { code: 'AU', label: 'Australia' },
+];
+
+/* ── Toggle Switch ── */
+function ToggleSwitch({
+  checked,
+  onChange,
+  label,
+}: {
+  checked: boolean;
+  onChange: (val: boolean) => void;
+  label: string;
+}) {
+  return (
+    <div className="flex items-center justify-between py-3">
+      <span className="text-sm text-[#E8E8E8]">{label}</span>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        onClick={() => onChange(!checked)}
+        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623]/50 ${
+          checked ? 'bg-[#F5A623]' : 'bg-[#333333]'
+        }`}
+      >
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${
+            checked ? 'translate-x-5' : 'translate-x-0'
+          }`}
+        />
+      </button>
+    </div>
+  );
+}
+
+/* ── Section Card ── */
+function SectionCard({
+  title,
+  icon,
+  children,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
+      <div className="flex items-center gap-2.5 mb-4">
+        <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">{icon}</div>
+        <h3 className="text-sm font-bold text-[#E8E8E8]">{title}</h3>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+export function SettingsTool() {
+  const {
+    userName,
+    userEmail,
+    region,
+    workerUrl,
+    referralCode,
+    setRegion,
+    setWorkerUrl,
+    setReferralCode,
+    logout,
+  } = useNychIQStore();
+
+  /* Local form state */
+  const [displayName, setDisplayName] = useState(userName);
+  const [email, setEmail] = useState(userEmail);
+  const [selectedRegion, setSelectedRegion] = useState(region);
+  const [workerInput, setWorkerInput] = useState(workerUrl);
+  const [saved, setSaved] = useState(false);
+
+  /* Notification toggles (local state only) */
+  const [viralSpikeAlerts, setViralSpikeAlerts] = useState(true);
+  const [competitorUploads, setCompetitorUploads] = useState(false);
+  const [sakuDailyInsights, setSakuDailyInsights] = useState(true);
+  const [emailNotifications, setEmailNotifications] = useState(false);
+
+  /* Referral */
+  const [refCode, setRefCode] = useState(referralCode || '');
+  const [copiedRef, setCopiedRef] = useState(false);
+
+  /* Danger zone */
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+  /* Generate referral code on mount if empty */
+  useEffect(() => {
+    if (!refCode) {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = '';
+      for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      setRefCode(code);
+      setReferralCode(code);
+    }
+  }, [refCode, setReferralCode]);
+
+  /* Sync store values when they change externally */
+  useEffect(() => { setDisplayName(userName); }, [userName]);
+  useEffect(() => { setEmail(userEmail); }, [userEmail]);
+  useEffect(() => { setSelectedRegion(region); }, [region]);
+  useEffect(() => { setWorkerInput(workerUrl); }, [workerUrl]);
+  useEffect(() => { setRefCode(referralCode); }, [referralCode]);
+
+  /* Save handler */
+  const handleSave = useCallback(() => {
+    setRegion(selectedRegion);
+    setWorkerUrl(workerInput);
+    // Note: userName and userEmail changes would go through a proper API
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  }, [selectedRegion, workerInput, setRegion, setWorkerUrl]);
+
+  /* Copy referral link */
+  const handleCopyRef = async () => {
+    const link = `https://nychiq.com/ref/${refCode}`;
+    const ok = await copyToClipboard(link);
+    if (ok) {
+      setCopiedRef(true);
+      setTimeout(() => setCopiedRef(false), 2500);
+    }
+  };
+
+  /* Clear local data */
+  const handleClearData = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+  /* Sign out */
+  const handleLogout = () => {
+    logout();
+  };
+
+  return (
+    <div className="space-y-5 animate-fade-in-up">
+      {/* Header */}
+      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+        <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
+              <Settings className="w-5 h-5 text-[#F5A623]" />
+            </div>
+            <div>
+              <h2 className="text-base font-bold text-[#E8E8E8]">Settings</h2>
+              <p className="text-xs text-[#888888] mt-0.5">Manage your account, preferences, and integrations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Account Section ── */}
+      <SectionCard
+        title="Account"
+        icon={<User className="w-4 h-4 text-[#F5A623]" />}
+      >
+        {/* Live preview avatar */}
+        <div className="flex items-center gap-3 mb-5 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+          <div className="w-12 h-12 rounded-full bg-[#F5A623] flex items-center justify-center text-[#0A0A0A] text-lg font-bold shrink-0">
+            {getInitials(displayName)}
+          </div>
+          <div>
+            <p className="text-sm font-medium text-[#E8E8E8]">{displayName || 'Your Name'}</p>
+            <p className="text-xs text-[#666666]">{email || 'your@email.com'}</p>
+          </div>
+        </div>
+
+        {/* Display Name */}
+        <div className="space-y-4">
+          <div>
+            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <User className="w-3 h-3" /> Display Name
+            </label>
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="Enter your display name"
+              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <Mail className="w-3 h-3" /> Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@email.com"
+              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+            />
+          </div>
+
+          {/* Default Region */}
+          <div>
+            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <Globe className="w-3 h-3" /> Default Region
+            </label>
+            <select
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+              className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#F5A623]/50 transition-colors appearance-none cursor-pointer"
+            >
+              {REGIONS.map((r) => (
+                <option key={r.code} value={r.code}>
+                  {r.label} ({r.code})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Save */}
+          <button
+            onClick={handleSave}
+            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
+          >
+            {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+            {saved ? 'Saved!' : 'Save Changes'}
+          </button>
+        </div>
+      </SectionCard>
+
+      {/* ── Notifications Section ── */}
+      <SectionCard
+        title="Notifications"
+        icon={<Bell className="w-4 h-4 text-[#F5A623]" />}
+      >
+        <div className="divide-y divide-[#1A1A1A]">
+          <ToggleSwitch
+            checked={viralSpikeAlerts}
+            onChange={setViralSpikeAlerts}
+            label="Viral Spike Alerts"
+          />
+          <ToggleSwitch
+            checked={competitorUploads}
+            onChange={setCompetitorUploads}
+            label="Competitor Uploads"
+          />
+          <ToggleSwitch
+            checked={sakuDailyInsights}
+            onChange={setSakuDailyInsights}
+            label="Saku Daily Insights"
+          />
+          <ToggleSwitch
+            checked={emailNotifications}
+            onChange={setEmailNotifications}
+            label="Email Notifications"
+          />
+        </div>
+      </SectionCard>
+
+      {/* ── API Configuration Section ── */}
+      <SectionCard
+        title="API Configuration"
+        icon={<Shield className="w-4 h-4 text-[#F5A623]" />}
+      >
+        <div>
+          <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+            <Link2 className="w-3 h-3" /> Cloudflare Worker URL
+          </label>
+          <input
+            type="url"
+            value={workerInput}
+            onChange={(e) => setWorkerInput(e.target.value)}
+            placeholder="https://your-worker.your-subdomain.workers.dev"
+            className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors font-mono text-xs"
+          />
+          <div className="flex items-start gap-1.5 mt-2">
+            <Info className="w-3.5 h-3.5 text-[#666666] mt-0.5 shrink-0" />
+            <p className="text-xs text-[#666666]">
+              Deploy <span className="text-[#888888] font-medium">nychiq-worker</span> and paste the URL here. This enables live YouTube data fetching via your own Cloudflare Worker proxy.
+            </p>
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* ── Referral Program Section ── */}
+      <SectionCard
+        title="Referral Program"
+        icon={<ChevronRight className="w-4 h-4 text-[#F5A623]" />}
+      >
+        <div className="space-y-3">
+          <p className="text-sm text-[#888888]">
+            Share your referral code and earn bonus tokens for every friend who signs up.
+          </p>
+          <div className="flex items-center gap-3 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+            <div className="flex-1">
+              <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider">Your Referral Code</p>
+              <p className="text-lg font-bold text-[#F5A623] tracking-widest mt-0.5">{refCode}</p>
+            </div>
+            <button
+              onClick={handleCopyRef}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors shrink-0"
+            >
+              {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              {copiedRef ? 'Copied!' : 'Copy Referral Link'}
+            </button>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(245,166,35,0.06)] border border-[rgba(245,166,35,0.15)]">
+            <span className="text-sm">🎁</span>
+            <p className="text-xs text-[#F5A623]">
+              You and your friend both get <span className="font-bold">+20 tokens</span>
+            </p>
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* ── Danger Zone Section ── */}
+      <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-4 sm:p-5">
+        <div className="flex items-center gap-2.5 mb-4">
+          <div className="p-2 rounded-lg bg-[rgba(224,82,82,0.1)]">
+            <AlertTriangle className="w-4 h-4 text-[#E05252]" />
+          </div>
+          <h3 className="text-sm font-bold text-[#E05252]">Danger Zone</h3>
+        </div>
+        <div className="space-y-3">
+          {/* Clear Data */}
+          {!showClearConfirm ? (
+            <button
+              onClick={() => setShowClearConfirm(true)}
+              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#E05252]/40 transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <Trash2 className="w-4 h-4 text-[#E05252]" />
+                <div className="text-left">
+                  <p className="text-sm text-[#E8E8E8]">Clear All Local Data</p>
+                  <p className="text-[10px] text-[#666666]">Remove all cached data from this browser</p>
+                </div>
+              </div>
+            </button>
+          ) : (
+            <div className="p-3 rounded-md bg-[rgba(224,82,82,0.08)] border border-[#E05252]/30">
+              <p className="text-sm text-[#E8E8E8] mb-3">Are you sure? This will clear all your local settings and data.</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleClearData}
+                  className="px-4 py-2 rounded-md bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                >
+                  <Trash2 className="w-3.5 h-3.5" /> Yes, Clear
+                </button>
+                <button
+                  onClick={() => setShowClearConfirm(false)}
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#888888] text-sm font-medium hover:text-[#E8E8E8] transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Sign Out */}
+          {!showLogoutConfirm ? (
+            <button
+              onClick={() => setShowLogoutConfirm(true)}
+              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#E05252]/40 transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <LogOut className="w-4 h-4 text-[#E05252]" />
+                <div className="text-left">
+                  <p className="text-sm text-[#E8E8E8]">Sign Out</p>
+                  <p className="text-[10px] text-[#666666]">Log out of your account</p>
+                </div>
+              </div>
+            </button>
+          ) : (
+            <div className="p-3 rounded-md bg-[rgba(224,82,82,0.08)] border border-[#E05252]/30">
+              <p className="text-sm text-[#E8E8E8] mb-3">Are you sure you want to sign out?</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-md bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                >
+                  <LogOut className="w-3.5 h-3.5" /> Yes, Sign Out
+                </button>
+                <button
+                  onClick={() => setShowLogoutConfirm(false)}
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#888888] text-sm font-medium hover:text-[#E8E8E8] transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
