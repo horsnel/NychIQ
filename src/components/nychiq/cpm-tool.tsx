@@ -12,23 +12,24 @@ import {
   Info,
 } from 'lucide-react';
 
-/* ── CPM Data ── */
+/* ── CPM Data (Spec Section 22) ── */
 interface CPMEntry {
   niche: string;
+  percentage: number;
   cpm: number;
   change: number;
   color: string;
 }
 
 const CPM_DATA: CPMEntry[] = [
-  { niche: 'Finance & Investing', cpm: 32.50, change: 12.3, color: '#00C48C' },
-  { niche: 'Technology', cpm: 24.80, change: 8.7, color: '#4A9EFF' },
-  { niche: 'Education', cpm: 18.40, change: -2.1, color: '#F5A623' },
-  { niche: 'Health & Fitness', cpm: 15.20, change: 5.4, color: '#9B72CF' },
-  { niche: 'Gaming', cpm: 8.60, change: -4.2, color: '#E05252' },
-  { niche: 'Entertainment', cpm: 5.30, change: 1.8, color: '#F5A623' },
-  { niche: 'Vlogs & Lifestyle', cpm: 3.80, change: -1.3, color: '#888888' },
-  { niche: 'Music & Dance', cpm: 2.10, change: 3.6, color: '#9B72CF' },
+  { niche: 'Finance',         percentage: 95, cpm: 22.40, change: 12.3, color: '#00C48C' },
+  { niche: 'Business',        percentage: 88, cpm: 20.10, change: 8.7,  color: '#4A9EFF' },
+  { niche: 'AI / Tech',       percentage: 82, cpm: 18.20, change: 9.1,  color: '#9B72CF' },
+  { niche: 'Health',          percentage: 67, cpm: 14.80, change: 5.4,  color: '#F5A623' },
+  { niche: 'Fitness',         percentage: 58, cpm: 12.40, change: -2.1, color: '#E05252' },
+  { niche: 'Education',       percentage: 51, cpm: 11.40, change: 3.2,  color: '#4A9EFF' },
+  { niche: 'Food',            percentage: 35, cpm: 8.60,  change: -4.2, color: '#F5A623' },
+  { niche: 'Gaming',          percentage: 19, cpm: 4.20,  change: 1.8,  color: '#888888' },
 ];
 
 /* ── Plan Gate ── */
@@ -123,8 +124,8 @@ export function CPMTool() {
             <thead>
               <tr className="border-b border-[#1A1A1A]">
                 <th className="text-left px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Niche</th>
-                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM</th>
-                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Change</th>
+                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM %</th>
+                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM Rate</th>
                 <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Select</th>
               </tr>
             </thead>
@@ -145,17 +146,10 @@ export function CPMTool() {
                     </div>
                   </td>
                   <td className="text-right px-4 py-3">
-                    <span className="text-sm font-semibold text-[#E8E8E8]">${entry.cpm.toFixed(2)}</span>
+                    <span className="text-sm font-semibold text-[#F5A623]">{entry.percentage}%</span>
                   </td>
                   <td className="text-right px-4 py-3">
-                    <span
-                      className={cn(
-                        'text-xs font-semibold',
-                        entry.change >= 0 ? 'text-[#00C48C]' : 'text-[#E05252]'
-                      )}
-                    >
-                      {entry.change >= 0 ? '+' : ''}{entry.change}%
-                    </span>
+                    <span className="text-sm font-semibold text-[#E8E8E8]">${entry.cpm.toFixed(2)}</span>
                   </td>
                   <td className="text-right px-4 py-3">
                     <div

@@ -156,19 +156,9 @@ export function SocialChannelsTool() {
     setSearched(true);
     setError(null);
     setResult(null);
-    // Manual token spend since 'social-channels' is not in TOKEN_COSTS
+    // Standard token spend — 'social-channels' is now in TOKEN_COSTS
     const ok = spendTokens('social-channels');
     if (!ok) { setLoading(false); return; }
-    // Deduct remaining 4 tokens manually (spendTokens deducts 0 for unknown keys)
-    // We handle this by directly checking balance
-    const state = useNychIQStore.getState();
-    if (state.tokenBalance < CHANNEL_TOKEN_COST) {
-      useNychIQStore.getState().setTokenModalOpen(true);
-      setLoading(false);
-      return;
-    }
-    // Deduct tokens manually since the key isn't in TOKEN_COSTS
-    useNychIQStore.setState({ tokenBalance: state.tokenBalance - CHANNEL_TOKEN_COST });
 
     try {
       const prompt = `You are a YouTube channel analytics expert. Perform a deep analysis of the YouTube channel: "${channelInput.trim()}"

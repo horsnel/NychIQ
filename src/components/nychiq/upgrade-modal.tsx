@@ -65,7 +65,7 @@ export function UpgradeModal() {
                   )}
                 </div>
                 <div className="mb-3">
-                  <span className="text-2xl font-bold text-[#E8E8E8]">${PLAN_PRICES[plan.id].monthly}</span>
+                  <span className="text-2xl font-bold text-[#E8E8E8]">₦{PLAN_PRICES[plan.id].monthly.toLocaleString()}</span>
                   <span className="text-xs text-[#888888]">/mo</span>
                 </div>
                 <ul className="space-y-1.5">

@@ -58,7 +58,7 @@ function fmtDollar(n: number): string {
 }
 
 export function SponsorshipTool() {
-  const { canAccess } = useNychIQStore();
+  const { canAccess, spendTokens } = useNychIQStore();
   const [subs, setSubs] = useState('');
   const [views, setViews] = useState('');
   const [niche, setNiche] = useState('Technology');
@@ -72,6 +72,9 @@ export function SponsorshipTool() {
     const viewsNum = parseInt(views, 10) || 0;
     const engNum = parseFloat(engagement) || 3;
     if (subsNum < 1 || viewsNum < 1) return;
+
+    const ok = spendTokens('sponsorship-roi');
+    if (!ok) return;
 
     setLoading(true);
     setSearched(true);

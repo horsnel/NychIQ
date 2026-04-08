@@ -54,7 +54,7 @@ const MOCK_FEED: TrendFeedItem[] = [
 ];
 
 export function TrendAlertsTool() {
-  const { canAccess } = useNychIQStore();
+  const { canAccess, spendTokens } = useNychIQStore();
   const [keyword, setKeyword] = useState('');
   const [alerts, setAlerts] = useState<Alert[]>([
     { id: '1', keyword: 'AI Tools', createdAt: '2h ago' },
@@ -64,6 +64,8 @@ export function TrendAlertsTool() {
 
   const handleAdd = () => {
     if (!keyword.trim()) return;
+    const ok = spendTokens('trend-alerts');
+    if (!ok) return;
     setAdding(true);
     setTimeout(() => {
       setAlerts((prev) => [...prev, {

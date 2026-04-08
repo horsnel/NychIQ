@@ -76,14 +76,14 @@ export const TOKEN_COSTS: Record<string, number> = {
   sentiment: 10, competitor: 10, 'trend-alerts': 3,
   script: 12, 'outlier-scout': 12, 'history-intel': 10, audit: 20,
   strategy: 15, goffviral: 15, 'perf-forensics': 15, agency: 20,
-  'automation': 10, 'sponsorship-roi': 8, 'safe-check': 5, 'vph-tracker': 2,
+  'automation': 10, 'sponsorship-roi': 8, 'safe-check': 5, 'vph-tracker': 2, 'social-channels': 5,
 };
 
 /* ── Plan access levels ── */
 const PLAN_ACCESS: Record<Plan, string[]> = {
   trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage'],
   starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio'],
-  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation'],
+  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation'],
   elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels'],
   agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'strategy', 'goffviral', 'agency-dashboard'],
 };
@@ -93,18 +93,18 @@ const FREE_TOOLS = new Set(['dashboard', 'profile', 'settings', 'usage', 'studio
 
 export const PLAN_PRICES: Record<Plan, { monthly: number; yearly: number }> = {
   trial: { monthly: 0, yearly: 0 },
-  starter: { monthly: 19, yearly: 190 },
-  pro: { monthly: 49, yearly: 490 },
-  elite: { monthly: 99, yearly: 990 },
-  agency: { monthly: 249, yearly: 2490 },
+  starter: { monthly: 15000, yearly: 150000 },
+  pro: { monthly: 35000, yearly: 350000 },
+  elite: { monthly: 70000, yearly: 700000 },
+  agency: { monthly: 150000, yearly: 1500000 },
 };
 
 export const PLAN_TOKENS: Record<Plan, number> = {
-  trial: 50,
+  trial: 100,
   starter: 500,
-  pro: 2500,
-  elite: 10000,
-  agency: 50000,
+  pro: 3500,
+  elite: 50000,
+  agency: 20000,
 };
 
 /* ── Tool metadata (label, icon name, category) ── */
@@ -178,7 +178,7 @@ export const useNychIQStore = create<NychIQState>()(
 
       // Plan & Tokens
       userPlan: 'trial' as Plan,
-      tokenBalance: 50,
+      tokenBalance: 20,
       tokensEarned: 0,
       signupTimestamp: Date.now(),
 
@@ -234,6 +234,8 @@ export const useNychIQStore = create<NychIQState>()(
           currentPage: 'app' as PageId,
           signupTimestamp: Date.now(),
         });
+        // Check for staged token releases
+        get().checkStagedTokens();
       },
 
       logout: () => {
@@ -243,7 +245,7 @@ export const useNychIQStore = create<NychIQState>()(
           userEmail: '',
           currentPage: 'welcome' as PageId,
           activeTool: 'dashboard',
-          tokenBalance: 50,
+          tokenBalance: 20,
           tokensEarned: 0,
           userPlan: 'trial' as Plan,
         });
@@ -271,13 +273,30 @@ export const useNychIQStore = create<NychIQState>()(
       },
 
       checkStagedTokens: () => {
-        // Check for staged token refills (earned from referrals, etc.)
+        const state = get();
+        const signupTs = state.signupTimestamp;
+        if (!signupTs) return;
+        const now = Date.now();
+        const hours = (now - signupTs) / (1000 * 60 * 60);
+        const earnedKey = 'nychiq_tokens_earned_stage';
+        const earned = parseInt(localStorage.getItem(earnedKey) || '0', 10);
+
+        let toAdd = 0;
+        if (hours >= 72 && earned < 100) toAdd = 100 - earned;
+        else if (hours >= 24 && earned < 50) toAdd = 50 - earned;
+        else if (earned < 20) toAdd = 20 - earned;
+
+        if (toAdd > 0) {
+ set({ tokenBalance: get().tokenBalance + toAdd, tokensEarned: get().tokensEarned + toAdd });
+          localStorage.setItem(earnedKey, String(earned + toAdd));
+        }
+
+        // Also check referral staged tokens
         const staged = localStorage.getItem('nychiq_staged_tokens');
         if (staged) {
           const amount = parseInt(staged, 10);
           if (!isNaN(amount) && amount > 0) {
-            const state = get();
-            set({ tokenBalance: state.tokenBalance + amount, tokensEarned: state.tokensEarned + amount });
+            set({ tokenBalance: get().tokenBalance + amount, tokensEarned: get().tokensEarned + amount });
             localStorage.removeItem('nychiq_staged_tokens');
           }
         }

@@ -197,7 +197,7 @@ const PLANS = [
     tier: 'Pro',
     price: '₦35K',
     period: '/ month',
-    features: ['2,500 daily tokens', '17 intelligence modules', 'Advanced analytics', 'Priority support', '5 channels tracked', 'API access'],
+    features: ['3,500 tokens/month', '17 intelligence modules', 'Advanced analytics', 'Priority support', '5 channels tracked', 'API access'],
     highlight: true,
     badge: 'MOST POPULAR',
   },

@@ -1,10 +1,29 @@
 'use client';
 
-import React from 'react';
-import { Menu, Bell, Command } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut } from 'lucide-react';
 import { useNychIQStore, TOOL_META, TOKEN_COSTS } from '@/lib/store';
 import { TokenPill } from './token-pill';
 import { cn } from '@/lib/utils';
+
+const REGIONS = [
+  { code: 'NG', label: 'Nigeria' },
+  { code: 'US', label: 'United States' },
+  { code: 'GB', label: 'United Kingdom' },
+  { code: 'IN', label: 'India' },
+  { code: 'CA', label: 'Canada' },
+  { code: 'DE', label: 'Germany' },
+  { code: 'FR', label: 'France' },
+  { code: 'BR', label: 'Brazil' },
+  { code: 'AU', label: 'Australia' },
+  { code: 'JP', label: 'Japan' },
+];
+
+const FILTER_OPTIONS = ['All', 'Videos', 'Shorts', 'Channels'] as const;
+type FilterOption = (typeof FILTER_OPTIONS)[number];
+
+// Pages where the refresh button should be visible
+const REFRESH_PAGES = ['dashboard', 'trending', 'shorts', 'rankings', 'viral'];
 
 export function Topbar() {
   const {
@@ -13,13 +32,82 @@ export function Topbar() {
     toggleSidebar,
     setNotifDrawerOpen,
     setCommandBarOpen,
+    setActiveTool,
     setPage,
     logout,
+    region,
+    setRegion,
   } = useNychIQStore();
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchFilter, setSearchFilter] = useState<FilterOption>('All');
+  const [showSearchFilter, setShowSearchFilter] = useState(false);
+  const searchFilterRef = useRef<HTMLDivElement>(null);
+
+  // Country selector state
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const countryRef = useRef<HTMLDivElement>(null);
+
+  // Avatar dropdown state
+  const [showAvatarMenu, setShowAvatarMenu] = useState(false);
+  const avatarRef = useRef<HTMLDivElement>(null);
+
+  // Active filter chip state
+  const [activeFilter, setActiveFilter] = useState<FilterOption>('All');
 
   const toolMeta = TOOL_META[activeTool];
   const pageTitle = toolMeta?.label ?? 'Dashboard';
   const tokenCost = TOKEN_COSTS[activeTool] ?? 0;
+
+  // Close dropdowns on click outside
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (searchFilterRef.current && !searchFilterRef.current.contains(e.target as Node)) {
+        setShowSearchFilter(false);
+      }
+      if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
+        setShowCountryDropdown(false);
+      }
+      if (avatarRef.current && !avatarRef.current.contains(e.target as Node)) {
+        setShowAvatarMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      setActiveTool('search');
+      setPage('app');
+    }
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') handleSearch();
+  };
+
+  const handleAvatarAction = (action: string) => {
+    setShowAvatarMenu(false);
+    switch (action) {
+      case 'profile':
+        setActiveTool('profile');
+        setPage('app');
+        break;
+      case 'settings':
+        setActiveTool('settings');
+        setPage('app');
+        break;
+      case 'usage':
+        setActiveTool('usage');
+        setPage('app');
+        break;
+      case 'signout':
+        logout();
+        break;
+    }
+  };
 
   return (
     <header className="flex items-center gap-3 h-14 px-4 bg-[#0A0A0A] border-b border-[#1E1E1E] sticky top-0 z-30">
@@ -44,7 +132,127 @@ export function Topbar() {
         </span>
       )}
 
+      {/* Search Bar — hidden on mobile */}
+      <div className="hidden md:flex items-center ml-3">
+        <div className="relative flex items-center">
+          {/* Search input */}
+          <div className="flex items-center h-8 bg-[#111111] border border-[#222222] rounded-l-lg px-3 gap-2 focus-within:border-[#F5A623]/50 transition-colors">
+            <Search className="w-3.5 h-3.5 text-text-muted shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
+              placeholder="Search videos, channels..."
+              className="w-48 bg-transparent text-xs text-[#E8E8E8] placeholder-text-muted outline-none"
+            />
+            {/* Filter dropdown toggle */}
+            <div ref={searchFilterRef} className="relative">
+              <button
+                onClick={() => setShowSearchFilter(!showSearchFilter)}
+                className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded text-[#F5A623] hover:bg-[rgba(245,166,35,0.1)] transition-colors"
+              >
+                {searchFilter}
+                <ChevronDown className="w-2.5 h-2.5" />
+              </button>
+              {showSearchFilter && (
+                <div className="absolute top-full left-0 mt-1 w-32 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+                  {FILTER_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => {
+                        setSearchFilter(opt);
+                        setShowSearchFilter(false);
+                      }}
+                      className={cn(
+                        'w-full text-left px-3 py-1.5 text-xs hover:bg-[#1A1A1A] transition-colors',
+                        searchFilter === opt ? 'text-[#F5A623]' : 'text-[#888888]'
+                      )}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          {/* GO button */}
+          <button
+            onClick={handleSearch}
+            className="h-8 px-3 bg-[#F5A623] hover:bg-[#E6960F] text-black text-xs font-semibold rounded-r-lg transition-colors"
+          >
+            GO
+          </button>
+        </div>
+      </div>
+
+      {/* Filter Chips — hidden on mobile */}
+      <div className="hidden lg:flex items-center gap-1.5 ml-2">
+        {FILTER_OPTIONS.map((opt) => (
+          <button
+            key={opt}
+            onClick={() => setActiveFilter(opt)}
+            className={cn(
+              'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
+              activeFilter === opt
+                ? 'bg-[#F5A623] text-black border-[#F5A623]'
+                : 'bg-transparent text-[#888888] border-[#222222] hover:border-[#333333] hover:text-[#E8E8E8]'
+            )}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+
       <div className="ml-auto flex items-center gap-2">
+        {/* Refresh Button — conditionally shown */}
+        {REFRESH_PAGES.includes(activeTool) && (
+          <button
+            onClick={() => window.location.reload()}
+            className="hidden md:flex p-2 rounded-full text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+            aria-label="Refresh"
+            title="Refresh data"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        )}
+
+        {/* Country Selector — hidden on mobile */}
+        <div ref={countryRef} className="hidden md:block relative">
+          <button
+            onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-text-secondary text-xs hover:border-[#2A2A2A] hover:text-text-primary transition-colors"
+          >
+            <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#F5A623]">
+              {region.charAt(0)}
+            </span>
+            <span className="font-medium">{region}</span>
+            <ChevronDown className="w-3 h-3" />
+          </button>
+          {showCountryDropdown && (
+            <div className="absolute top-full right-0 mt-1 w-44 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1 max-h-64 overflow-y-auto">
+              {REGIONS.map((r) => (
+                <button
+                  key={r.code}
+                  onClick={() => {
+                    setRegion(r.code);
+                    setShowCountryDropdown(false);
+                  }}
+                  className={cn(
+                    'w-full flex items-center gap-2 px-3 py-2 text-xs hover:bg-[#1A1A1A] transition-colors',
+                    region === r.code ? 'text-[#F5A623]' : 'text-[#888888]'
+                  )}
+                >
+                  <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#F5A623] shrink-0">
+                    {r.code.charAt(0)}
+                  </span>
+                  <span>{r.code} — {r.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Command bar trigger */}
         <button
           onClick={() => setCommandBarOpen(true)}
@@ -68,18 +276,49 @@ export function Topbar() {
         {/* Token pill */}
         <TokenPill />
 
-        {/* User avatar */}
-        <button
-          onClick={() => {
-            if (confirm('Sign out?')) {
-              logout();
-            }
-          }}
-          className="w-8 h-8 rounded-full bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:opacity-90 transition-opacity"
-          title={userName || 'User'}
-        >
-          {userName ? userName[0].toUpperCase() : 'U'}
-        </button>
+        {/* User avatar dropdown */}
+        <div ref={avatarRef} className="relative">
+          <button
+            onClick={() => setShowAvatarMenu(!showAvatarMenu)}
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:opacity-90 transition-opacity"
+            title={userName || 'User'}
+          >
+            {userName ? userName[0].toUpperCase() : 'U'}
+          </button>
+          {showAvatarMenu && (
+            <div className="absolute top-full right-0 mt-2 w-48 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+              <button
+                onClick={() => handleAvatarAction('profile')}
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Profile</span>
+              </button>
+              <button
+                onClick={() => handleAvatarAction('settings')}
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              >
+                <Settings className="w-3.5 h-3.5" />
+                <span>Settings</span>
+              </button>
+              <button
+                onClick={() => handleAvatarAction('usage')}
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              >
+                <Coins className="w-3.5 h-3.5" />
+                <span>Token Usage</span>
+              </button>
+              <div className="my-1 border-t border-[#1E1E1E]" />
+              <button
+                onClick={() => handleAvatarAction('signout')}
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#E05252] hover:bg-[rgba(224,82,82,0.1)] transition-colors"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

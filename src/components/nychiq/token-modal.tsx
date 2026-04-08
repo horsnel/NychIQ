@@ -37,7 +37,7 @@ export function TokenModal() {
               <Gift className="w-4 h-4 text-[#00C48C]" />
               <div>
                 <p className="text-xs font-medium text-[#E8E8E8]">Refer a Friend</p>
-                <p className="text-[11px] text-[#888888]">Earn 100 tokens per referral</p>
+                <p className="text-[11px] text-[#888888]">Earn 20 tokens per referral</p>
               </div>
             </div>
             <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0A0A0A] border border-[#1E1E1E]">

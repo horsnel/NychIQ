@@ -252,6 +252,36 @@
   animation: fade-in-up 0.3s ease-out;
 }
 
+/* Blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1.5s infinite;
+}
+
+/* Glow bar animation */
+@keyframes glowBar {
+  0%, 100% { box-shadow: 0 0 8px rgba(245, 166, 35, 0.3); }
+  50% { box-shadow: 0 0 16px rgba(245, 166, 35, 0.6); }
+}
+
+.animate-glow-bar {
+  animation: glowBar 2s infinite;
+}
+
+/* Slide up sheet animation */
+@keyframes slideUpSheet {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up-sheet {
+  animation: slideUpSheet 0.3s ease-out;
+}
+
 /* Live badge */
 .live-dot {
   width: 8px;
