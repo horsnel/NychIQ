@@ -9,7 +9,8 @@ import {
   Activity, Image, ShieldCheck, BellRing, Radar, Stethoscope,
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, ChevronDown, ChevronRight,
-  Lock, X, Sparkles,
+  Lock, X, Sparkles, Layers, Scan, Wrench, ScrollText,
+  Scale, Columns2, Grid3x3, Package, Target, EyeOff, Archive,
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { cn } from '@/lib/utils';
@@ -23,6 +24,8 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Activity, Image, ShieldCheck, BellRing, Radar, Stethoscope,
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, Sparkles,
+  Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
+  Package, Target, EyeOff, Archive,
 };
 
 /* ── Plan badge colors ── */

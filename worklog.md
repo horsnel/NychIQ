@@ -430,3 +430,293 @@ Conducted a second comprehensive audit comparing the spec's 40 tools and 14 page
 - Next.js production build: Compiled successfully
 - Total components: 62 files in src/components/nychiq/
 - Total tool routes: 40 (including saku)
+
+---
+
+## Task 7: Studio Hub — Pre-Flight Check Command Center Rewrite
+**Date:** 2025-04-08
+**Agent:** Studio Hub Builder
+
+### Summary
+Complete rewrite of `studio-tool.tsx` as a "Pre-Flight Check" command center. Transformed from a generic 5-tab studio (Overview/Videos/SEO/Checklist/Pre-Upload) into a Sci-Fi tactical hub with 4 focused tabs (Overview/Forensics Suite/Checklist/Pre-Upload) showcasing the 6 Pre-Upload Forensics sub-tools.
+
+### Changes Made
+
+#### File Modified
+- `src/components/nychiq/studio-tool.tsx` — Complete rewrite (~580 lines)
+
+#### Design System
+- Dark theme: `bg-[#111111]` cards, `border-[#222222]`, `text-[#E8E8E8]`, `text-[#888888]`
+- Studio accent: `#9B72CF` (purple) for branding throughout
+- Sci-Fi tactical feel with:
+  - `TacticalCorners` sub-component (purple corner brackets on cards)
+  - `ScanLine` animated horizontal scanning bar
+  - `GlowDot` pulsing status indicator
+  - `HealthGauge` with sm/md/lg sizes
+  - `@property --angle` for CSS conic gradient rotation on input hover
+  - Grid pattern background overlay on header
+  - Entrance animations with staggered `animate-fade-in-up` delays
+
+#### Tab 1: Overview
+- Channel health card with avatar, verified badge, subscriber/view/video stats, and `HealthGauge` (lg size)
+- 5-column stats grid (Subscribers, Total Views, Videos, Avg Views, Engagement)
+- Quick Actions grid: 6 clickable sub-tool cards with icon, emoji, name, subtitle, and arrow indicator
+- Clicking a card calls `setActiveTool('lume')` etc. from the Zustand store
+
+#### Tab 2: Forensics Suite
+- Suite header with `TacticalCorners`, shield icon, description, and "6 TOOLS ACTIVE" glow indicator
+- 3-column responsive grid (1/2/3 cols) of 6 feature cards:
+  - ⚡ **Lume** — Thumbnail A/B Simulator — 8 tokens — amber color
+  - 🧪 **HookLab** — Retention Predictor — 10 tokens — red color
+  - 📈 **PulseCheck** — Algorithm Alignment — 5 tokens — green color
+  - 🏗️ **Blueprint AI** — Metadata Architect — 5 tokens — blue color
+  - 📜 **ScriptFlow** — Dialogue Audit — 8 tokens — purple color
+  - ⚖️ **Arbitrage** — Revenue Tagging — 8 tokens — gold color
+- Each card: colored top accent line, icon with glow background + box-shadow, emoji + name + subtitle, 3-line description (line-clamp), token cost badge, "Launch" button with hover glow effect
+- Staggered entrance animation (80ms delay per card)
+- Launch button calls `setActiveTool(toolId)` from store
+
+#### Tab 3: Checklist
+- Pre-publish checklist preserved from original with enhanced styling
+- 5 categories (Title, Thumbnail, Description, Tags, First 24 Hours) × 5 items each = 25 items
+- Progress header with glow progress bar, percentage, and "ALL CLEAR — READY TO LAUNCH" at 100%
+- Per-category progress indicators (checked count + percentage)
+- Toggle functionality with CheckCircle2/Circle icons
+- Reset button with RotateCcw icon
+- localStorage persistence with key `nychiq_studio_checklist`
+
+#### Tab 4: Pre-Upload
+- Ninja AI Analyzer header with Bot icon
+- Input bar with **conic gradient rotating border on hover** (CSS `@property --angle` animation)
+- Enter key support for analysis
+- 5-step scanning animation with sequential progress:
+  1. Connecting to video source (Radar icon)
+  2. Analyzing thumbnail & title impact (Eye icon)
+  3. Evaluating keyword & SEO strategy (Target icon)
+  4. Scoring algorithmic alignment (BrainCircuit icon)
+  5. Generating AI recommendations (Sparkles icon)
+- Each step shows: complete (green check + "DONE"), active (purple icon + spinner), or pending (numbered)
+- Animated gradient progress bar
+- Results display:
+  - Risk level badge (LOW/MEDIUM/HIGH with color coding)
+  - Algorithm Score gauge (large HealthGauge)
+  - Estimated Views (30d) with AI strategy text
+  - 5 numbered AI Strategy Recommendations
+- Empty state with subtle radar icon and feature highlights
+
+#### Sub-Components Created
+- `HealthGauge` — SVG circular gauge with sm/md/lg sizes, 4-tier color coding
+- `ScoreBadge` — Inline score pill with green/amber/red states
+- `ScanLine` — Animated horizontal scanning line
+- `TacticalCorners` — Decorative purple corner brackets wrapper
+- `GlowDot` — Pulsing status indicator dot
+
+#### Token Cost Integration
+- Uses `TOKEN_COSTS` from store for all 6 tool token displays
+- Tool IDs match store keys: `lume`, `hooklab`, `pulsecheck`, `blueprint-ai`, `scriptflow`, `arbitrage`
+- Studio Hub itself is FREE (0 tokens)
+
+### Build Status
+- ESLint: Zero errors (1 pre-existing warning in unrelated `lume-tool.tsx`)
+- Dev server: Compiles successfully (200 OK)
+- ~580 lines, fully functional, no TODOs or placeholders
+
+---
+
+## Task 8: Pre-Upload Forensics Studio Tools (Blueprint AI, ScriptFlow, Arbitrage)
+**Date:** 2025-04-08
+**Agent:** Studio Tools Builder
+
+### Summary
+Built 3 complete Pre-Upload Forensics Studio tool components as defined in the Studio Hub: Blueprint AI (Metadata Architect), ScriptFlow (Dialogue Audit), and Arbitrage (Revenue Tagging). All tools follow the established NychIQ pattern with idle states, token gating, loading skeletons, error states with retry, rich results display, copy-to-clipboard, and mock data fallbacks. Registered all 3 in the ToolRouter.
+
+### Files Created (3 new tool components)
+
+#### `src/components/nychiq/blueprint-ai-tool.tsx` (~290 lines)
+- **Export**: `BlueprintAITool`
+- **Token key**: `'blueprint-ai'` (5 tokens) — PRO+ access
+- **Accent color**: `#00C48C` (green)
+- **Features**:
+  - Input for video topic/keyword with search icon
+  - Optional category dropdown (12 categories: How-To, Entertainment, Tech, Finance, etc.)
+  - Language selector (English, Yoruba, Pidgin, Igbo, Hausa) with Globe icon
+  - "Generate Blueprint" button with green accent
+  - Results: Complete metadata pack with:
+    - 3 title variations with character count badges (green ≤60, amber ≤70, red >70)
+    - Full YouTube description with auto-generated timestamps (0:00, 2:30, 5:00, etc.)
+    - 10-15 optimized SEO tags in pill badges
+    - 5-8 hashtags in green accent badges
+    - "Searchable Phrases" section with 5-7 long-tail keywords
+    - Copy button per section + Copy All button
+  - Mock fallback data generated from topic on AI failure
+  - AI prompt structured for JSON response parsing
+
+#### `src/components/nychiq/scriptflow-tool.tsx` (~310 lines)
+- **Export**: `ScriptFlowTool`
+- **Token key**: `'scriptflow'` (8 tokens) — PRO+ access
+- **Accent color**: `#F5A623` (amber/gold)
+- **Features**:
+  - Large textarea (8 rows) for pasting transcript
+  - Character count indicator with 50-char minimum
+  - "Audit Script" button with amber accent
+  - Results: Complete script audit with:
+    - Overall Script Score (0-100) displayed as SVG circular gauge with color coding
+    - "Power Word" suggestions — 6 word/phrase replacements showing original → replacement with reasoning
+    - Weak phrases flagged in red borders with strikethrough and alternatives
+    - Hook Analysis (first 10 seconds) — score gauge + verdict + 4 numbered improvement suggestions
+    - Pacing Analysis — per-section breakdown (too_fast/too_slow/good) with color-coded badges
+    - CTA Strength — score gauge + strengths (+) and weaknesses (-) list
+    - Summary paragraph
+    - Copy All button
+  - Mock fallback data with realistic script analysis
+  - ScoreRing reusable sub-component
+
+#### `src/components/nychiq/arbitrage-tool.tsx` (~300 lines)
+- **Export**: `ArbitrageTool`
+- **Token key**: `'arbitrage'` (8 tokens) — PRO+ access
+- **Accent color**: `#00C48C` (green)
+- **Features**:
+  - Input for video topic/niche with search icon
+  - Country selector dropdown (10 countries: US, NG, GB, CA, AU, DE, IN, KE, GH, ZA) with Globe icon
+  - "Find Revenue Tags" button with green accent
+  - Results: Complete revenue analysis with:
+    - Estimated CPM range display (e.g., "$15-$45") with Revenue Score gauge (0-100)
+    - "High-Value Tags" (8 items) — green borders with CPM impact per tag (+$12 CPM, etc.) + Copy All Tags
+    - "Revenue Keywords" (5 items) — amber multiplier badges (2.5x, 3.1x, etc.) + Copy All
+    - "CPM Multiplier Words" (6 items) — green card grid showing words and their effect (2-3x CPM boost)
+    - "Avoid Tags" (5 items) — red borders with X icon and reason per tag
+    - Revenue Optimization Tips — 5 numbered actionable tips
+    - Refresh button
+    - Mock fallback with niche-specific CPM data
+
+### Files Modified
+- `src/app/page.tsx` — Added 3 imports + 3 ToolRouter cases (42 total routes)
+
+### Build Status
+- ESLint: Zero errors
+- Dev server: Compiles successfully
+
+---
+
+## Task 10: Intelligence & Competitor Tool Components (Niche Compare, Opportunity Heatmap, Revenue Roadmap, Ghost Tracker)
+**Date:** 2025-04-08
+**Agent:** Main Builder
+
+### Summary
+Built 4 new AI-powered tool components for the Intelligence and Competitor categories: Niche Compare, Opportunity Heatmap, Revenue Roadmap, and Ghost Tracker. Each tool follows the established NychIQ pattern with idle state, token gating via `spendTokens()`, loading skeleton with `animate-pulse`, error state with retry, rich results display, copy-to-clipboard, and comprehensive mock data fallbacks. All 4 tools registered in the ToolRouter.
+
+### Files Created (4 new tool components)
+
+#### `src/components/nychiq/niche-compare-tool.tsx` (~435 lines)
+- **Export**: `NicheCompareTool`
+- **Token key**: `'niche-compare'` (12 tokens) — PRO+ access
+- **Accent color**: `#9B72CF` (purple)
+- **Features**:
+  - Two input fields for Niche A (purple badge) and Niche B (red badge) keywords
+  - "Compare Niches" button with purple accent
+  - Results: "Vs." comparison table with columns for each niche showing:
+    - Estimated RPM ($), Search Volume, Competition Level (Low/Medium/High color-coded), Production Effort, Ad Intent (%)
+    - PTE Score for each niche with color-coded circle badges and Target icon
+    - "Automation Potential" section with two animated progress bars (color-coded green/amber/red)
+  - Winner declaration card with Trophy icon, gradient purple background, winner name and reason
+  - AI Strategic Advice section with Bot icon and copy-to-clipboard
+  - Color-coded metric cells (green for high/good, red for low/bad) via `valueColor()` helper
+  - `MetricCell` and `compColor` helper functions for consistent rendering
+  - Mock fallback with randomized metrics
+
+#### `src/components/nychiq/opportunity-heatmap-tool.tsx` (~366 lines)
+- **Export**: `OpportunityHeatmapTool`
+- **Token key**: `'opportunity-heatmap'` (12 tokens) — AGENCY access
+- **Accent color**: `#E05252` (red)
+- **Features**:
+  - Input for broad niche keyword with search icon
+  - "Generate Heatmap" button with red accent
+  - Results: CSS grid-based heatmap (2/3/4 cols responsive) with 12-16 sub-topic cells:
+    - Each cell color-coded by combined demand+frustration score (blue→red scale)
+    - Hover tooltip showing: topic name, demand score, frustration score, top unanswered question
+    - "GOLD MINE" badge for top-right quadrant items (demand ≥ 65 AND frustration ≥ 65)
+    - D: and F: inline score badges (blue/red)
+  - Legend bar: Gold Mines count, color scale legend (Low/Medium/High), hover info
+  - Axis labels: "DEMAND →" and "↑ FRUSTRATION"
+  - AI Tactical Advice section with copy button
+  - `HeatmapCell` sub-component with show/hide tooltip state
+  - Mock fallback generates 12 topics from niche keyword
+
+#### `src/components/nychiq/monetization-roadmap-tool.tsx` (~520 lines)
+- **Export**: `MonetizationRoadmapTool`
+- **Token key**: `'monetization-roadmap'` (12 tokens) — PRO+ access
+- **Accent color**: `#F5A623` (amber/gold)
+- **Features**:
+  - Three inputs: Niche keyword, Current Subscribers, Monthly Views
+  - "Generate Roadmap" button with amber accent
+  - Results:
+    - Power Level progress bar with gradient (blue→amber→green), milestone labels (0/1K/10K)
+    - Key metrics row: Views for $1K/mo, RPM Benchmark, Current Subs
+    - 3-Phase Roadmap in responsive grid (1/3 cols):
+      - Phase 1: Foundation (Zap icon, blue) — 0→1K subs, 4 goals, 4 strategies
+      - Phase 2: Acceleration (Rocket icon, amber) — 1K→10K subs, 4 goals, 4 strategies
+      - Phase 3: Diversification (DollarSign icon, green) — $1K/mo+, 4 goals, 4 strategies
+      - Active phase highlighted with "YOU ARE HERE" animated badge
+    - Seasonal Predictions: 3 niche-specific CPM timing insights
+    - Bottleneck Detection: 3 personalized growth blockers
+    - AI Strategic Advice section with copy button
+  - `PhaseCard` sub-component with icon, goals list, strategies list
+  - Mock fallback with contextual data based on input subs/views
+
+#### `src/components/nychiq/ghost-tracker-tool.tsx` (~559 lines)
+- **Export**: `GhostTrackerTool`
+- **Token key**: `'ghost-tracker'` (10 tokens) — ELITE+ access
+- **Accent color**: `#4A9EFF` (blue)
+- **Features**:
+  - Input for competitor channel name with search icon
+  - "Start Tracking" button with blue accent
+  - Results:
+    - Channel Overview card: name, 5-stat grid (Subscribers, Total Views, Videos, Avg Views, Upload Frequency)
+    - Velocity Alerts: 3 detected changes (frequency/strategy/format) with severity badges (low/medium/high) and colored indicators
+    - A/B Test Spy: 3 entries showing video title, detected change, date, and impact (positive/neutral/negative)
+    - Off-Platform Signals: 3 cards (Twitter/X, Newsletter, Website) with follower counts, growth rates, activity levels
+    - Engagement Velocity: First 24h views, weekly views, ratio percentage, trend indicator (accelerating/stable/declining)
+    - Shadow Metrics table: 4 rows comparing competitor vs. user (Watch Time, CTR, Sub Conversion, Return Viewer Rate)
+    - AI Competitive Analysis section with copy button
+  - Mock fallback with randomized but realistic competitor data
+
+### Files Modified
+- `src/app/page.tsx` — Added 4 imports + 4 ToolRouter cases (`niche-compare`, `opportunity-heatmap`, `monetization-roadmap`, `ghost-tracker`). Total routes: 46.
+
+### Design Consistency
+- All 4 tools use the NychIQ dark theme: `bg-[#111111]` cards, `border-[#222222]`, `text-[#E8E8E8]`, `text-[#888888]`
+- Each tool has its own accent color (purple, red, amber, blue) matching the Intelligence/Competitor category
+- Consistent idle → loading → error → results state machine
+- All AI calls use `askAI()` with JSON parsing and comprehensive mock fallback
+- Token gating via `spendTokens()` before every API call
+- Mobile responsive throughout
+- Copy-to-clipboard on all AI advice sections
+
+### Build Status
+- ESLint: Zero errors
+- Dev server: Compiles successfully (200 OK)
+- Total lines written: 1,880 across 4 files
+  - Mock fallback data with realistic CPM analysis
+  - RevenueScoreRing reusable sub-component
+
+### Files Modified
+- `src/app/page.tsx` — Added 3 imports (BlueprintAITool, ScriptFlowTool, ArbitrageTool) and 3 ToolRouter cases (`blueprint-ai`, `scriptflow`, `arbitrage`)
+
+### Design Consistency
+- All tools use NychIQ dark theme: `bg-[#111111]` cards, `border-[#222222]`, `text-[#E8E8E8]`, `text-[#888888]`
+- Consistent card structure: icon + title + subtitle + description + input row
+- All use `spendTokens()` for token gating before AI calls
+- Loading states use `animate-pulse` skeleton placeholders
+- Error states with retry buttons
+- Token cost footers on all tools
+- Toast notifications via `showToast()` for clipboard operations
+- Copy-to-clipboard via `copyToClipboard()` with Check/Copy icon toggle
+- Mobile-first responsive design throughout
+- Click-outside overlay for dropdown dismissal
+- Focus ring styling matching accent color per tool
+
+### Build Status
+- ESLint: Zero errors (1 pre-existing warning in unrelated `lume-tool.tsx`)
+- Dev server: Compiles successfully (200 OK)
+- Total routed tool components: 42 (39 + 3 new)
+- All 3 tools accessible via sidebar under "NYCHIQ STUDIO" section

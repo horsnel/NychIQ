@@ -71,31 +71,30 @@ export interface NychIQState {
 
 /* ── Token costs per feature ── */
 export const TOKEN_COSTS: Record<string, number> = {
-  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0,
-  viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2,
-  trending: 3, algorithm: 3, deepchat: 3, seo: 5, posttime: 5, shorts: 5,
-  ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8,
-  'social-comments': 10, competitor: 10, 'trend-alerts': 3,
-  script: 12, 'outlier-scout': 12, 'history-intel': 10, audit: 20,
-  strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20,
-  'automation': 10, 'sponsorship-roi': 8, 'safe-check': 5, 'vph-tracker': 2, 'social-channels': 5,
+  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0, 'sovereign-vault': 0,
+  viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2, 'vph-tracker': 2,
+  trending: 3, algorithm: 3, deepchat: 3, 'trend-alerts': 3, posttime: 5, shorts: 5, seo: 5, 'safe-check': 5, pulsecheck: 5, 'blueprint-ai': 5, 'social-channels': 5,
+  ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8, lume: 8, scriptflow: 8, arbitrage: 8, 'sponsorship-roi': 8,
+  'social-comments': 10, competitor: 10, hooklab: 10, 'digital-scout': 10, 'ghost-tracker': 10, 'automation': 10, 'history-intel': 10,
+  script: 12, 'outlier-scout': 12, 'niche-compare': 12, 'opportunity-heatmap': 12, 'monetization-roadmap': 12,
+  audit: 20, strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20,
 };
 
 /* ── Plan access levels ── */
 export const PLAN_ACCESS: Record<Plan, string[]> = {
-  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage'],
-  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio'],
-  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation'],
-  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels'],
-  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'strategy', 'goffviral', 'agency-dashboard'],
+  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault'],
+  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio'],
+  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap'],
+  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout'],
+  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap'],
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
-const FREE_TOOLS = new Set(['dashboard', 'profile', 'settings', 'usage', 'studio']);
+const FREE_TOOLS = new Set(['dashboard', 'profile', 'settings', 'usage', 'studio', 'sovereign-vault']);
 
 export const PLAN_PRICES: Record<Plan, { monthly: number; yearly: number }> = {
   trial: { monthly: 0, yearly: 0 },
-  starter: { monthly: 15000, yearly: 150000 },
+  starter: { monthly: 5000, yearly: 50000 },
   pro: { monthly: 35000, yearly: 350000 },
   elite: { monthly: 70000, yearly: 700000 },
   agency: { monthly: 150000, yearly: 1500000 },
@@ -106,26 +105,43 @@ export const PLAN_TOKENS: Record<Plan, number> = {
   starter: 500,
   pro: 3500,
   elite: 999999, // Unlimited
-  agency: 20000,
+  agency: 50000,
 };
 
 /* ── Tool metadata (label, icon name, category) ── */
 export const TOOL_META: Record<string, { label: string; icon: string; category: string }> = {
+  /* ── MAIN ── */
   dashboard:       { label: 'Dashboard',        icon: 'LayoutDashboard',  category: 'main' },
   trending:        { label: 'Trending',         icon: 'TrendingUp',       category: 'main' },
   search:          { label: 'Search',           icon: 'Search',           category: 'main' },
   rankings:        { label: 'Rankings',         icon: 'BarChart3',        category: 'main' },
   shorts:          { label: 'Shorts',           icon: 'Film',             category: 'main' },
-  saku:            { label: 'Saku AI',          icon: 'Bot',              category: 'studio' },
-  studio:          { label: 'Studio',           icon: 'Palette',          category: 'studio' },
-  deepchat:        { label: 'Deep Chat AI',     icon: 'MessageSquare',    category: 'studio' },
-  'agency-dashboard': { label: 'Agency Dashboard', icon: 'Building2',    category: 'studio' },
+
+  /* ── NYCHIQ STUDIO (Pre-Upload Suite) ── */
+  studio:          { label: 'Studio Hub',       icon: 'Palette',          category: 'studio' },
+  lume:            { label: 'Lume',             icon: 'Layers',           category: 'studio' },
+  hooklab:         { label: 'HookLab',          icon: 'Activity',         category: 'studio' },
+  pulsecheck:      { label: 'PulseCheck',       icon: 'Scan',             category: 'studio' },
+  'blueprint-ai':  { label: 'Blueprint AI',     icon: 'Wrench',           category: 'studio' },
+  scriptflow:      { label: 'ScriptFlow',       icon: 'ScrollText',       category: 'studio' },
+  arbitrage:       { label: 'Arbitrage',        icon: 'Scale',            category: 'studio' },
+
+  /* ── INTELLIGENCE ── */
   viral:           { label: 'Viral Predictor',  icon: 'Zap',              category: 'intelligence' },
   niche:           { label: 'Niche Spy',        icon: 'Crosshair',        category: 'intelligence' },
   algorithm:       { label: 'Algorithm',        icon: 'BrainCircuit',     category: 'intelligence' },
   cpm:             { label: 'CPM Estimator',    icon: 'DollarSign',       category: 'intelligence' },
+  'niche-compare': { label: 'Niche Compare',    icon: 'Columns2',         category: 'intelligence' },
+  'opportunity-heatmap': { label: 'Opp. Heatmap', icon: 'Grid3x3',       category: 'intelligence' },
+  'monetization-roadmap': { label: 'Revenue Roadmap', icon: 'Target',    category: 'intelligence' },
+
+  /* ── COMPETITOR ── */
   competitor:      { label: 'Track Channels',   icon: 'Users',            category: 'competitor' },
   strategy:        { label: 'Copy Strategy',    icon: 'Copy',             category: 'competitor' },
+  'ghost-tracker': { label: 'Ghost Tracker',    icon: 'EyeOff',           category: 'competitor' },
+  'digital-scout': { label: 'Product Scout',    icon: 'Package',          category: 'competitor' },
+
+  /* ── AI TOOLS ── */
   seo:             { label: 'SEO Optimizer',    icon: 'SearchCode',       category: 'ai-tools' },
   hook:            { label: 'Hook Generator',   icon: 'Anchor',           category: 'ai-tools' },
   keywords:        { label: 'Keyword Explorer',  icon: 'Key',            category: 'ai-tools' },
@@ -143,24 +159,38 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   'automation':    { label: 'Automation Master', icon: 'Cpu',              category: 'ai-tools' },
   'sponsorship-roi': { label: 'Sponsorship ROI', icon: 'Handshake',        category: 'ai-tools' },
   'history-intel': { label: 'History Intel',    icon: 'History',          category: 'ai-tools' },
+
+  /* ── SOCIAL INTEL ── */
   goffviral:        { label: 'GoffViral',        icon: 'Flame',            category: 'social' },
   'social-trends':  { label: 'Cross-Platform',   icon: 'Share2',           category: 'social' },
   'social-mentions':{ label: 'Channel Mentions', icon: 'AtSign',         category: 'social' },
   'social-comments':{ label: 'Comment Sentiment', icon: 'Heart',           category: 'social' },
   'social-channels':{ label: 'Channel Stats',    icon: 'BarChart2',       category: 'social' },
+
+  /* ── AI ASSISTANTS ── */
+  saku:            { label: 'Saku AI',          icon: 'Bot',              category: 'ai-assistants' },
+  deepchat:        { label: 'Deep Chat AI',     icon: 'MessageSquare',    category: 'ai-assistants' },
+
+  /* ── AGENCY ── */
+  'agency-dashboard': { label: 'Agency Hub',     icon: 'Building2',        category: 'agency' },
+
+  /* ── ACCOUNT ── */
   settings:        { label: 'Settings',         icon: 'Settings',         category: 'account' },
   usage:           { label: 'Token Usage',      icon: 'Coins',            category: 'account' },
   profile:         { label: 'Profile',          icon: 'User',             category: 'account' },
+  'sovereign-vault': { label: 'Sovereign Vault', icon: 'Archive',         category: 'account' },
 };
 
 /* ── Sidebar category definitions ── */
 export const SIDEBAR_SECTIONS = [
   { id: 'main', label: 'MAIN' },
-  { id: 'studio', label: 'STUDIO & AI' },
+  { id: 'studio', label: 'NYCHIQ STUDIO' },
   { id: 'intelligence', label: 'INTELLIGENCE' },
   { id: 'competitor', label: 'COMPETITOR' },
   { id: 'ai-tools', label: 'AI TOOLS' },
   { id: 'social', label: 'SOCIAL INTEL' },
+  { id: 'ai-assistants', label: 'AI ASSISTANTS' },
+  { id: 'agency', label: 'AGENCY' },
   { id: 'account', label: 'ACCOUNT' },
 ] as const;
 

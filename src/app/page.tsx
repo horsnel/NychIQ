@@ -59,6 +59,18 @@ import { SocialCommentsTool } from '@/components/nychiq/social-comments-tool';
 import { SocialChannelsTool } from '@/components/nychiq/social-channels-tool';
 import { GoffViralTool } from '@/components/nychiq/goffviral-tool';
 import { AgencyDashboardTool } from '@/components/nychiq/agency-tool';
+import { DigitalScoutTool } from '@/components/nychiq/digital-scout-tool';
+import { SovereignVaultTool } from '@/components/nychiq/sovereign-vault-tool';
+import { NicheCompareTool } from '@/components/nychiq/niche-compare-tool';
+import { OpportunityHeatmapTool } from '@/components/nychiq/opportunity-heatmap-tool';
+import { MonetizationRoadmapTool } from '@/components/nychiq/monetization-roadmap-tool';
+import { GhostTrackerTool } from '@/components/nychiq/ghost-tracker-tool';
+import { BlueprintAITool } from '@/components/nychiq/blueprint-ai-tool';
+import { ScriptFlowTool } from '@/components/nychiq/scriptflow-tool';
+import { ArbitrageTool } from '@/components/nychiq/arbitrage-tool';
+import { LumeTool } from '@/components/nychiq/lume-tool';
+import { HookLabTool } from '@/components/nychiq/hooklab-tool';
+import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -183,6 +195,30 @@ function ToolRouter() {
       return <GoffViralTool />;
     case 'agency-dashboard':
       return <AgencyDashboardTool />;
+    case 'blueprint-ai':
+      return <BlueprintAITool />;
+    case 'scriptflow':
+      return <ScriptFlowTool />;
+    case 'arbitrage':
+      return <ArbitrageTool />;
+    case 'lume':
+      return <LumeTool />;
+    case 'hooklab':
+      return <HookLabTool />;
+    case 'pulsecheck':
+      return <PulseCheckTool />;
+    case 'niche-compare':
+      return <NicheCompareTool />;
+    case 'opportunity-heatmap':
+      return <OpportunityHeatmapTool />;
+    case 'monetization-roadmap':
+      return <MonetizationRoadmapTool />;
+    case 'digital-scout':
+      return <DigitalScoutTool />;
+    case 'ghost-tracker':
+      return <GhostTrackerTool />;
+    case 'sovereign-vault':
+      return <SovereignVaultTool />;
     case 'saku':
       return <SakuFullPage />;
     default:

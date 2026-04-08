@@ -328,3 +328,75 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ══════════════════════════════════════════════════════════
+   Sci-Fi Tactical Video Card — Interface Theater Animations
+   ══════════════════════════════════════════════════════════ */
+
+@keyframes sciFiScanLine {
+  0%, 100% { transform: translateY(0%); }
+  50% { transform: translateY(100%); }
+}
+
+@keyframes sciFiFlickerDigit {
+  0%   { opacity: 1; }
+  10%  { opacity: 0.5; }
+  20%  { opacity: 1; }
+  30%  { opacity: 0.7; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0.3; }
+  60%  { opacity: 0.8; }
+  70%  { opacity: 1; }
+  80%  { opacity: 0.5; }
+  90%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes sciFiGlitchText {
+  0%   { opacity: 1; transform: translateX(0); }
+  10%  { opacity: 0.4; transform: translateX(-2px); }
+  20%  { opacity: 1; transform: translateX(1px); }
+  30%  { opacity: 0.6; transform: translateX(-1px); }
+  40%  { opacity: 1; transform: translateX(0); }
+  50%  { opacity: 0.3; transform: translateX(2px); }
+  60%  { opacity: 0.8; transform: translateX(-1px); }
+  70%  { opacity: 1; transform: translateX(0); }
+  80%  { opacity: 0.5; transform: translateX(1px); }
+  90%  { opacity: 0.9; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes sciFiPulseGlow {
+  0%, 100% { box-shadow: 0 0 4px rgba(245, 166, 35, 0.15); }
+  50%      { box-shadow: 0 0 16px rgba(245, 166, 35, 0.35); }
+}
+
+@keyframes sciFiBreathe {
+  0%, 100% { border-color: rgba(245, 166, 35, 0.15); }
+  50%      { border-color: rgba(245, 166, 35, 0.4); }
+}
+
+@keyframes sciFiTypewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes sciFiRingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(245, 166, 35, 0); }
+}
+
+@keyframes sciFiHoloGlow {
+  0%, 100% { box-shadow: 0 0 6px rgba(155, 114, 207, 0.2); }
+  50%      { box-shadow: 0 0 14px rgba(155, 114, 207, 0.45); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Sci-Fi Video Card — Interface Theater Keyframes
+   ══════════════════════════════════════════════════════════ */
+
+@keyframes scanLineMove { 0%,100% { transform: translateY(0); } 50% { transform: translateY(calc(100% - 2px)); } }
+@keyframes flickerDigit { 0% { opacity: 0.5; } 20% { opacity: 1; } 40% { opacity: 0.7; } 60% { opacity: 1; } 80% { opacity: 0.3; } 100% { opacity: 1; } }
+@keyframes glitchText { 0% { opacity: 0; transform: translateX(-2px); } 25% { opacity: 1; transform: translateX(1px); } 50% { opacity: 0.8; transform: translateX(-1px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes pulseGlow { 0%,100% { box-shadow: 0 0 4px var(--glow-color); } 50% { box-shadow: 0 0 12px var(--glow-color); } }
+@keyframes breathe { 0%,100% { border-color: #222222; } 50% { border-color: #333333; } }
