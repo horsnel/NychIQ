@@ -28,15 +28,43 @@ export function LoginPage() {
   const canSignUp = name.trim() && email.trim() && password.trim().length >= 6;
   const canSignIn = email.trim() && password.trim().length >= 1;
 
+  /* ── Helpers for persisting user identity across sessions ── */
+  const saveUserIdentity = (userName: string, userEmail: string) => {
+    try {
+      localStorage.setItem('nychiq_user_identity', JSON.stringify({ name: userName, email: userEmail }));
+    } catch { /* ignore */ }
+  };
+
+  const loadUserIdentity = (): { name: string; email: string } | null => {
+    try {
+      const stored = localStorage.getItem('nychiq_user_identity');
+      if (stored) return JSON.parse(stored);
+    } catch { /* ignore */ }
+    return null;
+  };
+
   const handleGoogleSignup = async () => {
     if (mode === 'signup' && (!name.trim() || !email.trim())) return;
     if (mode === 'login' && !email.trim()) return;
 
     setLoading(true);
     await new Promise((r) => setTimeout(r, 600));
-    // Google sign-up saves the name from the form; if empty, use email prefix
-    const userName = mode === 'signup' ? (name.trim() || email.split('@')[0]) : email.split('@')[0];
-    login(userName, email);
+
+    if (mode === 'signup') {
+      // New Google sign-up: use name from form, fallback to email prefix
+      const userName = name.trim() || email.split('@')[0];
+      saveUserIdentity(userName, email);
+      login(userName, email);
+    } else {
+      // Returning Google login: restore saved name if available
+      const saved = loadUserIdentity();
+      const savedName = (saved?.email === email.trim()) ? saved.name : null;
+      const userName = savedName || email.split('@')[0];
+      if (savedName) {
+        saveUserIdentity(savedName, email);
+      }
+      login(userName, email, true); // skipOnboarding for returning users
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -47,7 +75,21 @@ export function LoginPage() {
     setLoading(true);
     // Simulate brief loading
     await new Promise((r) => setTimeout(r, 600));
-    login(name || email.split('@')[0], email);
+
+    if (mode === 'signup') {
+      // Save identity for new signups
+      saveUserIdentity(name || email.split('@')[0], email);
+      login(name || email.split('@')[0], email);
+    } else {
+      // Returning email login: restore saved name if email matches
+      const saved = loadUserIdentity();
+      const savedName = (saved?.email === email.trim()) ? saved.name : null;
+      const userName = savedName || name || email.split('@')[0];
+      if (savedName) {
+        saveUserIdentity(savedName, email);
+      }
+      login(userName, email, true); // skipOnboarding for returning users
+    }
   };
 
   // Don't render login UI if already logged in

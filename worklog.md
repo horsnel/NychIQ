@@ -141,3 +141,32 @@ Stage Summary:
 - Modified: `src/app/page.tsx` (import + ToolRouter case)
 - The page appears in sidebar under AI ASSISTANTS section as "Channel Assistant"
 - Available to all plans including trial, free of token cost
+
+---
+Task ID: 10
+Agent: main
+Task: Google OAuth user info persistence + hide sign-up for logged-in users
+
+Work Log:
+- Grepped all files for: setPage('welcome'), setPage('login'), sign-up, register, back buttons
+- Verified effective page logic in page.tsx already redirects logged-in users from welcome/login → app
+- Verified welcome-page.tsx has `if (isLoggedIn) return null;` guard
+- Verified login-page.tsx has `if (isLoggedIn) return null;` guard
+- Verified topbar.tsx: no welcome/login/sign-up buttons (only Profile, Settings, Usage, Sign Out)
+- Verified sidebar.tsx: no welcome/login/sign-up buttons (only "About" at bottom)
+- Verified mobile-nav.tsx: all 6 tabs are dashboard tools only
+- Verified onboarding-questions.tsx / onboarding-extension.tsx: no back buttons to welcome
+- Verified company-page.tsx / legal-page.tsx: "Back" links check isLoggedIn and route to 'app'
+- Fixed login-page.tsx: added saveUserIdentity/loadUserIdentity helpers
+  - Google signup: saves name+email to localStorage key 'nychiq_user_identity'
+  - Google login (returning): restores saved name from localStorage, calls login(name, email, true) to skip onboarding
+  - Email signup: saves name+email to localStorage
+  - Email login (returning): restores saved name if email matches, skipOnboarding=true
+- Lint passes with 0 errors
+
+Stage Summary:
+- All user info is now persisted across sessions via 'nychiq_user_identity' localStorage key
+- Returning users (Google or email) always get their saved name restored
+- Logged-in users NEVER see welcome page, login page, or sign-up text
+- No buttons in dashboard/sidebar/topbar/mobile-nav navigate back to welcome or login
+- Company/Legal "Back" links correctly route to app if logged in
