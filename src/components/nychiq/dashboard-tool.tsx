@@ -1,28 +1,25 @@
 'use client';
 
-import React from 'react';
-import { useNychIQStore } from '@/lib/store';
+import React, { useMemo } from 'react';
+import { useNychIQStore, PLAN_TOKENS, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { StatCard } from '@/components/nychiq/stat-card';
 import { TokenPill } from '@/components/nychiq/token-pill';
-import { cn } from '@/lib/utils';
+import { TOOL_META, TOKEN_COSTS } from '@/lib/store';
+import { cn, timeAgo } from '@/lib/utils';
 import {
-  Search,
-  Zap,
-  TrendingUp,
-  Eye,
-  Heart,
-  Coins,
-  Flame,
-  BarChart3,
-  ArrowRight,
-  Crown,
-  Lock,
+  Search, Zap, TrendingUp, Eye, Heart, Coins,
+  Flame, BarChart3, ArrowRight, Crown, Sparkles,
 } from 'lucide-react';
 
 /* ── Welcome Banner ── */
 function WelcomeBanner() {
-  const { userName, userPlan, tokenBalance } = useNychIQStore();
+  const { userName, userPlan, tokenBalance, totalTokensSpent, signupTimestamp } = useNychIQStore();
   const planLabel = userPlan.charAt(0).toUpperCase() + userPlan.slice(1);
+  const maxTokens = PLAN_TOKENS[userPlan];
+  const usagePct = maxTokens > 0 ? Math.round(((maxTokens - tokenBalance) / maxTokens) * 100) : 0;
+
+  // Days since signup
+  const daysSinceSignup = Math.floor((Date.now() - signupTimestamp) / (1000 * 60 * 60 * 24));
 
   return (
     <div
@@ -32,7 +29,6 @@ function WelcomeBanner() {
         border: '1px solid rgba(245,166,35,0.2)',
       }}
     >
-      {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#F5A623]/5 -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-1/2 w-48 h-24 rounded-full bg-[#9B72CF]/5 translate-y-1/2" />
 
@@ -42,7 +38,8 @@ function WelcomeBanner() {
             Welcome back, {userName || 'Creator'}!
           </h2>
           <p className="text-sm text-[#888888]">
-            Your channel is performing above average this week. Keep up the momentum!
+            {userPlan === 'trial' ? 'You\'re on a free trial. Upgrade for access to 40+ tools.' :
+              `Day ${daysSinceSignup} on NychIQ · ${usagePct}% tokens used this cycle.`}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -53,7 +50,7 @@ function WelcomeBanner() {
               userPlan === 'starter' && 'bg-[#4A9EFF]/15 text-[#4A9EFF] border border-[#4A9EFF]/30',
               userPlan === 'pro' && 'bg-[#00C48C]/15 text-[#00C48C] border border-[#00C48C]/30',
               userPlan === 'elite' && 'bg-[#9B72CF]/15 text-[#9B72CF] border border-[#9B72CF]/30',
-              userPlan === 'agency' && 'bg-[#E05252]/15 text-[#E05252] border border-[#E05252]/30',
+              userPlan === 'agency' && 'bg-[#E05252]/15 text-[#E05252] border border-[E05252]/30',
             )}
           >
             {planLabel}
@@ -65,48 +62,70 @@ function WelcomeBanner() {
   );
 }
 
-/* ── Stats Row ── */
+/* ── Stats Row — real data from store ── */
 function StatsRow() {
-  const { tokenBalance } = useNychIQStore();
+  const { tokenBalance, totalTokensSpent, tokensEarned, tokenHistory, userPlan } = useNychIQStore();
+
+  // Compute real stats from token history
+  const toolsUsedCount = useMemo(() => {
+    const tools = new Set(tokenHistory.filter((t) => t.type === 'spend').map((t) => t.tool));
+    return tools.size;
+  }, [tokenHistory]);
+
+  const weekSpent = useMemo(() => {
+    const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    return tokenHistory
+      .filter((t) => t.type === 'spend' && t.time >= weekAgo)
+      .reduce((sum, t) => sum + t.tokens, 0);
+  }, [tokenHistory]);
+
+  const monthSpent = useMemo(() => {
+    const monthAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    return tokenHistory
+      .filter((t) => t.type === 'spend' && t.time >= monthAgo)
+      .reduce((sum, t) => sum + t.tokens, 0);
+  }, [tokenHistory]);
+
+  const maxTokens = PLAN_TOKENS[userPlan];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
       <StatCard
-        label="Videos Tracked"
-        value="1,247"
-        change="↑ 12%"
+        label="Tools Used"
+        value={String(toolsUsedCount)}
+        change={`${PLAN_ACCESS[userPlan]?.length ?? 0} available`}
         color="#00C48C"
-        dark
-        icon={<Eye className="w-4 h-4" />}
-      />
-      <StatCard
-        label="Viral Score"
-        value="87/99"
-        change="↑ 5%"
-        color="#F5A623"
         dark
         icon={<Zap className="w-4 h-4" />}
       />
       <StatCard
-        label="Views Today"
-        value="24.5K"
-        change="↑ 8%"
-        color="#4A9EFF"
+        label="Tokens This Week"
+        value={String(weekSpent)}
+        change={weekSpent > 0 ? 'Active' : 'Start exploring'}
+        color="#F5A623"
         dark
-        icon={<Eye className="w-4 h-4" />}
+        icon={<Flame className="w-4 h-4" />}
       />
       <StatCard
-        label="Engagement Rate"
-        value="6.8%"
-        change="↑ 15%"
+        label="Total Spent (All Time)"
+        value={totalTokensSpent.toLocaleString()}
+        change={`${monthSpent} this month`}
+        color="#4A9EFF"
+        dark
+        icon={<BarChart3 className="w-4 h-4" />}
+      />
+      <StatCard
+        label="Tokens Earned"
+        value={tokensEarned.toLocaleString()}
+        change={maxTokens > 0 ? `${maxTokens - tokenBalance} used` : 'Bonus tokens'}
         color="#9B72CF"
         dark
         icon={<Heart className="w-4 h-4" />}
       />
       <StatCard
         label="Tokens Left"
-        value={tokenBalance}
-        change={tokenBalance < 10 ? 'Low balance' : undefined}
+        value={userPlan === 'elite' ? '∞' : tokenBalance}
+        change={tokenBalance < 10 ? 'Low balance' : userPlan === 'elite' ? 'Unlimited' : undefined}
         changeType={tokenBalance < 10 ? 'down' : 'up'}
         color={tokenBalance < 10 ? '#E05252' : '#F5A623'}
         dark
@@ -118,7 +137,7 @@ function StatsRow() {
 
 /* ── Quick Actions ── */
 function QuickActions() {
-  const { setActiveTool } = useNychIQStore();
+  const { setActiveTool, userPlan, tokenBalance } = useNychIQStore();
 
   const actions = [
     {
@@ -128,6 +147,7 @@ function QuickActions() {
       bg: 'rgba(74,158,255,0.1)',
       border: 'rgba(74,158,255,0.2)',
       tool: 'search',
+      available: true,
     },
     {
       label: 'Get Viral Score',
@@ -136,6 +156,7 @@ function QuickActions() {
       bg: 'rgba(245,166,35,0.1)',
       border: 'rgba(245,166,35,0.2)',
       tool: 'viral',
+      available: true,
     },
     {
       label: 'Trending Now',
@@ -144,6 +165,7 @@ function QuickActions() {
       bg: 'rgba(0,196,140,0.1)',
       border: 'rgba(0,196,140,0.2)',
       tool: 'trending',
+      available: true,
     },
   ];
 
@@ -154,25 +176,14 @@ function QuickActions() {
           key={action.tool}
           onClick={() => setActiveTool(action.tool)}
           className="group flex items-center gap-3 p-4 rounded-lg border border-[#222222] bg-[#111111] hover:bg-[#0D0D0D] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 text-left"
-          style={{
-            '--hover-border': action.border,
-          } as React.CSSProperties}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = action.border;
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = '#222222';
-          }}
+          style={{ '--hover-border': action.border } as React.CSSProperties}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = action.border; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#222222'; }}
         >
-          <div
-            className="p-2.5 rounded-lg transition-transform duration-200 group-hover:scale-110"
-            style={{ backgroundColor: action.bg, color: action.color }}
-          >
+          <div className="p-2.5 rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ backgroundColor: action.bg, color: action.color }}>
             {action.icon}
           </div>
-          <span className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#F5A623] transition-colors">
-            {action.label}
-          </span>
+          <span className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#F5A623] transition-colors">{action.label}</span>
           <ArrowRight className="w-4 h-4 text-[#444444] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       ))}
@@ -180,34 +191,102 @@ function QuickActions() {
   );
 }
 
-/* ── Activity Feed ── */
-const ACTIVITY_ITEMS = [
-  { icon: '🔥', text: "'AI Nigeria 2026' trending +5,000%", time: '2m ago', color: '#00C48C' },
-  { icon: '📈', text: 'Your engagement rate up 15% this week', time: '1h ago', color: '#4A9EFF' },
-  { icon: '⚡', text: 'New viral score: 94/99', time: '3h ago', color: '#F5A623' },
-  { icon: '🤖', text: 'Saku AI: Monetization tip ready', time: '5h ago', color: '#9B72CF' },
-  { icon: '🎯', text: 'Top video: "React in 2025" reached 50K views', time: '8h ago', color: '#00C48C' },
-  { icon: '📊', text: 'Weekly report generated successfully', time: '1d ago', color: '#888888' },
-];
-
+/* ── Activity Feed — real token history ── */
 function ActivityFeed() {
+  const { tokenHistory, userPlan, tokenBalance } = useNychIQStore();
+
+  // Build activity feed from token history
+  const feedItems = useMemo(() => {
+    const items: Array<{
+      icon: string;
+      text: string;
+      time: string;
+      color: string;
+    }> = [];
+
+    // Take last 6 transactions
+    const recent = tokenHistory.slice(0, 6);
+    for (const txn of recent) {
+      const toolLabel = TOOL_META[txn.tool]?.label ?? txn.tool;
+      const txnType = txn.type;
+      const timeStr = timeAgo(txn.time);
+
+      switch (txnType) {
+        case 'spend':
+          items.push({
+            icon: '⚡',
+            text: `Used ${txn.tokens} token${txn.tokens !== 1 ? 's' : ''} on ${toolLabel}`,
+            time: timeStr,
+            color: '#F5A623',
+          });
+          break;
+        case 'earn':
+          items.push({
+            icon: '🎁',
+            text: `Earned ${txn.tokens} bonus tokens from ${txn.tool}`,
+            time: timeStr,
+            color: '#00C48C',
+          });
+          break;
+        case 'reset':
+          items.push({
+            icon: '🔄',
+            text: 'Monthly free token reset applied',
+            time: timeStr,
+            color: '#9B72CF',
+          });
+          break;
+        case 'bonus':
+          items.push({
+            icon: '⬆️',
+            text: `Plan upgrade: ${txn.tool} — ${txn.tokens} tokens added`,
+            time: timeStr,
+            color: '#4A9EFF',
+          });
+          break;
+        default:
+          items.push({
+            icon: '📊',
+            text: `${txnType}: ${toolLabel} — ${txn.tokens} tokens`,
+            time: timeStr,
+            color: '#888888',
+          });
+      }
+    }
+    return items;
+  }, [tokenHistory]);
+
+  // If no history, show welcome items
+  if (feedItems.length === 0) {
+    return (
+      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-[#E8E8E8]">Activity</h3>
+          </div>
+        </div>
+        <div className="p-8 text-center">
+          <Sparkles className="w-8 h-8 text-[#333333] mx-auto mb-2" />
+          <p className="text-sm text-[#666666]">Your activity feed will appear here as you use tools.</p>
+          <p className="text-xs text-[#555555] mt-1">Start exploring NychIQ tools to see your history.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-semibold text-[#E8E8E8]">Live Activity</h3>
-          <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00C48C]/10 text-[10px] font-bold text-[#00C48C]">
-            <span className="live-dot" />
+          <h3 className="text-sm font-semibold text-[#E8E8E8]">Recent Activity</h3>
+          <span className="px-2 py-0.5 rounded-full bg-[rgba(0,196,140,0.1)] text-[10px] font-bold text-[#00C48C]">
             LIVE
           </span>
         </div>
       </div>
       <div className="divide-y divide-[#1A1A1A] max-h-80 overflow-y-auto">
-        {ACTIVITY_ITEMS.map((item, i) => (
-          <div
-            key={i}
-            className="flex items-start gap-3 px-4 py-3 hover:bg-[#0D0D0D]/50 transition-colors"
-          >
+        {feedItems.map((item, i) => (
+          <div key={i} className="flex items-start gap-3 px-4 py-3 hover:bg-[#0D0D0D]/50 transition-colors">
             <span className="text-base mt-0.5 shrink-0">{item.icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-sm text-[#E8E8E8]">{item.text}</p>
@@ -220,10 +299,35 @@ function ActivityFeed() {
   );
 }
 
-/* ── Growth Chart ── */
+/* ── Growth Chart — based on real weekly spend ── */
 function GrowthChart() {
+  const { tokenHistory, signupTimestamp } = useNychIQStore();
+
+  // Compute daily spending for last 7 days
+  const dailyData = useMemo(() => {
+    const days: number[] = [0, 0, 0, 0, 0, 0, 0];
+    const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    tokenHistory
+      .filter((t) => t.type === 'spend' && t.time >= weekAgo)
+      .forEach((t) => {
+        const dayIdx = Math.min(6, Math.floor((Date.now() - t.time) / (24 * 60 * 60 * 1000)));
+        days[6 - dayIdx] += t.tokens;
+      });
+    return days;
+  }, [tokenHistory, signupTimestamp]);
+
+  const maxVal = Math.max(...dailyData, 1) * 1.2;
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const data = [18500, 24300, 19800, 31200, 27600, 35400, 42100];
+  const today = new Date().getDay(); // 0=Sun
+  // Reorder days so today is last
+  const dayOrder = [1, 2, 3, 4, 5, 6, 0]; // Mon-Sun
+  const orderedDays = dayOrder.map((d) => days[d]);
+  const orderedData = dayOrder.map((d, i) => dailyData[i]);
+
+  // Week change
+  const firstHalf = orderedData.slice(0, 3).reduce((s, v) => s + v, 0);
+  const secondHalf = orderedData.slice(4).reduce((s, v) => s + v, 0);
+  const weekChange = firstHalf > 0 ? Math.round(((secondHalf - firstHalf) / firstHalf) * 100) : 0;
 
   const width = 400;
   const height = 160;
@@ -231,12 +335,9 @@ function GrowthChart() {
   const chartW = width - padding.left - padding.right;
   const chartH = height - padding.top - padding.bottom;
 
-  const maxVal = Math.max(...data) * 1.15;
-  const minVal = 0;
-
-  const points = data.map((v, i) => ({
-    x: padding.left + (i / (data.length - 1)) * chartW,
-    y: padding.top + chartH - ((v - minVal) / (maxVal - minVal)) * chartH,
+  const points = orderedData.map((v, i) => ({
+    x: padding.left + (i / (orderedData.length - 1)) * chartW,
+    y: padding.top + chartH - (v / maxVal) * chartH,
   }));
 
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
@@ -244,6 +345,7 @@ function GrowthChart() {
 
   const fmtShort = (n: number) => {
     if (n >= 1000) return (n / 1000).toFixed(0) + 'K';
+    if (n === 0) return '0';
     return String(n);
   };
 
@@ -251,22 +353,23 @@ function GrowthChart() {
     <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
       <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-2">
         <BarChart3 className="w-4 h-4 text-[#4A9EFF]" />
-        Weekly Overview
-        <span className="ml-auto text-[10px] font-medium text-[#00C48C] bg-[#00C48C]/10 px-2 py-0.5 rounded-full">↑ 127%</span>
+        Token Usage This Week
+        <span className="ml-auto text-[10px] font-medium text-[#00C48C] bg-[#00C48C]/10 px-2 py-0.5 rounded-full">
+          {weekChange >= 0 ? '↑' : '↓'} {Math.abs(weekChange)}%
+        </span>
       </h3>
       <div className="w-full overflow-hidden">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="dashAreaGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#F5A623" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#F5A623" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
-          {/* Grid lines */}
           {[0, 0.25, 0.5, 0.75, 1].map((frac) => {
             const y = padding.top + chartH * (1 - frac);
-            const val = minVal + (maxVal - minVal) * frac;
+            const val = maxVal * frac;
             return (
               <g key={frac}>
                 <line x1={padding.left} y1={y} x2={width - padding.right} y2={y} stroke="#1A1A1A" strokeWidth="1" />
@@ -277,18 +380,14 @@ function GrowthChart() {
             );
           })}
 
-          {/* Area fill */}
-          <path d={areaPath} fill="url(#areaGradient)" />
-
-          {/* Line */}
+          <path d={areaPath} fill="url(#dashAreaGrad)" />
           <path d={linePath} fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
-          {/* Data points + labels */}
           {points.map((p, i) => (
             <g key={i}>
               <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#F5A623" strokeWidth="2" />
               <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#888888">
-                {days[i]}
+                {orderedDays[i]}
               </text>
             </g>
           ))}
@@ -337,26 +436,17 @@ function UpgradeBanner() {
   );
 }
 
-
-/* ── Main Dashboard Tool ── */
+/* ── Main Dashboard ── */
 export function DashboardTool() {
-    return (
+  return (
     <div className="space-y-5 animate-fade-in-up">
-      {/* Welcome Banner */}
       <WelcomeBanner />
-
-      {/* Stats Row */}
       <StatsRow />
-
-      {/* Quick Actions */}
       <QuickActions />
-
-      {/* Bottom section: Activity Feed + Upgrade Banner */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <ActivityFeed />
         <div className="space-y-5">
           <UpgradeBanner />
-          {/* Growth Chart */}
           <GrowthChart />
         </div>
       </div>

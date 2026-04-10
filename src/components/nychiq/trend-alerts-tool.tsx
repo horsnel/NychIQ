@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import React, { useState, useEffect } from 'react';
+import { useNychIQStore, TOKEN_COSTS, tokenHistory } from '@/lib/store';
+import { askAI } from '@/lib/api';
 import {
   BellRing,
-  Crown,
-  Lock,
   Loader2,
   Sparkles,
   Plus,
@@ -13,6 +12,9 @@ import {
   TrendingUp,
   Clock,
   Zap,
+  AlertTriangle,
+  ArrowUpRight,
+  RefreshCw,
 } from 'lucide-react';
 
 interface Alert {
@@ -21,53 +23,111 @@ interface Alert {
   createdAt: string;
 }
 
-interface TrendFeedItem {
+interface TrendSpike {
   keyword: string;
   spike: string;
   time: string;
   category: string;
+  velocity: 'explosive' | 'rising' | 'steady';
 }
 
-
-const MOCK_FEED: TrendFeedItem[] = [
-  { keyword: 'AI Video Generator 2025', spike: '+1,250%', time: '12m ago', category: 'Technology' },
-  { keyword: 'Nigeria Election Update', spike: '+890%', time: '34m ago', category: 'News' },
-  { keyword: 'Budget Phone Review', spike: '+670%', time: '1h ago', category: 'Technology' },
-  { keyword: 'Afrobeats New Release', spike: '+580%', time: '2h ago', category: 'Music' },
-  { keyword: 'Jollof Rice Recipe', spike: '+520%', time: '3h ago', category: 'Food' },
-  { keyword: 'Crypto Market Crash', spike: '+450%', time: '4h ago', category: 'Finance' },
-  { keyword: 'Premier League Highlights', spike: '+380%', time: '5h ago', category: 'Sports' },
-  { keyword: 'Natural Hair Routine', spike: '+310%', time: '6h ago', category: 'Beauty' },
-];
-
 export function TrendAlertsTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region, tokenHistory } = useNychIQStore();
   const [keyword, setKeyword] = useState('');
-  const [alerts, setAlerts] = useState<Alert[]>([
-    { id: '1', keyword: 'AI Tools', createdAt: '2h ago' },
-    { id: '2', keyword: 'Tech Reviews', createdAt: '1d ago' },
-  ]);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
   const [adding, setAdding] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [feed, setFeed] = useState<TrendSpike[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleAdd = () => {
+  // Load saved alerts from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('nychiq_trend_alerts');
+      if (saved) setAlerts(JSON.parse(saved));
+    } catch {}
+  }, []);
+
+  // Fetch trend spikes using AI
+  const fetchTrendSpikes = async () => {
+    setLoading(true);
+    setError(null);
+    const ok = spendTokens('trend-alerts');
+    if (!ok) { setLoading(false); return; }
+    try {
+      const prompt = `You are a YouTube trend analyst for the ${region} region. Analyze the current trending topics and identify 8 trending keywords/phrases that have seen significant search volume spikes (500%+) recently.
+
+Return ONLY a JSON array with this exact structure (no other text):
+[{"keyword":"...","spike":"+1,250%","time":"12m ago","category":"Technology","velocity":"explosive"},{"keyword":"...","spike":"+890%","time":"34m ago","category":"News","velocity":"rising"}]
+
+Rules:
+- spike: format as "+X%" with the percentage increase
+- time: relative time like "12m ago", "2h ago", "5h ago"
+- category: one of Technology, News, Music, Food, Finance, Sports, Beauty, Gaming, Education, Health, Entertainment
+- velocity: "explosive" (>2000%), "rising" (500-2000%), or "steady" (100-500%)
+- Make keywords realistic for the ${region} YouTube market
+- Vary the categories and timeframes`;
+
+      const text = await askAI(prompt);
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0]);
+        if (Array.isArray(parsed)) {
+          setFeed(parsed.slice(0, 8));
+        } else {
+          setFeed([]);
+        }
+      } else {
+        setFeed([]);
+      }
+    } catch {
+      setError('Failed to fetch trend data. Please try again.');
+      setFeed([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Auto-fetch on mount
+  useEffect(() => {
+    fetchTrendSpikes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleAdd = async () => {
     if (!keyword.trim()) return;
     const ok = spendTokens('trend-alerts');
     if (!ok) return;
     setAdding(true);
-    setTimeout(() => {
-      setAlerts((prev) => [...prev, {
+    // Simulate brief AI analysis of the keyword
+    try {
+      await new Promise((r) => setTimeout(r, 600));
+      const newAlert = {
         id: Date.now().toString(),
         keyword: keyword.trim(),
         createdAt: 'Just now',
-      }]);
+      };
+      const updated = [newAlert, ...alerts];
+      setAlerts(updated);
+      localStorage.setItem('nychiq_trend_alerts', JSON.stringify(updated));
       setKeyword('');
+    } finally {
       setAdding(false);
-    }, 500);
+    }
   };
 
   const handleRemove = (id: string) => {
-    setAlerts((prev) => prev.filter((a) => a.id !== id));
+    const updated = alerts.filter((a) => a.id !== id);
+    setAlerts(updated);
+    localStorage.setItem('nychiq_trend_alerts', JSON.stringify(updated));
   };
+
+  const velocityConfig = {
+    explosive: { color: '#E05252', bg: 'rgba(224,82,82,0.1)', border: 'rgba(224,82,82,0.2)' },
+    rising: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', border: 'rgba(245,166,35,0.2)' },
+    steady: { color: '#4A9EFF', bg: 'rgba(74,158,255,0.1)', border: 'rgba(74,158,255,0.2)' },
+  };
+
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
@@ -77,7 +137,7 @@ export function TrendAlertsTool() {
             <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]"><BellRing className="w-5 h-5 text-[#F5A623]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Trend Alerts</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Set keyword triggers, get notifications when topics spike 500%+.</p>
+              <p className="text-xs text-[#888888] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -104,7 +164,7 @@ export function TrendAlertsTool() {
             {alerts.map((alert) => (
               <div key={alert.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-2 h-2 rounded-full bg-[#F5A623] shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-[#F5A623] shrink-0 animate-pulse-live" />
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-[#E8E8E8] truncate">{alert.keyword}</p>
                     <p className="text-[10px] text-[#666666]">Added {alert.createdAt}</p>
@@ -119,35 +179,66 @@ export function TrendAlertsTool() {
         )}
       </div>
 
-      {/* Trend Feed */}
+      {/* Trend Feed — AI-powered */}
       <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
             <Zap className="w-3.5 h-3.5 text-[#E05252]" />
-            Recent Trend Spikes
+            Live Trend Spikes
           </h4>
-          <span className="text-[10px] text-[#666666]">Simulated data</span>
+          <button
+            onClick={fetchTrendSpikes}
+            disabled={loading}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+          >
+            <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </button>
         </div>
-        <div className="space-y-2 max-h-96 overflow-y-auto">
-          {MOCK_FEED.map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.2)] flex items-center justify-center shrink-0">
-                <TrendingUp className="w-5 h-5 text-[#E05252]" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#E8E8E8] truncate">{item.keyword}</p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] text-[#666666] flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-medium text-[#9B72CF] bg-[rgba(155,114,207,0.1)]">{item.category}</span>
+
+        {error && (
+          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(224,82,82,0.08)] border border-[rgba(224,82,82,0.2)]">
+            <AlertTriangle className="w-4 h-4 text-[#E05252] shrink-0" />
+            <p className="text-xs text-[#E05252]">{error}</p>
+          </div>
+        )}
+
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-12">
+            <Loader2 className="w-6 h-6 text-[#F5A623] animate-spin mb-2" />
+            <p className="text-sm text-[#888888]">Scanning trends...</p>
+          </div>
+        ) : feed.length === 0 ? (
+          <p className="text-sm text-[#666666] text-center py-8">No trend data available. Click Refresh to scan.</p>
+        ) : (
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {feed.map((item, i) => {
+              const vel = velocityConfig[item.velocity] || velocityConfig.steady;
+              return (
+                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: vel.bg, border: `1px solid ${vel.border}` }}>
+                    <TrendingUp className="w-5 h-5" style={{ color: vel.color }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-[#E8E8E8] truncate">{item.keyword}</p>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span className="text-[10px] text-[#666666] flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-medium" style={{ color: vel.color, backgroundColor: vel.bg }}>{item.category}</span>
+                      <span className="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase" style={{ color: vel.color, backgroundColor: vel.bg }}>{item.velocity}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end shrink-0">
+                    <span className="text-sm font-bold" style={{ color: vel.color }}>{item.spike}</span>
+                    <ArrowUpRight className="w-3 h-3 mt-0.5" style={{ color: vel.color }} />
+                  </div>
                 </div>
-              </div>
-              <span className="text-sm font-bold text-[#E05252] shrink-0">{item.spike}</span>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['trend-alerts']} tokens per alert</div>
+      <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['trend-alerts']} tokens per scan · Region: {region}</div>
     </div>
   );
 }

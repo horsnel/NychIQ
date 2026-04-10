@@ -1,69 +1,104 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { askAI } from '@/lib/api';
 import { cn, fmtV } from '@/lib/utils';
 import {
   DollarSign,
-  Crown,
-  Lock,
+  Loader2,
   Calculator,
   TrendingUp,
   Info,
+  ArrowUpRight,
+  ArrowDownRight,
+  RefreshCw,
+  Sparkles,
 } from 'lucide-react';
 
-/* ── CPM Data (Spec Section 22) ── */
 interface CPMEntry {
   niche: string;
-  percentage: number;
   cpm: number;
+  rpm: number;
   change: number;
   color: string;
+  competition: 'Low' | 'Medium' | 'High';
 }
 
-const CPM_DATA: CPMEntry[] = [
-  { niche: 'Finance',         percentage: 95, cpm: 22.40, change: 12.3, color: '#00C48C' },
-  { niche: 'Business',        percentage: 88, cpm: 20.10, change: 8.7,  color: '#4A9EFF' },
-  { niche: 'AI / Tech',       percentage: 82, cpm: 18.20, change: 9.1,  color: '#9B72CF' },
-  { niche: 'Health',          percentage: 67, cpm: 14.80, change: 5.4,  color: '#F5A623' },
-  { niche: 'Fitness',         percentage: 58, cpm: 12.40, change: -2.1, color: '#E05252' },
-  { niche: 'Education',       percentage: 51, cpm: 11.40, change: 3.2,  color: '#4A9EFF' },
-  { niche: 'Food',            percentage: 35, cpm: 8.60,  change: -4.2, color: '#F5A623' },
-  { niche: 'Gaming',          percentage: 19, cpm: 4.20,  change: 1.8,  color: '#888888' },
-];
-
-
-/* ── Main CPM Tool ── */
 export function CPMTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [monthlyViews, setMonthlyViews] = useState('100000');
   const [selectedNiche, setSelectedNiche] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [cpmData, setCpmData] = useState<CPMEntry[]>([]);
 
-  const handleLoad = () => {
-    if (!hasLoaded) {
-      const ok = spendTokens('cpm');
-      if (!ok) return;
+  const loadCPMData = async () => {
+    setLoading(true);
+    setError(null);
+    const ok = spendTokens('cpm');
+    if (!ok) { setLoading(false); return; }
+    try {
+      const prompt = `You are a YouTube monetization expert. Analyze current YouTube CPM (cost per mille) rates for the ${region} market. Provide CPM data for 8 popular niches.
+
+Return ONLY a JSON array (no other text):
+[{"niche":"Finance","cpm":22.40,"change":12.3,"competition":"Medium"},{"niche":"Business","cpm":20.10,"change":8.7,"competition":"High"}]
+
+Rules:
+- cpm: realistic CPM in USD for the ${region} market (consider local ad buying power)
+- change: monthly percentage change (-10 to +20)
+- competition: "Low", "Medium", or "High" based on creator saturation
+- Include these niches: Finance, Business, AI/Tech, Health, Fitness, Education, Food/Cooking, Gaming, Entertainment, News, Beauty, Sports
+- Pick the 8 highest-CPM niches
+- Make CPMs realistic: ${region} market typically has lower CPMs than US
+- Sort by CPM descending`;
+
+      const text = await askAI(prompt);
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0]);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const data = parsed.map((entry: any) => ({
+            niche: entry.niche,
+            cpm: typeof entry.cpm === 'number' ? entry.cpm : 10,
+            rpm: typeof entry.cpm === 'number' ? +(entry.cpm * 0.45).toFixed(2) : 4.50,
+            change: typeof entry.change === 'number' ? entry.change : 0,
+            color: (entry.competition === 'Low' ? '#00C48C' : entry.competition === 'High' ? '#E05252' : '#F5A623'),
+            competition: ['Low', 'Medium', 'High'].includes(entry.competition) ? entry.competition : 'Medium',
+          }));
+          setCpmData(data);
+          setSelectedNiche(0);
+        } else {
+          setCpmData([]);
+          setError('Could not parse CPM data. Please try again.');
+        }
+      } else {
+        setError('Could not fetch CPM data. Please try again.');
+      }
+    } catch {
+      setError('Failed to load CPM rates. Please try again.');
+    } finally {
+      setLoading(false);
       setHasLoaded(true);
     }
   };
 
-  // Calculate on any input change if already loaded
   const handleViewsChange = (val: string) => {
     setMonthlyViews(val);
-    handleLoad();
+    if (!hasLoaded) loadCPMData();
   };
 
   const handleNicheChange = (idx: number) => {
     setSelectedNiche(idx);
-    handleLoad();
   };
 
-  // Revenue calculation
   const views = parseInt(monthlyViews.replace(/[^0-9]/g, ''), 10) || 0;
-  const cpm = CPM_DATA[selectedNiche].cpm;
+  const cpm = cpmData.length > 0 ? cpmData[selectedNiche]?.cpm ?? 10 : 10;
+  const rpm = cpmData.length > 0 ? cpmData[selectedNiche]?.rpm ?? 4.50 : 4.50;
   const revenue = (views / 1000) * cpm;
   const yearlyRevenue = revenue * 12;
+
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
@@ -76,65 +111,96 @@ export function CPMTool() {
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">CPM Estimator</h2>
               <p className="text-xs text-[#888888] mt-0.5">
-                Estimate your YouTube AdSense revenue
+                AI-powered YouTube AdSense revenue estimation for {region}
               </p>
             </div>
           </div>
         </div>
       </div>
 
+      {!hasLoaded && (
+        <button
+          onClick={loadCPMData}
+          disabled={loading}
+          className="w-full p-4 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#00C48C]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#E8E8E8]"
+        >
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#00C48C]" />}
+          {loading ? 'Loading CPM rates...' : `Load CPM Rates for ${region}`}
+          <span className="text-[10px] text-[#F5A623] ml-2">({TOKEN_COSTS.cpm} tokens)</span>
+        </button>
+      )}
+
       {/* CPM Rates Table */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
-          <TrendingUp className="w-4 h-4 text-[#F5A623]" />
-          <h3 className="text-sm font-semibold text-[#E8E8E8]">CPM Rates by Niche</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-[#1A1A1A]">
-                <th className="text-left px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Niche</th>
-                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM %</th>
-                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM Rate</th>
-                <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Select</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#1A1A1A]">
-              {CPM_DATA.map((entry, i) => (
-                <tr
-                  key={i}
-                  className={cn(
-                    'transition-colors cursor-pointer',
-                    selectedNiche === i ? 'bg-[#F5A623]/5' : 'hover:bg-[#0D0D0D]/50'
-                  )}
-                  onClick={() => handleNicheChange(i)}
-                >
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
-                      <span className="text-sm text-[#E8E8E8]">{entry.niche}</span>
-                    </div>
-                  </td>
-                  <td className="text-right px-4 py-3">
-                    <span className="text-sm font-semibold text-[#F5A623]">{entry.percentage}%</span>
-                  </td>
-                  <td className="text-right px-4 py-3">
-                    <span className="text-sm font-semibold text-[#E8E8E8]">${entry.cpm.toFixed(2)}</span>
-                  </td>
-                  <td className="text-right px-4 py-3">
-                    <div
+      {hasLoaded && (
+        <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-[#F5A623]" />
+              <h3 className="text-sm font-semibold text-[#E8E8E8]">CPM Rates by Niche — {region}</h3>
+            </div>
+            <button onClick={loadCPMData} disabled={loading} className="text-[#888888] hover:text-[#E8E8E8] transition-colors" title="Refresh">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            </button>
+          </div>
+          {error ? (
+            <div className="p-8 text-center">
+              <p className="text-sm text-[#E05252]">{error}</p>
+              <button onClick={loadCPMData} className="mt-2 text-xs text-[#F5A623] underline">Try Again</button>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[#1A1A1A]">
+                    <th className="text-left px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Niche</th>
+                    <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">CPM</th>
+                    <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">RPM</th>
+                    <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">MoM</th>
+                    <th className="text-right px-4 py-2.5 text-[11px] font-medium text-[#888888] uppercase tracking-wider">Competition</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#1A1A1A]">
+                  {cpmData.map((entry, i) => (
+                    <tr
+                      key={i}
                       className={cn(
-                        'w-4 h-4 rounded-full border-2 mx-auto transition-colors',
-                        selectedNiche === i ? 'bg-[#F5A623] border-[#F5A623]' : 'border-[#444444]'
+                        'transition-colors cursor-pointer',
+                        selectedNiche === i ? 'bg-[#F5A623]/5' : 'hover:bg-[#0D0D0D]/50'
                       )}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      onClick={() => handleNicheChange(i)}
+                    >
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
+                          <span className="text-sm text-[#E8E8E8]">{entry.niche}</span>
+                        </div>
+                      </td>
+                      <td className="text-right px-4 py-3">
+                        <span className="text-sm font-semibold text-[#00C48C]">${entry.cpm.toFixed(2)}</span>
+                      </td>
+                      <td className="text-right px-4 py-3">
+                        <span className="text-sm font-semibold text-[#4A9EFF]">${entry.rpm.toFixed(2)}</span>
+                      </td>
+                      <td className="text-right px-4 py-3">
+                        <span className={cn('text-sm font-medium flex items-center justify-end gap-1', entry.change >= 0 ? 'text-[#00C48C]' : 'text-[#E05252]')}>
+                          {entry.change >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
+                          {entry.change >= 0 ? '+' : ''}{entry.change}%
+                        </span>
+                      </td>
+                      <td className="text-right px-4 py-3">
+                        <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{
+                          color: entry.competition === 'Low' ? '#00C48C' : entry.competition === 'Medium' ? '#F5A623' : '#E05252',
+                          backgroundColor: entry.competition === 'Low' ? 'rgba(0,196,140,0.1)' : entry.competition === 'Medium' ? 'rgba(245,166,35,0.1)' : 'rgba(224,82,82,0.1)',
+                        }}>{entry.competition}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
-      </div>
+      )}
 
       {/* Revenue Calculator */}
       <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
@@ -144,22 +210,19 @@ export function CPMTool() {
         </div>
         <div className="p-5">
           <div className="space-y-4">
-            {/* Monthly Views Input */}
             <div>
               <label className="block text-xs font-medium text-[#888888] mb-2">Monthly Views</label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
                 <input
                   type="text"
                   value={monthlyViews}
                   onChange={(e) => handleViewsChange(e.target.value)}
                   placeholder="Enter monthly views..."
-                  className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 focus:ring-1 focus:ring-[#F5A623]/20 transition-colors"
+                  className="w-full h-11 pl-4 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
                 />
               </div>
             </div>
 
-            {/* Quick presets */}
             <div className="flex flex-wrap gap-2">
               {['10K', '50K', '100K', '500K', '1M', '5M'].map((preset) => (
                 <button
@@ -177,16 +240,16 @@ export function CPMTool() {
               ))}
             </div>
 
-            {/* Selected Niche Display */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: CPM_DATA[selectedNiche].color }} />
-              <span className="text-xs text-[#888888]">Selected Niche:</span>
-              <span className="text-xs font-semibold text-[#E8E8E8]">{CPM_DATA[selectedNiche].niche}</span>
-              <span className="text-xs text-[#888888]">(${CPM_DATA[selectedNiche].cpm.toFixed(2)} CPM)</span>
-            </div>
+            {cpmData.length > 0 && (
+              <div className="flex items-center gap-2 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cpmData[selectedNiche].color }} />
+                <span className="text-xs text-[#888888]">Selected:</span>
+                <span className="text-xs font-semibold text-[#E8E8E8]">{cpmData[selectedNiche].niche}</span>
+                <span className="text-xs text-[#888888]">(${cpmData[selectedNiche].cpm.toFixed(2)} CPM · ${cpmData[selectedNiche].rpm.toFixed(2)} RPM)</span>
+              </div>
+            )}
           </div>
 
-          {/* Revenue Display */}
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="rounded-lg p-4 bg-[#0D0D0D] border border-[#1A1A1A] text-center">
               <p className="text-[11px] font-medium text-[#888888] uppercase tracking-wider mb-2">Monthly Revenue</p>
@@ -203,7 +266,7 @@ export function CPMTool() {
             <div className="rounded-lg p-4 bg-[#0D0D0D] border border-[#1A1A1A] text-center">
               <p className="text-[11px] font-medium text-[#888888] uppercase tracking-wider mb-2">RPM</p>
               <p className="text-2xl font-bold text-[#F5A623]">
-                ${hasLoaded ? (cpm * 0.45).toFixed(2) : '—'}
+                ${hasLoaded ? rpm.toFixed(2) : '—'}
               </p>
               <p className="text-[10px] text-[#666666] mt-1">~45% of CPM</p>
             </div>
@@ -211,17 +274,15 @@ export function CPMTool() {
         </div>
       </div>
 
-      {/* Info Note */}
       <div className="flex items-start gap-2 p-3 rounded-lg bg-[rgba(74,158,255,0.05)] border border-[rgba(74,158,255,0.15)]">
         <Info className="w-4 h-4 text-[#4A9EFF] shrink-0 mt-0.5" />
         <p className="text-xs text-[#888888] leading-relaxed">
-          CPM rates are estimates based on industry averages and may vary by region, audience demographics, seasonality, and content type. RPM (Revenue Per Mille) is typically 45-55% of CPM after YouTube&apos;s revenue share.
+          CPM rates are AI-estimated for the {region} market based on current trends. RPM (Revenue Per Mille) is typically 40-55% of CPM after YouTube&apos;s 45% revenue share. Actual rates vary by seasonality, audience demographics, and video length.
         </p>
       </div>
 
-      {/* Token cost footer */}
       <div className="text-center text-[11px] text-[#444444]">
-        Cost: {TOKEN_COSTS.cpm} tokens per load
+        Cost: {TOKEN_COSTS.cpm} tokens per load · Region: {region}
       </div>
     </div>
   );

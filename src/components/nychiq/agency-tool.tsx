@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { copyToClipboard, fmtV, timeAgo } from '@/lib/utils';
+import { askAI } from '@/lib/api';
 import {
   Building2,
   Lock,
