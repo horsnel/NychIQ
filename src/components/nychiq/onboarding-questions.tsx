@@ -30,7 +30,7 @@ const DISCOVERY_OPTIONS = [
 ];
 
 export function OnboardingQuestions() {
-  const { setPage } = useNychIQStore();
+  const { logout, setPage } = useNychIQStore();
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleContinue = () => {
@@ -133,10 +133,10 @@ export function OnboardingQuestions() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <button
-              onClick={() => setPage('login')}
+              onClick={() => logout()}
               className="text-xs text-[#444] hover:text-[#888] transition-colors"
             >
-              ← Back to sign in
+              ← Sign out
             </button>
           </div>
         </div>

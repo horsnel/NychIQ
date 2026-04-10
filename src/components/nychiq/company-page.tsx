@@ -237,7 +237,7 @@ interface CompanyPageProps {
 }
 
 export function CompanyPage({ type }: CompanyPageProps) {
-  const { setPage } = useNychIQStore();
+  const { setPage, isLoggedIn } = useNychIQStore();
   const config = PAGE_CONFIG[type] || { title: 'NychIQ', subtitle: '' };
 
   return (
@@ -245,7 +245,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
       {/* Top bar */}
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
-          onClick={() => setPage('welcome')}
+          onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
           className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -422,11 +422,11 @@ function AboutSection() {
           Ready to unlock YouTube intelligence for your channel?
         </p>
         <button
-          onClick={() => setPage('login')}
+          onClick={() => isLoggedIn ? setPage('app') : setPage('login')}
           className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#e6961a] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
-          Start Free Trial
+          {isLoggedIn ? 'Go to Dashboard' : 'Start Free Trial'}
         </button>
       </div>
     </div>

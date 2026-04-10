@@ -260,16 +260,26 @@ function TerminalLine({ text, color, delay }: { text: string; color: string; del
 }
 
 export function WelcomePage() {
-  const { setPage } = useNychIQStore();
+  const { setPage, isLoggedIn } = useNychIQStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
+
+  // Guard: redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      setPage('app');
+    }
+  }, [isLoggedIn, setPage]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Don't render welcome page if already logged in
+  if (isLoggedIn) return null;
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] relative overflow-hidden">

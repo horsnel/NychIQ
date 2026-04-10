@@ -355,7 +355,7 @@ interface LegalPageProps {
 }
 
 export function LegalPage({ type }: LegalPageProps) {
-  const { setPage } = useNychIQStore();
+  const { setPage, isLoggedIn } = useNychIQStore();
   const info = LEGAL_CONTENT[type] || DEFAULT_INFO;
 
   return (
@@ -363,7 +363,7 @@ export function LegalPage({ type }: LegalPageProps) {
       {/* Top bar */}
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
-          onClick={() => setPage('welcome')}
+          onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
           className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />

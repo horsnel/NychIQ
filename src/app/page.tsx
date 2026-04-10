@@ -286,25 +286,30 @@ function AppShell() {
 
 /* ── Main app router ── */
 export default function NychIQApp() {
-  const { currentPage } = useNychIQStore();
+  const { currentPage, isLoggedIn } = useNychIQStore();
+
+  // If user is logged in but somehow on welcome/login page (e.g. stale state), redirect to app
+  const effectivePage = (isLoggedIn && (currentPage === 'welcome' || currentPage === 'login'))
+    ? 'app'
+    : currentPage;
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-[#E8E8E8]">
       <AppEffects />
-      {currentPage === 'welcome' && <WelcomePage />}
-      {currentPage === 'login' && <LoginPage />}
-      {currentPage === 'app' && <AppShell />}
-      {currentPage === 'privacy' && <LegalPage type="privacy" />}
-      {currentPage === 'terms' && <LegalPage type="terms" />}
-      {currentPage === 'refund' && <LegalPage type="refund" />}
-      {currentPage === 'cookies' && <LegalPage type="cookies" />}
-      {currentPage === 'about' && <CompanyPage type="about" />}
-      {currentPage === 'contact' && <CompanyPage type="contact" />}
-      {currentPage === 'careers' && <CompanyPage type="careers" />}
-      {currentPage === 'changelog' && <CompanyPage type="changelog" />}
-      {currentPage === 'ob-questions' && <OnboardingQuestions />}
-      {currentPage === 'ob-audit' && <OnboardingAudit />}
-      {currentPage === 'ob-extension' && <OnboardingExtension />}
+      {effectivePage === 'welcome' && <WelcomePage />}
+      {effectivePage === 'login' && <LoginPage />}
+      {effectivePage === 'app' && <AppShell />}
+      {effectivePage === 'privacy' && <LegalPage type="privacy" />}
+      {effectivePage === 'terms' && <LegalPage type="terms" />}
+      {effectivePage === 'refund' && <LegalPage type="refund" />}
+      {effectivePage === 'cookies' && <LegalPage type="cookies" />}
+      {effectivePage === 'about' && <CompanyPage type="about" />}
+      {effectivePage === 'contact' && <CompanyPage type="contact" />}
+      {effectivePage === 'careers' && <CompanyPage type="careers" />}
+      {effectivePage === 'changelog' && <CompanyPage type="changelog" />}
+      {effectivePage === 'ob-questions' && <OnboardingQuestions />}
+      {effectivePage === 'ob-audit' && <OnboardingAudit />}
+      {effectivePage === 'ob-extension' && <OnboardingExtension />}
     </div>
   );
 }

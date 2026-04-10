@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles, Mail, User, Lock, ArrowRight, Eye, EyeOff, Play,
 } from 'lucide-react';
@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useNychIQStore } from '@/lib/store';
 
 export function LoginPage() {
-  const { login, setPage } = useNychIQStore();
+  const { login, setPage, isLoggedIn } = useNychIQStore();
   const [mode, setMode] = useState<'signup' | 'login'>('login');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,8 +18,26 @@ export function LoginPage() {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Guard: redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      setPage('app');
+    }
+  }, [isLoggedIn, setPage]);
+
   const canSignUp = name.trim() && email.trim() && password.trim().length >= 6;
   const canSignIn = email.trim() && password.trim().length >= 1;
+
+  const handleGoogleSignup = async () => {
+    if (mode === 'signup' && (!name.trim() || !email.trim())) return;
+    if (mode === 'login' && !email.trim()) return;
+
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 600));
+    // Google sign-up saves the name from the form; if empty, use email prefix
+    const userName = mode === 'signup' ? (name.trim() || email.split('@')[0]) : email.split('@')[0];
+    login(userName, email);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,9 +48,10 @@ export function LoginPage() {
     // Simulate brief loading
     await new Promise((r) => setTimeout(r, 600));
     login(name || email.split('@')[0], email);
-    // After login, onboarding is handled by the store based on onboardingCompleted flag
-    // Only route to onboarding for NEW sign-ups (first time users)
   };
+
+  // Don't render login UI if already logged in
+  if (isLoggedIn) return null;
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-4 relative overflow-hidden">
@@ -93,8 +112,9 @@ export function LoginPage() {
 
               {/* Google button */}
               <button
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white text-[#333] rounded-lg text-sm font-medium hover:bg-[#f5f5f5] transition-colors mb-4"
-                onClick={handleSubmit}
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white text-[#333] rounded-lg text-sm font-medium hover:bg-[#f5f5f5] transition-colors mb-4 disabled:opacity-40"
+                onClick={handleGoogleSignup}
+                disabled={loading}
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
@@ -213,8 +233,9 @@ export function LoginPage() {
 
               {/* Google button */}
               <button
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white text-[#333] rounded-lg text-sm font-medium hover:bg-[#f5f5f5] transition-colors mb-4"
-                onClick={handleSubmit}
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white text-[#333] rounded-lg text-sm font-medium hover:bg-[#f5f5f5] transition-colors mb-4 disabled:opacity-40"
+                onClick={handleGoogleSignup}
+                disabled={loading}
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
