@@ -24,3 +24,34 @@ Stage Summary:
 - Logo consistency fixed across 5 files: logo.svg, sidebar.tsx, welcome-page.tsx, login-page.tsx, company-page.tsx
 - Build bug fixed (missing Sparkles import in sidebar.tsx)
 - Clean production build verified
+
+---
+Task ID: 2
+Agent: Feature Builder
+Task: Build missing NychIQ features (copy link, CSV export, referral input, growth chart, notification enhancement)
+
+Work Log:
+- Task 1: Added CopyLinkButton component to video-card.tsx with Link2 icon visible on hover at bottom-left of thumbnail
+- Task 1: Added 5 new menu items to VideoContextMenu: Copy Tags, Copy Hashtags, Copy Transcript (shows toast warning), Export CSV (Blob download)
+- Task 2: Added 3-dot DropdownMenu to ShortsCard in shorts-tool.tsx with: Open on YouTube, Copy Title, Copy URL, Copy Hashtags, Export CSV
+- Task 2: Added necessary imports (DropdownMenu components, lucide-react icons, copyToClipboard, showToast)
+- Task 3: Added referral code input field in settings-tool.tsx with Apply button
+- Task 3: Implemented localStorage check (nychiq_applied_referral) to prevent double application
+- Task 3: Added validation: empty input, own code, already applied checks with appropriate toasts
+- Task 3: Added 20 tokens via useNychIQStore.setState on successful referral apply
+- Task 4: Created GrowthChart component with inline SVG line/area chart in dashboard-tool.tsx
+- Task 4: Chart includes 7 data points (Mon-Sun), gradient fill, grid lines, labeled axes, and growth indicator badge
+- Task 4: Replaced static "Weekly Overview" card with GrowthChart component
+- Task 5: Enhanced notification-drawer.tsx with Intelligence Feed section at top
+- Task 5: Created useIntelligenceFeed hook with 4 dynamic insights: token balance warning, plan upgrade suggestion, region trending, time-based greeting/tip
+- Task 5: Each intelligence item has distinct icon and color scheme
+- Fixed JSX comment syntax error in GrowthChart (missing closing brace)
+- Ran bun run lint — all checks pass with zero errors
+
+Stage Summary:
+- 5 features implemented across 5 files with zero lint errors
+- VideoCard: copy link button + 4 new context menu items (tags, hashtags, transcript, CSV export)
+- ShortsCard: full 3-dot context menu matching VideoCard pattern
+- Settings: referral code input with validation, persistence, and +20 token reward
+- Dashboard: SVG growth chart replacing static stats card
+- Notifications: dynamic Intelligence Feed based on real store state

@@ -133,6 +133,8 @@ export function SettingsTool() {
   /* Referral */
   const [refCode, setRefCode] = useState(referralCode || '');
   const [copiedRef, setCopiedRef] = useState(false);
+  const [referralInput, setReferralInput] = useState('');
+  const [referralApplied, setReferralApplied] = useState(false);
 
   /* Danger zone */
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -182,6 +184,37 @@ export function SettingsTool() {
       showToast('Referral link copied to clipboard!', 'success');
       setTimeout(() => setCopiedRef(false), 2500);
     }
+  };
+
+  /* Check if referral already applied */
+  useEffect(() => {
+    const applied = localStorage.getItem('nychiq_applied_referral');
+    if (applied) {
+      setReferralApplied(true);
+      setReferralInput(applied);
+    }
+  }, []);
+
+  /* Apply referral code */
+  const handleApplyReferral = () => {
+    if (!referralInput.trim()) {
+      showToast('Please enter a referral code', 'warning');
+      return;
+    }
+    if (referralApplied) {
+      showToast('Referral code already applied', 'warning');
+      return;
+    }
+    if (referralInput.trim().toUpperCase() === refCode.toUpperCase()) {
+      showToast('You cannot use your own referral code', 'error');
+      return;
+    }
+    localStorage.setItem('nychiq_applied_referral', referralInput.trim().toUpperCase());
+    setReferralApplied(true);
+    // Add 20 tokens to user's balance
+    const store = useNychIQStore.getState();
+    useNychIQStore.setState({ tokenBalance: (store.tokenBalance || 0) + 20 });
+    showToast('Referral code applied! +20 tokens added', 'success');
   };
 
   /* Share via native share API */
@@ -435,6 +468,34 @@ export function SettingsTool() {
             <p className="text-xs text-[#F5A623]">
               You and your friend both get <span className="font-bold">+20 tokens</span> when they sign up!
             </p>
+          </div>
+
+          {/* Enter a referral code */}
+          <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+            <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Have a referral code?</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={referralInput}
+                onChange={(e) => setReferralInput(e.target.value.toUpperCase())}
+                placeholder="Enter referral code"
+                disabled={referralApplied}
+                className="flex-1 h-10 px-4 rounded-md bg-[#111111] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
+              />
+              <button
+                onClick={handleApplyReferral}
+                disabled={referralApplied || !referralInput.trim()}
+                className="px-4 py-2.5 rounded-md bg-[#00C48C] text-[#0A0A0A] text-sm font-bold hover:bg-[#00B37D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+              >
+                {referralApplied ? 'Applied' : 'Apply'}
+              </button>
+            </div>
+            {referralApplied && (
+              <p className="text-[11px] text-[#00C48C] mt-2 flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                Referral code applied successfully
+              </p>
+            )}
           </div>
         </div>
       </SectionCard>

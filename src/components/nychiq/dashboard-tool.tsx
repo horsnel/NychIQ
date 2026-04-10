@@ -220,6 +220,84 @@ function ActivityFeed() {
   );
 }
 
+/* ── Growth Chart ── */
+function GrowthChart() {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const data = [18500, 24300, 19800, 31200, 27600, 35400, 42100];
+
+  const width = 400;
+  const height = 160;
+  const padding = { top: 10, right: 10, bottom: 28, left: 45 };
+  const chartW = width - padding.left - padding.right;
+  const chartH = height - padding.top - padding.bottom;
+
+  const maxVal = Math.max(...data) * 1.15;
+  const minVal = 0;
+
+  const points = data.map((v, i) => ({
+    x: padding.left + (i / (data.length - 1)) * chartW,
+    y: padding.top + chartH - ((v - minVal) / (maxVal - minVal)) * chartH,
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  const areaPath = `${linePath} L ${points[points.length - 1].x} ${padding.top + chartH} L ${points[0].x} ${padding.top + chartH} Z`;
+
+  const fmtShort = (n: number) => {
+    if (n >= 1000) return (n / 1000).toFixed(0) + 'K';
+    return String(n);
+  };
+
+  return (
+    <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+      <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-2">
+        <BarChart3 className="w-4 h-4 text-[#4A9EFF]" />
+        Weekly Overview
+        <span className="ml-auto text-[10px] font-medium text-[#00C48C] bg-[#00C48C]/10 px-2 py-0.5 rounded-full">↑ 127%</span>
+      </h3>
+      <div className="w-full overflow-hidden">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#F5A623" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#F5A623" stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+
+          {/* Grid lines */}
+          {[0, 0.25, 0.5, 0.75, 1].map((frac) => {
+            const y = padding.top + chartH * (1 - frac);
+            const val = minVal + (maxVal - minVal) * frac;
+            return (
+              <g key={frac}>
+                <line x1={padding.left} y1={y} x2={width - padding.right} y2={y} stroke="#1A1A1A" strokeWidth="1" />
+                <text x={padding.left - 8} y={y + 4} textAnchor="end" className="text-[9px]" fill="#555555">
+                  {fmtShort(val)}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Area fill */}
+          <path d={areaPath} fill="url(#areaGradient)" />
+
+          {/* Line */}
+          <path d={linePath} fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+          {/* Data points + labels */}
+          {points.map((p, i) => (
+            <g key={i}>
+              <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#F5A623" strokeWidth="2" />
+              <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#888888">
+                {days[i]}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 /* ── Upgrade Banner ── */
 function UpgradeBanner() {
   const { userPlan, setUpgradeModalOpen } = useNychIQStore();
@@ -278,27 +356,8 @@ export function DashboardTool() {
         <ActivityFeed />
         <div className="space-y-5">
           <UpgradeBanner />
-          {/* Recent Performance Card */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-[#4A9EFF]" />
-              Weekly Overview
-            </h3>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
-                <p className="text-lg font-bold text-[#E8E8E8]">127K</p>
-                <p className="text-[11px] text-[#888888] mt-0.5">Total Views</p>
-              </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
-                <p className="text-lg font-bold text-[#E8E8E8]">3.2K</p>
-                <p className="text-[11px] text-[#888888] mt-0.5">New Subs</p>
-              </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
-                <p className="text-lg font-bold text-[#E8E8E8]">$842</p>
-                <p className="text-[11px] text-[#888888] mt-0.5">Est. Revenue</p>
-              </div>
-            </div>
-          </div>
+          {/* Growth Chart */}
+          <GrowthChart />
         </div>
       </div>
     </div>

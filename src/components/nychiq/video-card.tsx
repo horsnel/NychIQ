@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, MoreVertical, ExternalLink, Copy, SearchCode, MessageSquare } from 'lucide-react';
+import { Play, MoreVertical, ExternalLink, Copy, SearchCode, MessageSquare, Link2, FileDown, Hash, FileText } from 'lucide-react';
 import { cn, thumbUrl, vidDuration, fmtV, timeAgo, viralScore, sanitizeText, scoreClass, copyToClipboard } from '@/lib/utils';
 import { useNychIQStore } from '@/lib/store';
 import { showToast } from '@/lib/toast';
@@ -70,6 +70,25 @@ function VideoCardSkeleton() {
 
 export { VideoCardSkeleton };
 
+function CopyLinkButton({ videoId }: { videoId: string }) {
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const url = `https://youtube.com/watch?v=${videoId}`;
+    const ok = await copyToClipboard(url);
+    showToast(ok ? 'Link copied!' : 'Failed to copy link', ok ? 'success' : 'error');
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="absolute bottom-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
+      aria-label="Copy video link"
+    >
+      <Link2 className="w-3.5 h-3.5 text-white" />
+    </button>
+  );
+}
+
 function VideoContextMenu({ video }: { video: VideoData }) {
   const { setActiveTool, setPage } = useNychIQStore();
   const youtubeUrl = `https://youtube.com/watch?v=${video.videoId}`;
@@ -101,6 +120,47 @@ function VideoContextMenu({ video }: { video: VideoData }) {
   const handleDeepChat = () => {
     setActiveTool('deepchat');
     setPage('app');
+  };
+
+  const handleCopyTags = async () => {
+    const tag = `#${video.title.replace(/\s+/g, '')}`;
+    const ok = await copyToClipboard(tag);
+    showToast(ok ? 'Tag copied!' : 'Failed to copy tag', ok ? 'success' : 'error');
+  };
+
+  const handleCopyHashtags = async () => {
+    const words = video.title.split(/\s+/).filter(w => w.length > 3);
+    const tags = words.slice(0, 5).map(w => `#${w.replace(/[^a-zA-Z0-9]/g, '')}`);
+    const text = tags.join(' ');
+    const ok = await copyToClipboard(text);
+    showToast(ok ? 'Hashtags copied!' : 'Failed to copy hashtags', ok ? 'success' : 'error');
+  };
+
+  const handleCopyTranscript = async () => {
+    showToast('Transcript not available for this video', 'warning');
+  };
+
+  const handleExportCSV = () => {
+    const headers = ['Title', 'Channel', 'Views', 'Likes', 'Comments', 'Viral Score', 'URL'];
+    const row = [
+      `"${video.title}"`, `"${video.channelTitle}"`,
+      String(video.viewCount || 0), String(video.likeCount || 0),
+      String(video.commentCount || 0), String(video.viralScore || 0),
+      `https://youtube.com/watch?v=${video.videoId}`
+    ];
+    const csv = [headers.join(','), row.join(',')].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${video.videoId}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleCopyLink = async () => {
+    const ok = await copyToClipboard(`https://youtube.com/watch?v=${video.videoId}`);
+    showToast(ok ? 'Link copied!' : 'Failed to copy link', ok ? 'success' : 'error');
   };
 
   return (
@@ -163,6 +223,36 @@ function VideoContextMenu({ video }: { video: VideoData }) {
           <MessageSquare className="w-4 h-4" />
           Analyse with Deep Chat
         </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuItem
+          onClick={handleCopyTags}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <Hash className="w-4 h-4" />
+          Copy Tags
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyHashtags}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <Hash className="w-4 h-4" />
+          Copy Hashtags
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyTranscript}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <FileText className="w-4 h-4" />
+          Copy Transcript
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuItem
+          onClick={handleExportCSV}
+          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+        >
+          <FileDown className="w-4 h-4" />
+          Export CSV
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -215,6 +305,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
             <ViralBadge score={video.viralScore} />
           )}
           <VideoContextMenu video={video} />
+          <CopyLinkButton videoId={video.videoId} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
           <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors">
@@ -280,6 +371,9 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
         {/* 3-dots context menu */}
         <VideoContextMenu video={video} />
+
+        {/* Copy link button */}
+        <CopyLinkButton videoId={video.videoId} />
       </div>
 
       {/* Info */}

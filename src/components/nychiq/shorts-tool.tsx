@@ -4,7 +4,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { StatCard } from '@/components/nychiq/stat-card';
-import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo } from '@/lib/utils';
+import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo, copyToClipboard } from '@/lib/utils';
+import { showToast } from '@/lib/toast';
 import {
   Zap,
   Eye,
@@ -17,7 +18,19 @@ import {
   ArrowUpDown,
   Clock,
   Flame,
+  MoreVertical,
+  ExternalLink,
+  Copy,
+  Hash,
+  FileDown,
 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 type SortOption = 'views' | 'viral' | 'newest';
 
@@ -25,14 +38,55 @@ type SortOption = 'views' | 'viral' | 'newest';
 function ShortsCard({ video }: { video: VideoData }) {
   const [imgError, setImgError] = useState(false);
   const vs = video.viralScore ? getViralInfo(video.viralScore) : null;
+  const youtubeUrl = `https://youtube.com/watch?v=${video.videoId}`;
+
+  const handleOpenYouTube = () => {
+    window.open(youtubeUrl, '_blank', 'noopener');
+  };
+
+  const handleCopyTitle = async () => {
+    const ok = await copyToClipboard(video.title);
+    showToast(ok ? 'Title copied!' : 'Failed to copy title', ok ? 'success' : 'error');
+  };
+
+  const handleCopyUrl = async () => {
+    const ok = await copyToClipboard(youtubeUrl);
+    showToast(ok ? 'URL copied!' : 'Failed to copy URL', ok ? 'success' : 'error');
+  };
+
+  const handleCopyHashtags = async () => {
+    const words = video.title.split(/\s+/).filter(w => w.length > 3);
+    const tags = words.slice(0, 5).map(w => `#${w.replace(/[^a-zA-Z0-9]/g, '')}`);
+    const text = tags.join(' ');
+    const ok = await copyToClipboard(text);
+    showToast(ok ? 'Hashtags copied!' : 'Failed to copy hashtags', ok ? 'success' : 'error');
+  };
+
+  const handleExportCSV = () => {
+    const headers = ['Title', 'Channel', 'Views', 'Likes', 'Comments', 'Viral Score', 'URL'];
+    const row = [
+      `"${video.title}"`, `"${video.channelTitle}"`,
+      String(video.viewCount || 0), String(video.likeCount || 0),
+      String(video.commentCount || 0), String(video.viralScore || 0),
+      `https://youtube.com/watch?v=${video.videoId}`
+    ];
+    const csv = [headers.join(','), row.join(',')].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${video.videoId}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div
       className="group cursor-pointer rounded-xl overflow-hidden bg-[#111111] border border-[#222222] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]"
-      onClick={() => window.open(`https://youtube.com/watch?v=${video.videoId}`, '_blank', 'noopener')}
+      onClick={() => window.open(youtubeUrl, '_blank', 'noopener')}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter') window.open(`https://youtube.com/watch?v=${video.videoId}`, '_blank', 'noopener'); }}
+      onKeyDown={(e) => { if (e.key === 'Enter') window.open(youtubeUrl, '_blank', 'noopener'); }}
     >
       {/* Vertical thumbnail */}
       <div className="relative aspect-[9/16] bg-[#1A1A1A] overflow-hidden">
@@ -74,6 +128,63 @@ function ShortsCard({ video }: { video: VideoData }) {
             {vidDuration(video.duration)}
           </span>
         )}
+
+        {/* 3-dots context menu */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              className="absolute top-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
+              onClick={(e) => e.stopPropagation()}
+              aria-label="Shorts options"
+            >
+              <MoreVertical className="w-4 h-4 text-white" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            side="bottom"
+            align="end"
+            className="bg-[#111] border-[#222] min-w-[200px]"
+          >
+            <DropdownMenuItem
+              onClick={(e) => { e.stopPropagation(); handleOpenYouTube(); }}
+              className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open on YouTube
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#222]" />
+            <DropdownMenuItem
+              onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }}
+              className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+            >
+              <Copy className="w-4 h-4" />
+              Copy Title
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }}
+              className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+            >
+              <Copy className="w-4 h-4" />
+              Copy URL
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#222]" />
+            <DropdownMenuItem
+              onClick={(e) => { e.stopPropagation(); handleCopyHashtags(); }}
+              className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+            >
+              <Hash className="w-4 h-4" />
+              Copy Hashtags
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#222]" />
+            <DropdownMenuItem
+              onClick={(e) => { e.stopPropagation(); handleExportCSV(); }}
+              className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+            >
+              <FileDown className="w-4 h-4" />
+              Export CSV
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Info */}
