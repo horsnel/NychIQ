@@ -15,6 +15,14 @@ const ssrSafeStorage = typeof window !== 'undefined' ? window.localStorage : {
 export type Plan = 'trial' | 'starter' | 'pro' | 'elite' | 'agency';
 export type PageId = 'welcome' | 'login' | 'app' | 'privacy' | 'terms' | 'refund' | 'cookies' | 'about' | 'contact' | 'careers' | 'changelog' | 'ob-questions' | 'ob-audit' | 'ob-extension';
 
+export interface TokenTransaction {
+  id: string;
+  tool: string;
+  tokens: number;
+  time: number; // epoch ms
+  type: 'spend' | 'earn' | 'reset' | 'bonus';
+}
+
 export interface NychIQState {
   /* Routing */
   currentPage: PageId;
@@ -30,7 +38,14 @@ export interface NychIQState {
   userPlan: Plan;
   tokenBalance: number;
   tokensEarned: number;
+  totalTokensSpent: number;
   signupTimestamp: number;
+  lastResetDate: string; // 'YYYY-MM-DD' — tracks last monthly reset
+  tokenHistory: TokenTransaction[];
+
+  /* Token popup state */
+  tokenWarningShown: boolean; // 20% warning shown this session
+  tokenExhaustedPopupOpen: boolean; // 0% non-skippable popup
 
   /* Settings */
   workerUrl: string;
@@ -62,6 +77,9 @@ export interface NychIQState {
   spendTokens: (action: string) => boolean;
   updateTokenDisplay: () => void;
   checkStagedTokens: () => void;
+  checkMonthlyReset: () => void;
+  checkTokenWarning: () => { showWarning: boolean; showExhausted: boolean };
+  dismissTokenWarning: () => void;
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
   setWorkerUrl: (url: string) => void;
@@ -79,6 +97,7 @@ export interface NychIQState {
   setTrendingVideos: (videos: any[]) => void;
   setShorts: (videos: any[]) => void;
   canAccess: (tool: string) => boolean;
+  addTokenHistory: (entry: TokenTransaction) => void;
 }
 
 /* ── Token costs per feature ── */
@@ -119,6 +138,22 @@ export const PLAN_TOKENS: Record<Plan, number> = {
   elite: 999999, // Unlimited
   agency: 50000,
 };
+
+/* ── Helper: today's date as YYYY-MM-DD ── */
+function todayStr(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/* ── Helper: check if today is the 31st ── */
+function isMonthlyResetDay(): boolean {
+  return new Date().getDate() === 31;
+}
+
+/* ── Helper: generate unique ID ── */
+function uid(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
 
 /* ── Tool metadata (label, icon name, category) ── */
 export const TOOL_META: Record<string, { label: string; icon: string; category: string }> = {
@@ -222,9 +257,16 @@ export const useNychIQStore = create<NychIQState>()(
 
       // Plan & Tokens
       userPlan: 'trial' as Plan,
-      tokenBalance: 20,
+      tokenBalance: 100,
       tokensEarned: 0,
+      totalTokensSpent: 0,
       signupTimestamp: Date.now(),
+      lastResetDate: todayStr(),
+      tokenHistory: [],
+
+      // Token popup state
+      tokenWarningShown: false,
+      tokenExhaustedPopupOpen: false,
 
       // Settings
       workerUrl: '',
@@ -262,12 +304,13 @@ export const useNychIQStore = create<NychIQState>()(
         }
         const cost = TOKEN_COSTS[tool] ?? 0;
         if (cost > 0 && !FREE_TOOLS.has(tool) && state.tokenBalance < cost) {
-          set({ tokenModalOpen: true });
+          // Show exhausted popup — non-skippable
+          set({ tokenExhaustedPopupOpen: true });
           return;
         }
         set({ activeTool: tool, mobileNavTab: tool });
         // On mobile, close sidebar
-        if (window.innerWidth < 1024) {
+        if (typeof window !== 'undefined' && window.innerWidth < 1024) {
           set({ sidebarOpen: false });
         }
       },
@@ -282,6 +325,8 @@ export const useNychIQStore = create<NychIQState>()(
         });
         // Check for staged token releases
         get().checkStagedTokens();
+        // Check monthly reset on login
+        get().checkMonthlyReset();
       },
 
       logout: () => {
@@ -291,14 +336,26 @@ export const useNychIQStore = create<NychIQState>()(
           userEmail: '',
           currentPage: 'welcome' as PageId,
           activeTool: 'dashboard',
-          tokenBalance: 20,
+          tokenBalance: 100,
           tokensEarned: 0,
+          totalTokensSpent: 0,
           userPlan: 'trial' as Plan,
+          tokenHistory: [],
+          tokenWarningShown: false,
+          tokenExhaustedPopupOpen: false,
         });
       },
 
       setUserPlan: (plan: Plan) => {
         set({ userPlan: plan, tokenBalance: PLAN_TOKENS[plan] });
+        // Log plan change as bonus tokens
+        get().addTokenHistory({
+          id: uid(),
+          tool: `Plan: ${plan}`,
+          tokens: PLAN_TOKENS[plan],
+          time: Date.now(),
+          type: 'bonus',
+        });
       },
 
       spendTokens: (action: string): boolean => {
@@ -306,10 +363,44 @@ export const useNychIQStore = create<NychIQState>()(
         const cost = TOKEN_COSTS[action] ?? 0;
         if (cost === 0 || FREE_TOOLS.has(action)) return true;
         if (state.tokenBalance < cost) {
-          set({ tokenModalOpen: true });
+          // Show exhausted popup — non-skippable
+          set({ tokenExhaustedPopupOpen: true });
           return false;
         }
-        set({ tokenBalance: state.tokenBalance - cost });
+
+        // Deduct tokens
+        const newBalance = state.tokenBalance - cost;
+        const newTotalSpent = state.totalTokensSpent + cost;
+
+        // Record in history
+        const entry: TokenTransaction = {
+          id: uid(),
+          tool: action,
+          tokens: cost,
+          time: Date.now(),
+          type: 'spend',
+        };
+
+        set({
+          tokenBalance: newBalance,
+          totalTokensSpent: newTotalSpent,
+          tokenHistory: [entry, ...state.tokenHistory].slice(0, 200), // Keep last 200
+        });
+
+        // Check if we should show 20% warning
+        const maxTokens = PLAN_TOKENS[state.userPlan];
+        if (maxTokens > 0) {
+          const threshold = Math.floor(maxTokens * 0.2);
+          if (newBalance <= threshold && newBalance > 0 && !state.tokenWarningShown) {
+            // Show warning popup (skippable)
+            set({ tokenModalOpen: true, tokenWarningShown: true });
+          }
+          // If tokens just hit 0
+          if (newBalance <= 0) {
+            set({ tokenExhaustedPopupOpen: true });
+          }
+        }
+
         return true;
       },
 
@@ -333,7 +424,7 @@ export const useNychIQStore = create<NychIQState>()(
         else if (earned < 20) toAdd = 20 - earned;
 
         if (toAdd > 0) {
- set({ tokenBalance: get().tokenBalance + toAdd, tokensEarned: get().tokensEarned + toAdd });
+          set({ tokenBalance: get().tokenBalance + toAdd, tokensEarned: get().tokensEarned + toAdd });
           localStorage.setItem(earnedKey, String(earned + toAdd));
         }
 
@@ -346,6 +437,60 @@ export const useNychIQStore = create<NychIQState>()(
             localStorage.removeItem('nychiq_staged_tokens');
           }
         }
+      },
+
+      checkMonthlyReset: () => {
+        const state = get();
+        const today = todayStr();
+        const lastReset = state.lastResetDate;
+
+        // Free tokens reset only on the 31st of every month
+        if (isMonthlyResetDay() && lastReset !== today) {
+          const planTokens = PLAN_TOKENS[state.userPlan];
+          // For trial plan, reset to 100 free tokens
+          // For paid plans, add a monthly top-up
+          let resetAmount = 100;
+          if (state.userPlan === 'starter') resetAmount = 500;
+          else if (state.userPlan === 'pro') resetAmount = 3500;
+          else if (state.userPlan === 'agency') resetAmount = 50000;
+          // Elite is unlimited, no reset needed but update date
+          if (state.userPlan === 'elite') {
+            set({ lastResetDate: today });
+            return;
+          }
+
+          const entry: TokenTransaction = {
+            id: uid(),
+            tool: 'Monthly Reset',
+            tokens: resetAmount,
+            time: Date.now(),
+            type: 'reset',
+          };
+
+          set({
+            tokenBalance: resetAmount,
+            lastResetDate: today,
+            tokenWarningShown: false, // Reset warning so it can show again
+            tokenHistory: [entry, ...state.tokenHistory].slice(0, 200),
+          });
+        }
+      },
+
+      checkTokenWarning: (): { showWarning: boolean; showExhausted: boolean } => {
+        const state = get();
+        const maxTokens = PLAN_TOKENS[state.userPlan];
+        if (maxTokens <= 0 || state.userPlan === 'elite') {
+          return { showWarning: false, showExhausted: false };
+        }
+        const threshold = Math.floor(maxTokens * 0.2);
+        return {
+          showWarning: state.tokenBalance <= threshold && state.tokenBalance > 0,
+          showExhausted: state.tokenBalance <= 0,
+        };
+      },
+
+      dismissTokenWarning: () => {
+        set({ tokenModalOpen: false, tokenWarningShown: true });
       },
 
       toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
@@ -369,6 +514,12 @@ export const useNychIQStore = create<NychIQState>()(
         const plan = get().userPlan;
         return PLAN_ACCESS[plan]?.includes(tool) ?? false;
       },
+
+      addTokenHistory: (entry: TokenTransaction) => {
+        set((s) => ({
+          tokenHistory: [entry, ...s.tokenHistory].slice(0, 200),
+        }));
+      },
     }),
     {
       name: 'nychiq-store',
@@ -382,7 +533,10 @@ export const useNychIQStore = create<NychIQState>()(
         userPlan: state.userPlan,
         tokenBalance: state.tokenBalance,
         tokensEarned: state.tokensEarned,
+        totalTokensSpent: state.totalTokensSpent,
         signupTimestamp: state.signupTimestamp,
+        lastResetDate: state.lastResetDate,
+        tokenHistory: state.tokenHistory,
         workerUrl: state.workerUrl,
         region: state.region,
         detectedRegion: state.detectedRegion,

@@ -7,7 +7,7 @@ import { Topbar } from '@/components/nychiq/topbar';
 import { MobileNav } from '@/components/nychiq/mobile-nav';
 import { TokenPill } from '@/components/nychiq/token-pill';
 import { UpgradeModal } from '@/components/nychiq/upgrade-modal';
-import { TokenModal } from '@/components/nychiq/token-modal';
+import { TokenModal, TokenExhaustedOverlay } from '@/components/nychiq/token-modal';
 import { NotificationDrawer } from '@/components/nychiq/notification-drawer';
 import { CommandBar } from '@/components/nychiq/command-bar';
 import { SakuPanel } from '@/components/nychiq/saku-panel';
@@ -72,9 +72,27 @@ import { LumeTool } from '@/components/nychiq/lume-tool';
 import { HookLabTool } from '@/components/nychiq/hooklab-tool';
 import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
+import { initAudio, playClick } from '@/lib/sounds';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
+
+/* ── Side-effects wrapper (hooks must be inside a component) ── */
+function AppEffects() {
+  React.useEffect(() => {
+    const handler = () => { initAudio(); document.removeEventListener('click', handler); };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, []);
+
+  React.useEffect(() => {
+    if (useNychIQStore.getState().isLoggedIn) {
+      useNychIQStore.getState().checkMonthlyReset();
+    }
+  }, []);
+
+  return null;
+}
 
 /* ── Generic tool placeholder ── */
 function ToolPlaceholder() {
@@ -259,6 +277,7 @@ function AppShell() {
       {/* Modals & overlays */}
       <UpgradeModal />
       <TokenModal />
+      <TokenExhaustedOverlay />
       <NotificationDrawer />
       <CommandBar />
     </div>
@@ -271,6 +290,7 @@ export default function NychIQApp() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#E8E8E8]">
+      <AppEffects />
       {currentPage === 'welcome' && <WelcomePage />}
       {currentPage === 'login' && <LoginPage />}
       {currentPage === 'app' && <AppShell />}

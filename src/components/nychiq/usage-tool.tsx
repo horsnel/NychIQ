@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
-import { useNychIQStore, PLAN_TOKENS, type Plan } from '@/lib/store';
+import React, { useMemo } from 'react';
+import { useNychIQStore, PLAN_TOKENS, TOKEN_COSTS, TOOL_META, type Plan, type TokenTransaction } from '@/lib/store';
 import {
   Coins,
   Crown,
   Sparkles,
-  SearchCode,
   TrendingUp,
   BarChart3,
   Zap,
@@ -32,6 +31,11 @@ import {
   History,
   Gift,
   Check,
+  ArrowUpRight,
+  ArrowDownRight,
+  RotateCcw,
+  Star,
+  CalendarDays,
 } from 'lucide-react';
 
 /* ── Plan badge config ── */
@@ -46,7 +50,7 @@ const PLAN_STYLES: Record<Plan, { label: string; color: string }> = {
 /* ── Icon map for tools ── */
 const TOOL_ICONS: Record<string, React.ReactNode> = {
   'Trending': <TrendingUp className="w-4 h-4 text-[#E05252]" />,
-  'Search': <SearchCode className="w-4 h-4 text-[#4A9EFF]" />,
+  'Search': <Zap className="w-4 h-4 text-[#4A9EFF]" />,
   'Rankings': <BarChart3 className="w-4 h-4 text-[#9B72CF]" />,
   'Viral Predictor': <Zap className="w-4 h-4 text-[#F5A623]" />,
   'Saku AI': <Bot className="w-4 h-4 text-[#00C48C]" />,
@@ -54,7 +58,7 @@ const TOOL_ICONS: Record<string, React.ReactNode> = {
   'CPM Estimator': <DollarSign className="w-4 h-4 text-[#4A9EFF]" />,
   'Track Channels': <Users className="w-4 h-4 text-[#9B72CF]" />,
   'Niche Spy': <Crosshair className="w-4 h-4 text-[#E05252]" />,
-  'SEO Optimizer': <SearchCode className="w-4 h-4 text-[#00C48C]" />,
+  'SEO Optimizer': <Zap className="w-4 h-4 text-[#00C48C]" />,
   'Hook Generator': <Anchor className="w-4 h-4 text-[#F5A623]" />,
   'Keyword Explorer': <Key className="w-4 h-4 text-[#4A9EFF]" />,
   'Script Writer': <FileText className="w-4 h-4 text-[#9B72CF]" />,
@@ -70,45 +74,33 @@ const TOOL_ICONS: Record<string, React.ReactNode> = {
   'Automation': <Cpu className="w-4 h-4 text-[#9B72CF]" />,
   'Shorts': <Film className="w-4 h-4 text-[#F5A623]" />,
   'History Intel': <History className="w-4 h-4 text-[#00C48C]" />,
+  'Monthly Reset': <RotateCcw className="w-4 h-4 text-[#00C48C]" />,
 };
 
-/* ── Mock usage breakdown data (15 tools) ── */
-const MOCK_USAGE_DATA = [
-  { tool: 'Trending', uses: 24, tokens: 72, avgCost: 3.0 },
-  { tool: 'Viral Predictor', uses: 18, tokens: 18, avgCost: 1.0 },
-  { tool: 'SEO Optimizer', uses: 12, tokens: 60, avgCost: 5.0 },
-  { tool: 'Saku AI', uses: 35, tokens: 35, avgCost: 1.0 },
-  { tool: 'Best Post Time', uses: 8, tokens: 40, avgCost: 5.0 },
-  { tool: 'Trend Alerts', uses: 15, tokens: 45, avgCost: 3.0 },
-  { tool: 'Hook Generator', uses: 6, tokens: 48, avgCost: 8.0 },
-  { tool: 'Video Ideas', uses: 5, tokens: 30, avgCost: 6.0 },
-  { tool: 'A/B Tester', uses: 4, tokens: 32, avgCost: 8.0 },
-  { tool: 'Rankings', uses: 10, tokens: 20, avgCost: 2.0 },
-  { tool: 'Algorithm', uses: 7, tokens: 21, avgCost: 3.0 },
-  { tool: 'Niche Spy', uses: 5, tokens: 40, avgCost: 8.0 },
-  { tool: 'Keyword Explorer', uses: 9, tokens: 18, avgCost: 2.0 },
-  { tool: 'Channel Audit', uses: 3, tokens: 60, avgCost: 20.0 },
-  { tool: 'Shorts', uses: 8, tokens: 40, avgCost: 5.0 },
-];
+/* ── Transaction type icon ── */
+function TxnTypeIcon({ type }: { type: TokenTransaction['type'] }) {
+  switch (type) {
+    case 'spend': return <ArrowDownRight className="w-3.5 h-3.5 text-[#E05252]" />;
+    case 'earn': return <ArrowUpRight className="w-3.5 h-3.5 text-[#00C48C]" />;
+    case 'reset': return <RotateCcw className="w-3.5 h-3.5 text-[#00C48C]" />;
+    case 'bonus': return <Star className="w-3.5 h-3.5 text-[#F5A623]" />;
+    default: return <Coins className="w-3.5 h-3.5 text-[#F5A623]" />;
+  }
+}
 
-/* ── Category breakdown ── */
-const CATEGORY_DATA = [
-  { label: 'Intelligence', tokens: 189, total: 539, color: '#F5A623' },
-  { label: 'AI Tools', tokens: 283, total: 539, color: '#4A9EFF' },
-  { label: 'Social Intel', tokens: 67, total: 539, color: '#9B72CF' },
-];
-
-/* ── Mock token history ── */
-const MOCK_HISTORY = [
-  { tool: 'Trend Alerts', icon: <BellRing className="w-4 h-4 text-[#E05252]" />, tokens: 3, time: '5 min ago' },
-  { tool: 'SEO Optimizer', icon: <SearchCode className="w-4 h-4 text-[#00C48C]" />, tokens: 5, time: '1h ago' },
-  { tool: 'Viral Predictor', icon: <Zap className="w-4 h-4 text-[#F5A623]" />, tokens: 1, time: '2h ago' },
-  { tool: 'Best Post Time', icon: <Clock className="w-4 h-4 text-[#00C48C]" />, tokens: 5, time: '4h ago' },
-  { tool: 'Hook Generator', icon: <Anchor className="w-4 h-4 text-[#F5A623]" />, tokens: 8, time: '6h ago' },
-  { tool: 'Saku AI', icon: <Bot className="w-4 h-4 text-[#00C48C]" />, tokens: 1, time: '8h ago' },
-  { tool: 'Channel Audit', icon: <ClipboardCheck className="w-4 h-4 text-[#E05252]" />, tokens: 20, time: '1d ago' },
-  { tool: 'Keyword Explorer', icon: <Key className="w-4 h-4 text-[#4A9EFF]" />, tokens: 2, time: '1d ago' },
-];
+/* ── Relative time for transactions ── */
+function txnTimeAgo(ts: number): string {
+  const now = Date.now();
+  const diff = now - ts;
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  if (seconds < 60) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  return `${days}d ago`;
+}
 
 /* ── Top-up plans ── */
 const TOPUP_PLANS = [
@@ -118,11 +110,82 @@ const TOPUP_PLANS = [
 ];
 
 export function UsageTool() {
-  const { tokenBalance, tokensEarned, userPlan, setTokenModalOpen } = useNychIQStore();
+  const { tokenBalance, tokensEarned, totalTokensSpent, userPlan, tokenHistory, lastResetDate, setTokenModalOpen } = useNychIQStore();
 
   const planStyle = PLAN_STYLES[userPlan];
   const totalTokens = PLAN_TOKENS[userPlan];
-  const totalUsed = totalTokens - tokenBalance;
+  const isUnlimited = userPlan === 'elite';
+
+  // Compute usage breakdown from real history
+  const usageBreakdown = useMemo(() => {
+    const spends = tokenHistory.filter((t) => t.type === 'spend');
+    const toolMap: Record<string, { uses: number; tokens: number }> = {};
+
+    for (const txn of spends) {
+      if (!toolMap[txn.tool]) toolMap[txn.tool] = { uses: 0, tokens: 0 };
+      toolMap[txn.tool].uses++;
+      toolMap[txn.tool].tokens += txn.tokens;
+    }
+
+    return Object.entries(toolMap)
+      .map(([tool, data]) => ({
+        tool,
+        label: TOOL_META[tool]?.label ?? tool,
+        uses: data.uses,
+        tokens: data.tokens,
+        avgCost: data.uses > 0 ? data.tokens / data.uses : 0,
+      }))
+      .sort((a, b) => b.tokens - a.tokens);
+  }, [tokenHistory]);
+
+  // Category breakdown
+  const categoryBreakdown = useMemo(() => {
+    const spends = tokenHistory.filter((t) => t.type === 'spend');
+    const catMap: Record<string, number> = {};
+    let total = 0;
+
+    for (const txn of spends) {
+      const meta = TOOL_META[txn.tool];
+      const cat = meta?.category ?? 'other';
+      catMap[cat] = (catMap[cat] || 0) + txn.tokens;
+      total += txn.tokens;
+    }
+
+    const colors: Record<string, string> = {
+      main: '#F5A623',
+      studio: '#9B72CF',
+      intelligence: '#E05252',
+      competitor: '#4A9EFF',
+      'ai-tools': '#00C48C',
+      social: '#9B72CF',
+      'ai-assistants': '#F5A623',
+      agency: '#00C48C',
+    };
+
+    const labels: Record<string, string> = {
+      main: 'Main',
+      studio: 'Studio',
+      intelligence: 'Intelligence',
+      competitor: 'Competitor',
+      'ai-tools': 'AI Tools',
+      social: 'Social Intel',
+      'ai-assistants': 'AI Assistants',
+      agency: 'Agency',
+    };
+
+    return Object.entries(catMap)
+      .filter(([, v]) => v > 0)
+      .map(([cat, tokens]) => ({
+        label: labels[cat] || cat,
+        tokens,
+        total,
+        color: colors[cat] || '#888888',
+      }))
+      .sort((a, b) => b.tokens - a.tokens);
+  }, [tokenHistory]);
+
+  // Usage bar percentage
+  const usagePct = isUnlimited ? 0 : totalTokens > 0 ? Math.round(((totalTokens - tokenBalance) / totalTokens) * 100) : 0;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
@@ -133,11 +196,38 @@ export function UsageTool() {
             <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
               <Coins className="w-5 h-5 text-[#F5A623]" />
             </div>
-            <div>
+            <div className="flex-1">
               <h2 className="text-base font-bold text-[#E8E8E8]">Token Usage</h2>
               <p className="text-xs text-[#888888] mt-0.5">Track how you spend tokens across all tools.</p>
             </div>
+            <div className="text-right">
+              <p className="text-2xl font-bold text-[#F5A623]">
+                {isUnlimited ? '∞' : tokenBalance.toLocaleString()}
+              </p>
+              <p className="text-[10px] text-[#666666]">remaining</p>
+            </div>
           </div>
+          {/* Progress bar */}
+          {!isUnlimited && (
+            <div className="mt-3">
+              <div className="w-full h-2.5 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    width: `${usagePct}%`,
+                    backgroundColor: usagePct > 80 ? '#E05252' : usagePct > 50 ? '#F5A623' : '#00C48C',
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between mt-1.5">
+                <span className="text-[10px] text-[#666666]">{usagePct}% used this month</span>
+                <span className="text-[10px] text-[#666666] flex items-center gap-1">
+                  <CalendarDays className="w-3 h-3" />
+                  Resets on 31st
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -150,8 +240,8 @@ export function UsageTool() {
               <Coins className="w-4 h-4 text-[#F5A623]" />
             </div>
           </div>
-          <p className="text-xs text-[#666666]">Total Tokens Used</p>
-          <p className="text-xl font-bold text-[#E8E8E8] mt-0.5">{totalUsed.toLocaleString()}</p>
+          <p className="text-xs text-[#666666]">Total Tokens Spent</p>
+          <p className="text-xl font-bold text-[#E8E8E8] mt-0.5">{totalTokensSpent.toLocaleString()}</p>
         </div>
 
         {/* Remaining */}
@@ -162,7 +252,9 @@ export function UsageTool() {
             </div>
           </div>
           <p className="text-xs text-[#666666]">Remaining Balance</p>
-          <p className="text-xl font-bold text-[#00C48C] mt-0.5">{tokenBalance.toLocaleString()}</p>
+          <p className="text-xl font-bold text-[#00C48C] mt-0.5">
+            {isUnlimited ? 'Unlimited' : tokenBalance.toLocaleString()}
+          </p>
         </div>
 
         {/* Current Plan */}
@@ -178,103 +270,161 @@ export function UsageTool() {
       </div>
 
       {/* ── Usage Breakdown Table ── */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
-        <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Usage Breakdown</h4>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-[#1A1A1A]">
-                <th className="text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 pr-4">Tool</th>
-                <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 px-4">Uses</th>
-                <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 px-4">Tokens</th>
-                <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 pl-4">Avg Cost</th>
-              </tr>
-            </thead>
-            <tbody>
-              {MOCK_USAGE_DATA.map((row, i) => (
-                <tr
-                  key={row.tool}
-                  className={`border-b border-[#1A1A1A]/50 last:border-b-0 hover:bg-[#0D0D0D] transition-colors ${i % 2 === 0 ? '' : ''}`}
-                >
-                  <td className="py-2.5 pr-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] flex items-center justify-center shrink-0">
-                        {TOOL_ICONS[row.tool] || <Coins className="w-3.5 h-3.5 text-[#666666]" />}
-                      </div>
-                      <span className="text-sm text-[#E8E8E8]">{row.tool}</span>
-                    </div>
-                  </td>
-                  <td className="py-2.5 px-4 text-right">
-                    <span className="text-sm text-[#888888]">{row.uses}</span>
-                  </td>
-                  <td className="py-2.5 px-4 text-right">
-                    <span className="text-sm font-medium text-[#F5A623]">{row.tokens}</span>
-                  </td>
-                  <td className="py-2.5 pl-4 text-right">
-                    <span className="text-sm text-[#888888]">{row.avgCost.toFixed(1)}</span>
-                  </td>
+      {usageBreakdown.length > 0 && (
+        <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
+          <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Usage Breakdown</h4>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-[#1A1A1A]">
+                  <th className="text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 pr-4">Tool</th>
+                  <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 px-4">Uses</th>
+                  <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 px-4">Tokens</th>
+                  <th className="text-right text-[10px] font-bold text-[#666666] uppercase tracking-wider pb-2 pl-4">Avg Cost</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {usageBreakdown.map((row) => (
+                  <tr
+                    key={row.tool}
+                    className="border-b border-[#1A1A1A]/50 last:border-b-0 hover:bg-[#0D0D0D] transition-colors"
+                  >
+                    <td className="py-2.5 pr-4">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] flex items-center justify-center shrink-0">
+                          {TOOL_ICONS[row.label] || <Coins className="w-3.5 h-3.5 text-[#666666]" />}
+                        </div>
+                        <span className="text-sm text-[#E8E8E8]">{row.label}</span>
+                      </div>
+                    </td>
+                    <td className="py-2.5 px-4 text-right">
+                      <span className="text-sm text-[#888888]">{row.uses}</span>
+                    </td>
+                    <td className="py-2.5 px-4 text-right">
+                      <span className="text-sm font-medium text-[#F5A623]">{row.tokens}</span>
+                    </td>
+                    <td className="py-2.5 pl-4 text-right">
+                      <span className="text-sm text-[#888888]">{row.avgCost.toFixed(1)}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-3 pt-3 border-t border-[#1A1A1A] flex items-center justify-between">
+            <span className="text-xs text-[#666666]">Showing {usageBreakdown.length} tools</span>
+            <span className="text-xs text-[#666666]">
+              Total: <span className="text-[#F5A623] font-bold">
+                {usageBreakdown.reduce((s, r) => s + r.tokens, 0).toLocaleString()}
+              </span> tokens
+            </span>
+          </div>
         </div>
-        <div className="mt-3 pt-3 border-t border-[#1A1A1A] flex items-center justify-between">
-          <span className="text-xs text-[#666666]">Showing {MOCK_USAGE_DATA.length} tools</span>
-          <span className="text-xs text-[#666666]">
-            Total: <span className="text-[#F5A623] font-bold">{MOCK_USAGE_DATA.reduce((s, r) => s + r.tokens, 0).toLocaleString()}</span> tokens
-          </span>
-        </div>
-      </div>
+      )}
 
       {/* ── Usage by Category ── */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
-        <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-4">Usage by Category</h4>
-        <div className="space-y-4">
-          {CATEGORY_DATA.map((cat) => {
-            const pct = cat.total > 0 ? Math.round((cat.tokens / cat.total) * 100) : 0;
-            return (
-              <div key={cat.label}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm text-[#E8E8E8]">{cat.label}</span>
-                  <span className="text-xs text-[#888888]">
-                    <span className="font-medium" style={{ color: cat.color }}>{cat.tokens}</span> tokens ({pct}%)
-                  </span>
+      {categoryBreakdown.length > 0 && (
+        <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
+          <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-4">Usage by Category</h4>
+          <div className="space-y-4">
+            {categoryBreakdown.map((cat) => {
+              const pct = cat.total > 0 ? Math.round((cat.tokens / cat.total) * 100) : 0;
+              return (
+                <div key={cat.label}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-sm text-[#E8E8E8]">{cat.label}</span>
+                    <span className="text-xs text-[#888888]">
+                      <span className="font-medium" style={{ color: cat.color }}>{cat.tokens}</span> tokens ({pct}%)
+                    </span>
+                  </div>
+                  <div className="w-full h-2.5 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-500 ease-out"
+                      style={{ width: `${pct}%`, backgroundColor: cat.color }}
+                    />
+                  </div>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${pct}%`, backgroundColor: cat.color }}
-                  />
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* ── Token History ── */}
+      {/* ── Token History (from real data) ── */}
       <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Recent Transactions</h4>
-          <span className="text-[10px] text-[#666666]">Last 7 days</span>
+          <span className="text-[10px] text-[#666666]">Last {Math.min(tokenHistory.length, 50)} of {tokenHistory.length}</span>
         </div>
         <div className="space-y-2 max-h-96 overflow-y-auto">
-          {MOCK_HISTORY.map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors"
-            >
-              <div className="w-9 h-9 rounded-md bg-[#111111] border border-[#1A1A1A] flex items-center justify-center shrink-0">
-                {item.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#E8E8E8] truncate">{item.tool}</p>
-                <p className="text-[10px] text-[#666666]">{item.time}</p>
-              </div>
-              <div className="flex items-center gap-1 shrink-0">
-                <Coins className="w-3 h-3 text-[#F5A623]" />
-                <span className="text-sm font-bold text-[#E05252]">-{item.tokens}</span>
-              </div>
+          {tokenHistory.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-12 text-[#666666]">
+              <Coins className="w-8 h-8 mb-2 opacity-40" />
+              <p className="text-sm">No transactions yet</p>
+              <p className="text-xs mt-1">Token usage will appear here as you use tools.</p>
+            </div>
+          ) : (
+            tokenHistory.slice(0, 50).map((txn) => {
+              const label = TOOL_META[txn.tool]?.label ?? txn.tool;
+              return (
+                <div
+                  key={txn.id}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors"
+                >
+                  <div className="w-9 h-9 rounded-md bg-[#111111] border border-[#1A1A1A] flex items-center justify-center shrink-0">
+                    {TOOL_ICONS[label] || <TxnTypeIcon type={txn.type} />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium text-[#E8E8E8] truncate">{label}</p>
+                      <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${
+                        txn.type === 'spend' ? 'bg-[rgba(224,82,82,0.1)] text-[#E05252]' :
+                        txn.type === 'earn' ? 'bg-[rgba(0,196,140,0.1)] text-[#00C48C]' :
+                        txn.type === 'reset' ? 'bg-[rgba(0,196,140,0.1)] text-[#00C48C]' :
+                        'bg-[rgba(245,166,35,0.1)] text-[#F5A623]'
+                      }`}>
+                        {txn.type}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-[#666666]">{txnTimeAgo(txn.time)}</p>
+                  </div>
+                  <div className="flex items-center gap-1 shrink-0">
+                    {txn.type === 'spend' ? (
+                      <span className="text-sm font-bold text-[#E05252]">-{txn.tokens}</span>
+                    ) : (
+                      <span className="text-sm font-bold text-[#00C48C]">+{txn.tokens}</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      {/* ── Token Cost Reference ── */}
+      <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 sm:p-5">
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]">
+            <Sparkles className="w-4 h-4 text-[#9B72CF]" />
+          </div>
+          <h4 className="text-sm font-bold text-[#E8E8E8]">Token Cost Reference</h4>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {[
+            { cost: 1, tools: ['Viral Predictor', 'Saku AI'] },
+            { cost: '2-3', tools: ['Rankings', 'CPM', 'Trending', 'Algorithm'] },
+            { cost: '5-6', tools: ['Shorts', 'SEO', 'Best Post Time', 'Ideas'] },
+            { cost: '8-12', tools: ['Hook Gen', 'Script Writer', 'Niche Spy', 'Audit'] },
+            { cost: '15-20', tools: ['Strategy', 'Perf Forensics', 'Agency Hub'] },
+          ].map((tier) => (
+            <div key={tier.cost} className="p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+              <p className="text-xs font-bold text-[#F5A623]">{tier.cost} tokens</p>
+              <ul className="mt-1 space-y-0.5">
+                {tier.tools.map((t) => (
+                  <li key={t} className="text-[10px] text-[#666666]">{t}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

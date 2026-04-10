@@ -6,6 +6,7 @@ import { useNychIQStore, TOOL_META, TOKEN_COSTS } from '@/lib/store';
 import { TokenPill } from './token-pill';
 import { cn } from '@/lib/utils';
 import { useGeolocation } from '@/hooks/use-geolocation';
+import { playClick, playNotification } from '@/lib/sounds';
 
 const REGIONS = [
   { code: 'NG', label: 'Nigeria' },
@@ -303,7 +304,7 @@ export function Topbar() {
 
         {/* Notification bell */}
         <button
-          onClick={() => setNotifDrawerOpen(true)}
+          onClick={() => { playNotification(); setNotifDrawerOpen(true); }}
           className="relative p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
           aria-label="Notifications"
         >

@@ -2,8 +2,9 @@
 
 import React, { useState, useMemo } from 'react';
 import { X, Bell, Check, CheckCheck, AlertTriangle, Crown, TrendingUp, Coins, Sparkles } from 'lucide-react';
-import { useNychIQStore } from '@/lib/store';
+import { useNychIQStore, PLAN_TOKENS } from '@/lib/store';
 import { cn } from '@/lib/utils';
+import { playNotification, playClick } from '@/lib/sounds';
 
 interface Notification {
   id: string;
@@ -25,29 +26,41 @@ interface IntelligenceItem {
 }
 
 const INITIAL_NOTIFS: Notification[] = [
-  { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 20 tokens. More tokens unlock over 3 days!', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
+  { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 100 tokens. More tokens unlock over 3 days!', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
   { id: '2', title: 'Trending Alert', message: 'Your niche "Tech Reviews" has 3 viral videos today.', time: '2h ago', read: false, type: 'success', navigateTo: 'trending' },
-  { id: '3', title: 'Token Low', message: 'You have less than 10 tokens remaining.', time: '1d ago', read: true, type: 'warning', navigateTo: 'usage' },
+  { id: '3', title: 'Token Reset Info', message: 'Free tokens reset automatically on the 31st of every month.', time: '1d ago', read: true, type: 'warning', navigateTo: 'usage' },
   { id: '4', title: 'Viral Score Updated', message: 'Channel viral score has been recalculated for your tracked niches.', time: '3h ago', read: false, type: 'system', navigateTo: 'dashboard' },
 ];
 
 function useIntelligenceFeed(): IntelligenceItem[] {
-  const { tokenBalance, userPlan, region } = useNychIQStore();
+  const { tokenBalance, userPlan, region, totalTokensSpent } = useNychIQStore();
 
   return useMemo(() => {
     const items: IntelligenceItem[] = [];
 
     // Token balance warning
-    if (tokenBalance < 10) {
+    const maxTokens = PLAN_TOKENS[userPlan];
+    const threshold = Math.floor(maxTokens * 0.2);
+
+    if (tokenBalance <= 0) {
+      items.push({
+        id: 'intel-tokens',
+        icon: <AlertTriangle className="w-4 h-4 text-[#E05252]" />,
+        title: 'Tokens Exhausted',
+        message: 'You have no tokens remaining. Upgrade your plan or wait for the monthly reset on the 31st.',
+        color: '#E05252',
+        bgColor: 'rgba(224,82,82,0.08)',
+      });
+    } else if (tokenBalance < threshold) {
       items.push({
         id: 'intel-tokens',
         icon: <Coins className="w-4 h-4 text-[#E05252]" />,
         title: 'Low Token Balance',
-        message: `You only have ${tokenBalance} token${tokenBalance !== 1 ? 's' : ''} left. Upgrade or use a referral code for more.`,
+        message: `You only have ${tokenBalance} token${tokenBalance !== 1 ? 's' : ''} left (${Math.round((tokenBalance / maxTokens) * 100)}%). Consider upgrading.`,
         color: '#E05252',
         bgColor: 'rgba(224,82,82,0.08)',
       });
-    } else if (tokenBalance < 30) {
+    } else if (tokenBalance < Math.floor(maxTokens * 0.4)) {
       items.push({
         id: 'intel-tokens',
         icon: <AlertTriangle className="w-4 h-4 text-[#F5A623]" />,
@@ -67,6 +80,18 @@ function useIntelligenceFeed(): IntelligenceItem[] {
         message: 'Unlock 40+ tools, higher limits, and priority AI with a Pro plan.',
         color: '#F5A623',
         bgColor: 'rgba(245,166,35,0.08)',
+      });
+    }
+
+    // Total spent insight
+    if (totalTokensSpent > 0) {
+      items.push({
+        id: 'intel-spent',
+        icon: <TrendingUp className="w-4 h-4 text-[#4A9EFF]" />,
+        title: 'Usage Insight',
+        message: `You've spent ${totalTokensSpent} tokens this cycle. Check Token Usage for a breakdown.`,
+        color: '#4A9EFF',
+        bgColor: 'rgba(74,158,255,0.08)',
       });
     }
 
@@ -110,7 +135,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     });
 
     return items;
-  }, [tokenBalance, userPlan, region]);
+  }, [tokenBalance, userPlan, region, totalTokensSpent]);
 }
 
 export function NotificationDrawer() {
@@ -121,10 +146,12 @@ export function NotificationDrawer() {
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const handleMarkAllRead = () => {
+    playClick();
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
   const handleNotificationClick = (notif: Notification) => {
+    playClick();
     // Mark as read
     setNotifications((prev) =>
       prev.map((n) => (n.id === notif.id ? { ...n, read: true } : n))
@@ -135,11 +162,17 @@ export function NotificationDrawer() {
     setNotifDrawerOpen(false);
   };
 
+  const handleOpen = () => {
+    if (!notifDrawerOpen) {
+      playNotification();
+    }
+  };
+
   return (
     <>
       {/* Overlay */}
       {notifDrawerOpen && (
-        <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setNotifDrawerOpen(false)} />
+        <div className="fixed inset-0 bg-black/40 z-40" onClick={() => { playClick(); setNotifDrawerOpen(false); }} />
       )}
 
       {/* Drawer */}
@@ -164,7 +197,7 @@ export function NotificationDrawer() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-text-muted hover:text-[#F5A623] hover:bg-[rgba(245,166,35,0.1)] transition-colors"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#F5A623] hover:bg-[rgba(245,166,35,0.1)] transition-colors"
                 title="Mark all as read"
               >
                 <CheckCheck className="w-3.5 h-3.5" />
@@ -172,8 +205,8 @@ export function NotificationDrawer() {
               </button>
             )}
             <button
-              onClick={() => setNotifDrawerOpen(false)}
-              className="p-1 rounded-md text-text-muted hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+              onClick={() => { playClick(); setNotifDrawerOpen(false); }}
+              className="p-1 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -252,7 +285,7 @@ export function NotificationDrawer() {
           ))}
 
           {notifications.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-12 text-text-muted">
+            <div className="flex flex-col items-center justify-center py-12 text-[#666666]">
               <Bell className="w-8 h-8 mb-2 opacity-50" />
               <p className="text-sm">No notifications yet</p>
             </div>

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { cn } from '@/lib/utils';
+import { playNav, playClick } from '@/lib/sounds';
 
 /* ── Icon map ── */
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -137,9 +138,11 @@ export function Sidebar() {
                       key={tool.id}
                       onClick={() => {
                         if (!hasAccess) {
+                          playClick();
                           useNychIQStore.getState().setUpgradeModalOpen(true);
                           return;
                         }
+                        playNav();
                         setActiveTool(tool.id);
                         setPage('app');
                       }}
