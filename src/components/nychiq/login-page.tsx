@@ -30,8 +30,8 @@ export function LoginPage() {
     // Simulate brief loading
     await new Promise((r) => setTimeout(r, 600));
     login(name || email.split('@')[0], email);
-    // After login, go to onboarding questions
-    setPage('ob-questions');
+    // After login, onboarding is handled by the store based on onboardingCompleted flag
+    // Only route to onboarding for NEW sign-ups (first time users)
   };
 
   return (

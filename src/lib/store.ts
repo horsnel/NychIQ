@@ -33,6 +33,7 @@ export interface NychIQState {
   isLoggedIn: boolean;
   userName: string;
   userEmail: string;
+  onboardingCompleted: boolean;
 
   /* Plan & Tokens */
   userPlan: Plan;
@@ -71,8 +72,9 @@ export interface NychIQState {
   /* ── Actions ── */
   setPage: (page: PageId) => void;
   setActiveTool: (tool: string) => void;
-  login: (name: string, email: string) => void;
+  login: (name: string, email: string, skipOnboarding?: boolean) => void;
   logout: () => void;
+  completeOnboarding: () => void;
   setUserPlan: (plan: Plan) => void;
   spendTokens: (action: string) => boolean;
   updateTokenDisplay: () => void;
@@ -254,6 +256,7 @@ export const useNychIQStore = create<NychIQState>()(
       isLoggedIn: false,
       userName: '',
       userEmail: '',
+      onboardingCompleted: false,
 
       // Plan & Tokens
       userPlan: 'trial' as Plan,
@@ -315,18 +318,22 @@ export const useNychIQStore = create<NychIQState>()(
         }
       },
 
-      login: (name: string, email: string) => {
+      login: (name: string, email: string, skipOnboarding: boolean = false) => {
         set({
           isLoggedIn: true,
           userName: name,
           userEmail: email,
-          currentPage: 'app' as PageId,
+          currentPage: (get().onboardingCompleted || skipOnboarding) ? 'app' as PageId : 'ob-questions' as PageId,
           signupTimestamp: Date.now(),
         });
         // Check for staged token releases
         get().checkStagedTokens();
         // Check monthly reset on login
         get().checkMonthlyReset();
+      },
+
+      completeOnboarding: () => {
+        set({ onboardingCompleted: true, currentPage: 'app' as PageId });
       },
 
       logout: () => {
@@ -530,6 +537,7 @@ export const useNychIQStore = create<NychIQState>()(
         isLoggedIn: state.isLoggedIn,
         userName: state.userName,
         userEmail: state.userEmail,
+        onboardingCompleted: state.onboardingCompleted,
         userPlan: state.userPlan,
         tokenBalance: state.tokenBalance,
         tokensEarned: state.tokensEarned,

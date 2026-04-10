@@ -40,10 +40,10 @@ const STEPS = [
 ];
 
 export function OnboardingExtension() {
-  const { login, setPage } = useNychIQStore();
+  const { completeOnboarding, setPage } = useNychIQStore();
 
   const handleComplete = () => {
-    login('Creator', 'creator@nychiq.com');
+    completeOnboarding();
   };
 
   return (
