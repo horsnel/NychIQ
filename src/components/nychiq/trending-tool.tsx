@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { VideoCard, VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { StatCard } from '@/components/nychiq/stat-card';
+import { SciFiVideoCard, SciFiVideoCardSkeleton } from '@/components/nychiq/sci-fi-video-card';
 import { cn, fmtV } from '@/lib/utils';
 import {
   TrendingUp,
@@ -16,6 +17,8 @@ import {
   Lock,
   ArrowUpDown,
   Clock,
+  Sparkles,
+  LayoutGrid,
 } from 'lucide-react';
 
 /* ── Region options ── */
@@ -41,6 +44,8 @@ function TrendingHeader({
   onSortChange,
   onRefresh,
   loading,
+  sciFiMode,
+  onViewModeToggle,
 }: {
   selectedRegion: string;
   onRegionChange: (r: string) => void;
@@ -48,6 +53,8 @@ function TrendingHeader({
   onSortChange: (s: SortOption) => void;
   onRefresh: () => void;
   loading: boolean;
+  sciFiMode: boolean;
+  onViewModeToggle: () => void;
 }) {
   return (
     <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
@@ -100,8 +107,8 @@ function TrendingHeader({
           </div>
         </div>
 
-        {/* Sort chips */}
-        <div className="flex gap-1.5">
+        {/* Sort chips + View mode toggle */}
+        <div className="flex items-center gap-1.5 flex-wrap">
           {([
             { key: 'views' as SortOption, label: 'Views', icon: <Eye className="w-3 h-3" /> },
             { key: 'viral' as SortOption, label: 'Viral Score', icon: <Zap className="w-3 h-3" /> },
@@ -121,6 +128,19 @@ function TrendingHeader({
               {s.label}
             </button>
           ))}
+          {/* View mode toggle */}
+          <button
+            onClick={onViewModeToggle}
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 ml-auto',
+              sciFiMode
+                ? 'bg-[#9B72CF]/15 text-[#9B72CF] border border-[#9B72CF]/30'
+                : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
+            )}
+          >
+            {sciFiMode ? <Sparkles className="w-3 h-3" /> : <LayoutGrid className="w-3 h-3" />}
+            {sciFiMode ? 'Sci-Fi' : 'Default'}
+          </button>
         </div>
       </div>
     </div>
@@ -133,6 +153,7 @@ export function TrendingTool() {
   const { spendTokens, region: storeRegion, setRegion } = useNychIQStore();
   const [selectedRegion, setSelectedRegion] = useState(storeRegion || 'NG');
   const [sortBy, setSortBy] = useState<SortOption>('views');
+  const [sciFiMode, setSciFiMode] = useState(false);
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -221,6 +242,8 @@ export function TrendingTool() {
         onSortChange={setSortBy}
         onRefresh={fetchTrending}
         loading={loading}
+        sciFiMode={sciFiMode}
+        onViewModeToggle={() => setSciFiMode(!sciFiMode)}
       />
 
       {/* Stats Row */}
@@ -273,7 +296,7 @@ export function TrendingTool() {
       ) : loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 9 }).map((_, i) => (
-            <VideoCardSkeleton key={i} />
+            sciFiMode ? <SciFiVideoCardSkeleton key={i} /> : <VideoCardSkeleton key={i} />
           ))}
         </div>
       ) : sortedVideos.length === 0 ? (
@@ -283,15 +306,27 @@ export function TrendingTool() {
           <p className="text-sm text-[#888888]">No trending data available for {selectedRegion} right now.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {sortedVideos.map((video) => (
-            <VideoCard
-              key={video.videoId}
-              video={video}
-              showViralScore
-            />
-          ))}
-        </div>
+        sciFiMode ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedVideos.map((video) => (
+              <SciFiVideoCard
+                key={video.videoId}
+                video={video}
+                showAnalysis
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedVideos.map((video) => (
+              <VideoCard
+                key={video.videoId}
+                video={video}
+                showViralScore
+              />
+            ))}
+          </div>
+        )
       )}
 
       {/* Token cost footer */}
