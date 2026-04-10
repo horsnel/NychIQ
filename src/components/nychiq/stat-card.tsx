@@ -21,7 +21,7 @@ export function StatCard({
   change,
   changeType,
   icon,
-  color = '#F5A623',
+  color = '#FDBA2D',
   className,
   dark = false,
 }: StatCardProps) {
@@ -34,7 +34,7 @@ export function StatCard({
         'rounded-lg p-4 transition-all duration-200',
         dark
           ? 'bg-[#0D0D0D] border border-[#1A1A1A]'
-          : 'bg-[#111111] border border-[#222222]',
+          : 'bg-[#141414] border border-[#222222]',
         'hover:border-[#2A2A2A] hover:shadow-lg hover:shadow-black/20',
         className
       )}
@@ -56,8 +56,8 @@ export function StatCard({
           <div
             className={cn(
               'flex items-center gap-0.5 text-xs font-semibold mb-0.5',
-              isUp && 'text-[#00C48C]',
-              isDown && 'text-[#E05252]',
+              isUp && 'text-[#10B981]',
+              isDown && 'text-[#EF4444]',
               !isUp && !isDown && 'text-[#888888]'
             )}
           >

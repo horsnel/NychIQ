@@ -55,7 +55,7 @@ function RevenueScoreRing({ score }: { score: number }) {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 75 ? '#00C48C' : score >= 50 ? '#F5A623' : '#E05252';
+  const color = score >= 75 ? '#10B981' : score >= 50 ? '#FDBA2D' : '#EF4444';
   const label = score >= 75 ? 'High' : score >= 50 ? 'Medium' : 'Low';
 
   return (
@@ -212,11 +212,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(0,196,140,0.1)' }}>
-              <Scale className="w-5 h-5" style={{ color: '#00C48C' }} />
+            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
+              <Scale className="w-5 h-5" style={{ color: '#10B981' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Arbitrage</h2>
@@ -238,8 +238,8 @@ Return ONLY the JSON object, no other text.`;
                 onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
                 placeholder="Enter video topic or niche..."
                 className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none transition-colors"
-                style={{ caretColor: '#00C48C' }}
-                onFocus={(e) => { e.target.style.borderColor = 'rgba(0,196,140,0.5)'; }}
+                style={{ caretColor: '#10B981' }}
+                onFocus={(e) => { e.target.style.borderColor = 'rgba(16,185,129,0.5)'; }}
                 onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
               />
             </div>
@@ -259,7 +259,7 @@ Return ONLY the JSON object, no other text.`;
                     <button
                       key={c.code}
                       onClick={() => { setCountry(c.code); setCountryOpen(false); }}
-                      className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${country === c.code ? 'text-[#00C48C]' : 'text-[#E8E8E8]'}`}
+                      className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${country === c.code ? 'text-[#10B981]' : 'text-[#E8E8E8]'}`}
                     >
                       {c.label}
                     </button>
@@ -271,8 +271,8 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={handleFind}
               disabled={loading || !topic.trim()}
-              className="px-5 h-11 rounded-lg text-[#0A0A0A] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
-              style={{ backgroundColor: '#00C48C' }}
+              className="px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              style={{ backgroundColor: '#10B981' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <DollarSign className="w-4 h-4" />}
               Find Revenue Tags
@@ -288,9 +288,9 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-5 text-center">
-          <p className="text-sm text-[#E05252] mb-3">{error}</p>
-          <button onClick={handleFind} className="px-4 py-2 rounded-lg bg-[#E05252]/10 text-[#E05252] text-xs font-medium hover:bg-[#E05252]/20 transition-colors">
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
+          <p className="text-sm text-[#EF4444] mb-3">{error}</p>
+          <button onClick={handleFind} className="px-4 py-2 rounded-lg bg-[#EF4444]/10 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/20 transition-colors">
             Retry
           </button>
         </div>
@@ -300,7 +300,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* CPM Range skeleton */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
             <div className="flex items-center gap-6">
               <div className="w-[72px] h-[72px] rounded-full bg-[#1A1A1A] animate-pulse" />
               <div className="flex-1 space-y-3">
@@ -310,7 +310,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/4 mb-3" />
               <div className="space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -328,7 +328,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Results Header */}
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-              <Sparkles className="w-4 h-4" style={{ color: '#00C48C' }} />
+              <Sparkles className="w-4 h-4" style={{ color: '#10B981' }} />
               Revenue Analysis
             </h3>
             <button onClick={handleFind} className="flex items-center gap-1 text-xs text-[#888888] hover:text-[#E8E8E8] transition-colors">
@@ -337,13 +337,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* CPM Range + Revenue Score */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <RevenueScoreRing score={result.revenueScore} />
               <div className="flex-1 text-center sm:text-left">
                 <span className="text-[10px] font-bold text-[#666666] uppercase tracking-wider">Estimated CPM Range</span>
                 <div className="flex items-center gap-2 mt-1.5 justify-center sm:justify-start">
-                  <DollarSign className="w-5 h-5" style={{ color: '#00C48C' }} />
+                  <DollarSign className="w-5 h-5" style={{ color: '#10B981' }} />
                   <span className="text-2xl font-bold text-[#E8E8E8]">{result.cpmRange}</span>
                 </div>
                 <p className="text-xs text-[#666666] mt-1">
@@ -354,35 +354,35 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* High-Value Tags */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> High-Value Tags
+                <Tag className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> High-Value Tags
               </h4>
-              <button onClick={handleCopyTags} className="flex items-center gap-1 text-[10px] font-medium hover:opacity-80 transition-opacity" style={{ color: '#00C48C' }}>
+              <button onClick={handleCopyTags} className="flex items-center gap-1 text-[10px] font-medium hover:opacity-80 transition-opacity" style={{ color: '#10B981' }}>
                 <Copy className="w-3 h-3" /> Copy All Tags
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {result.highValueTags.map((t, i) => (
-                <div key={i} className="flex items-center justify-between gap-2 p-2.5 rounded-lg border transition-colors hover:border-[rgba(0,196,140,0.3)]" style={{ backgroundColor: 'rgba(0,196,140,0.04)', borderColor: 'rgba(0,196,140,0.12)' }}>
+                <div key={i} className="flex items-center justify-between gap-2 p-2.5 rounded-lg border transition-colors hover:border-[rgba(16,185,129,0.3)]" style={{ backgroundColor: 'rgba(16,185,129,0.04)', borderColor: 'rgba(16,185,129,0.12)' }}>
                   <div className="flex items-center gap-2 min-w-0">
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: '#00C48C' }} />
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: '#10B981' }} />
                     <span className="text-sm text-[#E8E8E8] truncate">{t.tag}</span>
                   </div>
-                  <span className="text-[10px] font-bold shrink-0" style={{ color: '#00C48C' }}>{t.cpmImpact}</span>
+                  <span className="text-[10px] font-bold shrink-0" style={{ color: '#10B981' }}>{t.cpmImpact}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Revenue Keywords */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Revenue Keywords
+                <TrendingUp className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Revenue Keywords
               </h4>
-              <button onClick={handleCopyKeywords} className="flex items-center gap-1 text-[10px] font-medium hover:opacity-80 transition-opacity" style={{ color: '#00C48C' }}>
+              <button onClick={handleCopyKeywords} className="flex items-center gap-1 text-[10px] font-medium hover:opacity-80 transition-opacity" style={{ color: '#10B981' }}>
                 <Copy className="w-3 h-3" /> Copy All
               </button>
             </div>
@@ -390,10 +390,10 @@ Return ONLY the JSON object, no other text.`;
               {result.revenueKeywords.map((k, i) => (
                 <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
-                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" style={{ color: '#F5A623' }} />
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" style={{ color: '#FDBA2D' }} />
                     <span className="text-sm text-[#E8E8E8]">{k.phrase}</span>
                   </div>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded shrink-0" style={{ color: '#F5A623', backgroundColor: 'rgba(245,166,35,0.1)' }}>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded shrink-0" style={{ color: '#FDBA2D', backgroundColor: 'rgba(253,186,45,0.1)' }}>
                     {k.multiplier}
                   </span>
                 </div>
@@ -402,31 +402,31 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* CPM Multipliers */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <Sparkles className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> CPM Multiplier Words
+              <Sparkles className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> CPM Multiplier Words
             </h4>
             <div className="flex flex-wrap gap-2">
               {result.cpmMultipliers.map((m, i) => (
-                <div key={i} className="flex flex-col items-center gap-1 px-4 py-3 rounded-lg border" style={{ backgroundColor: 'rgba(0,196,140,0.04)', borderColor: 'rgba(0,196,140,0.15)' }}>
+                <div key={i} className="flex flex-col items-center gap-1 px-4 py-3 rounded-lg border" style={{ backgroundColor: 'rgba(16,185,129,0.04)', borderColor: 'rgba(16,185,129,0.15)' }}>
                   <span className="text-sm font-bold text-[#E8E8E8]">{m.word}</span>
-                  <span className="text-[10px] font-medium" style={{ color: '#00C48C' }}>{m.effect}</span>
+                  <span className="text-[10px] font-medium" style={{ color: '#10B981' }}>{m.effect}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Avoid Tags */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <AlertTriangle className="w-3.5 h-3.5 text-[#E05252]" /> Avoid Tags (Low-CPM)
+              <AlertTriangle className="w-3.5 h-3.5 text-[#EF4444]" /> Avoid Tags (Low-CPM)
             </h4>
             <div className="space-y-2">
               {result.avoidTags.map((t, i) => (
-                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[rgba(224,82,82,0.12)] hover:border-[rgba(224,82,82,0.25)] transition-colors">
+                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[rgba(239,68,68,0.12)] hover:border-[rgba(239,68,68,0.25)] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
-                    <XCircle className="w-3.5 h-3.5 shrink-0 text-[#E05252]" />
-                    <span className="text-sm text-[#E05252]">{t.tag}</span>
+                    <XCircle className="w-3.5 h-3.5 shrink-0 text-[#EF4444]" />
+                    <span className="text-sm text-[#EF4444]">{t.tag}</span>
                   </div>
                   <span className="text-[11px] text-[#666666] text-right shrink-0">{t.reason}</span>
                 </div>
@@ -435,14 +435,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Revenue Tips */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <DollarSign className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Revenue Optimization Tips
+              <DollarSign className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Revenue Optimization Tips
             </h4>
             <div className="space-y-1.5">
               {result.tips.map((tip, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(0,196,140,0.15)', color: '#00C48C' }}>
+                  <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981' }}>
                     {i + 1}
                   </span>
                   <span className="text-[#888888] leading-relaxed">{tip}</span>
@@ -456,8 +456,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(0,196,140,0.1)', borderColor: 'rgba(0,196,140,0.2)' }}>
-            <Scale className="w-8 h-8" style={{ color: '#00C48C' }} />
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(16,185,129,0.1)', borderColor: 'rgba(16,185,129,0.2)' }}>
+            <Scale className="w-8 h-8" style={{ color: '#10B981' }} />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Find Revenue Tags</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">

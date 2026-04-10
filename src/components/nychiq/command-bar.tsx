@@ -38,7 +38,7 @@ export function CommandBar() {
   return (
     <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
       <div className="fixed inset-0 bg-black/60" onClick={() => setCommandBarOpen(false)} />
-      <div className="relative w-full max-w-lg bg-[#111] border border-[#222] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#141414] border border-[#222] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
         {/* Search input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1E1E1E]">
           <Search className="w-4 h-4 text-text-muted shrink-0" />
@@ -83,7 +83,7 @@ export function CommandBar() {
                 setCommandBarOpen(false);
                 setQuery('');
               }}
-              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#E05252] hover:bg-[rgba(224,82,82,0.1)] transition-colors"
+              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
             >
               <span className="flex items-center gap-2">
                 <LogOut className="w-3.5 h-3.5" />

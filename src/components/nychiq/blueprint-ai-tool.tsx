@@ -66,9 +66,9 @@ function CopyBtn({ text }: { text: string }) {
   return (
     <button
       onClick={handle}
-      className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#888888] hover:text-[#00C48C] hover:bg-[rgba(0,196,140,0.08)] transition-colors"
+      className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#888888] hover:text-[#10B981] hover:bg-[rgba(16,185,129,0.08)] transition-colors"
     >
-      {copied ? <Check className="w-3 h-3 text-[#00C48C]" /> : <Copy className="w-3 h-3" />}
+      {copied ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
       {copied ? 'Copied' : 'Copy'}
     </button>
   );
@@ -76,7 +76,7 @@ function CopyBtn({ text }: { text: string }) {
 
 /* ── Char Count Color ── */
 function CharBadge({ count }: { count: number }) {
-  const color = count <= 60 ? '#00C48C' : count <= 70 ? '#F5A623' : '#E05252';
+  const color = count <= 60 ? '#10B981' : count <= 70 ? '#FDBA2D' : '#EF4444';
   return (
     <span className="text-[10px] font-medium px-1.5 py-0.5 rounded" style={{ color, backgroundColor: `${color}15` }}>
       {count} chars
@@ -197,11 +197,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(0,196,140,0.1)' }}>
-              <Wrench className="w-5 h-5" style={{ color: '#00C48C' }} />
+            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
+              <Wrench className="w-5 h-5" style={{ color: '#10B981' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Blueprint AI</h2>
@@ -223,8 +223,8 @@ Return ONLY the JSON object, no other text.`;
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Enter video topic or keyword..."
                 className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none transition-colors"
-                style={{ caretColor: '#00C48C' }}
-                onFocus={(e) => { e.target.style.borderColor = 'rgba(0,196,140,0.5)'; }}
+                style={{ caretColor: '#10B981' }}
+                onFocus={(e) => { e.target.style.borderColor = 'rgba(16,185,129,0.5)'; }}
                 onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
               />
             </div>
@@ -249,7 +249,7 @@ Return ONLY the JSON object, no other text.`;
                       <button
                         key={c}
                         onClick={() => { setCategory(c); setCatOpen(false); }}
-                        className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${category === c ? 'text-[#00C48C]' : 'text-[#E8E8E8]'}`}
+                        className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${category === c ? 'text-[#10B981]' : 'text-[#E8E8E8]'}`}
                       >
                         {c}
                       </button>
@@ -274,7 +274,7 @@ Return ONLY the JSON object, no other text.`;
                       <button
                         key={l.code}
                         onClick={() => { setLanguage(l.code); setLangOpen(false); }}
-                        className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${language === l.code ? 'text-[#00C48C]' : 'text-[#E8E8E8]'}`}
+                        className={`w-full px-3 py-2 text-sm text-left hover:bg-[#1A1A1A] transition-colors ${language === l.code ? 'text-[#10B981]' : 'text-[#E8E8E8]'}`}
                       >
                         {l.label}
                       </button>
@@ -287,8 +287,8 @@ Return ONLY the JSON object, no other text.`;
               <button
                 onClick={handleGenerate}
                 disabled={loading || !topic.trim()}
-                className="px-5 h-10 rounded-lg text-[#0A0A0A] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
-                style={{ backgroundColor: '#00C48C' }}
+                className="px-5 h-10 rounded-lg text-[#0D0D0D] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+                style={{ backgroundColor: '#10B981' }}
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Generate Blueprint
@@ -305,9 +305,9 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-5 text-center">
-          <p className="text-sm text-[#E05252] mb-3">{error}</p>
-          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#E05252]/10 text-[#E05252] text-xs font-medium hover:bg-[#E05252]/20 transition-colors">
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
+          <p className="text-sm text-[#EF4444] mb-3">{error}</p>
+          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#EF4444]/10 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/20 transition-colors">
             Retry
           </button>
         </div>
@@ -317,7 +317,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -335,11 +335,11 @@ Return ONLY the JSON object, no other text.`;
           {/* Header */}
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-              <Sparkles className="w-4 h-4" style={{ color: '#00C48C' }} />
+              <Sparkles className="w-4 h-4" style={{ color: '#10B981' }} />
               Metadata Blueprint
             </h3>
             <div className="flex items-center gap-2">
-              <button onClick={handleCopyAll} className="flex items-center gap-1 text-xs font-medium hover:opacity-80 transition-opacity" style={{ color: '#00C48C' }}>
+              <button onClick={handleCopyAll} className="flex items-center gap-1 text-xs font-medium hover:opacity-80 transition-opacity" style={{ color: '#10B981' }}>
                 <Copy className="w-3 h-3" /> Copy All
               </button>
               <button onClick={handleGenerate} className="flex items-center gap-1 text-xs text-[#888888] hover:text-[#E8E8E8] transition-colors">
@@ -349,10 +349,10 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Title Variations */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Title Variations
+                <FileText className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Title Variations
               </h4>
             </div>
             <div className="space-y-2">
@@ -372,10 +372,10 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Description */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Description
+                <FileText className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Description
               </h4>
               <CopyBtn text={result.description} />
             </div>
@@ -383,10 +383,10 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Tags */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Optimized Tags ({result.tags.length})
+                <Tag className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Optimized Tags ({result.tags.length})
               </h4>
               <CopyBtn text={result.tags.join(', ')} />
             </div>
@@ -398,25 +398,25 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Hashtags */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Hash className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Hashtags
+                <Hash className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Hashtags
               </h4>
               <CopyBtn text={result.hashtags.join(' ')} />
             </div>
             <div className="flex flex-wrap gap-1.5">
               {result.hashtags.map((tag, i) => (
-                <span key={i} className="px-2.5 py-1 rounded-md text-xs font-medium border transition-colors" style={{ color: '#00C48C', backgroundColor: 'rgba(0,196,140,0.08)', borderColor: 'rgba(0,196,140,0.2)' }}>{tag}</span>
+                <span key={i} className="px-2.5 py-1 rounded-md text-xs font-medium border transition-colors" style={{ color: '#10B981', backgroundColor: 'rgba(16,185,129,0.08)', borderColor: 'rgba(16,185,129,0.2)' }}>{tag}</span>
               ))}
             </div>
           </div>
 
           {/* Searchable Phrases */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Search className="w-3.5 h-3.5" style={{ color: '#00C48C' }} /> Searchable Phrases (Long-tail Keywords)
+                <Search className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Searchable Phrases (Long-tail Keywords)
               </h4>
               <CopyBtn text={result.searchablePhrases.join('\n')} />
             </div>
@@ -435,8 +435,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(0,196,140,0.1)', borderColor: 'rgba(0,196,140,0.2)' }}>
-            <Wrench className="w-8 h-8" style={{ color: '#00C48C' }} />
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(16,185,129,0.1)', borderColor: 'rgba(16,185,129,0.2)' }}>
+            <Wrench className="w-8 h-8" style={{ color: '#10B981' }} />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Generate Your Metadata Blueprint</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">

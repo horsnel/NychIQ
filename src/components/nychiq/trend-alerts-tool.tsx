@@ -122,18 +122,18 @@ Rules:
   };
 
   const velocityConfig = {
-    explosive: { color: '#E05252', bg: 'rgba(224,82,82,0.1)', border: 'rgba(224,82,82,0.2)' },
-    rising: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', border: 'rgba(245,166,35,0.2)' },
+    explosive: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' },
+    rising: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' },
     steady: { color: '#4A9EFF', bg: 'rgba(74,158,255,0.1)', border: 'rgba(74,158,255,0.2)' },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]"><BellRing className="w-5 h-5 text-[#F5A623]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><BellRing className="w-5 h-5 text-[#FDBA2D]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Trend Alerts</h2>
               <p className="text-xs text-[#888888] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
@@ -143,9 +143,9 @@ Rules:
             <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
               placeholder="Enter keyword to monitor..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
-            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
               Add Alert
             </button>
@@ -154,7 +154,7 @@ Rules:
       </div>
 
       {/* Active Alerts */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
         <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
         {alerts.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-4">No active alerts. Add keywords above to start monitoring.</p>
@@ -163,13 +163,13 @@ Rules:
             {alerts.map((alert) => (
               <div key={alert.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-2 h-2 rounded-full bg-[#F5A623] shrink-0 animate-pulse-live" />
+                  <div className="w-2 h-2 rounded-full bg-[#FDBA2D] shrink-0 animate-pulse-live" />
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-[#E8E8E8] truncate">{alert.keyword}</p>
                     <p className="text-[10px] text-[#666666]">Added {alert.createdAt}</p>
                   </div>
                 </div>
-                <button onClick={() => handleRemove(alert.id)} className="p-1 rounded hover:bg-[#1A1A1A] text-[#666666] hover:text-[#E05252] transition-colors shrink-0">
+                <button onClick={() => handleRemove(alert.id)} className="p-1 rounded hover:bg-[#1A1A1A] text-[#666666] hover:text-[#EF4444] transition-colors shrink-0">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -179,10 +179,10 @@ Rules:
       </div>
 
       {/* Trend Feed — AI-powered */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
-            <Zap className="w-3.5 h-3.5 text-[#E05252]" />
+            <Zap className="w-3.5 h-3.5 text-[#EF4444]" />
             Live Trend Spikes
           </h4>
           <button
@@ -196,15 +196,15 @@ Rules:
         </div>
 
         {error && (
-          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(224,82,82,0.08)] border border-[rgba(224,82,82,0.2)]">
-            <AlertTriangle className="w-4 h-4 text-[#E05252] shrink-0" />
-            <p className="text-xs text-[#E05252]">{error}</p>
+          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(239,68,68,0.08)] border border-[rgba(239,68,68,0.2)]">
+            <AlertTriangle className="w-4 h-4 text-[#EF4444] shrink-0" />
+            <p className="text-xs text-[#EF4444]">{error}</p>
           </div>
         )}
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 text-[#F5A623] animate-spin mb-2" />
+            <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin mb-2" />
             <p className="text-sm text-[#888888]">Scanning trends...</p>
           </div>
         ) : feed.length === 0 ? (

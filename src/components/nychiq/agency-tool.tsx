@@ -115,7 +115,7 @@ const MOCK_CHANNELS: ClientChannel[] = [
     id: 'ch-2',
     name: 'FitLife Academy',
     initials: 'FA',
-    color: '#00C48C',
+    color: '#10B981',
     subscribers: 1280000,
     videoCount: 578,
     healthScore: 87,
@@ -130,7 +130,7 @@ const MOCK_CHANNELS: ClientChannel[] = [
     id: 'ch-3',
     name: 'Crypto Daily',
     initials: 'CD',
-    color: '#F5A623',
+    color: '#FDBA2D',
     subscribers: 320000,
     videoCount: 189,
     healthScore: 74,
@@ -160,7 +160,7 @@ const MOCK_CHANNELS: ClientChannel[] = [
     id: 'ch-5',
     name: 'EduTech Masters',
     initials: 'EM',
-    color: '#E05252',
+    color: '#EF4444',
     subscribers: 620000,
     videoCount: 267,
     healthScore: 68,
@@ -175,12 +175,12 @@ const MOCK_CHANNELS: ClientChannel[] = [
 
 const MOCK_SIGNALS: SignalQueueItem[] = [
   { id: 's-1', client: 'TechVision Pro', clientColor: '#4A9EFF', clientInitials: 'TV', type: 'viral', message: 'AI phone review hit 500K views in 18 hours — viral score 94. Consider follow-up content.', time: new Date(Date.now() - 15 * 60 * 1000).toISOString(), priority: 'high' },
-  { id: 's-2', client: 'FitLife Academy', clientColor: '#00C48C', clientInitials: 'FA', type: 'trend', message: '"Zone 2 cardio" search volume up 340% this week. Perfect timing for a deep-dive video.', time: new Date(Date.now() - 45 * 60 * 1000).toISOString(), priority: 'high' },
-  { id: 's-3', client: 'Crypto Daily', clientColor: '#F5A623', clientInitials: 'CD', type: 'gap', message: 'No upload in 4 days. Audience engagement dropping — 12% comment decline vs last week.', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
+  { id: 's-2', client: 'FitLife Academy', clientColor: '#10B981', clientInitials: 'FA', type: 'trend', message: '"Zone 2 cardio" search volume up 340% this week. Perfect timing for a deep-dive video.', time: new Date(Date.now() - 45 * 60 * 1000).toISOString(), priority: 'high' },
+  { id: 's-3', client: 'Crypto Daily', clientColor: '#FDBA2D', clientInitials: 'CD', type: 'gap', message: 'No upload in 4 days. Audience engagement dropping — 12% comment decline vs last week.', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
   { id: 's-4', client: 'Art Studio NG', clientColor: '#9B72CF', clientInitials: 'AS', type: 'arbitrage', message: 'Art supply CPM at $14.80 but affiliate program offers $28 per sale. 4.2x revenue opportunity.', time: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(), priority: 'high' },
-  { id: 's-5', client: 'EduTech Masters', clientColor: '#E05252', clientInitials: 'EM', type: 'threat', message: 'New competitor "LearnCode Pro" gained 50K subs this month in same niche.', time: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
+  { id: 's-5', client: 'EduTech Masters', clientColor: '#EF4444', clientInitials: 'EM', type: 'threat', message: 'New competitor "LearnCode Pro" gained 50K subs this month in same niche.', time: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
   { id: 's-6', client: 'TechVision Pro', clientColor: '#4A9EFF', clientInitials: 'TV', type: 'trend', message: 'Apple Vision Pro 2 leaks trending — 2.1M searches. Perfect for a preview/analysis video.', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
-  { id: 's-7', client: 'FitLife Academy', clientColor: '#00C48C', clientInitials: 'FA', type: 'gap', message: 'Meal prep content gap: audience asking for budget-friendly options in comments.', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(), priority: 'low' },
+  { id: 's-7', client: 'FitLife Academy', clientColor: '#10B981', clientInitials: 'FA', type: 'gap', message: 'Meal prep content gap: audience asking for budget-friendly options in comments.', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(), priority: 'low' },
   { id: 's-8', client: 'Art Studio NG', clientColor: '#9B72CF', clientInitials: 'AS', type: 'viral', message: 'Time-lapse portrait video reached 1.2M views. Replicate format with different subjects.', time: new Date(Date.now() - 10 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
 ];
 
@@ -194,19 +194,19 @@ const MOCK_REPORTS: Report[] = [
 
 const MOCK_ACTIVITY: TeamActivity[] = [
   { id: 'a-1', user: 'Sarah K.', initials: 'SK', color: '#4A9EFF', action: 'completed audit for', target: 'TechVision Pro', time: new Date(Date.now() - 30 * 60 * 1000).toISOString() },
-  { id: 'a-2', user: 'Mike R.', initials: 'MR', color: '#00C48C', action: 'generated SEO report for', target: 'FitLife Academy', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
+  { id: 'a-2', user: 'Mike R.', initials: 'MR', color: '#10B981', action: 'generated SEO report for', target: 'FitLife Academy', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
   { id: 'a-3', user: 'Sarah K.', initials: 'SK', color: '#4A9EFF', action: 'flagged stale content on', target: 'Crypto Daily', time: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString() },
   { id: 'a-4', user: 'Alex T.', initials: 'AT', color: '#9B72CF', action: 'updated strategy for', target: 'EduTech Masters', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString() },
-  { id: 'a-5', user: 'Mike R.', initials: 'MR', color: '#00C48C', action: 'exported data for', target: 'all channels', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString() },
+  { id: 'a-5', user: 'Mike R.', initials: 'MR', color: '#10B981', action: 'exported data for', target: 'all channels', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString() },
 ];
 
 /* ═══════════════════════════════════════════
    Helpers
    ═══════════════════════════════════════════ */
 function healthColor(score: number): string {
-  if (score >= 85) return '#00C48C';
-  if (score >= 70) return '#F5A623';
-  return '#E05252';
+  if (score >= 85) return '#10B981';
+  if (score >= 70) return '#FDBA2D';
+  return '#EF4444';
 }
 function healthLabel(score: number): string {
   if (score >= 85) return 'Excellent';
@@ -218,28 +218,28 @@ function healthLabel(score: number): string {
 function reportTypeBadge(type: Report['type']): { bg: string; text: string; border: string; icon: React.ReactNode } {
   switch (type) {
     case 'Audit':
-      return { bg: 'bg-[rgba(224,82,82,0.1)]', text: 'text-[#E05252]', border: 'border-[rgba(224,82,82,0.2)]', icon: <Shield className="w-3 h-3" /> };
+      return { bg: 'bg-[rgba(239,68,68,0.1)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.2)]', icon: <Shield className="w-3 h-3" /> };
     case 'Strategy':
       return { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]', icon: <TrendingUp className="w-3 h-3" /> };
     case 'SEO':
-      return { bg: 'bg-[rgba(245,166,35,0.1)]', text: 'text-[#F5A623]', border: 'border-[rgba(245,166,35,0.2)]', icon: <SearchCode className="w-3 h-3" /> };
+      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.2)]', icon: <SearchCode className="w-3 h-3" /> };
   }
 }
 
 function signalTypeInfo(type: SignalQueueItem['type']): { icon: LucideIcon; color: string; label: string } {
   switch (type) {
-    case 'viral': return { icon: Zap, color: '#F5A623', label: 'VIRAL' };
-    case 'trend': return { icon: TrendingUp, color: '#00C48C', label: 'TREND' };
+    case 'viral': return { icon: Zap, color: '#FDBA2D', label: 'VIRAL' };
+    case 'trend': return { icon: TrendingUp, color: '#10B981', label: 'TREND' };
     case 'gap': return { icon: Target, color: '#4A9EFF', label: 'GAP' };
-    case 'threat': return { icon: AlertTriangle, color: '#E05252', label: 'THREAT' };
+    case 'threat': return { icon: AlertTriangle, color: '#EF4444', label: 'THREAT' };
     case 'arbitrage': return { icon: DollarSign, color: '#9B72CF', label: 'ARBITRAGE' };
   }
 }
 
 function statusRing(status: ClientChannel['status']): { color: string; label: string; pulse: boolean } {
   switch (status) {
-    case 'performing': return { color: '#00C48C', label: 'Performing Well', pulse: true };
-    case 'stale': return { color: '#F5A623', label: 'No Uploads (3+ days)', pulse: false };
+    case 'performing': return { color: '#10B981', label: 'Performing Well', pulse: true };
+    case 'stale': return { color: '#FDBA2D', label: 'No Uploads (3+ days)', pulse: false };
     case 'arbitrage': return { color: '#9B72CF', label: 'High Arbitrage', pulse: false };
   }
 }
@@ -267,7 +267,7 @@ function HealthCircle({ score, size = 48, strokeWidth = 4 }: { score: number; si
 
 function StatCard({ icon: Icon, label, value, color, sub }: { icon: LucideIcon; label: string; value: string; color: string; sub?: string }) {
   return (
-    <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
       <div className="flex items-center gap-2 mb-2">
         <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15`, border: `1px solid ${color}30` }}>
           <Icon className="w-4 h-4" style={{ color }} />
@@ -391,7 +391,7 @@ export function AgencyDashboardTool() {
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-5 animate-pulse">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-pulse">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-lg bg-[#1A1A1A]" />
             <div className="space-y-2 flex-1">
@@ -407,7 +407,7 @@ export function AgencyDashboardTool() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-5 animate-pulse">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-pulse">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-[#1A1A1A]" />
                 <div className="space-y-2 flex-1">
@@ -429,12 +429,12 @@ export function AgencyDashboardTool() {
     return (
       <div className="animate-fade-in-up">
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-14 h-14 rounded-2xl bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.2)] flex items-center justify-center mb-4">
-            <Lock className="w-7 h-7 text-[#E05252]" />
+          <div className="w-14 h-14 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
+            <Lock className="w-7 h-7 text-[#EF4444]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Failed to Load Dashboard</h3>
           <p className="text-sm text-[#888888] mb-4">{error}</p>
-          <button onClick={() => window.location.reload()} className="px-5 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={() => window.location.reload()} className="px-5 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <Loader2 className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -446,7 +446,7 @@ export function AgencyDashboardTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -497,9 +497,9 @@ export function AgencyDashboardTool() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <StatCard icon={Users} label="Fleet Size" value={String(MOCK_CHANNELS.length)} color="#9B72CF" sub="Active clients" />
         <StatCard icon={Eye} label="Total Views/mo" value={fmtV(totalMonthlyViews)} color="#4A9EFF" sub="Across fleet" />
-        <StatCard icon={DollarSign} label="Fleet Revenue" value={`$${totalMonthlyRevenue.toLocaleString()}`} color="#F5A623" sub="Monthly total" />
-        <StatCard icon={BarChart3} label="Avg Health" value={`${avgHealth}`} color="#00C48C" sub={avgHealth >= 85 ? 'Excellent' : 'Good'} />
-        <StatCard icon={Signal} label="Active Signals" value={String(MOCK_SIGNALS.filter((s) => s.priority === 'high').length)} color="#E05252" sub="High priority" />
+        <StatCard icon={DollarSign} label="Fleet Revenue" value={`$${totalMonthlyRevenue.toLocaleString()}`} color="#FDBA2D" sub="Monthly total" />
+        <StatCard icon={BarChart3} label="Avg Health" value={`${avgHealth}`} color="#10B981" sub={avgHealth >= 85 ? 'Excellent' : 'Good'} />
+        <StatCard icon={Signal} label="Active Signals" value={String(MOCK_SIGNALS.filter((s) => s.priority === 'high').length)} color="#EF4444" sub="High priority" />
       </div>
 
       {/* Tabs */}
@@ -511,13 +511,13 @@ export function AgencyDashboardTool() {
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
                 ? 'bg-[#9B72CF]/10 text-[#9B72CF] border border-[#9B72CF]/20'
-                : 'bg-[#111111] border border-[#222222] text-[#888888] hover:text-[#E8E8E8] hover:border-[#333333]'
+                : 'bg-[#141414] border border-[#222222] text-[#888888] hover:text-[#E8E8E8] hover:border-[#333333]'
             }`}
           >
             <tab.icon className="w-3.5 h-3.5" />
             {tab.label}
             {tab.id === 'signals' && (
-              <span className="px-1.5 py-0.5 rounded-full bg-[rgba(224,82,82,0.15)] text-[9px] font-bold text-[#E05252]">
+              <span className="px-1.5 py-0.5 rounded-full bg-[rgba(239,68,68,0.15)] text-[9px] font-bold text-[#EF4444]">
                 {MOCK_SIGNALS.filter((s) => s.priority === 'high').length}
               </span>
             )}
@@ -531,7 +531,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'fleet' && (
         <div className="space-y-4">
           {/* Portfolio ROI Chart (CSS) */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
               <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
                 <BarChart3 className="w-3.5 h-3.5 text-[#9B72CF]" /> Portfolio ROI
@@ -563,7 +563,7 @@ export function AgencyDashboardTool() {
                   <div className="w-2 h-2 rounded-sm" style={{ background: 'linear-gradient(to top, #9B72CF, #B08ADF)' }} />
                   <span>Current: $96K</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] text-[#00C48C]">
+                <div className="flex items-center gap-1.5 text-[10px] text-[#10B981]">
                   <ArrowUpRight className="w-3 h-3" />
                   <span className="font-semibold">+17.1% MoM</span>
                 </div>
@@ -576,7 +576,7 @@ export function AgencyDashboardTool() {
             {MOCK_CHANNELS.map((ch) => {
               const statusInfo = statusRing(ch.status);
               return (
-                <div key={ch.id} className="rounded-lg bg-[#111111] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
+                <div key={ch.id} className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div
@@ -603,11 +603,11 @@ export function AgencyDashboardTool() {
                     </div>
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center">
                       <p className="text-[9px] text-[#666666]">Revenue</p>
-                      <p className="text-xs font-semibold text-[#00C48C]">${ch.monthlyRevenue.toLocaleString()}</p>
+                      <p className="text-xs font-semibold text-[#10B981]">${ch.monthlyRevenue.toLocaleString()}</p>
                     </div>
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center">
                       <p className="text-[9px] text-[#666666]">CPM</p>
-                      <p className="text-xs font-semibold text-[#F5A623]">${ch.cpm.toFixed(2)}</p>
+                      <p className="text-xs font-semibold text-[#FDBA2D]">${ch.cpm.toFixed(2)}</p>
                     </div>
                   </div>
 
@@ -637,10 +637,10 @@ export function AgencyDashboardTool() {
               <span className="text-[10px] text-[#666666] font-normal ml-1">{MOCK_SIGNALS.length} active</span>
             </h3>
             <div className="flex items-center gap-1.5">
-              <span className="px-2 py-0.5 rounded-full bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.2)] text-[9px] font-bold text-[#E05252]">
+              <span className="px-2 py-0.5 rounded-full bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] text-[9px] font-bold text-[#EF4444]">
                 {MOCK_SIGNALS.filter((s) => s.priority === 'high').length} HIGH
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] text-[9px] font-bold text-[#F5A623]">
+              <span className="px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] text-[9px] font-bold text-[#FDBA2D]">
                 {MOCK_SIGNALS.filter((s) => s.priority === 'medium').length} MED
               </span>
             </div>
@@ -651,7 +651,7 @@ export function AgencyDashboardTool() {
               const typeInfo = signalTypeInfo(signal.type);
               const TypeIcon = typeInfo.icon;
               return (
-                <div key={signal.id} className="rounded-lg bg-[#111111] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
+                <div key={signal.id} className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 mt-0.5">
                       <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: `${typeInfo.color}15`, border: `1px solid ${typeInfo.color}25` }}>
@@ -673,8 +673,8 @@ export function AgencyDashboardTool() {
                         <span
                           className="px-1.5 py-0.5 rounded text-[8px] font-bold"
                           style={{
-                            backgroundColor: signal.priority === 'high' ? 'rgba(224,82,82,0.1)' : 'rgba(245,166,35,0.1)',
-                            color: signal.priority === 'high' ? '#E05252' : '#F5A623',
+                            backgroundColor: signal.priority === 'high' ? 'rgba(239,68,68,0.1)' : 'rgba(253,186,45,0.1)',
+                            color: signal.priority === 'high' ? '#EF4444' : '#FDBA2D',
                           }}
                         >
                           {signal.priority.toUpperCase()}
@@ -699,7 +699,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'war-room' && (
         <div className="space-y-4">
           {/* Intelligence Link Generator */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
                 <Link2 className="w-3.5 h-3.5 text-[#9B72CF]" /> Shareable Intelligence Link Generator
@@ -713,7 +713,7 @@ export function AgencyDashboardTool() {
                   <select
                     value={selectedClient || ''}
                     onChange={(e) => setSelectedClient(e.target.value || null)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-[#0A0A0A] border border-[#222222] text-[#E8E8E8] text-sm focus:outline-none focus:border-[#9B72CF]/40 transition-all appearance-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#E8E8E8] text-sm focus:outline-none focus:border-[#9B72CF]/40 transition-all appearance-none"
                   >
                     <option value="">All Channels</option>
                     {MOCK_CHANNELS.map((ch) => (
@@ -733,10 +733,10 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Generated Links */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Radio className="w-3.5 h-3.5 text-[#00C48C]" /> Active Intelligence Links
+                <Radio className="w-3.5 h-3.5 text-[#10B981]" /> Active Intelligence Links
               </h3>
             </div>
             {warRoomLinks.length === 0 ? (
@@ -763,7 +763,7 @@ export function AgencyDashboardTool() {
                         className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#E8E8E8]"
                         title="Copy link"
                       >
-                        {copiedLink ? <Check className="w-3.5 h-3.5 text-[#00C48C]" /> : <Copy className="w-3.5 h-3.5" />}
+                        {copiedLink ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                     </div>
                   </div>
@@ -773,22 +773,22 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Client Acquisition Module */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Target className="w-3.5 h-3.5 text-[#F5A623]" /> Client Acquisition — Gap Analysis
+                <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Client Acquisition — Gap Analysis
               </h3>
             </div>
             <div className="p-5 space-y-4">
               <p className="text-xs text-[#888888]">AI-powered gap analysis identifies under-served niches and potential client targets based on your agency&apos;s strengths.</p>
-              <button className="px-4 py-2.5 rounded-lg text-white text-sm font-medium transition-all flex items-center gap-2" style={{ background: 'linear-gradient(135deg, #F5A623, #E09100)' }}>
+              <button className="px-4 py-2.5 rounded-lg text-white text-sm font-medium transition-all flex items-center gap-2" style={{ background: 'linear-gradient(135deg, #FDBA2D, #E09100)' }}>
                 <Cpu className="w-4 h-4" /> Generate Acquisition Report
               </button>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
-                  { label: 'Identified Gaps', value: '12', color: '#F5A623' },
+                  { label: 'Identified Gaps', value: '12', color: '#FDBA2D' },
                   { label: 'Potential Clients', value: '28', color: '#4A9EFF' },
-                  { label: 'Est. Revenue Potential', value: '$84K/mo', color: '#00C48C' },
+                  { label: 'Est. Revenue Potential', value: '$84K/mo', color: '#10B981' },
                 ].map((stat) => (
                   <div key={stat.label} className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-3 text-center">
                     <p className="text-[10px] text-[#666666]">{stat.label}</p>
@@ -808,7 +808,7 @@ export function AgencyDashboardTool() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Recent Reports */}
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
                 <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-[#9B72CF]" /> Recent Reports
@@ -843,10 +843,10 @@ export function AgencyDashboardTool() {
             </div>
 
             {/* Team Activity */}
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
                 <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-[#00C48C]" /> Team Activity
+                  <Activity className="w-3.5 h-3.5 text-[#10B981]" /> Team Activity
                 </h3>
                 <span className="text-[10px] text-[#666666]">Recent</span>
               </div>
@@ -873,20 +873,20 @@ export function AgencyDashboardTool() {
           {/* Quick Actions */}
           <div>
             <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#F5A623]" /> Quick Actions
+              <Zap className="w-4 h-4 text-[#FDBA2D]" /> Quick Actions
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#00C48C]/30 hover:bg-[rgba(0,196,140,0.03)] transition-all group text-left">
-                <div className="p-2 rounded-lg bg-[rgba(0,196,140,0.1)] border border-[rgba(0,196,140,0.2)]">
-                  <UserPlus className="w-4 h-4 text-[#00C48C]" />
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#10B981]/30 hover:bg-[rgba(16,185,129,0.03)] transition-all group text-left">
+                <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
+                  <UserPlus className="w-4 h-4 text-[#10B981]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#00C48C] transition-colors">Add New Client</p>
+                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#10B981] transition-colors">Add New Client</p>
                   <p className="text-[10px] text-[#666666]">Onboard a new channel</p>
                 </div>
-                <Plus className="w-4 h-4 text-[#444444] group-hover:text-[#00C48C] transition-colors" />
+                <Plus className="w-4 h-4 text-[#444444] group-hover:text-[#10B981] transition-colors" />
               </button>
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#4A9EFF]/30 hover:bg-[rgba(74,158,255,0.03)] transition-all group text-left">
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#4A9EFF]/30 hover:bg-[rgba(74,158,255,0.03)] transition-all group text-left">
                 <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)] border border-[rgba(74,158,255,0.2)]">
                   <FileBarChart className="w-4 h-4 text-[#4A9EFF]" />
                 </div>
@@ -896,15 +896,15 @@ export function AgencyDashboardTool() {
                 </div>
                 <ArrowUpRight className="w-4 h-4 text-[#444444] group-hover:text-[#4A9EFF] transition-colors" />
               </button>
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#F5A623]/30 hover:bg-[rgba(245,166,35,0.03)] transition-all group text-left">
-                <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)]">
-                  <FolderOutput className="w-4 h-4 text-[#F5A623]" />
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#FDBA2D]/30 hover:bg-[rgba(253,186,45,0.03)] transition-all group text-left">
+                <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)]">
+                  <FolderOutput className="w-4 h-4 text-[#FDBA2D]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#F5A623] transition-colors">Export Fleet Data</p>
+                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">Export Fleet Data</p>
                   <p className="text-[10px] text-[#666666]">CSV / PDF export</p>
                 </div>
-                <Download className="w-4 h-4 text-[#444444] group-hover:text-[#F5A623] transition-colors" />
+                <Download className="w-4 h-4 text-[#444444] group-hover:text-[#FDBA2D] transition-colors" />
               </button>
             </div>
           </div>
@@ -914,7 +914,7 @@ export function AgencyDashboardTool() {
       {/* ═══════════════════════════════════════
           COMMAND BAR (always visible)
           ═══════════════════════════════════════ */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 py-3 border-b border-[#1A1A1A]">
           <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
             <Command className="w-3.5 h-3.5 text-[#9B72CF]" /> Command Bar
@@ -930,7 +930,7 @@ export function AgencyDashboardTool() {
                 onChange={(e) => setCommandInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleCommand()}
                 placeholder="compare ClientA ClientB  |  report-all"
-                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0A0A0A] border border-[#222222] text-[#E8E8E8] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all"
+                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#E8E8E8] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all"
               />
             </div>
             <button

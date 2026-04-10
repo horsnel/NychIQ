@@ -39,7 +39,7 @@ interface ABResult {
   overallAnalysis: string;
 }
 
-const HEATMAP_COLORS = ['#FF4444', '#FF8C00', '#FFD700', '#32CD32', '#4A9EFF'];
+const HEATMAP_COLORS = ['#FF4444', '#FF8C00', '#FDE68A', '#32CD32', '#4A9EFF'];
 
 /* ── Heatmap overlay for a thumbnail ── */
 function HeatmapOverlay({ zones }: { zones: string[] }) {
@@ -75,7 +75,7 @@ function HeatmapOverlay({ zones }: { zones: string[] }) {
 /* ── Score pill ── */
 function ScorePill({ label, value, max }: { label: string; value: number; max: number }) {
   const pct = (value / max) * 100;
-  const color = pct >= 80 ? '#00C48C' : pct >= 60 ? '#F5A623' : pct >= 40 ? '#4A9EFF' : '#E05252';
+  const color = pct >= 80 ? '#10B981' : pct >= 60 ? '#FDBA2D' : pct >= 40 ? '#4A9EFF' : '#EF4444';
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
@@ -119,7 +119,7 @@ function ThumbnailCard({
       className={`rounded-lg border p-4 transition-all duration-300 ${
         isWinner
           ? 'bg-[rgba(155,114,207,0.06)] border-[#9B72CF]/40 shadow-lg shadow-[#9B72CF]/5'
-          : 'bg-[#111111] border-[#222222] hover:border-[#2A2A2A]'
+          : 'bg-[#141414] border-[#222222] hover:border-[#2A2A2A]'
       }`}
     >
       {/* Header */}
@@ -150,7 +150,7 @@ function ThumbnailCard({
         <Target className="w-3.5 h-3.5 text-[#9B72CF]" />
         <span className="text-sm font-bold text-[#E8E8E8]">CTR: {result.ctr}%</span>
         {isWinner && (
-          <span className="text-[10px] text-[#00C48C] ml-auto">+{confidence}% confidence</span>
+          <span className="text-[10px] text-[#10B981] ml-auto">+{confidence}% confidence</span>
         )}
       </div>
 
@@ -210,7 +210,7 @@ function ThumbnailCard({
       {result.improvements.length > 0 && (
         <div className="mb-3">
           <div className="flex items-center gap-1.5 mb-1.5">
-            <Palette className="w-3 h-3 text-[#F5A623]" />
+            <Palette className="w-3 h-3 text-[#FDBA2D]" />
             <span className="text-[10px] text-[#888888] uppercase tracking-wider font-medium">
               Improvement Suggestions
             </span>
@@ -231,7 +231,7 @@ function ThumbnailCard({
         onClick={handleCopy}
         className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded border border-[#222222] text-[11px] text-[#888888] hover:bg-[#1A1A1A] hover:text-[#E8E8E8] transition-colors"
       >
-        {copied ? <Check className="w-3 h-3 text-[#00C48C]" /> : <Copy className="w-3 h-3" />}
+        {copied ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
         {copied ? 'Copied!' : 'Copy Analysis'}
       </button>
     </div>
@@ -374,7 +374,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]">
@@ -420,7 +420,7 @@ Return ONLY the JSON object, no other text.`;
               className="px-5 h-11 rounded-lg text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{
                 backgroundColor: canRun ? '#9B72CF' : '#333333',
-                color: canRun ? '#0A0A0A' : '#888888',
+                color: canRun ? '#0D0D0D' : '#888888',
               }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
@@ -437,20 +437,20 @@ Return ONLY the JSON object, no other text.`;
             )}
           </div>
           {validUrls.length < 2 && (
-            <p className="text-[11px] text-[#E05252] mt-2">Please enter at least 2 thumbnail URLs to compare.</p>
+            <p className="text-[11px] text-[#EF4444] mt-2">Please enter at least 2 thumbnail URLs to compare.</p>
           )}
         </div>
       </div>
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
           <button
             onClick={handleRun}
             className="mt-3 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
-            style={{ backgroundColor: '#9B72CF', color: '#0A0A0A' }}
+            style={{ backgroundColor: '#9B72CF', color: '#0D0D0D' }}
           >
             Try Again
           </button>
@@ -460,7 +460,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#9B72CF] animate-spin" />
               <span className="text-sm text-[#888888]">Analyzing thumbnails with AI...</span>

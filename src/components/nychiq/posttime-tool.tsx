@@ -85,17 +85,17 @@ Return ONLY the JSON object.`;
   }) : [];
 
   function heatColor(val: number): string {
-    if (val >= 85) return 'bg-[#00C48C]';
-    if (val >= 70) return 'bg-[#00C48C]/60';
-    if (val >= 55) return 'bg-[#F5A623]/60';
-    if (val >= 40) return 'bg-[#F5A623]/30';
-    if (val >= 25) return 'bg-[#E05252]/30';
+    if (val >= 85) return 'bg-[#10B981]';
+    if (val >= 70) return 'bg-[#10B981]/60';
+    if (val >= 55) return 'bg-[#FDBA2D]/60';
+    if (val >= 40) return 'bg-[#FDBA2D]/30';
+    if (val >= 25) return 'bg-[#EF4444]/30';
     return 'bg-[#1A1A1A]';
   }
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]"><Clock className="w-5 h-5 text-[#4A9EFF]" /></div>
@@ -124,10 +124,10 @@ Return ONLY the JSON object.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
-          <button onClick={handleAnalyze} className="px-4 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handleAnalyze} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -135,8 +135,8 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 h-48 animate-pulse" />
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 h-48 animate-pulse" />
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
           </div>
         </div>
@@ -148,7 +148,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#4A9EFF]" /> Post Time Results (Raw)
           </h3>
-          <div className="rounded-lg bg-[#111111] border border-[#4A9EFF]/30 p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#4A9EFF]/30 p-4">
             <p className="text-[10px] text-[#4A9EFF] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
             <pre className="text-sm text-[#E8E8E8] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
           </div>
@@ -160,7 +160,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#4A9EFF]" /> Schedule Analysis for &quot;{niche.trim()}&quot;</h3>
 
           {/* Best Days */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Best Days of the Week (Ranked)</h4>
             <div className="space-y-2">
               {[...result.bestDays].sort((a, b) => b.score - a.score).map((d, i) => (
@@ -168,9 +168,9 @@ Return ONLY the JSON object.`;
                   <span className="text-[10px] font-bold text-[#666666] w-4">#{i + 1}</span>
                   <span className="text-xs text-[#E8E8E8] w-20 shrink-0">{d.day.slice(0, 3)}</span>
                   <div className="flex-1 h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
-                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${d.score}%`, backgroundColor: d.score >= 80 ? '#00C48C' : d.score >= 60 ? '#F5A623' : '#888888' }} />
+                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${d.score}%`, backgroundColor: d.score >= 80 ? '#10B981' : d.score >= 60 ? '#FDBA2D' : '#888888' }} />
                   </div>
-                  <span className="text-xs font-bold w-8 text-right" style={{ color: d.score >= 80 ? '#00C48C' : d.score >= 60 ? '#F5A623' : '#888888' }}>{d.score}</span>
+                  <span className="text-xs font-bold w-8 text-right" style={{ color: d.score >= 80 ? '#10B981' : d.score >= 60 ? '#FDBA2D' : '#888888' }}>{d.score}</span>
                 </div>
               ))}
             </div>
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
 
           {/* Heatmap */}
           {heatmapData.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 overflow-x-auto">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 overflow-x-auto">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Weekly Heatmap</h4>
               <div className="min-w-[500px]">
                 <div className="flex gap-1 mb-1 pl-16">
@@ -195,11 +195,11 @@ Return ONLY the JSON object.`;
                 <div className="flex items-center gap-2 mt-3 text-[9px] text-[#666666]">
                   <span>Low</span>
                   <div className="w-3 h-3 rounded-sm bg-[#1A1A1A]" />
-                  <div className="w-3 h-3 rounded-sm bg-[#E05252]/30" />
-                  <div className="w-3 h-3 rounded-sm bg-[#F5A623]/30" />
-                  <div className="w-3 h-3 rounded-sm bg-[#F5A623]/60" />
-                  <div className="w-3 h-3 rounded-sm bg-[#00C48C]/60" />
-                  <div className="w-3 h-3 rounded-sm bg-[#00C48C]" />
+                  <div className="w-3 h-3 rounded-sm bg-[#EF4444]/30" />
+                  <div className="w-3 h-3 rounded-sm bg-[#FDBA2D]/30" />
+                  <div className="w-3 h-3 rounded-sm bg-[#FDBA2D]/60" />
+                  <div className="w-3 h-3 rounded-sm bg-[#10B981]/60" />
+                  <div className="w-3 h-3 rounded-sm bg-[#10B981]" />
                   <span>High</span>
                 </div>
               </div>
@@ -207,14 +207,14 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Best Time Slots */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Best Time Slots</h4>
             <div className="flex flex-wrap gap-2">
               {result.bestTimes.map((time, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(0,196,140,0.1)] border border-[rgba(0,196,140,0.2)]">
-                  <Clock className="w-3.5 h-3.5 text-[#00C48C]" />
-                  <span className="text-sm font-medium text-[#00C48C]">{time}</span>
-                  {i === 0 && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#00C48C] text-[#0A0A0A]">BEST</span>}
+                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
+                  <Clock className="w-3.5 h-3.5 text-[#10B981]" />
+                  <span className="text-sm font-medium text-[#10B981]">{time}</span>
+                  {i === 0 && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#10B981] text-[#0D0D0D]">BEST</span>}
                 </div>
               ))}
             </div>
@@ -222,7 +222,7 @@ Return ONLY the JSON object.`;
 
           {/* Pro Tips */}
           {result.proTips.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Pro Tips</h4>
               <div className="space-y-2">
                 {result.proTips.map((tip, i) => (

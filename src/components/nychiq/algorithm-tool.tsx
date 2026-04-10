@@ -36,15 +36,15 @@ interface AlgorithmReport {
 }
 
 const STATUS_CONFIG = {
-  rising: { color: '#00C48C', bg: 'rgba(0,196,140,0.1)', border: 'rgba(0,196,140,0.3)', icon: <TrendingUp className="w-4 h-4" />, label: 'Rising' },
-  stable: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', border: 'rgba(245,166,35,0.3)', icon: <Minus className="w-4 h-4" />, label: 'Stable' },
-  declining: { color: '#E05252', bg: 'rgba(224,82,82,0.1)', border: 'rgba(224,82,82,0.3)', icon: <TrendingDown className="w-4 h-4" />, label: 'Declining' },
+  rising: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', icon: <TrendingUp className="w-4 h-4" />, label: 'Rising' },
+  stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <Minus className="w-4 h-4" />, label: 'Stable' },
+  declining: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', icon: <TrendingDown className="w-4 h-4" />, label: 'Declining' },
 };
 
 /* ── Signal Bar ── */
 function SignalBar({ signal }: { signal: AlgorithmSignal }) {
   const config = STATUS_CONFIG[signal.status];
-  const barColor = signal.status === 'rising' ? '#00C48C' : signal.status === 'stable' ? '#F5A623' : '#E05252';
+  const barColor = signal.status === 'rising' ? '#10B981' : signal.status === 'stable' ? '#FDBA2D' : '#EF4444';
 
   return (
     <div className="p-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
@@ -146,14 +146,14 @@ Return ONLY the JSON object, no other text.`;
   useEffect(() => {
     fetchReport();
   }, [fetchReport]);
-  const healthColor = report?.overallHealth === 'Excellent' ? '#00C48C'
+  const healthColor = report?.overallHealth === 'Excellent' ? '#10B981'
     : report?.overallHealth === 'Good' ? '#4A9EFF'
-    : report?.overallHealth === 'Moderate' ? '#F5A623' : '#E05252';
+    : report?.overallHealth === 'Moderate' ? '#FDBA2D' : '#EF4444';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -187,7 +187,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-5">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#9B72CF] animate-spin" />
               <span className="text-sm text-[#888888]">Analyzing YouTube algorithm signals...</span>
@@ -236,16 +236,16 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Recommendations */}
           {report.recommendations.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
-                <Sparkles className="w-4 h-4 text-[#F5A623]" />
+                <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Recommendations</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {report.recommendations.map((rec, i) => (
                   <div key={i} className="flex items-start gap-3 px-4 py-3">
-                    <div className="w-6 h-6 rounded-full bg-[#F5A623]/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[10px] font-bold text-[#F5A623]">{i + 1}</span>
+                    <div className="w-6 h-6 rounded-full bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-[10px] font-bold text-[#FDBA2D]">{i + 1}</span>
                     </div>
                     <p className="text-sm text-[#888888] leading-relaxed">{rec}</p>
                   </div>
@@ -258,12 +258,12 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
           <button
             onClick={fetchReport}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
           >
             Try Again
           </button>

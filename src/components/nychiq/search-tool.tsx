@@ -34,7 +34,7 @@ const FILTERS: { key: FilterType; label: string; icon: React.ReactNode }[] = [
 /* ── Channel Card ── */
 function ChannelCard({ channel }: { channel: ChannelResult }) {
   return (
-    <div className="flex items-center gap-4 p-4 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
+    <div className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
       onClick={() => window.open(`https://youtube.com/channel/${channel.channelId}`, '_blank', 'noopener')}
       role="button"
       tabIndex={0}
@@ -49,7 +49,7 @@ function ChannelCard({ channel }: { channel: ChannelResult }) {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <h3 className="text-sm font-semibold text-[#E8E8E8] truncate hover:text-[#F5A623] transition-colors">
+        <h3 className="text-sm font-semibold text-[#E8E8E8] truncate hover:text-[#FDBA2D] transition-colors">
           {channel.title}
         </h3>
         <p className="text-xs text-[#888888] mt-0.5">Channel</p>
@@ -65,8 +65,8 @@ function ChannelCard({ channel }: { channel: ChannelResult }) {
 function EmptyState({ hasQuery }: { hasQuery: boolean }) {
   return (
     <div className="flex flex-col items-center justify-center py-16">
-      <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-        <Search className="w-8 h-8 text-[#F5A623]" />
+      <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+        <Search className="w-8 h-8 text-[#FDBA2D]" />
       </div>
       <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">
         {hasQuery ? 'No results found' : 'Search YouTube'}
@@ -203,7 +203,7 @@ export function SearchTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]">
@@ -227,13 +227,13 @@ export function SearchTool() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
                 placeholder="Search any topic, channel or keyword..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 focus:ring-1 focus:ring-[#F5A623]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <button
               onClick={handleSearch}
               disabled={loading || !query.trim()}
-              className="px-5 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -272,8 +272,8 @@ export function SearchTool() {
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
         </div>
       )}
@@ -284,7 +284,7 @@ export function SearchTool() {
           {filter === 'channel' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-[#111111] border border-[#222222]">
+                <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#222222]">
                   <div className="w-16 h-16 rounded-full bg-[#1A1A1A] animate-shrink animate-pulse shrink-0" />
                   <div className="flex-1 space-y-2">
                     <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3" />

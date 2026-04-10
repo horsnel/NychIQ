@@ -43,19 +43,19 @@ interface CompareResult {
 /* ── Color helpers ── */
 function valueColor(value: number, goodHigh = true): string {
   if (goodHigh) {
-    if (value >= 75) return '#00C48C';
-    if (value >= 50) return '#F5A623';
-    return '#E05252';
+    if (value >= 75) return '#10B981';
+    if (value >= 50) return '#FDBA2D';
+    return '#EF4444';
   }
-  if (value <= 25) return '#00C48C';
-  if (value <= 50) return '#F5A623';
-  return '#E05252';
+  if (value <= 25) return '#10B981';
+  if (value <= 50) return '#FDBA2D';
+  return '#EF4444';
 }
 
 function compColor(level: string): string {
-  if (level === 'Low') return '#00C48C';
-  if (level === 'Medium') return '#F5A623';
-  return '#E05252';
+  if (level === 'Low') return '#10B981';
+  if (level === 'Medium') return '#FDBA2D';
+  return '#EF4444';
 }
 
 /* ── Comparison table cell ── */
@@ -214,7 +214,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(155,114,207,0.1)' }}>
@@ -243,20 +243,20 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="hidden sm:block text-lg font-bold text-[#444444] px-1">VS</div>
             <div className="flex-1 w-full relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#E05252]/20 text-[#E05252]">B</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#EF4444]/20 text-[#EF4444]">B</span>
               <input
                 type="text"
                 value={nicheB}
                 onChange={(e) => setNicheB(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche B (e.g., Gaming)"
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#E05252]/50 focus:ring-1 focus:ring-[#E05252]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
               />
             </div>
             <button
               onClick={handleCompare}
               disabled={loading || !nicheA.trim() || !nicheB.trim()}
-              className="w-full sm:w-auto px-5 h-11 rounded-lg text-[#0A0A0A] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0"
+              className="w-full sm:w-auto px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0"
               style={{ backgroundColor: '#9B72CF' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Columns2 className="w-4 h-4" />}
@@ -268,10 +268,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8] mb-3">{error}</p>
-          <button onClick={handleCompare} className="px-4 py-2 rounded-lg bg-[#E05252]/15 text-[#E05252] text-xs font-medium hover:bg-[#E05252]/25 transition-colors">
+          <button onClick={handleCompare} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -279,7 +279,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Skeleton */}
       {loading && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-6 space-y-4">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 space-y-4">
           <div className="flex items-center justify-center gap-4 py-6">
             <div className="w-16 h-16 rounded-xl bg-[#1A1A1A] animate-pulse" />
             <div className="text-2xl font-black text-[#444444] animate-pulse">VS</div>
@@ -309,7 +309,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Comparison Table */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="grid grid-cols-3 text-center border-b border-[#1A1A1A]">
               <div className="px-4 py-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(155,114,207,0.15)', color: '#9B72CF' }}>A</span>
@@ -319,7 +319,7 @@ Return ONLY the JSON object, no other text.`;
                 <span className="text-xs font-black text-[#444444] tracking-widest">VS</span>
               </div>
               <div className="px-4 py-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#E05252]/15 text-[#E05252]">B</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#EF4444]/15 text-[#EF4444]">B</span>
                 <p className="text-sm font-bold text-[#E8E8E8] mt-1">{result.nicheB}</p>
               </div>
             </div>
@@ -352,7 +352,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Automation Potential Bars */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
               <TrendingUp className="w-4 h-4" style={{ color: '#9B72CF' }} />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">Automation Potential</h3>
@@ -380,7 +380,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Strategic Advice */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#9B72CF' }} />

@@ -57,17 +57,17 @@ function TrendingHeader({
   onViewModeToggle: () => void;
 }) {
   return (
-    <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+    <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
       <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(0,196,140,0.1)]">
-              <TrendingUp className="w-5 h-5 text-[#00C48C]" />
+            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
+              <TrendingUp className="w-5 h-5 text-[#10B981]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8] flex items-center gap-2">
                 Live Trending
-                <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00C48C]/10 text-[10px] font-bold text-[#00C48C]">
+                <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[10px] font-bold text-[#10B981]">
                   <span className="live-dot" />
                   LIVE
                 </span>
@@ -97,7 +97,7 @@ function TrendingHeader({
                 className={cn(
                   'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   selectedRegion === r.code
-                    ? 'bg-[#00C48C]/15 text-[#00C48C] border border-[#00C48C]/30'
+                    ? 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30'
                     : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
                 )}
               >
@@ -120,7 +120,7 @@ function TrendingHeader({
               className={cn(
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                 sortBy === s.key
-                  ? 'bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30'
+                  ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
                   : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
               )}
             >
@@ -252,7 +252,7 @@ export function TrendingTool() {
           label="Videos Tracked"
           value={videos.length}
           change="↑ 12%"
-          color="#00C48C"
+          color="#10B981"
           dark
           icon={<TrendingUp className="w-4 h-4" />}
         />
@@ -266,7 +266,7 @@ export function TrendingTool() {
         <StatCard
           label="Top Viral Score"
           value={topViral || '—'}
-          color="#F5A623"
+          color="#FDBA2D"
           dark
           icon={<Zap className="w-4 h-4" />}
         />
@@ -281,13 +281,13 @@ export function TrendingTool() {
 
       {/* Video Grid */}
       {error ? (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
-          <AlertCircle className="w-10 h-10 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
+          <AlertCircle className="w-10 h-10 text-[#EF4444] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Failed to Load</h3>
           <p className="text-sm text-[#888888] mb-4">{error}</p>
           <button
             onClick={fetchTrending}
-            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
+            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Try Again
@@ -300,7 +300,7 @@ export function TrendingTool() {
           ))}
         </div>
       ) : sortedVideos.length === 0 ? (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-8 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
           <TrendingUp className="w-10 h-10 text-[#444444] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">No Trending Videos</h3>
           <p className="text-sm text-[#888888]">No trending data available for {selectedRegion} right now.</p>

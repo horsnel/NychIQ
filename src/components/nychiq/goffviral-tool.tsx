@@ -71,7 +71,7 @@ function CopyBtn({ text }: { text: string }) {
   };
   return (
     <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]" title="Copy">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#00C48C]" /> : <Copy className="w-3.5 h-3.5" />}
+      {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
 }
@@ -79,23 +79,23 @@ function CopyBtn({ text }: { text: string }) {
 /* ── Verdict helpers ── */
 function verdictBadge(verdict: string): { bg: string; text: string; border: string } {
   switch (verdict) {
-    case 'VIRAL': return { bg: 'bg-[rgba(0,196,140,0.15)]', text: 'text-[#00C48C]', border: 'border-[rgba(0,196,140,0.3)]' };
+    case 'VIRAL': return { bg: 'bg-[rgba(16,185,129,0.15)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.3)]' };
     case 'LIKELY VIRAL': return { bg: 'bg-[rgba(74,158,255,0.15)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.3)]' };
-    case 'MODERATE': return { bg: 'bg-[rgba(245,166,35,0.15)]', text: 'text-[#F5A623]', border: 'border-[rgba(245,166,35,0.3)]' };
-    default: return { bg: 'bg-[rgba(224,82,82,0.15)]', text: 'text-[#E05252]', border: 'border-[rgba(224,82,82,0.3)]' };
+    case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.3)]' };
+    default: return { bg: 'bg-[rgba(239,68,68,0.15)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.3)]' };
   }
 }
 
 function probabilityColor(p: number): string {
-  if (p >= 70) return '#00C48C';
-  if (p >= 40) return '#F5A623';
-  return '#E05252';
+  if (p >= 70) return '#10B981';
+  if (p >= 40) return '#FDBA2D';
+  return '#EF4444';
 }
 
 function probabilityStroke(p: number): string {
-  if (p >= 70) return '#00C48C';
-  if (p >= 40) return '#F5A623';
-  return '#E05252';
+  if (p >= 70) return '#10B981';
+  if (p >= 40) return '#FDBA2D';
+  return '#EF4444';
 }
 
 /* ── Format hour to 12h ── */
@@ -302,11 +302,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
-              <Flame className="w-5 h-5 text-[#F5A623]" />
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
+              <Flame className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-base font-bold text-[#E8E8E8]">GoffViral TikTok Predictor</h2>
@@ -327,7 +327,7 @@ Return ONLY the JSON object, no other text.`;
               <input
                 type="number" value={views} onChange={(e) => setViews(e.target.value)}
                 placeholder="e.g. 50000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Likes */}
@@ -338,7 +338,7 @@ Return ONLY the JSON object, no other text.`;
               <input
                 type="number" value={likes} onChange={(e) => setLikes(e.target.value)}
                 placeholder="e.g. 8000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Shares */}
@@ -349,7 +349,7 @@ Return ONLY the JSON object, no other text.`;
               <input
                 type="number" value={shares} onChange={(e) => setShares(e.target.value)}
                 placeholder="e.g. 1200"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Downloads */}
@@ -360,7 +360,7 @@ Return ONLY the JSON object, no other text.`;
               <input
                 type="number" value={downloads} onChange={(e) => setDownloads(e.target.value)}
                 placeholder="e.g. 300"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Followers */}
@@ -371,7 +371,7 @@ Return ONLY the JSON object, no other text.`;
               <input
                 type="number" value={followers} onChange={(e) => setFollowers(e.target.value)}
                 placeholder="e.g. 15000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Posting Hour */}
@@ -383,9 +383,9 @@ Return ONLY the JSON object, no other text.`;
                 <input
                   type="range" min={0} max={23} value={postingHour}
                   onChange={(e) => setPostingHour(parseInt(e.target.value))}
-                  className="flex-1 h-1.5 bg-[#1A1A1A] rounded-full appearance-none cursor-pointer accent-[#F5A623]"
+                  className="flex-1 h-1.5 bg-[#1A1A1A] rounded-full appearance-none cursor-pointer accent-[#FDBA2D]"
                 />
-                <span className="text-xs text-[#F5A623] font-medium ml-3 min-w-[70px] text-right">{formatHour(postingHour)}</span>
+                <span className="text-xs text-[#FDBA2D] font-medium ml-3 min-w-[70px] text-right">{formatHour(postingHour)}</span>
               </div>
             </div>
           </div>
@@ -396,12 +396,12 @@ Return ONLY the JSON object, no other text.`;
               <label className="text-xs font-medium text-[#888888] flex items-center gap-1">
                 <Activity className="w-3 h-3" /> Video Length
               </label>
-              <span className="text-xs text-[#F5A623] font-medium">{videoLength}s</span>
+              <span className="text-xs text-[#FDBA2D] font-medium">{videoLength}s</span>
             </div>
             <input
               type="range" min={5} max={180} value={videoLength}
               onChange={(e) => setVideoLength(parseInt(e.target.value))}
-              className="w-full h-1.5 bg-[#1A1A1A] rounded-full appearance-none cursor-pointer accent-[#F5A623]"
+              className="w-full h-1.5 bg-[#1A1A1A] rounded-full appearance-none cursor-pointer accent-[#FDBA2D]"
             />
             <div className="flex justify-between text-[10px] text-[#444444] mt-1">
               <span>5s</span>
@@ -415,11 +415,11 @@ Return ONLY the JSON object, no other text.`;
               <div
                 onClick={() => setTrendingSound(!trendingSound)}
                 className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
-                  trendingSound ? 'bg-[#F5A623] border-[#F5A623]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
+                  trendingSound ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
                 }`}
                 style={{ width: 18, height: 18 }}
               >
-                {trendingSound && <Check className="w-3 h-3 text-[#0A0A0A]" />}
+                {trendingSound && <Check className="w-3 h-3 text-[#0D0D0D]" />}
               </div>
               <input type="checkbox" checked={trendingSound} onChange={() => setTrendingSound(!trendingSound)} className="hidden" />
               <span className="text-sm text-[#E8E8E8] flex items-center gap-1.5">
@@ -430,11 +430,11 @@ Return ONLY the JSON object, no other text.`;
               <div
                 onClick={() => setTextOverlay(!textOverlay)}
                 className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
-                  textOverlay ? 'bg-[#F5A623] border-[#F5A623]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
+                  textOverlay ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
                 }`}
                 style={{ width: 18, height: 18 }}
               >
-                {textOverlay && <Check className="w-3 h-3 text-[#0A0A0A]" />}
+                {textOverlay && <Check className="w-3 h-3 text-[#0D0D0D]" />}
               </div>
               <input type="checkbox" checked={textOverlay} onChange={() => setTextOverlay(!textOverlay)} className="hidden" />
               <span className="text-sm text-[#E8E8E8] flex items-center gap-1.5">
@@ -447,7 +447,7 @@ Return ONLY the JSON object, no other text.`;
           <button
             onClick={handlePredict}
             disabled={loading || (!views.trim() && !likes.trim())}
-            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Predict Viral Potential
@@ -457,10 +457,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
-          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -468,22 +468,22 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Steps */}
       {loading && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-5 space-y-3">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 space-y-3">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-[rgba(245,166,35,0.1)] flex items-center justify-center">
-              <Flame className="w-4 h-4 text-[#F5A623] animate-pulse" />
+            <div className="w-8 h-8 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
+              <Flame className="w-4 h-4 text-[#FDBA2D] animate-pulse" />
             </div>
             <span className="text-sm font-semibold text-[#E8E8E8]">GoffViral-V1 Pro Analyzing...</span>
           </div>
           {loadSteps.map((step, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                step.status === 'done' ? 'bg-[#00C48C]' :
-                step.status === 'active' ? 'bg-[rgba(245,166,35,0.2)] border border-[#F5A623]/50' :
+                step.status === 'done' ? 'bg-[#10B981]' :
+                step.status === 'active' ? 'bg-[rgba(253,186,45,0.2)] border border-[#FDBA2D]/50' :
                 'bg-[#0D0D0D] border border-[#1A1A1A]'
               }`}>
-                {step.status === 'done' && <Check className="w-3 h-3 text-[#0A0A0A]" />}
-                {step.status === 'active' && <Loader2 className="w-3 h-3 text-[#F5A623] animate-spin" />}
+                {step.status === 'done' && <Check className="w-3 h-3 text-[#0D0D0D]" />}
+                {step.status === 'active' && <Loader2 className="w-3 h-3 text-[#FDBA2D] animate-spin" />}
               </div>
               <span className={`text-sm ${step.status === 'active' ? 'text-[#E8E8E8]' : step.status === 'done' ? 'text-[#888888]' : 'text-[#444444]'}`}>
                 {step.label}
@@ -502,7 +502,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Probability Card */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Circle */}
               <CircleProgress value={result.probability} size={130} strokeWidth={10} />
@@ -534,14 +534,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Strengths */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-[#00C48C]" /> Strengths
+              <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" /> Strengths
             </h4>
             <div className="space-y-2.5">
               {result.strengths.map((s, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#00C48C] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#10B981] mt-0.5 flex-shrink-0" />
                   <span className="text-sm text-[#E8E8E8]">{s}</span>
                 </div>
               ))}
@@ -549,14 +549,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Weaknesses */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <TrendingDown className="w-3.5 h-3.5 text-[#E05252]" /> Weaknesses
+              <TrendingDown className="w-3.5 h-3.5 text-[#EF4444]" /> Weaknesses
             </h4>
             <div className="space-y-2.5">
               {result.weaknesses.map((w, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <XCircle className="w-4 h-4 text-[#E05252] mt-0.5 flex-shrink-0" />
+                  <XCircle className="w-4 h-4 text-[#EF4444] mt-0.5 flex-shrink-0" />
                   <span className="text-sm text-[#E8E8E8]">{w}</span>
                 </div>
               ))}
@@ -564,7 +564,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-[#4A9EFF]" /> Action Plan
             </h4>
@@ -585,8 +585,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-            <Flame className="w-8 h-8 text-[#F5A623]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+            <Flame className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Predict TikTok Virality</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Enter your TikTok video metrics to get an AI-powered viral potential prediction with actionable insights.</p>

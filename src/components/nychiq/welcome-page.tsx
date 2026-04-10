@@ -19,8 +19,8 @@ const FEATURES = [
     name: 'Command Center',
     desc: 'Your complete YouTube analytics hub with real-time stats, activity feed, and quick actions.',
     tag: 'ALL PLANS',
-    tagColor: '#F5A623',
-    iconBg: '#F5A623',
+    tagColor: '#FDBA2D',
+    iconBg: '#FDBA2D',
   },
   {
     num: '02',
@@ -29,8 +29,8 @@ const FEATURES = [
     name: 'Live Trend Radar',
     desc: 'Real-time trending videos across 9 regions with viral scoring and category filtering.',
     tag: 'LIVE DATA',
-    tagColor: '#00C48C',
-    iconBg: '#00C48C',
+    tagColor: '#10B981',
+    iconBg: '#10B981',
   },
   {
     num: '03',
@@ -39,7 +39,7 @@ const FEATURES = [
     name: 'Universal Search',
     desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.',
     tag: 'ALL PLANS',
-    tagColor: '#F5A623',
+    tagColor: '#FDBA2D',
     iconBg: '#4A9EFF',
   },
   {
@@ -50,7 +50,7 @@ const FEATURES = [
     desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#F5A623',
+    iconBg: '#FDBA2D',
   },
   {
     num: '05',
@@ -80,7 +80,7 @@ const FEATURES = [
     desc: 'Optimize titles, descriptions, tags, and metadata for maximum discoverability.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#00C48C',
+    iconBg: '#10B981',
   },
   {
     num: '08',
@@ -90,7 +90,7 @@ const FEATURES = [
     desc: 'Generate attention-grabbing video hooks and intros using AI trained on viral content.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#E05252',
+    iconBg: '#EF4444',
   },
   {
     num: '09',
@@ -100,7 +100,7 @@ const FEATURES = [
     desc: 'Find high-volume, low-competition keywords specific to YouTube search.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#F5A623',
+    iconBg: '#FDBA2D',
   },
   {
     num: '10',
@@ -120,7 +120,7 @@ const FEATURES = [
     desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#F5A623',
+    iconBg: '#FDBA2D',
   },
   {
     num: '12',
@@ -129,8 +129,8 @@ const FEATURES = [
     name: 'Revenue Forecaster',
     desc: 'Estimate CPM rates and projected earnings across niches and regions.',
     tag: 'LIVE DATA',
-    tagColor: '#00C48C',
-    iconBg: '#00C48C',
+    tagColor: '#10B981',
+    iconBg: '#10B981',
   },
   {
     num: '13',
@@ -149,8 +149,8 @@ const FEATURES = [
     name: 'Track & Analyze',
     desc: 'Monitor competitor channels, content strategies, and growth trajectories.',
     tag: 'LIVE DATA',
-    tagColor: '#00C48C',
-    iconBg: '#E05252',
+    tagColor: '#10B981',
+    iconBg: '#EF4444',
   },
   {
     num: '15',
@@ -160,7 +160,7 @@ const FEATURES = [
     desc: 'Find channels that are about to break out based on abnormal growth signals.',
     tag: 'AI POWERED',
     tagColor: '#9B72CF',
-    iconBg: '#00C48C',
+    iconBg: '#10B981',
   },
   {
     num: '16',
@@ -180,7 +180,7 @@ const FEATURES = [
     desc: 'Set up automated monitoring, alerts, and reporting for your channels.',
     tag: 'PRO+',
     tagColor: '#4A9EFF',
-    iconBg: '#F5A623',
+    iconBg: '#FDBA2D',
   },
 ];
 
@@ -220,7 +220,7 @@ const PLANS = [
 /* ── Terminal typing animation ── */
 const TERMINAL_LINES = [
   { text: '> SCANNING 12 TRENDING VIDEOS...', color: '#888888' },
-  { text: '> VIRAL SCORE: 94/99 ⚡', color: '#00C48C' },
+  { text: '> VIRAL SCORE: 94/99 ⚡', color: '#10B981' },
   { text: '> AI ANALYSIS READY', color: '#4A9EFF' },
 ];
 
@@ -250,10 +250,10 @@ function TerminalLine({ text, color, delay }: { text: string; color: string; del
   if (!visible) return null;
   return (
     <div className="font-mono text-xs" style={{ color }}>
-      <span className="text-[#F5A623]">▸ </span>
+      <span className="text-[#FDBA2D]">▸ </span>
       {textVisible}
       {textVisible.length < text.length && (
-        <span className="inline-block w-1.5 h-3.5 bg-[#F5A623] ml-0.5 animate-pulse" />
+        <span className="inline-block w-1.5 h-3.5 bg-[#FDBA2D] ml-0.5 animate-pulse" />
       )}
     </div>
   );
@@ -272,18 +272,18 @@ export function WelcomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#070707] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0D0D0D] relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#070707] to-[#050505]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(245,166,35,0.02)] blur-[100px]" />
-      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(0,196,140,0.015)] blur-[80px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D] to-[#0D0D0D]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(253,186,45,0.02)] blur-[100px]" />
+      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(16,185,129,0.015)] blur-[80px]" />
 
       <div className="relative z-10">
         {/* ═══ NAVIGATION BAR ═══ */}
         <nav
           className={`sticky top-0 z-50 transition-all duration-300 ${
             scrolled
-              ? 'bg-[#000]/95 backdrop-blur-md border-b border-[#111]'
+              ? 'bg-[#000]/95 backdrop-blur-md border-b border-[#141414]'
               : 'bg-transparent border-b border-transparent'
           }`}
         >
@@ -294,13 +294,13 @@ export function WelcomePage() {
                 onClick={() => setPage('welcome')}
                 className="flex items-center gap-2.5 group"
               >
-                <div className="w-9 h-9 rounded-[5px] bg-[#F5A623] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
+                <div className="w-9 h-9 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.2)] group-hover:shadow-[rgba(253,186,45,0.35)] transition-shadow">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M10 6L18 12L10 18V6Z" fill="white"/>
                     <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                   </svg>
                 </div>
-                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
               </button>
 
               {/* Center links - desktop */}
@@ -341,7 +341,7 @@ export function WelcomePage() {
                   Sign In
                 </Button>
                 <Button
-                  className="bg-[#F5A623] text-black hover:bg-[#E6960F] text-sm font-semibold shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#D9A013] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={() => setPage('login')}
                 >
                   Get Started
@@ -362,7 +362,7 @@ export function WelcomePage() {
 
           {/* Mobile dropdown menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-[#111] border-t border-[#1E1E1E] animate-fade-in-up">
+            <div className="md:hidden bg-[#141414] border-t border-[#1E1E1E] animate-fade-in-up">
               <div className="px-4 py-4 space-y-1">
                 <button
                   onClick={() => { featuresRef.current?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
@@ -397,7 +397,7 @@ export function WelcomePage() {
                     Sign In
                   </Button>
                   <Button
-                    className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] font-semibold"
+                    className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold"
                     onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
                   >
                     Get Started <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -414,7 +414,7 @@ export function WelcomePage() {
             {/* Left column */}
             <div className="animate-fade-in-up">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(0,196,140,0.08)] border border-[rgba(0,196,140,0.15)] text-xs text-[#00C48C] font-semibold tracking-wide uppercase mb-6">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(16,185,129,0.08)] border border-[rgba(16,185,129,0.15)] text-xs text-[#10B981] font-semibold tracking-wide uppercase mb-6">
                 <span className="live-dot" />
                 LIVE YOUTUBE INTELLIGENCE
               </div>
@@ -449,7 +449,7 @@ export function WelcomePage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
-                  className="bg-[#F5A623] text-black hover:bg-[#E6960F] font-semibold px-8 h-12 shadow-lg shadow-[rgba(245,166,35,0.2)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.2)]"
                   onClick={() => setPage('login')}
                 >
                   Start free trial
@@ -469,22 +469,22 @@ export function WelcomePage() {
 
             {/* Right column — Dashboard mockup */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(245,166,35,0.06)] to-[rgba(0,196,140,0.06)] rounded-2xl blur-2xl" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(16,185,129,0.06)] rounded-2xl blur-2xl" />
               <div className="relative bg-[#0D0D0D] border border-[#222] rounded-xl overflow-hidden shadow-2xl">
                 {/* Browser bar */}
-                <div className="flex items-center gap-3 px-4 py-3 bg-[#111] border-b border-[#1E1E1E]">
+                <div className="flex items-center gap-3 px-4 py-3 bg-[#141414] border-b border-[#1E1E1E]">
                   <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-[#E05252]" />
-                    <div className="w-3 h-3 rounded-full bg-[#F5A623]" />
-                    <div className="w-3 h-3 rounded-full bg-[#00C48C]" />
+                    <div className="w-3 h-3 rounded-full bg-[#EF4444]" />
+                    <div className="w-3 h-3 rounded-full bg-[#FDBA2D]" />
+                    <div className="w-3 h-3 rounded-full bg-[#10B981]" />
                   </div>
-                  <div className="flex-1 flex items-center gap-2 bg-[#0A0A0A] rounded-md px-3 py-1.5">
+                  <div className="flex-1 flex items-center gap-2 bg-[#0D0D0D] rounded-md px-3 py-1.5">
                     <Globe className="w-3 h-3 text-[#444]" />
                     <span className="text-xs text-[#666] font-mono">nychiq.com/dashboard</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(0,196,140,0.1)] border border-[rgba(0,196,140,0.2)]">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
                     <span className="live-dot" style={{ width: 6, height: 6 }} />
-                    <span className="text-[10px] text-[#00C48C] font-semibold">LIVE</span>
+                    <span className="text-[10px] text-[#10B981] font-semibold">LIVE</span>
                   </div>
                 </div>
 
@@ -498,7 +498,7 @@ export function WelcomePage() {
                 {/* Play button overlay */}
                 <div className="relative -mt-2 flex justify-center pb-4">
                   <button
-                    className="w-14 h-14 rounded-full bg-[#F5A623] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.3)] hover:scale-105 transition-transform animate-glow-amber"
+                    className="w-14 h-14 rounded-full bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.3)] hover:scale-105 transition-transform animate-glow-amber"
                     onClick={() => setPage('login')}
                   >
                     <Play className="w-6 h-6 text-black fill-black ml-1" />
@@ -542,7 +542,7 @@ export function WelcomePage() {
               <button
                 key={feat.num}
                 onClick={() => setPage('login')}
-                className="bg-[#0A0A0A] hover:bg-[#111] p-5 sm:p-6 text-left transition-all duration-200 group cursor-pointer"
+                className="bg-[#0D0D0D] hover:bg-[#141414] p-5 sm:p-6 text-left transition-all duration-200 group cursor-pointer"
               >
                 {/* Number + tag */}
                 <div className="flex items-center justify-between mb-4">
@@ -570,7 +570,7 @@ export function WelcomePage() {
                     <feat.icon className="w-4.5 h-4.5" style={{ color: feat.iconBg }} />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#E8E8E8] group-hover:text-[#F5A623] transition-colors">
+                    <h3 className="text-sm font-semibold text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">
                       {feat.name}
                     </h3>
                   </div>
@@ -582,7 +582,7 @@ export function WelcomePage() {
                 </p>
 
                 {/* Hover arrow */}
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] group-hover:text-[#F5A623] transition-colors">
+                <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] group-hover:text-[#FDBA2D] transition-colors">
                   <span>Learn more</span>
                   <ChevronRight className="w-3 h-3" />
                 </div>
@@ -607,13 +607,13 @@ export function WelcomePage() {
                 key={plan.tier}
                 className={`relative rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 ${
                   plan.highlight
-                    ? 'bg-[#0D0D0D] border-2 border-[#F5A623] shadow-lg shadow-[rgba(245,166,35,0.1)]'
-                    : 'bg-[#0A0A0A] border border-[#222] hover:border-[#2A2A2A]'
+                    ? 'bg-[#0D0D0D] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.1)]'
+                    : 'bg-[#0D0D0D] border border-[#222] hover:border-[#2A2A2A]'
                 }`}
               >
                 {/* Badge */}
                 {plan.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#F5A623] text-black text-[10px] font-bold rounded-full tracking-wide shadow-md">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#FDBA2D] text-black text-[10px] font-bold rounded-full tracking-wide shadow-md">
                     {plan.badge}
                   </div>
                 )}
@@ -633,7 +633,7 @@ export function WelcomePage() {
                 <ul className="space-y-2.5 mb-6">
                   {plan.features.map((feat) => (
                     <li key={feat} className="flex items-start gap-2 text-xs text-[#888]">
-                      <Check className="w-3.5 h-3.5 text-[#00C48C] shrink-0 mt-0.5" />
+                      <Check className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -643,7 +643,7 @@ export function WelcomePage() {
                 <Button
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
-                      ? 'bg-[#F5A623] text-black hover:bg-[#E6960F] shadow-md shadow-[rgba(245,166,35,0.15)]'
+                      ? 'bg-[#FDBA2D] text-black hover:bg-[#D9A013] shadow-md shadow-[rgba(253,186,45,0.15)]'
                       : 'bg-[#1A1A1A] text-[#888] hover:text-[#E8E8E8] hover:bg-[#222] border border-[#222]'
                   }`}
                   onClick={() => setPage('login')}
@@ -663,13 +663,13 @@ export function WelcomePage() {
               {/* Brand */}
               <div className="col-span-2 sm:col-span-1">
                 <button onClick={() => setPage('welcome')} className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-[5px] bg-[#F5A623] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                       <path d="M10 6L18 12L10 18V6Z" fill="white"/>
                       <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                     </svg>
                   </div>
-                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
                 </button>
                 <p className="text-xs text-[#555] leading-relaxed max-w-[200px]">
                   AI-powered YouTube intelligence platform for creators who want to grow faster and smarter.

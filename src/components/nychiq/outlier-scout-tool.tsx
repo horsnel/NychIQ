@@ -32,7 +32,7 @@ function CopyBtn({ text }: { text: string }) {
   };
   return (
     <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#00C48C]" /> : <Copy className="w-3.5 h-3.5" />}
+      {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
 }
@@ -98,7 +98,7 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]"><Radar className="w-5 h-5 text-[#4A9EFF]" /></div>
@@ -117,7 +117,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-2" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
             </div>
@@ -132,8 +132,8 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Viral Patterns */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#F5A623]" /> Viral Title Patterns</h4>
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#FDBA2D]" /> Viral Title Patterns</h4>
             <div className="space-y-2">
               {result.viralPatterns.map((p, i) => (
                 <div key={i} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
@@ -143,7 +143,7 @@ Return ONLY the JSON object.`;
                       <p className="text-xs text-[#888888] mt-1">{p.description}</p>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold text-[#00C48C] bg-[rgba(0,196,140,0.1)] flex items-center gap-1"><Eye className="w-3 h-3" /> {p.views}</span>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold text-[#10B981] bg-[rgba(16,185,129,0.1)] flex items-center gap-1"><Eye className="w-3 h-3" /> {p.views}</span>
                       <CopyBtn text={p.pattern} />
                     </div>
                   </div>
@@ -153,7 +153,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Sub-Niches */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Outlier Sub-Niches</h4>
             <div className="space-y-2">
               {result.subNiches.map((n, i) => (
@@ -169,7 +169,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Formats */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Repeat className="w-3.5 h-3.5 text-[#9B72CF]" /> Replicable Formats</h4>
             <div className="space-y-2">
               {result.formats.map((f, i) => (
@@ -182,7 +182,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Potential */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Estimated View Potential</h4>
             <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.estimatedPotential}</p>
           </div>

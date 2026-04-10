@@ -63,9 +63,9 @@ function getUpsellBadge(toolId: string, userPlan: Plan): BadgeInfo {
 
   switch (minPlan) {
     case 'starter': return { text: 'NEW', color: '#4A9EFF' };
-    case 'pro':     return { text: 'PRO+', color: '#F5A623' };
+    case 'pro':     return { text: 'PRO+', color: '#FDBA2D' };
     case 'elite':   return { text: 'ELITE+', color: '#9B72CF' };
-    case 'agency':  return { text: 'AGENCY', color: '#00C48C' };
+    case 'agency':  return { text: 'AGENCY', color: '#10B981' };
     default:        return null;
   }
 }
@@ -90,7 +90,7 @@ export function Sidebar() {
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1A1A1A]">
-        <div className="w-10 h-10 rounded-[5px] bg-[#F5A623] flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M10 6L18 12L10 18V6Z" fill="white"/>
             <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
@@ -98,7 +98,7 @@ export function Sidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#E8E8E8' }}>
-            NY<span className="text-[#F5A623]">CHIQ</span>
+            NY<span className="text-[#FDBA2D]">CHIQ</span>
           </span>
           <span className="text-[9px] text-[#888888] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
         </div>
@@ -149,11 +149,11 @@ export function Sidebar() {
                       className={cn(
                         'flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-all duration-150',
                         isActive
-                          ? 'sidebar-active bg-[rgba(245,166,35,0.1)] text-[#F5A623]'
+                          ? 'sidebar-active bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
                           : 'text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A]'
                       )}
                     >
-                      <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F5A623]' : '')} />
+                      <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#FDBA2D]' : '')} />
                       <span className="truncate">{tool.label}</span>
                       {!hasAccess && (() => {
                         const badge = getUpsellBadge(toolId, userPlan);
@@ -196,7 +196,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#070707] border-r border-[#1E1E1E] shrink-0 sticky top-0">
+      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0D0D0D] border-r border-[#1E1E1E] shrink-0 sticky top-0">
         {navContent}
       </aside>
 
@@ -207,7 +207,7 @@ export function Sidebar() {
             className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
-          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#070707] border-r border-[#1E1E1E] z-50 lg:hidden animate-fade-in-up">
+          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0D0D0D] border-r border-[#1E1E1E] z-50 lg:hidden animate-fade-in-up">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E]">
               <span className="text-sm font-semibold text-text-secondary">Navigation</span>
               <button onClick={() => setSidebarOpen(false)} className="text-text-muted hover:text-text-primary">

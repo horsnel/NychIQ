@@ -41,8 +41,8 @@ const THRESHOLDS: { key: Threshold; label: string }[] = [
 function ScoreCircle({ score }: { score: number }) {
   let color = '#888888';
   let bg = 'rgba(136,136,136,0.1)';
-  if (score >= 90) { color = '#00C48C'; bg = 'rgba(0,196,140,0.1)'; }
-  else if (score >= 80) { color = '#F5A623'; bg = 'rgba(245,166,35,0.1)'; }
+  if (score >= 90) { color = '#10B981'; bg = 'rgba(16,185,129,0.1)'; }
+  else if (score >= 80) { color = '#FDBA2D'; bg = 'rgba(253,186,45,0.1)'; }
   else if (score >= 70) { color = '#4A9EFF'; bg = 'rgba(74,158,255,0.1)'; }
   else if (score >= 50) { color = '#9B72CF'; bg = 'rgba(155,114,207,0.1)'; }
 
@@ -129,17 +129,17 @@ export function ViralTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(0,196,140,0.1)]">
-                <Zap className="w-5 h-5 text-[#00C48C]" />
+              <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
+                <Zap className="w-5 h-5 text-[#10B981]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#E8E8E8] flex items-center gap-2">
                   Viral Predictor
-                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00C48C]/10 text-[10px] font-bold text-[#00C48C]">
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[10px] font-bold text-[#10B981]">
                     <span className="live-dot" />
                     LIVE
                   </span>
@@ -167,7 +167,7 @@ export function ViralTool() {
                 className={cn(
                   'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   threshold === t.key
-                    ? 'bg-[#00C48C]/15 text-[#00C48C] border border-[#00C48C]/30'
+                    ? 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30'
                     : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
                 )}
               >
@@ -191,14 +191,14 @@ export function ViralTool() {
           label="Hot (80+)"
           value={hotCount}
           change="↑ 3"
-          color="#F5A623"
+          color="#FDBA2D"
           dark
           icon={<Flame className="w-4 h-4" />}
         />
         <StatCard
           label="On Fire (90+)"
           value={onFireCount}
-          color="#00C48C"
+          color="#10B981"
           dark
           icon={<Zap className="w-4 h-4" />}
         />
@@ -213,12 +213,12 @@ export function ViralTool() {
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
           <button
             onClick={fetchViral}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
           >
             Try Again
           </button>
@@ -227,7 +227,7 @@ export function ViralTool() {
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="flex items-center gap-4 p-4">
@@ -245,7 +245,7 @@ export function ViralTool() {
 
       {/* Score Breakdown List */}
       {!loading && !error && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
             <h3 className="text-sm font-semibold text-[#E8E8E8]">
               Score Breakdown
@@ -288,7 +288,7 @@ export function ViralTool() {
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#E8E8E8] truncate hover:text-[#F5A623] transition-colors">
+                    <h3 className="text-sm font-medium text-[#E8E8E8] truncate hover:text-[#FDBA2D] transition-colors">
                       {item.title}
                     </h3>
                     <div className="flex items-center gap-3 mt-1">
@@ -300,7 +300,7 @@ export function ViralTool() {
 
                   {/* Growth & Engagement */}
                   <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
-                    <span className="text-xs font-medium text-[#00C48C]">↑ {item.growthRate}%</span>
+                    <span className="text-xs font-medium text-[#10B981]">↑ {item.growthRate}%</span>
                     <span className="text-[11px] text-[#888888]">{item.engagementRate}% engage</span>
                   </div>
                 </div>

@@ -35,9 +35,9 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070707] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(245,166,35,0.03)] blur-[100px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(253,186,45,0.03)] blur-[100px]" />
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(155,114,207,0.02)] blur-[80px]" />
 
       <div className="relative z-10 w-full max-w-md">
@@ -46,24 +46,24 @@ export function LoginPage() {
           onClick={() => setPage('welcome')}
           className="flex items-center justify-center gap-2.5 mb-8 mx-auto group"
         >
-          <div className="w-10 h-10 rounded-[5px] bg-[#F5A623] flex items-center justify-center shadow-lg shadow-[rgba(245,166,35,0.2)] group-hover:shadow-[rgba(245,166,35,0.35)] transition-shadow">
+          <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.2)] group-hover:shadow-[rgba(253,186,45,0.35)] transition-shadow">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+          <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
         </button>
 
         {/* Card */}
-        <div className="bg-[#111] border border-[#222] rounded-xl p-6 sm:p-8">
+        <div className="bg-[#141414] border border-[#222] rounded-xl p-6 sm:p-8">
           {/* Tab toggle */}
-          <div className="flex items-center bg-[#0A0A0A] rounded-lg p-1 mb-6">
+          <div className="flex items-center bg-[#0D0D0D] rounded-lg p-1 mb-6">
             <button
               onClick={() => setMode('signup')}
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'signup'
-                  ? 'bg-[#F5A623] text-black shadow-md shadow-[rgba(245,166,35,0.2)]'
+                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
                   : 'text-[#666] hover:text-[#888]'
               }`}
             >
@@ -73,7 +73,7 @@ export function LoginPage() {
               onClick={() => setMode('login')}
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'login'
-                  ? 'bg-[#F5A623] text-black shadow-md shadow-[rgba(245,166,35,0.2)]'
+                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
                   : 'text-[#666] hover:text-[#888]'
               }`}
             >
@@ -123,7 +123,7 @@ export function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="pl-9 bg-[#0A0A0A] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#F5A62355]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0A0A0A] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#F5A62355]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Min. 6 characters"
-                      className="pl-9 pr-9 bg-[#0A0A0A] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#F5A62355]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
@@ -171,7 +171,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignUp || loading}
-                  className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -190,11 +190,11 @@ export function LoginPage() {
               {/* Terms */}
               <p className="text-[11px] text-[#444] text-center mt-4 leading-relaxed">
                 By creating an account, you agree to our{' '}
-                <button onClick={() => setPage('terms')} className="text-[#666] hover:text-[#F5A623] transition-colors underline underline-offset-2">
+                <button onClick={() => setPage('terms')} className="text-[#666] hover:text-[#FDBA2D] transition-colors underline underline-offset-2">
                   Terms of Service
                 </button>{' '}
                 and{' '}
-                <button onClick={() => setPage('privacy')} className="text-[#666] hover:text-[#F5A623] transition-colors underline underline-offset-2">
+                <button onClick={() => setPage('privacy')} className="text-[#666] hover:text-[#FDBA2D] transition-colors underline underline-offset-2">
                   Privacy Policy
                 </button>
               </p>
@@ -244,7 +244,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0A0A0A] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#F5A62355]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -253,7 +253,7 @@ export function LoginPage() {
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="login-password" className="text-xs text-[#666] font-medium">Password</Label>
-                    <button type="button" className="text-[11px] text-[#F5A623] hover:text-[#FFD700] transition-colors">
+                    <button type="button" className="text-[11px] text-[#FDBA2D] hover:text-[#FDE68A] transition-colors">
                       Forgot password?
                     </button>
                   </div>
@@ -265,7 +265,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="pl-9 pr-9 bg-[#0A0A0A] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#F5A62355]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
@@ -281,7 +281,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignIn || loading}
-                  className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -302,7 +302,7 @@ export function LoginPage() {
                 Don&apos;t have an account?{' '}
                 <button
                   onClick={() => setMode('signup')}
-                  className="text-[#F5A623] hover:text-[#FFD700] font-medium transition-colors"
+                  className="text-[#FDBA2D] hover:text-[#FDE68A] font-medium transition-colors"
                 >
                   Sign up free
                 </button>

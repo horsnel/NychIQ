@@ -45,13 +45,13 @@ const PLATFORM_COLORS: Record<string, { bg: string; text: string; border: string
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Comedy: 'bg-[rgba(245,166,35,0.1)] text-[#F5A623] border-[rgba(245,166,35,0.2)]',
+  Comedy: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]',
   Music: 'bg-[rgba(155,114,207,0.1)] text-[#9B72CF] border-[rgba(155,114,207,0.2)]',
   Tech: 'bg-[rgba(74,158,255,0.1)] text-[#4A9EFF] border-[rgba(74,158,255,0.2)]',
-  Gaming: 'bg-[rgba(0,196,140,0.1)] text-[#00C48C] border-[rgba(0,196,140,0.2)]',
+  Gaming: 'bg-[rgba(16,185,129,0.1)] text-[#10B981] border-[rgba(16,185,129,0.2)]',
   Fashion: 'bg-[rgba(225,48,108,0.1)] text-[#E1306C] border-[rgba(225,48,108,0.2)]',
-  Food: 'bg-[rgba(245,166,35,0.1)] text-[#F5A623] border-[rgba(245,166,35,0.2)]',
-  Sports: 'bg-[rgba(0,196,140,0.1)] text-[#00C48C] border-[rgba(0,196,140,0.2)]',
+  Food: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]',
+  Sports: 'bg-[rgba(16,185,129,0.1)] text-[#10B981] border-[rgba(16,185,129,0.2)]',
   News: 'bg-[rgba(74,158,255,0.1)] text-[#4A9EFF] border-[rgba(74,158,255,0.2)]',
   Lifestyle: 'bg-[rgba(155,114,207,0.1)] text-[#9B72CF] border-[rgba(155,114,207,0.2)]',
   Education: 'bg-[rgba(74,158,255,0.1)] text-[#4A9EFF] border-[rgba(74,158,255,0.2)]',
@@ -128,11 +128,11 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
-              <Share2 className="w-5 h-5 text-[#F5A623]" />
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
+              <Share2 className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Cross-Platform Trends</h2>
@@ -157,7 +157,7 @@ Return ONLY the JSON array, no other text.`;
                       isActive
                         ? colors
                           ? `${colors.bg} ${colors.text} ${colors.border}`
-                          : 'bg-[rgba(245,166,35,0.1)] text-[#F5A623] border-[rgba(245,166,35,0.2)]'
+                          : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]'
                         : 'bg-[#0D0D0D] text-[#888888] border-[#1A1A1A] hover:border-[#333333]'
                     }`}
                   >
@@ -176,7 +176,7 @@ Return ONLY the JSON array, no other text.`;
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#F5A623]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -190,7 +190,7 @@ Return ONLY the JSON array, no other text.`;
           <button
             onClick={fetchTrends}
             disabled={loading}
-            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Fetch Trends
@@ -200,12 +200,12 @@ Return ONLY the JSON array, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
           <button
             onClick={fetchTrends}
-            className="px-4 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -216,7 +216,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-4 space-y-3">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-16 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
                 <div className="w-12 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
@@ -235,7 +235,7 @@ Return ONLY the JSON array, no other text.`;
       {!loading && filteredTrends.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#F5A623]" />
+            <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
             {filteredTrends.length} Trend{filteredTrends.length !== 1 ? 's' : ''} Found
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -246,7 +246,7 @@ Return ONLY the JSON array, no other text.`;
               return (
                 <div
                   key={i}
-                  className="rounded-lg bg-[#111111] border border-[#222222] p-4 hover:border-[#333333] transition-all group"
+                  className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-all group"
                 >
                   {/* Top row: platform + category + spike */}
                   <div className="flex items-center justify-between mb-3">
@@ -258,14 +258,14 @@ Return ONLY the JSON array, no other text.`;
                         {trend.category}
                       </span>
                     </div>
-                    <div className={`flex items-center gap-1 text-xs font-bold ${isPositive ? 'text-[#00C48C]' : 'text-[#E05252]'}`}>
+                    <div className={`flex items-center gap-1 text-xs font-bold ${isPositive ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
                       {isPositive ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
                       {Math.abs(trend.spike)}%
                     </div>
                   </div>
 
                   {/* Trend Title */}
-                  <h4 className="text-sm font-semibold text-[#E8E8E8] mb-3 group-hover:text-[#F5A623] transition-colors leading-snug">
+                  <h4 className="text-sm font-semibold text-[#E8E8E8] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-snug">
                     {trend.title}
                   </h4>
 
@@ -286,7 +286,7 @@ Return ONLY the JSON array, no other text.`;
                   <div className="flex items-center justify-between pt-2 border-t border-[#1A1A1A]">
                     <span className="text-[10px] text-[#666666]">Crossing to YouTube?</span>
                     {trend.crossingToYouTube ? (
-                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(0,196,140,0.1)] text-[#00C48C] border border-[rgba(0,196,140,0.2)]">
+                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(16,185,129,0.1)] text-[#10B981] border border-[rgba(16,185,129,0.2)]">
                         <ArrowUpRight className="w-3 h-3" /> Yes
                       </span>
                     ) : (
@@ -314,8 +314,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-            <Share2 className="w-8 h-8 text-[#F5A623]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+            <Share2 className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Discover Cross-Platform Trends</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Select a region and fetch the hottest trends before they blow up on YouTube.</p>

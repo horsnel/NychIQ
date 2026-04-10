@@ -25,11 +25,11 @@ function WelcomeBanner() {
     <div
       className="rounded-lg overflow-hidden p-6 relative"
       style={{
-        background: 'linear-gradient(135deg, rgba(245,166,35,0.12) 0%, rgba(245,166,35,0.04) 50%, rgba(155,114,207,0.06) 100%)',
-        border: '1px solid rgba(245,166,35,0.2)',
+        background: 'linear-gradient(135deg, rgba(253,186,45,0.12) 0%, rgba(253,186,45,0.04) 50%, rgba(155,114,207,0.06) 100%)',
+        border: '1px solid rgba(253,186,45,0.2)',
       }}
     >
-      <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#F5A623]/5 -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#FDBA2D]/5 -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-1/2 w-48 h-24 rounded-full bg-[#9B72CF]/5 translate-y-1/2" />
 
       <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -46,11 +46,11 @@ function WelcomeBanner() {
           <span
             className={cn(
               'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider',
-              userPlan === 'trial' && 'bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30',
+              userPlan === 'trial' && 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30',
               userPlan === 'starter' && 'bg-[#4A9EFF]/15 text-[#4A9EFF] border border-[#4A9EFF]/30',
-              userPlan === 'pro' && 'bg-[#00C48C]/15 text-[#00C48C] border border-[#00C48C]/30',
+              userPlan === 'pro' && 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30',
               userPlan === 'elite' && 'bg-[#9B72CF]/15 text-[#9B72CF] border border-[#9B72CF]/30',
-              userPlan === 'agency' && 'bg-[#E05252]/15 text-[#E05252] border border-[E05252]/30',
+              userPlan === 'agency' && 'bg-[#EF4444]/15 text-[#EF4444] border border-[E05252]/30',
             )}
           >
             {planLabel}
@@ -94,7 +94,7 @@ function StatsRow() {
         label="Tools Used"
         value={String(toolsUsedCount)}
         change={`${PLAN_ACCESS[userPlan]?.length ?? 0} available`}
-        color="#00C48C"
+        color="#10B981"
         dark
         icon={<Zap className="w-4 h-4" />}
       />
@@ -102,7 +102,7 @@ function StatsRow() {
         label="Tokens This Week"
         value={String(weekSpent)}
         change={weekSpent > 0 ? 'Active' : 'Start exploring'}
-        color="#F5A623"
+        color="#FDBA2D"
         dark
         icon={<Flame className="w-4 h-4" />}
       />
@@ -127,7 +127,7 @@ function StatsRow() {
         value={userPlan === 'elite' ? '∞' : tokenBalance}
         change={tokenBalance < 10 ? 'Low balance' : userPlan === 'elite' ? 'Unlimited' : undefined}
         changeType={tokenBalance < 10 ? 'down' : 'up'}
-        color={tokenBalance < 10 ? '#E05252' : '#F5A623'}
+        color={tokenBalance < 10 ? '#EF4444' : '#FDBA2D'}
         dark
         icon={<Coins className="w-4 h-4" />}
       />
@@ -152,18 +152,18 @@ function QuickActions() {
     {
       label: 'Get Viral Score',
       icon: <Zap className="w-5 h-5" />,
-      color: '#F5A623',
-      bg: 'rgba(245,166,35,0.1)',
-      border: 'rgba(245,166,35,0.2)',
+      color: '#FDBA2D',
+      bg: 'rgba(253,186,45,0.1)',
+      border: 'rgba(253,186,45,0.2)',
       tool: 'viral',
       available: true,
     },
     {
       label: 'Trending Now',
       icon: <TrendingUp className="w-5 h-5" />,
-      color: '#00C48C',
-      bg: 'rgba(0,196,140,0.1)',
-      border: 'rgba(0,196,140,0.2)',
+      color: '#10B981',
+      bg: 'rgba(16,185,129,0.1)',
+      border: 'rgba(16,185,129,0.2)',
       tool: 'trending',
       available: true,
     },
@@ -175,7 +175,7 @@ function QuickActions() {
         <button
           key={action.tool}
           onClick={() => setActiveTool(action.tool)}
-          className="group flex items-center gap-3 p-4 rounded-lg border border-[#222222] bg-[#111111] hover:bg-[#0D0D0D] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 text-left"
+          className="group flex items-center gap-3 p-4 rounded-lg border border-[#222222] bg-[#141414] hover:bg-[#0D0D0D] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 text-left"
           style={{ '--hover-border': action.border } as React.CSSProperties}
           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = action.border; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#222222'; }}
@@ -183,7 +183,7 @@ function QuickActions() {
           <div className="p-2.5 rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ backgroundColor: action.bg, color: action.color }}>
             {action.icon}
           </div>
-          <span className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#F5A623] transition-colors">{action.label}</span>
+          <span className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">{action.label}</span>
           <ArrowRight className="w-4 h-4 text-[#444444] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       ))}
@@ -217,7 +217,7 @@ function ActivityFeed() {
             icon: '⚡',
             text: `Used ${txn.tokens} token${txn.tokens !== 1 ? 's' : ''} on ${toolLabel}`,
             time: timeStr,
-            color: '#F5A623',
+            color: '#FDBA2D',
           });
           break;
         case 'earn':
@@ -225,7 +225,7 @@ function ActivityFeed() {
             icon: '🎁',
             text: `Earned ${txn.tokens} bonus tokens from ${txn.tool}`,
             time: timeStr,
-            color: '#00C48C',
+            color: '#10B981',
           });
           break;
         case 'reset':
@@ -259,7 +259,7 @@ function ActivityFeed() {
   // If no history, show welcome items
   if (feedItems.length === 0) {
     return (
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-semibold text-[#E8E8E8]">Activity</h3>
@@ -275,11 +275,11 @@ function ActivityFeed() {
   }
 
   return (
-    <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+    <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-semibold text-[#E8E8E8]">Recent Activity</h3>
-          <span className="px-2 py-0.5 rounded-full bg-[rgba(0,196,140,0.1)] text-[10px] font-bold text-[#00C48C]">
+          <span className="px-2 py-0.5 rounded-full bg-[rgba(16,185,129,0.1)] text-[10px] font-bold text-[#10B981]">
             LIVE
           </span>
         </div>
@@ -350,11 +350,11 @@ function GrowthChart() {
   };
 
   return (
-    <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
       <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-2">
         <BarChart3 className="w-4 h-4 text-[#4A9EFF]" />
         Token Usage This Week
-        <span className="ml-auto text-[10px] font-medium text-[#00C48C] bg-[#00C48C]/10 px-2 py-0.5 rounded-full">
+        <span className="ml-auto text-[10px] font-medium text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full">
           {weekChange >= 0 ? '↑' : '↓'} {Math.abs(weekChange)}%
         </span>
       </h3>
@@ -362,8 +362,8 @@ function GrowthChart() {
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="dashAreaGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#F5A623" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#F5A623" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="#FDBA2D" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#FDBA2D" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
@@ -381,11 +381,11 @@ function GrowthChart() {
           })}
 
           <path d={areaPath} fill="url(#dashAreaGrad)" />
-          <path d={linePath} fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
           {points.map((p, i) => (
             <g key={i}>
-              <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#F5A623" strokeWidth="2" />
+              <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#FDBA2D" strokeWidth="2" />
               <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#888888">
                 {orderedDays[i]}
               </text>
@@ -407,15 +407,15 @@ function UpgradeBanner() {
     <div
       className="rounded-lg overflow-hidden p-5 relative"
       style={{
-        background: 'linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(155,114,207,0.1) 100%)',
-        border: '1px solid rgba(245,166,35,0.25)',
+        background: 'linear-gradient(135deg, rgba(253,186,45,0.15) 0%, rgba(155,114,207,0.1) 100%)',
+        border: '1px solid rgba(253,186,45,0.25)',
       }}
     >
-      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#F5A623]/5 -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#FDBA2D]/5 -translate-y-1/2 translate-x-1/2" />
       <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="p-2 rounded-lg bg-[#F5A623]/10 shrink-0">
-            <Crown className="w-5 h-5 text-[#F5A623]" />
+          <div className="p-2 rounded-lg bg-[#FDBA2D]/10 shrink-0">
+            <Crown className="w-5 h-5 text-[#FDBA2D]" />
           </div>
           <div>
             <h3 className="text-base font-bold text-[#E8E8E8] mb-1">Upgrade to Pro</h3>
@@ -426,7 +426,7 @@ function UpgradeBanner() {
         </div>
         <button
           onClick={() => setUpgradeModalOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors shrink-0"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors shrink-0"
         >
           UPGRADE NOW
           <ArrowRight className="w-4 h-4" />

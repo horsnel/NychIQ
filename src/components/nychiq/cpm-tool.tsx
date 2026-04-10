@@ -64,7 +64,7 @@ Rules:
             cpm: typeof entry.cpm === 'number' ? entry.cpm : 10,
             rpm: typeof entry.cpm === 'number' ? +(entry.cpm * 0.45).toFixed(2) : 4.50,
             change: typeof entry.change === 'number' ? entry.change : 0,
-            color: (entry.competition === 'Low' ? '#00C48C' : entry.competition === 'High' ? '#E05252' : '#F5A623'),
+            color: (entry.competition === 'Low' ? '#10B981' : entry.competition === 'High' ? '#EF4444' : '#FDBA2D'),
             competition: ['Low', 'Medium', 'High'].includes(entry.competition) ? entry.competition : 'Medium',
           }));
           setCpmData(data);
@@ -102,11 +102,11 @@ Rules:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(0,196,140,0.1)]">
-              <DollarSign className="w-5 h-5 text-[#00C48C]" />
+            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
+              <DollarSign className="w-5 h-5 text-[#10B981]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">CPM Estimator</h2>
@@ -122,20 +122,20 @@ Rules:
         <button
           onClick={loadCPMData}
           disabled={loading}
-          className="w-full p-4 rounded-lg bg-[#111111] border border-[#222222] hover:border-[#00C48C]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#E8E8E8]"
+          className="w-full p-4 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#10B981]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#E8E8E8]"
         >
-          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#00C48C]" />}
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#10B981]" />}
           {loading ? 'Loading CPM rates...' : `Load CPM Rates for ${region}`}
-          <span className="text-[10px] text-[#F5A623] ml-2">({TOKEN_COSTS.cpm} tokens)</span>
+          <span className="text-[10px] text-[#FDBA2D] ml-2">({TOKEN_COSTS.cpm} tokens)</span>
         </button>
       )}
 
       {/* CPM Rates Table */}
       {hasLoaded && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-[#F5A623]" />
+              <TrendingUp className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">CPM Rates by Niche — {region}</h3>
             </div>
             <button onClick={loadCPMData} disabled={loading} className="text-[#888888] hover:text-[#E8E8E8] transition-colors" title="Refresh">
@@ -144,8 +144,8 @@ Rules:
           </div>
           {error ? (
             <div className="p-8 text-center">
-              <p className="text-sm text-[#E05252]">{error}</p>
-              <button onClick={loadCPMData} className="mt-2 text-xs text-[#F5A623] underline">Try Again</button>
+              <p className="text-sm text-[#EF4444]">{error}</p>
+              <button onClick={loadCPMData} className="mt-2 text-xs text-[#FDBA2D] underline">Try Again</button>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -165,7 +165,7 @@ Rules:
                       key={i}
                       className={cn(
                         'transition-colors cursor-pointer',
-                        selectedNiche === i ? 'bg-[#F5A623]/5' : 'hover:bg-[#0D0D0D]/50'
+                        selectedNiche === i ? 'bg-[#FDBA2D]/5' : 'hover:bg-[#0D0D0D]/50'
                       )}
                       onClick={() => handleNicheChange(i)}
                     >
@@ -176,21 +176,21 @@ Rules:
                         </div>
                       </td>
                       <td className="text-right px-4 py-3">
-                        <span className="text-sm font-semibold text-[#00C48C]">${entry.cpm.toFixed(2)}</span>
+                        <span className="text-sm font-semibold text-[#10B981]">${entry.cpm.toFixed(2)}</span>
                       </td>
                       <td className="text-right px-4 py-3">
                         <span className="text-sm font-semibold text-[#4A9EFF]">${entry.rpm.toFixed(2)}</span>
                       </td>
                       <td className="text-right px-4 py-3">
-                        <span className={cn('text-sm font-medium flex items-center justify-end gap-1', entry.change >= 0 ? 'text-[#00C48C]' : 'text-[#E05252]')}>
+                        <span className={cn('text-sm font-medium flex items-center justify-end gap-1', entry.change >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]')}>
                           {entry.change >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                           {entry.change >= 0 ? '+' : ''}{entry.change}%
                         </span>
                       </td>
                       <td className="text-right px-4 py-3">
                         <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{
-                          color: entry.competition === 'Low' ? '#00C48C' : entry.competition === 'Medium' ? '#F5A623' : '#E05252',
-                          backgroundColor: entry.competition === 'Low' ? 'rgba(0,196,140,0.1)' : entry.competition === 'Medium' ? 'rgba(245,166,35,0.1)' : 'rgba(224,82,82,0.1)',
+                          color: entry.competition === 'Low' ? '#10B981' : entry.competition === 'Medium' ? '#FDBA2D' : '#EF4444',
+                          backgroundColor: entry.competition === 'Low' ? 'rgba(16,185,129,0.1)' : entry.competition === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(239,68,68,0.1)',
                         }}>{entry.competition}</span>
                       </td>
                     </tr>
@@ -203,7 +203,7 @@ Rules:
       )}
 
       {/* Revenue Calculator */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
           <Calculator className="w-4 h-4 text-[#4A9EFF]" />
           <h3 className="text-sm font-semibold text-[#E8E8E8]">Revenue Calculator</h3>
@@ -218,7 +218,7 @@ Rules:
                   value={monthlyViews}
                   onChange={(e) => handleViewsChange(e.target.value)}
                   placeholder="Enter monthly views..."
-                  className="w-full h-11 pl-4 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                  className="w-full h-11 pl-4 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                 />
               </div>
             </div>
@@ -231,7 +231,7 @@ Rules:
                   className={cn(
                     'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                     monthlyViews === preset
-                      ? 'bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30'
+                      ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
                       : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
                   )}
                 >
@@ -253,7 +253,7 @@ Rules:
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="rounded-lg p-4 bg-[#0D0D0D] border border-[#1A1A1A] text-center">
               <p className="text-[11px] font-medium text-[#888888] uppercase tracking-wider mb-2">Monthly Revenue</p>
-              <p className="text-2xl font-bold text-[#00C48C]">
+              <p className="text-2xl font-bold text-[#10B981]">
                 ${hasLoaded ? revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—'}
               </p>
             </div>
@@ -265,7 +265,7 @@ Rules:
             </div>
             <div className="rounded-lg p-4 bg-[#0D0D0D] border border-[#1A1A1A] text-center">
               <p className="text-[11px] font-medium text-[#888888] uppercase tracking-wider mb-2">RPM</p>
-              <p className="text-2xl font-bold text-[#F5A623]">
+              <p className="text-2xl font-bold text-[#FDBA2D]">
                 ${hasLoaded ? rpm.toFixed(2) : '—'}
               </p>
               <p className="text-[10px] text-[#666666] mt-1">~45% of CPM</p>

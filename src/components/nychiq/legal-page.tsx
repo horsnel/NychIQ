@@ -359,7 +359,7 @@ export function LegalPage({ type }: LegalPageProps) {
   const info = LEGAL_CONTENT[type] || DEFAULT_INFO;
 
   return (
-    <div className="min-h-screen bg-[#070707] flex flex-col">
+    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
       {/* Top bar */}
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
@@ -369,8 +369,8 @@ export function LegalPage({ type }: LegalPageProps) {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-[#F5A623]" />
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+          <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
         </div>
       </div>
 
@@ -384,7 +384,7 @@ export function LegalPage({ type }: LegalPageProps) {
         <div className="space-y-8">
           {info.sections.map((section, idx) => (
             <section key={idx} className="nychiq-card p-6">
-              <h2 className="text-lg font-semibold text-[#F5A623] mb-4">{section.heading}</h2>
+              <h2 className="text-lg font-semibold text-[#FDBA2D] mb-4">{section.heading}</h2>
               <div className="space-y-3 text-sm text-[#888888] leading-relaxed">
                 {section.body.map((paragraph, pIdx) => (
                   <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />

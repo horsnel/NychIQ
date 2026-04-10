@@ -39,7 +39,7 @@ const MODE_SUGGESTIONS: Record<string, string[]> = {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in-up py-2">
-      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#F5A623] flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0">
         <Bot className="w-4 h-4 text-black" />
       </div>
       <div className="bg-[#1A1A1A] px-4 py-3 rounded-2xl rounded-tl-sm">
@@ -159,7 +159,7 @@ export function SakuFullPage() {
   const suggestions = MODE_SUGGESTIONS[activeMode] || MODE_SUGGESTIONS.general;
 
   return (
-    <div className="fixed inset-0 z-[55] bg-[#0A0A0A] flex flex-col animate-fade-in-up">
+    <div className="fixed inset-0 z-[55] bg-[#0D0D0D] flex flex-col animate-fade-in-up">
       {/* Header */}
       <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-[#1E1E1E] shrink-0">
         <div className="flex items-center gap-3">
@@ -170,15 +170,15 @@ export function SakuFullPage() {
           >
             <MessageSquare className="w-5 h-5" />
           </button>
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#F5A623] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center">
             <Bot className="w-5 h-5 text-black" />
           </div>
           <div>
             <h2 className="text-base font-bold text-[#E8E8E8]">Saku AI</h2>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00C48C] animate-pulse-live" />
-                <span className="text-[10px] text-[#00C48C]">Online</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-live" />
+                <span className="text-[10px] text-[#10B981]">Online</span>
               </div>
               <span className="text-[10px] text-[#333]">·</span>
               <span className="text-[10px] text-[#555]">{tokenBalance} tokens</span>
@@ -187,12 +187,12 @@ export function SakuFullPage() {
         </div>
         <div className="flex items-center gap-2">
           {/* Mode toggle */}
-          <div className="flex items-center bg-[#111] rounded-lg p-0.5 border border-[#1E1E1E]">
+          <div className="flex items-center bg-[#141414] rounded-lg p-0.5 border border-[#1E1E1E]">
             <button
               onClick={() => setSakuMode('2.0')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 sakuMode === '2.0'
-                  ? 'bg-[#F5A623] text-black shadow-sm'
+                  ? 'bg-[#FDBA2D] text-black shadow-sm'
                   : 'text-[#555] hover:text-[#888]'
               }`}
             >
@@ -242,7 +242,7 @@ export function SakuFullPage() {
                 onClick={() => setActiveMode(mode.id)}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeMode === mode.id
-                    ? 'bg-[rgba(245,166,35,0.08)] border border-[rgba(245,166,35,0.15)] text-[#F5A623]'
+                    ? 'bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)] text-[#FDBA2D]'
                     : 'hover:bg-[rgba(255,255,255,0.02)] text-[#666] hover:text-[#888] border border-transparent'
                 }`}
               >
@@ -258,7 +258,7 @@ export function SakuFullPage() {
             <div className="mt-auto pt-3 border-t border-[#1A1A1A]">
               <button
                 onClick={() => setMessages([])}
-                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#444] hover:text-[#E05252] hover:bg-[rgba(224,82,82,0.06)] rounded-lg transition-colors"
+                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#444] hover:text-[#EF4444] hover:bg-[rgba(239,68,68,0.06)] rounded-lg transition-colors"
               >
                 <FileText className="w-3.5 h-3.5" />
                 Clear chat
@@ -274,7 +274,7 @@ export function SakuFullPage() {
               {/* Welcome state */}
               {messages.length === 0 && !isTyping && (
                 <div className="text-center py-8 sm:py-16">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#9B72CF] to-[#F5A623] flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-black" />
                   </div>
                   <h3 className="text-xl font-bold text-[#E8E8E8] mb-2">How can I help you today?</h3>
@@ -288,9 +288,9 @@ export function SakuFullPage() {
                       <button
                         key={sug}
                         onClick={() => handleSend(sug)}
-                        className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#111] border border-[#1E1E1E] text-left hover:border-[#333] hover:bg-[#161616] transition-all group"
+                        className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#141414] border border-[#1E1E1E] text-left hover:border-[#333] hover:bg-[#161616] transition-all group"
                       >
-                        <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#F5A623] transition-colors shrink-0" />
+                        <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#FDBA2D] transition-colors shrink-0" />
                         <span className="text-xs text-[#888] group-hover:text-[#E8E8E8] transition-colors">{sug}</span>
                       </button>
                     ))}
@@ -310,7 +310,7 @@ export function SakuFullPage() {
                       )}
                     >
                       {msg.role === 'assistant' && (
-                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#F5A623] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0 mt-0.5">
                           <Bot className="w-4 h-4 text-black" />
                         </div>
                       )}
@@ -318,7 +318,7 @@ export function SakuFullPage() {
                         className={cn(
                           'max-w-[85%] px-4 py-3 text-sm leading-relaxed',
                           msg.role === 'user'
-                            ? 'bg-[#F5A623] text-black rounded-2xl rounded-tr-sm'
+                            ? 'bg-[#FDBA2D] text-black rounded-2xl rounded-tr-sm'
                             : 'bg-[#1A1A1A] text-[#E8E8E8] rounded-2xl rounded-tl-sm'
                         )}
                       >
@@ -349,7 +349,7 @@ export function SakuFullPage() {
           {/* Input area */}
           <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 pt-3 shrink-0">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-end gap-3 bg-[#111] rounded-xl px-4 py-3 border border-[#222] focus-within:border-[rgba(155,114,207,0.3)] transition-colors">
+              <div className="flex items-end gap-3 bg-[#141414] rounded-xl px-4 py-3 border border-[#222] focus-within:border-[rgba(155,114,207,0.3)] transition-colors">
                 <textarea
                   ref={inputRef}
                   value={input}
@@ -370,7 +370,7 @@ export function SakuFullPage() {
                   disabled={!input.trim() || isTyping}
                   className={`p-2 rounded-lg transition-colors shrink-0 ${
                     sakuMode === '2.0'
-                      ? 'bg-[#F5A623] text-black hover:bg-[#E6960F] disabled:opacity-30'
+                      ? 'bg-[#FDBA2D] text-black hover:bg-[#D9A013] disabled:opacity-30'
                       : 'bg-[#9B72CF] text-white hover:bg-[#8560B5] disabled:opacity-30'
                   }`}
                 >

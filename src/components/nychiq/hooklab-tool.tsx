@@ -63,10 +63,10 @@ interface RetentionResult {
 }
 
 const RETENTION_LABEL_COLORS: Record<string, { color: string; bg: string }> = {
-  'high-skip': { color: '#E05252', bg: 'rgba(224,82,82,0.15)' },
-  moderate: { color: '#F5A623', bg: 'rgba(245,166,35,0.15)' },
+  'high-skip': { color: '#EF4444', bg: 'rgba(239,68,68,0.15)' },
+  moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.15)' },
   engaged: { color: '#4A9EFF', bg: 'rgba(74,158,255,0.15)' },
-  peak: { color: '#00C48C', bg: 'rgba(0,196,140,0.15)' },
+  peak: { color: '#10B981', bg: 'rgba(16,185,129,0.15)' },
 };
 
 /* ── Retention bar component ── */
@@ -91,7 +91,7 @@ function RetentionBarRow({ bar }: { bar: RetentionBar }) {
 
 /* ── Competitor benchmark row ── */
 function BenchmarkRow({ label, value, isUser }: { label: string; value: number; isUser?: boolean }) {
-  const color = isUser ? '#E05252' : '#4A9EFF';
+  const color = isUser ? '#EF4444' : '#4A9EFF';
   return (
     <div className="flex items-center gap-3">
       <span className={`text-xs w-28 shrink-0 ${isUser ? 'font-bold text-[#E8E8E8]' : 'text-[#888888]'}`}>
@@ -282,11 +282,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(224,82,82,0.1)]">
-              <Activity className="w-5 h-5 text-[#E05252]" />
+            <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
+              <Activity className="w-5 h-5 text-[#EF4444]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">HookLab — Retention Predictor</h2>
@@ -308,7 +308,7 @@ Return ONLY the JSON object, no other text.`;
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
               placeholder="Video URL (optional — paste transcript below instead)"
-              className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#E05252]/50 focus:ring-1 focus:ring-[#E05252]/20 transition-colors"
+              className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
             />
           </div>
 
@@ -318,7 +318,7 @@ Return ONLY the JSON object, no other text.`;
             onChange={(e) => setTranscript(e.target.value)}
             placeholder="Paste transcript here (at least 20 characters for analysis)..."
             rows={5}
-            className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#E05252]/50 focus:ring-1 focus:ring-[#E05252]/20 transition-colors resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors resize-none"
           />
 
           {/* Actions */}
@@ -328,7 +328,7 @@ Return ONLY the JSON object, no other text.`;
               disabled={loading || !canAnalyze}
               className="px-5 h-11 rounded-lg text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{
-                backgroundColor: canAnalyze ? '#E05252' : '#333333',
+                backgroundColor: canAnalyze ? '#EF4444' : '#333333',
                 color: canAnalyze ? '#FFFFFF' : '#888888',
               }}
             >
@@ -350,13 +350,13 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
           <button
             onClick={handleAnalyze}
             className="mt-3 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
-            style={{ backgroundColor: '#E05252', color: '#FFFFFF' }}
+            style={{ backgroundColor: '#EF4444', color: '#FFFFFF' }}
           >
             Try Again
           </button>
@@ -366,9 +366,9 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Loader2 className="w-5 h-5 text-[#E05252] animate-spin" />
+              <Loader2 className="w-5 h-5 text-[#EF4444] animate-spin" />
               <span className="text-sm text-[#888888]">Scanning retention patterns...</span>
             </div>
             <div className="flex gap-2 mb-4">
@@ -391,21 +391,21 @@ Return ONLY the JSON object, no other text.`;
         <>
           {/* Stats Row */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingDown className="w-4 h-4 text-[#E05252]" />
+                <TrendingDown className="w-4 h-4 text-[#EF4444]" />
                 <span className="text-xs text-[#888888]">Predicted Retention</span>
               </div>
               <div className="text-2xl font-bold text-[#E8E8E8]">{result.overallRetention}%</div>
             </div>
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <div className="flex items-center gap-2 mb-1">
-                <Zap className="w-4 h-4 text-[#F5A623]" />
+                <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 <span className="text-xs text-[#888888]">Hook Score</span>
               </div>
               <div
                 className="text-2xl font-bold"
-                style={{ color: result.hookScore >= 70 ? '#00C48C' : result.hookScore >= 40 ? '#F5A623' : '#E05252' }}
+                style={{ color: result.hookScore >= 70 ? '#10B981' : result.hookScore >= 40 ? '#FDBA2D' : '#EF4444' }}
               >
                 {result.hookScore}/100
               </div>
@@ -413,9 +413,9 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Retention Graph */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center gap-2 mb-4">
-              <Activity className="w-4 h-4 text-[#E05252]" />
+              <Activity className="w-4 h-4 text-[#EF4444]" />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">Retention Curve (First 30 Seconds)</h3>
             </div>
             <div className="flex gap-1 h-[120px] items-end">
@@ -438,9 +438,9 @@ Return ONLY the JSON object, no other text.`;
           {/* Lull Zones & Fatigue Alerts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Lull Detector */}
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Timer className="w-4 h-4 text-[#F5A623]" />
+                <Timer className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Lull Detector</h3>
               </div>
               <div className="p-4 space-y-2">
@@ -449,11 +449,11 @@ Return ONLY the JSON object, no other text.`;
                     <div
                       key={i}
                       className="flex items-center gap-2 p-2 rounded-lg"
-                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(224,82,82,0.08)' : 'rgba(245,166,35,0.08)' }}
+                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(239,68,68,0.08)' : 'rgba(253,186,45,0.08)' }}
                     >
                       <AlertTriangle
                         className="w-4 h-4 shrink-0"
-                        style={{ color: lull.severity === 'critical' ? '#E05252' : '#F5A623' }}
+                        style={{ color: lull.severity === 'critical' ? '#EF4444' : '#FDBA2D' }}
                       />
                       <div className="flex-1 min-w-0">
                         <span className="text-xs font-medium text-[#E8E8E8]">
@@ -464,8 +464,8 @@ Return ONLY the JSON object, no other text.`;
                       <span
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded"
                         style={{
-                          color: lull.severity === 'critical' ? '#E05252' : '#F5A623',
-                          backgroundColor: lull.severity === 'critical' ? 'rgba(224,82,82,0.15)' : 'rgba(245,166,35,0.15)',
+                          color: lull.severity === 'critical' ? '#EF4444' : '#FDBA2D',
+                          backgroundColor: lull.severity === 'critical' ? 'rgba(239,68,68,0.15)' : 'rgba(253,186,45,0.15)',
                         }}
                       >
                         {lull.severity.toUpperCase()}
@@ -473,13 +473,13 @@ Return ONLY the JSON object, no other text.`;
                     </div>
                   ))
                 ) : (
-                  <p className="text-xs text-[#00C48C]">No significant lulls detected.</p>
+                  <p className="text-xs text-[#10B981]">No significant lulls detected.</p>
                 )}
               </div>
             </div>
 
             {/* Visual Fatigue */}
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Eye className="w-4 h-4 text-[#4A9EFF]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Visual Fatigue Alerts</h3>
@@ -497,7 +497,7 @@ Return ONLY the JSON object, no other text.`;
                     </div>
                   ))
                 ) : (
-                  <p className="text-xs text-[#00C48C]">No visual fatigue detected.</p>
+                  <p className="text-xs text-[#10B981]">No visual fatigue detected.</p>
                 )}
               </div>
             </div>
@@ -505,14 +505,14 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Hook Mismatch */}
           {result.hookMismatch.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <div className="flex items-center gap-2 mb-3">
-                <SkipForward className="w-4 h-4 text-[#E05252]" />
+                <SkipForward className="w-4 h-4 text-[#EF4444]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Hook Mismatch Detection</h3>
               </div>
               {result.hookMismatch.map((mismatch, i) => (
                 <p key={i} className="text-xs text-[#888888] flex items-start gap-2 mb-1.5">
-                  <span className="text-[#E05252] mt-0.5">!</span>
+                  <span className="text-[#EF4444] mt-0.5">!</span>
                   {mismatch}
                 </p>
               ))}
@@ -520,7 +520,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* Competitor Benchmark */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp className="w-4 h-4 text-[#4A9EFF]" />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">Competitor Benchmark</h3>
@@ -533,17 +533,17 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Auto-Trim Suggestions */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Scissors className="w-4 h-4 text-[#00C48C]" />
+                <Scissors className="w-4 h-4 text-[#10B981]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Auto-Trim Suggestions</h3>
               </div>
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-1 text-xs text-[#888888] hover:text-[#E8E8E8] transition-colors"
               >
-                {copied ? <Check className="w-3 h-3 text-[#00C48C]" /> : <Copy className="w-3 h-3" />}
+                {copied ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied!' : 'Copy All'}
               </button>
             </div>
@@ -553,13 +553,13 @@ Return ONLY the JSON object, no other text.`;
                   <div
                     className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                     style={{
-                      backgroundColor: trim.type === 'cut' ? 'rgba(224,82,82,0.1)' : 'rgba(245,166,35,0.1)',
+                      backgroundColor: trim.type === 'cut' ? 'rgba(239,68,68,0.1)' : 'rgba(253,186,45,0.1)',
                     }}
                   >
                     {trim.type === 'cut' ? (
-                      <Scissors className="w-3.5 h-3.5 text-[#E05252]" />
+                      <Scissors className="w-3.5 h-3.5 text-[#EF4444]" />
                     ) : (
-                      <Timer className="w-3.5 h-3.5 text-[#F5A623]" />
+                      <Timer className="w-3.5 h-3.5 text-[#FDBA2D]" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -568,13 +568,13 @@ Return ONLY the JSON object, no other text.`;
                       <span
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded uppercase"
                         style={{
-                          color: trim.type === 'cut' ? '#E05252' : '#F5A623',
-                          backgroundColor: trim.type === 'cut' ? 'rgba(224,82,82,0.15)' : 'rgba(245,166,35,0.15)',
+                          color: trim.type === 'cut' ? '#EF4444' : '#FDBA2D',
+                          backgroundColor: trim.type === 'cut' ? 'rgba(239,68,68,0.15)' : 'rgba(253,186,45,0.15)',
                         }}
                       >
                         {trim.type}
                       </span>
-                      <span className="text-[10px] text-[#00C48C] font-medium ml-auto">{trim.potentialGain}</span>
+                      <span className="text-[10px] text-[#10B981] font-medium ml-auto">{trim.potentialGain}</span>
                     </div>
                     <p className="text-[11px] text-[#888888]">{trim.reason}</p>
                   </div>
@@ -584,9 +584,9 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Summary */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-[#F5A623]" />
+              <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Summary</h3>
             </div>
             <p className="text-sm text-[#888888] leading-relaxed">{result.summary}</p>
@@ -597,8 +597,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial idle state */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.2)] flex items-center justify-center mb-4">
-            <Activity className="w-8 h-8 text-[#E05252]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
+            <Activity className="w-8 h-8 text-[#EF4444]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Retention Predictor</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">

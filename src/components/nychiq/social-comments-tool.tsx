@@ -89,9 +89,9 @@ const LOADING_STEPS = [
 
 /* ── Sentiment bar colors ── */
 const SENTIMENT_COLOR = {
-  positive: { bar: 'bg-[#00C48C]', text: 'text-[#00C48C]', bg: 'bg-[rgba(0,196,140,0.1)]', border: 'border-[rgba(0,196,140,0.2)]' },
-  neutral: { bar: 'bg-[#F5A623]', text: 'text-[#F5A623]', bg: 'bg-[rgba(245,166,35,0.1)]', border: 'border-[rgba(245,166,35,0.2)]' },
-  negative: { bar: 'bg-[#E05252]', text: 'text-[#E05252]', bg: 'bg-[rgba(224,82,82,0.1)]', border: 'border-[rgba(224,82,82,0.2)]' },
+  positive: { bar: 'bg-[#10B981]', text: 'text-[#10B981]', bg: 'bg-[rgba(16,185,129,0.1)]', border: 'border-[rgba(16,185,129,0.2)]' },
+  neutral: { bar: 'bg-[#FDBA2D]', text: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', border: 'border-[rgba(253,186,45,0.2)]' },
+  negative: { bar: 'bg-[#EF4444]', text: 'text-[#EF4444]', bg: 'bg-[rgba(239,68,68,0.1)]', border: 'border-[rgba(239,68,68,0.2)]' },
 };
 
 
@@ -159,11 +159,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
-              <Heart className="w-5 h-5 text-[#F5A623]" />
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
+              <Heart className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Comment Sentiment</h2>
@@ -183,12 +183,12 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setVideoUrl(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') analyzeComments(); }}
                 placeholder="https://youtube.com/watch?v=..."
-                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
               <button
                 onClick={analyzeComments}
                 disabled={loading || !videoUrl.trim()}
-                className="px-5 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Analyze Comments
@@ -200,12 +200,12 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
           <button
             onClick={analyzeComments}
-            className="px-4 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -216,7 +216,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* Animated Steps */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="space-y-4">
               {LOADING_STEPS.map((step, i) => (
                 <div
@@ -227,9 +227,9 @@ Return ONLY the JSON object, no other text.`;
                 >
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                     i === loadingStep
-                      ? 'bg-[rgba(245,166,35,0.15)] text-[#F5A623]'
+                      ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]'
                       : i < loadingStep
-                        ? 'bg-[rgba(0,196,140,0.1)] text-[#00C48C]'
+                        ? 'bg-[rgba(16,185,129,0.1)] text-[#10B981]'
                         : 'bg-[#1A1A1A] text-[#444444]'
                   }`}>
                     {i < loadingStep ? <ThumbsUp className="w-4 h-4" /> : i === loadingStep ? step.icon : <Minus className="w-4 h-4" />}
@@ -237,8 +237,8 @@ Return ONLY the JSON object, no other text.`;
                   <span className={`text-sm font-medium ${i === loadingStep ? 'text-[#E8E8E8]' : 'text-[#666666]'}`}>
                     {step.label}
                   </span>
-                  {i === loadingStep && <Loader2 className="w-4 h-4 text-[#F5A623] animate-spin ml-auto" />}
-                  {i < loadingStep && <span className="ml-auto text-[10px] text-[#00C48C]">Done</span>}
+                  {i === loadingStep && <Loader2 className="w-4 h-4 text-[#FDBA2D] animate-spin ml-auto" />}
+                  {i < loadingStep && <span className="ml-auto text-[10px] text-[#10B981]">Done</span>}
                 </div>
               ))}
             </div>
@@ -247,7 +247,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Skeleton Results */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-4 space-y-2">
+              <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-16" />
                 <div className="h-8 bg-[#1A1A1A] rounded animate-pulse w-20" />
                 <div className="h-2 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -261,7 +261,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-5">
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#F5A623]" /> Sentiment Analysis Complete
+            <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Sentiment Analysis Complete
           </h3>
 
           {/* Sentiment Breakdown */}
@@ -271,7 +271,7 @@ Return ONLY the JSON object, no other text.`;
               const style = SENTIMENT_COLOR[key];
               const icon = key === 'positive' ? <ThumbsUp className="w-4 h-4" /> : key === 'negative' ? <ThumbsDown className="w-4 h-4" /> : <Minus className="w-4 h-4" />;
               return (
-                <div key={key} className={`rounded-lg bg-[#111111] border ${style.border} p-4`}>
+                <div key={key} className={`rounded-lg bg-[#141414] border ${style.border} p-4`}>
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`${style.bg} ${style.text} p-1.5 rounded-md`}>{icon}</div>
                     <span className="text-xs font-medium text-[#888888] capitalize">{key}</span>
@@ -286,22 +286,22 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Overall Sentiment Bar */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Overall Sentiment Distribution</h4>
             <div className="flex h-3 rounded-full overflow-hidden bg-[#1A1A1A]">
-              <div className="bg-[#00C48C] transition-all duration-1000" style={{ width: `${result.sentiment.positive}%` }} />
-              <div className="bg-[#F5A623] transition-all duration-1000" style={{ width: `${result.sentiment.neutral}%` }} />
-              <div className="bg-[#E05252] transition-all duration-1000" style={{ width: `${result.sentiment.negative}%` }} />
+              <div className="bg-[#10B981] transition-all duration-1000" style={{ width: `${result.sentiment.positive}%` }} />
+              <div className="bg-[#FDBA2D] transition-all duration-1000" style={{ width: `${result.sentiment.neutral}%` }} />
+              <div className="bg-[#EF4444] transition-all duration-1000" style={{ width: `${result.sentiment.negative}%` }} />
             </div>
             <div className="flex justify-between mt-2 text-[10px] text-[#888888]">
-              <span className="text-[#00C48C]">Positive {result.sentiment.positive}%</span>
-              <span className="text-[#F5A623]">Neutral {result.sentiment.neutral}%</span>
-              <span className="text-[#E05252]">Negative {result.sentiment.negative}%</span>
+              <span className="text-[#10B981]">Positive {result.sentiment.positive}%</span>
+              <span className="text-[#FDBA2D]">Neutral {result.sentiment.neutral}%</span>
+              <span className="text-[#EF4444]">Negative {result.sentiment.negative}%</span>
             </div>
           </div>
 
           {/* Top Themes */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Top Themes & Requests</h4>
             <div className="space-y-2.5">
               {result.themes.map((theme, i) => {
@@ -323,7 +323,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Sample Comments */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Sample Comments</h4>
             <div className="space-y-3">
               {result.comments.map((comment, i) => {
@@ -333,15 +333,15 @@ Return ONLY the JSON object, no other text.`;
                     key={i}
                     className={`p-3 rounded-md border ${
                       comment.sentiment === 'positive'
-                        ? 'bg-[rgba(0,196,140,0.03)] border-[rgba(0,196,140,0.1)]'
+                        ? 'bg-[rgba(16,185,129,0.03)] border-[rgba(16,185,129,0.1)]'
                         : comment.sentiment === 'negative'
-                          ? 'bg-[rgba(224,82,82,0.03)] border-[rgba(224,82,82,0.1)]'
-                          : 'bg-[rgba(245,166,35,0.03)] border-[rgba(245,166,35,0.1)]'
+                          ? 'bg-[rgba(239,68,68,0.03)] border-[rgba(239,68,68,0.1)]'
+                          : 'bg-[rgba(253,186,45,0.03)] border-[rgba(253,186,45,0.1)]'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1.5">
                       <User className="w-3.5 h-3.5 text-[#666666]" />
-                      <span className="text-xs font-medium text-[#F5A623]">{comment.author}</span>
+                      <span className="text-xs font-medium text-[#FDBA2D]">{comment.author}</span>
                       <span className="flex items-center gap-0.5 text-[10px] text-[#888888]">
                         <Heart className="w-2.5 h-2.5" /> {comment.likes.toLocaleString()}
                       </span>
@@ -357,13 +357,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Insights */}
-          <div className="rounded-lg bg-[#111111] border border-[#F5A623]/20 p-4">
-            <h4 className="text-xs font-bold text-[#F5A623] uppercase tracking-wider mb-3 flex items-center gap-2">
+          <div className="rounded-lg bg-[#141414] border border-[#FDBA2D]/20 p-4">
+            <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-3 flex items-center gap-2">
               <Lightbulb className="w-3.5 h-3.5" /> AI Insights
             </h4>
             <div className="space-y-3">
               {result.insights.map((insight, i) => (
-                <div key={i} className="p-3 rounded-md bg-[rgba(245,166,35,0.03)] border border-[rgba(245,166,35,0.1)]">
+                <div key={i} className="p-3 rounded-md bg-[rgba(253,186,45,0.03)] border border-[rgba(253,186,45,0.1)]">
                   <h5 className="text-sm font-semibold text-[#E8E8E8] mb-1">{insight.title}</h5>
                   <p className="text-xs text-[#888888] leading-relaxed">{insight.detail}</p>
                 </div>
@@ -376,8 +376,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-            <Heart className="w-8 h-8 text-[#F5A623]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+            <Heart className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Analyze Comment Sentiment</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Paste a YouTube video URL to get a complete sentiment breakdown with AI-powered insights.</p>

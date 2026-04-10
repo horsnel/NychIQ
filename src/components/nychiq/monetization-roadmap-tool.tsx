@@ -50,8 +50,8 @@ interface RoadmapResult {
 /* ── Phase Icon Map ── */
 const PHASE_CONFIG = [
   { name: 'Foundation', icon: Zap, color: '#4A9EFF', subsRange: '0 → 1K' },
-  { name: 'Acceleration', icon: Rocket, color: '#F5A623', subsRange: '1K → 10K' },
-  { name: 'Diversification', icon: DollarSign, color: '#00C48C', subsRange: '$1K/mo+' },
+  { name: 'Acceleration', icon: Rocket, color: '#FDBA2D', subsRange: '1K → 10K' },
+  { name: 'Diversification', icon: DollarSign, color: '#10B981', subsRange: '$1K/mo+' },
 ];
 
 /* ── Phase card ── */
@@ -59,7 +59,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
   const Icon = phase.icon;
 
   return (
-    <div className="rounded-lg bg-[#111111] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#222222' }}>
+    <div className="rounded-lg bg-[#141414] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#222222' }}>
       {/* Phase header */}
       <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -148,7 +148,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Acceleration',
         icon: Rocket,
-        color: '#F5A623',
+        color: '#FDBA2D',
         subsRange: '1K → 10K subscribers',
         timeline: '6-12 months',
         goals: [
@@ -167,7 +167,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Diversification',
         icon: DollarSign,
-        color: '#00C48C',
+        color: '#10B981',
         subsRange: '$1K/month revenue+',
         timeline: '12-18 months',
         goals: [
@@ -297,11 +297,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ background: 'rgba(245,166,35,0.1)' }}>
-              <Target className="w-5 h-5" style={{ color: '#F5A623' }} />
+            <div className="p-2 rounded-lg" style={{ background: 'rgba(253,186,45,0.1)' }}>
+              <Target className="w-5 h-5" style={{ color: '#FDBA2D' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Revenue Roadmap</h2>
@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNiche(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Your niche..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 focus:ring-1 focus:ring-[#F5A623]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <input
@@ -329,21 +329,21 @@ Return ONLY the JSON object, no other text.`;
               value={subs}
               onChange={(e) => setSubs(e.target.value)}
               placeholder="Current subscribers"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 focus:ring-1 focus:ring-[#F5A623]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
             <input
               type="number"
               value={views}
               onChange={(e) => setViews(e.target.value)}
               placeholder="Monthly views"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 focus:ring-1 focus:ring-[#F5A623]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
           </div>
           <button
             onClick={handleGenerate}
             disabled={loading || !niche.trim()}
-            className="w-full mt-3 px-5 h-11 rounded-lg text-[#0A0A0A] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            style={{ backgroundColor: '#F5A623' }}
+            className="w-full mt-3 px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            style={{ backgroundColor: '#FDBA2D' }}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />}
             Generate Roadmap
@@ -353,10 +353,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8] mb-3">{error}</p>
-          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#E05252]/15 text-[#E05252] text-xs font-medium hover:bg-[#E05252]/25 transition-colors">
+          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -365,12 +365,12 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-4" />
             <div className="h-3 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-5 space-y-3">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5 space-y-3">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3" />
@@ -383,15 +383,15 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <>
           {/* Power Level + Key Metrics */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4" style={{ color: '#F5A623' }} />
+                <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
                 <h3 className="text-sm font-bold text-[#E8E8E8]">Power Level</h3>
-                <span className="ml-auto text-xs font-bold" style={{ color: '#F5A623' }}>{powerLevel}%</span>
+                <span className="ml-auto text-xs font-bold" style={{ color: '#FDBA2D' }}>{powerLevel}%</span>
               </div>
               <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
-                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #4A9EFF, #F5A623, #00C48C)` }} />
+                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #4A9EFF, #FDBA2D, #10B981)` }} />
               </div>
               <div className="flex items-center justify-between text-[10px] text-[#555555]">
                 <span>0 subs</span>
@@ -402,11 +402,11 @@ Return ONLY the JSON object, no other text.`;
               {/* Key metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-base font-bold text-[#00C48C]">{result.viewsFor1K.toLocaleString()}</p>
+                  <p className="text-base font-bold text-[#10B981]">{result.viewsFor1K.toLocaleString()}</p>
                   <p className="text-[10px] text-[#888888] mt-0.5">Views for $1K/mo</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-base font-bold text-[#F5A623]">${result.rpmBenchmark}</p>
+                  <p className="text-base font-bold text-[#FDBA2D]">${result.rpmBenchmark}</p>
                   <p className="text-[10px] text-[#888888] mt-0.5">RPM Benchmark</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] col-span-2 sm:col-span-1">
@@ -420,7 +420,7 @@ Return ONLY the JSON object, no other text.`;
           {/* 3-Phase Timeline */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 px-1">
-              <BarChart3 className="w-4 h-4" style={{ color: '#F5A623' }} />
+              <BarChart3 className="w-4 h-4" style={{ color: '#FDBA2D' }} />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">3-Phase Roadmap</h3>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -432,7 +432,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Seasonal Predictions */}
           {result.seasonalPredictions.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Calendar className="w-4 h-4" style={{ color: '#9B72CF' }} />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Seasonal Predictions</h3>
@@ -449,9 +449,9 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Bottleneck Detection */}
           {result.bottlenecks.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <AlertTriangle className="w-4 h-4 text-[#E05252]" />
+                <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Bottleneck Detection</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
@@ -465,21 +465,21 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* AI Advice */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4" style={{ color: '#F5A623' }} />
+                <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Strategic Advice</h3>
               </div>
-              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#F5A623] transition-colors">
+              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#FDBA2D] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied' : 'Copy'}
               </button>
             </div>
             <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(245,166,35,0.1)' }}>
-                  <Bot className="w-3.5 h-3.5" style={{ color: '#F5A623' }} />
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(253,186,45,0.1)' }}>
+                  <Bot className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} />
                 </div>
                 <p className="text-xs text-[#888888] leading-relaxed">{result.advice}</p>
               </div>
@@ -488,7 +488,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#888888] hover:text-[#F5A623] transition-colors">
+            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#888888] hover:text-[#FDBA2D] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Regenerate
             </button>
@@ -499,8 +499,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(245,166,35,0.1)', border: '1px solid rgba(245,166,35,0.2)' }}>
-            <Target className="w-8 h-8" style={{ color: '#F5A623' }} />
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
+            <Target className="w-8 h-8" style={{ color: '#FDBA2D' }} />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Your Revenue Roadmap</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">

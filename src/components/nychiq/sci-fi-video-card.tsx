@@ -37,8 +37,8 @@ interface SciFiVideoCardProps {
 function LiveDot() {
   return (
     <span className="relative flex h-2 w-2 items-center justify-center shrink-0">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00C48C] opacity-60" />
-      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00C48C]" />
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-60" />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#10B981]" />
     </span>
   );
 }
@@ -83,7 +83,7 @@ function GridOverlay() {
       className="absolute inset-0 pointer-events-none opacity-[0.04]"
       style={{
         backgroundImage:
-          'linear-gradient(rgba(245,166,35,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(245,166,35,0.3) 1px, transparent 1px)',
+          'linear-gradient(rgba(253,186,45,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(253,186,45,0.3) 1px, transparent 1px)',
         backgroundSize: '20px 20px',
       }}
     />
@@ -103,8 +103,8 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
     >
       <button
         onClick={onClick}
-        className="relative flex items-center justify-center w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-[#F5A623]/30 hover:border-[#F5A623]/70 transition-all duration-300"
-        style={{ '--glow-color': 'rgba(245,166,35,0.4)' } as React.CSSProperties}
+        className="relative flex items-center justify-center w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-[#FDBA2D]/30 hover:border-[#FDBA2D]/70 transition-all duration-300"
+        style={{ '--glow-color': 'rgba(253,186,45,0.4)' } as React.CSSProperties}
         aria-label="HookLab Pulse — Retention Scan"
       >
         {/* Pulse ring */}
@@ -112,11 +112,11 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{ animation: 'pulseGlow 2s ease-in-out infinite' }}
         />
-        <Activity className="w-4 h-4 text-[#F5A623]" />
+        <Activity className="w-4 h-4 text-[#FDBA2D]" />
 
         {showTip && (
-          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#F5A623]/30 text-[11px] text-[#E8E8E8] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
-            Retention Scanned: <span className="text-[#00C48C] font-mono font-semibold">87%</span>{' '}
+          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#FDBA2D]/30 text-[11px] text-[#E8E8E8] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
+            Retention Scanned: <span className="text-[#10B981] font-mono font-semibold">87%</span>{' '}
             predicted retention
           </div>
         )}
@@ -145,7 +145,7 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
 
       {/* Mini-panel on hover */}
       {expanded && (
-        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#111111]/95 backdrop-blur-md border border-[#222222] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
+        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#141414]/95 backdrop-blur-md border border-[#222222] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('deepchat'); }}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
@@ -157,14 +157,14 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
           >
-            <Tag className="w-3.5 h-3.5 text-[#F5A623]" />
+            <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" />
             Tags
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
           >
-            <Key className="w-3.5 h-3.5 text-[#00C48C]" />
+            <Key className="w-3.5 h-3.5 text-[#10B981]" />
             Keywords
           </button>
         </div>
@@ -194,7 +194,7 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
     <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
       {glitch && (
         <span
-          className="text-[9px] font-mono font-bold text-[#00C48C] tracking-wider"
+          className="text-[9px] font-mono font-bold text-[#10B981] tracking-wider"
           style={{ animation: 'glitchText 0.3s steps(1) forwards' }}
         >
           DATA TRANSFERRED
@@ -202,10 +202,10 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
       )}
       <button
         onClick={handleCopy}
-        className="flex items-center justify-center w-7 h-7 rounded-md bg-black/60 backdrop-blur-sm border border-[#444444]/50 hover:border-[#00C48C]/70 transition-all duration-200"
+        className="flex items-center justify-center w-7 h-7 rounded-md bg-black/60 backdrop-blur-sm border border-[#444444]/50 hover:border-[#10B981]/70 transition-all duration-200"
         aria-label="Copy video URL"
       >
-        <Target className="w-3.5 h-3.5 text-[#888888] hover:text-[#00C48C]" />
+        <Target className="w-3.5 h-3.5 text-[#888888] hover:text-[#10B981]" />
       </button>
     </div>
   );
@@ -250,14 +250,14 @@ function AnalysisTeaser({ viralPoints, onNavigate }: { viralPoints: number; onNa
               tabIndex={0}
               onClick={(e) => { e.stopPropagation(); onNavigate(); }}
               onKeyDown={(e) => { if (e.key === 'Enter') onNavigate(); }}
-              className="text-[#F5A623]/80 hover:text-[#F5A623] cursor-pointer transition-colors underline decoration-[#F5A623]/30 hover:decoration-[#F5A623]/60"
+              className="text-[#FDBA2D]/80 hover:text-[#FDBA2D] cursor-pointer transition-colors underline decoration-[#FDBA2D]/30 hover:decoration-[#FDBA2D]/60"
             >
               {fullText.slice(linkStart, chars)}
             </span>
           </>
         )}
         {chars < fullText.length && (
-          <span className="inline-block w-[6px] h-[10px] bg-[#F5A623]/60 ml-[1px] animate-pulse align-middle" />
+          <span className="inline-block w-[6px] h-[10px] bg-[#FDBA2D]/60 ml-[1px] animate-pulse align-middle" />
         )}
       </p>
     </div>
@@ -311,16 +311,16 @@ export function SciFiVideoCard({
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#111111] relative',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] relative',
         'transition-all duration-300',
         'hover:-translate-y-[2px]',
         /* Gradient top accent edge */
         'before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:z-30',
-        'before:bg-gradient-to-r before:from-[#9B72CF] before:via-[#F5A623] before:to-transparent',
+        'before:bg-gradient-to-r before:from-[#9B72CF] before:via-[#FDBA2D] before:to-transparent',
         className
       )}
       style={thumbHover
-        ? { boxShadow: '0 0 20px rgba(245,166,35,0.12), 0 8px 24px rgba(0,0,0,0.4)' }
+        ? { boxShadow: '0 0 20px rgba(253,186,45,0.12), 0 8px 24px rgba(0,0,0,0.4)' }
         : { boxShadow: '0 0 0 transparent' }
       }
       onClick={handleClick}
@@ -337,7 +337,7 @@ export function SciFiVideoCard({
           thumbHover ? 'opacity-100' : 'opacity-0'
         )}
         style={{
-          border: '1px solid rgba(245,166,35,0.25)',
+          border: '1px solid rgba(253,186,45,0.25)',
           borderRadius: 'inherit',
           animation: thumbHover ? 'breathe 2.5s ease-in-out infinite' : 'none',
         }}
@@ -374,8 +374,8 @@ export function SciFiVideoCard({
             className="absolute left-0 right-0 h-[2px] z-20"
             style={{
               background:
-                'linear-gradient(90deg, transparent 0%, rgba(245,166,35,0.05) 10%, rgba(245,166,35,0.8) 50%, rgba(245,166,35,0.05) 90%, transparent 100%)',
-              boxShadow: '0 0 8px rgba(245,166,35,0.5), 0 0 20px rgba(245,166,35,0.2)',
+                'linear-gradient(90deg, transparent 0%, rgba(253,186,45,0.05) 10%, rgba(253,186,45,0.8) 50%, rgba(253,186,45,0.05) 90%, transparent 100%)',
+              boxShadow: '0 0 8px rgba(253,186,45,0.5), 0 0 20px rgba(253,186,45,0.2)',
               animation: 'scanLineMove 3s ease-in-out infinite',
             }}
           />
@@ -383,8 +383,8 @@ export function SciFiVideoCard({
 
         {/* Corner coordinates — top-right */}
         <span
-          className="absolute top-2 right-2 z-[15] font-mono text-[9px] text-[#F5A623]/50 tracking-wider pointer-events-none select-none"
-          style={{ textShadow: '0 0 4px rgba(245,166,35,0.3)' }}
+          className="absolute top-2 right-2 z-[15] font-mono text-[9px] text-[#FDBA2D]/50 tracking-wider pointer-events-none select-none"
+          style={{ textShadow: '0 0 4px rgba(253,186,45,0.3)' }}
         >
           {cornerCoords}
         </span>
@@ -398,7 +398,7 @@ export function SciFiVideoCard({
 
         {/* Hover play overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-          <div className="w-10 h-10 rounded-full bg-[#F5A623]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 shadow-lg shadow-[#F5A623]/20">
+          <div className="w-10 h-10 rounded-full bg-[#FDBA2D]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 shadow-lg shadow-[#FDBA2D]/20">
             <Play className="w-4 h-4 text-white fill-white ml-0.5" />
           </div>
         </div>
@@ -407,9 +407,9 @@ export function SciFiVideoCard({
         {video.viralScore != null && video.viralScore >= 70 && (
           <span className="absolute bottom-2 left-2 z-[15] ml-14 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-[10px] font-bold">
             {video.viralScore >= 85 ? (
-              <><span>🔥</span><span className="text-[#00C48C]">VIRAL</span></>
+              <><span>🔥</span><span className="text-[#10B981]">VIRAL</span></>
             ) : (
-              <><span>⚡</span><span className="text-[#F5A623]">HOT</span></>
+              <><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>
             )}
             <span className="font-mono text-white/80 ml-0.5">{video.viralScore}</span>
           </span>
@@ -424,7 +424,7 @@ export function SciFiVideoCard({
       {/* ════ Info Section ════ */}
       <div className="p-3">
         {/* Title */}
-        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors duration-200 leading-snug">
+        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors duration-200 leading-snug">
           {video.title}
         </h3>
 
@@ -437,7 +437,7 @@ export function SciFiVideoCard({
           {video.viewCount != null && (
             <div className="flex items-center gap-1.5">
               <LiveDot />
-              <span className="text-[11px] font-mono text-[#00C48C] tabular-nums">
+              <span className="text-[11px] font-mono text-[#10B981] tabular-nums">
                 {fmtV(video.viewCount)}
               </span>
             </div>
@@ -453,7 +453,7 @@ export function SciFiVideoCard({
 
           {/* Retention waveform */}
           <div className="flex items-center gap-1">
-            <WaveformIcon className="text-[#F5A623]/60" />
+            <WaveformIcon className="text-[#FDBA2D]/60" />
             <span className="text-[11px] font-mono text-[#888888] tabular-nums">
               {retentionProb}%
             </span>
@@ -475,8 +475,8 @@ export function SciFiVideoCard({
 
 export function SciFiVideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#111111] border border-[#222222] animate-pulse">
-      <div className="h-[2px] bg-gradient-to-r from-[#9B72CF] via-[#F5A623] to-transparent opacity-40" />
+    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#222222] animate-pulse">
+      <div className="h-[2px] bg-gradient-to-r from-[#9B72CF] via-[#FDBA2D] to-transparent opacity-40" />
       <div className="aspect-video bg-[#1A1A1A]" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded w-full" />

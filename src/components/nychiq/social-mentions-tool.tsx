@@ -31,26 +31,26 @@ const PLATFORM_STYLES: Record<string, { bg: string; text: string; border: string
   Reddit: { bg: 'bg-[rgba(255,69,0,0.1)]', text: 'text-[#FF4500]', border: 'border-[rgba(255,69,0,0.2)]' },
   TikTok: { bg: 'bg-[rgba(255,0,80,0.1)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,0,80,0.2)]' },
   Instagram: { bg: 'bg-[rgba(225,48,108,0.1)]', text: 'text-[#E1306C]', border: 'border-[rgba(225,48,108,0.2)]' },
-  News: { bg: 'bg-[rgba(245,166,35,0.1)]', text: 'text-[#F5A623]', border: 'border-[rgba(245,166,35,0.2)]' },
+  News: { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.2)]' },
 };
 
 const SENTIMENT_STYLES: Record<string, { bg: string; text: string; border: string; icon: React.ReactNode }> = {
   positive: {
-    bg: 'bg-[rgba(0,196,140,0.1)]',
-    text: 'text-[#00C48C]',
-    border: 'border-[rgba(0,196,140,0.2)]',
+    bg: 'bg-[rgba(16,185,129,0.1)]',
+    text: 'text-[#10B981]',
+    border: 'border-[rgba(16,185,129,0.2)]',
     icon: <ThumbsUp className="w-3 h-3" />,
   },
   neutral: {
-    bg: 'bg-[rgba(245,166,35,0.1)]',
-    text: 'text-[#F5A623]',
-    border: 'border-[rgba(245,166,35,0.2)]',
+    bg: 'bg-[rgba(253,186,45,0.1)]',
+    text: 'text-[#FDBA2D]',
+    border: 'border-[rgba(253,186,45,0.2)]',
     icon: <Minus className="w-3 h-3" />,
   },
   negative: {
-    bg: 'bg-[rgba(224,82,82,0.1)]',
-    text: 'text-[#E05252]',
-    border: 'border-[rgba(224,82,82,0.2)]',
+    bg: 'bg-[rgba(239,68,68,0.1)]',
+    text: 'text-[#EF4444]',
+    border: 'border-[rgba(239,68,68,0.2)]',
     icon: <ThumbsDown className="w-3 h-3" />,
   },
 };
@@ -129,11 +129,11 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]">
-              <AtSign className="w-5 h-5 text-[#F5A623]" />
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
+              <AtSign className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Channel Mentions</h2>
@@ -153,12 +153,12 @@ Return ONLY the JSON array, no other text.`;
                 onChange={(e) => setChannelInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') searchMentions(); }}
                 placeholder="e.g. MrBeast, @mkbhd, Mark Rober"
-                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
               <button
                 onClick={searchMentions}
                 disabled={loading || !channelInput.trim()}
-                className="px-5 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
                 Search Mentions
@@ -179,7 +179,7 @@ Return ONLY the JSON array, no other text.`;
                     isActive
                       ? styles
                         ? `${styles.bg} ${styles.text} ${styles.border}`
-                        : 'bg-[rgba(245,166,35,0.1)] text-[#F5A623] border-[rgba(245,166,35,0.2)]'
+                        : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]'
                       : 'bg-[#0D0D0D] text-[#888888] border-[#1A1A1A] hover:border-[#333333]'
                   }`}
                 >
@@ -193,12 +193,12 @@ Return ONLY the JSON array, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
           <button
             onClick={searchMentions}
-            className="px-4 py-2 rounded-lg bg-[#E05252] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -209,7 +209,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-4 space-y-3">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-14 h-5 bg-[#1A1A1A] rounded-full animate-pulse" />
                 <div className="w-12 h-5 bg-[#1A1A1A] rounded-full animate-pulse" />
@@ -236,7 +236,7 @@ Return ONLY the JSON array, no other text.`;
             return (
               <div
                 key={i}
-                className="rounded-lg bg-[#111111] border border-[#222222] p-4 hover:border-[#333333] transition-all group"
+                className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-all group"
               >
                 {/* Top row */}
                 <div className="flex items-center gap-2 mb-2.5 flex-wrap">
@@ -257,7 +257,7 @@ Return ONLY the JSON array, no other text.`;
 
                 {/* Author + Engagement */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#F5A623] flex items-center gap-1">
+                  <span className="text-xs font-medium text-[#FDBA2D] flex items-center gap-1">
                     {mention.author}
                     <ExternalLink className="w-3 h-3" />
                   </span>
@@ -288,8 +288,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-            <AtSign className="w-8 h-8 text-[#F5A623]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+            <AtSign className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Find Channel Mentions</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Enter a YouTube channel name or handle to discover what people are saying across social platforms.</p>

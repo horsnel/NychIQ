@@ -41,20 +41,20 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-amber: #F5A623;
-  --color-amber-hover: #E6960F;
-  --color-amber-muted: rgba(245, 166, 35, 0.15);
-  --color-green: #00C48C;
-  --color-green-muted: rgba(0, 196, 140, 0.15);
+  --color-amber: #FDBA2D;
+  --color-amber-hover: #D9A013;
+  --color-amber-muted: rgba(253,186,45, 0.15);
+  --color-green: #10B981;
+  --color-green-muted: rgba(16,185,129, 0.15);
   --color-blue: #4A9EFF;
   --color-purple: #9B72CF;
   --color-purple-muted: rgba(155, 114, 207, 0.15);
-  --color-red: #E05252;
-  --color-red-muted: rgba(224, 82, 82, 0.15);
-  --color-surface: #0A0A0A;
-  --color-surface-card: #111111;
+  --color-red: #EF4444;
+  --color-red-muted: rgba(239,68,68, 0.15);
+  --color-surface: #0D0D0D;
+  --color-surface-card: #141414;
   --color-surface-tertiary: #1A1A1A;
-  --color-surface-sidebar: #070707;
+  --color-surface-sidebar: #0D0D0D;
   --color-border-primary: #222222;
   --color-border-secondary: #2A2A2A;
   --color-text-primary: #E8E8E8;
@@ -65,37 +65,37 @@
 /* Dark-only theme — NychIQ is always dark */
 :root {
   --radius: 0.625rem;
-  --background: #0A0A0A;
+  --background: #0D0D0D;
   --foreground: #E8E8E8;
-  --card: #111111;
+  --card: #141414;
   --card-foreground: #E8E8E8;
-  --popover: #111111;
+  --popover: #141414;
   --popover-foreground: #E8E8E8;
-  --primary: #F5A623;
-  --primary-foreground: #0A0A0A;
+  --primary: #FDBA2D;
+  --primary-foreground: #0D0D0D;
   --secondary: #1A1A1A;
   --secondary-foreground: #E8E8E8;
   --muted: #1A1A1A;
   --muted-foreground: #888888;
   --accent: #1A1A1A;
   --accent-foreground: #E8E8E8;
-  --destructive: #E05252;
+  --destructive: #EF4444;
   --border: #222222;
   --input: #222222;
-  --ring: #F5A623;
-  --chart-1: #F5A623;
-  --chart-2: #00C48C;
+  --ring: #FDBA2D;
+  --chart-1: #FDBA2D;
+  --chart-2: #10B981;
   --chart-3: #4A9EFF;
   --chart-4: #9B72CF;
-  --chart-5: #E05252;
-  --sidebar: #070707;
+  --chart-5: #EF4444;
+  --sidebar: #0D0D0D;
   --sidebar-foreground: #E8E8E8;
-  --sidebar-primary: #F5A623;
-  --sidebar-primary-foreground: #0A0A0A;
+  --sidebar-primary: #FDBA2D;
+  --sidebar-primary-foreground: #0D0D0D;
   --sidebar-accent: #1A1A1A;
   --sidebar-accent-foreground: #E8E8E8;
   --sidebar-border: #222222;
-  --sidebar-ring: #F5A623;
+  --sidebar-ring: #FDBA2D;
 }
 
 @layer base {
@@ -117,7 +117,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #0D0D0D;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -132,18 +132,18 @@
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #333333 #0A0A0A;
+  scrollbar-color: #333333 #0D0D0D;
 }
 
 /* Glow animations */
 @keyframes glow-amber {
-  0%, 100% { box-shadow: 0 0 5px rgba(245, 166, 35, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(245, 166, 35, 0.4); }
+  0%, 100% { box-shadow: 0 0 5px rgba(253,186,45, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(253,186,45, 0.4); }
 }
 
 @keyframes glow-green {
-  0%, 100% { box-shadow: 0 0 5px rgba(0, 196, 140, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(0, 196, 140, 0.4); }
+  0%, 100% { box-shadow: 0 0 5px rgba(16,185,129, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(16,185,129, 0.4); }
 }
 
 @keyframes glow-purple {
@@ -215,14 +215,14 @@
 }
 
 /* Viral score color utility */
-.score-viral { color: #00C48C; }
-.score-hot { color: #F5A623; }
+.score-viral { color: #10B981; }
+.score-hot { color: #FDBA2D; }
 .score-warm { color: #4A9EFF; }
 .score-cold { color: #888888; }
 
 /* NychIQ-specific card hover */
 .nychiq-card {
-  background: #111111;
+  background: #141414;
   border: 1px solid #222222;
   border-radius: 0.625rem;
   transition: all 0.2s ease;
@@ -235,7 +235,7 @@
 
 /* Amber gradient text */
 .text-gradient-amber {
-  background: linear-gradient(135deg, #F5A623, #FFD700);
+  background: linear-gradient(135deg, #FDBA2D, #FDE68A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -243,8 +243,8 @@
 
 /* Sidebar active item indicator */
 .sidebar-active {
-  background: rgba(245, 166, 35, 0.1);
-  border-right: 2px solid #F5A623;
+  background: rgba(253,186,45, 0.1);
+  border-right: 2px solid #FDBA2D;
 }
 
 /* Token counter animation */
@@ -264,8 +264,8 @@
 
 /* Glow bar animation */
 @keyframes glowBar {
-  0%, 100% { box-shadow: 0 0 8px rgba(245, 166, 35, 0.3); }
-  50% { box-shadow: 0 0 16px rgba(245, 166, 35, 0.6); }
+  0%, 100% { box-shadow: 0 0 8px rgba(253,186,45, 0.3); }
+  50% { box-shadow: 0 0 16px rgba(253,186,45, 0.6); }
 }
 
 .animate-glow-bar {
@@ -286,7 +286,7 @@
 .live-dot {
   width: 8px;
   height: 8px;
-  background: #00C48C;
+  background: #10B981;
   border-radius: 50%;
   animation: pulse-live 1.5s ease-in-out infinite;
 }
@@ -303,20 +303,20 @@
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #9B72CF, #F5A623);
+  background: linear-gradient(135deg, #9B72CF, #FDBA2D);
   z-index: -1;
   opacity: 0.5;
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(245, 166, 35, 0.3);
+  background: rgba(253,186,45, 0.3);
   color: #E8E8E8;
 }
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid rgba(245, 166, 35, 0.5);
+  outline: 2px solid rgba(253,186,45, 0.5);
   outline-offset: 2px;
 }
 
@@ -367,13 +367,13 @@
 }
 
 @keyframes sciFiPulseGlow {
-  0%, 100% { box-shadow: 0 0 4px rgba(245, 166, 35, 0.15); }
-  50%      { box-shadow: 0 0 16px rgba(245, 166, 35, 0.35); }
+  0%, 100% { box-shadow: 0 0 4px rgba(253,186,45, 0.15); }
+  50%      { box-shadow: 0 0 16px rgba(253,186,45, 0.35); }
 }
 
 @keyframes sciFiBreathe {
-  0%, 100% { border-color: rgba(245, 166, 35, 0.15); }
-  50%      { border-color: rgba(245, 166, 35, 0.4); }
+  0%, 100% { border-color: rgba(253,186,45, 0.15); }
+  50%      { border-color: rgba(253,186,45, 0.4); }
 }
 
 @keyframes sciFiTypewriter {
@@ -382,8 +382,8 @@
 }
 
 @keyframes sciFiRingPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4); }
-  50%      { box-shadow: 0 0 0 6px rgba(245, 166, 35, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(253,186,45, 0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(253,186,45, 0); }
 }
 
 @keyframes sciFiHoloGlow {

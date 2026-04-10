@@ -28,14 +28,14 @@ const STEPS = [
     title: 'Pin the Extension',
     desc: 'After installing, click the puzzle icon in Chrome and pin NychIQ to your toolbar for easy access.',
     icon: Settings,
-    color: '#F5A623',
+    color: '#FDBA2D',
   },
   {
     num: '3',
     title: 'Browse YouTube',
     desc: 'Visit any YouTube video or channel page and NychIQ will automatically show real-time insights.',
     icon: Globe,
-    color: '#00C48C',
+    color: '#10B981',
   },
 ];
 
@@ -47,14 +47,14 @@ export function OnboardingExtension() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070707] flex flex-col">
+    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#111]">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#141414]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center">
             <Sparkles className="w-4 h-4 text-black" />
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -62,7 +62,7 @@ export function OnboardingExtension() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 2 ? 'bg-[#F5A623]' : 'bg-[#222]'
+                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#222]'
                 }`}
               />
             ))}
@@ -93,7 +93,7 @@ export function OnboardingExtension() {
               return (
                 <div
                   key={step.num}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] hover:border-[#2A2A2A] transition-colors"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] hover:border-[#2A2A2A] transition-colors"
                 >
                   <div className="flex items-center gap-3 shrink-0">
                     <div
@@ -120,9 +120,9 @@ export function OnboardingExtension() {
 
           {/* Bonus pill */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(245,166,35,0.08)] border border-[rgba(245,166,35,0.15)]">
-              <Coins className="w-4 h-4 text-[#F5A623]" />
-              <span className="text-xs font-semibold text-[#F5A623]">+10 daily tokens with extension installed</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)]">
+              <Coins className="w-4 h-4 text-[#FDBA2D]" />
+              <span className="text-xs font-semibold text-[#FDBA2D]">+10 daily tokens with extension installed</span>
             </div>
           </div>
 
@@ -136,7 +136,7 @@ export function OnboardingExtension() {
             </Button>
 
             <Button
-              className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] h-11 font-semibold shadow-lg shadow-[rgba(245,166,35,0.15)]"
+              className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
               onClick={handleComplete}
             >
               Go to Dashboard

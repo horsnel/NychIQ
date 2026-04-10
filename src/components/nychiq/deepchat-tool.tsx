@@ -244,7 +244,7 @@ export function DeepChatTool() {
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] px-4 sm:px-5 py-4">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] px-4 sm:px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]">
             <MessageSquare className="w-5 h-5 text-[#9B72CF]" />
@@ -255,22 +255,22 @@ export function DeepChatTool() {
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#9B72CF] bg-[rgba(155,114,207,0.15)] border border-[rgba(155,114,207,0.25)]">
                 AI
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#00C48C] bg-[rgba(0,196,140,0.1)] border border-[rgba(0,196,140,0.2)]">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#10B981] bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
                 FREE
               </span>
             </div>
             <p className="text-xs text-[#888888] mt-0.5">Load any YouTube video for deep analysis</p>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)]">
-            <Coins className="w-3 h-3 text-[#F5A623]" />
-            <span className="text-[11px] font-bold text-[#F5A623]">{tokenBalance}</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)]">
+            <Coins className="w-3 h-3 text-[#FDBA2D]" />
+            <span className="text-[11px] font-bold text-[#FDBA2D]">{tokenBalance}</span>
           </div>
         </div>
       </div>
 
       {/* Video URL Input (shown when no video loaded) */}
       {!videoCtx && !loadingSteps && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-5">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
           <div className="text-center mb-5">
             <div className="w-16 h-16 rounded-2xl bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)] flex items-center justify-center mx-auto mb-3">
               <Play className="w-8 h-8 text-[#9B72CF]" />
@@ -299,7 +299,7 @@ export function DeepChatTool() {
 
       {/* Loading Steps */}
       {loadingSteps && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
           <div className="flex items-center gap-3 mb-5">
             <Loader2 className="w-5 h-5 animate-spin text-[#9B72CF]" />
             <span className="text-sm font-medium text-[#E8E8E8]">Analyzing video...</span>
@@ -313,11 +313,11 @@ export function DeepChatTool() {
                   <div
                     className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                     style={{
-                      backgroundColor: isDone ? 'rgba(0,196,140,0.15)' : isCurrent ? 'rgba(155,114,207,0.15)' : '#1A1A1A',
+                      backgroundColor: isDone ? 'rgba(16,185,129,0.15)' : isCurrent ? 'rgba(155,114,207,0.15)' : '#1A1A1A',
                     }}
                   >
                     {isDone ? (
-                      <ChevronRight className="w-3.5 h-3.5 text-[#00C48C]" />
+                      <ChevronRight className="w-3.5 h-3.5 text-[#10B981]" />
                     ) : isCurrent ? (
                       <Loader2 className="w-3.5 h-3.5 text-[#9B72CF] animate-spin" />
                     ) : (
@@ -331,7 +331,7 @@ export function DeepChatTool() {
                   >
                     {step}
                   </span>
-                  {isDone && <span className="text-[10px] text-[#00C48C] ml-auto">Done</span>}
+                  {isDone && <span className="text-[10px] text-[#10B981] ml-auto">Done</span>}
                 </div>
               );
             })}
@@ -343,7 +343,7 @@ export function DeepChatTool() {
       {videoCtx && !loadingSteps && (
         <div className="space-y-4">
           {/* Video Context Card */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Thumbnail placeholder */}
               <div className="w-full sm:w-48 h-28 rounded-lg bg-gradient-to-br from-[#1A1A1A] to-[#222222] flex items-center justify-center flex-shrink-0">
@@ -376,7 +376,7 @@ export function DeepChatTool() {
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Zap className="w-3.5 h-3.5 text-[#888888]" />
-                    <span className={`text-xs font-bold ${videoCtx.viralScore >= 80 ? 'text-[#00C48C]' : videoCtx.viralScore >= 60 ? 'text-[#F5A623]' : 'text-[#E05252]'}`}>
+                    <span className={`text-xs font-bold ${videoCtx.viralScore >= 80 ? 'text-[#10B981]' : videoCtx.viralScore >= 60 ? 'text-[#FDBA2D]' : 'text-[#EF4444]'}`}>
                       {videoCtx.viralScore}/100
                     </span>
                   </div>
@@ -396,7 +396,7 @@ export function DeepChatTool() {
 
           {/* Suggestion Chips (shown only on first load, no user messages yet) */}
           {messages.length <= 1 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <p className="text-xs text-[#666666] mb-3">Try asking:</p>
               <div className="flex flex-wrap gap-2">
                 {SUGGESTIONS.map((suggestion) => (
@@ -413,7 +413,7 @@ export function DeepChatTool() {
           )}
 
           {/* Chat Messages */}
-          <div className="rounded-lg bg-[#0A0A0A] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#222222 #0A0A0A' }}>
+          <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#222222 #0D0D0D' }}>
             {messages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-3 animate-fade-in-up">
                 {msg.role === 'bot' ? (
@@ -433,12 +433,12 @@ export function DeepChatTool() {
                 ) : (
                   <>
                     <div className="flex-1 min-w-0 flex flex-col items-end">
-                      <div className="rounded-2xl rounded-tr-sm bg-[rgba(245,166,35,0.15)] border border-[rgba(245,166,35,0.2)] px-4 py-3 max-w-[85%]">
+                      <div className="rounded-2xl rounded-tr-sm bg-[rgba(253,186,45,0.15)] border border-[rgba(253,186,45,0.2)] px-4 py-3 max-w-[85%]">
                         <p className="text-sm text-[#E8E8E8] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[rgba(245,166,35,0.15)] flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-[#F5A623]">You</span>
+                    <div className="w-8 h-8 rounded-full bg-[rgba(253,186,45,0.15)] flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-[#FDBA2D]">You</span>
                     </div>
                   </>
                 )}
@@ -452,14 +452,14 @@ export function DeepChatTool() {
 
           {/* Error */}
           {error && (
-            <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-3 flex items-center gap-2">
-              <span className="text-xs text-[#E05252]">{error}</span>
+            <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-3 flex items-center gap-2">
+              <span className="text-xs text-[#EF4444]">{error}</span>
               <button onClick={() => setError(null)} className="text-[10px] text-[#666666] hover:text-[#E8E8E8] ml-auto">Dismiss</button>
             </div>
           )}
 
           {/* Input Area */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-3">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-3">
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}

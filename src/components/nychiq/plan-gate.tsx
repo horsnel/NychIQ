@@ -13,9 +13,9 @@ interface PlanGateProps {
 const PLAN_HIERARCHY: Plan[] = ['starter', 'pro', 'elite', 'agency'];
 const PLAN_CONFIG: Record<string, { icon: React.ElementType; color: string; name: string }> = {
   starter: { icon: Zap, color: '#4A9EFF', name: 'Starter' },
-  pro: { icon: Crown, color: '#F5A623', name: 'Pro' },
+  pro: { icon: Crown, color: '#FDBA2D', name: 'Pro' },
   elite: { icon: Shield, color: '#9B72CF', name: 'Elite' },
-  agency: { icon: Building2, color: '#00C48C', name: 'Agency' },
+  agency: { icon: Building2, color: '#10B981', name: 'Agency' },
 };
 
 export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
@@ -88,7 +88,7 @@ export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
         {/* CTA */}
         <Button
           className="w-full font-semibold text-sm h-10"
-          style={{ backgroundColor: config.color, color: '#0A0A0A' }}
+          style={{ backgroundColor: config.color, color: '#0D0D0D' }}
           onClick={() => setUpgradeModalOpen(true)}
         >
           Upgrade to {config.name}

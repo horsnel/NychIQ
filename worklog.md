@@ -57,3 +57,58 @@ Stage Summary:
 - All built components are now implemented and wired into the app
 - 0 lint errors, 0 lint warnings
 - SciFiVideoCard now accessible via toggle in Shorts and Trending tools
+
+---
+Task ID: 2
+Agent: Main
+Task: Fix onboarding showing on login (should only show on signup)
+
+Work Log:
+- Analyzed login-page.tsx: handleSubmit always called setPage('ob-questions') regardless of signup vs login mode
+- Added onboardingCompleted boolean flag to NychIQState interface and store
+- Updated login() action to check onboardingCompleted: if true → go to 'app', if false → go to 'ob-questions'
+- Added completeOnboarding() action that sets flag to true and navigates to 'app'
+- Removed forced setPage('ob-questions') from login-page.tsx handleSubmit
+- Fixed onboarding-extension.tsx to use completeOnboarding() instead of re-calling login()
+- Persisted onboardingCompleted in localStorage via partialize
+- 0 lint errors
+
+Stage Summary:
+- First-time signup: ob-questions → ob-audit → ob-extension → dashboard
+- Returning user login: straight to dashboard (skips onboarding)
+- Key files: store.ts, login-page.tsx, onboarding-extension.tsx
+
+---
+Task ID: 3
+Agent: Main
+Task: Fix all color design issues across entire codebase
+
+Work Log:
+- Audited all color values: #F5A623 (80+ files), #00C48C (55+ files), #E05252 (36+ files), #0A0A0A (50+ files), #070707 (11 files), #111 (15 files), #111111 (55+ files)
+- Also found rgba() variants of wrong colors in 60+ files
+- Performed bulk sed replacements across all .tsx/.ts/.css files in src/
+- Replaced #111111 → #141414 separately (missed by 3-digit pattern)
+- Verified globals.css CSS variables all correct
+- Verified utils.ts viralScore() function colors correct
+- Spot-checked login-page.tsx, page.tsx, onboarding-audit.tsx
+- 0 lint errors
+
+Color Mapping Applied:
+- #F5A623 → #FDBA2D (amber gold)
+- #E6960F → #D9A013 (hover amber)
+- #FFD700 → #FDE68A (light gold)
+- #00C48C → #10B981 (success/safe green)
+- #E05252 → #EF4444 (danger red)
+- #0A0A0A → #0D0D0D (base background)
+- #070707 → #0D0D0D (darkest background)
+- #050505 → #0D0D0D (ultra-dark background)
+- #111 → #141414 (structure)
+- #111111 → #141414 (structure 6-digit)
+- rgba(245,166,35,...) → rgba(253,186,45,...) (amber rgba)
+- rgba(0,196,140,...) → rgba(16,185,129,...) (success rgba)
+- rgba(224,82,82,...) → rgba(239,68,68,...) (danger rgba)
+
+Stage Summary:
+- All 80+ component files now use correct color specifications
+- CSS variables, Tailwind theme, utility functions all aligned
+- 0 instances of wrong colors remaining in codebase

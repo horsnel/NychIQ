@@ -65,21 +65,21 @@ const NICHES = [
 ];
 
 const VELOCITY_CONFIG = {
-  rising: { color: '#00C48C', bg: 'rgba(0,196,140,0.1)', label: 'Rising' },
-  stable: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', label: 'Stable' },
+  rising: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', label: 'Rising' },
+  stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', label: 'Stable' },
   new: { color: '#4A9EFF', bg: 'rgba(74,158,255,0.1)', label: 'New' },
 };
 
 const SIGNAL_CONFIG = {
-  strong: { color: '#00C48C', bg: 'rgba(0,196,140,0.08)', border: 'rgba(0,196,140,0.3)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
-  moderate: { color: '#F5A623', bg: 'rgba(245,166,35,0.08)', border: 'rgba(245,166,35,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
-  weak: { color: '#E05252', bg: 'rgba(224,82,82,0.08)', border: 'rgba(224,82,82,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
+  strong: { color: '#10B981', bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.3)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
+  moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.08)', border: 'rgba(253,186,45,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
+  weak: { color: '#EF4444', bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
   none: { color: '#444444', bg: 'rgba(68,68,68,0.08)', border: 'rgba(68,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'No Signal' },
 };
 
 /* ── Sub-score card ── */
 function SubScoreCard({ sub }: { sub: SubScore }) {
-  const color = sub.score >= 75 ? '#00C48C' : sub.score >= 50 ? '#F5A623' : sub.score >= 30 ? '#4A9EFF' : '#E05252';
+  const color = sub.score >= 75 ? '#10B981' : sub.score >= 50 ? '#FDBA2D' : sub.score >= 30 ? '#4A9EFF' : '#EF4444';
   return (
     <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 hover:border-[#2A2A2A] transition-colors">
       <div className="flex items-center justify-between mb-2">
@@ -246,7 +246,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]">
@@ -307,7 +307,7 @@ Return ONLY the JSON object, no other text.`;
               className="px-5 h-11 rounded-lg text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{
                 backgroundColor: canCheck ? '#4A9EFF' : '#333333',
-                color: canCheck ? '#0A0A0A' : '#888888',
+                color: canCheck ? '#0D0D0D' : '#888888',
               }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Scan className="w-4 h-4" />}
@@ -328,13 +328,13 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
           <button
             onClick={handleCheck}
             className="mt-3 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
-            style={{ backgroundColor: '#4A9EFF', color: '#0A0A0A' }}
+            style={{ backgroundColor: '#4A9EFF', color: '#0D0D0D' }}
           >
             Try Again
           </button>
@@ -344,7 +344,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#4A9EFF] animate-spin" />
               <span className="text-sm text-[#888888]">Analyzing algorithm alignment...</span>
@@ -435,10 +435,10 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Trending Topics */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Flame className="w-4 h-4 text-[#F5A623]" />
+                <Flame className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Trending in {niche}</h3>
               </div>
               <span className="text-[10px] text-[#666666]">Mock data</span>
@@ -469,17 +469,17 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Recommendations */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#F5A623]" />
+                <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Recommendations</h3>
               </div>
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-1 text-xs text-[#888888] hover:text-[#E8E8E8] transition-colors"
               >
-                {copied ? <Check className="w-3 h-3 text-[#00C48C]" /> : <Copy className="w-3 h-3" />}
+                {copied ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied!' : 'Copy Report'}
               </button>
             </div>

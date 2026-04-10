@@ -45,29 +45,29 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     if (tokenBalance <= 0) {
       items.push({
         id: 'intel-tokens',
-        icon: <AlertTriangle className="w-4 h-4 text-[#E05252]" />,
+        icon: <AlertTriangle className="w-4 h-4 text-[#EF4444]" />,
         title: 'Tokens Exhausted',
         message: 'You have no tokens remaining. Upgrade your plan or wait for the monthly reset on the 31st.',
-        color: '#E05252',
-        bgColor: 'rgba(224,82,82,0.08)',
+        color: '#EF4444',
+        bgColor: 'rgba(239,68,68,0.08)',
       });
     } else if (tokenBalance < threshold) {
       items.push({
         id: 'intel-tokens',
-        icon: <Coins className="w-4 h-4 text-[#E05252]" />,
+        icon: <Coins className="w-4 h-4 text-[#EF4444]" />,
         title: 'Low Token Balance',
         message: `You only have ${tokenBalance} token${tokenBalance !== 1 ? 's' : ''} left (${Math.round((tokenBalance / maxTokens) * 100)}%). Consider upgrading.`,
-        color: '#E05252',
-        bgColor: 'rgba(224,82,82,0.08)',
+        color: '#EF4444',
+        bgColor: 'rgba(239,68,68,0.08)',
       });
     } else if (tokenBalance < Math.floor(maxTokens * 0.4)) {
       items.push({
         id: 'intel-tokens',
-        icon: <AlertTriangle className="w-4 h-4 text-[#F5A623]" />,
+        icon: <AlertTriangle className="w-4 h-4 text-[#FDBA2D]" />,
         title: 'Token Balance Warning',
         message: `You have ${tokenBalance} tokens remaining. Consider upgrading for unlimited access.`,
-        color: '#F5A623',
-        bgColor: 'rgba(245,166,35,0.08)',
+        color: '#FDBA2D',
+        bgColor: 'rgba(253,186,45,0.08)',
       });
     }
 
@@ -75,11 +75,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     if (userPlan === 'trial') {
       items.push({
         id: 'intel-plan',
-        icon: <Crown className="w-4 h-4 text-[#F5A623]" />,
+        icon: <Crown className="w-4 h-4 text-[#FDBA2D]" />,
         title: 'Upgrade Your Plan',
         message: 'Unlock 40+ tools, higher limits, and priority AI with a Pro plan.',
-        color: '#F5A623',
-        bgColor: 'rgba(245,166,35,0.08)',
+        color: '#FDBA2D',
+        bgColor: 'rgba(253,186,45,0.08)',
       });
     }
 
@@ -104,11 +104,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     const regionName = regionNames[region] || region;
     items.push({
       id: 'intel-region',
-      icon: <TrendingUp className="w-4 h-4 text-[#00C48C]" />,
+      icon: <TrendingUp className="w-4 h-4 text-[#10B981]" />,
       title: `${regionName} Trending`,
       message: `Trending content is surging in ${regionName}. Check the Trending tool for the latest viral videos.`,
-      color: '#00C48C',
-      bgColor: 'rgba(0,196,140,0.08)',
+      color: '#10B981',
+      bgColor: 'rgba(16,185,129,0.08)',
     });
 
     // Time-based greeting/tip
@@ -177,17 +177,17 @@ export function NotificationDrawer() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#111] border-l border-[#222] z-50 transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#141414] border-l border-[#222] z-50 transition-transform duration-300 ${
           notifDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#1E1E1E]">
           <div className="flex items-center gap-2">
-            <Bell className="w-5 h-5 text-[#F5A623]" />
+            <Bell className="w-5 h-5 text-[#FDBA2D]" />
             <h2 className="text-base font-semibold">Notifications</h2>
             {unreadCount > 0 && (
-              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#F5A623] text-black">
+              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#FDBA2D] text-black">
                 {unreadCount}
               </span>
             )}
@@ -197,7 +197,7 @@ export function NotificationDrawer() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#F5A623] hover:bg-[rgba(245,166,35,0.1)] transition-colors"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
                 title="Mark all as read"
               >
                 <CheckCheck className="w-3.5 h-3.5" />
@@ -262,13 +262,13 @@ export function NotificationDrawer() {
               className={cn(
                 'w-full text-left p-3 rounded-lg border transition-colors cursor-pointer',
                 notif.read
-                  ? 'bg-[#0A0A0A] border-[#1E1E1E] hover:border-[#2A2A2A]'
-                  : 'bg-[#0A0A0A] border-[rgba(245,166,35,0.2)] hover:border-[rgba(245,166,35,0.4)]'
+                  ? 'bg-[#0D0D0D] border-[#1E1E1E] hover:border-[#2A2A2A]'
+                  : 'bg-[#0D0D0D] border-[rgba(253,186,45,0.2)] hover:border-[rgba(253,186,45,0.4)]'
               )}
             >
               <div className="flex items-start gap-2">
                 {!notif.read && (
-                  <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-1.5 shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-[#FDBA2D] mt-1.5 shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

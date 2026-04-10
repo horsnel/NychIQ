@@ -18,7 +18,7 @@ export function MobileNav() {
   const { mobileNavTab, setMobileNavTab, setActiveTool } = useNychIQStore();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#070707] border-t border-[#1E1E1E]">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#0D0D0D] border-t border-[#1E1E1E]">
       <div className="flex items-center justify-around h-14">
         {TABS.map((tab) => {
           const isActive = mobileNavTab === tab.id;
@@ -32,13 +32,13 @@ export function MobileNav() {
               }}
               className={cn(
                 'relative flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-lg transition-colors',
-                isActive ? 'text-[#F5A623]' : 'text-text-muted'
+                isActive ? 'text-[#FDBA2D]' : 'text-text-muted'
               )}
             >
-              <Icon className={cn('w-5 h-5', isActive && 'drop-shadow-[0_0_6px_rgba(245,166,35,0.5)]')} />
+              <Icon className={cn('w-5 h-5', isActive && 'drop-shadow-[0_0_6px_rgba(253,186,45,0.5)]')} />
               <span className="text-[10px] font-medium">{tab.label}</span>
               {isActive && (
-                <span className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-[#F5A623]" />
+                <span className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-[#FDBA2D]" />
               )}
             </button>
           );

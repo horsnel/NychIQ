@@ -135,7 +135,7 @@ export function Topbar() {
   };
 
   return (
-    <header className="flex items-center gap-3 h-14 px-4 bg-[#0A0A0A] border-b border-[#1E1E1E] sticky top-0 z-30">
+    <header className="flex items-center gap-3 h-14 px-4 bg-[#0D0D0D] border-b border-[#1E1E1E] sticky top-0 z-30">
       {/* Hamburger (mobile) */}
       <button
         onClick={toggleSidebar}
@@ -152,7 +152,7 @@ export function Topbar() {
 
       {/* Token cost badge */}
       {tokenCost > 0 && (
-        <span className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded-full bg-[rgba(245,166,35,0.1)] text-[#F5A623] border border-[rgba(245,166,35,0.2)]">
+        <span className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded-full bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(253,186,45,0.2)]">
           {tokenCost} token{tokenCost > 1 ? 's' : ''}
         </span>
       )}
@@ -161,7 +161,7 @@ export function Topbar() {
       <div className="hidden md:flex items-center ml-3">
         <div className="relative flex items-center">
           {/* Search input */}
-          <div className="flex items-center h-8 bg-[#111111] border border-[#222222] rounded-l-lg px-3 gap-2 focus-within:border-[#F5A623]/50 transition-colors">
+          <div className="flex items-center h-8 bg-[#141414] border border-[#222222] rounded-l-lg px-3 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors">
             <Search className="w-3.5 h-3.5 text-text-muted shrink-0" />
             <input
               type="text"
@@ -175,13 +175,13 @@ export function Topbar() {
             <div ref={searchFilterRef} className="relative">
               <button
                 onClick={() => setShowSearchFilter(!showSearchFilter)}
-                className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded text-[#F5A623] hover:bg-[rgba(245,166,35,0.1)] transition-colors"
+                className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
               >
                 {searchFilter}
                 <ChevronDown className="w-2.5 h-2.5" />
               </button>
               {showSearchFilter && (
-                <div className="absolute top-full left-0 mt-1 w-32 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+                <div className="absolute top-full left-0 mt-1 w-32 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
                   {FILTER_OPTIONS.map((opt) => (
                     <button
                       key={opt}
@@ -191,7 +191,7 @@ export function Topbar() {
                       }}
                       className={cn(
                         'w-full text-left px-3 py-1.5 text-xs hover:bg-[#1A1A1A] transition-colors',
-                        searchFilter === opt ? 'text-[#F5A623]' : 'text-[#888888]'
+                        searchFilter === opt ? 'text-[#FDBA2D]' : 'text-[#888888]'
                       )}
                     >
                       {opt}
@@ -204,7 +204,7 @@ export function Topbar() {
           {/* GO button */}
           <button
             onClick={handleSearch}
-            className="h-8 px-3 bg-[#F5A623] hover:bg-[#E6960F] text-black text-xs font-semibold rounded-r-lg transition-colors"
+            className="h-8 px-3 bg-[#FDBA2D] hover:bg-[#D9A013] text-black text-xs font-semibold rounded-r-lg transition-colors"
           >
             GO
           </button>
@@ -220,7 +220,7 @@ export function Topbar() {
             className={cn(
               'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
               searchFilter === opt
-                ? 'bg-[#F5A623] text-black border-[#F5A623]'
+                ? 'bg-[#FDBA2D] text-black border-[#FDBA2D]'
                 : 'bg-transparent text-[#888888] border-[#222222] hover:border-[#333333] hover:text-[#E8E8E8]'
             )}
           >
@@ -231,13 +231,13 @@ export function Topbar() {
 
       {/* Detected location indicator — hidden on mobile */}
       {geo.detectedRegion && (
-        <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-md border border-[#00C48C]/20 bg-[rgba(0,196,140,0.06)]">
+        <div className="hidden md:flex items-center gap-1.5 px-2 py-1 rounded-md border border-[#10B981]/20 bg-[rgba(16,185,129,0.06)]">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C48C] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00C48C]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
           </span>
-          <MapPin className="w-3 h-3 text-[#00C48C]" />
-          <span className="text-[11px] font-medium text-[#00C48C]">
+          <MapPin className="w-3 h-3 text-[#10B981]" />
+          <span className="text-[11px] font-medium text-[#10B981]">
             {geo.countryName || geo.detectedRegion}
           </span>
         </div>
@@ -262,14 +262,14 @@ export function Topbar() {
             onClick={() => setShowCountryDropdown(!showCountryDropdown)}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-text-secondary text-xs hover:border-[#2A2A2A] hover:text-text-primary transition-colors"
           >
-            <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#F5A623]">
+            <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#FDBA2D]">
               {region.charAt(0)}
             </span>
             <span className="font-medium">{region}</span>
             <ChevronDown className="w-3 h-3" />
           </button>
           {showCountryDropdown && (
-            <div className="absolute top-full right-0 mt-1 w-44 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1 max-h-64 overflow-y-auto">
+            <div className="absolute top-full right-0 mt-1 w-44 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1 max-h-64 overflow-y-auto">
               {REGIONS.map((r) => (
                 <button
                   key={r.code}
@@ -279,10 +279,10 @@ export function Topbar() {
                   }}
                   className={cn(
                     'w-full flex items-center gap-2 px-3 py-2 text-xs hover:bg-[#1A1A1A] transition-colors',
-                    region === r.code ? 'text-[#F5A623]' : 'text-[#888888]'
+                    region === r.code ? 'text-[#FDBA2D]' : 'text-[#888888]'
                   )}
                 >
-                  <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#F5A623] shrink-0">
+                  <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#FDBA2D] shrink-0">
                     {r.code.charAt(0)}
                   </span>
                   <span>{r.code} — {r.label}</span>
@@ -309,7 +309,7 @@ export function Topbar() {
           aria-label="Notifications"
         >
           <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#E05252]" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#EF4444]" />
         </button>
 
         {/* Token pill */}
@@ -319,13 +319,13 @@ export function Topbar() {
         <div ref={avatarRef} className="relative">
           <button
             onClick={() => setShowAvatarMenu(!showAvatarMenu)}
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:opacity-90 transition-opacity"
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:opacity-90 transition-opacity"
             title={userName || 'User'}
           >
             {userName ? userName[0].toUpperCase() : 'U'}
           </button>
           {showAvatarMenu && (
-            <div className="absolute top-full right-0 mt-2 w-48 bg-[#111111] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+            <div className="absolute top-full right-0 mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
               <button
                 onClick={() => handleAvatarAction('profile')}
                 className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
@@ -350,7 +350,7 @@ export function Topbar() {
               <div className="my-1 border-t border-[#1E1E1E]" />
               <button
                 onClick={() => handleAvatarAction('signout')}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#E05252] hover:bg-[rgba(224,82,82,0.1)] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 <span>Sign Out</span>

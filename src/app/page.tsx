@@ -106,8 +106,8 @@ function ToolPlaceholder() {
     <div className="flex items-center justify-center min-h-[60vh] animate-fade-in-up">
       <Card className="nychiq-card max-w-md w-full">
         <CardContent className="p-8 text-center">
-          <div className="w-14 h-14 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-7 h-7 text-[#F5A623]" />
+          <div className="w-14 h-14 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-4">
+            <Sparkles className="w-7 h-7 text-[#FDBA2D]" />
           </div>
           <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">{label}</h2>
           <p className="text-sm text-[#888888] mb-4">
@@ -247,7 +247,7 @@ function ToolRouter() {
 /* ── App shell (sidebar + topbar + content) ── */
 function AppShell() {
   return (
-    <div className="flex min-h-screen bg-[#0A0A0A]">
+    <div className="flex min-h-screen bg-[#0D0D0D]">
       {/* Sidebar */}
       <Sidebar />
 
@@ -289,7 +289,7 @@ export default function NychIQApp() {
   const { currentPage } = useNychIQStore();
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#E8E8E8]">
+    <div className="min-h-screen bg-[#0D0D0D] text-[#E8E8E8]">
       <AppEffects />
       {currentPage === 'welcome' && <WelcomePage />}
       {currentPage === 'login' && <LoginPage />}

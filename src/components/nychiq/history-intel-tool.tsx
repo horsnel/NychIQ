@@ -85,7 +85,7 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]"><History className="w-5 h-5 text-[#4A9EFF]" /></div>
@@ -111,7 +111,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-3/4" /></div>
             </div>
@@ -124,7 +124,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#4A9EFF]" /> Historical Analysis for &quot;{channel.trim()}&quot;</h3>
 
           {/* Thumbnail Evolution Timeline */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><ImageIcon className="w-3.5 h-3.5" /> Thumbnail Evolution</h4>
             <div className="space-y-3">
               {result.thumbnailEvolution.map((phase, i) => (
@@ -136,7 +136,7 @@ Return ONLY the JSON object.`;
                   <div className="flex-1 pb-4">
                     <p className="text-sm font-bold text-[#E8E8E8]">{phase.phase}</p>
                     <p className="text-xs text-[#888888] mt-0.5">{phase.description}</p>
-                    <p className="text-xs text-[#00C48C] mt-1">Impact: {phase.impact}</p>
+                    <p className="text-xs text-[#10B981] mt-1">Impact: {phase.impact}</p>
                   </div>
                 </div>
               ))}
@@ -144,7 +144,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Title Patterns */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Title Pattern Analysis</h4>
             <div className="space-y-2">
               {result.titlePatterns.map((tp, i) => (
@@ -154,7 +154,7 @@ Return ONLY the JSON object.`;
                   </div>
                   <div className="flex items-center gap-3 mt-1.5">
                     <span className="text-[10px] text-[#666666]">{tp.frequency}</span>
-                    <span className="text-[10px] text-[#00C48C]">{tp.performance}</span>
+                    <span className="text-[10px] text-[#10B981]">{tp.performance}</span>
                   </div>
                 </div>
               ))}
@@ -162,7 +162,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Upload Timing */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Upload Timing Trends</h4>
             <div className="space-y-2">
               {result.uploadTrends.map((ut, i) => (
@@ -170,7 +170,7 @@ Return ONLY the JSON object.`;
                   <TrendingUp className="w-4 h-4 text-[#4A9EFF] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm text-[#E8E8E8]">{ut.finding}</p>
-                    <p className="text-xs text-[#00C48C] mt-0.5">Impact: {ut.impact}</p>
+                    <p className="text-xs text-[#10B981] mt-0.5">Impact: {ut.impact}</p>
                   </div>
                 </div>
               ))}
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Correlations */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Performance Correlations</h4>
             <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.correlations}</p>
           </div>

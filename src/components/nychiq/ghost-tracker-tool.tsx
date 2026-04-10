@@ -85,21 +85,21 @@ interface GhostResult {
 
 /* ── Severity colors ── */
 function severityColor(s: string): string {
-  if (s === 'high') return '#E05252';
-  if (s === 'medium') return '#F5A623';
+  if (s === 'high') return '#EF4444';
+  if (s === 'medium') return '#FDBA2D';
   return '#4A9EFF';
 }
 
 function impactColor(i: string): string {
-  if (i === 'positive') return '#00C48C';
-  if (i === 'negative') return '#E05252';
+  if (i === 'positive') return '#10B981';
+  if (i === 'negative') return '#EF4444';
   return '#888888';
 }
 
 function trendColor(t: string): string {
-  if (t === 'accelerating') return '#00C48C';
-  if (t === 'declining') return '#E05252';
-  return '#F5A623';
+  if (t === 'accelerating') return '#10B981';
+  if (t === 'declining') return '#EF4444';
+  return '#FDBA2D';
 }
 
 /* ── Mock fallback ── */
@@ -261,7 +261,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(74,158,255,0.1)' }}>
@@ -292,7 +292,7 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={handleTrack}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-lg text-[#0A0A0A] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{ backgroundColor: '#4A9EFF' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <EyeOff className="w-4 h-4" />}
@@ -304,10 +304,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8] mb-3">{error}</p>
-          <button onClick={handleTrack} className="px-4 py-2 rounded-lg bg-[#E05252]/15 text-[#E05252] text-xs font-medium hover:bg-[#E05252]/25 transition-colors">
+          <button onClick={handleTrack} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -316,7 +316,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#4A9EFF' }} />
               <span className="text-sm text-[#888888]">Tracking stealth signals...</span>
@@ -334,7 +334,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <>
           {/* Channel Overview */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
               <Users className="w-4 h-4" style={{ color: '#4A9EFF' }} />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">Channel Overview</h3>
@@ -368,11 +368,11 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Velocity Alerts */}
           {result.velocityAlerts.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Zap className="w-4 h-4 text-[#F5A623]" />
+                <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Velocity Alerts</h3>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse" style={{ backgroundColor: 'rgba(245,166,35,0.15)', color: '#F5A623' }}>LIVE</span>
+                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>LIVE</span>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.velocityAlerts.map((alert, i) => (
@@ -393,7 +393,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* A/B Test Spy */}
           {result.abTests.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <GitCompare className="w-4 h-4" style={{ color: '#9B72CF' }} />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">A/B Test Spy</h3>
@@ -417,7 +417,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Off-Platform Signals */}
           {result.offPlatform.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Globe className="w-4 h-4" style={{ color: '#4A9EFF' }} />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Off-Platform Signals</h3>
@@ -432,7 +432,7 @@ Return ONLY the JSON object, no other text.`;
                         <span className="text-xs font-semibold text-[#E8E8E8]">{signal.platform}</span>
                       </div>
                       <p className="text-sm font-bold text-[#4A9EFF]">{signal.estimatedFollowers}</p>
-                      <p className="text-[10px] text-[#00C48C] mt-0.5">{signal.growth}</p>
+                      <p className="text-[10px] text-[#10B981] mt-0.5">{signal.growth}</p>
                       <p className="text-[10px] text-[#888888] mt-1">{signal.activity}</p>
                     </div>
                   );
@@ -442,7 +442,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* Engagement Velocity */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
               <Activity className="w-4 h-4" style={{ color: '#4A9EFF' }} />
               <h3 className="text-sm font-semibold text-[#E8E8E8]">Engagement Velocity</h3>
@@ -473,7 +473,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Shadow Metrics */}
           {result.shadowMetrics.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <BarChart3 className="w-4 h-4" style={{ color: '#4A9EFF' }} />
                 <h3 className="text-sm font-semibold text-[#E8E8E8]">Shadow Metrics</h3>
@@ -494,7 +494,7 @@ Return ONLY the JSON object, no other text.`;
                         <td className="px-4 py-2.5 text-xs text-[#E8E8E8]">{m.label}</td>
                         <td className="px-4 py-2.5 text-xs font-semibold text-[#4A9EFF] text-center">{m.them}</td>
                         <td className="px-4 py-2.5 text-xs text-[#666666] text-center">{m.you}</td>
-                        <td className="px-4 py-2.5 text-xs font-semibold text-[#E05252] text-center">{m.diff}</td>
+                        <td className="px-4 py-2.5 text-xs font-semibold text-[#EF4444] text-center">{m.diff}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -504,7 +504,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* AI Competitive Analysis */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#4A9EFF' }} />

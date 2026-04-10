@@ -90,18 +90,18 @@ Return ONLY the JSON object.`;
     }
   };
   const statusConfig: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
-    Safe: { color: '#00C48C', bg: 'rgba(0,196,140,0.1)', border: 'rgba(0,196,140,0.3)', icon: <CheckCircle className="w-5 h-5" /> },
-    Caution: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', border: 'rgba(245,166,35,0.3)', icon: <AlertTriangle className="w-5 h-5" /> },
-    Risky: { color: '#E05252', bg: 'rgba(224,82,82,0.1)', border: 'rgba(224,82,82,0.3)', icon: <XCircle className="w-5 h-5" /> },
-    Dangerous: { color: '#E05252', bg: 'rgba(224,82,82,0.2)', border: 'rgba(224,82,82,0.5)', icon: <Shield className="w-5 h-5" /> },
+    Safe: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', icon: <CheckCircle className="w-5 h-5" /> },
+    Caution: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <AlertTriangle className="w-5 h-5" /> },
+    Risky: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', icon: <XCircle className="w-5 h-5" /> },
+    Dangerous: { color: '#EF4444', bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.5)', icon: <Shield className="w-5 h-5" /> },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(0,196,140,0.1)]"><ShieldCheck className="w-5 h-5 text-[#00C48C]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><ShieldCheck className="w-5 h-5 text-[#10B981]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Safe Content Checker</h2>
               <p className="text-xs text-[#888888] mt-0.5">Scans scripts/titles for demonetization-risk keywords.</p>
@@ -111,11 +111,11 @@ Return ONLY the JSON object.`;
             <textarea value={text} onChange={(e) => setText(e.target.value.slice(0, 3000))}
               placeholder="Paste your video script, title, or description here..."
               rows={5}
-              className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#00C48C]/50 transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors resize-none"
             />
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-[#666666]">{text.length}/3000 characters</span>
-              <button onClick={handleScan} disabled={loading || !text.trim()} className="px-5 h-10 rounded-lg bg-[#00C48C] text-[#0A0A0A] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+              <button onClick={handleScan} disabled={loading || !text.trim()} className="px-5 h-10 rounded-lg bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4" />}
                 Scan for Risks
               </button>
@@ -125,15 +125,15 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-6 text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-[#00C48C] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-[#10B981] mx-auto mb-3" />
           <p className="text-sm text-[#888888]">Scanning content for risk keywords...</p>
         </div>
       )}
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#00C48C]" /> Scan Results</h3>
+          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Scan Results</h3>
 
           {/* Status Banner */}
           {(() => {
@@ -151,32 +151,32 @@ Return ONLY the JSON object.`;
 
           {/* Scores */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Safety Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#00C48C' : result.safetyScore >= 50 ? '#F5A623' : '#E05252' }}>{result.safetyScore}</p>
+              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#10B981' : result.safetyScore >= 50 ? '#FDBA2D' : '#EF4444' }}>{result.safetyScore}</p>
             </div>
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Advertiser Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#00C48C' : result.advertiserFriendly >= 50 ? '#F5A623' : '#E05252' }}>{result.advertiserFriendly}</p>
+              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#10B981' : result.advertiserFriendly >= 50 ? '#FDBA2D' : '#EF4444' }}>{result.advertiserFriendly}</p>
             </div>
           </div>
 
           {/* Risk Keywords */}
           {result.riskKeywords.length > 0 && (
-            <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
               <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {result.riskKeywords.map((kw, i) => {
-                  const sevColor = kw.severity === 'high' ? '#E05252' : kw.severity === 'medium' ? '#F5A623' : '#4A9EFF';
-                  const sevBg = kw.severity === 'high' ? 'rgba(224,82,82,0.1)' : kw.severity === 'medium' ? 'rgba(245,166,35,0.1)' : 'rgba(74,158,255,0.1)';
+                  const sevColor = kw.severity === 'high' ? '#EF4444' : kw.severity === 'medium' ? '#FDBA2D' : '#4A9EFF';
+                  const sevBg = kw.severity === 'high' ? 'rgba(239,68,68,0.1)' : kw.severity === 'medium' ? 'rgba(253,186,45,0.1)' : 'rgba(74,158,255,0.1)';
                   return (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-md border" style={{ backgroundColor: sevBg, borderColor: `${sevColor}20` }}>
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold shrink-0" style={{ color: sevColor, backgroundColor: `${sevColor}20` }}>
                         {kw.severity.toUpperCase()}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#E05252]">&quot;{kw.keyword}&quot;</p>
-                        <p className="text-xs text-[#888888] mt-0.5">Replace with: <span className="text-[#00C48C]">&quot;{kw.replacement}&quot;</span></p>
+                        <p className="text-sm font-medium text-[#EF4444]">&quot;{kw.keyword}&quot;</p>
+                        <p className="text-xs text-[#888888] mt-0.5">Replace with: <span className="text-[#10B981]">&quot;{kw.replacement}&quot;</span></p>
                       </div>
                     </div>
                   );
@@ -186,7 +186,7 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Summary */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Summary</h4>
             <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.summary}</p>
           </div>
@@ -195,7 +195,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(0,196,140,0.1)] border border-[rgba(0,196,140,0.2)] flex items-center justify-center mb-4"><ShieldCheck className="w-8 h-8 text-[#00C48C]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-4"><ShieldCheck className="w-8 h-8 text-[#10B981]" /></div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Check Your Content</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Paste your script or title to scan for demonetization-risk keywords.</p>
         </div>

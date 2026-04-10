@@ -46,10 +46,10 @@ function HealthGauge({ score }: { score: number }) {
   }, [score]);
 
   const getColor = () => {
-    if (score >= 80) return '#00C48C';
-    if (score >= 60) return '#F5A623';
+    if (score >= 80) return '#10B981';
+    if (score >= 60) return '#FDBA2D';
     if (score >= 40) return '#4A9EFF';
-    return '#E05252';
+    return '#EF4444';
   };
 
   return (
@@ -122,14 +122,14 @@ export function OnboardingAudit() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#070707] flex flex-col">
+    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#111]">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#141414]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#F5A623] to-[#FFD700] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center">
             <Sparkles className="w-4 h-4 text-black" />
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F5A623]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -137,7 +137,7 @@ export function OnboardingAudit() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 1 ? 'bg-[#F5A623]' : 'bg-[#222]'
+                  i <= 1 ? 'bg-[#FDBA2D]' : 'bg-[#222]'
                 }`}
               />
             ))}
@@ -152,8 +152,8 @@ export function OnboardingAudit() {
           {/* ── Input state ── */}
           {!loading && !report && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="w-8 h-8 text-[#F5A623]" />
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#FDBA2D]" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mb-2">Free Channel Audit</h2>
               <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
@@ -167,19 +167,19 @@ export function OnboardingAudit() {
                     value={channelUrl}
                     onChange={(e) => setChannelUrl(e.target.value)}
                     placeholder="https://youtube.com/@yourchannel"
-                    className="pl-9 bg-[#111] border-[#222] text-[#E8E8E8] placeholder-[#444] h-12 text-center focus:border-[#F5A62355]"
+                    className="pl-9 bg-[#141414] border-[#222] text-[#E8E8E8] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
                     onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
                   />
                 </div>
 
                 <div className="flex items-center justify-center gap-4 text-xs text-[#555]">
-                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#F5A623]" /> Viral Score</span>
-                  <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-[#00C48C]" /> Growth Tips</span>
+                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#FDBA2D]" /> Viral Score</span>
+                  <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-[#10B981]" /> Growth Tips</span>
                   <span className="flex items-center gap-1"><Search className="w-3 h-3 text-[#4A9EFF]" /> SEO</span>
                 </div>
 
                 <Button
-                  className="w-full bg-[#F5A623] text-black hover:bg-[#E6960F] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={handleAudit}
                   disabled={!channelUrl.trim()}
                 >
@@ -200,8 +200,8 @@ export function OnboardingAudit() {
           {/* ── Loading state ── */}
           {loading && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="w-8 h-8 text-[#F5A623] animate-pulse" />
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#FDBA2D] animate-pulse" />
               </div>
               <h2 className="text-xl font-bold text-[#E8E8E8] mb-6">Analyzing Channel...</h2>
 
@@ -215,10 +215,10 @@ export function OnboardingAudit() {
                       key={i}
                       className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border transition-all duration-300 ${
                         isActive
-                          ? 'bg-[rgba(245,166,35,0.06)] border-[rgba(245,166,35,0.2)] text-[#F5A623]'
+                          ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(253,186,45,0.2)] text-[#FDBA2D]'
                           : isDone
-                            ? 'bg-[rgba(0,196,140,0.06)] border-[rgba(0,196,140,0.15)] text-[#00C48C]'
-                            : 'bg-[#0A0A0A] border-[#1E1E1E] text-[#444]'
+                            ? 'bg-[rgba(16,185,129,0.06)] border-[rgba(16,185,129,0.15)] text-[#10B981]'
+                            : 'bg-[#0D0D0D] border-[#1E1E1E] text-[#444]'
                       }`}
                     >
                       {isDone ? (
@@ -248,7 +248,7 @@ export function OnboardingAudit() {
               </div>
 
               {/* AI Insights */}
-              <div className="bg-[#0A0A0A] border border-[#1E1E1E] rounded-xl p-5 mb-6">
+              <div className="bg-[#0D0D0D] border border-[#1E1E1E] rounded-xl p-5 mb-6">
                 <div className="flex items-center gap-2 mb-3">
                   <Sparkles className="w-4 h-4 text-[#9B72CF]" />
                   <span className="text-xs font-semibold text-[#9B72CF]">AI INSIGHTS</span>
@@ -256,7 +256,7 @@ export function OnboardingAudit() {
                 <ul className="space-y-2.5">
                   {insights.map((insight, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-[#888] leading-relaxed">
-                      <span className="w-1 h-1 rounded-full bg-[#F5A623] shrink-0 mt-1.5" />
+                      <span className="w-1 h-1 rounded-full bg-[#FDBA2D] shrink-0 mt-1.5" />
                       {insight}
                     </li>
                   ))}
@@ -266,14 +266,14 @@ export function OnboardingAudit() {
               {/* Stats pills */}
               <div className="flex flex-wrap gap-2 mb-8 justify-center">
                 {[
-                  { label: 'Videos', value: '47', color: '#F5A623' },
-                  { label: 'Subscribers', value: '12.4K', color: '#00C48C' },
+                  { label: 'Videos', value: '47', color: '#FDBA2D' },
+                  { label: 'Subscribers', value: '12.4K', color: '#10B981' },
                   { label: 'Avg Views', value: '3.2K', color: '#4A9EFF' },
                   { label: 'Engagement', value: '6.8%', color: '#9B72CF' },
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="px-3 py-2 rounded-lg bg-[#0A0A0A] border border-[#1E1E1E]"
+                    className="px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]"
                   >
                     <div className="text-sm font-bold" style={{ color: stat.color }}>{stat.value}</div>
                     <div className="text-[10px] text-[#555]">{stat.label}</div>
@@ -284,7 +284,7 @@ export function OnboardingAudit() {
               {/* Action */}
               <div className="flex flex-col items-center gap-3">
                 <Button
-                  className="w-full max-w-xs bg-[#F5A623] text-black hover:bg-[#E6960F] h-11 font-semibold shadow-lg shadow-[rgba(245,166,35,0.15)]"
+                  className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={() => setPage('ob-extension')}
                 >
                   Continue

@@ -30,7 +30,7 @@ function HealthGauge({ score }: { score: number }) {
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
   const progress = score / 100 * circumference;
-  const color = score >= 80 ? '#00C48C' : score >= 60 ? '#F5A623' : score >= 40 ? '#4A9EFF' : '#E05252';
+  const color = score >= 80 ? '#10B981' : score >= 60 ? '#FDBA2D' : score >= 40 ? '#4A9EFF' : '#EF4444';
   const grade = score >= 90 ? 'A' : score >= 80 ? 'B' : score >= 65 ? 'C' : score >= 50 ? 'D' : 'F';
 
   return (
@@ -117,10 +117,10 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#F5A623]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#FDBA2D]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Channel Audit</h2>
               <p className="text-xs text-[#888888] mt-0.5">Full health check: health score 0-100, SEO gaps, action plan.</p>
@@ -130,9 +130,9 @@ Return ONLY the JSON object.`;
             <input type="text" value={channel} onChange={(e) => setChannel(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAudit(); }}
               placeholder="Enter YouTube channel name or @handle..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#F5A623]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
-            <button onClick={handleAudit} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleAudit} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ClipboardCheck className="w-4 h-4" />}
               Run Audit
             </button>
@@ -142,10 +142,10 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6 flex items-center justify-center">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex items-center justify-center">
             <div className="w-36 h-36 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4 space-y-3">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-3">
             {Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-4 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${50 + Math.random() * 50}%` }} />)}
           </div>
         </div>
@@ -153,19 +153,19 @@ Return ONLY the JSON object.`;
 
       {!loading && result && (
         <div className="space-y-5">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F5A623]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
+          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
 
           {/* Health Score */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-6 flex flex-col items-center">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex flex-col items-center">
             <HealthGauge score={result.healthScore} />
           </div>
 
           {/* Category Scores */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Category Scores</h4>
             <div className="space-y-3">
               {result.categories.map((cat) => {
-                const color = cat.score >= 80 ? '#00C48C' : cat.score >= 60 ? '#F5A623' : '#E05252';
+                const color = cat.score >= 80 ? '#10B981' : cat.score >= 60 ? '#FDBA2D' : '#EF4444';
                 return (
                   <div key={cat.name}>
                     <div className="flex items-center justify-between mb-1">
@@ -182,12 +182,12 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Items */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Action Items</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.actionItems.map((item, i) => {
                 const Icon = item.priority === 'high' ? XCircle : item.priority === 'medium' ? AlertTriangle : CheckCircle;
-                const pColor = item.priority === 'high' ? '#E05252' : item.priority === 'medium' ? '#F5A623' : '#00C48C';
+                const pColor = item.priority === 'high' ? '#EF4444' : item.priority === 'medium' ? '#FDBA2D' : '#10B981';
                 return (
                   <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <Icon className="w-4 h-4 mt-0.5 shrink-0" style={{ color: pColor }} />
@@ -199,7 +199,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Improvement Potential */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Improvement Potential</h4>
             <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.improvementPotential}</p>
           </div>
@@ -208,7 +208,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#F5A623]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#FDBA2D]" /></div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Audit Your Channel</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Enter a YouTube channel name to get a comprehensive health check with actionable insights.</p>
         </div>

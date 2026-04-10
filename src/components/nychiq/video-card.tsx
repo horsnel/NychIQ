@@ -40,7 +40,7 @@ function ViralBadge({ score }: { score: number }) {
     return (
       <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
         <span>🔥</span>
-        <span className="text-[#00C48C]">VIRAL</span>
+        <span className="text-[#10B981]">VIRAL</span>
       </span>
     );
   }
@@ -48,7 +48,7 @@ function ViralBadge({ score }: { score: number }) {
     return (
       <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
         <span>⚡</span>
-        <span className="text-[#F5A623]">HOT</span>
+        <span className="text-[#FDBA2D]">HOT</span>
       </span>
     );
   }
@@ -57,7 +57,7 @@ function ViralBadge({ score }: { score: number }) {
 
 function VideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#111111] border border-[#222222]">
+    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#222222]">
       <div className="aspect-video bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-shimmer w-full" />
@@ -177,7 +177,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="bg-[#111] border-[#222] min-w-[200px]"
+        className="bg-[#141414] border-[#222] min-w-[200px]"
       >
         <DropdownMenuItem
           onClick={handleOpenYouTube}
@@ -308,7 +308,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           <CopyLinkButton videoId={video.videoId} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
-          <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors">
+          <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">
             {video.title}
           </h3>
           <p className="text-xs text-[#888888] mt-1">{video.channelTitle}</p>
@@ -324,7 +324,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#111111] border border-[#222222]',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] border border-[#222222]',
         'transition-all duration-200',
         'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]',
         className
@@ -352,7 +352,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
         {/* Hover play overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full bg-[#F5A623]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 scale-75 group-hover:scale-100">
+          <div className="w-10 h-10 rounded-full bg-[#FDBA2D]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 scale-75 group-hover:scale-100">
             <Play className="w-4 h-4 text-white fill-white ml-0.5" />
           </div>
         </div>
@@ -378,7 +378,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
       {/* Info */}
       <div className="p-3">
-        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors leading-snug">
+        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
           {video.title}
         </h3>
         <p className="text-xs text-[#888888] mt-1.5">{video.channelTitle}</p>

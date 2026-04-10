@@ -59,7 +59,7 @@ function ShortsCard({ video }: { video: VideoData }) {
   };
 
   return (
-    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#111111] border border-[#222222] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]"
+    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#141414] border border-[#222222] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]"
       onClick={() => window.open(youtubeUrl, '_blank', 'noopener')} role="button" tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') window.open(youtubeUrl, '_blank', 'noopener'); }}>
       <div className="relative aspect-[9/16] bg-[#1A1A1A] overflow-hidden">
@@ -69,13 +69,13 @@ function ShortsCard({ video }: { video: VideoData }) {
           <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center"><Play className="w-8 h-8 text-[#444]" /></div>
         )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full bg-[#F5A623]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-75 group-hover:scale-100">
+          <div className="w-12 h-12 rounded-full bg-[#FDBA2D]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-75 group-hover:scale-100">
             <Play className="w-5 h-5 text-white fill-white ml-0.5" />
           </div>
         </div>
         {video.viralScore && video.viralScore >= 70 && (
           <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
-            {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#00C48C]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#F5A623]">HOT</span></>)}
+            {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#10B981]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>)}
           </span>
         )}
         {video.duration && (<span className="absolute bottom-2 right-2 px-1.5 py-0.5 text-[10px] font-medium bg-black/80 rounded text-white">{vidDuration(video.duration)}</span>)}
@@ -83,7 +83,7 @@ function ShortsCard({ video }: { video: VideoData }) {
           <DropdownMenuTrigger asChild>
             <button className="absolute top-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" onClick={(e) => e.stopPropagation()} aria-label="Shorts options"><MoreVertical className="w-4 h-4 text-white" /></button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side="bottom" align="end" className="bg-[#111] border-[#222] min-w-[200px]">
+          <DropdownMenuContent side="bottom" align="end" className="bg-[#141414] border-[#222] min-w-[200px]">
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); window.open(youtubeUrl, '_blank', 'noopener'); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><ExternalLink className="w-4 h-4" />Open on YouTube</DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#222]" />
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Title</DropdownMenuItem>
@@ -96,7 +96,7 @@ function ShortsCard({ video }: { video: VideoData }) {
         </DropdownMenu>
       </div>
       <div className="p-3">
-        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#F5A623] transition-colors leading-snug">{video.title}</h3>
+        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">{video.title}</h3>
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-center gap-2 text-[11px] text-[#666666]"><Eye className="w-3 h-3" />{fmtV(video.viewCount || 0)}</div>
           {vs && (<span className={cn('text-[10px] font-bold px-1.5 py-0.5 rounded-full', scoreClass(video.viralScore ?? 0))}>{video.viralScore ?? 0}</span>)}
@@ -109,7 +109,7 @@ function ShortsCard({ video }: { video: VideoData }) {
 
 function ShortsSkeleton() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#111111] border border-[#222222]">
+    <div className="rounded-xl overflow-hidden bg-[#141414] border border-[#222222]">
       <div className="aspect-[9/16] bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -180,15 +180,15 @@ export function ShortsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.1)]"><Zap className="w-5 h-5 text-[#F5A623]" /></div>
+              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Zap className="w-5 h-5 text-[#FDBA2D]" /></div>
               <div>
                 <h2 className="text-base font-bold text-[#E8E8E8] flex items-center gap-2">
                   Trending Shorts
-                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00C48C]/10 text-[10px] font-bold text-[#00C48C]">
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[10px] font-bold text-[#10B981]">
                     <span className="live-dot" />LIVE
                   </span>
                 </h2>
@@ -209,7 +209,7 @@ export function ShortsTool() {
                 className={cn(
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   sortBy === s.key
-                    ? 'bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30'
+                    ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
                     : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
                 )}
               >
@@ -235,17 +235,17 @@ export function ShortsTool() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-3 gap-3 sm:gap-4">
-        <StatCard label="Shorts Found" value={videos.length} change="↑ 8%" color="#00C48C" dark icon={<Flame className="w-4 h-4" />} />
+        <StatCard label="Shorts Found" value={videos.length} change="↑ 8%" color="#10B981" dark icon={<Flame className="w-4 h-4" />} />
         <StatCard label="Total Views" value={fmtV(totalViews)} color="#4A9EFF" dark icon={<Eye className="w-4 h-4" />} />
-        <StatCard label="Top Viral Score" value={topViral || '—'} color="#F5A623" dark icon={<Zap className="w-4 h-4" />} />
+        <StatCard label="Top Viral Score" value={topViral || '—'} color="#FDBA2D" dark icon={<Zap className="w-4 h-4" />} />
       </div>
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#111111] border border-[#E05252]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#E05252] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
           <p className="text-sm text-[#E8E8E8]">{error}</p>
-          <button onClick={fetchShorts} className="mt-3 px-4 py-2 rounded-lg bg-[#F5A623] text-[#0A0A0A] text-sm font-bold hover:bg-[#E6960F] transition-colors">Try Again</button>
+          <button onClick={fetchShorts} className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors">Try Again</button>
         </div>
       )}
 
@@ -278,8 +278,8 @@ export function ShortsTool() {
       {/* Empty State */}
       {!loading && !error && sortedVideos.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.2)] flex items-center justify-center mb-4">
-            <Zap className="w-8 h-8 text-[#F5A623]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+            <Zap className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">No Shorts Found</h3>
           <p className="text-sm text-[#888888]">No trending shorts data available right now.</p>

@@ -92,7 +92,7 @@ export function SakuDailyPopup() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        className="sm:max-w-md bg-[#111111] border-[#222222] p-0 overflow-hidden"
+        className="sm:max-w-md bg-[#141414] border-[#222222] p-0 overflow-hidden"
         showCloseButton={true}
       >
         {/* ── Header ── */}
@@ -115,7 +115,7 @@ export function SakuDailyPopup() {
 
         {/* ── Body ── */}
         <div className="px-6 py-4">
-          <div className="rounded-lg bg-[#0A0A0A] border border-[#1E1E1E] p-4">
+          <div className="rounded-lg bg-[#0D0D0D] border border-[#1E1E1E] p-4">
             <p className="text-sm leading-relaxed text-[#CCCCCC]">
               {insight.text}
             </p>
@@ -133,7 +133,7 @@ export function SakuDailyPopup() {
           </Button>
           <Button
             onClick={handleTryItNow}
-            className="flex-1 bg-[#F5A623] hover:bg-[#E6960F] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(245,166,35,0.3)]"
+            className="flex-1 bg-[#FDBA2D] hover:bg-[#D9A013] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.3)]"
           >
             Try It Now
           </Button>

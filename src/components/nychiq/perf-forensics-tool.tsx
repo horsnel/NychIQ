@@ -84,18 +84,18 @@ Return ONLY the JSON object.`;
     }
   };
   const sevConfig: Record<string, { color: string; bg: string; border: string }> = {
-    Low: { color: '#00C48C', bg: 'rgba(0,196,140,0.1)', border: 'rgba(0,196,140,0.3)' },
-    Medium: { color: '#F5A623', bg: 'rgba(245,166,35,0.1)', border: 'rgba(245,166,35,0.3)' },
-    High: { color: '#E05252', bg: 'rgba(224,82,82,0.1)', border: 'rgba(224,82,82,0.3)' },
-    Critical: { color: '#E05252', bg: 'rgba(224,82,82,0.2)', border: 'rgba(224,82,82,0.5)' },
+    Low: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)' },
+    Medium: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' },
+    High: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)' },
+    Critical: { color: '#EF4444', bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.5)' },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#111111] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(224,82,82,0.1)]"><Stethoscope className="w-5 h-5 text-[#E05252]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]"><Stethoscope className="w-5 h-5 text-[#EF4444]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#E8E8E8]">Performance Forensics</h2>
               <p className="text-xs text-[#888888] mt-0.5">Diagnose why any video underperformed.</p>
@@ -105,9 +105,9 @@ Return ONLY the JSON object.`;
             <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleDiagnose(); }}
               placeholder="Paste video URL to diagnose..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#E05252]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors"
             />
-            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#E05252] text-white text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#EF4444] text-white text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
               Diagnose
             </button>
@@ -116,15 +116,15 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#111111] border border-[#222222] p-6 text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-[#E05252] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#888888]">Running forensic analysis...</p>
         </div>
       )}
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#E05252]" /> Forensics Report</h3>
+          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#EF4444]" /> Forensics Report</h3>
 
           {/* Diagnosis */}
           {(() => {
@@ -141,12 +141,12 @@ Return ONLY the JSON object.`;
           })()}
 
           {/* Root Causes */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Root Cause Analysis</h4>
             <div className="space-y-2">
               {result.rootCauses.map((cause, i) => (
                 <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <span className="w-5 h-5 rounded-full bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.3)] flex items-center justify-center text-[10px] font-bold text-[#E05252] shrink-0">{i + 1}</span>
+                  <span className="w-5 h-5 rounded-full bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.3)] flex items-center justify-center text-[10px] font-bold text-[#EF4444] shrink-0">{i + 1}</span>
                   <p className="text-sm text-[#E8E8E8]">{cause}</p>
                 </div>
               ))}
@@ -154,11 +154,11 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Fix Recommendations */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Fix Recommendations</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.fixRecommendations.map((rec, i) => {
-                const pColor = rec.priority === 'high' ? '#E05252' : rec.priority === 'medium' ? '#F5A623' : '#00C48C';
+                const pColor = rec.priority === 'high' ? '#EF4444' : rec.priority === 'medium' ? '#FDBA2D' : '#10B981';
                 return (
                   <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <ArrowRight className="w-4 h-4 mt-0.5 shrink-0" style={{ color: pColor }} />
@@ -173,7 +173,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#111111] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Priority Action Plan</h4>
             <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.actionPlan}</p>
           </div>
@@ -182,7 +182,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(224,82,82,0.1)] border border-[rgba(224,82,82,0.2)] flex items-center justify-center mb-4"><Stethoscope className="w-8 h-8 text-[#E05252]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4"><Stethoscope className="w-8 h-8 text-[#EF4444]" /></div>
           <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Diagnose Performance</h3>
           <p className="text-sm text-[#888888] max-w-xs text-center">Paste a video URL to get a forensic analysis of why it underperformed.</p>
         </div>
