@@ -11,7 +11,7 @@ import {
   BarChart2, Settings, Coins, User, ChevronDown, ChevronRight,
   Lock, X, Play, Layers, Scan, Wrench, ScrollText,
   Scale, Columns2, Grid3x3, Package, Target, EyeOff, Archive,
-  Sparkles,
+  Sparkles, Sliders,
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { cn } from '@/lib/utils';
@@ -27,7 +27,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, Sparkles,
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
-  Package, Target, EyeOff, Archive,
+  Package, Target, EyeOff, Archive, Sliders,
 };
 
 /* ── Plan badge colors ── */

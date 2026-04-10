@@ -104,7 +104,7 @@ export interface NychIQState {
 
 /* ── Token costs per feature ── */
 export const TOKEN_COSTS: Record<string, number> = {
-  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0, 'sovereign-vault': 0,
+  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0, 'sovereign-vault': 0, 'channel-assistant': 0,
   viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2, 'vph-tracker': 2,
   trending: 3, algorithm: 3, deepchat: 3, 'trend-alerts': 3, posttime: 5, shorts: 5, seo: 5, 'safe-check': 5, pulsecheck: 5, 'blueprint-ai': 5, 'social-channels': 5,
   ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8, lume: 8, scriptflow: 8, arbitrage: 8, 'sponsorship-roi': 8,
@@ -115,11 +115,11 @@ export const TOKEN_COSTS: Record<string, number> = {
 
 /* ── Plan access levels ── */
 export const PLAN_ACCESS: Record<Plan, string[]> = {
-  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault'],
-  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio'],
-  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap'],
-  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout'],
-  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap'],
+  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'channel-assistant'],
+  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'channel-assistant'],
+  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant'],
+  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant'],
+  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant'],
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
@@ -219,6 +219,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   /* ── AI ASSISTANTS ── */
   saku:            { label: 'Saku AI',          icon: 'Bot',              category: 'ai-assistants' },
   deepchat:        { label: 'Deep Chat AI',     icon: 'MessageSquare',    category: 'ai-assistants' },
+  'channel-assistant': { label: 'Channel Assistant', icon: 'Sliders',     category: 'ai-assistants' },
 
   /* ── AGENCY ── */
   'agency-dashboard': { label: 'Agency Hub',     icon: 'Building2',        category: 'agency' },
