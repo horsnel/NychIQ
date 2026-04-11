@@ -321,11 +321,11 @@ export function OnboardingAudit() {
                 </ul>
               </div>
 
-              {/* Channel Profile Card with avatar */
+              {/* Channel Profile Card with avatar */}
               {channelData && (
                 <div className="rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] p-5 mb-6">
                   <div className="flex items-center gap-4">
-                    {channelData.avatarUrl && (
+                    {channelData.avatarUrl ? (
                       <img
                         src={channelData.avatarUrl}
                         alt={channelData.name}
@@ -352,7 +352,7 @@ export function OnboardingAudit() {
                     </div>
                   </div>
                 </div>
-              ) : null}
+              )}
 
               {/* Stats pills */}
               <div className="flex flex-wrap gap-2 mb-8 justify-center">
