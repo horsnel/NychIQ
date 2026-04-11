@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin } from 'lucide-react';
+import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin, Sliders } from 'lucide-react';
 import { useNychIQStore, TOOL_META, TOKEN_COSTS } from '@/lib/store';
 import { TokenPill } from './token-pill';
 import { cn } from '@/lib/utils';
@@ -81,6 +81,14 @@ export function Topbar() {
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
 
+  // Channel profile from localStorage (set during onboarding audit)
+  const [channelProfile] = useState(() => {
+    try {
+      const stored = localStorage.getItem('nychiq_channel_profile');
+      return stored ? JSON.parse(stored) : null;
+    } catch { return null; }
+  });
+
   const toolMeta = TOOL_META[activeTool];
   const pageTitle = toolMeta?.label ?? 'Dashboard';
   const tokenCost = TOKEN_COSTS[activeTool] ?? 0;
@@ -126,6 +134,10 @@ export function Topbar() {
         break;
       case 'usage':
         setActiveTool('usage');
+        setPage('app');
+        break;
+      case 'channel':
+        setActiveTool('channel-assistant');
         setPage('app');
         break;
       case 'signout':
@@ -319,13 +331,29 @@ export function Topbar() {
         <div ref={avatarRef} className="relative">
           <button
             onClick={() => setShowAvatarMenu(!showAvatarMenu)}
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center text-xs font-bold text-black cursor-pointer hover:opacity-90 transition-opacity"
-            title={userName || 'User'}
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity ${
+              channelProfile
+                ? 'ring-2 ring-[#FDBA2D]/50'
+                : 'bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A]'
+            }`}
+            title={channelProfile ? channelProfile.name : userName || 'User'}
+            style={channelProfile ? { backgroundColor: channelProfile.avatarColor || '#FDBA2D', color: '#0D0D0D' } : { color: 'black' }}
           >
-            {userName ? userName[0].toUpperCase() : 'U'}
+            {channelProfile
+              ? channelProfile.name.charAt(0).toUpperCase()
+              : (userName ? userName[0].toUpperCase() : 'U')}
           </button>
           {showAvatarMenu && (
             <div className="absolute top-full right-0 mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+              {channelProfile && (
+                <button
+                  onClick={() => handleAvatarAction('channel')}
+                  className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                >
+                  <Sliders className="w-3.5 h-3.5" />
+                  <span>My Channel</span>
+                </button>
+              )}
               <button
                 onClick={() => handleAvatarAction('profile')}
                 className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"

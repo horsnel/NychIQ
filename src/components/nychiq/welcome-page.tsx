@@ -731,7 +731,7 @@ export function WelcomePage() {
                 <ul className="space-y-2.5">
                   {[
                     { label: 'About', page: 'about' as const },
-                    { label: 'Blog', page: 'about' as const },
+                    { label: 'Blog', page: 'blog' as const },
                     { label: 'Contact', page: 'contact' as const },
                     { label: 'Careers', page: 'careers' as const },
                   ].map((item) => (

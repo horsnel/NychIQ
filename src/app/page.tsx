@@ -310,6 +310,7 @@ export default function NychIQApp() {
       {effectivePage === 'contact' && <CompanyPage type="contact" />}
       {effectivePage === 'careers' && <CompanyPage type="careers" />}
       {effectivePage === 'changelog' && <CompanyPage type="changelog" />}
+      {effectivePage === 'blog' && <CompanyPage type="blog" />}
       {effectivePage === 'ob-questions' && <OnboardingQuestions />}
       {effectivePage === 'ob-audit' && <OnboardingAudit />}
       {effectivePage === 'ob-extension' && <OnboardingExtension />}

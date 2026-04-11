@@ -13,7 +13,7 @@ const ssrSafeStorage = typeof window !== 'undefined' ? window.localStorage : {
 
 /* ── Types ── */
 export type Plan = 'trial' | 'starter' | 'pro' | 'elite' | 'agency';
-export type PageId = 'welcome' | 'login' | 'app' | 'privacy' | 'terms' | 'refund' | 'cookies' | 'about' | 'contact' | 'careers' | 'changelog' | 'ob-questions' | 'ob-audit' | 'ob-extension';
+export type PageId = 'welcome' | 'login' | 'app' | 'privacy' | 'terms' | 'refund' | 'cookies' | 'about' | 'blog' | 'contact' | 'careers' | 'changelog' | 'ob-questions' | 'ob-audit' | 'ob-extension';
 
 export interface TokenTransaction {
   id: string;

@@ -111,6 +111,16 @@ export function OnboardingAudit() {
 
     setLoading(false);
     setReport(true);
+
+    // Save channel profile to localStorage for topbar avatar
+    try {
+      const channelName = channelUrl.split('/').pop()?.replace('@', '') || 'My Channel';
+      localStorage.setItem('nychiq_channel_profile', JSON.stringify({
+        name: channelName,
+        url: channelUrl,
+        avatarColor: '#FDBA2D',
+      }));
+    } catch { /* ignore */ }
   };
 
   const healthScore = 73;
@@ -126,8 +136,11 @@ export function OnboardingAudit() {
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-[#141414]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-black" />
+          <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+              <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+            </svg>
           </div>
           <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
         </div>

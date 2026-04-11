@@ -5,7 +5,7 @@ import {
   ArrowLeft, Sparkles, Play, Mail, MapPin, Globe, Users, BarChart3,
   Target, Eye, Rocket, Zap, ChevronDown, ChevronUp,
   Briefcase, DollarSign, Heart, Shield, BookOpen, Coins,
-  Instagram, Linkedin, Send, CheckCircle2, Star,
+  Instagram, Linkedin, Send, CheckCircle2, Star, Clock, Tag, ArrowRight,
 } from 'lucide-react';
 import { useNychIQStore } from '@/lib/store';
 import { XIcon } from '@/components/ui/x-icon';
@@ -15,10 +15,64 @@ import { toast } from 'sonner';
 
 const PAGE_CONFIG: Record<string, { title: string; subtitle: string }> = {
   about: { title: 'About NychIQ', subtitle: 'YouTube Intelligence Platform' },
+  blog: { title: 'NychIQ Blog', subtitle: 'Insights, tips, and updates for creators' },
   contact: { title: 'Contact Us', subtitle: "We'd love to hear from you" },
   careers: { title: 'Careers', subtitle: 'Join the NychIQ team' },
   changelog: { title: 'Changelog', subtitle: 'Latest updates and improvements' },
 };
+
+/* ────────────────────────────── Blog Data ────────────────────────────── */
+
+const BLOG_POSTS = [
+  {
+    title: 'How to Get Your First 1,000 Subscribers in 2026',
+    date: 'Jan 15, 2026',
+    excerpt: 'A step-by-step roadmap for new creators looking to hit their first major milestone. Learn the exact strategies that worked for top Nigerian creators.',
+    category: 'Growth Tips',
+    categoryColor: '#10B981',
+    readTime: '6 min read',
+  },
+  {
+    title: 'YouTube Algorithm Update: What Changed in January 2026',
+    date: 'Jan 8, 2026',
+    excerpt: 'YouTube rolled out a significant algorithm update affecting Shorts discoverability and long-form recommendations. Here\'s what creators need to know.',
+    category: 'Algorithm Updates',
+    categoryColor: '#9B72CF',
+    readTime: '4 min read',
+  },
+  {
+    title: 'From 0 to 100K: The Story of TechWithTimi',
+    date: 'Dec 22, 2025',
+    excerpt: 'How one Nigerian tech creator grew from zero to 100K subscribers in under 8 months using data-driven content strategy and AI tools.',
+    category: 'Creator Stories',
+    categoryColor: '#4A9EFF',
+    readTime: '8 min read',
+  },
+  {
+    title: 'Introducing NychIQ Studio: Your Creative Suite',
+    date: 'Dec 15, 2025',
+    excerpt: 'NychIQ Studio is here! A complete creative suite with AI-powered tools for thumbnails, scripts, hooks, and content optimization — all in one place.',
+    category: 'Product News',
+    categoryColor: '#FDBA2D',
+    readTime: '3 min read',
+  },
+  {
+    title: '5 Thumbnail Mistakes Killing Your Click-Through Rate',
+    date: 'Dec 5, 2025',
+    excerpt: 'Your thumbnail is the first thing viewers see. Avoid these common mistakes that are costing you thousands of potential clicks every single upload.',
+    category: 'Growth Tips',
+    categoryColor: '#10B981',
+    readTime: '5 min read',
+  },
+  {
+    title: 'How African Creators Can Monetize Beyond AdSense',
+    date: 'Nov 28, 2025',
+    excerpt: 'AdSense isn\'t the only way to make money on YouTube. Discover sponsorships, merch, courses, and other revenue streams perfect for African creators.',
+    category: 'Creator Stories',
+    categoryColor: '#4A9EFF',
+    readTime: '7 min read',
+  },
+];
 
 /* ────────────────────────────── Data ────────────────────────────── */
 
@@ -270,6 +324,9 @@ export function CompanyPage({ type }: CompanyPageProps) {
         {/* ── ABOUT ── */}
         {type === 'about' && <AboutSection />}
 
+        {/* ── BLOG ── */}
+        {type === 'blog' && <BlogSection />}
+
         {/* ── CONTACT ── */}
         {type === 'contact' && <ContactSection />}
 
@@ -427,6 +484,110 @@ function AboutSection() {
         >
           <Sparkles className="w-4 h-4" />
           {isLoggedIn ? 'Go to Dashboard' : 'Start Free Trial'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════ BLOG ═══════════════════════════ */
+
+function BlogSection() {
+  const handleBlogClick = () => {
+    toast.info('Blog post coming soon!', {
+      description: 'We\'re working on publishing full blog content. Stay tuned!',
+    });
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Featured post */}
+      <button
+        onClick={handleBlogClick}
+        className="w-full text-left nychiq-card overflow-hidden group cursor-pointer"
+      >
+        <div className="p-6 sm:p-8">
+          <div className="flex items-center gap-3 mb-4">
+            <span
+              className="text-[10px] font-semibold px-2.5 py-1 rounded-full"
+              style={{
+                color: BLOG_POSTS[0].categoryColor,
+                backgroundColor: `${BLOG_POSTS[0].categoryColor}15`,
+                border: `1px solid ${BLOG_POSTS[0].categoryColor}30`,
+              }}
+            >
+              {BLOG_POSTS[0].category}
+            </span>
+            <span className="text-[11px] text-[#555]">{BLOG_POSTS[0].date}</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#E8E8E8] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-tight">
+            {BLOG_POSTS[0].title}
+          </h2>
+          <p className="text-sm text-[#888888] leading-relaxed mb-4 max-w-2xl">
+            {BLOG_POSTS[0].excerpt}
+          </p>
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-xs text-[#666]">
+              <Clock className="w-3 h-3" /> {BLOG_POSTS[0].readTime}
+            </span>
+            <span className="flex items-center gap-1 text-xs text-[#FDBA2D] group-hover:gap-2 transition-all">
+              Read article <ArrowRight className="w-3 h-3" />
+            </span>
+          </div>
+        </div>
+      </button>
+
+      {/* Post grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {BLOG_POSTS.slice(1).map((post, i) => (
+          <button
+            key={i}
+            onClick={handleBlogClick}
+            className="text-left nychiq-card p-5 group cursor-pointer"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <span
+                className="text-[9px] font-semibold px-2 py-0.5 rounded-full"
+                style={{
+                  color: post.categoryColor,
+                  backgroundColor: `${post.categoryColor}15`,
+                  border: `1px solid ${post.categoryColor}30`,
+                }}
+              >
+                {post.category}
+              </span>
+              <span className="text-[10px] text-[#555]">{post.date}</span>
+            </div>
+            <h3 className="text-sm font-semibold text-[#E8E8E8] mb-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+              {post.title}
+            </h3>
+            <p className="text-xs text-[#888888] leading-relaxed mb-3 line-clamp-2">
+              {post.excerpt}
+            </p>
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1 text-[10px] text-[#555]">
+                <Clock className="w-2.5 h-2.5" /> {post.readTime}
+              </span>
+              <span className="flex items-center gap-1 text-[10px] text-[#FDBA2D] group-hover:gap-1.5 transition-all">
+                Read <ArrowRight className="w-2.5 h-2.5" />
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Subscribe CTA */}
+      <div className="nychiq-card p-6 text-center">
+        <h3 className="text-lg font-bold text-[#E8E8E8] mb-2">Stay Updated</h3>
+        <p className="text-sm text-[#888888] mb-4">
+          Get the latest YouTube tips and NychIQ news delivered to your inbox.
+        </p>
+        <button
+          onClick={() => toast.success('Subscribed!', { description: 'You\'ll receive our weekly newsletter.' })}
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#D9A013] transition-colors"
+        >
+          <Sparkles className="w-4 h-4" />
+          Subscribe to Newsletter
         </button>
       </div>
     </div>
