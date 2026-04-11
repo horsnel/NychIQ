@@ -1,6 +1,6 @@
 /**
  * NychIQ Worker — AI Chat Routes
- * Fallback chain: Groq → Gemini Flash → Cerebras → Workers AI → OpenRouter
+ * Fallback chain: Groq → Gemini Flash → Cerebras → Workers AI Llama 3.3 → OpenRouter
  */
 
 import { Hono } from 'hono';
@@ -87,7 +87,24 @@ aiRoutes.post('/chat', async (c) => {
         },
         timeout: 12000,
       },
-      // 4. OpenRouter
+      // 4. Workers AI — Llama 3.3 70B (free, built-in, no key needed)
+      {
+        name: 'workers-ai',
+        fn: async () => {
+          const ai = (c.env as any).AI;
+          if (!ai) throw new Error('Workers AI not available');
+          const res = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+            messages: messages.map(m => ({
+              role: m.role === 'system' ? 'system' : m.role,
+              content: m.content,
+            })),
+            max_tokens: 1024,
+          });
+          return (res as any)?.response || '';
+        },
+        timeout: 15000,
+      },
+      // 5. OpenRouter
       {
         name: 'openrouter',
         fn: async () => {
@@ -168,7 +185,6 @@ aiRoutes.post('/stream', async (c) => {
       if (key) {
         const res = await geminiChat(key, fullMessages, 'gemini-2.0-flash', true);
         if (res.ok) {
-          // Convert Gemini SSE format to OpenAI SSE format
           const geminiBody = res.body;
           if (geminiBody) {
             const { readable, writable } = new TransformStream();
@@ -182,7 +198,6 @@ aiRoutes.post('/stream', async (c) => {
                   const { done, value } = await reader.read();
                   if (done) break;
                   const chunk = decoder.decode(value, { stream: true });
-                  // Parse Gemini's JSON array chunks and convert to OpenAI delta format
                   const lines = chunk.split('\n').filter(Boolean);
                   for (const line of lines) {
                     try {
@@ -237,7 +252,54 @@ aiRoutes.post('/stream', async (c) => {
       errors.push({ provider: 'cerebras', error: err?.message });
     }
 
-    // 4. OpenRouter
+    // 4. Workers AI — Llama 3.3 70B (free, no key)
+    try {
+      const ai = (c.env as any).AI;
+      if (ai) {
+        const res = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: fullMessages.map(m => ({
+            role: m.role === 'system' ? 'system' : m.role,
+            content: m.content,
+          })),
+          max_tokens: 1024,
+          stream: true,
+        });
+        if (res) {
+          // Workers AI streaming — convert to SSE
+          const { readable, writable } = new TransformStream();
+          const writer = writable.getWriter();
+
+          (async () => {
+            try {
+              for await (const chunk of res as any) {
+                const text = chunk?.response || '';
+                if (text) {
+                  writer.write(new TextEncoder().encode(
+                    `data: ${JSON.stringify({ choices: [{ delta: { content: text } }] })}\n\n`
+                  ));
+                }
+              }
+              writer.write(new TextEncoder().encode('data: [DONE]\n\n'));
+            } finally {
+              writer.close();
+            }
+          })();
+
+          return new Response(readable, {
+            headers: {
+              'Content-Type': 'text/event-stream',
+              'Cache-Control': 'no-cache',
+              'Connection': 'keep-alive',
+            },
+          });
+        }
+        errors.push({ provider: 'workers-ai', error: 'No response' });
+      }
+    } catch (err: any) {
+      errors.push({ provider: 'workers-ai', error: err?.message });
+    }
+
+    // 5. OpenRouter
     try {
       const key = rotateKey([c.env.OPENROUTER_KEY_1, c.env.OPENROUTER_KEY_2]);
       if (key) {
@@ -257,7 +319,7 @@ aiRoutes.post('/stream', async (c) => {
       errors.push({ provider: 'openrouter', error: err?.message });
     }
 
-    // All providers failed — return non-streaming fallback
+    // All providers failed
     console.error('All stream providers failed:', errors);
     return c.json({ error: `All AI providers failed: ${JSON.stringify(errors)}` }, 500);
   } catch (err: any) {

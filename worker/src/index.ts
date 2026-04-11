@@ -18,6 +18,11 @@ import { imageRoutes } from './routes/images';
 import { translateRoutes } from './routes/translate';
 import { authRoutes } from './routes/auth';
 import { paystackRoutes } from './routes/payments';
+import { visionRoutes } from './routes/vision';
+import { embeddingsRoutes } from './routes/embeddings';
+import { mapsRoutes } from './routes/maps';
+import { trendingRoutes } from './routes/trending';
+import { hashtagRoutes } from './routes/hashtags';
 
 // ── Export Durable Object class ──
 export { RealtimeRoom };
@@ -79,6 +84,11 @@ app.route('/api/images', imageRoutes);
 app.route('/api/translate', translateRoutes);
 app.route('/api/auth', authRoutes);
 app.route('/api/payments', paystackRoutes);
+app.route('/api/vision', visionRoutes);
+app.route('/api/embeddings', embeddingsRoutes);
+app.route('/api/maps', mapsRoutes);
+app.route('/api/trending', trendingRoutes);
+app.route('/api/hashtags', hashtagRoutes);
 
 // ── 404 handler ──
 app.notFound((c) => {

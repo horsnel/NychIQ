@@ -60,6 +60,16 @@ export interface Env {
   SUPABASE_URL?: string;
   SUPABASE_SERVICE_KEY?: string;
 
+  // ── Geocoding / Maps ──
+  LOCATIONIQ_KEY?: string;
+  RADAR_KEY?: string;
+
+  // ── Trending / Hashtag Research ──
+  TRENDTOK_KEY?: string;
+  PENTOS_KEY?: string;
+  HASHTAG_AI_KEY?: string;
+  KEYWORDSEVERYWHERE_KEY?: string;
+
   // ── App ──
   ENVIRONMENT: string;
   CORS_ORIGINS?: string;

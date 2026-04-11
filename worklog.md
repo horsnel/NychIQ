@@ -236,3 +236,29 @@ Stage Summary:
 - All non-spec colors eliminated
 - All dead code removed (52 files deleted total across sessions)
 - Branding, logo, colors, and store logic fully verified correct
+---
+Task ID: 8
+Agent: Main Agent
+Task: Add all missing free fallbacks and API integrations per user master stack list
+
+Work Log:
+- Updated worker/src/lib/env.ts with new keys: LOCATIONIQ_KEY, RADAR_KEY, TRENDTOK_KEY, PENTOS_KEY, HASHTAG_AI_KEY, KEYWORDSEVERYWHERE_KEY
+- Added Workers AI Llama 3.3 70B as free fallback to worker/src/routes/ai.ts (both chat and stream)
+- Added Workers AI M2M100 as free fallback to worker/src/routes/translate.ts
+- Added LightTube instances, Piped captions, dynamic Invidious mirror discovery to worker/src/routes/youtube.ts
+- Wired SOCIAVAULT_KEY and TIKHUB_KEY into worker/src/routes/social.ts TikTok route (5-provider chain)
+- Added Gemini Flash inference fallback to Instagram and Twitter profile routes
+- Created worker/src/routes/vision.ts — Gemini Flash Vision + Workers AI LLaVA + Z.ai GLM-4V + OpenRouter
+- Created worker/src/routes/embeddings.ts — Workers AI BGE + Gemini text-embedding-004 + HuggingFace MiniLM + Vectorize CRUD
+- Created worker/src/routes/maps.ts — Nominatim + LocationIQ + Radar.io (geocode + reverse geocode)
+- Created worker/src/routes/trending.ts — YouTube (Piped/Invidious) + TikTok (Trends24/Tokcount/Trendtok) + Twitter (Trends24/Nitter) + Pentos
+- Created worker/src/routes/hashtags.ts — Trends24 + Brave Search + Hashtag.ai + KeywordsEverywhere + Gemini Flash analysis
+- Mounted all 5 new routes in worker/src/index.ts
+- Worker TypeScript: 0 errors (checked with worker tsconfig)
+- Frontend ESLint: 0 errors, 0 warnings
+
+Stage Summary:
+- All 12 gaps fixed: 5 free fallbacks added to existing routes, 5 new route files created, 2 dead keys wired
+- Total worker API routes now: 20+ route groups across 13 mounted route modules
+- Zero-cost operation possible with only free services (Workers AI, Piped, Invidious, DuckDuckGo, Pollinations, etc.)
+

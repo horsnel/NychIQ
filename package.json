@@ -81,6 +81,7 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260411.1",
     "@tailwindcss/postcss": "^4",
     "@types/react": "^19",
     "@types/react-dom": "^19",

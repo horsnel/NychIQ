@@ -1,6 +1,6 @@
 /**
  * NychIQ Worker — Translation Routes
- * Primary: Gemini Flash → MyMemory API → LibreTranslate
+ * Fallback: Gemini Flash → MyMemory API → LibreTranslate → Workers AI M2M100
  */
 
 import { Hono } from 'hono';
@@ -82,6 +82,33 @@ translateRoutes.post('/translate', async (c) => {
       }
     } catch (err: any) {
       console.error('LibreTranslate error:', err?.message);
+    }
+
+    // 4. Workers AI M2M100 (free, built-in, no key needed)
+    try {
+      const ai = (c.env as any).AI;
+      if (ai) {
+        // M2M100 supports: en, zh, de, fr, ru, es, etc.
+        // Map common language codes to M2M100 codes
+        const langMap: Record<string, string> = {
+          en: 'en', zh: 'zh', de: 'de', fr: 'fr', ru: 'ru',
+          es: 'es', pt: 'pt', ar: 'ar', hi: 'hi', ja: 'ja', ko: 'ko',
+          auto: 'en', // default to English source if auto
+        };
+        const src = langMap[fromLang] || 'en';
+        const tgt = langMap[to] || to;
+        const res = await ai.run('@cf/meta/m2m100-1.2b', {
+          text,
+          source_lang: src,
+          target_lang: tgt,
+        });
+        const translated = (res as any)?.translated_text || (res as any)?.translation?.text;
+        if (translated) {
+          return c.json({ translatedText: translated, source: 'workers-ai' });
+        }
+      }
+    } catch (err: any) {
+      console.error('Workers AI M2M100 error:', err?.message);
     }
 
     return c.json({ error: 'All translation providers failed' }, 500);
