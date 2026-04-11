@@ -8,7 +8,7 @@ import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo
 import { showToast } from '@/lib/toast';
 import {
   Zap, Eye, TrendingUp, Crown, Lock, RefreshCw, AlertCircle, Play, Clock, Flame,
-  MoreVertical, ExternalLink, Copy, Hash, FileDown,
+  MoreVertical, ExternalLink, Copy, Hash, FileDown, Link2,
 } from 'lucide-react';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
@@ -75,10 +75,11 @@ function ShortsCard({ video }: { video: VideoData }) {
             {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#10B981]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>)}
           </span>
         )}
+        <button onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="absolute top-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" aria-label="Copy video link"><Link2 className="w-3.5 h-3.5 text-white" /></button>
         {video.duration && (<span className="absolute bottom-2 right-2 px-1.5 py-0.5 text-[10px] font-medium bg-black/80 rounded text-white">{vidDuration(video.duration)}</span>)}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="absolute top-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" onClick={(e) => e.stopPropagation()} aria-label="Shorts options"><MoreVertical className="w-4 h-4 text-white" /></button>
+            <button className="absolute bottom-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" onClick={(e) => e.stopPropagation()} aria-label="Shorts options"><MoreVertical className="w-4 h-4 text-white" /></button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="bottom" align="end" className="bg-[#141414] border-[#222] min-w-[200px]">
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); window.open(youtubeUrl, '_blank', 'noopener'); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><ExternalLink className="w-4 h-4" />Open on YouTube</DropdownMenuItem>

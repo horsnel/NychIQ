@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { copyToClipboard, fmtV, timeAgo } from '@/lib/utils';
+import { showToast } from '@/lib/toast';
 import { askAI } from '@/lib/api';
 import {
   Building2,
@@ -41,6 +42,7 @@ import {
   CheckCircle2,
   Clock,
   CircleDot,
+  Radar,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -310,6 +312,67 @@ export function AgencyDashboardTool() {
     { id: 'wl-2', client: 'FitLife Academy', label: 'Monthly Performance Report', url: 'https://nychiq.app/share/perf-fa-oct', created: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString() },
   ]);
   const signalQueueRef = useRef<HTMLDivElement>(null);
+
+  // Tactical Briefing state
+  const [briefingLoading, setBriefingLoading] = useState(false);
+  const [briefingComplete, setBriefingComplete] = useState(false);
+  const [briefingStep, setBriefingStep] = useState(0);
+  const [briefingProgress, setBriefingProgress] = useState(0);
+
+  const BRIEFING_MESSAGES = [
+    'Analyzing Competitor DNA...',
+    'Mapping Signal Arbitrage...',
+    'Scanning Content Funnels...',
+    'Compiling Intelligence Matrix...',
+    'Generating Tactical Brief...',
+  ];
+
+  // Tactical Briefing animation effect
+  useEffect(() => {
+    if (!briefingLoading) return;
+
+    const startTime = Date.now();
+    const totalDuration = 10000; // 10 seconds
+
+    // Step cycling every 2 seconds
+    const stepInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const newStep = Math.min(Math.floor(elapsed / 2000), 4);
+      setBriefingStep(newStep);
+    }, 200);
+
+    // Progress counter every 100ms
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(Math.round((elapsed / totalDuration) * 100), 100);
+      setBriefingProgress(progress);
+
+      if (elapsed >= totalDuration) {
+        clearInterval(progressInterval);
+        clearInterval(stepInterval);
+        setBriefingStep(4);
+        setBriefingProgress(100);
+        setBriefingLoading(false);
+        setBriefingComplete(true);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(stepInterval);
+      clearInterval(progressInterval);
+    };
+  }, [briefingLoading]);
+
+  const handleGenerateBriefing = () => {
+    setBriefingComplete(false);
+    setBriefingLoading(true);
+    setBriefingStep(0);
+    setBriefingProgress(0);
+  };
+
+  const handleDownloadReport = () => {
+    showToast('Report generated successfully', 'success');
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -698,6 +761,104 @@ export function AgencyDashboardTool() {
           ═══════════════════════════════════════ */}
       {activeTab === 'war-room' && (
         <div className="space-y-4">
+          {/* Tactical Briefing Generator */}
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden relative">
+            <div className="px-4 py-3 border-b border-[#1A1A1A]">
+              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
+                <Radar className="w-3.5 h-3.5 text-[#FDBA2D]" /> Tactical Briefing
+              </h3>
+            </div>
+            <div className="p-5">
+              <p className="text-xs text-[#888888] mb-4">Generate a comprehensive tactical intelligence briefing for your entire fleet. Includes competitor analysis, signal arbitrage mapping, and content funnel optimization.</p>
+              {!briefingLoading && !briefingComplete && (
+                <button
+                  onClick={handleGenerateBriefing}
+                  className="px-5 py-3 rounded-lg text-sm font-bold transition-all flex items-center gap-2 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: 'linear-gradient(135deg, #FDBA2D, #E09100)', color: '#1A1A1A' }}
+                >
+                  <Radar className="w-4 h-4" /> Generate Tactical Briefing
+                </button>
+              )}
+              {briefingLoading && (
+                <div className="flex flex-col items-center py-8">
+                  {/* Glowing spinning ring */}
+                  <div className="relative mb-6">
+                    <style>{`
+                      @keyframes tactical-spin {
+                        from { transform: rotate(0deg); }
+                        to { transform: rotate(360deg); }
+                      }
+                      @keyframes tactical-glow {
+                        0%, 100% { opacity: 0.4; }
+                        50% { opacity: 1; }
+                      }
+                      .tactical-ring {
+                        animation: tactical-spin 2s linear infinite;
+                      }
+                      .tactical-glow {
+                        animation: tactical-glow 1.5s ease-in-out infinite;
+                      }
+                    `}</style>
+                    <div className="tactical-ring" style={{ width: 80, height: 80 }}>
+                      <svg width="80" height="80" viewBox="0 0 80 80">
+                        <defs>
+                          <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#FDBA2D" />
+                            <stop offset="100%" stopColor="#E09100" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="url(#ring-gradient)" strokeWidth="3" strokeDasharray="160 54" strokeLinecap="round" className="tactical-glow" />
+                      </svg>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Radar className="w-6 h-6 text-[#FDBA2D] tactical-glow" />
+                    </div>
+                  </div>
+
+                  {/* Cycling message */}
+                  <p className="text-sm font-semibold text-[#FDBA2D] mb-4 text-center" style={{ minHeight: 20 }}>
+                    {BRIEFING_MESSAGES[briefingStep]}
+                  </p>
+
+                  {/* Progress bar */}
+                  <div className="w-64 flex flex-col items-center gap-2">
+                    <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-100 ease-linear"
+                        style={{ width: `${briefingProgress}%`, background: 'linear-gradient(90deg, #FDBA2D, #E09100)' }}
+                      />
+                    </div>
+                    <span className="text-xs font-bold text-[#FDBA2D]">{briefingProgress}%</span>
+                  </div>
+                </div>
+              )}
+              {briefingComplete && (
+                <div className="flex flex-col items-center py-8 animate-fade-in-up">
+                  <div className="w-14 h-14 rounded-full bg-[rgba(16,185,129,0.1)] border-2 border-[#10B981] flex items-center justify-center mb-4">
+                    <CheckCircle2 className="w-7 h-7 text-[#10B981]" />
+                  </div>
+                  <h4 className="text-base font-bold text-[#E8E8E8] mb-1">Tactical Brief Generated</h4>
+                  <p className="text-xs text-[#888888] mb-4">Your intelligence briefing is ready for review.</p>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={handleDownloadReport}
+                      className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+                      style={{ background: 'linear-gradient(135deg, #FDBA2D, #E09100)', color: '#1A1A1A' }}
+                    >
+                      <Download className="w-4 h-4" /> Download Report
+                    </button>
+                    <button
+                      onClick={() => setBriefingComplete(false)}
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium bg-[#0D0D0D] border border-[#222222] text-[#888888] hover:text-[#E8E8E8] hover:border-[#333333] transition-all flex items-center gap-2"
+                    >
+                      <Radar className="w-3.5 h-3.5" /> New Briefing
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* Intelligence Link Generator */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">

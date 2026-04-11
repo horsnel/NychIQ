@@ -187,49 +187,52 @@ export function SakuPanel() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Suggestion chips — stacked above input, only when empty */}
-        {messages.length === 0 && !isTyping && (
-          <div className="px-3 pt-2 pb-1 shrink-0">
-            <div className="space-y-1.5">
-              {SUGGESTIONS.map((sug) => (
-                <button
-                  key={sug.text}
-                  onClick={() => handleSuggestionClick(sug.text)}
-                  className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#1A1A1A] border border-[#222] text-left hover:border-[#333] hover:bg-[#1E1E1E] transition-all group"
-                >
-                  <sug.icon className="w-3.5 h-3.5 text-[#555] group-hover:text-[#FDBA2D] transition-colors shrink-0" />
-                  <span className="text-xs text-[#888] group-hover:text-[#E8E8E8] transition-colors">{sug.text}</span>
-                </button>
-              ))}
+        {/* Suggestion bubbles + Input area — stacked at bottom */}
+        <div className="shrink-0 border-t border-[#1E1E1E]">
+          {/* Suggestion bubble chips — only when no messages */}
+          {messages.length === 0 && !isTyping && (
+            <div className="px-4 pt-3 pb-1">
+              <div className="flex flex-wrap gap-1.5">
+                {SUGGESTIONS.map((sug) => (
+                  <button
+                    key={sug.text}
+                    onClick={() => handleSuggestionClick(sug.text)}
+                    className="rounded-full px-3 py-1.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#E8E8E8] hover:border-[#333] hover:bg-[#1E1E1E] transition-all inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <sug.icon className="w-3 h-3 text-[#555] group-hover:text-[#FDBA2D] shrink-0" />
+                    <span>{sug.text}</span>
+                  </button>
+                ))}
+              </div>
             </div>
+          )}
+
+          {/* Token badge */}
+          <div className="px-5 pt-2 pb-0.5">
+            <span className="text-[10px] text-[#444]">1 token per message · {tokenBalance} remaining</span>
           </div>
-        )}
 
-        {/* Token badge */}
-        <div className="px-4 pt-2 pb-1 shrink-0">
-          <span className="text-[10px] text-[#444]">1 token per message · {tokenBalance} remaining</span>
-        </div>
-
-        {/* Input */}
-        <div className="p-3 pt-2 border-t border-[#1E1E1E] shrink-0">
-          <div className="flex items-center gap-2 bg-[#1A1A1A] rounded-2xl px-3.5 py-3 border border-[#222] focus-within:border-[rgba(253,186,45,0.3)] transition-colors">
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-              placeholder="Ask Saku anything..."
-              className="flex-1 bg-transparent text-sm text-[#E8E8E8] placeholder-[#444] outline-none"
-              disabled={isTyping}
-            />
-            <button
-              onClick={() => handleSend()}
-              disabled={!input.trim() || isTyping}
-              className="p-1.5 rounded-lg text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] disabled:text-[#333] disabled:hover:bg-transparent transition-colors"
-            >
-              <Send className="w-4 h-4" />
-            </button>
+          {/* Chat input bar */}
+          <div className="p-4 pt-2">
+            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[#222] focus-within:border-[rgba(253,186,45,0.4)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                placeholder="Ask Saku anything..."
+                className="flex-1 bg-transparent text-sm text-[#E8E8E8] placeholder-[#555] outline-none"
+                disabled={isTyping}
+              />
+              <button
+                onClick={() => handleSend()}
+                disabled={!input.trim() || isTyping}
+                className="p-1.5 rounded-lg text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] disabled:text-[#333] disabled:hover:bg-transparent transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

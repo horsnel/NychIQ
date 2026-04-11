@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
-import { askAI } from '@/lib/api';
+import { askAI, ytFetch } from '@/lib/api';
+import { fmtV } from '@/lib/utils';
 import {
   ClipboardCheck,
   Crown,
@@ -12,6 +13,9 @@ import {
   AlertTriangle,
   CheckCircle,
   XCircle,
+  Users,
+  Video,
+  Eye,
 } from 'lucide-react';
 
 interface AuditResult {
@@ -20,6 +24,16 @@ interface AuditResult {
   categories: Array<{ name: string; score: number; icon: string }>;
   actionItems: Array<{ priority: 'high' | 'medium' | 'low'; text: string }>;
   improvementPotential: string;
+}
+
+interface ChannelData {
+  title: string;
+  description: string;
+  thumbnail: string;
+  subscriberCount: number;
+  videoCount: number;
+  viewCount: number;
+  publishedAt: string;
 }
 
 
@@ -58,6 +72,7 @@ export function AuditTool() {
   const { spendTokens } = useNychIQStore();
   const [channel, setChannel] = useState('');
   const [result, setResult] = useState<AuditResult | null>(null);
+  const [channelData, setChannelData] = useState<ChannelData | null>(null);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
 
@@ -69,6 +84,24 @@ export function AuditTool() {
     if (!ok) { setLoading(false); return; }
 
     try {
+      // Fetch real YouTube channel data
+      try {
+        const trimmed = channel.trim();
+        const data = await ytFetch('channel', { handle: trimmed });
+        setChannelData({
+          title: data.name || trimmed,
+          description: data.description || '',
+          thumbnail: data.avatarUrl || '',
+          subscriberCount: data.subscribers || 0,
+          videoCount: data.videoCount || 0,
+          viewCount: data.totalViews || 0,
+          publishedAt: data.publishedAt || '',
+        });
+      } catch {
+        // Channel data fetch failed — continue without it
+        setChannelData(null);
+      }
+
       const prompt = `You are a YouTube channel auditor. Perform a comprehensive health check on the channel: "${channel.trim()}".
 
 Return a JSON object with:
@@ -154,6 +187,42 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-5">
           <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
+
+          {/* Channel Profile Card */}
+          {channelData && (
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+              <div className="flex items-center gap-4">
+                {channelData.thumbnail ? (
+                  <img
+                    src={channelData.thumbnail}
+                    alt={channelData.title}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#222222]"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-[#FDBA2D]/20 border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
+                    {channelData.title.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-base font-bold text-[#E8E8E8] truncate">{channelData.title}</h4>
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
+                    <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                      <Users className="w-3.5 h-3.5" />
+                      {fmtV(channelData.subscriberCount)} subscribers
+                    </span>
+                    <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                      <Video className="w-3.5 h-3.5" />
+                      {fmtV(channelData.videoCount)} videos
+                    </span>
+                    <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5" />
+                      {fmtV(channelData.viewCount)} views
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Health Score */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex flex-col items-center">

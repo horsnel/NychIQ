@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { fmtV } from '@/lib/utils';
 import {
@@ -35,6 +35,7 @@ import {
   Crosshair,
   Bot,
 } from 'lucide-react';
+import { SciFiVideoCard, type SciFiVideoData } from '@/components/nychiq/sci-fi-video-card';
 
 /* ══════════════════════════════════════════════════════════
    TYPES
@@ -763,6 +764,35 @@ function PreUploadTab() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /* Extract video ID from URL for SciFiVideoCard */
+  const videoId = useMemo(() => {
+    if (!url.trim()) return null;
+    const match = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : null;
+  }, [url]);
+
+  /* Build SciFiVideoData — use real ID or fall back to mock */
+  const sciFiVideoData: SciFiVideoData = useMemo(() => {
+    if (videoId) {
+      return {
+        videoId,
+        title: url.trim(),
+        channelTitle: 'YouTube Channel',
+        viralScore: result?.algoScore,
+      };
+    }
+    /* Sample card with mock data */
+    return {
+      videoId: 'dQw4w9WgXcQ',
+      title: 'Pre-Flight Analysis — Tactical Preview',
+      channelTitle: 'NychIQ Studio',
+      viewCount: 18420000,
+      likeCount: 520000,
+      duration: 'PT3M42S',
+      viralScore: result?.algoScore ?? 72,
+    };
+  }, [videoId, url, result]);
+
   const handleAnalyze = useCallback(async () => {
     if (!url.trim()) return;
     setLoading(true);
@@ -1010,6 +1040,18 @@ function PreUploadTab() {
               ))}
             </div>
           </TacticalCorners>
+
+          {/* Tactical Preview — SciFiVideoCard */}
+          <div className="animate-fade-in-up">
+            <div className="flex items-center gap-2 mb-3">
+              <Crosshair className="w-4 h-4 text-[#FDBA2D]" />
+              <h3 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-widest">Tactical Preview</h3>
+              <ScanLine />
+            </div>
+            <div className="max-w-sm">
+              <SciFiVideoCard video={sciFiVideoData} showAnalysis={false} />
+            </div>
+          </div>
         </div>
       )}
 
