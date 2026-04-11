@@ -146,10 +146,10 @@ export function OnboardingAudit() {
   }, [channelUrl]);
 
   // Generate dynamic health score from channel data
-  const healthScore = channelData ? (() => {
-    const subs = channelData.subscribers || 0;
-    const views = channelData.totalViews || 0;
-    const vids = channelData.videoCount || 0;
+  const calcHealthScore = (data: any) => {
+    const subs = data.subscribers || 0;
+    const views = data.totalViews || 0;
+    const vids = data.videoCount || 0;
     const avgViews = vids > 0 ? views / vids : 0;
     let score = 50;
     if (subs >= 100000) score += 20;
@@ -159,9 +159,10 @@ export function OnboardingAudit() {
     else if (avgViews >= 1000) score += 10;
     if (vids >= 100) score += 10;
     else if (vids >= 50) score += 5;
-    if (channelData.keywords) score += 5;
+    if (data.keywords) score += 5;
     return Math.min(100, Math.max(10, score));
-  })() : 73;
+  };
+  const healthScore = channelData ? calcHealthScore(channelData) : 73;
 
   const insights = channelData ? [
     `Your channel has ${fmtV(channelData.subscribers)} subscribers with ${channelData.videoCount} videos — ${channelData.videoCount > 50 ? 'strong' : channelData.videoCount > 20 ? 'good' : 'growing'} content foundation.`,
@@ -321,10 +322,10 @@ export function OnboardingAudit() {
               </div>
 
               {/* Channel Profile Card with avatar */
-              {channelData ? (
+              {channelData && (
                 <div className="rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] p-5 mb-6">
                   <div className="flex items-center gap-4">
-                    {channelData.avatarUrl ? (
+                    {channelData.avatarUrl && (
                       <img
                         src={channelData.avatarUrl}
                         alt={channelData.name}
