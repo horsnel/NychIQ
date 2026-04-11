@@ -109,7 +109,7 @@ export const TOKEN_COSTS: Record<string, number> = {
   viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2, 'vph-tracker': 2,
   trending: 3, algorithm: 3, deepchat: 3, 'trend-alerts': 3, posttime: 5, shorts: 5, seo: 5, 'safe-check': 5, pulsecheck: 5, 'blueprint-ai': 5, 'social-channels': 5,
   ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8, lume: 8, scriptflow: 8, arbitrage: 8, 'sponsorship-roi': 8,
-  'social-comments': 10, competitor: 10, hooklab: 10, 'digital-scout': 10, 'ghost-tracker': 10, 'automation': 10, 'history-intel': 10,
+  'social-comments': 10, competitor: 10, hooklab: 10, 'digital-scout': 10, 'ghost-tracker': 10, 'automation': 10, 'next-uploader': 10, 'history-intel': 10,
   script: 12, 'outlier-scout': 12, 'niche-compare': 12, 'opportunity-heatmap': 12, 'monetization-roadmap': 12,
   audit: 20, strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20,
 };
@@ -175,6 +175,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   hooklab:         { label: 'HookLab',          icon: 'Flame',            category: 'studio' },
   pulsecheck:      { label: 'PulseCheck',       icon: 'Scan',             category: 'studio' },
   'blueprint-ai':  { label: 'Blueprint AI',     icon: 'Wrench',           category: 'studio' },
+  'next-uploader': { label: 'Next Uploader',    icon: 'UploadCloud',      category: 'studio' },
   scriptflow:      { label: 'ScriptFlow',       icon: 'ScrollText',       category: 'studio' },
   arbitrage:       { label: 'Arbitrage',        icon: 'Scale',            category: 'studio' },
 

@@ -10,15 +10,12 @@ import {
   Mail,
   Globe,
   Bell,
-  Link2,
   Trash2,
   LogOut,
   Copy,
   Check,
   Save,
-  ChevronRight,
   AlertTriangle,
-  Shield,
   Info,
   Gift,
   Share2,
@@ -105,11 +102,9 @@ export function SettingsTool() {
     userName,
     userEmail,
     region,
-    workerUrl,
     referralCode,
     detectedRegion,
     setRegion,
-    setWorkerUrl,
     setReferralCode,
     logout,
   } = useNychIQStore();
@@ -121,7 +116,6 @@ export function SettingsTool() {
   const [displayName, setDisplayName] = useState(userName);
   const [email, setEmail] = useState(userEmail);
   const [selectedRegion, setSelectedRegion] = useState(region);
-  const [workerInput, setWorkerInput] = useState(workerUrl);
   const [saved, setSaved] = useState(false);
 
   /* Notification toggles (local state only) */
@@ -162,17 +156,15 @@ export function SettingsTool() {
   useEffect(() => { setDisplayName(userName); }, [userName]);
   useEffect(() => { setEmail(userEmail); }, [userEmail]);
   useEffect(() => { setSelectedRegion(region); }, [region]);
-  useEffect(() => { setWorkerInput(workerUrl); }, [workerUrl]);
   useEffect(() => { setRefCode(referralCode); }, [referralCode]);
 
   /* Save handler */
   const handleSave = useCallback(() => {
     setRegion(selectedRegion);
-    setWorkerUrl(workerInput);
     // Note: userName and userEmail changes would go through a proper API
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
-  }, [selectedRegion, workerInput, setRegion, setWorkerUrl]);
+  }, [selectedRegion, setRegion]);
 
   /* Copy referral link */
   const referralLink = `https://nychiq.com/?ref=${refCode}`;
@@ -398,31 +390,6 @@ export function SettingsTool() {
             onChange={setEmailNotifications}
             label="Email Notifications"
           />
-        </div>
-      </SectionCard>
-
-      {/* ── API Configuration Section ── */}
-      <SectionCard
-        title="API Configuration"
-        icon={<Shield className="w-4 h-4 text-[#FDBA2D]" />}
-      >
-        <div>
-          <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
-            <Link2 className="w-3 h-3" /> Cloudflare Worker URL
-          </label>
-          <input
-            type="url"
-            value={workerInput}
-            onChange={(e) => setWorkerInput(e.target.value)}
-            placeholder="https://your-worker.your-subdomain.workers.dev"
-            className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors font-mono text-xs"
-          />
-          <div className="flex items-start gap-1.5 mt-2">
-            <Info className="w-3.5 h-3.5 text-[#666666] mt-0.5 shrink-0" />
-            <p className="text-xs text-[#666666]">
-              Deploy <span className="text-[#888888] font-medium">nychiq-worker</span> and paste the URL here. This enables live YouTube data fetching via your own Cloudflare Worker proxy.
-            </p>
-          </div>
         </div>
       </SectionCard>
 

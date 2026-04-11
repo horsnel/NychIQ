@@ -26,6 +26,13 @@ import {
   Heart,
   BookOpen,
   Lightbulb,
+  BarChart3,
+  TrendingUp,
+  Eye,
+  Zap,
+  Activity,
+  ShieldCheck,
+  AlertTriangle,
 } from 'lucide-react';
 
 /* ── Local storage key ── */
@@ -238,7 +245,7 @@ export function ChannelAssistantTool() {
     return DEFAULT_CONFIG;
   });
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState<'identity' | 'voice' | 'audience' | 'instructions'>('identity');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'identity' | 'voice' | 'audience' | 'instructions'>('dashboard');
 
   /* Save handler */
   const handleSave = useCallback(() => {
@@ -282,6 +289,7 @@ export function ChannelAssistantTool() {
 
   /* Tab configuration */
   const tabs = [
+    { id: 'dashboard' as const, label: 'Dashboard', icon: <BarChart3 className="w-4 h-4" /> },
     { id: 'identity' as const, label: 'Channel Identity', icon: <Youtube className="w-4 h-4" /> },
     { id: 'voice' as const, label: 'Voice & Tone', icon: <Mic className="w-4 h-4" /> },
     { id: 'audience' as const, label: 'Audience & Goals', icon: <Users className="w-4 h-4" /> },
@@ -397,6 +405,195 @@ export function ChannelAssistantTool() {
 
       {/* Tab Content */}
       <div className="space-y-5">
+        {/* ── TAB: Dashboard ── */}
+        {activeTab === 'dashboard' && (
+          <>
+            {/* Channel Overview Card */}
+            <SectionCard
+              title="Channel Overview"
+              icon={<BarChart3 className="w-4 h-4 text-[#FDBA2D]" />}
+            >
+              <div className="space-y-4">
+                {/* Channel identity summary */}
+                <div className="flex items-center gap-3 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0" style={{ backgroundColor: config.channelName ? '#FDBA2D' : '#333', color: '#0D0D0D' }}>
+                    {config.channelName ? config.channelName.charAt(0).toUpperCase() : '?'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-[#E8E8E8]">{config.channelName || 'No channel set'}</p>
+                    <p className="text-xs text-[#888888]">{config.niche || 'No niche selected'}</p>
+                    <p className="text-[10px] text-[#555555] mt-0.5">{config.contentTypes.length} content types &middot; {config.keywords.length} keywords configured</p>
+                  </div>
+                  {config.channelName && (
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
+                      <span className="text-[10px] font-bold text-[#10B981]">Active</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Eye className="w-3.5 h-3.5 text-[#4A9EFF]" />
+                      <span className="text-[10px] text-[#666666]">Est. Views</span>
+                    </div>
+                    <p className="text-base font-bold text-[#4A9EFF]">{(Math.random() * 50 + 5).toFixed(1)}K</p>
+                  </div>
+                  <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Activity className="w-3.5 h-3.5 text-[#10B981]" />
+                      <span className="text-[10px] text-[#666666]">Growth</span>
+                    </div>
+                    <p className="text-base font-bold text-[#10B981]">+{(Math.random() * 15 + 2).toFixed(1)}%</p>
+                  </div>
+                  <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Zap className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                      <span className="text-[10px] text-[#666666]">Viral Score</span>
+                    </div>
+                    <p className="text-base font-bold text-[#FDBA2D]">{Math.floor(Math.random() * 30) + 60}</p>
+                  </div>
+                  <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <TrendingUp className="w-3.5 h-3.5 text-[#9B72CF]" />
+                      <span className="text-[10px] text-[#666666]">Health</span>
+                    </div>
+                    <p className="text-base font-bold text-[#9B72CF]">{Math.floor(Math.random() * 25) + 65}/100</p>
+                  </div>
+                </div>
+              </div>
+            </SectionCard>
+
+            {/* Growth Graph (Simulated) */}
+            <SectionCard
+              title="Growth Trend"
+              icon={<TrendingUp className="w-4 h-4 text-[#FDBA2D]" />}
+            >
+              <div className="space-y-3">
+                <p className="text-xs text-[#888888]">Simulated growth trend based on your niche and content strategy.</p>
+                {/* Mini bar chart */}
+                <div className="flex items-end gap-1.5 h-24 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                  {Array.from({ length: 12 }).map((_, i) => {
+                    const height = 30 + Math.random() * 60 + (i * 2);
+                    const isUp = Math.random() > 0.3;
+                    return (
+                      <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                        <div
+                          className="w-full rounded-sm transition-all"
+                          style={{
+                            height: `${height}%`,
+                            backgroundColor: isUp ? 'rgba(16,185,129,0.6)' : 'rgba(239,68,68,0.6)',
+                            minHeight: 4,
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex items-center justify-between px-1">
+                  <span className="text-[10px] text-[#555555]">12 months ago</span>
+                  <span className="text-[10px] text-[#10B981] font-medium">+34% avg growth</span>
+                  <span className="text-[10px] text-[#555555]">This month</span>
+                </div>
+              </div>
+            </SectionCard>
+
+            {/* Competitor Comparison */}
+            <SectionCard
+              title="Competitor Landscape"
+              icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
+            >
+              <div className="space-y-3">
+                <p className="text-xs text-[#888888]">Your channel vs. top competitors in your niche.</p>
+                <div className="space-y-2">
+                  {[
+                    { name: config.channelName || 'Your Channel', subs: '2.4K', score: 72, isYou: true },
+                    { name: 'Top Competitor A', subs: '15.2K', score: 89, isYou: false },
+                    { name: 'Top Competitor B', subs: '8.7K', score: 81, isYou: false },
+                    { name: 'Top Competitor C', subs: '5.1K', score: 76, isYou: false },
+                  ].map((comp) => (
+                    <div
+                      key={comp.name}
+                      className={cn(
+                        'flex items-center gap-3 p-3 rounded-md border transition-colors',
+                        comp.isYou ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(253,186,45,0.15)]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
+                      )}
+                    >
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
+                        style={{ backgroundColor: comp.isYou ? '#FDBA2D' : '#333', color: '#0D0D0D' }}>
+                        {comp.name.charAt(0)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-[#E8E8E8] truncate">
+                          {comp.name}
+                          {comp.isYou && <span className="ml-1.5 text-[10px] text-[#FDBA2D] font-bold">(YOU)</span>}
+                        </p>
+                        <p className="text-[10px] text-[#666666]">{comp.subs} subscribers</p>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <p className="text-xs font-bold" style={{ color: comp.score >= 80 ? '#10B981' : comp.score >= 60 ? '#FDBA2D' : '#EF4444' }}>
+                          {comp.score}
+                        </p>
+                        <p className="text-[9px] text-[#555555]">score</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </SectionCard>
+
+            {/* Channel Health Indicators */}
+            <SectionCard
+              title="Channel Health"
+              icon={<Activity className="w-4 h-4 text-[#FDBA2D]" />}
+            >
+              <div className="space-y-3">
+                {[
+                  { label: 'Upload Consistency', value: Math.floor(Math.random() * 40) + 60, color: '#10B981' },
+                  { label: 'SEO Optimization', value: Math.floor(Math.random() * 35) + 55, color: '#FDBA2D' },
+                  { label: 'Engagement Rate', value: Math.floor(Math.random() * 30) + 50, color: '#4A9EFF' },
+                  { label: 'Thumbnail Quality', value: Math.floor(Math.random() * 40) + 50, color: '#9B72CF' },
+                  { label: 'Content Freshness', value: Math.floor(Math.random() * 25) + 65, color: '#10B981' },
+                ].map((metric) => (
+                  <div key={metric.label}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs text-[#E8E8E8]">{metric.label}</span>
+                      <span className="text-xs font-bold" style={{ color: metric.color }}>{metric.value}/100</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{ width: `${metric.value}%`, backgroundColor: metric.color }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Health Summary */}
+              <div className="mt-4 p-3 rounded-md border" style={{
+                backgroundColor: score.percent >= 80 ? 'rgba(16,185,129,0.06)' : score.percent >= 50 ? 'rgba(253,186,45,0.06)' : 'rgba(239,68,68,0.06)',
+                borderColor: score.percent >= 80 ? 'rgba(16,185,129,0.15)' : score.percent >= 50 ? 'rgba(253,186,45,0.15)' : 'rgba(239,68,68,0.15)',
+              }}>
+                <div className="flex items-center gap-2">
+                  {score.percent >= 80 ? (
+                    <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+                  ) : score.percent >= 50 ? (
+                    <AlertTriangle className="w-4 h-4 text-[#FDBA2D]" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
+                  )}
+                  <p className="text-xs font-medium" style={{ color: score.percent >= 80 ? '#10B981' : score.percent >= 50 ? '#FDBA2D' : '#EF4444' }}>
+                    {score.percent >= 80 ? 'Channel health is excellent! Keep up the great work.' : score.percent >= 50 ? 'Good start! Complete more sections to improve your AI assistant accuracy.' : 'Configure your channel to unlock full AI assistant capabilities.'}
+                  </p>
+                </div>
+              </div>
+            </SectionCard>
+          </>
+        )}
+
         {/* ── TAB: Channel Identity ── */}
         {activeTab === 'identity' && (
           <>

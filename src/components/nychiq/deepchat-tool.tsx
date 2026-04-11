@@ -49,17 +49,19 @@ const LOADING_STEPS = [
 
 /* ── Suggestion Chips ── */
 const SUGGESTIONS = [
-  'Why is this underperforming?',
-  'Rewrite the title for more CTR',
-  'How does this compare to channel average?',
-  "What's the audience sentiment?",
-  'Suggest 3 improvements',
-  'Analyze the thumbnail strategy',
+  { text: 'Underground competitor comparison', icon: 'eye' },
+  { text: 'Simulate audience retention curve', icon: 'activity' },
+  { text: 'How to increase green flags?', icon: 'check' },
+  { text: 'Maximize ad revenue from this video', icon: 'dollar' },
+  { text: 'Why is this underperforming?', icon: 'alert' },
+  { text: 'Rewrite the title for more CTR', icon: 'edit' },
+  { text: 'Suggest 3 improvements', icon: 'sparkles' },
+  { text: 'Analyze the thumbnail strategy', icon: 'image' },
 ];
 
 /* ── System Prompt ── */
 function buildSystemPrompt(ctx: VideoContext): string {
-  return `You are Deep Chat AI, a YouTube analytics expert assistant. You have analyzed the following video:
+  return `You are Deep Chat AI, an advanced YouTube analytics expert assistant with deep intelligence capabilities. You have analyzed the following video:
 
 Title: "${ctx.title}"
 Channel: ${ctx.channel}
@@ -69,7 +71,19 @@ Comments: ${ctx.comments.toLocaleString()}
 Duration: ${ctx.duration}
 Viral Score: ${ctx.viralScore}/100
 
-Answer the user's questions about this video's performance, audience, strategy, thumbnails, SEO, engagement, and growth opportunities. Be specific, data-driven, and actionable. Keep responses concise but thorough. Use bullet points when listing recommendations.`;
+## Your Capabilities:
+
+1. **Underground Comparison**: When asked for competitor comparisons, provide a detailed analysis of how this video stacks up against the top 5 videos in the same niche. Include metrics like CTR, average view duration, engagement rate, and subscriber conversion. Show what competitors did differently.
+
+2. **Audience Retention Simulation**: When asked about retention, simulate a minute-by-minute audience retention curve based on the video's title, duration, topic, and niche benchmarks. Identify retention drop-off points and suggest where to add hooks, visual changes, or pattern interrupts to keep viewers engaged.
+
+3. **Green Flag Analysis**: When asked about green flags, identify all the positive signals this video has (strong title, good timing, trending topic, high engagement rate, etc.) and suggest how to amplify these strengths to maximize reach.
+
+4. **Ad Revenue Maximization**: When asked about revenue, analyze the estimated CPM for this niche, calculate projected earnings, and suggest strategies to increase ad revenue (mid-roll placement, video length optimization, audience demographics targeting).
+
+5. **General Analysis**: Performance breakdown, audience demographics, SEO optimization, thumbnail critique, title A/B testing suggestions, engagement strategy, and growth opportunities.
+
+Always be specific, data-driven, and actionable. Use bullet points and numbered lists. Include estimated metrics where possible.`;
 }
 
 /* ── Mock video data generator ── */
@@ -161,12 +175,28 @@ export function DeepChatTool() {
     setVideoCtx(ctx);
     setLoadingSteps(false);
 
-    /* Add system message */
+    /* Add system message with capability overview */
     setMessages([
       {
         id: `sys-${Date.now()}`,
         role: 'bot',
-        content: "I've analyzed this video. Ask me anything about its performance, audience, or strategy.",
+        content: `I've completed a deep analysis of this video. Here's a quick summary:
+
+\`\`\`
+Viral Score: ${ctx.viralScore}/100
+Engagement Rate: ${((ctx.likes + ctx.comments) / Math.max(ctx.views, 1) * 100).toFixed(2)}%
+View-to-Like Ratio: ${(ctx.likes / Math.max(ctx.views, 1) * 100).toFixed(1)}%
+Estimated CPM: $${(5 + Math.random() * 20).toFixed(2)}
+Projected Revenue: $${(ctx.views / 1000 * (5 + Math.random() * 10)).toFixed(2)}
+\`\`\`
+
+You can ask me about:
+- Underground competitor comparison
+- Audience retention simulation
+- Green flag analysis & amplification
+- Ad revenue maximization strategies
+- SEO, thumbnail, and title optimization
+- Any other performance question`,
         timestamp: Date.now(),
       },
     ]);
@@ -397,15 +427,20 @@ export function DeepChatTool() {
           {/* Suggestion Chips (shown only on first load, no user messages yet) */}
           {messages.length <= 1 && (
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-              <p className="text-xs text-[#666666] mb-3">Try asking:</p>
+              <p className="text-xs text-[#666666] mb-3 flex items-center gap-1.5"><Sparkles className="w-3 h-3 text-[#9B72CF]" /> Deep analysis suggestions:</p>
               <div className="flex flex-wrap gap-2">
-                {SUGGESTIONS.map((suggestion) => (
+                {SUGGESTIONS.map((suggestion, i) => (
                   <button
-                    key={suggestion}
-                    onClick={() => handleSend(suggestion)}
-                    className="px-3 py-1.5 rounded-full text-xs text-[#E8E8E8] bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#9B72CF]/50 hover:text-[#9B72CF] transition-colors"
+                    key={i}
+                    onClick={() => handleSend(suggestion.text)}
+                    className={cn(
+                      'px-3 py-1.5 rounded-full text-xs text-[#E8E8E8] bg-[#0D0D0D] border transition-colors',
+                      i < 4
+                        ? 'border-[#9B72CF]/20 hover:border-[#9B72CF]/50 hover:text-[#9B72CF] hover:bg-[rgba(155,114,207,0.08)]'
+                        : 'border-[#1A1A1A] hover:border-[#333333] hover:text-[#FDBA2D]'
+                    )}
                   >
-                    {suggestion}
+                    {suggestion.text}
                   </button>
                 ))}
               </div>

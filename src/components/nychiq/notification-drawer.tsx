@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { X, Bell, Check, CheckCheck, AlertTriangle, Crown, TrendingUp, Coins, Sparkles } from 'lucide-react';
+import { X, Bell, Check, CheckCheck, AlertTriangle, Crown, TrendingUp, Coins, Sparkles, Activity, Zap, ShieldAlert, ShieldCheck, Eye } from 'lucide-react';
 import { useNychIQStore, PLAN_TOKENS } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { playNotification, playClick } from '@/lib/sounds';
@@ -25,12 +25,143 @@ interface IntelligenceItem {
   bgColor: string;
 }
 
+/* ── Channel Health Status ── */
+type HealthStatus = 'danger' | 'viral' | 'info' | 'healthy';
+
+interface ChannelHealthAlert {
+  id: string;
+  status: HealthStatus;
+  title: string;
+  message: string;
+  metric: string;
+  metricValue: string;
+  navigateTo: string;
+  time: string;
+}
+
 const INITIAL_NOTIFS: Notification[] = [
   { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 100 tokens. More tokens unlock over 3 days!', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
   { id: '2', title: 'Trending Alert', message: 'Your niche "Tech Reviews" has 3 viral videos today.', time: '2h ago', read: false, type: 'success', navigateTo: 'trending' },
   { id: '3', title: 'Token Reset Info', message: 'Free tokens reset automatically on the 31st of every month.', time: '1d ago', read: true, type: 'warning', navigateTo: 'usage' },
   { id: '4', title: 'Viral Score Updated', message: 'Channel viral score has been recalculated for your tracked niches.', time: '3h ago', read: false, type: 'system', navigateTo: 'dashboard' },
 ];
+
+/* ── Generate channel health alerts based on time-based simulation ── */
+function generateHealthAlerts(): ChannelHealthAlert[] {
+  const alerts: ChannelHealthAlert[] = [];
+  const hour = new Date().getHours();
+
+  // Danger alert — simulated based on channel health metrics
+  const healthScore = Math.floor(Math.random() * 30) + 55; // 55-85
+  if (healthScore < 70) {
+    alerts.push({
+      id: 'health-danger',
+      status: 'danger',
+      title: 'Channel Health Alert',
+      message: 'Your channel health score dropped below 70. Audience retention is declining and upload consistency is flagged.',
+      metric: 'Health Score',
+      metricValue: `${healthScore}/100`,
+      navigateTo: 'audit',
+      time: '5m ago',
+    });
+  }
+
+  // Viral alert — simulated
+  if (hour >= 9 && hour <= 21) {
+    alerts.push({
+      id: 'health-viral',
+      status: 'viral',
+      title: 'Video Going Viral!',
+      message: 'One of your tracked competitor videos is gaining rapid traction. This could be an opportunity to create response content.',
+      metric: 'Growth Rate',
+      metricValue: '+342%',
+      navigateTo: 'competitor',
+      time: '12m ago',
+    });
+  }
+
+  // Info alert — general channel update
+  alerts.push({
+    id: 'health-info',
+    status: 'info',
+    title: 'New Subscriber Milestone',
+    message: 'Your channel is approaching the next subscriber milestone. Plan a community post to engage your audience.',
+    metric: 'Subscribers',
+    metricValue: '2.4K',
+    navigateTo: 'dashboard',
+    time: '1h ago',
+  });
+
+  // Healthy status
+  if (healthScore >= 70) {
+    alerts.push({
+      id: 'health-healthy',
+      status: 'healthy',
+      title: 'Channel Health: Good',
+      message: 'Your channel metrics are stable. Keep up the consistent upload schedule and maintain your SEO optimization.',
+      metric: 'Overall',
+      metricValue: `${healthScore}/100`,
+      navigateTo: 'pulsecheck',
+      time: '30m ago',
+    });
+  }
+
+  return alerts;
+}
+
+/* ── Health Status Glow Config ── */
+function healthGlowConfig(status: HealthStatus) {
+  switch (status) {
+    case 'danger':
+      return {
+        glowColor: 'rgba(239,68,68,0.4)',
+        borderColor: 'rgba(239,68,68,0.3)',
+        bgColor: 'rgba(239,68,68,0.06)',
+        textColor: '#EF4444',
+        icon: <ShieldAlert className="w-4 h-4" />,
+        badge: 'DANGER',
+        badgeColor: '#EF4444',
+        badgeBg: 'rgba(239,68,68,0.15)',
+        ringClass: 'health-glow-red',
+      };
+    case 'viral':
+      return {
+        glowColor: 'rgba(16,185,129,0.4)',
+        borderColor: 'rgba(16,185,129,0.3)',
+        bgColor: 'rgba(16,185,129,0.06)',
+        textColor: '#10B981',
+        icon: <Zap className="w-4 h-4" />,
+        badge: 'VIRAL',
+        badgeColor: '#10B981',
+        badgeBg: 'rgba(16,185,129,0.15)',
+        ringClass: 'health-glow-green',
+      };
+    case 'info':
+      return {
+        glowColor: 'rgba(255,255,255,0.15)',
+        borderColor: 'rgba(255,255,255,0.1)',
+        bgColor: 'rgba(255,255,255,0.03)',
+        textColor: '#E8E8E8',
+        icon: <Eye className="w-4 h-4" />,
+        badge: 'NEW',
+        badgeColor: '#E8E8E8',
+        badgeBg: 'rgba(255,255,255,0.08)',
+        ringClass: 'health-glow-white',
+      };
+    case 'healthy':
+      return {
+        glowColor: 'rgba(74,158,255,0.3)',
+        borderColor: 'rgba(74,158,255,0.2)',
+        bgColor: 'rgba(74,158,255,0.05)',
+        textColor: '#4A9EFF',
+        icon: <ShieldCheck className="w-4 h-4" />,
+        badge: 'OK',
+        badgeColor: '#4A9EFF',
+        badgeBg: 'rgba(74,158,255,0.12)',
+        ringClass: '',
+      };
+  }
+}
 
 function useIntelligenceFeed(): IntelligenceItem[] {
   const { tokenBalance, userPlan, region, totalTokensSpent } = useNychIQStore();
@@ -142,8 +273,9 @@ export function NotificationDrawer() {
   const { notifDrawerOpen, setNotifDrawerOpen, setActiveTool, setPage } = useNychIQStore();
   const [notifications, setNotifications] = useState<Notification[]>(INITIAL_NOTIFS);
   const intelligenceItems = useIntelligenceFeed();
+  const healthAlerts = useMemo(() => generateHealthAlerts(), []);
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.read).length + healthAlerts.filter(a => a.status === 'danger' || a.status === 'viral').length;
 
   const handleMarkAllRead = () => {
     playClick();
@@ -152,20 +284,19 @@ export function NotificationDrawer() {
 
   const handleNotificationClick = (notif: Notification) => {
     playClick();
-    // Mark as read
     setNotifications((prev) =>
       prev.map((n) => (n.id === notif.id ? { ...n, read: true } : n))
     );
-    // Navigate
     setActiveTool(notif.navigateTo);
     setPage('app');
     setNotifDrawerOpen(false);
   };
 
-  const handleOpen = () => {
-    if (!notifDrawerOpen) {
-      playNotification();
-    }
+  const handleHealthClick = (alert: ChannelHealthAlert) => {
+    playClick();
+    setActiveTool(alert.navigateTo);
+    setPage('app');
+    setNotifDrawerOpen(false);
   };
 
   return (
@@ -215,6 +346,94 @@ export function NotificationDrawer() {
 
         {/* Notification list */}
         <div className="overflow-y-auto h-[calc(100%-57px)] p-3 space-y-2">
+          {/* Channel Health Alerts Section — with glow indicators */}
+          <div className="mb-4">
+            <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
+              <Activity className="w-3 h-3 text-[#EF4444]" />
+              Channel Health
+            </p>
+            <div className="space-y-2">
+              {healthAlerts.map((alert) => {
+                const cfg = healthGlowConfig(alert.status);
+                return (
+                  <button
+                    key={alert.id}
+                    onClick={() => handleHealthClick(alert)}
+                    className={cn(
+                      'w-full text-left p-3 rounded-lg border transition-all cursor-pointer relative overflow-hidden',
+                    )}
+                    style={{
+                      backgroundColor: cfg.bgColor,
+                      borderColor: cfg.borderColor,
+                      boxShadow: cfg.ringClass ? `0 0 12px ${cfg.glowColor}` : 'none',
+                    }}
+                  >
+                    {/* Glow ring overlay for danger and viral */}
+                    {(alert.status === 'danger' || alert.status === 'viral') && (
+                      <div
+                        className="absolute inset-0 rounded-lg pointer-events-none animate-pulse"
+                        style={{
+                          boxShadow: `inset 0 0 20px ${cfg.glowColor}, 0 0 15px ${cfg.glowColor}`,
+                        }}
+                      />
+                    )}
+
+                    <div className="relative flex items-start gap-2.5">
+                      {/* Status icon with colored ring */}
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+                        style={{
+                          backgroundColor: cfg.bgColor,
+                          border: `1.5px solid ${cfg.borderColor}`,
+                          boxShadow: alert.status === 'danger'
+                            ? '0 0 8px rgba(239,68,68,0.5)'
+                            : alert.status === 'viral'
+                            ? '0 0 8px rgba(16,185,129,0.5)'
+                            : 'none',
+                        }}
+                      >
+                        <span style={{ color: cfg.textColor }}>{cfg.icon}</span>
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <p className="text-sm font-medium" style={{ color: cfg.textColor }}>
+                            {alert.title}
+                          </p>
+                          {/* Status badge */}
+                          <span
+                            className="px-1.5 py-0.5 text-[9px] font-bold rounded-full uppercase tracking-wider shrink-0"
+                            style={{
+                              color: cfg.badgeColor,
+                              backgroundColor: cfg.badgeBg,
+                            }}
+                          >
+                            {alert.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs text-[#888888] mt-0.5 leading-relaxed line-clamp-2">
+                          {alert.message}
+                        </p>
+
+                        {/* Metric display */}
+                        <div className="flex items-center gap-3 mt-2">
+                          <span className="text-[10px] text-[#666666]">{alert.metric}:</span>
+                          <span className="text-[11px] font-bold" style={{ color: cfg.textColor }}>
+                            {alert.metricValue}
+                          </span>
+                          <span className="text-[10px] text-[#555555] ml-auto">{alert.time}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Separator */}
+          <div className="border-t border-[#1E1E1E] my-2" />
+
           {/* Intelligence Feed Section */}
           <div className="mb-4">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">

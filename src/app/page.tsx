@@ -66,6 +66,7 @@ import { OpportunityHeatmapTool } from '@/components/nychiq/opportunity-heatmap-
 import { MonetizationRoadmapTool } from '@/components/nychiq/monetization-roadmap-tool';
 import { GhostTrackerTool } from '@/components/nychiq/ghost-tracker-tool';
 import { BlueprintAITool } from '@/components/nychiq/blueprint-ai-tool';
+import { NextUploaderTool } from '@/components/nychiq/next-uploader-tool';
 import { ScriptFlowTool } from '@/components/nychiq/scriptflow-tool';
 import { ArbitrageTool } from '@/components/nychiq/arbitrage-tool';
 import { LumeTool } from '@/components/nychiq/lume-tool';
@@ -215,6 +216,8 @@ function ToolRouter() {
       return <AgencyDashboardTool />;
     case 'blueprint-ai':
       return <BlueprintAITool />;
+    case 'next-uploader':
+      return <NextUploaderTool />;
     case 'scriptflow':
       return <ScriptFlowTool />;
     case 'arbitrage':
