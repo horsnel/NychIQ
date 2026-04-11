@@ -189,18 +189,20 @@ export function SakuPanel() {
 
         {/* Suggestion bubbles + Input area — stacked at bottom */}
         <div className="shrink-0 border-t border-[#1E1E1E]">
-          {/* Suggestion bubble chips — only when no messages */}
+          {/* Suggestion bubbles — stacked semi-rounded above chat bar */}
           {messages.length === 0 && !isTyping && (
             <div className="px-4 pt-3 pb-1">
-              <div className="flex flex-wrap gap-1.5">
-                {SUGGESTIONS.map((sug) => (
+              <div className="flex flex-col gap-1.5">
+                {SUGGESTIONS.map((sug, idx) => (
                   <button
                     key={sug.text}
                     onClick={() => handleSuggestionClick(sug.text)}
-                    className="rounded-full px-3 py-1.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#E8E8E8] hover:border-[#333] hover:bg-[#1E1E1E] transition-all inline-flex items-center gap-1.5 cursor-pointer"
+                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#E8E8E8] hover:border-[rgba(253,186,45,0.25)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
+                    style={{ animationDelay: `${idx * 80}ms` }}
                   >
-                    <sug.icon className="w-3 h-3 text-[#555] group-hover:text-[#FDBA2D] shrink-0" />
-                    <span>{sug.text}</span>
+                    <sug.icon className="w-3.5 h-3.5 text-[#666] shrink-0" />
+                    <span className="flex-1">{sug.text}</span>
+                    <span className="text-[10px] text-[#444444] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   </button>
                 ))}
               </div>

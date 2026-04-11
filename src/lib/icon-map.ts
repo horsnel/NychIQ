@@ -8,8 +8,7 @@ import {
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, Sparkles,
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
-  Package, Target, EyeOff, Archive, Sliders,
-  UploadCloud,
+  Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
 } from 'lucide-react';
 
 /* ── Shared icon map: maps TOOL_META icon strings to lucide components ── */
@@ -22,6 +21,5 @@ export const ICON_MAP: Record<string, React.ElementType> = {
   Cpu, Handshake, History, Flame, Share2, AtSign, Heart,
   BarChart2, Settings, Coins, User, Sparkles,
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
-  Package, Target, EyeOff, Archive, Sliders,
-  UploadCloud,
+  Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
 };
