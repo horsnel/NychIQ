@@ -124,7 +124,7 @@ Rules:
   const velocityConfig = {
     explosive: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' },
     rising: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' },
-    steady: { color: '#4A9EFF', bg: 'rgba(74,158,255,0.1)', border: 'rgba(74,158,255,0.2)' },
+    steady: { color: '#3B82F6', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.2)' },
   };
 
   return (
@@ -135,17 +135,17 @@ Rules:
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><BellRing className="w-5 h-5 text-[#FDBA2D]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Trend Alerts</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Trend Alerts</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
             </div>
           </div>
           <div className="flex gap-2">
             <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
               placeholder="Enter keyword to monitor..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
-            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
               Add Alert
             </button>
@@ -155,7 +155,7 @@ Rules:
 
       {/* Active Alerts */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-        <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
+        <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
         {alerts.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-4">No active alerts. Add keywords above to start monitoring.</p>
         ) : (
@@ -165,7 +165,7 @@ Rules:
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-2 h-2 rounded-full bg-[#FDBA2D] shrink-0 animate-pulse-live" />
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-[#E8E8E8] truncate">{alert.keyword}</p>
+                    <p className="text-sm font-medium text-[#FFFFFF] truncate">{alert.keyword}</p>
                     <p className="text-[10px] text-[#666666]">Added {alert.createdAt}</p>
                   </div>
                 </div>
@@ -181,14 +181,14 @@ Rules:
       {/* Trend Feed — AI-powered */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
         <div className="flex items-center justify-between mb-3">
-          <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
+          <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
             <Zap className="w-3.5 h-3.5 text-[#EF4444]" />
             Live Trend Spikes
           </h4>
           <button
             onClick={fetchTrendSpikes}
             disabled={loading}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
           >
             <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -205,7 +205,7 @@ Rules:
         {loading ? (
           <div className="flex flex-col items-center justify-center py-12">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin mb-2" />
-            <p className="text-sm text-[#888888]">Scanning trends...</p>
+            <p className="text-sm text-[#A3A3A3]">Scanning trends...</p>
           </div>
         ) : feed.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-8">No trend data available. Click Refresh to scan.</p>
@@ -219,7 +219,7 @@ Rules:
                     <TrendingUp className="w-5 h-5" style={{ color: vel.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#E8E8E8] truncate">{item.keyword}</p>
+                    <p className="text-sm font-medium text-[#FFFFFF] truncate">{item.keyword}</p>
                     <div className="flex items-center gap-2 mt-0.5">
                       <span className="text-[10px] text-[#666666] flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
                       <span className="px-1.5 py-0.5 rounded text-[9px] font-medium" style={{ color: vel.color, backgroundColor: vel.bg }}>{item.category}</span>

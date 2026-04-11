@@ -158,14 +158,14 @@ export function Topbar() {
       {/* Hamburger (mobile) */}
       <button
         onClick={toggleSidebar}
-        className="lg:hidden p-1.5 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+        className="lg:hidden p-1.5 rounded-md text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
         aria-label="Toggle sidebar"
       >
         <Menu className="w-5 h-5" />
       </button>
 
       {/* Page title */}
-      <h1 className="text-base font-semibold text-[#E8E8E8] truncate">
+      <h1 className="text-base font-semibold text-[#FFFFFF] truncate">
         {pageTitle}
       </h1>
 
@@ -188,7 +188,7 @@ export function Topbar() {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}
               placeholder="Search videos, channels..."
-              className="w-48 bg-transparent text-xs text-[#E8E8E8] placeholder-text-muted outline-none"
+              className="w-48 bg-transparent text-xs text-[#FFFFFF] placeholder-text-muted outline-none"
             />
             {/* Filter dropdown toggle */}
             <div ref={searchFilterRef} className="relative">
@@ -210,7 +210,7 @@ export function Topbar() {
                       }}
                       className={cn(
                         'w-full text-left px-3 py-1.5 text-xs hover:bg-[#1A1A1A] transition-colors',
-                        searchFilter === opt ? 'text-[#FDBA2D]' : 'text-[#888888]'
+                        searchFilter === opt ? 'text-[#FDBA2D]' : 'text-[#A3A3A3]'
                       )}
                     >
                       {opt}
@@ -223,7 +223,7 @@ export function Topbar() {
           {/* GO button */}
           <button
             onClick={handleSearch}
-            className="h-8 px-3 bg-[#FDBA2D] hover:bg-[#D9A013] text-black text-xs font-semibold rounded-r-lg transition-colors"
+            className="h-8 px-3 bg-[#FDBA2D] hover:bg-[#C69320] text-black text-xs font-semibold rounded-r-lg transition-colors"
           >
             GO
           </button>
@@ -240,7 +240,7 @@ export function Topbar() {
               'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
               searchFilter === opt
                 ? 'bg-[#FDBA2D] text-black border-[#FDBA2D]'
-                : 'bg-transparent text-[#888888] border-[#222222] hover:border-[#333333] hover:text-[#E8E8E8]'
+                : 'bg-transparent text-[#A3A3A3] border-[#222222] hover:border-[#333333] hover:text-[#FFFFFF]'
             )}
           >
             {opt}
@@ -267,7 +267,7 @@ export function Topbar() {
         {REFRESH_PAGES.includes(activeTool) && (
           <button
             onClick={() => window.location.reload()}
-            className="hidden md:flex p-2 rounded-full text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="hidden md:flex p-2 rounded-full text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
             aria-label="Refresh"
             title="Refresh data"
           >
@@ -279,7 +279,7 @@ export function Topbar() {
         <div ref={countryRef} className="hidden md:block relative">
           <button
             onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-[#888888] text-xs hover:border-[#2A2A2A] hover:text-[#E8E8E8] transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-[#A3A3A3] text-xs hover:border-[#2A2A2A] hover:text-[#FFFFFF] transition-colors"
           >
             <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#FDBA2D]">
               {region.charAt(0)}
@@ -298,7 +298,7 @@ export function Topbar() {
                   }}
                   className={cn(
                     'w-full flex items-center gap-2 px-3 py-2 text-xs hover:bg-[#1A1A1A] transition-colors',
-                    region === r.code ? 'text-[#FDBA2D]' : 'text-[#888888]'
+                    region === r.code ? 'text-[#FDBA2D]' : 'text-[#A3A3A3]'
                   )}
                 >
                   <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#FDBA2D] shrink-0">
@@ -314,7 +314,7 @@ export function Topbar() {
         {/* Command bar trigger */}
         <button
           onClick={() => setCommandBarOpen(true)}
-          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#222222] text-[#444444] text-xs hover:border-[#2A2A2A] hover:text-[#888888] transition-colors"
+          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#222222] text-[#444444] text-xs hover:border-[#2A2A2A] hover:text-[#A3A3A3] transition-colors"
         >
           <Command className="w-3 h-3" />
           <span>Search</span>
@@ -338,7 +338,7 @@ export function Topbar() {
             'w-4 h-4 relative z-10 transition-colors',
             channelHealthStatus === 'danger' && 'text-[#EF4444]',
             channelHealthStatus === 'good' && 'text-[#10B981]',
-            channelHealthStatus === 'neutral' && 'text-[#888888]',
+            channelHealthStatus === 'neutral' && 'text-[#A3A3A3]',
           )} />
           {/* Unread dot */}
           {notifications.some((n) => !n.read) && (
@@ -388,7 +388,7 @@ export function Topbar() {
           >
             <span className="absolute inset-[-2px] rounded-full channel-ring-amber" />
             <span className="absolute inset-[-5px] rounded-full channel-ring-purple opacity-50" />
-            <Sliders className="w-4 h-4 text-[#888888] relative z-10" />
+            <Sliders className="w-4 h-4 text-[#A3A3A3] relative z-10" />
           </button>
         )}
 
@@ -407,7 +407,7 @@ export function Topbar() {
               {channelProfile && (
                 <button
                   onClick={() => handleAvatarAction('channel')}
-                  className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                  className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                 >
                   <Sliders className="w-3.5 h-3.5" />
                   <span>My Channel</span>
@@ -415,21 +415,21 @@ export function Topbar() {
               )}
               <button
                 onClick={() => handleAvatarAction('profile')}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               >
                 <User className="w-3.5 h-3.5" />
                 <span>Profile</span>
               </button>
               <button
                 onClick={() => handleAvatarAction('settings')}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               >
                 <Settings className="w-3.5 h-3.5" />
                 <span>Settings</span>
               </button>
               <button
                 onClick={() => handleAvatarAction('usage')}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               >
                 <Coins className="w-3.5 h-3.5" />
                 <span>Token Usage</span>

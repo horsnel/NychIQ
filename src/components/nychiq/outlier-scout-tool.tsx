@@ -31,7 +31,7 @@ function CopyBtn({ text }: { text: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]">
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]">
       {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
@@ -101,13 +101,13 @@ Return ONLY the JSON object.`;
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]"><Radar className="w-5 h-5 text-[#4A9EFF]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]"><Radar className="w-5 h-5 text-[#3B82F6]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Outlier Scout</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Finds videos from small channels (&lt;1K subs) that got 100K+ views.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Outlier Scout</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Finds videos from small channels (&lt;1K subs) that got 100K+ views.</p>
             </div>
           </div>
-          <button onClick={handleScout} disabled={loading} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#4A9EFF] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
+          <button onClick={handleScout} disabled={loading} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#3B82F6] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Radar className="w-4 h-4" />}
             Scout for Outliers
           </button>
@@ -128,19 +128,19 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#4A9EFF]" /> Outlier Analysis</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#3B82F6]" /> Outlier Analysis</h3>
           </div>
 
           {/* Viral Patterns */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#FDBA2D]" /> Viral Title Patterns</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#FDBA2D]" /> Viral Title Patterns</h4>
             <div className="space-y-2">
               {result.viralPatterns.map((p, i) => (
                 <div key={i} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-[#E8E8E8]">{p.pattern}</p>
-                      <p className="text-xs text-[#888888] mt-1">{p.description}</p>
+                      <p className="text-sm font-medium text-[#FFFFFF]">{p.pattern}</p>
+                      <p className="text-xs text-[#A3A3A3] mt-1">{p.description}</p>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold text-[#10B981] bg-[rgba(16,185,129,0.1)] flex items-center gap-1"><Eye className="w-3 h-3" /> {p.views}</span>
@@ -154,14 +154,14 @@ Return ONLY the JSON object.`;
 
           {/* Sub-Niches */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Outlier Sub-Niches</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Outlier Sub-Niches</h4>
             <div className="space-y-2">
               {result.subNiches.map((n, i) => (
-                <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-[rgba(74,158,255,0.05)] border border-[rgba(74,158,255,0.1)]">
-                  <span className="text-[#4A9EFF] text-xs mt-0.5 shrink-0">●</span>
+                <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-[rgba(59,130,246,0.05)] border border-[rgba(59,130,246,0.1)]">
+                  <span className="text-[#3B82F6] text-xs mt-0.5 shrink-0">●</span>
                   <div>
-                    <p className="text-sm font-medium text-[#E8E8E8]">{n.niche}</p>
-                    <p className="text-xs text-[#888888] mt-0.5">{n.opportunity}</p>
+                    <p className="text-sm font-medium text-[#FFFFFF]">{n.niche}</p>
+                    <p className="text-xs text-[#A3A3A3] mt-0.5">{n.opportunity}</p>
                   </div>
                 </div>
               ))}
@@ -170,12 +170,12 @@ Return ONLY the JSON object.`;
 
           {/* Formats */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Repeat className="w-3.5 h-3.5 text-[#9B72CF]" /> Replicable Formats</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Repeat className="w-3.5 h-3.5 text-[#8B5CF6]" /> Replicable Formats</h4>
             <div className="space-y-2">
               {result.formats.map((f, i) => (
                 <div key={i} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-sm font-medium text-[#E8E8E8]">{f.format}</p>
-                  <p className="text-xs text-[#888888] mt-1">{f.replication}</p>
+                  <p className="text-sm font-medium text-[#FFFFFF]">{f.format}</p>
+                  <p className="text-xs text-[#A3A3A3] mt-1">{f.replication}</p>
                 </div>
               ))}
             </div>
@@ -183,17 +183,17 @@ Return ONLY the JSON object.`;
 
           {/* Potential */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Estimated View Potential</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.estimatedPotential}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Estimated View Potential</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.estimatedPotential}</p>
           </div>
         </div>
       )}
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(74,158,255,0.1)] border border-[rgba(74,158,255,0.2)] flex items-center justify-center mb-4"><Radar className="w-8 h-8 text-[#4A9EFF]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Discover Outlier Patterns</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Find video patterns that help small channels achieve massive views.</p>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)] flex items-center justify-center mb-4"><Radar className="w-8 h-8 text-[#3B82F6]" /></div>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Outlier Patterns</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Find video patterns that help small channels achieve massive views.</p>
         </div>
       )}
 

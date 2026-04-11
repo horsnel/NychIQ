@@ -111,8 +111,8 @@ function ToolPlaceholder() {
           <div className="w-14 h-14 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-4">
             <Sparkles className="w-7 h-7 text-[#FDBA2D]" />
           </div>
-          <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">{label}</h2>
-          <p className="text-sm text-[#888888] mb-4">
+          <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">{label}</h2>
+          <p className="text-sm text-[#A3A3A3] mb-4">
             This tool is ready to use. The full interface will be built in an upcoming task.
           </p>
           <div className="flex items-center justify-center gap-2 text-xs text-[#444444]">
@@ -279,7 +279,7 @@ function AppShell() {
       {isLoggedIn && !sakuOpen && !sakuFullOpen && (
         <button
           onClick={() => setSakuOpen(true)}
-          className="fixed bottom-6 right-6 z-[100] w-14 h-14 rounded-full bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.25)] hover:scale-110 transition-transform animate-saku-glow"
+          className="fixed bottom-6 right-6 z-[100] w-14 h-14 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.25)] hover:scale-110 transition-transform animate-saku-glow"
           aria-label="Open Saku AI"
         >
           <Bot className="w-6 h-6 text-white" />
@@ -315,7 +315,7 @@ export default function NychIQApp() {
     : currentPage;
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-[#E8E8E8]">
+    <div className="min-h-screen bg-[#0D0D0D] text-[#FFFFFF]">
       <AppEffects />
       {effectivePage === 'welcome' && <WelcomePage />}
       {effectivePage === 'login' && <LoginPage />}

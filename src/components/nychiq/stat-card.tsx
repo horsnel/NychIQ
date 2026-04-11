@@ -41,7 +41,7 @@ export function StatCard({
       style={{ borderTop: `2px solid ${color}` }}
     >
       <div className="flex items-start justify-between">
-        <p className="text-[11px] font-medium text-[#888888] uppercase tracking-wider">{label}</p>
+        <p className="text-[11px] font-medium text-[#A3A3A3] uppercase tracking-wider">{label}</p>
         {icon && (
           <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15` }}>
             <span style={{ color }}>{icon}</span>
@@ -49,7 +49,7 @@ export function StatCard({
         )}
       </div>
       <div className="mt-3 flex items-end gap-2">
-        <span className="text-2xl font-bold text-[#E8E8E8]">
+        <span className="text-2xl font-bold text-[#FFFFFF]">
           {typeof value === 'number' ? fmtV(value) : value}
         </span>
         {change && (
@@ -58,7 +58,7 @@ export function StatCard({
               'flex items-center gap-0.5 text-xs font-semibold mb-0.5',
               isUp && 'text-[#10B981]',
               isDown && 'text-[#EF4444]',
-              !isUp && !isDown && 'text-[#888888]'
+              !isUp && !isDown && 'text-[#A3A3A3]'
             )}
           >
             {isUp && <TrendingUp className="w-3 h-3" />}

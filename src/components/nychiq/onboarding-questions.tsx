@@ -20,13 +20,13 @@ import { XIcon } from '@/components/ui/x-icon';
 /* ── 8 discovery options ── */
 const DISCOVERY_OPTIONS = [
   { id: 'youtube', label: 'YouTube', icon: Play, color: '#EF4444' },
-  { id: 'twitter', label: 'X (Twitter)', icon: XIcon, color: '#4A9EFF' },
+  { id: 'twitter', label: 'X (Twitter)', icon: XIcon, color: '#3B82F6' },
   { id: 'instagram', label: 'Instagram', icon: Instagram, color: '#EF4444' },
   { id: 'tiktok', label: 'TikTok', icon: Monitor, color: '#10B981' },
-  { id: 'friend', label: 'Friend', icon: Users, color: '#9B72CF' },
-  { id: 'google', label: 'Google', icon: Search, color: '#4A9EFF' },
+  { id: 'friend', label: 'Friend', icon: Users, color: '#8B5CF6' },
+  { id: 'google', label: 'Google', icon: Search, color: '#3B82F6' },
   { id: 'ads', label: 'Ads', icon: Megaphone, color: '#FDBA2D' },
-  { id: 'other', label: 'Other', icon: CircleHelp, color: '#888888' },
+  { id: 'other', label: 'Other', icon: CircleHelp, color: '#A3A3A3' },
 ];
 
 export function OnboardingQuestions() {
@@ -71,7 +71,7 @@ export function OnboardingQuestions() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6">
         <div className="max-w-lg w-full">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-3">
               How did you hear about us?
             </h2>
             <p className="text-sm text-[#666] max-w-sm mx-auto">
@@ -109,7 +109,7 @@ export function OnboardingQuestions() {
                   </div>
                   <span
                     className={`text-xs font-medium transition-colors ${
-                      isSelected ? 'text-[#FDBA2D]' : 'text-[#888] group-hover:text-[#E8E8E8]'
+                      isSelected ? 'text-[#FDBA2D]' : 'text-[#888] group-hover:text-[#FFFFFF]'
                     }`}
                   >
                     {opt.label}
@@ -128,7 +128,7 @@ export function OnboardingQuestions() {
           {/* Action */}
           <div className="mt-8 flex flex-col items-center gap-3">
             <Button
-              className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+              className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
               onClick={handleContinue}
               disabled={!selected}
             >

@@ -37,7 +37,7 @@ const BLOG_POSTS = [
     date: 'Jan 8, 2026',
     excerpt: 'YouTube rolled out a significant algorithm update affecting Shorts discoverability and long-form recommendations. Here\'s what creators need to know.',
     category: 'Algorithm Updates',
-    categoryColor: '#9B72CF',
+    categoryColor: '#8B5CF6',
     readTime: '4 min read',
   },
   {
@@ -45,7 +45,7 @@ const BLOG_POSTS = [
     date: 'Dec 22, 2025',
     excerpt: 'How one Nigerian tech creator grew from zero to 100K subscribers in under 8 months using data-driven content strategy and AI tools.',
     category: 'Creator Stories',
-    categoryColor: '#4A9EFF',
+    categoryColor: '#3B82F6',
     readTime: '8 min read',
   },
   {
@@ -69,7 +69,7 @@ const BLOG_POSTS = [
     date: 'Nov 28, 2025',
     excerpt: 'AdSense isn\'t the only way to make money on YouTube. Discover sponsorships, merch, courses, and other revenue streams perfect for African creators.',
     category: 'Creator Stories',
-    categoryColor: '#4A9EFF',
+    categoryColor: '#3B82F6',
     readTime: '7 min read',
   },
 ];
@@ -78,8 +78,8 @@ const BLOG_POSTS = [
 
 const STATS = [
   { value: '40+', label: 'AI Tools', icon: Zap, color: '#FDBA2D' },
-  { value: '10M+', label: 'Videos Analyzed', icon: BarChart3, color: '#4A9EFF' },
-  { value: '50K+', label: 'Creators', icon: Users, color: '#9B72CF' },
+  { value: '10M+', label: 'Videos Analyzed', icon: BarChart3, color: '#3B82F6' },
+  { value: '50K+', label: 'Creators', icon: Users, color: '#8B5CF6' },
   { value: '15+', label: 'African Markets', icon: Globe, color: '#34D399' },
 ];
 
@@ -94,13 +94,13 @@ const TEAM = [
     name: 'Chioma N.',
     role: 'CTO',
     bio: 'Full-stack engineer with 10+ years of experience scaling consumer products. Previously led engineering teams at two Nigerian fintech unicorns. Architect of NychIQ\'s real-time data pipeline and AI infrastructure.',
-    color: '#4A9EFF',
+    color: '#3B82F6',
   },
   {
     name: 'Emeka O.',
     role: 'Head of AI',
     bio: 'PhD in Machine Learning from Stanford. Specializes in NLP, recommendation systems, and large language models. Leads the team behind Saku AI, Deep Chat, and NychIQ\'s predictive intelligence engine.',
-    color: '#9B72CF',
+    color: '#8B5CF6',
   },
   {
     name: 'Fatima K.',
@@ -112,15 +112,15 @@ const TEAM = [
 
 const CONTACT_EMAILS = [
   { email: 'hello@nychiq.com', label: 'General Inquiries', icon: Mail, color: '#FDBA2D' },
-  { email: 'billing@nychiq.com', label: 'Billing & Subscriptions', icon: DollarSign, color: '#4A9EFF' },
-  { email: 'partnerships@nychiq.com', label: 'Partnerships', icon: Heart, color: '#9B72CF' },
+  { email: 'billing@nychiq.com', label: 'Billing & Subscriptions', icon: DollarSign, color: '#3B82F6' },
+  { email: 'partnerships@nychiq.com', label: 'Partnerships', icon: Heart, color: '#8B5CF6' },
   { email: 'support@nychiq.com', label: 'Technical Support', icon: Shield, color: '#34D399' },
 ];
 
 const SOCIAL_LINKS = [
-  { platform: 'X (Twitter)', handle: '@nychiq', icon: XIcon, color: '#E8E8E8' },
-  { platform: 'Instagram', handle: '@nychiq', icon: Instagram, color: '#E8E8E8' },
-  { platform: 'LinkedIn', handle: '/company/nychiq', icon: Linkedin, color: '#4A9EFF' },
+  { platform: 'X (Twitter)', handle: '@nychiq', icon: XIcon, color: '#FFFFFF' },
+  { platform: 'Instagram', handle: '@nychiq', icon: Instagram, color: '#FFFFFF' },
+  { platform: 'LinkedIn', handle: '/company/nychiq', icon: Linkedin, color: '#3B82F6' },
 ];
 
 const FAQS = [
@@ -162,7 +162,7 @@ const JOBS = [
     title: 'Senior Frontend Developer',
     location: 'Remote',
     type: 'Full-time',
-    color: '#4A9EFF',
+    color: '#3B82F6',
     description:
       'Lead the development of NychIQ\'s web platform, building intuitive and performant interfaces that make complex YouTube analytics accessible to creators. You\'ll work closely with design and product teams to ship features that our users love.',
     requirements: [
@@ -177,7 +177,7 @@ const JOBS = [
     title: 'Growth Marketing Manager',
     location: 'Lagos / Remote',
     type: 'Full-time',
-    color: '#9B72CF',
+    color: '#8B5CF6',
     description:
       'Drive user acquisition, engagement, and retention for NychIQ across African markets. You\'ll own the full marketing funnel—from brand awareness campaigns to creator community building—and work with our team to scale from 50K to 500K creators.',
     requirements: [
@@ -192,8 +192,8 @@ const JOBS = [
 
 const BENEFITS = [
   { label: 'Competitive Salary', icon: DollarSign, color: '#FDBA2D' },
-  { label: 'Remote-First', icon: Globe, color: '#4A9EFF' },
-  { label: 'Learning Budget', icon: BookOpen, color: '#9B72CF' },
+  { label: 'Remote-First', icon: Globe, color: '#3B82F6' },
+  { label: 'Learning Budget', icon: BookOpen, color: '#8B5CF6' },
   { label: 'Health Insurance', icon: Heart, color: '#34D399' },
   { label: 'Token Bonuses', icon: Coins, color: '#FDBA2D' },
 ];
@@ -300,7 +300,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
-          className="p-1.5 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+          className="p-1.5 rounded-md text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -318,8 +318,8 @@ export function CompanyPage({ type }: CompanyPageProps) {
       {/* Content */}
       <div className="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
         {/* Page header */}
-        <h1 className="text-3xl font-bold text-[#E8E8E8] mb-2">{config.title}</h1>
-        <p className="text-[#888888] mb-10">{config.subtitle}</p>
+        <h1 className="text-3xl font-bold text-[#FFFFFF] mb-2">{config.title}</h1>
+        <p className="text-[#A3A3A3] mb-10">{config.subtitle}</p>
 
         {/* ── ABOUT ── */}
         {type === 'about' && <AboutSection />}
@@ -341,9 +341,9 @@ export function CompanyPage({ type }: CompanyPageProps) {
       <footer className="border-t border-[#1E1E1E] px-6 py-6 mt-auto">
         <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#444444]">
           <span>© {new Date().getFullYear()} NychIQ</span>
-          <button onClick={() => setPage('privacy')} className="hover:text-[#888888] transition-colors">Privacy</button>
-          <button onClick={() => setPage('terms')} className="hover:text-[#888888] transition-colors">Terms</button>
-          <button onClick={() => setPage('contact')} className="hover:text-[#888888] transition-colors">Contact</button>
+          <button onClick={() => setPage('privacy')} className="hover:text-[#A3A3A3] transition-colors">Privacy</button>
+          <button onClick={() => setPage('terms')} className="hover:text-[#A3A3A3] transition-colors">Terms</button>
+          <button onClick={() => setPage('contact')} className="hover:text-[#A3A3A3] transition-colors">Contact</button>
         </div>
       </footer>
     </div>
@@ -362,10 +362,10 @@ function AboutSection() {
         <p className="text-xs font-semibold uppercase tracking-widest text-[#FDBA2D] mb-3">
           YouTube Intelligence Platform
         </p>
-        <h2 className="text-2xl md:text-3xl font-bold text-[#E8E8E8] mb-4 leading-tight">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#FFFFFF] mb-4 leading-tight">
           YouTube Intelligence for the<br />Next Generation of Creators
         </h2>
-        <p className="text-sm text-[#888888] leading-relaxed max-w-xl mx-auto">
+        <p className="text-sm text-[#A3A3A3] leading-relaxed max-w-xl mx-auto">
           NychIQ is the first AI-powered YouTube intelligence platform built specifically for
           Nigerian and African creators. We give you the data, insights, and tools to grow
           your channel faster, earn more revenue, and outperform the algorithm — all in one place.
@@ -384,8 +384,8 @@ function AboutSection() {
               >
                 <Icon className="w-5 h-5" style={{ color: stat.color }} />
               </div>
-              <p className="text-2xl font-bold text-[#E8E8E8]">{stat.value}</p>
-              <p className="text-xs text-[#888888] mt-1">{stat.label}</p>
+              <p className="text-2xl font-bold text-[#FFFFFF]">{stat.value}</p>
+              <p className="text-xs text-[#A3A3A3] mt-1">{stat.label}</p>
             </div>
           );
         })}
@@ -393,15 +393,15 @@ function AboutSection() {
 
       {/* Why NychIQ */}
       <div className="space-y-6">
-        <h3 className="text-xl font-bold text-[#E8E8E8]">Why NychIQ</h3>
+        <h3 className="text-xl font-bold text-[#FFFFFF]">Why NychIQ</h3>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
           <div className="w-10 h-10 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center shrink-0">
             <Target className="w-5 h-5 text-[#FDBA2D]" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[#E8E8E8] mb-1">The Problem</h4>
-            <p className="text-sm text-[#888888] leading-relaxed">
+            <h4 className="text-sm font-semibold text-[#FFFFFF] mb-1">The Problem</h4>
+            <p className="text-sm text-[#A3A3A3] leading-relaxed">
               African creators are among the fastest-growing on YouTube, yet the tools available
               to them are designed for Western markets. Existing analytics platforms ignore
               African audience behavior, regional trends, and the unique economics of content
@@ -412,12 +412,12 @@ function AboutSection() {
         </div>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[rgba(74,158,255,0.1)] flex items-center justify-center shrink-0">
-            <Zap className="w-5 h-5 text-[#4A9EFF]" />
+          <div className="w-10 h-10 rounded-lg bg-[rgba(59,130,246,0.1)] flex items-center justify-center shrink-0">
+            <Zap className="w-5 h-5 text-[#3B82F6]" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[#E8E8E8] mb-1">Our Solution</h4>
-            <p className="text-sm text-[#888888] leading-relaxed">
+            <h4 className="text-sm font-semibold text-[#FFFFFF] mb-1">Our Solution</h4>
+            <p className="text-sm text-[#A3A3A3] leading-relaxed">
               NychIQ provides AI-powered YouTube intelligence tailored for African creators.
               Our platform analyzes millions of videos across 15+ African markets to deliver
               actionable insights on trending topics, optimal posting times, viral potential,
@@ -428,12 +428,12 @@ function AboutSection() {
         </div>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[rgba(155,114,207,0.1)] flex items-center justify-center shrink-0">
-            <Rocket className="w-5 h-5 text-[#9B72CF]" />
+          <div className="w-10 h-10 rounded-lg bg-[rgba(139,92,246,0.1)] flex items-center justify-center shrink-0">
+            <Rocket className="w-5 h-5 text-[#8B5CF6]" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[#E8E8E8] mb-1">Our Vision</h4>
-            <p className="text-sm text-[#888888] leading-relaxed">
+            <h4 className="text-sm font-semibold text-[#FFFFFF] mb-1">Our Vision</h4>
+            <p className="text-sm text-[#A3A3A3] leading-relaxed">
               We envision a world where every African creator has access to the same caliber of
               data-driven tools as creators in New York or London. By 2027, our goal is to
               empower 500,000+ creators across the continent with intelligence that helps them
@@ -446,7 +446,7 @@ function AboutSection() {
 
       {/* Team */}
       <div className="space-y-6">
-        <h3 className="text-xl font-bold text-[#E8E8E8]">The Team</h3>
+        <h3 className="text-xl font-bold text-[#FFFFFF]">The Team</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {TEAM.map((member) => (
             <div key={member.name} className="nychiq-card p-5">
@@ -461,13 +461,13 @@ function AboutSection() {
                     .join('')}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-[#E8E8E8]">{member.name}</p>
+                  <p className="text-sm font-semibold text-[#FFFFFF]">{member.name}</p>
                   <p className="text-xs" style={{ color: member.color }}>
                     {member.role}
                   </p>
                 </div>
               </div>
-              <p className="text-sm text-[#888888] leading-relaxed">{member.bio}</p>
+              <p className="text-sm text-[#A3A3A3] leading-relaxed">{member.bio}</p>
             </div>
           ))}
         </div>
@@ -475,7 +475,7 @@ function AboutSection() {
 
       {/* CTA */}
       <div className="nychiq-card p-8 text-center">
-        <p className="text-sm text-[#888888] mb-4">
+        <p className="text-sm text-[#A3A3A3] mb-4">
           Ready to unlock YouTube intelligence for your channel?
         </p>
         <button
@@ -520,10 +520,10 @@ function BlogSection() {
             </span>
             <span className="text-[11px] text-[#555]">{BLOG_POSTS[0].date}</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#E8E8E8] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-tight">
             {BLOG_POSTS[0].title}
           </h2>
-          <p className="text-sm text-[#888888] leading-relaxed mb-4 max-w-2xl">
+          <p className="text-sm text-[#A3A3A3] leading-relaxed mb-4 max-w-2xl">
             {BLOG_POSTS[0].excerpt}
           </p>
           <div className="flex items-center gap-4">
@@ -558,10 +558,10 @@ function BlogSection() {
               </span>
               <span className="text-[10px] text-[#555]">{post.date}</span>
             </div>
-            <h3 className="text-sm font-semibold text-[#E8E8E8] mb-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+            <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
               {post.title}
             </h3>
-            <p className="text-xs text-[#888888] leading-relaxed mb-3 line-clamp-2">
+            <p className="text-xs text-[#A3A3A3] leading-relaxed mb-3 line-clamp-2">
               {post.excerpt}
             </p>
             <div className="flex items-center gap-3">
@@ -578,13 +578,13 @@ function BlogSection() {
 
       {/* Subscribe CTA */}
       <div className="nychiq-card p-6 text-center">
-        <h3 className="text-lg font-bold text-[#E8E8E8] mb-2">Stay Updated</h3>
-        <p className="text-sm text-[#888888] mb-4">
+        <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">Stay Updated</h3>
+        <p className="text-sm text-[#A3A3A3] mb-4">
           Get the latest YouTube tips and NychIQ news delivered to your inbox.
         </p>
         <button
           onClick={() => toast.success('Subscribed!', { description: 'You\'ll receive our weekly newsletter.' })}
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#D9A013] transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#C69320] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
           Subscribe to Newsletter
@@ -612,7 +612,7 @@ function ContactSection() {
     <div className="space-y-10">
       {/* Email cards */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8] mb-4">Get in Touch</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF] mb-4">Get in Touch</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {CONTACT_EMAILS.map((item) => {
             const Icon = item.icon;
@@ -625,8 +625,8 @@ function ContactSection() {
                   <Icon className="w-5 h-5" style={{ color: item.color }} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-[#E8E8E8]">{item.label}</h4>
-                  <p className="text-sm text-[#888888] mt-0.5">{item.email}</p>
+                  <h4 className="text-sm font-semibold text-[#FFFFFF]">{item.label}</h4>
+                  <p className="text-sm text-[#A3A3A3] mt-0.5">{item.email}</p>
                 </div>
               </div>
             );
@@ -636,16 +636,16 @@ function ContactSection() {
 
       {/* Social links */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8]">Follow Us</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF]">Follow Us</h3>
         <div className="flex flex-wrap gap-4">
           {SOCIAL_LINKS.map((social) => {
             const Icon = social.icon;
             return (
               <div key={social.platform} className="nychiq-card px-5 py-4 flex items-center gap-3">
-                <Icon className="w-5 h-5 text-[#888888]" />
+                <Icon className="w-5 h-5 text-[#A3A3A3]" />
                 <div>
-                  <p className="text-xs text-[#888888]">{social.platform}</p>
-                  <p className="text-sm font-semibold text-[#E8E8E8]">{social.handle}</p>
+                  <p className="text-xs text-[#A3A3A3]">{social.platform}</p>
+                  <p className="text-sm font-semibold text-[#FFFFFF]">{social.handle}</p>
                 </div>
               </div>
             );
@@ -655,7 +655,7 @@ function ContactSection() {
 
       {/* FAQ */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8]">Frequently Asked Questions</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF]">Frequently Asked Questions</h3>
         <div className="space-y-3">
           {FAQS.map((faq, i) => {
             const isOpen = expandedFaq === i;
@@ -665,16 +665,16 @@ function ContactSection() {
                   onClick={() => setExpandedFaq(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
-                  <span className="text-sm font-semibold text-[#E8E8E8] pr-4">{faq.q}</span>
+                  <span className="text-sm font-semibold text-[#FFFFFF] pr-4">{faq.q}</span>
                   {isOpen ? (
-                    <ChevronUp className="w-4 h-4 text-[#888888] shrink-0" />
+                    <ChevronUp className="w-4 h-4 text-[#A3A3A3] shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-[#888888] shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-[#A3A3A3] shrink-0" />
                   )}
                 </button>
                 {isOpen && (
                   <div className="px-5 pb-5">
-                    <p className="text-sm text-[#888888] leading-relaxed">{faq.a}</p>
+                    <p className="text-sm text-[#A3A3A3] leading-relaxed">{faq.a}</p>
                   </div>
                 )}
               </div>
@@ -685,39 +685,39 @@ function ContactSection() {
 
       {/* Contact form */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8]">Send Us a Message</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF]">Send Us a Message</h3>
         <form onSubmit={handleSubmit} className="nychiq-card p-6 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[#888888]">Name</label>
+              <label className="text-xs font-medium text-[#A3A3A3]">Name</label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#E8E8E8] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[#888888]">Email</label>
+              <label className="text-xs font-medium text-[#A3A3A3]">Email</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#E8E8E8] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
               />
             </div>
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-[#888888]">Subject</label>
+            <label className="text-xs font-medium text-[#A3A3A3]">Subject</label>
             <select
               required
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#FDBA2D] transition-colors appearance-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D] transition-colors appearance-none"
             >
               <option value="" disabled>
                 Select a subject
@@ -731,14 +731,14 @@ function ContactSection() {
             </select>
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-[#888888]">Message</label>
+            <label className="text-xs font-medium text-[#A3A3A3]">Message</label>
             <textarea
               required
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Tell us how we can help..."
-              className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#E8E8E8] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors resize-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#141414] border border-[#1E1E1E] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors resize-none"
             />
           </div>
           <button
@@ -769,7 +769,7 @@ function CareersSection() {
     <div className="space-y-10">
       {/* Intro */}
       <div className="nychiq-card p-6">
-        <p className="text-sm text-[#888888] leading-relaxed">
+        <p className="text-sm text-[#A3A3A3] leading-relaxed">
           We&apos;re building the future of YouTube intelligence for African creators, and
           we&apos;re looking for passionate people to join us. NychIQ is a remote-first team with
           members across Nigeria, Kenya, and beyond. We value curiosity, ownership, and a
@@ -780,7 +780,7 @@ function CareersSection() {
 
       {/* Open positions */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8]">Open Positions</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF]">Open Positions</h3>
         <div className="space-y-4">
           {JOBS.map((job, i) => {
             const isOpen = expandedJob === i;
@@ -793,31 +793,31 @@ function CareersSection() {
                 >
                   <div className="flex-1 pr-4">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <h4 className="text-sm font-semibold text-[#E8E8E8]">{job.title}</h4>
-                      <span className="text-[11px] text-[#888888] bg-[#1A1A1A] px-2 py-0.5 rounded">
+                      <h4 className="text-sm font-semibold text-[#FFFFFF]">{job.title}</h4>
+                      <span className="text-[11px] text-[#A3A3A3] bg-[#1A1A1A] px-2 py-0.5 rounded">
                         {job.location}
                       </span>
-                      <span className="text-[11px] text-[#888888] bg-[#1A1A1A] px-2 py-0.5 rounded">
+                      <span className="text-[11px] text-[#A3A3A3] bg-[#1A1A1A] px-2 py-0.5 rounded">
                         {job.type}
                       </span>
                     </div>
                   </div>
                   {isOpen ? (
-                    <ChevronUp className="w-4 h-4 text-[#888888] shrink-0" />
+                    <ChevronUp className="w-4 h-4 text-[#A3A3A3] shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-[#888888] shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-[#A3A3A3] shrink-0" />
                   )}
                 </button>
 
                 {/* Expanded details */}
                 {isOpen && (
                   <div className="px-5 pb-5 space-y-4">
-                    <p className="text-sm text-[#888888] leading-relaxed">{job.description}</p>
+                    <p className="text-sm text-[#A3A3A3] leading-relaxed">{job.description}</p>
                     <div>
-                      <p className="text-xs font-semibold text-[#E8E8E8] mb-2">Key Requirements</p>
+                      <p className="text-xs font-semibold text-[#FFFFFF] mb-2">Key Requirements</p>
                       <ul className="space-y-1.5">
                         {job.requirements.map((req, ri) => (
-                          <li key={ri} className="flex items-start gap-2 text-sm text-[#888888]">
+                          <li key={ri} className="flex items-start gap-2 text-sm text-[#A3A3A3]">
                             <CheckCircle2
                               className="w-3.5 h-3.5 mt-0.5 shrink-0"
                               style={{ color: job.color }}
@@ -845,7 +845,7 @@ function CareersSection() {
 
       {/* Benefits */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#E8E8E8]">Benefits & Perks</h3>
+        <h3 className="text-lg font-bold text-[#FFFFFF]">Benefits & Perks</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {BENEFITS.map((b) => {
             const Icon = b.icon;
@@ -857,7 +857,7 @@ function CareersSection() {
                 >
                   <Icon className="w-4 h-4" style={{ color: b.color }} />
                 </div>
-                <p className="text-xs text-[#888888]">{b.label}</p>
+                <p className="text-xs text-[#A3A3A3]">{b.label}</p>
               </div>
             );
           })}
@@ -909,12 +909,12 @@ function ChangelogSection() {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-[#E8E8E8] mb-3 leading-relaxed">
+                <p className="text-sm text-[#FFFFFF] mb-3 leading-relaxed">
                   {entry.description}
                 </p>
                 <ul className="space-y-1.5">
                   {entry.features.map((feature, fi) => (
-                    <li key={fi} className="flex items-start gap-2 text-sm text-[#888888]">
+                    <li key={fi} className="flex items-start gap-2 text-sm text-[#A3A3A3]">
                       <Star className="w-3 h-3 mt-0.5 text-[#555] shrink-0" />
                       <span>{feature}</span>
                     </li>

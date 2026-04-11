@@ -34,7 +34,7 @@ function CopyBtn({ text }: { text: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]">
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]">
       {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <CopyIcon className="w-3.5 h-3.5" />}
     </button>
   );
@@ -104,17 +104,17 @@ Return ONLY the JSON object.`;
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Copy className="w-5 h-5 text-[#FDBA2D]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Copy Strategy</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Extract the exact title formula, thumbnail style, and posting strategy from any channel.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Copy Strategy</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Extract the exact title formula, thumbnail style, and posting strategy from any channel.</p>
             </div>
           </div>
           <div className="flex gap-2">
             <input type="text" value={channel} onChange={(e) => setChannel(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
               placeholder="Enter channel name to analyze strategy..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Copy className="w-4 h-4" />}
               Analyze Strategy
             </button>
@@ -136,45 +136,45 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Strategy Breakdown</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Strategy Breakdown</h3>
             <CopyBtn text={fullStrategy} />
           </div>
 
           {/* Title Formula */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Title Formula Identified</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Title Formula Identified</h4>
               <CopyBtn text={result.titleFormula} />
             </div>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.titleFormula}</p>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.titleFormula}</p>
           </div>
 
           {/* Thumbnail Style */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2"><ImageIcon className="w-3.5 h-3.5" /> Thumbnail Style Analysis</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><ImageIcon className="w-3.5 h-3.5" /> Thumbnail Style Analysis</h4>
               <CopyBtn text={result.thumbnailStyle} />
             </div>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.thumbnailStyle}</p>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.thumbnailStyle}</p>
           </div>
 
           {/* Posting Frequency */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Posting Frequency Pattern</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Posting Frequency Pattern</h4>
               <CopyBtn text={result.postingFrequency} />
             </div>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.postingFrequency}</p>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.postingFrequency}</p>
           </div>
 
           {/* Content Pillars */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-2"><Layers className="w-3.5 h-3.5" /> Content Pillar Themes</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Layers className="w-3.5 h-3.5" /> Content Pillar Themes</h4>
             <div className="space-y-2">
               {result.contentPillars.map((pillar, i) => (
                 <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                   <span className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.3)] flex items-center justify-center text-[10px] font-bold text-[#FDBA2D] shrink-0">{i + 1}</span>
-                  <p className="text-sm text-[#E8E8E8]">{pillar}</p>
+                  <p className="text-sm text-[#FFFFFF]">{pillar}</p>
                 </div>
               ))}
             </div>
@@ -183,7 +183,7 @@ Return ONLY the JSON object.`;
           {/* Strategy to Replicate */}
           <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(253,186,45,0.2)] p-4">
             <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-2 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Actionable Strategy to Replicate</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.strategyToReplicate}</p>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.strategyToReplicate}</p>
           </div>
         </div>
       )}
@@ -191,8 +191,8 @@ Return ONLY the JSON object.`;
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4"><Copy className="w-8 h-8 text-[#FDBA2D]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Extract Channel Strategy</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter a channel name to get a complete breakdown of their content strategy.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Extract Channel Strategy</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter a channel name to get a complete breakdown of their content strategy.</p>
         </div>
       )}
 

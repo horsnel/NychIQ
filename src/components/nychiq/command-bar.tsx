@@ -47,12 +47,12 @@ export function CommandBar() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tools, features..."
-            className="flex-1 bg-transparent text-sm text-[#E8E8E8] placeholder-text-muted outline-none"
+            className="flex-1 bg-transparent text-sm text-[#FFFFFF] placeholder-text-muted outline-none"
             autoFocus
           />
           <button
             onClick={() => setCommandBarOpen(false)}
-            className="p-1 rounded text-[#444444] hover:text-[#E8E8E8]"
+            className="p-1 rounded text-[#444444] hover:text-[#FFFFFF]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -67,7 +67,7 @@ export function CommandBar() {
               <button
                 key={id}
                 onClick={() => selectTool(id)}
-                className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               >
                 <span>{meta.label}</span>
                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />

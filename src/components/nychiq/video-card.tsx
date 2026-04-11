@@ -182,7 +182,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
       >
         <DropdownMenuItem
           onClick={handleOpenYouTube}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <ExternalLink className="w-4 h-4" />
           Open on YouTube
@@ -190,21 +190,21 @@ function VideoContextMenu({ video }: { video: VideoData }) {
         <DropdownMenuSeparator className="bg-[#222]" />
         <DropdownMenuItem
           onClick={handleCopyTitle}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Title
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyUrl}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy URL
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyDescription}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Description
@@ -212,14 +212,14 @@ function VideoContextMenu({ video }: { video: VideoData }) {
         <DropdownMenuSeparator className="bg-[#222]" />
         <DropdownMenuItem
           onClick={handleGenerateSeo}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <SearchCode className="w-4 h-4" />
           Generate SEO
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleDeepChat}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <MessageSquare className="w-4 h-4" />
           Analyse with Deep Chat
@@ -227,21 +227,21 @@ function VideoContextMenu({ video }: { video: VideoData }) {
         <DropdownMenuSeparator className="bg-[#222]" />
         <DropdownMenuItem
           onClick={handleCopyTags}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Tags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyHashtags}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Hashtags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyTranscript}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileText className="w-4 h-4" />
           Copy Transcript
@@ -249,7 +249,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
         <DropdownMenuSeparator className="bg-[#222]" />
         <DropdownMenuItem
           onClick={handleExportCSV}
-          className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#E8E8E8] cursor-pointer"
+          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileDown className="w-4 h-4" />
           Export CSV
@@ -309,10 +309,10 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           <VideoContextMenu video={video} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
-          <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">
+          <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">
             {video.title}
           </h3>
-          <p className="text-xs text-[#888888] mt-1">{video.channelTitle}</p>
+          <p className="text-xs text-[#A3A3A3] mt-1">{video.channelTitle}</p>
           <div className="flex items-center gap-2 text-[11px] text-[#666666] mt-1">
             {video.viewCount != null && <span>{fmtV(video.viewCount)} views</span>}
             {video.publishedAt && <span>· {timeAgo(video.publishedAt)}</span>}
@@ -379,10 +379,10 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
       {/* Info */}
       <div className="p-3">
-        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
           {video.title}
         </h3>
-        <p className="text-xs text-[#888888] mt-1.5">{video.channelTitle}</p>
+        <p className="text-xs text-[#A3A3A3] mt-1.5">{video.channelTitle}</p>
         <div className="flex items-center justify-between mt-1">
           <div className="flex items-center gap-2 text-[11px] text-[#666666]">
             {video.viewCount != null && <span>{fmtV(video.viewCount)} views</span>}

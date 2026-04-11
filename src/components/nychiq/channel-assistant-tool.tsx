@@ -134,7 +134,7 @@ function SectionCard({
         className={`flex items-center gap-2.5 w-full text-left ${collapsible ? 'cursor-pointer' : 'cursor-default'}`}
       >
         <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] shrink-0">{icon}</div>
-        <h3 className="text-sm font-bold text-[#E8E8E8] flex-1">{title}</h3>
+        <h3 className="text-sm font-bold text-[#FFFFFF] flex-1">{title}</h3>
         {collapsible && (
           <ChevronDown
             className={`w-4 h-4 text-[#666666] transition-transform duration-200 ${open ? '' : '-rotate-90'}`}
@@ -195,13 +195,13 @@ function TagInput({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           maxLength={maxLength}
-          className="flex-1 h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+          className="flex-1 h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
         />
         <button
           type="button"
           onClick={handleAddClick}
           disabled={!input.trim()}
-          className="px-3 h-10 rounded-md bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#D9A013] transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+          className="px-3 h-10 rounded-md bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#C69320] transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
         >
           <Plus className="w-4 h-4" />
         </button>
@@ -211,7 +211,7 @@ function TagInput({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#E8E8E8]"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#FFFFFF]"
             >
               {tag}
               <button
@@ -241,7 +241,7 @@ const ASSISTANT_TIPS = [
     icon: 'users' as const,
     text: "Competitor @TechChannel just posted about AI automation. Consider covering it this week.",
     label: 'Competitor Intel',
-    color: '#4A9EFF',
+    color: '#3B82F6',
   },
   {
     icon: 'trending' as const,
@@ -253,7 +253,7 @@ const ASSISTANT_TIPS = [
     icon: 'zap' as const,
     text: "New trending keyword detected in your niche: 'AI agents'. Use it in your next title.",
     label: 'Trending Keyword',
-    color: '#9B72CF',
+    color: '#8B5CF6',
   },
 ];
 
@@ -419,7 +419,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
               <div className="flex items-center gap-0.5">
                 <button
                   onClick={handleMinimize}
-                  className="p-1 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#222] transition-colors"
+                  className="p-1 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#222] transition-colors"
                   aria-label="Minimize"
                 >
                   <ChevronDown className="w-3.5 h-3.5" />
@@ -436,7 +436,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
 
             {/* Typewriter text */}
             <div className="min-h-[48px]">
-              <p className="text-[13px] leading-relaxed text-[#E8E8E8]">
+              <p className="text-[13px] leading-relaxed text-[#FFFFFF]">
                 {displayText}
                 {isTyping && (
                   <span className="inline-block w-[2px] h-[14px] bg-[#FDBA2D] ml-0.5 align-middle animate-pulse" />
@@ -601,8 +601,8 @@ export function ChannelAssistantTool() {
                 <Bot className="w-5 h-5 text-[#FDBA2D]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8]">Channel Assistant</h2>
-                <p className="text-xs text-[#888888] mt-0.5">
+                <h2 className="text-base font-bold text-[#FFFFFF]">Channel Assistant</h2>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">
                   Personalize your AI assistant to match your channel&apos;s brand, voice, and goals.
                 </p>
               </div>
@@ -619,11 +619,11 @@ export function ChannelAssistantTool() {
                     }}
                   />
                 </div>
-                <span className="text-[10px] font-bold text-[#888888]">{score.percent}%</span>
+                <span className="text-[10px] font-bold text-[#A3A3A3]">{score.percent}%</span>
               </div>
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#222222] text-xs text-[#888888] hover:text-[#E8E8E8] hover:border-[#444444] transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#222222] text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 Reset
@@ -633,7 +633,7 @@ export function ChannelAssistantTool() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
                   saved
                     ? 'bg-[#10B981] text-[#0D0D0D]'
-                    : 'bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#D9A013]'
+                    : 'bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#C69320]'
                 }`}
               >
                 {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
@@ -654,7 +654,7 @@ export function ChannelAssistantTool() {
             <p className="text-sm text-[#FDBA2D] font-medium">
               Hey {userName || 'Creator'}! Customize your personal AI assistant.
             </p>
-            <p className="text-xs text-[#888888] mt-1">
+            <p className="text-xs text-[#A3A3A3] mt-1">
               The more you configure, the better your assistant understands your channel and generates relevant
               scripts, hooks, titles, and strategies tailored specifically to your brand.
             </p>
@@ -671,7 +671,7 @@ export function ChannelAssistantTool() {
             className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
                 ? 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(253,186,45,0.2)]'
-                : 'text-[#888888] hover:text-[#E8E8E8] border border-transparent'
+                : 'text-[#A3A3A3] hover:text-[#FFFFFF] border border-transparent'
             }`}
           >
             {tab.icon}
@@ -697,8 +697,8 @@ export function ChannelAssistantTool() {
                     {config.channelName ? config.channelName.charAt(0).toUpperCase() : '?'}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-[#E8E8E8]">{config.channelName || 'No channel set'}</p>
-                    <p className="text-xs text-[#888888]">{config.niche || 'No niche selected'}</p>
+                    <p className="text-sm font-bold text-[#FFFFFF]">{config.channelName || 'No channel set'}</p>
+                    <p className="text-xs text-[#A3A3A3]">{config.niche || 'No niche selected'}</p>
                     <p className="text-[10px] text-[#555555] mt-0.5">{config.contentTypes.length} content types &middot; {config.keywords.length} keywords configured</p>
                   </div>
                   {config.channelName && (
@@ -713,10 +713,10 @@ export function ChannelAssistantTool() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
-                      <Eye className="w-3.5 h-3.5 text-[#4A9EFF]" />
+                      <Eye className="w-3.5 h-3.5 text-[#3B82F6]" />
                       <span className="text-[10px] text-[#666666]">Est. Views</span>
                     </div>
-                    <p className="text-base font-bold text-[#4A9EFF]">{(Math.random() * 50 + 5).toFixed(1)}K</p>
+                    <p className="text-base font-bold text-[#3B82F6]">{(Math.random() * 50 + 5).toFixed(1)}K</p>
                   </div>
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
@@ -734,10 +734,10 @@ export function ChannelAssistantTool() {
                   </div>
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
-                      <TrendingUp className="w-3.5 h-3.5 text-[#9B72CF]" />
+                      <TrendingUp className="w-3.5 h-3.5 text-[#8B5CF6]" />
                       <span className="text-[10px] text-[#666666]">Health</span>
                     </div>
-                    <p className="text-base font-bold text-[#9B72CF]">{Math.floor(Math.random() * 25) + 65}/100</p>
+                    <p className="text-base font-bold text-[#8B5CF6]">{Math.floor(Math.random() * 25) + 65}/100</p>
                   </div>
                 </div>
               </div>
@@ -749,7 +749,7 @@ export function ChannelAssistantTool() {
               icon={<TrendingUp className="w-4 h-4 text-[#FDBA2D]" />}
             >
               <div className="space-y-3">
-                <p className="text-xs text-[#888888]">Simulated growth trend based on your niche and content strategy.</p>
+                <p className="text-xs text-[#A3A3A3]">Simulated growth trend based on your niche and content strategy.</p>
                 {/* Mini bar chart */}
                 <div className="flex items-end gap-1.5 h-24 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                   {Array.from({ length: 12 }).map((_, i) => {
@@ -783,7 +783,7 @@ export function ChannelAssistantTool() {
               icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
             >
               <div className="space-y-3">
-                <p className="text-xs text-[#888888]">Your channel vs. top competitors in your niche.</p>
+                <p className="text-xs text-[#A3A3A3]">Your channel vs. top competitors in your niche.</p>
                 <div className="space-y-2">
                   {[
                     { name: config.channelName || 'Your Channel', subs: '2.4K', score: 72, isYou: true },
@@ -803,7 +803,7 @@ export function ChannelAssistantTool() {
                         {comp.name.charAt(0)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium text-[#E8E8E8] truncate">
+                        <p className="text-xs font-medium text-[#FFFFFF] truncate">
                           {comp.name}
                           {comp.isYou && <span className="ml-1.5 text-[10px] text-[#FDBA2D] font-bold">(YOU)</span>}
                         </p>
@@ -830,13 +830,13 @@ export function ChannelAssistantTool() {
                 {[
                   { label: 'Upload Consistency', value: Math.floor(Math.random() * 40) + 60, color: '#10B981' },
                   { label: 'SEO Optimization', value: Math.floor(Math.random() * 35) + 55, color: '#FDBA2D' },
-                  { label: 'Engagement Rate', value: Math.floor(Math.random() * 30) + 50, color: '#4A9EFF' },
-                  { label: 'Thumbnail Quality', value: Math.floor(Math.random() * 40) + 50, color: '#9B72CF' },
+                  { label: 'Engagement Rate', value: Math.floor(Math.random() * 30) + 50, color: '#3B82F6' },
+                  { label: 'Thumbnail Quality', value: Math.floor(Math.random() * 40) + 50, color: '#8B5CF6' },
                   { label: 'Content Freshness', value: Math.floor(Math.random() * 25) + 65, color: '#10B981' },
                 ].map((metric) => (
                   <div key={metric.label}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-[#E8E8E8]">{metric.label}</span>
+                      <span className="text-xs text-[#FFFFFF]">{metric.label}</span>
                       <span className="text-xs font-bold" style={{ color: metric.color }}>{metric.value}/100</span>
                     </div>
                     <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
@@ -883,7 +883,7 @@ export function ChannelAssistantTool() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <BookOpen className="w-3 h-3" /> Channel Name
                   </label>
                   <input
@@ -891,11 +891,11 @@ export function ChannelAssistantTool() {
                     value={config.channelName}
                     onChange={(e) => update('channelName', e.target.value)}
                     placeholder="e.g. TechWithTim"
-                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Youtube className="w-3 h-3" /> Channel URL or Handle
                   </label>
                   <input
@@ -903,7 +903,7 @@ export function ChannelAssistantTool() {
                     value={config.channelUrl}
                     onChange={(e) => update('channelUrl', e.target.value)}
                     placeholder="e.g. @TechWithTim or full URL"
-                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                   <div className="flex items-start gap-1.5 mt-1.5">
                     <Info className="w-3 h-3 text-[#666666] mt-0.5 shrink-0" />
@@ -921,13 +921,13 @@ export function ChannelAssistantTool() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Target className="w-3 h-3" /> Primary Niche
                   </label>
                   <select
                     value={config.niche}
                     onChange={(e) => update('niche', e.target.value)}
-                    className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+                    className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
                   >
                     <option value="">Select your niche...</option>
                     {NICHES.map((n) => (
@@ -936,7 +936,7 @@ export function ChannelAssistantTool() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Lightbulb className="w-3 h-3" /> Sub-Niche (Optional)
                   </label>
                   <input
@@ -944,11 +944,11 @@ export function ChannelAssistantTool() {
                     value={config.subNiche}
                     onChange={(e) => update('subNiche', e.target.value)}
                     placeholder="e.g. AI & Machine Learning, Budget Travel, Indie Gaming"
-                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-2 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-2 flex items-center gap-1">
                     <Type className="w-3 h-3" /> Primary Content Types
                   </label>
                   <div className="flex flex-wrap gap-1.5">
@@ -962,7 +962,7 @@ export function ChannelAssistantTool() {
                           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                             selected
                               ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(253,186,45,0.3)]'
-                              : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#333333] hover:text-[#E8E8E8]'
+                              : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#333333] hover:text-[#FFFFFF]'
                           }`}
                         >
                           {ct}
@@ -979,13 +979,13 @@ export function ChannelAssistantTool() {
               icon={<Globe className="w-4 h-4 text-[#FDBA2D]" />}
             >
               <div>
-                <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                   <Globe className="w-3 h-3" /> Content Language
                 </label>
                 <select
                   value={config.language}
                   onChange={(e) => update('language', e.target.value)}
-                  className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+                  className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
                 >
                   {LANGUAGES.map((l) => (
                     <option key={l} value={l}>{l}</option>
@@ -1008,7 +1008,7 @@ export function ChannelAssistantTool() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Megaphone className="w-3 h-3" /> Describe Your Brand Voice
                   </label>
                   <textarea
@@ -1016,7 +1016,7 @@ export function ChannelAssistantTool() {
                     onChange={(e) => update('brandVoice', e.target.value)}
                     placeholder="e.g. I'm a tech educator who breaks down complex topics into simple, actionable steps. My style is fun but factual, with a focus on hands-on tutorials. I use clean editing and fast-paced delivery."
                     rows={4}
-                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
                   />
                   <div className="flex items-start gap-1.5 mt-1.5">
                     <Info className="w-3 h-3 text-[#666666] mt-0.5 shrink-0" />
@@ -1052,7 +1052,7 @@ export function ChannelAssistantTool() {
                             selected ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-transparent border-[#444444]'
                           }`}
                         />
-                        <span className={`text-sm font-medium ${selected ? 'text-[#FDBA2D]' : 'text-[#E8E8E8]'}`}>
+                        <span className={`text-sm font-medium ${selected ? 'text-[#FDBA2D]' : 'text-[#FFFFFF]'}`}>
                           {tone.label}
                         </span>
                       </div>
@@ -1074,7 +1074,7 @@ export function ChannelAssistantTool() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Heart className="w-3 h-3" /> Describe Your Target Audience
                   </label>
                   <textarea
@@ -1082,7 +1082,7 @@ export function ChannelAssistantTool() {
                     onChange={(e) => update('audience', e.target.value)}
                     placeholder="e.g. Beginners learning programming aged 18-35, college students, career switchers who want practical tech skills without jargon"
                     rows={3}
-                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
                   />
                   <p className="text-[10px] text-[#666666] mt-1.5">
                     Include demographics like age range, skill level, interests, and pain points. This helps generate content that resonates.
@@ -1095,7 +1095,7 @@ export function ChannelAssistantTool() {
               title="Channel Goals"
               icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
             >
-              <p className="text-xs text-[#888888] mb-3">
+              <p className="text-xs text-[#A3A3A3] mb-3">
                 Select what matters most to you. The assistant will prioritize these when generating strategies.
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -1109,7 +1109,7 @@ export function ChannelAssistantTool() {
                       className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                         selected
                           ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981] border border-[rgba(16,185,129,0.3)]'
-                          : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#333333] hover:text-[#E8E8E8]'
+                          : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#333333] hover:text-[#FFFFFF]'
                       }`}
                     >
                       {selected && <Check className="w-3 h-3 inline mr-1" />}
@@ -1126,7 +1126,7 @@ export function ChannelAssistantTool() {
               collapsible
               defaultOpen={false}
             >
-              <p className="text-xs text-[#888888] mb-3">
+              <p className="text-xs text-[#A3A3A3] mb-3">
                 Add channels you admire or compete with. The assistant can analyze their strategies for inspiration.
               </p>
               <TagInput
@@ -1148,7 +1148,7 @@ export function ChannelAssistantTool() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                     <Wand2 className="w-3 h-3" /> Assistant Instructions
                   </label>
                   <textarea
@@ -1165,7 +1165,7 @@ export function ChannelAssistantTool() {
 • Use specific data points and statistics when available
 • End every script with a clear call-to-action`}
                     rows={10}
-                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none leading-relaxed"
+                    className="w-full px-4 py-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none leading-relaxed"
                   />
                   <div className="flex items-center justify-between mt-1.5">
                     <div className="flex items-start gap-1.5">
@@ -1186,7 +1186,7 @@ export function ChannelAssistantTool() {
               title="Focus Keywords"
               icon={<Lightbulb className="w-4 h-4 text-[#FDBA2D]" />}
             >
-              <p className="text-xs text-[#888888] mb-3">
+              <p className="text-xs text-[#A3A3A3] mb-3">
                 Add keywords your channel focuses on. The assistant will use these for SEO, tags, and content suggestions.
               </p>
               <TagInput
@@ -1204,7 +1204,7 @@ export function ChannelAssistantTool() {
       <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#222222]">
         <div className="flex items-center gap-2">
           <Bot className="w-4 h-4 text-[#FDBA2D]" />
-          <span className="text-xs text-[#888888]">
+          <span className="text-xs text-[#A3A3A3]">
             {score.percent === 100 ? (
               <span className="text-[#10B981] font-medium">Fully configured</span>
             ) : (
@@ -1217,7 +1217,7 @@ export function ChannelAssistantTool() {
           className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-colors ${
             saved
               ? 'bg-[#10B981] text-[#0D0D0D]'
-              : 'bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#D9A013]'
+              : 'bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#C69320]'
           }`}
         >
           {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}

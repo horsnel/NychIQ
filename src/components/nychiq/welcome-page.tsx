@@ -40,7 +40,7 @@ const FEATURES = [
     desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.',
     tag: 'ALL PLANS',
     tagColor: '#FDBA2D',
-    iconBg: '#4A9EFF',
+    iconBg: '#3B82F6',
   },
   {
     num: '04',
@@ -49,7 +49,7 @@ const FEATURES = [
     name: 'Viral Score Engine',
     desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#FDBA2D',
   },
   {
@@ -59,8 +59,8 @@ const FEATURES = [
     name: 'Niche Discovery',
     desc: 'Uncover untapped niches with high growth potential and low competition scores.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
-    iconBg: '#4A9EFF',
+    tagColor: '#8B5CF6',
+    iconBg: '#3B82F6',
   },
   {
     num: '06',
@@ -69,8 +69,8 @@ const FEATURES = [
     name: 'Algorithm Intel',
     desc: 'Understand how the YouTube algorithm ranks content in your specific niche.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
-    iconBg: '#9B72CF',
+    tagColor: '#8B5CF6',
+    iconBg: '#8B5CF6',
   },
   {
     num: '07',
@@ -79,7 +79,7 @@ const FEATURES = [
     name: 'SEO Toolkit',
     desc: 'Optimize titles, descriptions, tags, and metadata for maximum discoverability.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#10B981',
   },
   {
@@ -89,7 +89,7 @@ const FEATURES = [
     name: 'Hook Creator',
     desc: 'Generate attention-grabbing video hooks and intros using AI trained on viral content.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#EF4444',
   },
   {
@@ -99,7 +99,7 @@ const FEATURES = [
     name: 'Keyword Research',
     desc: 'Find high-volume, low-competition keywords specific to YouTube search.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#FDBA2D',
   },
   {
@@ -109,8 +109,8 @@ const FEATURES = [
     name: 'AI Script Studio',
     desc: 'Generate complete video scripts with structure, hooks, CTAs, and timing markers.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
-    iconBg: '#4A9EFF',
+    tagColor: '#8B5CF6',
+    iconBg: '#3B82F6',
   },
   {
     num: '11',
@@ -119,7 +119,7 @@ const FEATURES = [
     name: 'Idea Generator',
     desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#FDBA2D',
   },
   {
@@ -139,8 +139,8 @@ const FEATURES = [
     name: 'Health Check',
     desc: 'Comprehensive channel audit with SEO, branding, content, and engagement scoring.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
-    iconBg: '#9B72CF',
+    tagColor: '#8B5CF6',
+    iconBg: '#8B5CF6',
   },
   {
     num: '14',
@@ -159,7 +159,7 @@ const FEATURES = [
     name: 'Outlier Detection',
     desc: 'Find channels that are about to break out based on abnormal growth signals.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
+    tagColor: '#8B5CF6',
     iconBg: '#10B981',
   },
   {
@@ -169,8 +169,8 @@ const FEATURES = [
     name: 'AI Assistant',
     desc: 'Your personal YouTube expert — ask anything about strategy, trends, or growth.',
     tag: 'AI POWERED',
-    tagColor: '#9B72CF',
-    iconBg: '#9B72CF',
+    tagColor: '#8B5CF6',
+    iconBg: '#8B5CF6',
   },
   {
     num: '17',
@@ -179,7 +179,7 @@ const FEATURES = [
     name: 'Auto Tasks',
     desc: 'Set up automated monitoring, alerts, and reporting for your channels.',
     tag: 'PRO+',
-    tagColor: '#4A9EFF',
+    tagColor: '#3B82F6',
     iconBg: '#FDBA2D',
   },
 ];
@@ -219,9 +219,9 @@ const PLANS = [
 
 /* ── Terminal typing animation ── */
 const TERMINAL_LINES = [
-  { text: '> SCANNING 12 TRENDING VIDEOS...', color: '#888888' },
+  { text: '> SCANNING 12 TRENDING VIDEOS...', color: '#A3A3A3' },
   { text: '> VIRAL SCORE: 94/99 ⚡', color: '#10B981' },
-  { text: '> AI ANALYSIS READY', color: '#4A9EFF' },
+  { text: '> AI ANALYSIS READY', color: '#3B82F6' },
 ];
 
 function TerminalLine({ text, color, delay }: { text: string; color: string; delay: number }) {
@@ -317,25 +317,25 @@ export function WelcomePage() {
               <div className="hidden md:flex items-center gap-1">
                 <button
                   onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#888888] hover:text-[#E8E8E8] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#888888] hover:text-[#E8E8E8] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => setPage('privacy')}
-                  className="px-4 py-2 text-sm text-[#888888] hover:text-[#E8E8E8] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => setPage('login')}
-                  className="px-4 py-2 text-sm text-[#888888] hover:text-[#E8E8E8] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Live Demo
                 </button>
@@ -345,13 +345,13 @@ export function WelcomePage() {
               <div className="hidden md:flex items-center gap-3">
                 <Button
                   variant="outline"
-                  className="border-[#333] text-[#888888] hover:text-[#E8E8E8] hover:border-[#444] hover:bg-transparent text-sm font-medium"
+                  className="border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent text-sm font-medium"
                   onClick={() => setPage('login')}
                 >
                   Sign In
                 </Button>
                 <Button
-                  className="bg-[#FDBA2D] text-black hover:bg-[#D9A013] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={() => setPage('login')}
                 >
                   Get Started
@@ -361,7 +361,7 @@ export function WelcomePage() {
 
               {/* Mobile hamburger */}
               <button
-                className="md:hidden p-2 text-[#888888] hover:text-[#E8E8E8] transition-colors"
+                className="md:hidden p-2 text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -376,38 +376,38 @@ export function WelcomePage() {
               <div className="px-4 py-4 space-y-1">
                 <button
                   onClick={() => { featuresRef.current?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#888888] hover:text-[#E8E8E8] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => { document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#888888] hover:text-[#E8E8E8] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => { setPage('privacy'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#888888] hover:text-[#E8E8E8] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#888888] hover:text-[#E8E8E8] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Live Demo
                 </button>
                 <div className="pt-3 border-t border-[#1E1E1E] flex flex-col gap-2">
                   <Button
                     variant="outline"
-                    className="w-full border-[#333] text-[#888888] hover:text-[#E8E8E8] hover:bg-transparent"
+                    className="w-full border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-transparent"
                     onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
                   >
                     Sign In
                   </Button>
                   <Button
-                    className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold"
+                    className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold"
                     onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
                   >
                     Get Started <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -431,13 +431,13 @@ export function WelcomePage() {
 
               {/* H1 */}
               <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold leading-[1.1] mb-6">
-                <span className="text-[#E8E8E8] block">YouTube</span>
+                <span className="text-[#FFFFFF] block">YouTube</span>
                 <span className="text-gradient-amber block">Intelligence</span>
                 <span className="text-[#666666] block">Platform.</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-base sm:text-lg text-[#888888] max-w-lg mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-[#A3A3A3] max-w-lg mb-8 leading-relaxed">
                 Predict viral videos before they blow up. Discover trending niches, optimize your content with AI, and outsmart the algorithm — all from one dashboard.
               </p>
 
@@ -449,7 +449,7 @@ export function WelcomePage() {
                   { value: '3,200+', label: 'Active Creators' },
                 ].map((stat) => (
                   <div key={stat.label} className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-[#E8E8E8]">{stat.value}</span>
+                    <span className="text-sm font-bold text-[#FFFFFF]">{stat.value}</span>
                     <span className="text-xs text-[#666666]">{stat.label}</span>
                   </div>
                 ))}
@@ -459,7 +459,7 @@ export function WelcomePage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
-                  className="bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.2)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.2)]"
                   onClick={() => setPage('login')}
                 >
                   Start free trial
@@ -468,7 +468,7 @@ export function WelcomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-[#333] text-[#888888] hover:text-[#E8E8E8] hover:border-[#444] hover:bg-transparent h-12 font-medium"
+                  className="border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent h-12 font-medium"
                   onClick={() => setPage('login')}
                 >
                   <Play className="w-4 h-4 mr-2 fill-current" />
@@ -527,7 +527,7 @@ export function WelcomePage() {
                       key={stat.label}
                       className="px-3 py-3 border-r border-[#1E1E1E] last:border-r-0 text-center"
                     >
-                      <div className="text-xs font-bold text-[#E8E8E8]">{stat.value}</div>
+                      <div className="text-xs font-bold text-[#FFFFFF]">{stat.value}</div>
                       <div className="text-[10px] text-[#555] mt-0.5">{stat.label}</div>
                     </div>
                   ))}
@@ -542,7 +542,7 @@ export function WelcomePage() {
           {/* Section header */}
           <div className="mb-10">
             <span className="text-xs text-[#444] font-mono tracking-wider">{'//'} CORE ENGINES</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mt-2">17 Intelligence Modules</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mt-2">17 Intelligence Modules</h2>
             <p className="text-sm text-[#666] mt-2 max-w-lg">Every tool you need to research, create, optimize, and grow your YouTube channel — powered by AI.</p>
           </div>
 
@@ -580,7 +580,7 @@ export function WelcomePage() {
                     <feat.icon className="w-4.5 h-4.5" style={{ color: feat.iconBg }} />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">
+                    <h3 className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors">
                       {feat.name}
                     </h3>
                   </div>
@@ -606,7 +606,7 @@ export function WelcomePage() {
           {/* Section header */}
           <div className="text-center mb-12">
             <span className="text-xs text-[#444] font-mono tracking-wider">{'//'} PRICING</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mt-2">Choose Your Plan</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mt-2">Choose Your Plan</h2>
             <p className="text-sm text-[#666] mt-2">Start free with 50 tokens. Upgrade when you need more power.</p>
           </div>
 
@@ -635,7 +635,7 @@ export function WelcomePage() {
 
                 {/* Price */}
                 <div className="mb-6">
-                  <span className="text-3xl font-extrabold text-[#E8E8E8]">{plan.price}</span>
+                  <span className="text-3xl font-extrabold text-[#FFFFFF]">{plan.price}</span>
                   <span className="text-sm text-[#555] ml-1">{plan.period}</span>
                 </div>
 
@@ -653,8 +653,8 @@ export function WelcomePage() {
                 <Button
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
-                      ? 'bg-[#FDBA2D] text-black hover:bg-[#D9A013] shadow-md shadow-[rgba(253,186,45,0.15)]'
-                      : 'bg-[#1A1A1A] text-[#888] hover:text-[#E8E8E8] hover:bg-[#222] border border-[#222]'
+                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.15)]'
+                      : 'bg-[#1A1A1A] text-[#888] hover:text-[#FFFFFF] hover:bg-[#222] border border-[#222]'
                   }`}
                   onClick={() => setPage('login')}
                 >

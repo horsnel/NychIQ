@@ -103,15 +103,15 @@ Return ONLY the JSON object.`;
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><ShieldCheck className="w-5 h-5 text-[#10B981]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Safe Content Checker</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Scans scripts/titles for demonetization-risk keywords.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Safe Content Checker</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Scans scripts/titles for demonetization-risk keywords.</p>
             </div>
           </div>
           <div className="space-y-3">
             <textarea value={text} onChange={(e) => setText(e.target.value.slice(0, 3000))}
               placeholder="Paste your video script, title, or description here..."
               rows={5}
-              className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors resize-none"
             />
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-[#666666]">{text.length}/3000 characters</span>
@@ -127,13 +127,13 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#10B981] mx-auto mb-3" />
-          <p className="text-sm text-[#888888]">Scanning content for risk keywords...</p>
+          <p className="text-sm text-[#A3A3A3]">Scanning content for risk keywords...</p>
         </div>
       )}
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Scan Results</h3>
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Scan Results</h3>
 
           {/* Status Banner */}
           {(() => {
@@ -144,7 +144,7 @@ Return ONLY the JSON object.`;
                   {cfg.icon}
                   <span className="text-lg font-bold">{result.overallStatus}</span>
                 </div>
-                <p className="text-xs text-[#888888]">Safety Score: {result.safetyScore}/100 · Advertiser-Friendly: {result.advertiserFriendly}/100</p>
+                <p className="text-xs text-[#A3A3A3]">Safety Score: {result.safetyScore}/100 · Advertiser-Friendly: {result.advertiserFriendly}/100</p>
               </div>
             );
           })()}
@@ -164,11 +164,11 @@ Return ONLY the JSON object.`;
           {/* Risk Keywords */}
           {result.riskKeywords.length > 0 && (
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {result.riskKeywords.map((kw, i) => {
-                  const sevColor = kw.severity === 'high' ? '#EF4444' : kw.severity === 'medium' ? '#FDBA2D' : '#4A9EFF';
-                  const sevBg = kw.severity === 'high' ? 'rgba(239,68,68,0.1)' : kw.severity === 'medium' ? 'rgba(253,186,45,0.1)' : 'rgba(74,158,255,0.1)';
+                  const sevColor = kw.severity === 'high' ? '#EF4444' : kw.severity === 'medium' ? '#FDBA2D' : '#3B82F6';
+                  const sevBg = kw.severity === 'high' ? 'rgba(239,68,68,0.1)' : kw.severity === 'medium' ? 'rgba(253,186,45,0.1)' : 'rgba(59,130,246,0.1)';
                   return (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-md border" style={{ backgroundColor: sevBg, borderColor: `${sevColor}20` }}>
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold shrink-0" style={{ color: sevColor, backgroundColor: `${sevColor}20` }}>
@@ -176,7 +176,7 @@ Return ONLY the JSON object.`;
                       </span>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-[#EF4444]">&quot;{kw.keyword}&quot;</p>
-                        <p className="text-xs text-[#888888] mt-0.5">Replace with: <span className="text-[#10B981]">&quot;{kw.replacement}&quot;</span></p>
+                        <p className="text-xs text-[#A3A3A3] mt-0.5">Replace with: <span className="text-[#10B981]">&quot;{kw.replacement}&quot;</span></p>
                       </div>
                     </div>
                   );
@@ -187,8 +187,8 @@ Return ONLY the JSON object.`;
 
           {/* Summary */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Summary</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.summary}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Summary</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.summary}</p>
           </div>
         </div>
       )}
@@ -196,8 +196,8 @@ Return ONLY the JSON object.`;
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-16 h-16 rounded-2xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-4"><ShieldCheck className="w-8 h-8 text-[#10B981]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Check Your Content</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Paste your script or title to scan for demonetization-risk keywords.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Check Your Content</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Paste your script or title to scan for demonetization-risk keywords.</p>
         </div>
       )}
 

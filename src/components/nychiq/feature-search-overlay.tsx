@@ -132,7 +132,7 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search all tools..."
-            className="flex-1 bg-transparent text-base text-[#E8E8E8] placeholder-[#555555] outline-none"
+            className="flex-1 bg-transparent text-base text-[#FFFFFF] placeholder-[#555555] outline-none"
           />
           {query && (
             <span className="text-xs text-[#444444]">{totalResults} result{totalResults !== 1 ? 's' : ''}</span>
@@ -141,7 +141,7 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-[#1A1A1A] transition-colors"
           >
-            <X className="w-4 h-4 text-[#888888]" />
+            <X className="w-4 h-4 text-[#A3A3A3]" />
           </button>
         </div>
 
@@ -173,7 +173,7 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors truncate">
+                            <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors truncate">
                               {tool.label}
                             </span>
                             <ArrowRight className="w-3 h-3 text-[#444444] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all" />

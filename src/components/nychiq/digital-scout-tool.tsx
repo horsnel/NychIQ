@@ -139,21 +139,21 @@ function typeBadgeStyle(type: ProductOpportunity['type']) {
     case 'eBook':
       return { bg: 'bg-[rgba(239,68,68,0.1)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.2)]' };
     case 'Template':
-      return { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]' };
+      return { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.2)]' };
     case 'Notion':
-      return { bg: 'bg-[rgba(155,114,207,0.1)]', text: 'text-[#9B72CF]', border: 'border-[rgba(155,114,207,0.2)]' };
+      return { bg: 'bg-[rgba(139,92,246,0.1)]', text: 'text-[#8B5CF6]', border: 'border-[rgba(139,92,246,0.2)]' };
     case 'Video Course':
       return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.2)]' };
     case 'Toolkit':
       return { bg: 'bg-[rgba(16,185,129,0.1)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.2)]' };
     default:
-      return { bg: 'bg-[rgba(136,136,136,0.1)]', text: 'text-[#888888]', border: 'border-[rgba(136,136,136,0.2)]' };
+      return { bg: 'bg-[rgba(136,136,136,0.1)]', text: 'text-[#A3A3A3]', border: 'border-[rgba(136,136,136,0.2)]' };
   }
 }
 
 /* ── Priority badge ── */
 function PriorityBadge({ score }: { score: number }) {
-  const color = score >= 90 ? '#10B981' : score >= 80 ? '#FDBA2D' : score >= 70 ? '#4A9EFF' : '#888888';
+  const color = score >= 90 ? '#10B981' : score >= 80 ? '#FDBA2D' : score >= 70 ? '#3B82F6' : '#A3A3A3';
   const label = score >= 90 ? 'HIGH' : score >= 80 ? 'MEDIUM' : 'LOW';
   return (
     <div className="flex items-center gap-1.5">
@@ -271,8 +271,8 @@ Return ONLY valid JSON matching this schema:
                 <Package className="w-5 h-5 text-[#FDBA2D]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8]">Digital Product Scout</h2>
-                <p className="text-xs text-[#888888] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
+                <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
               </div>
             </div>
           </div>
@@ -284,8 +284,8 @@ Return ONLY valid JSON matching this schema:
             <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)] flex items-center justify-center mx-auto mb-4">
               <Package className="w-8 h-8 text-[#FDBA2D]" />
             </div>
-            <h3 className="text-lg font-bold text-[#E8E8E8] mb-2">Find What Audiences Will Pay For</h3>
-            <p className="text-sm text-[#888888] max-w-lg mx-auto">
+            <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">Find What Audiences Will Pay For</h3>
+            <p className="text-sm text-[#A3A3A3] max-w-lg mx-auto">
               Enter a YouTube video URL or topic. Our AI analyzes the audience and identifies digital product
               opportunities — templates, courses, tools — they&apos;re already asking for in the comments.
             </p>
@@ -301,7 +301,7 @@ Return ONLY valid JSON matching this schema:
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleScout()}
                   placeholder="Paste a YouTube URL or enter a video topic..."
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#E8E8E8] text-sm placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/40 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/40 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-all"
                 />
               </div>
               <button
@@ -343,7 +343,7 @@ Return ONLY valid JSON matching this schema:
               <button
                 key={ex}
                 onClick={() => setInput(ex)}
-                className="px-3 py-1.5 rounded-full bg-[#0D0D0D] border border-[#222222] text-[11px] text-[#888888] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                className="px-3 py-1.5 rounded-full bg-[#0D0D0D] border border-[#222222] text-[11px] text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
               >
                 {ex}
               </button>
@@ -379,8 +379,8 @@ Return ONLY valid JSON matching this schema:
           <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
           </div>
-          <h3 className="text-sm font-semibold text-[#E8E8E8] mb-2">Scouting Product Opportunities...</h3>
-          <p className="text-xs text-[#888888] mb-4">Analyzing audience demand and comment signals</p>
+          <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2">Scouting Product Opportunities...</h3>
+          <p className="text-xs text-[#A3A3A3] mb-4">Analyzing audience demand and comment signals</p>
           <div className="space-y-2 max-w-sm mx-auto">
             {['Scanning audience pain points', 'Evaluating product market fit', 'Calculating revenue estimates'].map((step, i) => (
               <div key={step} className="flex items-center gap-2">
@@ -405,8 +405,8 @@ Return ONLY valid JSON matching this schema:
                 <Package className="w-5 h-5 text-[#FDBA2D]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8]">Digital Product Scout</h2>
-                <p className="text-xs text-[#888888] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
+                <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
               </div>
             </div>
           </div>
@@ -416,8 +416,8 @@ Return ONLY valid JSON matching this schema:
           <div className="w-14 h-14 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
             <AlertCircle className="w-7 h-7 text-[#EF4444]" />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Analysis Failed</h3>
-          <p className="text-sm text-[#888888] mb-5 max-w-sm text-center">{error}</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analysis Failed</h3>
+          <p className="text-sm text-[#A3A3A3] mb-5 max-w-sm text-center">{error}</p>
           <div className="flex items-center gap-3">
             <button
               onClick={handleRetry}
@@ -427,7 +427,7 @@ Return ONLY valid JSON matching this schema:
             </button>
             <button
               onClick={() => { setError(null); setResults(null); }}
-              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[#E8E8E8] text-sm font-medium hover:bg-[#222222] transition-colors"
+              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[#FFFFFF] text-sm font-medium hover:bg-[#222222] transition-colors"
             >
               New Search
             </button>
@@ -451,13 +451,13 @@ Return ONLY valid JSON matching this schema:
                 <Package className="w-5 h-5 text-[#FDBA2D]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8]">Digital Product Scout</h2>
-                <p className="text-xs text-[#888888] mt-0.5">{results?.videoTopic || 'Analysis complete'}</p>
+                <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">{results?.videoTopic || 'Analysis complete'}</p>
               </div>
             </div>
             <button
               onClick={() => { setResults(null); setError(null); }}
-              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[11px] text-[#888888] hover:text-[#E8E8E8] transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[11px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
             >
               <Search className="w-3 h-3" /> New Search
             </button>
@@ -468,22 +468,22 @@ Return ONLY valid JSON matching this schema:
       {/* Summary Stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
-          <p className="text-[10px] text-[#888888] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
+          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
           <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
         </div>
         <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
-          <p className="text-[10px] text-[#888888] font-medium uppercase tracking-wider mb-1">Est. Views</p>
-          <p className="text-2xl font-bold text-[#4A9EFF]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
+          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Est. Views</p>
+          <p className="text-2xl font-bold text-[#3B82F6]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
         </div>
         <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
-          <p className="text-[10px] text-[#888888] font-medium uppercase tracking-wider mb-1">Top Priority</p>
+          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Top Priority</p>
           <p className="text-2xl font-bold text-[#10B981]">{sortedOpps[0]?.priorityScore || 0}</p>
         </div>
       </div>
 
       {/* Product Opportunity Cards */}
       <div>
-        <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-1.5">
+        <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-1.5">
           <TrendingUp className="w-4 h-4 text-[#FDBA2D]" /> Product Opportunities
           <span className="text-[10px] text-[#666666] font-normal ml-1">Sorted by priority</span>
         </h3>
@@ -516,18 +516,18 @@ Return ONLY valid JSON matching this schema:
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <h4 className="text-sm font-bold text-[#E8E8E8]">{opp.name}</h4>
+                          <h4 className="text-sm font-bold text-[#FFFFFF]">{opp.name}</h4>
                           <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium border flex items-center gap-1 ${badge.bg} ${badge.text} ${badge.border}`}>
                             <ProductTypeIcon type={opp.type} />
                             {opp.type}
                           </span>
                         </div>
                         <div className="flex items-center gap-4 flex-wrap">
-                          <div className="flex items-center gap-1.5 text-xs text-[#888888]">
+                          <div className="flex items-center gap-1.5 text-xs text-[#A3A3A3]">
                             <DollarSign className="w-3 h-3" />
-                            <span className="font-semibold text-[#E8E8E8]">{opp.priceRange}</span>
+                            <span className="font-semibold text-[#FFFFFF]">{opp.priceRange}</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-xs text-[#888888]">
+                          <div className="flex items-center gap-1.5 text-xs text-[#A3A3A3]">
                             <TrendingUp className="w-3 h-3" />
                             <span>Rev: {opp.estimatedRevenue}</span>
                           </div>
@@ -539,14 +539,14 @@ Return ONLY valid JSON matching this schema:
                     {/* Expand/Collapse */}
                     <button
                       onClick={() => setExpandedCard(isExpanded ? null : opp.name)}
-                      className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#E8E8E8] flex-shrink-0"
+                      className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#FFFFFF] flex-shrink-0"
                     >
                       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
                   </div>
 
                   {/* Sales Hook Preview (always visible) */}
-                  <p className="text-xs text-[#888888] mt-3 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-[#A3A3A3] mt-3 leading-relaxed line-clamp-2">
                     {opp.salesHook}
                   </p>
                 </div>
@@ -556,7 +556,7 @@ Return ONLY valid JSON matching this schema:
                   <div className="px-4 sm:px-5 pb-4 space-y-4 border-t border-[#1A1A1A]">
                     {/* Pain Point Evidence */}
                     <div className="pt-4">
-                      <h5 className="text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <h5 className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                         <Quote className="w-3 h-3" /> Audience Pain Point Evidence
                       </h5>
                       <div className="space-y-2">
@@ -571,11 +571,11 @@ Return ONLY valid JSON matching this schema:
 
                     {/* Sales Hook Full */}
                     <div>
-                      <h5 className="text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                      <h5 className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <TrendingUp className="w-3 h-3" /> Sales Hook
                       </h5>
                       <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(253,186,45,0.1)]">
-                        <p className="text-sm text-[#E8E8E8] leading-relaxed">{opp.salesHook}</p>
+                        <p className="text-sm text-[#FFFFFF] leading-relaxed">{opp.salesHook}</p>
                       </div>
                     </div>
 
@@ -583,7 +583,7 @@ Return ONLY valid JSON matching this schema:
                     <div className="grid grid-cols-3 gap-3">
                       <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Price Range</p>
-                        <p className="text-sm font-semibold text-[#E8E8E8] mt-0.5">{opp.priceRange}</p>
+                        <p className="text-sm font-semibold text-[#FFFFFF] mt-0.5">{opp.priceRange}</p>
                       </div>
                       <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Est. Revenue</p>
@@ -591,7 +591,7 @@ Return ONLY valid JSON matching this schema:
                       </div>
                       <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Priority</p>
-                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#10B981' : opp.priorityScore >= 80 ? '#FDBA2D' : '#4A9EFF' }}>
+                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#10B981' : opp.priorityScore >= 80 ? '#FDBA2D' : '#3B82F6' }}>
                           {opp.priorityScore}/100
                         </p>
                       </div>
@@ -600,7 +600,7 @@ Return ONLY valid JSON matching this schema:
                     {/* Copy Sales Hook */}
                     <button
                       onClick={() => handleCopy(opp.salesHook, opp.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[#222222] text-xs text-[#888888] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[#222222] text-xs text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
                     >
                       {isCopied ? (
                         <>

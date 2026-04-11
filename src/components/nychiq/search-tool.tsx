@@ -49,10 +49,10 @@ function ChannelCard({ channel }: { channel: ChannelResult }) {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <h3 className="text-sm font-semibold text-[#E8E8E8] truncate hover:text-[#FDBA2D] transition-colors">
+        <h3 className="text-sm font-semibold text-[#FFFFFF] truncate hover:text-[#FDBA2D] transition-colors">
           {channel.title}
         </h3>
-        <p className="text-xs text-[#888888] mt-0.5">Channel</p>
+        <p className="text-xs text-[#A3A3A3] mt-0.5">Channel</p>
         <p className="text-[11px] text-[#666666] mt-1 line-clamp-1">
           {channel.description || 'No description available'}
         </p>
@@ -68,10 +68,10 @@ function EmptyState({ hasQuery }: { hasQuery: boolean }) {
       <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
         <Search className="w-8 h-8 text-[#FDBA2D]" />
       </div>
-      <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">
+      <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">
         {hasQuery ? 'No results found' : 'Search YouTube'}
       </h3>
-      <p className="text-sm text-[#888888] max-w-xs text-center">
+      <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
         {hasQuery
           ? 'Try different keywords or check your spelling'
           : 'Enter a search term above to find videos, shorts, and channels'}
@@ -206,12 +206,12 @@ export function SearchTool() {
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]">
-              <Search className="w-5 h-5 text-[#4A9EFF]" />
+            <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]">
+              <Search className="w-5 h-5 text-[#3B82F6]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Search YouTube</h2>
-              <p className="text-xs text-[#888888] mt-0.5">
+              <h2 className="text-base font-bold text-[#FFFFFF]">Search YouTube</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">
                 Find videos, shorts, and channels
               </p>
             </div>
@@ -227,13 +227,13 @@ export function SearchTool() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
                 placeholder="Search any topic, channel or keyword..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <button
               onClick={handleSearch}
               disabled={loading || !query.trim()}
-              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -258,8 +258,8 @@ export function SearchTool() {
                 className={cn(
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   filter === f.key
-                    ? 'bg-[#4A9EFF]/15 text-[#4A9EFF] border border-[#4A9EFF]/30'
-                    : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
+                    ? 'bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30'
+                    : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#FFFFFF]'
                 )}
               >
                 {f.icon}
@@ -274,7 +274,7 @@ export function SearchTool() {
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8]">{error}</p>
+          <p className="text-sm text-[#FFFFFF]">{error}</p>
         </div>
       )}
 

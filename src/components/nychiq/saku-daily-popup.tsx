@@ -104,9 +104,9 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'comp-1',
     icon: <Eye className="w-4 h-4" />,
-    iconColor: '#4A9EFF',
-    iconBg: 'rgba(74,158,255,0.1)',
-    borderColor: 'rgba(74,158,255,0.25)',
+    iconColor: '#3B82F6',
+    iconBg: 'rgba(59,130,246,0.1)',
+    borderColor: 'rgba(59,130,246,0.25)',
     title: compItem.title,
     description: compItem.description,
     tool: compItem.tool,
@@ -119,9 +119,9 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'niche-1',
     icon: <Target className="w-4 h-4" />,
-    iconColor: '#9B72CF',
-    iconBg: 'rgba(155,114,207,0.1)',
-    borderColor: 'rgba(155,114,207,0.25)',
+    iconColor: '#8B5CF6',
+    iconBg: 'rgba(139,92,246,0.1)',
+    borderColor: 'rgba(139,92,246,0.25)',
     title: nicheItem.title,
     description: nicheItem.description,
     tool: nicheItem.tool,
@@ -215,17 +215,17 @@ export function SakuDailyPopup() {
             <div className="flex items-center gap-3">
               {/* Saku AI avatar */}
               <div className="relative">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#9B72CF] to-[#6B3FA0] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(155,114,207,0.3)]">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#6B3FA0] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(139,92,246,0.3)]">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 {/* Online indicator */}
                 <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#10B981] border-2 border-[#141414]" />
               </div>
               <div>
-                <DialogTitle className="text-base font-bold text-[#E8E8E8]">
+                <DialogTitle className="text-base font-bold text-[#FFFFFF]">
                   Saku Daily Intelligence
                 </DialogTitle>
-                <DialogDescription className="text-xs text-[#888888] mt-0.5">
+                <DialogDescription className="text-xs text-[#A3A3A3] mt-0.5">
                   {insights.length} insights for today &middot; {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
                 </DialogDescription>
               </div>
@@ -237,7 +237,7 @@ export function SakuDailyPopup() {
                 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider',
                 currentInsight.priority === 'urgent' && 'bg-[rgba(239,68,68,0.15)] text-[#EF4444] border border-[rgba(239,68,68,0.3)]',
                 currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(253,186,45,0.3)]',
-                currentInsight.priority === 'medium' && 'bg-[rgba(74,158,255,0.15)] text-[#4A9EFF] border border-[rgba(74,158,255,0.3)]',
+                currentInsight.priority === 'medium' && 'bg-[rgba(59,130,246,0.15)] text-[#3B82F6] border border-[rgba(59,130,246,0.3)]',
                 currentInsight.priority === 'info' && 'bg-[rgba(16,185,129,0.15)] text-[#10B981] border border-[rgba(16,185,129,0.3)]',
               )}
             >
@@ -295,7 +295,7 @@ export function SakuDailyPopup() {
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-bold text-[#E8E8E8] mb-1.5">
+                <h3 className="text-sm font-bold text-[#FFFFFF] mb-1.5">
                   {currentInsight.title}
                 </h3>
                 <p className="text-xs text-[#BBBBBB] leading-relaxed">
@@ -316,7 +316,7 @@ export function SakuDailyPopup() {
               }}
               className="flex items-center gap-2 mt-3 px-3 py-2 rounded-md bg-black/20 border border-white/5 hover:bg-black/30 transition-colors w-full group"
             >
-              <span className="text-xs text-[#888888] group-hover:text-[#E8E8E8] transition-colors">
+              <span className="text-xs text-[#A3A3A3] group-hover:text-[#FFFFFF] transition-colors">
                 Open {currentInsight.toolLabel} to fix
               </span>
               <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#FDBA2D] transition-colors ml-auto" />
@@ -329,7 +329,7 @@ export function SakuDailyPopup() {
           <Button
             variant="ghost"
             onClick={handleDismiss}
-            className="w-full sm:w-auto border border-[#2A2A2A] text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] rounded-lg"
+            className="w-full sm:w-auto border border-[#2A2A2A] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] rounded-lg"
           >
             <X className="w-4 h-4 mr-2" />
             Dismiss All
@@ -338,7 +338,7 @@ export function SakuDailyPopup() {
           {!isLast ? (
             <Button
               onClick={handleNext}
-              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#333333] text-[#E8E8E8] hover:bg-[#222222] hover:border-[#444444] rounded-lg transition-all"
+              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#333333] text-[#FFFFFF] hover:bg-[#222222] hover:border-[#444444] rounded-lg transition-all"
             >
               Next Insight
               <ChevronRight className="w-4 h-4 ml-2" />
@@ -346,7 +346,7 @@ export function SakuDailyPopup() {
           ) : (
             <Button
               onClick={handleFixNow}
-              className="w-full sm:w-auto bg-[#FDBA2D] hover:bg-[#D9A013] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.3)]"
+              className="w-full sm:w-auto bg-[#FDBA2D] hover:bg-[#C69320] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.3)]"
             >
               <Zap className="w-4 h-4 mr-2" />
               Fix Now — {currentInsight.toolLabel}

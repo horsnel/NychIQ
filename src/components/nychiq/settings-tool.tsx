@@ -55,7 +55,7 @@ function ToggleSwitch({
 }) {
   return (
     <div className="flex items-center justify-between py-3">
-      <span className="text-sm text-[#E8E8E8]">{label}</span>
+      <span className="text-sm text-[#FFFFFF]">{label}</span>
       <button
         type="button"
         role="switch"
@@ -90,7 +90,7 @@ function SectionCard({
     <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">{icon}</div>
-        <h3 className="text-sm font-bold text-[#E8E8E8]">{title}</h3>
+        <h3 className="text-sm font-bold text-[#FFFFFF]">{title}</h3>
       </div>
       {children}
     </div>
@@ -216,10 +216,10 @@ export function SettingsTool() {
   const shareText = `Sign up for NychIQ using my referral code ${refCode} and we both get +20 free tokens!`;
 
   const socialShares = [
-    { name: 'Twitter', color: '#E8E8E8', url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}` },
+    { name: 'Twitter', color: '#FFFFFF', url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}` },
     { name: 'WhatsApp', color: '#10B981', url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}` },
-    { name: 'Telegram', color: '#4A9EFF', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
-    { name: 'Facebook', color: '#4A9EFF', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
+    { name: 'Telegram', color: '#3B82F6', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
+    { name: 'Facebook', color: '#3B82F6', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
     { name: 'Email', color: '#FDBA2D', url: `mailto:?subject=${encodeURIComponent('Join me on NychIQ')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}` },
   ];
 
@@ -266,8 +266,8 @@ export function SettingsTool() {
               <Settings className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Settings</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Manage your account, preferences, and integrations.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Settings</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Manage your account, preferences, and integrations.</p>
             </div>
           </div>
         </div>
@@ -284,7 +284,7 @@ export function SettingsTool() {
             {getInitials(displayName)}
           </div>
           <div>
-            <p className="text-sm font-medium text-[#E8E8E8]">{displayName || 'Your Name'}</p>
+            <p className="text-sm font-medium text-[#FFFFFF]">{displayName || 'Your Name'}</p>
             <p className="text-xs text-[#666666]">{email || 'your@email.com'}</p>
           </div>
         </div>
@@ -292,7 +292,7 @@ export function SettingsTool() {
         {/* Display Name */}
         <div className="space-y-4">
           <div>
-            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
               <User className="w-3 h-3" /> Display Name
             </label>
             <input
@@ -300,13 +300,13 @@ export function SettingsTool() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Enter your display name"
-              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
               <Mail className="w-3 h-3" /> Email
             </label>
             <input
@@ -314,7 +314,7 @@ export function SettingsTool() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@email.com"
-              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
           </div>
 
@@ -337,13 +337,13 @@ export function SettingsTool() {
 
           {/* Default Region */}
           <div>
-            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
               <Globe className="w-3 h-3" /> Default Region
             </label>
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -356,7 +356,7 @@ export function SettingsTool() {
           {/* Save */}
           <button
             onClick={handleSave}
-            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
+            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
             {saved ? 'Saved!' : 'Save Changes'}
@@ -399,19 +399,19 @@ export function SettingsTool() {
         icon={<Gift className="w-4 h-4 text-[#FDBA2D]" />}
       >
         <div className="space-y-3">
-          <p className="text-sm text-[#888888]">
+          <p className="text-sm text-[#A3A3A3]">
             Share your referral code and earn bonus tokens for every friend who signs up.
           </p>
 
           {/* Referral Stats */}
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-              <div className="p-1.5 rounded-md bg-[rgba(74,158,255,0.1)]">
-                <Users className="w-4 h-4 text-[#4A9EFF]" />
+              <div className="p-1.5 rounded-md bg-[rgba(59,130,246,0.1)]">
+                <Users className="w-4 h-4 text-[#3B82F6]" />
               </div>
               <div>
                 <p className="text-xs text-[#666666]">Referrals</p>
-                <p className="text-sm font-bold text-[#E8E8E8]">0</p>
+                <p className="text-sm font-bold text-[#FFFFFF]">0</p>
               </div>
             </div>
             <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
@@ -420,7 +420,7 @@ export function SettingsTool() {
               </div>
               <div>
                 <p className="text-xs text-[#666666]">Tokens Earned</p>
-                <p className="text-sm font-bold text-[#E8E8E8]">0</p>
+                <p className="text-sm font-bold text-[#FFFFFF]">0</p>
               </div>
             </div>
           </div>
@@ -432,14 +432,14 @@ export function SettingsTool() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleCopyRef}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
               >
                 {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 {copiedRef ? 'Copied!' : 'Copy Link'}
               </button>
               <button
                 onClick={handleShareRef}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#222222] text-[#888888] text-sm font-medium hover:border-[#333333] hover:text-[#E8E8E8] transition-colors"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#222222] text-[#A3A3A3] text-sm font-medium hover:border-[#333333] hover:text-[#FFFFFF] transition-colors"
                 title="Share referral link"
               >
                 <Share2 className="w-4 h-4" />
@@ -450,7 +450,7 @@ export function SettingsTool() {
                 <div className="absolute right-0 top-full mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
                   <button
                     onClick={() => { handleCopyRef(); setShowShareMenu(false); }}
-                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                   >
                     <Copy className="w-3.5 h-3.5" />
                     <span>Copy Link</span>
@@ -459,7 +459,7 @@ export function SettingsTool() {
                     <button
                       key={social.name}
                       onClick={() => handleSocialShare(social.url)}
-                      className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                     >
                       <span className="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ backgroundColor: `${social.color}20`, color: social.color }}>
                         {social.name[0]}
@@ -489,7 +489,7 @@ export function SettingsTool() {
                 onChange={(e) => setReferralInput(e.target.value.toUpperCase())}
                 placeholder="Enter referral code"
                 disabled={referralApplied}
-                className="flex-1 h-10 px-4 rounded-md bg-[#141414] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
+                className="flex-1 h-10 px-4 rounded-md bg-[#141414] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
               />
               <button
                 onClick={handleApplyReferral}
@@ -527,14 +527,14 @@ export function SettingsTool() {
               <div className="flex items-center gap-3">
                 <Trash2 className="w-4 h-4 text-[#EF4444]" />
                 <div className="text-left">
-                  <p className="text-sm text-[#E8E8E8]">Clear All Local Data</p>
+                  <p className="text-sm text-[#FFFFFF]">Clear All Local Data</p>
                   <p className="text-[10px] text-[#666666]">Remove all cached data from this browser</p>
                 </div>
               </div>
             </button>
           ) : (
             <div className="p-3 rounded-md bg-[rgba(239,68,68,0.08)] border border-[#EF4444]/30">
-              <p className="text-sm text-[#E8E8E8] mb-3">Are you sure? This will clear all your local settings and data.</p>
+              <p className="text-sm text-[#FFFFFF] mb-3">Are you sure? This will clear all your local settings and data.</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleClearData}
@@ -544,7 +544,7 @@ export function SettingsTool() {
                 </button>
                 <button
                   onClick={() => setShowClearConfirm(false)}
-                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#888888] text-sm font-medium hover:text-[#E8E8E8] transition-colors"
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
                 >
                   Cancel
                 </button>
@@ -561,14 +561,14 @@ export function SettingsTool() {
               <div className="flex items-center gap-3">
                 <LogOut className="w-4 h-4 text-[#EF4444]" />
                 <div className="text-left">
-                  <p className="text-sm text-[#E8E8E8]">Sign Out</p>
+                  <p className="text-sm text-[#FFFFFF]">Sign Out</p>
                   <p className="text-[10px] text-[#666666]">Log out of your account</p>
                 </div>
               </div>
             </button>
           ) : (
             <div className="p-3 rounded-md bg-[rgba(239,68,68,0.08)] border border-[#EF4444]/30">
-              <p className="text-sm text-[#E8E8E8] mb-3">Are you sure you want to sign out?</p>
+              <p className="text-sm text-[#FFFFFF] mb-3">Are you sure you want to sign out?</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleLogout}
@@ -578,7 +578,7 @@ export function SettingsTool() {
                 </button>
                 <button
                   onClick={() => setShowLogoutConfirm(false)}
-                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#888888] text-sm font-medium hover:text-[#E8E8E8] transition-colors"
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
                 >
                   Cancel
                 </button>

@@ -122,8 +122,8 @@ const FORENSICS_TOOLS: ForensicsTool[] = [
     description: 'Generates perfect SEO structure with timestamps, tags, and description optimized for maximum search visibility.',
     tokens: TOKEN_COSTS['blueprint-ai'] ?? 5,
     icon: <BrainCircuit className="w-6 h-6" />,
-    color: '#4A9EFF',
-    glowColor: 'rgba(74,158,255,0.15)',
+    color: '#3B82F6',
+    glowColor: 'rgba(59,130,246,0.15)',
   },
   {
     id: 'scriptflow',
@@ -133,8 +133,8 @@ const FORENSICS_TOOLS: ForensicsTool[] = [
     description: 'AI suggests Power Word replacements for your scripts. Boost retention with stronger hooks, transitions, and CTAs.',
     tokens: TOKEN_COSTS['scriptflow'] ?? 8,
     icon: <ScrollText className="w-6 h-6" />,
-    color: '#9B72CF',
-    glowColor: 'rgba(155,114,207,0.15)',
+    color: '#8B5CF6',
+    glowColor: 'rgba(139,92,246,0.15)',
   },
   {
     id: 'arbitrage',
@@ -237,7 +237,7 @@ function HealthGauge({ score, size = 'md' }: { score: number; size?: 'sm' | 'md'
   const stroke = size === 'lg' ? 8 : size === 'md' ? 7 : 5;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 80 ? '#10B981' : score >= 60 ? '#FDBA2D' : score >= 40 ? '#9B72CF' : '#EF4444';
+  const color = score >= 80 ? '#10B981' : score >= 60 ? '#FDBA2D' : score >= 40 ? '#8B5CF6' : '#EF4444';
   const label = score >= 80 ? 'Optimal' : score >= 60 ? 'Healthy' : score >= 40 ? 'Needs Work' : 'At Risk';
   const dim = (radius + stroke) * 2 + 4;
 
@@ -255,7 +255,7 @@ function HealthGauge({ score, size = 'md' }: { score: number; size?: 'sm' | 'md'
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="font-bold" style={{ color, fontSize: size === 'lg' ? '28px' : size === 'md' ? '20px' : '16px' }}>{score}</span>
-          <span className="text-[10px] text-[#888888]">/ 100</span>
+          <span className="text-[10px] text-[#A3A3A3]">/ 100</span>
         </div>
       </div>
       <div className="flex items-center gap-1.5">
@@ -284,7 +284,7 @@ function ScanLine() {
       <div
         className="absolute inset-y-0 w-1/3 rounded-full"
         style={{
-          background: 'linear-gradient(90deg, transparent, #9B72CF, transparent)',
+          background: 'linear-gradient(90deg, transparent, #8B5CF6, transparent)',
           animation: 'scanLine 2s ease-in-out infinite',
         }}
       />
@@ -303,20 +303,20 @@ function TacticalCorners({ children, className = '' }: { children: React.ReactNo
   return (
     <div className={`relative ${className}`}>
       {/* Top-left */}
-      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#9B72CF] opacity-40 rounded-tl-sm pointer-events-none" />
+      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-tl-sm pointer-events-none" />
       {/* Top-right */}
-      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#9B72CF] opacity-40 rounded-tr-sm pointer-events-none" />
+      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-tr-sm pointer-events-none" />
       {/* Bottom-left */}
-      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#9B72CF] opacity-40 rounded-bl-sm pointer-events-none" />
+      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-bl-sm pointer-events-none" />
       {/* Bottom-right */}
-      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#9B72CF] opacity-40 rounded-br-sm pointer-events-none" />
+      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-br-sm pointer-events-none" />
       {children}
     </div>
   );
 }
 
 /* ── Glow Pulse Dot ── */
-function GlowDot({ color = '#9B72CF' }: { color?: string }) {
+function GlowDot({ color = '#8B5CF6' }: { color?: string }) {
   return (
     <span className="relative flex h-2 w-2">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ backgroundColor: color }} />
@@ -360,22 +360,22 @@ export function StudioTool() {
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(#9B72CF 1px, transparent 1px), linear-gradient(90deg, #9B72CF 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
         <div className="relative z-10">
           {/* Title row */}
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg border border-[rgba(155,114,207,0.25)]" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-              <Palette className="w-5 h-5 text-[#9B72CF]" />
+            <div className="p-2 rounded-lg border border-[rgba(139,92,246,0.25)]" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+              <Palette className="w-5 h-5 text-[#8B5CF6]" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-[#E8E8E8] tracking-tight">Pre-Flight Check</h2>
-                <span className="px-2 py-0.5 rounded text-[9px] font-bold text-[#9B72CF] bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)]">STUDIO</span>
+                <h2 className="text-base font-bold text-[#FFFFFF] tracking-tight">Pre-Flight Check</h2>
+                <span className="px-2 py-0.5 rounded text-[9px] font-bold text-[#8B5CF6] bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)]">STUDIO</span>
               </div>
-              <p className="text-[11px] text-[#888888] mt-0.5">Run forensics on your content before publishing. 6 AI-powered tools for maximum impact.</p>
+              <p className="text-[11px] text-[#A3A3A3] mt-0.5">Run forensics on your content before publishing. 6 AI-powered tools for maximum impact.</p>
             </div>
             <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
               <GlowDot color="#10B981" />
@@ -393,8 +393,8 @@ export function StudioTool() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[rgba(155,114,207,0.15)] text-[#9B72CF] border border-[rgba(155,114,207,0.3)] shadow-[0_0_12px_rgba(155,114,207,0.1)]'
-                    : 'text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] border border-transparent'
+                    ? 'bg-[rgba(139,92,246,0.15)] text-[#8B5CF6] border border-[rgba(139,92,246,0.3)] shadow-[0_0_12px_rgba(139,92,246,0.1)]'
+                    : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                 }`}
               >
                 {tab.icon} {tab.label}
@@ -419,8 +419,8 @@ export function StudioTool() {
 function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
   const ch = MOCK_CHANNEL;
   const stats = [
-    { label: 'Subscribers', value: fmtV(ch.subscribers), icon: <Users className="w-4 h-4" />, color: '#9B72CF' },
-    { label: 'Total Views', value: fmtV(ch.totalViews), icon: <Eye className="w-4 h-4" />, color: '#4A9EFF' },
+    { label: 'Subscribers', value: fmtV(ch.subscribers), icon: <Users className="w-4 h-4" />, color: '#8B5CF6' },
+    { label: 'Total Views', value: fmtV(ch.totalViews), icon: <Eye className="w-4 h-4" />, color: '#3B82F6' },
     { label: 'Videos', value: ch.videoCount.toLocaleString(), icon: <Play className="w-4 h-4" />, color: '#FDBA2D' },
     { label: 'Avg Views', value: fmtV(ch.avgViews), icon: <BarChart3 className="w-4 h-4" />, color: '#10B981' },
     { label: 'Engagement', value: `${ch.engagementRate}%`, icon: <TrendingUp className="w-4 h-4" />, color: '#EF4444' },
@@ -433,7 +433,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
         <div className="flex flex-col md:flex-row items-start gap-6">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center">
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center">
               <span className="text-2xl font-bold text-white">NA</span>
             </div>
             <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#10B981] border-2 border-[#141414] flex items-center justify-center">
@@ -444,11 +444,11 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-lg font-bold text-[#E8E8E8] tracking-tight">{ch.name}</h3>
-              <span className="px-2 py-0.5 rounded text-[9px] font-bold text-[#9B72CF] bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)]">VERIFIED</span>
+              <h3 className="text-lg font-bold text-[#FFFFFF] tracking-tight">{ch.name}</h3>
+              <span className="px-2 py-0.5 rounded text-[9px] font-bold text-[#8B5CF6] bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)]">VERIFIED</span>
             </div>
-            <p className="text-sm text-[#9B72CF] font-medium mb-2">{ch.handle}</p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#888888]">
+            <p className="text-sm text-[#8B5CF6] font-medium mb-2">{ch.handle}</p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#A3A3A3]">
               <span className="flex items-center gap-1"><Users className="w-3 h-3" /> {fmtV(ch.subscribers)} subs</span>
               <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {fmtV(ch.totalViews)} views</span>
               <span className="flex items-center gap-1"><Play className="w-3 h-3" /> {ch.videoCount} videos</span>
@@ -475,7 +475,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
                 {stat.icon}
               </div>
             </div>
-            <span className="text-xl font-bold text-[#E8E8E8] tracking-tight">{stat.value}</span>
+            <span className="text-xl font-bold text-[#FFFFFF] tracking-tight">{stat.value}</span>
           </div>
         ))}
       </div>
@@ -483,16 +483,16 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
       {/* Quick Actions — 6 Sub-Tool Cards */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Crosshair className="w-4 h-4 text-[#9B72CF]" />
-          <h3 className="text-sm font-bold text-[#E8E8E8]">Quick Actions</h3>
-          <span className="text-[10px] text-[#888888] ml-1">Launch a forensics tool</span>
+          <Crosshair className="w-4 h-4 text-[#8B5CF6]" />
+          <h3 className="text-sm font-bold text-[#FFFFFF]">Quick Actions</h3>
+          <span className="text-[10px] text-[#A3A3A3] ml-1">Launch a forensics tool</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {FORENSICS_TOOLS.map((tool) => (
             <button
               key={tool.id}
               onClick={() => onLaunch(tool.id)}
-              className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-left hover:border-[#333333] transition-all duration-200 group hover:shadow-[0_0_20px_rgba(155,114,207,0.06)]"
+              className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-left hover:border-[#333333] transition-all duration-200 group hover:shadow-[0_0_20px_rgba(139,92,246,0.06)]"
             >
               <div className="flex items-start gap-3">
                 <div
@@ -503,13 +503,13 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-bold text-[#E8E8E8] group-hover:text-white transition-colors">
+                    <span className="text-sm font-bold text-[#FFFFFF] group-hover:text-white transition-colors">
                       {tool.emoji} {tool.name}
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#888888] mt-0.5">{tool.subtitle}</p>
+                  <p className="text-[11px] text-[#A3A3A3] mt-0.5">{tool.subtitle}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-[#444444] group-hover:text-[#9B72CF] transition-colors flex-shrink-0 mt-1" />
+                <ArrowRight className="w-4 h-4 text-[#444444] group-hover:text-[#8B5CF6] transition-colors flex-shrink-0 mt-1" />
               </div>
             </button>
           ))}
@@ -528,16 +528,16 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
       {/* Suite Header */}
       <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.25) 0%, transparent 70%)' }}>
-            <Shield className="w-5 h-5 text-[#9B72CF]" />
+          <div className="p-2.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)' }}>
+            <Shield className="w-5 h-5 text-[#8B5CF6]" />
           </div>
           <div className="flex-1">
-            <h3 className="text-sm font-bold text-[#E8E8E8]">Pre-Upload Forensics Suite</h3>
-            <p className="text-[11px] text-[#888888] mt-0.5">6 AI-powered tools to analyze, optimize, and validate your content before publishing.</p>
+            <h3 className="text-sm font-bold text-[#FFFFFF]">Pre-Upload Forensics Suite</h3>
+            <p className="text-[11px] text-[#A3A3A3] mt-0.5">6 AI-powered tools to analyze, optimize, and validate your content before publishing.</p>
           </div>
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(155,114,207,0.08)] border border-[rgba(155,114,207,0.15)]">
-            <GlowDot color="#9B72CF" />
-            <span className="text-[10px] font-medium text-[#9B72CF]">6 TOOLS ACTIVE</span>
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.15)]">
+            <GlowDot color="#8B5CF6" />
+            <span className="text-[10px] font-medium text-[#8B5CF6]">6 TOOLS ACTIVE</span>
           </div>
         </div>
         <div className="mt-3">
@@ -550,7 +550,7 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
         {FORENSICS_TOOLS.map((tool, idx) => (
           <div
             key={tool.id}
-            className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden hover:border-[#333333] transition-all duration-300 group hover:shadow-[0_0_30px_rgba(155,114,207,0.05)] animate-fade-in-up"
+            className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden hover:border-[#333333] transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.05)] animate-fade-in-up"
             style={{ animationDelay: `${idx * 80}ms`, animationFillMode: 'backwards' }}
           >
             {/* Top accent line */}
@@ -582,7 +582,7 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
               </div>
 
               {/* Name + Subtitle */}
-              <h4 className="text-sm font-bold text-[#E8E8E8] group-hover:text-white transition-colors">
+              <h4 className="text-sm font-bold text-[#FFFFFF] group-hover:text-white transition-colors">
                 {tool.emoji} {tool.name}
               </h4>
               <p className="text-[11px] font-medium mt-0.5" style={{ color: tool.color }}>
@@ -590,7 +590,7 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
               </p>
 
               {/* Description */}
-              <p className="text-xs text-[#888888] leading-relaxed mt-2 line-clamp-3">
+              <p className="text-xs text-[#A3A3A3] leading-relaxed mt-2 line-clamp-3">
                 {tool.description}
               </p>
 
@@ -660,21 +660,21 @@ function ChecklistTab() {
       <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-              <CheckCircle2 className="w-4 h-4 text-[#9B72CF]" />
+            <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+              <CheckCircle2 className="w-4 h-4 text-[#8B5CF6]" />
             </div>
             <div>
-              <span className="text-sm font-bold text-[#E8E8E8]">Pre-Publish Checklist</span>
-              <p className="text-[10px] text-[#888888] mt-0.5">Verify your content is launch-ready</p>
+              <span className="text-sm font-bold text-[#FFFFFF]">Pre-Publish Checklist</span>
+              <p className="text-[10px] text-[#A3A3A3] mt-0.5">Verify your content is launch-ready</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#888888]">
+            <span className="text-xs text-[#A3A3A3]">
               <span className="font-bold" style={{ color: progressColor }}>{checkedItems}</span>/{totalItems}
             </span>
             <button
               onClick={resetChecklist}
-              className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] border border-transparent hover:border-[#222222] transition-all"
+              className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent hover:border-[#222222] transition-all"
             >
               <RotateCcw className="w-3 h-3" /> Reset
             </button>
@@ -710,11 +710,11 @@ function ChecklistTab() {
         return (
           <div key={cat.name} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-[#9B72CF]">{cat.icon}</span>
-              <h4 className="text-xs font-bold text-[#E8E8E8] uppercase tracking-wider">{cat.name}</h4>
+              <span className="text-[#8B5CF6]">{cat.icon}</span>
+              <h4 className="text-xs font-bold text-[#FFFFFF] uppercase tracking-wider">{cat.name}</h4>
               <div className="ml-auto flex items-center gap-2">
                 <span className="text-[10px] text-[#666666]">{catChecked}/{catTotal}</span>
-                <span className="text-[10px] font-bold" style={{ color: catPct === 100 ? '#10B981' : '#888888' }}>
+                <span className="text-[10px] font-bold" style={{ color: catPct === 100 ? '#10B981' : '#A3A3A3' }}>
                   {catPct}%
                 </span>
               </div>
@@ -729,10 +729,10 @@ function ChecklistTab() {
                   {item.checked ? (
                     <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                   ) : (
-                    <Circle className="w-4 h-4 text-[#444444] group-hover:text-[#9B72CF] flex-shrink-0 mt-0.5 transition-colors" />
+                    <Circle className="w-4 h-4 text-[#444444] group-hover:text-[#8B5CF6] flex-shrink-0 mt-0.5 transition-colors" />
                   )}
                   <span className={`text-sm transition-all duration-200 ${
-                    item.checked ? 'text-[#666666] line-through' : 'text-[#E8E8E8]'
+                    item.checked ? 'text-[#666666] line-through' : 'text-[#FFFFFF]'
                   }`}>
                     {item.text}
                   </span>
@@ -846,18 +846,18 @@ function PreUploadTab() {
       {/* Ninja AI Input Bar with Conic Gradient Border */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
         <div className="flex items-center gap-2 mb-3">
-          <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-            <Bot className="w-4 h-4 text-[#9B72CF]" />
+          <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+            <Bot className="w-4 h-4 text-[#8B5CF6]" />
           </div>
-          <span className="text-sm font-bold text-[#E8E8E8]">Ninja AI Analyzer</span>
-          <span className="text-[10px] text-[#888888]">Paste a YouTube URL or video title</span>
+          <span className="text-sm font-bold text-[#FFFFFF]">Ninja AI Analyzer</span>
+          <span className="text-[10px] text-[#A3A3A3]">Paste a YouTube URL or video title</span>
         </div>
 
         <div className="relative group">
           {/* Conic gradient rotating border on hover */}
           <div className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: 'conic-gradient(from var(--angle, 0deg), #9B72CF, #4A9EFF, #10B981, #FDBA2D, #EF4444, #9B72CF)',
+              background: 'conic-gradient(from var(--angle, 0deg), #8B5CF6, #3B82F6, #10B981, #FDBA2D, #EF4444, #8B5CF6)',
               animation: 'rotateBorder 3s linear infinite',
             }}
           />
@@ -881,12 +881,12 @@ function PreUploadTab() {
               onChange={(e) => setUrl(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="https://youtube.com/watch?v=... or paste a video title"
-              className="flex-1 h-12 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all duration-300"
+              className="flex-1 h-12 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all duration-300"
             />
             <button
               onClick={handleAnalyze}
               disabled={loading || !url.trim()}
-              className="px-5 h-12 rounded-lg bg-[#9B72CF] text-white text-sm font-bold hover:bg-[#8A62BE] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-2 shadow-[0_0_20px_rgba(155,114,207,0.2)] hover:shadow-[0_0_30px_rgba(155,114,207,0.3)]"
+              className="px-5 h-12 rounded-lg bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#8A62BE] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-2 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
             >
               {loading ? (
                 <>
@@ -909,10 +909,10 @@ function PreUploadTab() {
         <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-fade-in-up">
           <div className="flex items-center gap-3 mb-5">
             <div className="relative">
-              <Radar className="w-5 h-5 text-[#9B72CF] animate-pulse" />
+              <Radar className="w-5 h-5 text-[#8B5CF6] animate-pulse" />
             </div>
-            <span className="text-sm font-bold text-[#E8E8E8]">Running Pre-Flight Scan...</span>
-            <span className="ml-auto text-[10px] text-[#888888] font-mono">
+            <span className="text-sm font-bold text-[#FFFFFF]">Running Pre-Flight Scan...</span>
+            <span className="ml-auto text-[10px] text-[#A3A3A3] font-mono">
               {scanStep + 1}/{SCANNING_STEPS.length}
             </span>
           </div>
@@ -923,8 +923,8 @@ function PreUploadTab() {
               className="h-full rounded-full transition-all duration-500 ease-out"
               style={{
                 width: `${((scanStep + 1) / SCANNING_STEPS.length) * 100}%`,
-                background: 'linear-gradient(90deg, #9B72CF, #4A9EFF)',
-                boxShadow: '0 0 10px rgba(155,114,207,0.4)',
+                background: 'linear-gradient(90deg, #8B5CF6, #3B82F6)',
+                boxShadow: '0 0 10px rgba(139,92,246,0.4)',
               }}
             />
           </div>
@@ -941,27 +941,27 @@ function PreUploadTab() {
                   <div
                     className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300"
                     style={{
-                      backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(155,114,207,0.2)' : '#1A1A1A',
+                      backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
                       border: `1px solid ${
-                        isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(155,114,207,0.4)' : '#222222'
+                        isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#222222'
                       }`,
                     }}
                   >
                     {isComplete ? (
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
                     ) : isActive ? (
-                      <span style={{ color: '#9B72CF' }}>{step.icon}</span>
+                      <span style={{ color: '#8B5CF6' }}>{step.icon}</span>
                     ) : (
                       <span className="text-[10px] text-[#444444] font-mono">{i + 1}</span>
                     )}
                   </div>
                   <span className={`text-xs transition-all duration-300 ${
-                    isComplete ? 'text-[#888888]' : isActive ? 'text-[#E8E8E8] font-medium' : 'text-[#444444]'
+                    isComplete ? 'text-[#A3A3A3]' : isActive ? 'text-[#FFFFFF] font-medium' : 'text-[#444444]'
                   }`}>
                     {step.label}
                   </span>
                   {isActive && (
-                    <Loader2 className="w-3 h-3 text-[#9B72CF] animate-spin ml-auto" />
+                    <Loader2 className="w-3 h-3 text-[#8B5CF6] animate-spin ml-auto" />
                   )}
                   {isComplete && (
                     <span className="text-[9px] text-[#10B981] font-bold ml-auto">DONE</span>
@@ -978,8 +978,8 @@ function PreUploadTab() {
         <div className="space-y-4 animate-fade-in-up">
           {/* Result Header */}
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#9B72CF]" />
-            <h3 className="text-sm font-bold text-[#E8E8E8]">Analysis Complete</h3>
+            <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+            <h3 className="text-sm font-bold text-[#FFFFFF]">Analysis Complete</h3>
             <span
               className="ml-auto px-2 py-0.5 rounded-full text-[10px] font-bold"
               style={{
@@ -1006,9 +1006,9 @@ function PreUploadTab() {
               <span className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-3">Estimated Views (30d)</span>
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="w-5 h-5 text-[#10B981]" />
-                <span className="text-2xl font-bold text-[#E8E8E8] tracking-tight">{result.estimatedViews}</span>
+                <span className="text-2xl font-bold text-[#FFFFFF] tracking-tight">{result.estimatedViews}</span>
               </div>
-              <p className="text-[11px] text-[#888888] leading-relaxed mt-2">
+              <p className="text-[11px] text-[#A3A3A3] leading-relaxed mt-2">
                 {result.strategy}
               </p>
             </TacticalCorners>
@@ -1017,10 +1017,10 @@ function PreUploadTab() {
           {/* AI Strategy Recommendations */}
           <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
             <div className="flex items-center gap-2 mb-4">
-              <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-                <BrainCircuit className="w-4 h-4 text-[#9B72CF]" />
+              <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+                <BrainCircuit className="w-4 h-4 text-[#8B5CF6]" />
               </div>
-              <span className="text-xs font-bold text-[#888888] uppercase tracking-wider">AI Strategy Recommendations</span>
+              <span className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">AI Strategy Recommendations</span>
             </div>
             <div className="space-y-3">
               {result.recommendations.map((rec, i) => (
@@ -1028,14 +1028,14 @@ function PreUploadTab() {
                   <div
                     className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 text-[10px] font-bold"
                     style={{
-                      backgroundColor: 'rgba(155,114,207,0.1)',
-                      color: '#9B72CF',
-                      border: '1px solid rgba(155,114,207,0.2)',
+                      backgroundColor: 'rgba(139,92,246,0.1)',
+                      color: '#8B5CF6',
+                      border: '1px solid rgba(139,92,246,0.2)',
                     }}
                   >
                     {i + 1}
                   </div>
-                  <p className="text-sm text-[#E8E8E8] leading-relaxed">{rec}</p>
+                  <p className="text-sm text-[#FFFFFF] leading-relaxed">{rec}</p>
                 </div>
               ))}
             </div>
@@ -1058,17 +1058,17 @@ function PreUploadTab() {
       {/* Empty State (no result, not loading) */}
       {!result && !loading && (
         <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
-          <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.15) 0%, transparent 70%)' }}>
-            <Radar className="w-8 h-8 text-[#9B72CF] opacity-50" />
+          <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)' }}>
+            <Radar className="w-8 h-8 text-[#8B5CF6] opacity-50" />
           </div>
-          <h3 className="text-sm font-bold text-[#E8E8E8] mb-1">Ready for Pre-Flight Analysis</h3>
-          <p className="text-xs text-[#888888] max-w-sm mx-auto leading-relaxed">
+          <h3 className="text-sm font-bold text-[#FFFFFF] mb-1">Ready for Pre-Flight Analysis</h3>
+          <p className="text-xs text-[#A3A3A3] max-w-sm mx-auto leading-relaxed">
             Paste a YouTube video URL above and hit Analyze. Ninja AI will scan your content, score it against the algorithm, and provide actionable recommendations.
           </p>
           <div className="flex items-center justify-center gap-4 mt-4 text-[10px] text-[#666666]">
-            <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#9B72CF]" /> 5-step deep scan</span>
-            <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-[#9B72CF]" /> Algorithm scoring</span>
-            <span className="flex items-center gap-1"><Bot className="w-3 h-3 text-[#9B72CF]" /> AI strategy</span>
+            <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#8B5CF6]" /> 5-step deep scan</span>
+            <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-[#8B5CF6]" /> Algorithm scoring</span>
+            <span className="flex items-center gap-1"><Bot className="w-3 h-3 text-[#8B5CF6]" /> AI strategy</span>
           </div>
         </TacticalCorners>
       )}

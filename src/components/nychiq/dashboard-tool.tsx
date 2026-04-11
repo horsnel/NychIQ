@@ -25,19 +25,19 @@ function WelcomeBanner() {
     <div
       className="rounded-lg overflow-hidden p-6 relative"
       style={{
-        background: 'linear-gradient(135deg, rgba(253,186,45,0.12) 0%, rgba(253,186,45,0.04) 50%, rgba(155,114,207,0.06) 100%)',
+        background: 'linear-gradient(135deg, rgba(253,186,45,0.12) 0%, rgba(253,186,45,0.04) 50%, rgba(139,92,246,0.06) 100%)',
         border: '1px solid rgba(253,186,45,0.2)',
       }}
     >
       <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#FDBA2D]/5 -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-1/2 w-48 h-24 rounded-full bg-[#9B72CF]/5 translate-y-1/2" />
+      <div className="absolute bottom-0 left-1/2 w-48 h-24 rounded-full bg-[#8B5CF6]/5 translate-y-1/2" />
 
       <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-[#E8E8E8] mb-1">
+          <h2 className="text-xl font-bold text-[#FFFFFF] mb-1">
             Welcome back, {userName || 'Creator'}!
           </h2>
-          <p className="text-sm text-[#888888]">
+          <p className="text-sm text-[#A3A3A3]">
             {userPlan === 'trial' ? 'You\'re on a free trial. Upgrade for access to 40+ tools.' :
               `Day ${daysSinceSignup} on NychIQ · ${usagePct}% tokens used this cycle.`}
           </p>
@@ -47,9 +47,9 @@ function WelcomeBanner() {
             className={cn(
               'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider',
               userPlan === 'trial' && 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30',
-              userPlan === 'starter' && 'bg-[#4A9EFF]/15 text-[#4A9EFF] border border-[#4A9EFF]/30',
+              userPlan === 'starter' && 'bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30',
               userPlan === 'pro' && 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30',
-              userPlan === 'elite' && 'bg-[#9B72CF]/15 text-[#9B72CF] border border-[#9B72CF]/30',
+              userPlan === 'elite' && 'bg-[#8B5CF6]/15 text-[#8B5CF6] border border-[#8B5CF6]/30',
               userPlan === 'agency' && 'bg-[#EF4444]/15 text-[#EF4444] border border-[E05252]/30',
             )}
           >
@@ -110,7 +110,7 @@ function StatsRow() {
         label="Total Spent (All Time)"
         value={totalTokensSpent.toLocaleString()}
         change={`${monthSpent} this month`}
-        color="#4A9EFF"
+        color="#3B82F6"
         dark
         icon={<BarChart3 className="w-4 h-4" />}
       />
@@ -118,7 +118,7 @@ function StatsRow() {
         label="Tokens Earned"
         value={tokensEarned.toLocaleString()}
         change={maxTokens > 0 ? `${maxTokens - tokenBalance} used` : 'Bonus tokens'}
-        color="#9B72CF"
+        color="#8B5CF6"
         dark
         icon={<Heart className="w-4 h-4" />}
       />
@@ -143,9 +143,9 @@ function QuickActions() {
     {
       label: 'Analyze a Video',
       icon: <Search className="w-5 h-5" />,
-      color: '#4A9EFF',
-      bg: 'rgba(74,158,255,0.1)',
-      border: 'rgba(74,158,255,0.2)',
+      color: '#3B82F6',
+      bg: 'rgba(59,130,246,0.1)',
+      border: 'rgba(59,130,246,0.2)',
       tool: 'search',
       available: true,
     },
@@ -183,7 +183,7 @@ function QuickActions() {
           <div className="p-2.5 rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ backgroundColor: action.bg, color: action.color }}>
             {action.icon}
           </div>
-          <span className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">{action.label}</span>
+          <span className="text-sm font-medium text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors">{action.label}</span>
           <ArrowRight className="w-4 h-4 text-[#444444] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       ))}
@@ -233,7 +233,7 @@ function ActivityFeed() {
             icon: '🔄',
             text: 'Monthly free token reset applied',
             time: timeStr,
-            color: '#9B72CF',
+            color: '#8B5CF6',
           });
           break;
         case 'bonus':
@@ -241,7 +241,7 @@ function ActivityFeed() {
             icon: '⬆️',
             text: `Plan upgrade: ${txn.tool} — ${txn.tokens} tokens added`,
             time: timeStr,
-            color: '#4A9EFF',
+            color: '#3B82F6',
           });
           break;
         default:
@@ -249,7 +249,7 @@ function ActivityFeed() {
             icon: '📊',
             text: `${txnType}: ${toolLabel} — ${txn.tokens} tokens`,
             time: timeStr,
-            color: '#888888',
+            color: '#A3A3A3',
           });
       }
     }
@@ -262,7 +262,7 @@ function ActivityFeed() {
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-semibold text-[#E8E8E8]">Activity</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF]">Activity</h3>
           </div>
         </div>
         <div className="p-8 text-center">
@@ -278,7 +278,7 @@ function ActivityFeed() {
     <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-semibold text-[#E8E8E8]">Recent Activity</h3>
+          <h3 className="text-sm font-semibold text-[#FFFFFF]">Recent Activity</h3>
           <span className="px-2 py-0.5 rounded-full bg-[rgba(16,185,129,0.1)] text-[10px] font-bold text-[#10B981]">
             LIVE
           </span>
@@ -289,7 +289,7 @@ function ActivityFeed() {
           <div key={i} className="flex items-start gap-3 px-4 py-3 hover:bg-[#0D0D0D]/50 transition-colors">
             <span className="text-base mt-0.5 shrink-0">{item.icon}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-[#E8E8E8]">{item.text}</p>
+              <p className="text-sm text-[#FFFFFF]">{item.text}</p>
               <span className="text-[11px] text-[#666666]">{item.time}</span>
             </div>
           </div>
@@ -351,8 +351,8 @@ function GrowthChart() {
 
   return (
     <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-      <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-2">
-        <BarChart3 className="w-4 h-4 text-[#4A9EFF]" />
+      <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
+        <BarChart3 className="w-4 h-4 text-[#3B82F6]" />
         Token Usage This Week
         <span className="ml-auto text-[10px] font-medium text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full">
           {weekChange >= 0 ? '↑' : '↓'} {Math.abs(weekChange)}%
@@ -386,7 +386,7 @@ function GrowthChart() {
           {points.map((p, i) => (
             <g key={i}>
               <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#FDBA2D" strokeWidth="2" />
-              <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#888888">
+              <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#A3A3A3">
                 {orderedDays[i]}
               </text>
             </g>
@@ -407,7 +407,7 @@ function UpgradeBanner() {
     <div
       className="rounded-lg overflow-hidden p-5 relative"
       style={{
-        background: 'linear-gradient(135deg, rgba(253,186,45,0.15) 0%, rgba(155,114,207,0.1) 100%)',
+        background: 'linear-gradient(135deg, rgba(253,186,45,0.15) 0%, rgba(139,92,246,0.1) 100%)',
         border: '1px solid rgba(253,186,45,0.25)',
       }}
     >
@@ -418,15 +418,15 @@ function UpgradeBanner() {
             <Crown className="w-5 h-5 text-[#FDBA2D]" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-[#E8E8E8] mb-1">Upgrade to Pro</h3>
-            <p className="text-sm text-[#888888]">
+            <h3 className="text-base font-bold text-[#FFFFFF] mb-1">Upgrade to Pro</h3>
+            <p className="text-sm text-[#A3A3A3]">
               Unlock Rankings, Shorts Intel, Niche Spy and 25+ more tools
             </p>
           </div>
         </div>
         <button
           onClick={() => setUpgradeModalOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors shrink-0"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors shrink-0"
         >
           UPGRADE NOW
           <ArrowRight className="w-4 h-4" />

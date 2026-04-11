@@ -50,7 +50,7 @@ function SignalBar({ signal }: { signal: AlgorithmSignal }) {
     <div className="p-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-[#E8E8E8]">{signal.name}</span>
+          <span className="text-sm font-medium text-[#FFFFFF]">{signal.name}</span>
         </div>
         <span
           className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
@@ -68,7 +68,7 @@ function SignalBar({ signal }: { signal: AlgorithmSignal }) {
         />
       </div>
       <div className="flex items-center justify-between">
-        <p className="text-[11px] text-[#888888]">{signal.description}</p>
+        <p className="text-[11px] text-[#A3A3A3]">{signal.description}</p>
         <span className="text-[11px] font-bold" style={{ color: barColor }}>{signal.strength}%</span>
       </div>
     </div>
@@ -147,7 +147,7 @@ Return ONLY the JSON object, no other text.`;
     fetchReport();
   }, [fetchReport]);
   const healthColor = report?.overallHealth === 'Excellent' ? '#10B981'
-    : report?.overallHealth === 'Good' ? '#4A9EFF'
+    : report?.overallHealth === 'Good' ? '#3B82F6'
     : report?.overallHealth === 'Moderate' ? '#FDBA2D' : '#EF4444';
 
   return (
@@ -157,18 +157,18 @@ Return ONLY the JSON object, no other text.`;
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]">
-                <BrainCircuit className="w-5 h-5 text-[#9B72CF]" />
+              <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]">
+                <BrainCircuit className="w-5 h-5 text-[#8B5CF6]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8] flex items-center gap-2">
+                <h2 className="text-base font-bold text-[#FFFFFF] flex items-center gap-2">
                   Algorithm Monitor
-                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#9B72CF]/10 text-[10px] font-bold text-[#9B72CF]">
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#8B5CF6]/10 text-[10px] font-bold text-[#8B5CF6]">
                     <Sparkles className="w-3 h-3" />
                     AI
                   </span>
                 </h2>
-                <p className="text-xs text-[#888888] mt-0.5">
+                <p className="text-xs text-[#A3A3A3] mt-0.5">
                   Real-time YouTube algorithm analysis
                 </p>
               </div>
@@ -178,7 +178,7 @@ Return ONLY the JSON object, no other text.`;
               disabled={loading}
               className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
-              <RefreshCw className={cn('w-4 h-4 text-[#888888]', loading && 'animate-spin')} />
+              <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
             </button>
           </div>
         </div>
@@ -189,8 +189,8 @@ Return ONLY the JSON object, no other text.`;
         <div className="space-y-5">
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Loader2 className="w-5 h-5 text-[#9B72CF] animate-spin" />
-              <span className="text-sm text-[#888888]">Analyzing YouTube algorithm signals...</span>
+              <Loader2 className="w-5 h-5 text-[#8B5CF6] animate-spin" />
+              <span className="text-sm text-[#A3A3A3]">Analyzing YouTube algorithm signals...</span>
             </div>
             <div className="space-y-3">
               {Array.from({ length: 4 }).map((_, i) => (
@@ -218,13 +218,13 @@ Return ONLY the JSON object, no other text.`;
                 Algorithm Health: {report.overallHealth}
               </span>
             </div>
-            <p className="text-sm text-[#888888] leading-relaxed">{report.summary}</p>
+            <p className="text-sm text-[#A3A3A3] leading-relaxed">{report.summary}</p>
           </div>
 
           {/* Signal Bars */}
           <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-              <BrainCircuit className="w-4 h-4 text-[#9B72CF]" />
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
+              <BrainCircuit className="w-4 h-4 text-[#8B5CF6]" />
               Algorithm Signals
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -239,7 +239,7 @@ Return ONLY the JSON object, no other text.`;
             <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
                 <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
-                <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Recommendations</h3>
+                <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {report.recommendations.map((rec, i) => (
@@ -247,7 +247,7 @@ Return ONLY the JSON object, no other text.`;
                     <div className="w-6 h-6 rounded-full bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
                       <span className="text-[10px] font-bold text-[#FDBA2D]">{i + 1}</span>
                     </div>
-                    <p className="text-sm text-[#888888] leading-relaxed">{rec}</p>
+                    <p className="text-sm text-[#A3A3A3] leading-relaxed">{rec}</p>
                   </div>
                 ))}
               </div>
@@ -260,10 +260,10 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8]">{error}</p>
+          <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={fetchReport}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             Try Again
           </button>

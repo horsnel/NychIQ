@@ -39,7 +39,7 @@ const MODE_SUGGESTIONS: Record<string, string[]> = {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in-up py-2">
-      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shrink-0">
         <Bot className="w-4 h-4 text-black" />
       </div>
       <div className="bg-[#1A1A1A] px-4 py-3 rounded-2xl rounded-tl-sm">
@@ -166,15 +166,15 @@ export function SakuFullPage() {
           {/* Mobile sidebar toggle */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden p-2 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="lg:hidden p-2 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
             <MessageSquare className="w-5 h-5" />
           </button>
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center">
             <Bot className="w-5 h-5 text-black" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-[#E8E8E8]">Saku AI</h2>
+            <h2 className="text-base font-bold text-[#FFFFFF]">Saku AI</h2>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-live" />
@@ -204,7 +204,7 @@ export function SakuFullPage() {
               onClick={() => setSakuMode('3x')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 sakuMode === '3x'
-                  ? 'bg-[#9B72CF] text-white shadow-sm'
+                  ? 'bg-[#8B5CF6] text-white shadow-sm'
                   : 'text-[#555] hover:text-[#888]'
               }`}
             >
@@ -215,14 +215,14 @@ export function SakuFullPage() {
           </div>
           <button
             onClick={() => { setSakuFullOpen(false); setSakuOpen(true); }}
-            className="p-2 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors hidden sm:block"
+            className="p-2 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors hidden sm:block"
             title="Minimize"
           >
             <Minimize2 className="w-5 h-5" />
           </button>
           <button
             onClick={() => setSakuFullOpen(false)}
-            className="p-2 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="p-2 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
             title="Close"
           >
             <X className="w-5 h-5" />
@@ -274,10 +274,10 @@ export function SakuFullPage() {
               {/* Welcome state */}
               {messages.length === 0 && !isTyping && (
                 <div className="text-center py-8 sm:py-16">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#E8E8E8] mb-2">How can I help you today?</h3>
+                  <h3 className="text-xl font-bold text-[#FFFFFF] mb-2">How can I help you today?</h3>
                   <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
                     Ask me about YouTube strategy, content ideas, SEO, viral prediction, or monetization.
                   </p>
@@ -291,7 +291,7 @@ export function SakuFullPage() {
                         className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#141414] border border-[#1E1E1E] text-left hover:border-[#333] hover:bg-[#161616] transition-all group"
                       >
                         <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#FDBA2D] transition-colors shrink-0" />
-                        <span className="text-xs text-[#888] group-hover:text-[#E8E8E8] transition-colors">{sug}</span>
+                        <span className="text-xs text-[#888] group-hover:text-[#FFFFFF] transition-colors">{sug}</span>
                       </button>
                     ))}
                   </div>
@@ -310,7 +310,7 @@ export function SakuFullPage() {
                       )}
                     >
                       {msg.role === 'assistant' && (
-                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shrink-0 mt-0.5">
                           <Bot className="w-4 h-4 text-black" />
                         </div>
                       )}
@@ -319,7 +319,7 @@ export function SakuFullPage() {
                           'max-w-[85%] px-4 py-3 text-sm leading-relaxed',
                           msg.role === 'user'
                             ? 'bg-[#FDBA2D] text-black rounded-2xl rounded-tr-sm'
-                            : 'bg-[#1A1A1A] text-[#E8E8E8] rounded-2xl rounded-tl-sm'
+                            : 'bg-[#1A1A1A] text-[#FFFFFF] rounded-2xl rounded-tl-sm'
                         )}
                       >
                         {msg.role === 'assistant' && !msg.content && isTyping ? (
@@ -349,14 +349,14 @@ export function SakuFullPage() {
           {/* Input area */}
           <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 pt-3 shrink-0">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-end gap-3 bg-[#141414] rounded-xl px-4 py-3 border border-[#222] focus-within:border-[rgba(155,114,207,0.3)] transition-colors">
+              <div className="flex items-end gap-3 bg-[#141414] rounded-xl px-4 py-3 border border-[#222] focus-within:border-[rgba(139,92,246,0.3)] transition-colors">
                 <textarea
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={`Ask Saku about ${activeMode}...`}
-                  className="flex-1 bg-transparent text-sm text-[#E8E8E8] placeholder-[#444] outline-none resize-none min-h-[24px] max-h-[120px]"
+                  className="flex-1 bg-transparent text-sm text-[#FFFFFF] placeholder-[#444] outline-none resize-none min-h-[24px] max-h-[120px]"
                   rows={1}
                   disabled={isTyping}
                   onInput={(e) => {
@@ -370,8 +370,8 @@ export function SakuFullPage() {
                   disabled={!input.trim() || isTyping}
                   className={`p-2 rounded-lg transition-colors shrink-0 ${
                     sakuMode === '2.0'
-                      ? 'bg-[#FDBA2D] text-black hover:bg-[#D9A013] disabled:opacity-30'
-                      : 'bg-[#9B72CF] text-white hover:bg-[#8560B5] disabled:opacity-30'
+                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] disabled:opacity-30'
+                      : 'bg-[#8B5CF6] text-white hover:bg-[#8560B5] disabled:opacity-30'
                   }`}
                 >
                   <Send className="w-4 h-4" />

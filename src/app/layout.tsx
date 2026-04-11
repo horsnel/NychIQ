@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased bg-[#0D0D0D] text-[#E8E8E8]`}
+        className={`${inter.variable} antialiased bg-[#0D0D0D] text-[#FFFFFF]`}
         style={{ fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif" }}
       >
         {children}

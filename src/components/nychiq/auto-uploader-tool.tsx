@@ -31,17 +31,17 @@ const FEATURES = [
     icon: Bot,
     title: 'Channel Autopilot',
     description: 'AI manages your upload schedule, descriptions, tags, and thumbnails',
-    color: '#9B72CF',
-    bg: 'rgba(155,114,207,0.1)',
-    border: 'rgba(155,114,207,0.2)',
+    color: '#8B5CF6',
+    bg: 'rgba(139,92,246,0.1)',
+    border: 'rgba(139,92,246,0.2)',
   },
   {
     icon: Layers,
     title: 'Batch Processing',
     description: 'Upload multiple videos at once with automatic optimization for each',
-    color: '#4A9EFF',
-    bg: 'rgba(74,158,255,0.1)',
-    border: 'rgba(74,158,255,0.2)',
+    color: '#3B82F6',
+    bg: 'rgba(59,130,246,0.1)',
+    border: 'rgba(59,130,246,0.2)',
   },
 ] as const;
 
@@ -146,7 +146,7 @@ export function AutoUploaderTool() {
         <div
           className="absolute inset-0 rounded-lg animate-gradient-spin"
           style={{
-            background: 'conic-gradient(from 0deg, #FDBA2D, #9B72CF, #FDBA2D, #9B72CF, #FDBA2D)',
+            background: 'conic-gradient(from 0deg, #FDBA2D, #8B5CF6, #FDBA2D, #8B5CF6, #FDBA2D)',
             padding: '1.5px',
             WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             WebkitMaskComposite: 'xor',
@@ -160,8 +160,8 @@ export function AutoUploaderTool() {
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
               style={{
-                background: 'linear-gradient(135deg, #9B72CF, rgba(155,114,207,0.6))',
-                boxShadow: '0 8px 32px rgba(155,114,207,0.25)',
+                background: 'linear-gradient(135deg, #8B5CF6, rgba(139,92,246,0.6))',
+                boxShadow: '0 8px 32px rgba(139,92,246,0.25)',
               }}
             >
               <Upload className="w-8 h-8 text-white" />
@@ -169,7 +169,7 @@ export function AutoUploaderTool() {
 
             {/* Title + Coming Soon badge */}
             <div className="flex items-center gap-3 mb-4 flex-wrap justify-center">
-              <h1 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8]">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF]">
                 Auto Uploader &amp; Channel Autopilot
               </h1>
               <span
@@ -182,7 +182,7 @@ export function AutoUploaderTool() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-[#888888] leading-relaxed max-w-md">
+            <p className="text-sm sm:text-base text-[#A3A3A3] leading-relaxed max-w-md">
               AI-powered automatic video uploading, scheduling, and channel management. Let
               NychIQ handle your uploads while you focus on creating content.
             </p>
@@ -203,8 +203,8 @@ export function AutoUploaderTool() {
             >
               <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
             </div>
-            <h3 className="text-sm font-bold text-[#E8E8E8] mb-1.5">{feature.title}</h3>
-            <p className="text-xs text-[#888888] leading-relaxed">{feature.description}</p>
+            <h3 className="text-sm font-bold text-[#FFFFFF] mb-1.5">{feature.title}</h3>
+            <p className="text-xs text-[#A3A3A3] leading-relaxed">{feature.description}</p>
           </div>
         ))}
       </div>
@@ -221,9 +221,9 @@ export function AutoUploaderTool() {
               >
                 <CheckCircle2 className="w-7 h-7" style={{ color: '#10B981' }} />
               </div>
-              <h3 className="text-lg font-bold text-[#E8E8E8] mb-2">You&apos;re on the list!</h3>
-              <p className="text-sm text-[#888888] mb-4">
-                We&apos;ll notify <span className="text-[#E8E8E8] font-medium">{email}</span> when
+              <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">You&apos;re on the list!</h3>
+              <p className="text-sm text-[#A3A3A3] mb-4">
+                We&apos;ll notify <span className="text-[#FFFFFF] font-medium">{email}</span> when
                 Auto Uploader is ready.
               </p>
               <p className="text-xs text-[#555555]">
@@ -238,10 +238,10 @@ export function AutoUploaderTool() {
                 <span className="text-xs text-[#555555]">Join 2,847 creators on the waitlist</span>
               </div>
 
-              <h3 className="text-base font-bold text-[#E8E8E8] mb-2">
+              <h3 className="text-base font-bold text-[#FFFFFF] mb-2">
                 Be the first to know when it launches
               </h3>
-              <p className="text-sm text-[#888888] mb-5">
+              <p className="text-sm text-[#A3A3A3] mb-5">
                 Enter your email to get early access and exclusive launch pricing.
               </p>
 
@@ -261,7 +261,7 @@ export function AutoUploaderTool() {
                     }}
                     placeholder="you@email.com"
                     className={cn(
-                      'w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border text-sm text-[#E8E8E8] placeholder:text-[#444444] focus:outline-none transition-colors',
+                      'w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border text-sm text-[#FFFFFF] placeholder:text-[#444444] focus:outline-none transition-colors',
                       emailError ? 'border-[#EF4444]' : 'border-[#1A1A1A]'
                     )}
                     style={{ caretColor: '#FDBA2D' }}
@@ -303,7 +303,7 @@ export function AutoUploaderTool() {
 
       {/* ──────── STATUS TIMELINE ──────── */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 sm:p-8">
-        <h3 className="text-sm font-bold text-[#E8E8E8] mb-5 flex items-center gap-2">
+        <h3 className="text-sm font-bold text-[#FFFFFF] mb-5 flex items-center gap-2">
           <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           Development Progress
         </h3>

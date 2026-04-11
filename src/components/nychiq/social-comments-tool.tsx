@@ -164,14 +164,14 @@ Return ONLY the JSON object, no other text.`;
               <Heart className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Comment Sentiment</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Sentiment breakdown of YouTube comments with insights</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Comment Sentiment</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Sentiment breakdown of YouTube comments with insights</p>
             </div>
           </div>
 
           {/* Video URL Input */}
           <div className="mb-4">
-            <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
               <Send className="w-3 h-3" /> YouTube Video URL
             </label>
             <div className="flex gap-2">
@@ -181,12 +181,12 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setVideoUrl(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') analyzeComments(); }}
                 placeholder="https://youtube.com/watch?v=..."
-                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
               <button
                 onClick={analyzeComments}
                 disabled={loading || !videoUrl.trim()}
-                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Analyze Comments
@@ -200,7 +200,7 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
-          <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={analyzeComments}
             className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
@@ -232,7 +232,7 @@ Return ONLY the JSON object, no other text.`;
                   }`}>
                     {i < loadingStep ? <ThumbsUp className="w-4 h-4" /> : i === loadingStep ? step.icon : <Minus className="w-4 h-4" />}
                   </div>
-                  <span className={`text-sm font-medium ${i === loadingStep ? 'text-[#E8E8E8]' : 'text-[#666666]'}`}>
+                  <span className={`text-sm font-medium ${i === loadingStep ? 'text-[#FFFFFF]' : 'text-[#666666]'}`}>
                     {step.label}
                   </span>
                   {i === loadingStep && <Loader2 className="w-4 h-4 text-[#FDBA2D] animate-spin ml-auto" />}
@@ -258,7 +258,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Results */}
       {!loading && result && (
         <div className="space-y-5">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Sentiment Analysis Complete
           </h3>
 
@@ -272,7 +272,7 @@ Return ONLY the JSON object, no other text.`;
                 <div key={key} className={`rounded-lg bg-[#141414] border ${style.border} p-4`}>
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`${style.bg} ${style.text} p-1.5 rounded-md`}>{icon}</div>
-                    <span className="text-xs font-medium text-[#888888] capitalize">{key}</span>
+                    <span className="text-xs font-medium text-[#A3A3A3] capitalize">{key}</span>
                   </div>
                   <p className={`text-2xl font-bold ${style.text}`}>{val}%</p>
                   <div className="mt-2 h-1.5 bg-[#1A1A1A] rounded-full overflow-hidden">
@@ -285,13 +285,13 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Overall Sentiment Bar */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Overall Sentiment Distribution</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Overall Sentiment Distribution</h4>
             <div className="flex h-3 rounded-full overflow-hidden bg-[#1A1A1A]">
               <div className="bg-[#10B981] transition-all duration-1000" style={{ width: `${result.sentiment.positive}%` }} />
               <div className="bg-[#FDBA2D] transition-all duration-1000" style={{ width: `${result.sentiment.neutral}%` }} />
               <div className="bg-[#EF4444] transition-all duration-1000" style={{ width: `${result.sentiment.negative}%` }} />
             </div>
-            <div className="flex justify-between mt-2 text-[10px] text-[#888888]">
+            <div className="flex justify-between mt-2 text-[10px] text-[#A3A3A3]">
               <span className="text-[#10B981]">Positive {result.sentiment.positive}%</span>
               <span className="text-[#FDBA2D]">Neutral {result.sentiment.neutral}%</span>
               <span className="text-[#EF4444]">Negative {result.sentiment.negative}%</span>
@@ -300,7 +300,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Top Themes */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Top Themes & Requests</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Top Themes & Requests</h4>
             <div className="space-y-2.5">
               {result.themes.map((theme, i) => {
                 const tStyle = SENTIMENT_COLOR[theme.sentiment] || SENTIMENT_COLOR.neutral;
@@ -308,9 +308,9 @@ Return ONLY the JSON object, no other text.`;
                   <div key={i} className="flex items-center gap-3 p-2.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <span className="text-xs font-bold text-[#666666] w-5 text-center">#{i + 1}</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-[#E8E8E8] truncate">{theme.theme}</p>
+                      <p className="text-sm text-[#FFFFFF] truncate">{theme.theme}</p>
                     </div>
-                    <span className="text-[10px] text-[#888888] whitespace-nowrap">{theme.count} mentions</span>
+                    <span className="text-[10px] text-[#A3A3A3] whitespace-nowrap">{theme.count} mentions</span>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${tStyle.bg} ${tStyle.text} border ${tStyle.border}`}>
                       {theme.sentiment}
                     </span>
@@ -322,7 +322,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Sample Comments */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Sample Comments</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Sample Comments</h4>
             <div className="space-y-3">
               {result.comments.map((comment, i) => {
                 const cStyle = SENTIMENT_COLOR[comment.sentiment] || SENTIMENT_COLOR.neutral;
@@ -340,14 +340,14 @@ Return ONLY the JSON object, no other text.`;
                     <div className="flex items-center gap-2 mb-1.5">
                       <User className="w-3.5 h-3.5 text-[#666666]" />
                       <span className="text-xs font-medium text-[#FDBA2D]">{comment.author}</span>
-                      <span className="flex items-center gap-0.5 text-[10px] text-[#888888]">
+                      <span className="flex items-center gap-0.5 text-[10px] text-[#A3A3A3]">
                         <Heart className="w-2.5 h-2.5" /> {comment.likes.toLocaleString()}
                       </span>
                       <span className={`ml-auto px-1.5 py-0.5 rounded text-[9px] font-bold ${cStyle.text}`}>
                         {comment.sentiment.toUpperCase()}
                       </span>
                     </div>
-                    <p className="text-xs text-[#E8E8E8] leading-relaxed">{truncate(comment.text, 200)}</p>
+                    <p className="text-xs text-[#FFFFFF] leading-relaxed">{truncate(comment.text, 200)}</p>
                   </div>
                 );
               })}
@@ -362,8 +362,8 @@ Return ONLY the JSON object, no other text.`;
             <div className="space-y-3">
               {result.insights.map((insight, i) => (
                 <div key={i} className="p-3 rounded-md bg-[rgba(253,186,45,0.03)] border border-[rgba(253,186,45,0.1)]">
-                  <h5 className="text-sm font-semibold text-[#E8E8E8] mb-1">{insight.title}</h5>
-                  <p className="text-xs text-[#888888] leading-relaxed">{insight.detail}</p>
+                  <h5 className="text-sm font-semibold text-[#FFFFFF] mb-1">{insight.title}</h5>
+                  <p className="text-xs text-[#A3A3A3] leading-relaxed">{insight.detail}</p>
                 </div>
               ))}
             </div>
@@ -377,8 +377,8 @@ Return ONLY the JSON object, no other text.`;
           <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
             <Heart className="w-8 h-8 text-[#FDBA2D]" />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Analyze Comment Sentiment</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Paste a YouTube video URL to get a complete sentiment breakdown with AI-powered insights.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Comment Sentiment</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Paste a YouTube video URL to get a complete sentiment breakdown with AI-powered insights.</p>
         </div>
       )}
 

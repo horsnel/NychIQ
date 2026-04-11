@@ -36,7 +36,7 @@ function CopyBtn({ text }: { text: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]" title="Copy">
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]" title="Copy">
       {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
@@ -109,10 +109,10 @@ Return ONLY the JSON object.`;
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)]"><Key className="w-5 h-5 text-[#4A9EFF]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]"><Key className="w-5 h-5 text-[#3B82F6]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Keyword Explorer</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Discover high-volume, low-competition keywords for your YouTube content.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Keyword Explorer</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Discover high-volume, low-competition keywords for your YouTube content.</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -121,10 +121,10 @@ Return ONLY the JSON object.`;
               <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleExplore(); }}
                 placeholder="Enter a keyword to explore..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#4A9EFF]/50 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 transition-colors"
               />
             </div>
-            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-lg bg-[#4A9EFF] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-lg bg-[#3B82F6] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
               Explore
             </button>
@@ -136,7 +136,7 @@ Return ONLY the JSON object.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
-          <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button onClick={handleExplore} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -161,12 +161,12 @@ Return ONLY the JSON object.`;
       {/* Raw Text Fallback */}
       {!loading && rawText && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#4A9EFF]" /> Keyword Results (Raw)
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#3B82F6]" /> Keyword Results (Raw)
           </h3>
-          <div className="rounded-lg bg-[#141414] border border-[#4A9EFF]/30 p-4">
-            <p className="text-[10px] text-[#4A9EFF] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
-            <pre className="text-sm text-[#E8E8E8] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
+          <div className="rounded-lg bg-[#141414] border border-[#3B82F6]/30 p-4">
+            <p className="text-[10px] text-[#3B82F6] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
+            <pre className="text-sm text-[#FFFFFF] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
           </div>
         </div>
       )}
@@ -177,8 +177,8 @@ Return ONLY the JSON object.`;
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Main Keyword</h4>
-                <p className="text-lg font-bold text-[#E8E8E8] mt-1">{result.mainKeyword}</p>
+                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Main Keyword</h4>
+                <p className="text-lg font-bold text-[#FFFFFF] mt-1">{result.mainKeyword}</p>
               </div>
               <div className="text-right">
                 <span className="text-[10px] text-[#666666]">Search Volume</span>
@@ -190,7 +190,7 @@ Return ONLY the JSON object.`;
           {/* Related keywords table */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Related Keywords</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Related Keywords</h4>
               <CopyBtn text={allText} />
             </div>
             <div className="max-h-80 overflow-y-auto">
@@ -198,10 +198,10 @@ Return ONLY the JSON object.`;
                 <div key={i} className="px-4 py-2.5 flex items-center justify-between border-b border-[#1A1A1A] last:border-0 hover:bg-[#0D0D0D] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-[10px] text-[#444444] w-4">{i + 1}</span>
-                    <span className="text-sm text-[#E8E8E8] truncate">{kw.keyword}</span>
+                    <span className="text-sm text-[#FFFFFF] truncate">{kw.keyword}</span>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="text-xs text-[#888888]">{kw.volume}/mo</span>
+                    <span className="text-xs text-[#A3A3A3]">{kw.volume}/mo</span>
                     <CompBadge level={kw.competition} />
                   </div>
                 </div>
@@ -212,12 +212,12 @@ Return ONLY the JSON object.`;
           {/* Opportunities */}
           {result.opportunities.length > 0 && (
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">Keyword Opportunities</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Keyword Opportunities</h4>
               <div className="space-y-2">
                 {result.opportunities.map((opp, i) => (
                   <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[rgba(16,185,129,0.05)] border border-[rgba(16,185,129,0.1)]">
                     <span className="text-[#10B981] text-xs mt-0.5">●</span>
-                    <p className="text-sm text-[#E8E8E8]">{opp}</p>
+                    <p className="text-sm text-[#FFFFFF]">{opp}</p>
                   </div>
                 ))}
               </div>
@@ -228,9 +228,9 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(74,158,255,0.1)] border border-[rgba(74,158,255,0.2)] flex items-center justify-center mb-4"><Key className="w-8 h-8 text-[#4A9EFF]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Explore Keywords</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter a keyword to discover search volume, competition, and related terms.</p>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)] flex items-center justify-center mb-4"><Key className="w-8 h-8 text-[#3B82F6]" /></div>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Explore Keywords</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter a keyword to discover search volume, competition, and related terms.</p>
         </div>
       )}
 

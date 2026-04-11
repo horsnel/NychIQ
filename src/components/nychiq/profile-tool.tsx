@@ -20,10 +20,10 @@ import {
 
 /* ── Plan badge config ── */
 const PLAN_STYLES: Record<Plan, { bg: string; text: string; border: string; label: string }> = {
-  trial: { bg: 'bg-[rgba(136,136,136,0.15)]', text: 'text-[#888888]', border: 'border-[rgba(136,136,136,0.3)]', label: 'Free Trial' },
-  starter: { bg: 'bg-[rgba(74,158,255,0.15)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.3)]', label: 'Starter' },
+  trial: { bg: 'bg-[rgba(136,136,136,0.15)]', text: 'text-[#A3A3A3]', border: 'border-[rgba(136,136,136,0.3)]', label: 'Free Trial' },
+  starter: { bg: 'bg-[rgba(59,130,246,0.15)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.3)]', label: 'Starter' },
   pro: { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.3)]', label: 'Pro' },
-  elite: { bg: 'bg-[rgba(155,114,207,0.15)]', text: 'text-[#9B72CF]', border: 'border-[rgba(155,114,207,0.3)]', label: 'Elite' },
+  elite: { bg: 'bg-[rgba(139,92,246,0.15)]', text: 'text-[#8B5CF6]', border: 'border-[rgba(139,92,246,0.3)]', label: 'Elite' },
   agency: { bg: 'bg-[rgba(16,185,129,0.15)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.3)]', label: 'Agency' },
 };
 
@@ -35,7 +35,7 @@ function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label:
         <div className={`w-7 h-7 rounded-md flex items-center justify-center ${color}`}>{icon}</div>
       </div>
       <p className="text-xs text-[#666666]">{label}</p>
-      <p className="text-sm font-bold text-[#E8E8E8] mt-0.5">{value}</p>
+      <p className="text-sm font-bold text-[#FFFFFF] mt-0.5">{value}</p>
     </div>
   );
 }
@@ -78,8 +78,8 @@ export function ProfileTool() {
               <User className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Profile</h2>
-              <p className="text-xs text-[#888888] mt-0.5">View your account info, plan details, and token usage.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Profile</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">View your account info, plan details, and token usage.</p>
             </div>
           </div>
         </div>
@@ -93,8 +93,8 @@ export function ProfileTool() {
             {getInitials(userName)}
           </div>
           <div className="flex-1 text-center sm:text-left">
-            <h3 className="text-xl font-bold text-[#E8E8E8]">{userName || 'Your Name'}</h3>
-            <p className="text-sm text-[#888888] mt-0.5">{userEmail || 'your@email.com'}</p>
+            <h3 className="text-xl font-bold text-[#FFFFFF]">{userName || 'Your Name'}</h3>
+            <p className="text-sm text-[#A3A3A3] mt-0.5">{userEmail || 'your@email.com'}</p>
             <div className="flex items-center justify-center sm:justify-start gap-2 mt-2">
               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border ${planStyle.bg} ${planStyle.text} ${planStyle.border}`}>
                 <Crown className="w-3 h-3" />
@@ -105,7 +105,7 @@ export function ProfileTool() {
           </div>
           <button
             onClick={handleEditProfile}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[#222222] text-sm text-[#E8E8E8] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[#222222] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
           >
             Edit Profile
             <ChevronRight className="w-4 h-4 text-[#666666]" />
@@ -128,16 +128,16 @@ export function ProfileTool() {
           color="bg-[rgba(253,186,45,0.1)]"
         />
         <StatCard
-          icon={<Coins className="w-3.5 h-3.5 text-[#4A9EFF]" />}
+          icon={<Coins className="w-3.5 h-3.5 text-[#3B82F6]" />}
           label="Tokens Earned"
           value={tokensEarned.toLocaleString()}
-          color="bg-[rgba(74,158,255,0.1)]"
+          color="bg-[rgba(59,130,246,0.1)]"
         />
         <StatCard
-          icon={<Zap className="w-3.5 h-3.5 text-[#9B72CF]" />}
+          icon={<Zap className="w-3.5 h-3.5 text-[#8B5CF6]" />}
           label="Balance"
           value={tokenBalance.toLocaleString()}
-          color="bg-[rgba(155,114,207,0.1)]"
+          color="bg-[rgba(139,92,246,0.1)]"
         />
       </div>
 
@@ -146,9 +146,9 @@ export function ProfileTool() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Coins className="w-4 h-4 text-[#FDBA2D]" />
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Token Usage</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Token Usage</h4>
           </div>
-          <span className="text-xs text-[#888888]">
+          <span className="text-xs text-[#A3A3A3]">
             {tokensUsed} / {totalTokens.toLocaleString()} used
           </span>
         </div>
@@ -176,14 +176,14 @@ export function ProfileTool() {
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleUpgrade}
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
           UPGRADE PLAN
         </button>
         <button
           onClick={handleSignOut}
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[#222222] text-[#888888] text-sm font-medium hover:text-[#E8E8E8] hover:border-[#444444] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[#222222] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
         >
           <LogOut className="w-4 h-4" />
           SIGN OUT
@@ -196,13 +196,13 @@ export function ProfileTool() {
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
             <Globe className="w-4 h-4 text-[#FDBA2D]" />
           </div>
-          <h3 className="text-sm font-bold text-[#E8E8E8]">Preferences</h3>
+          <h3 className="text-sm font-bold text-[#FFFFFF]">Preferences</h3>
         </div>
 
         {/* Region */}
         <div className="flex items-center justify-between py-3 border-b border-[#1A1A1A]">
-          <span className="text-sm text-[#888888]">Region</span>
-          <span className="text-sm text-[#E8E8E8] font-medium">{region}</span>
+          <span className="text-sm text-[#A3A3A3]">Region</span>
+          <span className="text-sm text-[#FFFFFF] font-medium">{region}</span>
         </div>
 
         {/* Legal links */}
@@ -218,8 +218,8 @@ export function ProfileTool() {
             className="w-full flex items-center justify-between py-3 border-b border-[#1A1A1A] last:border-b-0 hover:bg-[#0D0D0D] transition-colors rounded px-1 -mx-1 group"
           >
             <div className="flex items-center gap-3">
-              <item.icon className="w-4 h-4 text-[#666666] group-hover:text-[#888888] transition-colors" />
-              <span className="text-sm text-[#888888] group-hover:text-[#E8E8E8] transition-colors">{item.label}</span>
+              <item.icon className="w-4 h-4 text-[#666666] group-hover:text-[#A3A3A3] transition-colors" />
+              <span className="text-sm text-[#A3A3A3] group-hover:text-[#FFFFFF] transition-colors">{item.label}</span>
             </div>
             <ChevronRight className="w-4 h-4 text-[#444444] group-hover:text-[#666666] transition-colors" />
           </button>

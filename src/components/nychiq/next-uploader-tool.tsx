@@ -107,9 +107,9 @@ interface ChannelConfig {
    CONSTANTS
    ════════════════════════════════════════════════ */
 
-const TOOL_COLOR = '#9B72CF';
-const TOOL_BG = 'rgba(155,114,207,0.1)';
-const TOOL_BORDER = 'rgba(155,114,207,0.2)';
+const TOOL_COLOR = '#8B5CF6';
+const TOOL_BG = 'rgba(139,92,246,0.1)';
+const TOOL_BORDER = 'rgba(139,92,246,0.2)';
 const TOOL_TOKEN_COST = 10;
 
 const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
@@ -122,7 +122,7 @@ const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
 function scoreColor(score: number): string {
   if (score >= 80) return '#10B981';
   if (score >= 60) return '#FDBA2D';
-  if (score >= 40) return '#4A9EFF';
+  if (score >= 40) return '#3B82F6';
   return '#EF4444';
 }
 
@@ -145,7 +145,7 @@ function noveltyLevel(score: number): { label: string; color: string } {
 function retentionColor(retention: number): string {
   if (retention >= 70) return '#10B981';
   if (retention >= 50) return '#FDBA2D';
-  if (retention >= 30) return '#4A9EFF';
+  if (retention >= 30) return '#3B82F6';
   return '#EF4444';
 }
 
@@ -260,10 +260,10 @@ function getSuggestedIdeas(niche: string): string[] {
 function TacticalCorners({ children, className = '', style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`relative ${className}`} style={style}>
-      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#9B72CF] opacity-40 rounded-tl-sm pointer-events-none" />
-      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#9B72CF] opacity-40 rounded-tr-sm pointer-events-none" />
-      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#9B72CF] opacity-40 rounded-bl-sm pointer-events-none" />
-      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#9B72CF] opacity-40 rounded-br-sm pointer-events-none" />
+      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-tl-sm pointer-events-none" />
+      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-tr-sm pointer-events-none" />
+      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-bl-sm pointer-events-none" />
+      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-br-sm pointer-events-none" />
       {children}
     </div>
   );
@@ -276,7 +276,7 @@ function ScanLine() {
       <div
         className="absolute inset-y-0 w-1/3 rounded-full"
         style={{
-          background: 'linear-gradient(90deg, transparent, #9B72CF, transparent)',
+          background: 'linear-gradient(90deg, transparent, #8B5CF6, transparent)',
           animation: 'scanLine 2s ease-in-out infinite',
         }}
       />
@@ -291,7 +291,7 @@ function ScanLine() {
 }
 
 /* ── Glow Pulse Dot ── */
-function GlowDot({ color = '#9B72CF' }: { color?: string }) {
+function GlowDot({ color = '#8B5CF6' }: { color?: string }) {
   return (
     <span className="relative flex h-2 w-2">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ backgroundColor: color }} />
@@ -337,7 +337,7 @@ function ScoreGauge({ score, label, icon: Icon, size = 88, showGlow = false }: {
         </div>
       </div>
       <div className="text-center">
-        <p className="text-xs font-semibold text-[#E8E8E8]">{label}</p>
+        <p className="text-xs font-semibold text-[#FFFFFF]">{label}</p>
         <p className="text-[10px] font-medium mt-0.5" style={{ color }}>{scoreLabel(score)}</p>
       </div>
     </div>
@@ -367,7 +367,7 @@ function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
             <span className="text-base font-bold tracking-wider" style={{ color: config.color }}>{config.label}</span>
             <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: config.color, backgroundColor: config.bg, border: `1px solid ${config.border}` }}>VERDICT</span>
           </div>
-          <p className="text-xs text-[#888888] mt-0.5">{config.desc}</p>
+          <p className="text-xs text-[#A3A3A3] mt-0.5">{config.desc}</p>
         </div>
       </div>
     </TacticalCorners>
@@ -403,7 +403,7 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
             <g key={point.mark}>
               <rect x={x} y={y} width={barW} height={barHeight} rx={3} ry={3} fill={color} opacity={0.85} style={{ transition: 'all 0.6s ease-out' }} />
               <text x={x + barW / 2} y={y - 3} fill={color} fontSize="4" textAnchor="middle" fontWeight="bold">{point.retention}%</text>
-              <text x={x + barW / 2} y={10 + chartH + 10} fill="#888888" fontSize="3.5" textAnchor="middle" fontWeight="500">{point.mark}</text>
+              <text x={x + barW / 2} y={10 + chartH + 10} fill="#A3A3A3" fontSize="3.5" textAnchor="middle" fontWeight="500">{point.mark}</text>
               <text x={x + barW / 2} y={10 + chartH + 16} fill="#555555" fontSize="2.5" textAnchor="middle">{point.label}</text>
             </g>
           );
@@ -444,7 +444,7 @@ function MetricPill({ label, value, color }: { label: string; value: string; col
   return (
     <div className="rounded-md bg-[#141414] border border-[#1A1A1A] px-2 py-1.5 text-center">
       <p className="text-[9px] text-[#555555] uppercase tracking-wider">{label}</p>
-      <p className="text-[11px] font-semibold mt-0.5" style={{ color: color || '#E8E8E8' }}>{value}</p>
+      <p className="text-[11px] font-semibold mt-0.5" style={{ color: color || '#FFFFFF' }}>{value}</p>
     </div>
   );
 }
@@ -468,7 +468,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
           #{index + 1}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold text-[#E8E8E8] line-clamp-2 leading-relaxed">{video.title}</p>
+          <p className="text-xs font-semibold text-[#FFFFFF] line-clamp-2 leading-relaxed">{video.title}</p>
           <p className="text-[10px] text-[#555555] mt-1">{video.published}</p>
         </div>
       </div>
@@ -486,7 +486,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       <div className="grid grid-cols-3 gap-2 mb-3">
         <MetricPill label="Views" value={video.views} />
         <MetricPill label="Avg. Watch" value={video.avgViewDuration} />
-        <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#10B981' : '#E8E8E8'} />
+        <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#10B981' : '#FFFFFF'} />
         <MetricPill label="Likes" value={video.likes} />
         <MetricPill label="Thumbnail" value={`${video.thumbnailScore}/100`} color={thumbColor} />
         <MetricPill
@@ -518,7 +518,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
           <Target className="w-3 h-3 text-[#FDBA2D]" />
           <span className="text-[9px] text-[#555555] uppercase tracking-wider">CTR Analysis</span>
         </div>
-        <p className="text-[10px] text-[#888888] leading-relaxed">{video.ctrAnalysis}</p>
+        <p className="text-[10px] text-[#A3A3A3] leading-relaxed">{video.ctrAnalysis}</p>
       </div>
 
       {/* Sentiment breakdown */}
@@ -535,15 +535,15 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
         <div className="flex items-center justify-between mt-1.5">
           <div className="flex items-center gap-1">
             <ThumbsUp className="w-2.5 h-2.5 text-[#10B981]" />
-            <span className="text-[9px] text-[#888888]">{video.sentimentPositive}%</span>
+            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentPositive}%</span>
           </div>
           <div className="flex items-center gap-1">
             <CircleDot className="w-2.5 h-2.5 text-[#FDBA2D]" />
-            <span className="text-[9px] text-[#888888]">{video.sentimentNeutral}%</span>
+            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentNeutral}%</span>
           </div>
           <div className="flex items-center gap-1">
             <ThumbsDown className="w-2.5 h-2.5 text-[#EF4444]" />
-            <span className="text-[9px] text-[#888888]">{video.sentimentNegative}%</span>
+            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentNegative}%</span>
           </div>
         </div>
       </div>
@@ -572,7 +572,7 @@ function HeatmapGrid() {
     if (val >= 65) return 'rgba(16,185,129,0.5)';
     if (val >= 50) return 'rgba(253,186,45,0.5)';
     if (val >= 35) return 'rgba(253,186,45,0.25)';
-    return 'rgba(155,114,207,0.15)';
+    return 'rgba(139,92,246,0.15)';
   };
 
   return (
@@ -603,7 +603,7 @@ function HeatmapGrid() {
       <div className="flex items-center justify-end gap-2 mt-2">
         <span className="text-[8px] text-[#444444]">Low</span>
         <div className="flex gap-0.5">
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(155,114,207,0.15)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.25)' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.5)' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(16,185,129,0.5)' }} />
@@ -635,7 +635,7 @@ function CPMAnalysis() {
         return (
           <div key={cat.label}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-[#888888]">{cat.label}</span>
+              <span className="text-[10px] text-[#A3A3A3]">{cat.label}</span>
               <span className="text-[10px] font-bold text-[#FDBA2D]">${cat.cpm.toFixed(2)}</span>
             </div>
             <div className="relative h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
@@ -670,16 +670,16 @@ function CPMAnalysis() {
 /* ── Demographics Breakdown ── */
 function DemographicsBreakdown() {
   const ageData = [
-    { label: '18-24', pct: 32, color: '#9B72CF' },
-    { label: '25-34', pct: 38, color: '#4A9EFF' },
+    { label: '18-24', pct: 32, color: '#8B5CF6' },
+    { label: '25-34', pct: 38, color: '#3B82F6' },
     { label: '35-44', pct: 17, color: '#FDBA2D' },
     { label: '45-54', pct: 8, color: '#10B981' },
     { label: '55+', pct: 5, color: '#EF4444' },
   ];
 
   const genderData = [
-    { label: 'Male', pct: 62, color: '#4A9EFF' },
-    { label: 'Female', pct: 31, color: '#9B72CF' },
+    { label: 'Male', pct: 62, color: '#3B82F6' },
+    { label: 'Female', pct: 31, color: '#8B5CF6' },
     { label: 'Other', pct: 7, color: '#FDBA2D' },
   ];
 
@@ -688,13 +688,13 @@ function DemographicsBreakdown() {
       {/* Age */}
       <div>
         <div className="flex items-center gap-1.5 mb-2">
-          <Users className="w-3.5 h-3.5 text-[#9B72CF]" />
+          <Users className="w-3.5 h-3.5 text-[#8B5CF6]" />
           <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Age Distribution</span>
         </div>
         <div className="space-y-2">
           {ageData.map((d) => (
             <div key={d.label} className="flex items-center gap-2">
-              <span className="text-[10px] text-[#888888] w-10 shrink-0">{d.label}</span>
+              <span className="text-[10px] text-[#A3A3A3] w-10 shrink-0">{d.label}</span>
               <div className="flex-1 h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-700" style={{ width: `${d.pct}%`, backgroundColor: d.color }} />
               </div>
@@ -707,7 +707,7 @@ function DemographicsBreakdown() {
       {/* Gender */}
       <div>
         <div className="flex items-center gap-1.5 mb-2">
-          <Users className="w-3.5 h-3.5 text-[#4A9EFF]" />
+          <Users className="w-3.5 h-3.5 text-[#3B82F6]" />
           <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Gender Split</span>
         </div>
         <div className="flex gap-1.5 h-3 rounded-full overflow-hidden">
@@ -719,7 +719,7 @@ function DemographicsBreakdown() {
           {genderData.map((d) => (
             <div key={d.label} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: d.color }} />
-              <span className="text-[9px] text-[#888888]">{d.label} {d.pct}%</span>
+              <span className="text-[9px] text-[#A3A3A3]">{d.label} {d.pct}%</span>
             </div>
           ))}
         </div>
@@ -889,22 +889,22 @@ Return ONLY the JSON object, no other text.`;
           <div
             className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{
-              backgroundImage: 'linear-gradient(#9B72CF 1px, transparent 1px), linear-gradient(90deg, #9B72CF 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)',
               backgroundSize: '24px 24px',
             }}
           />
           <div className="relative z-10">
             {/* Title row */}
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 rounded-lg border" style={{ borderColor: `${TOOL_BORDER}`, background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
+              <div className="p-2 rounded-lg border" style={{ borderColor: `${TOOL_BORDER}`, background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
                 <Upload className="w-5 h-5" style={{ color: TOOL_COLOR }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-base font-bold text-[#E8E8E8] tracking-tight">Next Uploader AI</h2>
+                  <h2 className="text-base font-bold text-[#FFFFFF] tracking-tight">Next Uploader AI</h2>
                   <span className="px-2 py-0.5 rounded text-[9px] font-bold" style={{ color: TOOL_COLOR, backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>AGENT</span>
                 </div>
-                <p className="text-[11px] text-[#888888] mt-0.5">Pre-Upload Intelligence — Analyze before you publish</p>
+                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Pre-Upload Intelligence — Analyze before you publish</p>
               </div>
               <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                 <Zap className="w-3 h-3" style={{ color: TOOL_COLOR }} />
@@ -922,10 +922,10 @@ Return ONLY the JSON object, no other text.`;
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                     activeTab === tab.id
-                      ? 'text-[#9B72CF] border shadow-[0_0_12px_rgba(155,114,207,0.1)]'
-                      : 'text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] border border-transparent'
+                      ? 'text-[#8B5CF6] border shadow-[0_0_12px_rgba(139,92,246,0.1)]'
+                      : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                   }`}
-                  style={activeTab === tab.id ? { backgroundColor: 'rgba(155,114,207,0.15)', borderColor: 'rgba(155,114,207,0.3)' } : undefined}
+                  style={activeTab === tab.id ? { backgroundColor: 'rgba(139,92,246,0.15)', borderColor: 'rgba(139,92,246,0.3)' } : undefined}
                 >
                   <tab.icon className="w-3.5 h-3.5" />
                   {tab.label}
@@ -941,7 +941,7 @@ Return ONLY the JSON object, no other text.`;
         <div className="space-y-4">
           {/* Input Section */}
           <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <p className="text-sm text-[#888888] mb-3">
+            <p className="text-sm text-[#A3A3A3] mb-3">
               Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
               including audience retention, brand alignment, and growth potential.
             </p>
@@ -951,7 +951,7 @@ Return ONLY the JSON object, no other text.`;
                 <div
                   className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background: 'conic-gradient(from var(--angle, 0deg), #9B72CF, #4A9EFF, #10B981, #FDBA2D, #EF4444, #9B72CF)',
+                    background: 'conic-gradient(from var(--angle, 0deg), #8B5CF6, #3B82F6, #10B981, #FDBA2D, #EF4444, #8B5CF6)',
                     animation: 'rotateBorder 3s linear infinite',
                   }}
                 />
@@ -980,14 +980,14 @@ Return ONLY the JSON object, no other text.`;
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
                         placeholder="Paste YouTube URL or enter video topic/title..."
-                        className="w-full h-12 pl-10 pr-4 rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all duration-300"
+                        className="w-full h-12 pl-10 pr-4 rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all duration-300"
                         style={{ caretColor: TOOL_COLOR }}
                       />
                     </div>
                     <button
                       onClick={handleAnalyze}
                       disabled={loading || !input.trim()}
-                      className="px-5 h-12 rounded-xl text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(155,114,207,0.2)] hover:shadow-[0_0_30px_rgba(155,114,207,0.3)]"
+                      className="px-5 h-12 rounded-xl text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
                       style={{ backgroundColor: TOOL_COLOR }}
                     >
                       {loading ? (
@@ -1005,8 +1005,8 @@ Return ONLY the JSON object, no other text.`;
                 <div className="flex items-center gap-1.5 px-2">
                   <Info className="w-3 h-3 text-[#555555]" />
                   <span className="text-[10px] text-[#555555]">
-                    Analyzing for: <span className="text-[#888888]">{channelConfig.channelName}</span>
-                    {channelConfig.niche && <> · Niche: <span className="text-[#888888]">{channelConfig.niche}</span></>}
+                    Analyzing for: <span className="text-[#A3A3A3]">{channelConfig.channelName}</span>
+                    {channelConfig.niche && <> · Niche: <span className="text-[#A3A3A3]">{channelConfig.niche}</span></>}
                   </span>
                 </div>
               )}
@@ -1014,7 +1014,7 @@ Return ONLY the JSON object, no other text.`;
               {searched && !loading && (
                 <button
                   onClick={handleAnalyze}
-                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#222222] text-xs text-[#888888] hover:bg-[#1A1A1A] hover:text-[#E8E8E8] transition-colors"
+                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#222222] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
                 >
                   <RefreshCw className="w-3 h-3" /> Re-analyze
                 </button>
@@ -1030,8 +1030,8 @@ Return ONLY the JSON object, no other text.`;
                   <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold text-[#E8E8E8]">Suggested Ideas</h3>
-                  <p className="text-[10px] text-[#888888]">AI-generated based on deep analysis of your niche</p>
+                  <h3 className="text-xs font-bold text-[#FFFFFF]">Suggested Ideas</h3>
+                  <p className="text-[10px] text-[#A3A3A3]">AI-generated based on deep analysis of your niche</p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -1039,13 +1039,13 @@ Return ONLY the JSON object, no other text.`;
                   <button
                     key={i}
                     onClick={() => handleUseIdea(idea)}
-                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[rgba(155,114,207,0.3)] hover:bg-[rgba(155,114,207,0.04)] transition-all group text-left"
+                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[rgba(139,92,246,0.3)] hover:bg-[rgba(139,92,246,0.04)] transition-all group text-left"
                   >
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: TOOL_BG }}>
                       <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>{i + 1}</span>
                     </div>
-                    <p className="text-xs text-[#E8E8E8] line-clamp-2 flex-1 leading-relaxed">{idea}</p>
-                    <Send className="w-3.5 h-3.5 text-[#444444] group-hover:text-[#9B72CF] transition-colors shrink-0" />
+                    <p className="text-xs text-[#FFFFFF] line-clamp-2 flex-1 leading-relaxed">{idea}</p>
+                    <Send className="w-3.5 h-3.5 text-[#444444] group-hover:text-[#8B5CF6] transition-colors shrink-0" />
                   </button>
                 ))}
               </div>
@@ -1057,18 +1057,18 @@ Return ONLY the JSON object, no other text.`;
             <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-5">
                 <div className="relative">
-                  <Radar className="w-5 h-5 text-[#9B72CF] animate-pulse" />
+                  <Radar className="w-5 h-5 text-[#8B5CF6] animate-pulse" />
                 </div>
-                <span className="text-sm font-bold text-[#E8E8E8]">Running Deep Analysis...</span>
-                <span className="ml-auto text-[10px] text-[#888888] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
+                <span className="text-sm font-bold text-[#FFFFFF]">Running Deep Analysis...</span>
+                <span className="ml-auto text-[10px] text-[#A3A3A3] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mb-5">
                 <div
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{
                     width: `${((scanStep + 1) / SCANNING_STEPS.length) * 100}%`,
-                    background: 'linear-gradient(90deg, #9B72CF, #4A9EFF)',
-                    boxShadow: '0 0 10px rgba(155,114,207,0.4)',
+                    background: 'linear-gradient(90deg, #8B5CF6, #3B82F6)',
+                    boxShadow: '0 0 10px rgba(139,92,246,0.4)',
                   }}
                 />
               </div>
@@ -1081,23 +1081,23 @@ Return ONLY the JSON object, no other text.`;
                       <div
                         className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
                         style={{
-                          backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(155,114,207,0.2)' : '#1A1A1A',
-                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(155,114,207,0.4)' : '#222222'}`,
+                          backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
+                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#222222'}`,
                         }}
                       >
                         {isComplete ? (
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
                         ) : isActive ? (
-                          <span style={{ color: '#9B72CF' }}>{step.icon}</span>
+                          <span style={{ color: '#8B5CF6' }}>{step.icon}</span>
                         ) : (
                           <span className="text-[10px] text-[#444444] font-mono">{i + 1}</span>
                         )}
                       </div>
-                      <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#888888]' : isActive ? 'text-[#E8E8E8]' : 'text-[#444444]'}`}>
+                      <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#A3A3A3]' : isActive ? 'text-[#FFFFFF]' : 'text-[#444444]'}`}>
                         {step.label}
                       </span>
                       {isComplete && <Check className="w-3 h-3 text-[#10B981] ml-auto" />}
-                      {isActive && <Loader2 className="w-3 h-3 text-[#9B72CF] ml-auto animate-spin" />}
+                      {isActive && <Loader2 className="w-3 h-3 text-[#8B5CF6] ml-auto animate-spin" />}
                     </div>
                   );
                 })}
@@ -1109,7 +1109,7 @@ Return ONLY the JSON object, no other text.`;
           {error && (
             <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
               <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-              <p className="text-sm text-[#E8E8E8]">{error}</p>
+              <p className="text-sm text-[#FFFFFF]">{error}</p>
               <button onClick={handleAnalyze} className="mt-3 px-4 py-2 rounded-lg text-sm font-bold" style={{ backgroundColor: TOOL_COLOR, color: '#0D0D0D' }}>Try Again</button>
             </div>
           )}
@@ -1125,19 +1125,19 @@ Return ONLY the JSON object, no other text.`;
                 <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: TOOL_COLOR }} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Analysis Report</h3>
-                    <button onClick={handleCopyVerdict} className="flex items-center gap-1 text-[10px] text-[#888888] hover:text-[#E8E8E8] transition-colors shrink-0">
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Analysis Report</h3>
+                    <button onClick={handleCopyVerdict} className="flex items-center gap-1 text-[10px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors shrink-0">
                       {copiedVerdict ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
                       {copiedVerdict ? 'Copied' : 'Copy Report'}
                     </button>
                   </div>
-                  <p className="text-[11px] text-[#888888] leading-relaxed">{result.overallVerdict}</p>
+                  <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.overallVerdict}</p>
                 </div>
               </div>
 
               {/* Core Scores with Gauges */}
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-                <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-5 flex items-center gap-2">
+                <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-5 flex items-center gap-2">
                   <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                   Core Scores
                 </h3>
@@ -1162,7 +1162,7 @@ Return ONLY the JSON object, no other text.`;
               {/* Audience Retention Simulation */}
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
                     <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                     Audience Retention Simulation
                   </h3>
@@ -1177,8 +1177,8 @@ Return ONLY the JSON object, no other text.`;
                     return (
                       <div key={point.mark} className="flex items-center gap-2 text-[10px]">
                         {isHighDrop ? <AlertTriangle className="w-3 h-3 text-[#FDBA2D] shrink-0" /> : <div className="w-3 shrink-0" />}
-                        <span className="text-[#888888]">
-                          <span className="text-[#E8E8E8] font-medium">{point.mark}</span> &mdash; {point.label}
+                        <span className="text-[#A3A3A3]">
+                          <span className="text-[#FFFFFF] font-medium">{point.mark}</span> &mdash; {point.label}
                         </span>
                         {isHighDrop && <span className="font-bold text-[#FDBA2D]">(-{drop}% drop)</span>}
                       </div>
@@ -1195,8 +1195,8 @@ Return ONLY the JSON object, no other text.`;
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                 <Upload className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
-              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Pre-Upload Intelligence</h3>
-              <p className="text-sm text-[#888888] max-w-xs text-center mb-6">
+              <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Pre-Upload Intelligence</h3>
+              <p className="text-sm text-[#A3A3A3] max-w-xs text-center mb-6">
                 Enter a video idea above or click a suggestion to get a full performance prediction.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg w-full">
@@ -1210,7 +1210,7 @@ Return ONLY the JSON object, no other text.`;
                 ].map((f) => (
                   <div key={f.label} className="rounded-lg bg-[#141414] border border-[#1A1A1A] p-3 text-center hover:border-[#2A2A2A] transition-colors">
                     <f.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: TOOL_COLOR }} />
-                    <p className="text-[11px] font-semibold text-[#E8E8E8]">{f.label}</p>
+                    <p className="text-[11px] font-semibold text-[#FFFFFF]">{f.label}</p>
                     <p className="text-[9px] text-[#555555] mt-0.5">{f.desc}</p>
                   </div>
                 ))}
@@ -1228,8 +1228,8 @@ Return ONLY the JSON object, no other text.`;
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                 <Flame className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
-              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Recent Video Analytics</h3>
-              <p className="text-sm text-[#888888] max-w-sm text-center">
+              <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Recent Video Analytics</h3>
+              <p className="text-sm text-[#A3A3A3] max-w-sm text-center">
                 Run a Content Analysis first to unlock deep analytics for your 3 most recent videos — including retention curves, sentiment breakdowns, and thumbnail effectiveness.
               </p>
               <button
@@ -1245,15 +1245,15 @@ Return ONLY the JSON object, no other text.`;
             <>
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-                    <Flame className="w-4 h-4 text-[#9B72CF]" />
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+                    <Flame className="w-4 h-4 text-[#8B5CF6]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-bold text-[#E8E8E8]">Channel&apos;s Latest 3 Videos</h3>
-                    <p className="text-[11px] text-[#888888]">Deep analytics including retention curves, sentiment, and thumbnail scores</p>
+                    <h3 className="text-sm font-bold text-[#FFFFFF]">Channel&apos;s Latest 3 Videos</h3>
+                    <p className="text-[11px] text-[#A3A3A3]">Deep analytics including retention curves, sentiment, and thumbnail scores</p>
                   </div>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
-                    <GlowDot color="#9B72CF" />
+                    <GlowDot color="#8B5CF6" />
                     <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>3 VIDEOS</span>
                   </div>
                 </div>
@@ -1277,8 +1277,8 @@ Return ONLY the JSON object, no other text.`;
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                 <Radar className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
-              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Deep Insights</h3>
-              <p className="text-sm text-[#888888] max-w-sm text-center">
+              <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Deep Insights</h3>
+              <p className="text-sm text-[#A3A3A3] max-w-sm text-center">
                 Analytics that YouTube doesn&apos;t show you. Run a Content Analysis first to unlock viewer behavior heatmaps, CPM analysis, demographics, and content gap opportunities.
               </p>
               <button
@@ -1295,12 +1295,12 @@ Return ONLY the JSON object, no other text.`;
               {/* Section header */}
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
-                    <Activity className="w-4 h-4 text-[#9B72CF]" />
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+                    <Activity className="w-4 h-4 text-[#8B5CF6]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-bold text-[#E8E8E8]">What YouTube Won&apos;t Show You</h3>
-                    <p className="text-[11px] text-[#888888]">Hidden growth signals and deeper analytics</p>
+                    <h3 className="text-sm font-bold text-[#FFFFFF]">What YouTube Won&apos;t Show You</h3>
+                    <p className="text-[11px] text-[#A3A3A3]">Hidden growth signals and deeper analytics</p>
                   </div>
                   <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                     <GlowDot color="#10B981" />
@@ -1316,8 +1316,8 @@ Return ONLY the JSON object, no other text.`;
                     <Activity className="w-4 h-4 text-[#10B981]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Viewer Behavior Heatmap</h3>
-                    <p className="text-[10px] text-[#888888]">When your audience is most active (simulated)</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Viewer Behavior Heatmap</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">When your audience is most active (simulated)</p>
                   </div>
                 </div>
                 <HeatmapGrid />
@@ -1326,16 +1326,16 @@ Return ONLY the JSON object, no other text.`;
               {/* Best Publishing Window */}
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(74,158,255,0.15)' }}>
-                    <Calendar className="w-4 h-4 text-[#4A9EFF]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(59,130,246,0.15)' }}>
+                    <Calendar className="w-4 h-4 text-[#3B82F6]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Best Publishing Window</h3>
-                    <p className="text-[10px] text-[#888888]">Calculated from audience engagement patterns</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Best Publishing Window</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">Calculated from audience engagement patterns</p>
                   </div>
                 </div>
                 <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.optimalPostingWindow}</p>
+                  <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.optimalPostingWindow}</p>
                 </div>
               </TacticalCorners>
 
@@ -1346,8 +1346,8 @@ Return ONLY the JSON object, no other text.`;
                     <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Revenue per 1000 Views (CPM Analysis)</h3>
-                    <p className="text-[10px] text-[#888888]">Estimated earnings vs niche averages</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Revenue per 1000 Views (CPM Analysis)</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">Estimated earnings vs niche averages</p>
                   </div>
                 </div>
                 <CPMAnalysis />
@@ -1356,12 +1356,12 @@ Return ONLY the JSON object, no other text.`;
               {/* Audience Demographics */}
               <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(155,114,207,0.15)' }}>
-                    <Users className="w-4 h-4 text-[#9B72CF]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }}>
+                    <Users className="w-4 h-4 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Audience Demographics</h3>
-                    <p className="text-[10px] text-[#888888]">Age and gender breakdown (simulated)</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Audience Demographics</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">Age and gender breakdown (simulated)</p>
                   </div>
                 </div>
                 <DemographicsBreakdown />
@@ -1374,8 +1374,8 @@ Return ONLY the JSON object, no other text.`;
                     <Target className="w-4 h-4 text-[#FDBA2D]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Content Gap Opportunities</h3>
-                    <p className="text-[10px] text-[#888888]">High-demand, low-competition topics in your niche</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Content Gap Opportunities</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">High-demand, low-competition topics in your niche</p>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -1384,7 +1384,7 @@ Return ONLY the JSON object, no other text.`;
                       <div className="w-5 h-5 rounded-md bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
                         <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
                       </div>
-                      <p className="text-[11px] text-[#888888] leading-relaxed">{gap}</p>
+                      <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{gap}</p>
                     </div>
                   ))}
                 </div>
@@ -1397,8 +1397,8 @@ Return ONLY the JSON object, no other text.`;
                     <TrendingUp className="w-4 h-4 text-[#10B981]" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#E8E8E8]">Audience Satisfaction Score</h3>
-                    <p className="text-[10px] text-[#888888]">Based on return viewer rate, comment sentiment, and watch sessions</p>
+                    <h3 className="text-xs font-bold text-[#FFFFFF]">Audience Satisfaction Score</h3>
+                    <p className="text-[10px] text-[#A3A3A3]">Based on return viewer rate, comment sentiment, and watch sessions</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
@@ -1436,18 +1436,18 @@ Return ONLY the JSON object, no other text.`;
               <TacticalCorners className="rounded-lg p-4" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}20` }}>
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-                  <h3 className="text-xs font-bold text-[#E8E8E8]">Hidden Growth Potential</h3>
+                  <h3 className="text-xs font-bold text-[#FFFFFF]">Hidden Growth Potential</h3>
                 </div>
-                <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.hiddenGrowth}</p>
+                <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.hiddenGrowth}</p>
               </TacticalCorners>
 
               {/* AI Insight */}
               <TacticalCorners className="rounded-lg p-4" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}18` }}>
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-                  <h3 className="text-xs font-bold text-[#E8E8E8]">AI Insight Summary</h3>
+                  <h3 className="text-xs font-bold text-[#FFFFFF]">AI Insight Summary</h3>
                 </div>
-                <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.aiSummary}</p>
+                <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.aiSummary}</p>
               </TacticalCorners>
             </>
           )}

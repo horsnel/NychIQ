@@ -115,7 +115,7 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
         <Activity className="w-4 h-4 text-[#FDBA2D]" />
 
         {showTip && (
-          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#FDBA2D]/30 text-[11px] text-[#E8E8E8] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
+          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#FDBA2D]/30 text-[11px] text-[#FFFFFF] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
             Retention Scanned: <span className="text-[#10B981] font-mono font-semibold">87%</span>{' '}
             predicted retention
           </div>
@@ -137,10 +137,10 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
       onMouseLeave={() => setExpanded(false)}
     >
       <button
-        className="flex items-center justify-center w-8 h-8 rounded-md bg-black/60 backdrop-blur-sm border border-[#9B72CF]/30 hover:border-[#9B72CF]/70 transition-all duration-300 hover:scale-110"
+        className="flex items-center justify-center w-8 h-8 rounded-md bg-black/60 backdrop-blur-sm border border-[#8B5CF6]/30 hover:border-[#8B5CF6]/70 transition-all duration-300 hover:scale-110"
         aria-label="Extraction Hub"
       >
-        <Cpu className="w-4 h-4 text-[#9B72CF]" />
+        <Cpu className="w-4 h-4 text-[#8B5CF6]" />
       </button>
 
       {/* Mini-panel on hover */}
@@ -148,21 +148,21 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
         <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#141414]/95 backdrop-blur-md border border-[#222222] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('deepchat'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
-            <FileText className="w-3.5 h-3.5 text-[#4A9EFF]" />
+            <FileText className="w-3.5 h-3.5 text-[#3B82F6]" />
             Transcript
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
             <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" />
             Tags
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
             <Key className="w-3.5 h-3.5 text-[#10B981]" />
             Keywords
@@ -205,7 +205,7 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
         className="flex items-center justify-center w-7 h-7 rounded-md bg-black/60 backdrop-blur-sm border border-[#444444]/50 hover:border-[#10B981]/70 transition-all duration-200"
         aria-label="Copy video URL"
       >
-        <Target className="w-3.5 h-3.5 text-[#888888] hover:text-[#10B981]" />
+        <Target className="w-3.5 h-3.5 text-[#A3A3A3] hover:text-[#10B981]" />
       </button>
     </div>
   );
@@ -316,7 +316,7 @@ export function SciFiVideoCard({
         'hover:-translate-y-[2px]',
         /* Gradient top accent edge */
         'before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:z-30',
-        'before:bg-gradient-to-r before:from-[#9B72CF] before:via-[#FDBA2D] before:to-transparent',
+        'before:bg-gradient-to-r before:from-[#8B5CF6] before:via-[#FDBA2D] before:to-transparent',
         className
       )}
       style={thumbHover
@@ -424,12 +424,12 @@ export function SciFiVideoCard({
       {/* ════ Info Section ════ */}
       <div className="p-3">
         {/* Title */}
-        <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors duration-200 leading-snug">
+        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors duration-200 leading-snug">
           {video.title}
         </h3>
 
         {/* Channel */}
-        <p className="text-xs text-[#888888] mt-1.5">{video.channelTitle}</p>
+        <p className="text-xs text-[#A3A3A3] mt-1.5">{video.channelTitle}</p>
 
         {/* Live metadata row */}
         <div className="flex items-center gap-3 mt-2 flex-wrap">
@@ -454,7 +454,7 @@ export function SciFiVideoCard({
           {/* Retention waveform */}
           <div className="flex items-center gap-1">
             <WaveformIcon className="text-[#FDBA2D]/60" />
-            <span className="text-[11px] font-mono text-[#888888] tabular-nums">
+            <span className="text-[11px] font-mono text-[#A3A3A3] tabular-nums">
               {retentionProb}%
             </span>
           </div>
@@ -476,7 +476,7 @@ export function SciFiVideoCard({
 export function SciFiVideoCardSkeleton() {
   return (
     <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#222222] animate-pulse">
-      <div className="h-[2px] bg-gradient-to-r from-[#9B72CF] via-[#FDBA2D] to-transparent opacity-40" />
+      <div className="h-[2px] bg-gradient-to-r from-[#8B5CF6] via-[#FDBA2D] to-transparent opacity-40" />
       <div className="aspect-video bg-[#1A1A1A]" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded w-full" />

@@ -38,7 +38,7 @@ function heatColor(demand: number, frustration: number): string {
   if (score >= 75) return '#EF4444';
   if (score >= 60) return '#E87D3E';
   if (score >= 45) return '#FDBA2D';
-  if (score >= 30) return '#4A9EFF';
+  if (score >= 30) return '#3B82F6';
   return '#3B7DD8';
 }
 
@@ -71,9 +71,9 @@ function HeatmapCell({ topic, index }: { topic: HeatmapTopic; index: number }) {
             GOLD MINE
           </span>
         )}
-        <span className="text-[11px] font-semibold text-[#E8E8E8] leading-tight line-clamp-2">{topic.name}</span>
+        <span className="text-[11px] font-semibold text-[#FFFFFF] leading-tight line-clamp-2">{topic.name}</span>
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-[9px] px-1.5 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(74,158,255,0.15)', color: '#4A9EFF' }}>
+          <span className="text-[9px] px-1.5 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3B82F6' }}>
             D:{topic.demand}
           </span>
           <span className="text-[9px] px-1.5 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(239,68,68,0.15)', color: '#EF4444' }}>
@@ -85,19 +85,19 @@ function HeatmapCell({ topic, index }: { topic: HeatmapTopic; index: number }) {
       {/* Tooltip */}
       {showTip && (
         <div className="absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] shadow-xl pointer-events-none">
-          <p className="text-xs font-bold text-[#E8E8E8] mb-2">{topic.name}</p>
+          <p className="text-xs font-bold text-[#FFFFFF] mb-2">{topic.name}</p>
           <div className="space-y-1 mb-2">
             <div className="flex justify-between">
-              <span className="text-[10px] text-[#888888]">Demand</span>
-              <span className="text-[10px] font-bold" style={{ color: '#4A9EFF' }}>{topic.demand}/100</span>
+              <span className="text-[10px] text-[#A3A3A3]">Demand</span>
+              <span className="text-[10px] font-bold" style={{ color: '#3B82F6' }}>{topic.demand}/100</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[10px] text-[#888888]">Frustration</span>
+              <span className="text-[10px] text-[#A3A3A3]">Frustration</span>
               <span className="text-[10px] font-bold" style={{ color: '#EF4444' }}>{topic.frustration}/100</span>
             </div>
           </div>
           <div className="border-t border-[#2A2A2A] pt-2">
-            <p className="text-[10px] text-[#888888] leading-relaxed">{topic.topQuestion}</p>
+            <p className="text-[10px] text-[#A3A3A3] leading-relaxed">{topic.topQuestion}</p>
           </div>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rotate-45 bg-[#1A1A1A] border-r border-b border-[#2A2A2A]" />
         </div>
@@ -209,13 +209,13 @@ Return ONLY the JSON object, no other text.`;
               <Grid3x3 className="w-5 h-5" style={{ color: '#EF4444' }} />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Opportunity Heatmap</h2>
-              <p className="text-xs text-[#888888] mt-0.5">
+              <h2 className="text-base font-bold text-[#FFFFFF]">Opportunity Heatmap</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">
                 Sub-topics plotted by Demand vs. Frustration
               </p>
             </div>
           </div>
-          <p className="text-xs text-[#888888] mb-4">
+          <p className="text-xs text-[#A3A3A3] mb-4">
             Enter a broad niche. AI identifies sub-topics where demand is high but existing content fails viewers — your biggest opportunities.
           </p>
           <div className="flex gap-2">
@@ -227,7 +227,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Enter a broad niche (e.g., Personal Finance)..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
               />
             </div>
             <button
@@ -247,7 +247,7 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8] mb-3">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-3">{error}</p>
           <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
             Retry
           </button>
@@ -272,7 +272,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="flex flex-wrap items-center gap-4 px-1">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-[#FDBA2D]" />
-              <span className="text-xs text-[#888888]">
+              <span className="text-xs text-[#A3A3A3]">
                 <span className="font-bold text-[#FDBA2D]">{goldMines.length}</span> Gold Mines found
               </span>
             </div>
@@ -292,7 +292,7 @@ Return ONLY the JSON object, no other text.`;
             {/* Axis labels */}
             <div className="flex items-end gap-2 mb-3">
               <div className="flex-1">
-                <span className="text-[10px] font-bold tracking-wider" style={{ color: '#4A9EFF' }}>DEMAND →</span>
+                <span className="text-[10px] font-bold tracking-wider" style={{ color: '#3B82F6' }}>DEMAND →</span>
               </div>
               <div className="flex flex-col items-center gap-0.5">
                 <span className="text-[10px] font-bold tracking-wider" style={{ color: '#EF4444' }}>↑</span>
@@ -315,7 +315,7 @@ Return ONLY the JSON object, no other text.`;
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#EF4444' }} />
-                <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Tactical Advice</h3>
+                <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Tactical Advice</h3>
               </div>
               <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#EF4444] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
@@ -327,14 +327,14 @@ Return ONLY the JSON object, no other text.`;
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(239,68,68,0.1)' }}>
                   <Bot className="w-3.5 h-3.5" style={{ color: '#EF4444' }} />
                 </div>
-                <p className="text-xs text-[#888888] leading-relaxed">{result.advice}</p>
+                <p className="text-xs text-[#A3A3A3] leading-relaxed">{result.advice}</p>
               </div>
             </div>
           </div>
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#888888] hover:text-[#EF4444] transition-colors">
+            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#A3A3A3] hover:text-[#EF4444] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Regenerate
             </button>
@@ -348,8 +348,8 @@ Return ONLY the JSON object, no other text.`;
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
             <Grid3x3 className="w-8 h-8" style={{ color: '#EF4444' }} />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Discover Opportunities</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Opportunities</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
             Enter a broad niche to visualize sub-topics by demand and frustration. Gold Mine items in the high-demand, high-frustration zone are your best bets.
           </p>
         </div>

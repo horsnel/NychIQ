@@ -99,7 +99,7 @@ export function LoginPage() {
     <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(253,186,45,0.03)] blur-[100px]" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(155,114,207,0.02)] blur-[80px]" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(139,92,246,0.02)] blur-[80px]" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
@@ -145,7 +145,7 @@ export function LoginPage() {
           {/* Sign Up Form */}
           {mode === 'signup' && (
             <div className="animate-fade-in-up">
-              <h2 className="text-xl font-bold text-[#E8E8E8] text-center mb-1">
+              <h2 className="text-xl font-bold text-[#FFFFFF] text-center mb-1">
                 Create Your Account
               </h2>
               <p className="text-sm text-[#666] text-center mb-6">
@@ -185,7 +185,7 @@ export function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Min. 6 characters"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
@@ -233,7 +233,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignUp || loading}
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -266,7 +266,7 @@ export function LoginPage() {
           {/* Log In Form */}
           {mode === 'login' && (
             <div className="animate-fade-in-up">
-              <h2 className="text-xl font-bold text-[#E8E8E8] text-center mb-1">
+              <h2 className="text-xl font-bold text-[#FFFFFF] text-center mb-1">
                 Welcome Back
               </h2>
               <p className="text-sm text-[#666] text-center mb-6">
@@ -307,7 +307,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -328,7 +328,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#E8E8E8] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
@@ -344,7 +344,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignIn || loading}
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">

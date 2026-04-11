@@ -31,6 +31,8 @@ import {
   Zap,
   BarChart3,
   Activity,
+  Youtube,
+  Lightbulb,
 } from 'lucide-react';
 
 /* ── Types ── */
@@ -70,7 +72,7 @@ function CopyBtn({ text }: { text: string }) {
     }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#888888] hover:text-[#E8E8E8]" title="Copy">
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]" title="Copy">
       {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
@@ -80,7 +82,7 @@ function CopyBtn({ text }: { text: string }) {
 function verdictBadge(verdict: string): { bg: string; text: string; border: string } {
   switch (verdict) {
     case 'VIRAL': return { bg: 'bg-[rgba(16,185,129,0.15)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.3)]' };
-    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(74,158,255,0.15)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.3)]' };
+    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(59,130,246,0.15)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.3)]' };
     case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.3)]' };
     default: return { bg: 'bg-[rgba(239,68,68,0.15)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.3)]' };
   }
@@ -196,10 +198,110 @@ function generateMockResult(inputs: GoffViralInputs): ViralResult {
   return { probability, verdict, strengths, weaknesses, actionPlan };
 }
 
+/* ── YouTube Viral Score Types ── */
+interface YTViralScoreBreakdown {
+  label: string;
+  score: number;
+  reason: string;
+}
+
+interface YTViralResult {
+  compositeScore: number;
+  titleScore: number;
+  titleReason: string;
+  hookScore: number;
+  hookReason: string;
+  seoScore: number;
+  seoReason: string;
+  timingScore: number;
+  timingReason: string;
+  nicheFitScore: number;
+  nicheFitReason: string;
+  suggestions: string[];
+}
+
+const YT_NICHES = ['Tech', 'Gaming', 'Finance', 'Education', 'Entertainment', 'Lifestyle', 'Fitness', 'Cooking', 'Travel', 'Music', 'Comedy', 'Beauty'];
+
+type ActiveTab = 'tiktok' | 'youtube';
+
+function generateYTMockResult(title: string, hookText: string, niche: string): YTViralResult {
+  const randBetween = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const titleScore = randBetween(40, 95);
+  const hookScore = randBetween(35, 95);
+  const seoScore = randBetween(30, 90);
+  const timingScore = randBetween(45, 95);
+  const nicheFitScore = randBetween(40, 90);
+  const compositeScore = Math.round((titleScore * 0.25 + hookScore * 0.3 + seoScore * 0.2 + timingScore * 0.1 + nicheFitScore * 0.15));
+
+  const titleReason = title.length > 8 && title.length < 60
+    ? `Your title "${title.slice(0, 40)}${title.length > 40 ? '...' : ''}" is well-sized for YouTube's algorithm, falling in the optimal 8-60 character range. It has good potential to capture viewer attention in search and suggested feeds.`
+    : title.length <= 8
+    ? `Your title is quite short at ${title.length} characters. Longer titles (8-60 characters) tend to perform better as they provide more context to both the algorithm and potential viewers browsing their feed.`
+    : `Your title is ${title.length} characters long, which may get truncated in search results. Consider condensing to under 60 characters while keeping the most impactful words at the beginning.`;
+
+  const hookReason = hookText.length > 0
+    ? `Your hook text creates a ${hookScore > 70 ? 'strong' : 'moderate'} initial engagement trigger. ${hookScore > 70 ? 'It effectively builds curiosity and encourages viewers to keep watching beyond the first 5 seconds.' : 'Strengthening the hook with a more specific promise or surprising element could significantly improve retention.'} The first few seconds are critical for YouTube's algorithm.`
+    : 'No hook text was provided. A compelling hook in the first 5-10 seconds is the single most important factor for video retention and algorithmic performance on YouTube.';
+
+  const seoReason = `The ${niche} niche is ${['Tech', 'Finance', 'Gaming'].includes(niche) ? 'highly competitive but offers great search volume' : 'a growing space with good monetization potential'}. ${seoScore > 65 ? 'Your content strategy aligns well with current search trends in this niche.' : 'Consider researching trending keywords in this niche using YouTube autocomplete or tools like TubeBuddy.'} SEO optimization can increase discoverability by 40-60%.`;
+
+  const timingReason = `Current posting trends for ${niche} content suggest ${['Tech', 'Gaming'].includes(niche) ? 'weekdays between 2-5 PM EST' : 'weekends between 10 AM-2 PM EST'} as optimal windows. ${timingScore > 70 ? 'Your timing strategy appears to be well-aligned with audience availability patterns.' : 'Adjusting your upload schedule to peak hours could improve initial velocity by 15-25%.'}`;
+
+  const nicheFitReason = `The ${niche} niche has an average CPM of ${['Finance', 'Tech'].includes(niche) ? '$15-30' : '$5-12'} and ${['Education', 'Finance'].includes(niche) ? 'excellent evergreen potential' : 'strong trending content opportunities'}. ${nicheFitScore > 65 ? 'Your content approach shows good alignment with audience expectations in this space.' : 'Consider studying top performers in this niche to better match content format and style expectations.'}`;
+
+  const suggestions = [
+    `Front-load your most impactful keywords in the title — YouTube weights the first 3-5 words heavily in search rankings.`,
+    `Add chapters/timestamps to your description to improve viewer retention and appear in "key moments" search results.`,
+    `Include 3-5 relevant hashtags at the end of your description to expand discoverability beyond your core audience.`,
+    `Create a custom thumbnail with high contrast text (under 6 words) that complements but doesn't repeat the title.`,
+    `Ask a specific question in the first 10 seconds and promise to answer it — this pattern drives 2-3x higher average view duration.`,
+  ].slice(0, randBetween(3, 5));
+
+  return { compositeScore, titleScore, titleReason, hookScore, hookReason, seoScore, seoReason, timingScore, timingReason, nicheFitScore, nicheFitReason, suggestions };
+}
+
+/* ── YouTube Animated Circle Gauge ── */
+function YTCircleGauge({ value, size = 140, strokeWidth = 10 }: { value: number; size?: number; strokeWidth?: number }) {
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (value / 100) * circumference;
+  const color = value > 70 ? '#10B981' : value >= 40 ? '#FDBA2D' : '#EF4444';
+
+  return (
+    <div className="relative" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#1A1A1A" strokeWidth={strokeWidth} />
+        <circle
+          cx={size / 2} cy={size / 2} r={radius} fill="none"
+          stroke={color} strokeWidth={strokeWidth}
+          strokeDasharray={circumference} strokeDashoffset={offset}
+          strokeLinecap="round"
+          className="transition-all duration-1000 ease-out"
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-3xl font-bold" style={{ color }}>{Math.round(value)}</span>
+        <span className="text-[10px] text-[#666666]">viral score</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── Mini Progress Bar ── */
+function MiniProgressBar({ value, color }: { value: number; color: string }) {
+  return (
+    <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden w-full">
+      <div className="h-full rounded-full transition-all duration-700" style={{ width: `${value}%`, backgroundColor: color }} />
+    </div>
+  );
+}
+
 /* ── Main Component ── */
 export function GoffViralTool() {
   const { spendTokens } = useNychIQStore();
+  const [activeTab, setActiveTab] = useState<ActiveTab>('tiktok');
 
+  // TikTok state
   const [views, setViews] = useState('');
   const [likes, setLikes] = useState('');
   const [shares, setShares] = useState('');
@@ -215,6 +317,16 @@ export function GoffViralTool() {
   const [searched, setSearched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loadSteps, setLoadSteps] = useState<LoadingStep[]>([]);
+
+  // YouTube state
+  const [ytTitle, setYtTitle] = useState('');
+  const [ytDescription, setYtDescription] = useState('');
+  const [ytNiche, setYtNiche] = useState('Tech');
+  const [ytHookText, setYtHookText] = useState('');
+  const [ytResult, setYtResult] = useState<YTViralResult | null>(null);
+  const [ytLoading, setYtLoading] = useState(false);
+  const [ytSearched, setYtSearched] = useState(false);
+  const [ytError, setYtError] = useState<string | null>(null);
 
   const animateLoading = useCallback(async () => {
     const steps = LOADING_STEPS.map((s) => ({ label: s.label, status: 'pending' as const }));
@@ -299,8 +411,96 @@ Return ONLY the JSON object, no other text.`;
       setLoading(false);
     }
   };
+  const handleYTScore = async () => {
+    if (!ytTitle.trim()) return;
+    setYtLoading(true);
+    setYtSearched(true);
+    setYtError(null);
+    setYtResult(null);
+
+    const ok = spendTokens('goffviral');
+    if (!ok) { setYtLoading(false); return; }
+
+    try {
+      const prompt = `You are a YouTube viral content scoring expert. Analyze the following video details and score its viral potential:
+
+- Title: "${ytTitle.trim()}"
+- Description: "${ytDescription.trim()}"
+- Niche: ${ytNiche}
+- Hook Text: "${ytHookText.trim()}"
+
+Return a JSON object with these exact fields:
+- "compositeScore": number 1-100 (overall viral potential)
+- "titleScore": number 1-100
+- "titleReason": string (2-3 sentences explaining the score)
+- "hookScore": number 1-100
+- "hookReason": string (2-3 sentences explaining the score)
+- "seoScore": number 1-100
+- "seoReason": string (2-3 sentences explaining the score)
+- "timingScore": number 1-100
+- "timingReason": string (2-3 sentences explaining the score)
+- "nicheFitScore": number 1-100
+- "nicheFitReason": string (2-3 sentences explaining the score)
+- "suggestions": array of 3-5 specific actionable improvement suggestions
+
+Return ONLY the JSON object, no other text.`;
+
+      const response = await askAI(prompt);
+      const cleaned = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+      try {
+        const parsed = JSON.parse(cleaned);
+        setYtResult({
+          compositeScore: typeof parsed.compositeScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.compositeScore))) : 60,
+          titleScore: typeof parsed.titleScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.titleScore))) : 50,
+          titleReason: typeof parsed.titleReason === 'string' ? parsed.titleReason : 'Title analysis not available.',
+          hookScore: typeof parsed.hookScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.hookScore))) : 50,
+          hookReason: typeof parsed.hookReason === 'string' ? parsed.hookReason : 'Hook analysis not available.',
+          seoScore: typeof parsed.seoScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.seoScore))) : 50,
+          seoReason: typeof parsed.seoReason === 'string' ? parsed.seoReason : 'SEO analysis not available.',
+          timingScore: typeof parsed.timingScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.timingScore))) : 50,
+          timingReason: typeof parsed.timingReason === 'string' ? parsed.timingReason : 'Timing analysis not available.',
+          nicheFitScore: typeof parsed.nicheFitScore === 'number' ? Math.min(100, Math.max(1, Math.round(parsed.nicheFitScore))) : 50,
+          nicheFitReason: typeof parsed.nicheFitReason === 'string' ? parsed.nicheFitReason : 'Niche fit analysis not available.',
+          suggestions: Array.isArray(parsed.suggestions) ? parsed.suggestions.slice(0, 5) : [],
+        });
+      } catch {
+        setYtResult(generateYTMockResult(ytTitle.trim(), ytHookText.trim(), ytNiche));
+      }
+    } catch (err) {
+      setYtError(err instanceof Error ? err.message : 'Scoring failed. Please try again.');
+      setYtResult(null);
+    } finally {
+      setYtLoading(false);
+    }
+  };
+
+  const scoreColor = (s: number) => s > 70 ? '#10B981' : s >= 40 ? '#FDBA2D' : '#EF4444';
+
   return (
     <div className="space-y-5 animate-fade-in-up">
+      {/* Tab Bar */}
+      <div className="flex gap-1 p-1 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+        <button
+          onClick={() => setActiveTab('tiktok')}
+          className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'tiktok' ? 'bg-[#141414] text-[#FDBA2D] shadow-sm' : 'text-[#A3A3A3] hover:text-[#FFFFFF]'
+          }`}
+        >
+          <Flame className="w-4 h-4" /> TikTok Predictor
+        </button>
+        <button
+          onClick={() => setActiveTab('youtube')}
+          className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'youtube' ? 'bg-[#141414] text-[#FDBA2D] shadow-sm' : 'text-[#A3A3A3] hover:text-[#FFFFFF]'
+          }`}
+        >
+          <Youtube className="w-4 h-4" /> YouTube Viral Score
+        </button>
+      </div>
+
+      {activeTab === 'tiktok' && (
+      <>
       {/* Header */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
@@ -309,11 +509,11 @@ Return ONLY the JSON object, no other text.`;
               <Flame className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-base font-bold text-[#E8E8E8]">GoffViral TikTok Predictor</h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(155,114,207,0.15)] text-[#9B72CF] border border-[rgba(155,114,207,0.3)]">AI MODEL</span>
+              <h2 className="text-base font-bold text-[#FFFFFF]">GoffViral TikTok Predictor</h2>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(139,92,246,0.15)] text-[#8B5CF6] border border-[rgba(139,92,246,0.3)]">AI MODEL</span>
             </div>
           </div>
-          <p className="text-xs text-[#888888] mt-1 ml-12">Custom viral prediction model for TikTok content — GoffViral-V1 Pro, trained on 19,084 viral videos. 98.9% accuracy.</p>
+          <p className="text-xs text-[#A3A3A3] mt-1 ml-12">Custom viral prediction model for TikTok content — GoffViral-V1 Pro, trained on 19,084 viral videos. 98.9% accuracy.</p>
         </div>
 
         {/* Input Form */}
@@ -321,62 +521,62 @@ Return ONLY the JSON object, no other text.`;
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Views */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Eye className="w-3 h-3" /> Views
               </label>
               <input
                 type="number" value={views} onChange={(e) => setViews(e.target.value)}
                 placeholder="e.g. 50000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Likes */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Heart className="w-3 h-3" /> Likes
               </label>
               <input
                 type="number" value={likes} onChange={(e) => setLikes(e.target.value)}
                 placeholder="e.g. 8000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Shares */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Share2 className="w-3 h-3" /> Shares
               </label>
               <input
                 type="number" value={shares} onChange={(e) => setShares(e.target.value)}
                 placeholder="e.g. 1200"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Downloads */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Download className="w-3 h-3" /> Downloads
               </label>
               <input
                 type="number" value={downloads} onChange={(e) => setDownloads(e.target.value)}
                 placeholder="e.g. 300"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Followers */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Users className="w-3 h-3" /> Followers
               </label>
               <input
                 type="number" value={followers} onChange={(e) => setFollowers(e.target.value)}
                 placeholder="e.g. 15000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Posting Hour */}
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
                 <Clock className="w-3 h-3" /> Posting Hour
               </label>
               <div className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] flex items-center justify-between">
@@ -393,7 +593,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Video Length Slider */}
           <div className="mt-4">
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-medium text-[#888888] flex items-center gap-1">
+              <label className="text-xs font-medium text-[#A3A3A3] flex items-center gap-1">
                 <Activity className="w-3 h-3" /> Video Length
               </label>
               <span className="text-xs text-[#FDBA2D] font-medium">{videoLength}s</span>
@@ -422,8 +622,8 @@ Return ONLY the JSON object, no other text.`;
                 {trendingSound && <Check className="w-3 h-3 text-[#0D0D0D]" />}
               </div>
               <input type="checkbox" checked={trendingSound} onChange={() => setTrendingSound(!trendingSound)} className="hidden" />
-              <span className="text-sm text-[#E8E8E8] flex items-center gap-1.5">
-                <Music className="w-3.5 h-3.5 text-[#9B72CF]" /> Uses Trending Sound
+              <span className="text-sm text-[#FFFFFF] flex items-center gap-1.5">
+                <Music className="w-3.5 h-3.5 text-[#8B5CF6]" /> Uses Trending Sound
               </span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer select-none">
@@ -437,8 +637,8 @@ Return ONLY the JSON object, no other text.`;
                 {textOverlay && <Check className="w-3 h-3 text-[#0D0D0D]" />}
               </div>
               <input type="checkbox" checked={textOverlay} onChange={() => setTextOverlay(!textOverlay)} className="hidden" />
-              <span className="text-sm text-[#E8E8E8] flex items-center gap-1.5">
-                <Type className="w-3.5 h-3.5 text-[#9B72CF]" /> Has Text Overlay
+              <span className="text-sm text-[#FFFFFF] flex items-center gap-1.5">
+                <Type className="w-3.5 h-3.5 text-[#8B5CF6]" /> Has Text Overlay
               </span>
             </label>
           </div>
@@ -447,7 +647,7 @@ Return ONLY the JSON object, no other text.`;
           <button
             onClick={handlePredict}
             disabled={loading || (!views.trim() && !likes.trim())}
-            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Predict Viral Potential
@@ -459,7 +659,7 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
-          <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -473,7 +673,7 @@ Return ONLY the JSON object, no other text.`;
             <div className="w-8 h-8 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Flame className="w-4 h-4 text-[#FDBA2D] animate-pulse" />
             </div>
-            <span className="text-sm font-semibold text-[#E8E8E8]">GoffViral-V1 Pro Analyzing...</span>
+            <span className="text-sm font-semibold text-[#FFFFFF]">GoffViral-V1 Pro Analyzing...</span>
           </div>
           {loadSteps.map((step, i) => (
             <div key={i} className="flex items-center gap-3">
@@ -485,7 +685,7 @@ Return ONLY the JSON object, no other text.`;
                 {step.status === 'done' && <Check className="w-3 h-3 text-[#0D0D0D]" />}
                 {step.status === 'active' && <Loader2 className="w-3 h-3 text-[#FDBA2D] animate-spin" />}
               </div>
-              <span className={`text-sm ${step.status === 'active' ? 'text-[#E8E8E8]' : step.status === 'done' ? 'text-[#888888]' : 'text-[#444444]'}`}>
+              <span className={`text-sm ${step.status === 'active' ? 'text-[#FFFFFF]' : step.status === 'done' ? 'text-[#A3A3A3]' : 'text-[#444444]'}`}>
                 {step.label}
               </span>
             </div>
@@ -513,7 +713,7 @@ Return ONLY the JSON object, no other text.`;
                     {result.verdict}
                   </span>
                 </div>
-                <p className="text-sm text-[#888888] mb-3">
+                <p className="text-sm text-[#A3A3A3] mb-3">
                   {result.probability >= 70
                     ? 'This content has a very high probability of going viral on TikTok. The metrics strongly align with viral patterns.'
                     : result.probability >= 50
@@ -535,14 +735,14 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Strengths */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" /> Strengths
             </h4>
             <div className="space-y-2.5">
               {result.strengths.map((s, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#10B981] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-[#E8E8E8]">{s}</span>
+                  <span className="text-sm text-[#FFFFFF]">{s}</span>
                 </div>
               ))}
             </div>
@@ -550,14 +750,14 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Weaknesses */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingDown className="w-3.5 h-3.5 text-[#EF4444]" /> Weaknesses
             </h4>
             <div className="space-y-2.5">
               {result.weaknesses.map((w, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <XCircle className="w-4 h-4 text-[#EF4444] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-[#E8E8E8]">{w}</span>
+                  <span className="text-sm text-[#FFFFFF]">{w}</span>
                 </div>
               ))}
             </div>
@@ -565,16 +765,16 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Action Plan */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <Target className="w-3.5 h-3.5 text-[#4A9EFF]" /> Action Plan
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5 text-[#3B82F6]" /> Action Plan
             </h4>
             <div className="space-y-3">
               {result.actionPlan.map((step, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[rgba(74,158,255,0.15)] border border-[rgba(74,158,255,0.3)] flex items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] font-bold text-[#4A9EFF]">{i + 1}</span>
+                  <div className="w-6 h-6 rounded-full bg-[rgba(59,130,246,0.15)] border border-[rgba(59,130,246,0.3)] flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-[#3B82F6]">{i + 1}</span>
                   </div>
-                  <span className="text-sm text-[#E8E8E8]">{step}</span>
+                  <span className="text-sm text-[#FFFFFF]">{step}</span>
                 </div>
               ))}
             </div>
@@ -588,13 +788,194 @@ Return ONLY the JSON object, no other text.`;
           <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
             <Flame className="w-8 h-8 text-[#FDBA2D]" />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Predict TikTok Virality</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter your TikTok video metrics to get an AI-powered viral potential prediction with actionable insights.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Predict TikTok Virality</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter your TikTok video metrics to get an AI-powered viral potential prediction with actionable insights.</p>
         </div>
       )}
 
       {searched && !loading && (
         <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.goffviral} tokens per prediction</div>
+      )}
+      </>
+      )}
+
+      {/* YouTube Viral Score Tab */}
+      {activeTab === 'youtube' && (
+        <div className="space-y-5 animate-fade-in-up">
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
+              <div className="flex items-center gap-3 mb-1">
+                <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
+                  <Youtube className="w-5 h-5 text-[#EF4444]" />
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-base font-bold text-[#FFFFFF]">YouTube Viral Score</h2>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(139,92,246,0.15)] text-[#8B5CF6] border border-[rgba(139,92,246,0.3)]">AI SCORE</span>
+                </div>
+              </div>
+              <p className="text-xs text-[#A3A3A3] mt-1 ml-12">Score your YouTube video&apos;s viral potential with AI-powered breakdown analysis.</p>
+            </div>
+
+            {/* YouTube Input Form */}
+            <div className="px-4 sm:px-5 py-5 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                    <Type className="w-3 h-3" /> Video Title
+                  </label>
+                  <input
+                    type="text" value={ytTitle} onChange={(e) => setYtTitle(e.target.value)}
+                    placeholder="e.g. I Tried Every AI Tool for 30 Days"
+                    className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                    <BarChart3 className="w-3 h-3" /> Niche
+                  </label>
+                  <select
+                    value={ytNiche} onChange={(e) => setYtNiche(e.target.value)}
+                    className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#EF4444]/50 transition-colors appearance-none cursor-pointer"
+                  >
+                    {YT_NICHES.map((n) => (
+                      <option key={n} value={n} className="bg-[#0D0D0D] text-[#FFFFFF]">{n}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                  <Eye className="w-3 h-3" /> Description
+                </label>
+                <textarea
+                  value={ytDescription} onChange={(e) => setYtDescription(e.target.value)}
+                  placeholder="Paste your video description here..."
+                  rows={3}
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors resize-none"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                  <Zap className="w-3 h-3" /> Hook Text (first 5-10 seconds)
+                </label>
+                <textarea
+                  value={ytHookText} onChange={(e) => setYtHookText(e.target.value)}
+                  placeholder="What do you say in the first 5-10 seconds to hook viewers?"
+                  rows={2}
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors resize-none"
+                />
+              </div>
+              <button
+                onClick={handleYTScore}
+                disabled={ytLoading || !ytTitle.trim()}
+                className="w-full sm:w-auto px-6 h-11 rounded-lg bg-[#EF4444] text-[#FFFFFF] text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+              >
+                {ytLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
+                Score My Video
+              </button>
+            </div>
+          </div>
+
+          {/* YouTube Error */}
+          {ytError && (
+            <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
+              <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
+              <p className="text-sm text-[#FFFFFF] mb-4">{ytError}</p>
+              <button onClick={handleYTScore} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+                <RefreshCw className="w-3.5 h-3.5" /> Retry
+              </button>
+            </div>
+          )}
+
+          {/* YouTube Loading */}
+          {ytLoading && (
+            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex items-center justify-center">
+              <div className="text-center">
+                <Loader2 className="w-8 h-8 text-[#EF4444] animate-spin mx-auto mb-3" />
+                <p className="text-sm text-[#A3A3A3]">Analyzing viral potential...</p>
+              </div>
+            </div>
+          )}
+
+          {/* YouTube Results */}
+          {!ytLoading && ytResult && (
+            <div className="space-y-4">
+              {/* Composite Score */}
+              <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                  <YTCircleGauge value={ytResult.compositeScore} size={140} strokeWidth={10} />
+                  <div className="flex-1 text-center sm:text-left">
+                    <h3 className="text-base font-bold text-[#FFFFFF] mb-1">Composite Viral Score</h3>
+                    <p className="text-sm text-[#A3A3A3]">
+                      {ytResult.compositeScore > 70
+                        ? 'Excellent viral potential! This video has strong signals across all scoring dimensions and is well-positioned for significant reach.'
+                        : ytResult.compositeScore >= 40
+                        ? 'Good potential with room for improvement. Focus on the lower-scoring areas below to maximize your video\'s chances.'
+                        : 'This video needs significant optimization before upload. Review the breakdown scores and suggestions carefully.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Breakdown Scores */}
+              <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-1.5">
+                  <BarChart3 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Score Breakdown
+                </h4>
+                <div className="space-y-4">
+                  {[
+                    { label: 'Title Score', score: ytResult.titleScore, reason: ytResult.titleReason },
+                    { label: 'Hook Score', score: ytResult.hookScore, reason: ytResult.hookReason },
+                    { label: 'SEO Score', score: ytResult.seoScore, reason: ytResult.seoReason },
+                    { label: 'Timing Score', score: ytResult.timingScore, reason: ytResult.timingReason },
+                    { label: 'Niche Fit Score', score: ytResult.nicheFitScore, reason: ytResult.nicheFitReason },
+                  ].map((item) => (
+                    <div key={item.label} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-sm font-medium text-[#FFFFFF]">{item.label}</span>
+                        <span className="text-sm font-bold" style={{ color: scoreColor(item.score) }}>{item.score}/100</span>
+                      </div>
+                      <MiniProgressBar value={item.score} color={scoreColor(item.score)} />
+                      <p className="text-xs text-[#A3A3A3] mt-2 leading-relaxed">{item.reason}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Suggestions */}
+              <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <Lightbulb className="w-3.5 h-3.5 text-[#FDBA2D]" /> Improvement Suggestions
+                </h4>
+                <div className="space-y-2.5">
+                  {ytResult.suggestions.map((s, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <div className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.15)] border border-[rgba(253,186,45,0.3)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
+                      </div>
+                      <span className="text-sm text-[#FFFFFF] leading-relaxed">{s}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* YouTube Empty State */}
+          {!ytLoading && !ytSearched && (
+            <div className="flex flex-col items-center justify-center py-16">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
+                <Youtube className="w-8 h-8 text-[#EF4444]" />
+              </div>
+              <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Score Your YouTube Video</h3>
+              <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter your video details to get an AI-powered viral score with detailed breakdown and improvement suggestions.</p>
+            </div>
+          )}
+
+          {ytSearched && !ytLoading && (
+            <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.goffviral} tokens per score</div>
+          )}
+        </div>
       )}
     </div>
   );

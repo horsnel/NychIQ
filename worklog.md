@@ -236,3 +236,89 @@ Stage Summary:
 - 55/55 routes connected
 - Color scheme consistent (60-30-10 dark theme)
 - Project ready for GitHub push
+---
+Task ID: pre-push-color-fixes-and-new-features
+Agent: main
+Task: Fix all color mismatches, build 4 missing features, enhance 3 existing tools
+
+Work Log:
+- Verified ESLint 0 errors, TypeScript 0 errors (frontend + worker)
+- Ran comprehensive audit with 7 parallel agents checking all components
+- Found 6 color mismatches in globals.css between actual and spec
+- Found 500+ hardcoded old color values across 80+ component files
+
+**Color Fixes (globals.css):**
+1. #222222 → #1F1F1F (Border/Divider Grey)
+2. #D9A013 → #C69320 (Muted Amber/Earthy Gold)
+3. #888888 → #A3A3A3 (Text Grey Body)
+4. #E8E8E8 → #FFFFFF (Text White Headings)
+5. #4A9EFF → #3B82F6 (Info Blue)
+6. #9B72CF → #8B5CF6 (Vibrant Purple)
+7. All rgba() equivalents updated to match
+
+**Hardcoded Color Bulk Replacements (80+ files):**
+- #9B72CF → #8B5CF6 across all .tsx/.ts files
+- #4A9EFF → #3B82F6 across all files
+- #D9A013 → #C69320 across all files
+- #E8E8E8 → #FFFFFF across all files
+- #888888 → #A3A3A3 across all files
+- rgba(155,114,207,...) → rgba(139,92,246,...) across all files
+- rgba(74,158,255,...) → rgba(59,130,246,...) across all files
+- Fixed trending-tool.tsx Image import (renamed to ImageIcon) to clear jsx-a11y warning
+
+**New Feature: 30-Day Content Calendar (ideas-tool.tsx):**
+- New tab "30-Day Calendar" with niche input + frequency dropdown
+- 30 days of content ideas with: title, hook, content type badge, viral potential, posting time, thumbnail concept, status toggle
+- Summary bar with total ideas, high potential count, content type distribution
+- Weekly sections with "Regenerate Week" button per week
+
+**New Feature: Viral Autopsy (viral-tool.tsx):**
+- New tab "Viral Autopsy" with YouTube URL input
+- Viral Score 1-100 with animated circular SVG gauge
+- 7 analysis sections: Viral Score, Virality DNA radar chart, Thumbnail Psychology, Title Formula, Hook Structure, Algorithm Signals, Share Triggers
+- "Apply These Lessons" actionable recommendations
+
+**New Feature: Script → Shorts Converter (scriptflow-tool.tsx):**
+- New tab "Script → Shorts" with script textarea + topic input
+- Splits long-form scripts into 5-8 Shorts clips
+- Each clip: timestamp, hook, content script, CTA, caption with hashtags, retention prediction, viral potential
+- Timeline visual with cut points, "Export All" button
+
+**New Feature: Trend Pipeline (trending-tool.tsx):**
+- New tab "Trend Pipeline" with 8 trending topic cards
+- 4-step pipeline: Title & Hook, Script Outline, Metadata, Publishing Plan
+- Individual + "Full Pipeline" generate buttons with animations
+- Pipeline Score badge, copy buttons on each section
+
+**Enhancement: YouTube Viral Score (goffviral-tool.tsx):**
+- New tab "YouTube Viral Score" with title/description/hook/niche inputs
+- Composite viral score 1-100 with animated circular gauge
+- 5 breakdown scores with reasons + improvement suggestions
+
+**Enhancement: Hook Scroll-Stop Score (hook-tool.tsx):**
+- "Score All Hooks" button added
+- Each hook shows scroll-stop score badge (0-100)
+- 4 mini metrics: First 3 Words, Curiosity Gap, Emotional Trigger, Pattern Interrupt
+
+**Enhancement: Audit PDF Export (audit-tool.tsx):**
+- "Export Report" button opens dark-themed HTML report in new window
+- Includes channel name, health score, category scores, action items, date
+- User can Ctrl+P to save as PDF
+
+**Fix: Agency ROI Area Chart (agency-tool.tsx):**
+- Replaced vertical bar chart with SVG area chart using cubic bezier curves
+- Gradient fill (#FDBA2D to transparent), glowing data points, grid lines
+
+**Fix: Agency Resource Allocation (agency-tool.tsx):**
+- Added Resource Allocation section in War Room tab
+- Treemap-style colored rectangles per client (sized by scans)
+- Team workload progress bars, summary statistics
+
+Stage Summary:
+- 6 color spec mismatches fixed in globals.css
+- 500+ hardcoded color values fixed across 80+ component files
+- 4 new features built (30-Day Calendar, Viral Autopsy, Script→Shorts, Trend Pipeline)
+- 3 enhancements added (YouTube Viral Score, Hook Scroll-Stop Score, Audit PDF Export)
+- 2 agency fixes (ROI area chart, Resource Allocation)
+- Final state: ESLint 0 errors 0 warnings, TypeScript 0 errors (frontend + worker)
+- Project ready for GitHub push

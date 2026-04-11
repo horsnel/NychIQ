@@ -100,17 +100,17 @@ The channel has shown consistent month-over-month growth, adding approximately 6
 /* ── Category colors for pie chart bars ── */
 const CAT_COLORS = [
   { bar: 'bg-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]' },
-  { bar: 'bg-[#4A9EFF]', bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]' },
+  { bar: 'bg-[#3B82F6]', bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[#3B82F6]' },
   { bar: 'bg-[#10B981]', bg: 'bg-[rgba(16,185,129,0.1)]', text: 'text-[#10B981]' },
-  { bar: 'bg-[#9B72CF]', bg: 'bg-[rgba(155,114,207,0.1)]', text: 'text-[#9B72CF]' },
+  { bar: 'bg-[#8B5CF6]', bg: 'bg-[rgba(139,92,246,0.1)]', text: 'text-[#8B5CF6]' },
   { bar: 'bg-[#EF4444]', bg: 'bg-[rgba(239,68,68,0.1)]', text: 'text-[#EF4444]' },
 ];
 
 /* ── Stat card definitions ── */
 const STAT_CARDS = [
   { key: 'subscribers', label: 'Subscribers', icon: Users, color: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]' },
-  { key: 'totalViews', label: 'Total Views', icon: Eye, color: 'text-[#4A9EFF]', bg: 'bg-[rgba(74,158,255,0.1)]' },
-  { key: 'videos', label: 'Videos', icon: Video, color: 'text-[#9B72CF]', bg: 'bg-[rgba(155,114,207,0.1)]' },
+  { key: 'totalViews', label: 'Total Views', icon: Eye, color: 'text-[#3B82F6]', bg: 'bg-[rgba(59,130,246,0.1)]' },
+  { key: 'videos', label: 'Videos', icon: Video, color: 'text-[#8B5CF6]', bg: 'bg-[rgba(139,92,246,0.1)]' },
   { key: 'avgViews', label: 'Avg Views', icon: Play, color: 'text-[#10B981]', bg: 'bg-[rgba(16,185,129,0.1)]' },
   { key: 'engagementRate', label: 'Engagement Rate', icon: Activity, color: 'text-[#E1306C]', bg: 'bg-[rgba(225,48,108,0.1)]' },
   { key: 'estMonthlyRevenue', label: 'Est. Monthly Revenue', icon: DollarSign, color: 'text-[#10B981]', bg: 'bg-[rgba(16,185,129,0.1)]' },
@@ -185,8 +185,8 @@ Return ONLY the JSON object, no other text.`;
               <BarChart2 className="w-5 h-5 text-[#FDBA2D]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Channel Stats</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Deep analytics beyond YouTube API — engagement rate, growth trends, estimated revenue</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Channel Stats</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Deep analytics beyond YouTube API — engagement rate, growth trends, estimated revenue</p>
             </div>
           </div>
 
@@ -198,12 +198,12 @@ Return ONLY the JSON object, no other text.`;
               onChange={(e) => setChannelInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') analyzeChannel(); }}
               placeholder="Channel name or YouTube URL"
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
             <button
               onClick={analyzeChannel}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart2 className="w-4 h-4" />}
               Analyze Channel
@@ -216,7 +216,7 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
-          <p className="text-sm text-[#E8E8E8] mb-4">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={analyzeChannel}
             className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
@@ -269,9 +269,9 @@ Return ONLY the JSON object, no other text.`;
                 <span className="text-lg font-bold text-[#FDBA2D]">{result.profile.avatarInitial}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold text-[#E8E8E8]">{result.profile.name}</h3>
+                <h3 className="text-lg font-bold text-[#FFFFFF]">{result.profile.name}</h3>
                 <p className="text-xs text-[#FDBA2D] mb-1.5">{result.profile.handle}</p>
-                <p className="text-sm text-[#888888] leading-relaxed">{result.profile.description}</p>
+                <p className="text-sm text-[#A3A3A3] leading-relaxed">{result.profile.description}</p>
               </div>
             </div>
           </div>
@@ -299,7 +299,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-4 h-4 text-[#10B981]" />
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Subscriber Growth (6 Months)</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Subscriber Growth (6 Months)</h4>
             </div>
             <div className="flex items-end gap-3 h-36">
               {result.growth.map((month, i) => {
@@ -308,7 +308,7 @@ Return ONLY the JSON object, no other text.`;
                 const isLast = i === result.growth.length - 1;
                 return (
                   <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                    <span className="text-[10px] text-[#888888] font-medium">{fmtV(month.subscribers)}</span>
+                    <span className="text-[10px] text-[#A3A3A3] font-medium">{fmtV(month.subscribers)}</span>
                     <div className="w-full relative" style={{ height: '100px' }}>
                       <div
                         className={`absolute bottom-0 w-full rounded-t-md transition-all duration-1000 ${
@@ -328,7 +328,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Content Category Breakdown */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-2">
               <Video className="w-3.5 h-3.5" /> Content Breakdown
             </h4>
             {/* Pie chart visual using stacked bar */}
@@ -351,7 +351,7 @@ Return ONLY the JSON object, no other text.`;
                 return (
                   <div key={i} className="flex items-center gap-3">
                     <div className={`w-2.5 h-2.5 rounded-full ${colors.bar} flex-shrink-0`} />
-                    <span className="text-xs text-[#E8E8E8] flex-1 truncate">{cat.category}</span>
+                    <span className="text-xs text-[#FFFFFF] flex-1 truncate">{cat.category}</span>
                     <span className={`text-xs font-bold ${colors.text}`}>{cat.percentage}%</span>
                     {/* Bar representation */}
                     <div className="w-24 h-1.5 bg-[#1A1A1A] rounded-full overflow-hidden">
@@ -371,7 +371,7 @@ Return ONLY the JSON object, no other text.`;
             <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-3 flex items-center gap-2">
               <Sparkles className="w-3.5 h-3.5" /> AI Analysis
             </h4>
-            <div className="text-sm text-[#E8E8E8] leading-relaxed whitespace-pre-line">
+            <div className="text-sm text-[#FFFFFF] leading-relaxed whitespace-pre-line">
               {result.aiSummary}
             </div>
           </div>
@@ -384,8 +384,8 @@ Return ONLY the JSON object, no other text.`;
           <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
             <BarChart2 className="w-8 h-8 text-[#FDBA2D]" />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Deep Channel Analytics</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter a channel name or URL to unlock engagement rates, growth trends, and revenue estimates.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Deep Channel Analytics</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter a channel name or URL to unlock engagement rates, growth trends, and revenue estimates.</p>
         </div>
       )}
 

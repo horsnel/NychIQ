@@ -92,36 +92,36 @@ Return ONLY the JSON object.`;
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]"><GitCompare className="w-5 h-5 text-[#9B72CF]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]"><GitCompare className="w-5 h-5 text-[#8B5CF6]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">A/B Title &amp; Thumbnail Tester</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Test 2 concepts head-to-head. AI predicts CTR winner.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">A/B Title &amp; Thumbnail Tester</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Test 2 concepts head-to-head. AI predicts CTR winner.</p>
             </div>
           </div>
           <div className="space-y-3">
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 block">Title A</label>
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 block">Title A</label>
               <input type="text" value={titleA} onChange={(e) => setTitleA(e.target.value)}
                 placeholder="Enter first title concept..."
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
               />
             </div>
             <div className="flex items-center justify-center"><span className="text-xs text-[#444444] font-bold">VS</span></div>
             <div>
-              <label className="text-xs font-medium text-[#888888] mb-1.5 block">Title B</label>
+              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 block">Title B</label>
               <input type="text" value={titleB} onChange={(e) => setTitleB(e.target.value)}
                 placeholder="Enter second title concept..."
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
               />
             </div>
             <div>
               <label className="text-xs font-medium text-[#666666] mb-1.5 block">Topic/Category (optional)</label>
               <input type="text" value={context} onChange={(e) => setContext(e.target.value)}
                 placeholder="e.g., Tech Review, Cooking Tutorial..."
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
               />
             </div>
-            <button onClick={handleTest} disabled={loading || !titleA.trim() || !titleB.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#9B72CF] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
+            <button onClick={handleTest} disabled={loading || !titleA.trim() || !titleB.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Run A/B Test
             </button>
@@ -140,60 +140,60 @@ Return ONLY the JSON object.`;
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#9B72CF]" /> A/B Test Results</h3>
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#8B5CF6]" /> A/B Test Results</h3>
 
           {/* Winner Banner */}
           <div className="rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] p-4 text-center">
             <Trophy className="w-6 h-6 text-[#FDBA2D] mx-auto mb-2" />
             <p className="text-base font-bold text-[#FDBA2D]">Winner: Title {result.winner}</p>
-            <p className="text-xs text-[#888888] mt-1 flex items-center justify-center gap-1"><TrendingUp className="w-3 h-3" /> +{result.improvementPct}% predicted improvement</p>
+            <p className="text-xs text-[#A3A3A3] mt-1 flex items-center justify-center gap-1"><TrendingUp className="w-3 h-3" /> +{result.improvementPct}% predicted improvement</p>
           </div>
 
           {/* Side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className={`rounded-lg border p-4 ${result.winner === 'A' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#222222]'}`}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-[#888888]">TITLE A</span>
+                <span className="text-xs font-bold text-[#A3A3A3]">TITLE A</span>
                 {result.winner === 'A' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#10B981] text-[#0D0D0D]">WINNER</span>}
               </div>
-              <p className="text-sm font-medium text-[#E8E8E8] mb-3">{result.titleA}</p>
+              <p className="text-sm font-medium text-[#FFFFFF] mb-3">{result.titleA}</p>
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-[#666666]">Predicted CTR</span>
-                <span className="text-lg font-bold text-[#E8E8E8]">{result.ctrA.toFixed(1)}%</span>
+                <span className="text-lg font-bold text-[#FFFFFF]">{result.ctrA.toFixed(1)}%</span>
               </div>
               <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden mt-1">
-                <div className="h-full rounded-full bg-[#4A9EFF]" style={{ width: `${Math.min(100, result.ctrA * 8)}%` }} />
+                <div className="h-full rounded-full bg-[#3B82F6]" style={{ width: `${Math.min(100, result.ctrA * 8)}%` }} />
               </div>
             </div>
             <div className={`rounded-lg border p-4 ${result.winner === 'B' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#222222]'}`}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-[#888888]">TITLE B</span>
+                <span className="text-xs font-bold text-[#A3A3A3]">TITLE B</span>
                 {result.winner === 'B' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#10B981] text-[#0D0D0D]">WINNER</span>}
               </div>
-              <p className="text-sm font-medium text-[#E8E8E8] mb-3">{result.titleB}</p>
+              <p className="text-sm font-medium text-[#FFFFFF] mb-3">{result.titleB}</p>
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-[#666666]">Predicted CTR</span>
-                <span className="text-lg font-bold text-[#E8E8E8]">{result.ctrB.toFixed(1)}%</span>
+                <span className="text-lg font-bold text-[#FFFFFF]">{result.ctrB.toFixed(1)}%</span>
               </div>
               <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden mt-1">
-                <div className="h-full rounded-full bg-[#4A9EFF]" style={{ width: `${Math.min(100, result.ctrB * 8)}%` }} />
+                <div className="h-full rounded-full bg-[#3B82F6]" style={{ width: `${Math.min(100, result.ctrB * 8)}%` }} />
               </div>
             </div>
           </div>
 
           {/* Reasoning */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">AI Reasoning</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.reasoning}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">AI Reasoning</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.reasoning}</p>
           </div>
         </div>
       )}
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)] flex items-center justify-center mb-4"><GitCompare className="w-8 h-8 text-[#9B72CF]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Test Your Titles</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter two title concepts and let AI predict which will get more clicks.</p>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center mb-4"><GitCompare className="w-8 h-8 text-[#8B5CF6]" /></div>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Test Your Titles</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter two title concepts and let AI predict which will get more clicks.</p>
         </div>
       )}
 

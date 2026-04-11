@@ -41,8 +41,8 @@ export function timeAgo(dateStr: string): string {
 export function viralScore(score: number): { label: string; class: string; color: string } {
   if (score >= 80) return { label: 'Viral', class: 'text-green', color: '#10B981' };
   if (score >= 60) return { label: 'Hot', class: 'text-amber', color: '#FDBA2D' };
-  if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#4A9EFF' };
-  return { label: 'Cold', class: 'text-[#888888]', color: '#888888' };
+  if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#3B82F6' };
+  return { label: 'Cold', class: 'text-[#A3A3A3]', color: '#A3A3A3' };
 }
 
 /* ── Score CSS class for Tailwind ── */

@@ -104,7 +104,7 @@ const MOCK_CHANNELS: ClientChannel[] = [
     id: 'ch-1',
     name: 'TechVision Pro',
     initials: 'TV',
-    color: '#4A9EFF',
+    color: '#3B82F6',
     subscribers: 485000,
     videoCount: 312,
     healthScore: 92,
@@ -149,7 +149,7 @@ const MOCK_CHANNELS: ClientChannel[] = [
     id: 'ch-4',
     name: 'Art Studio NG',
     initials: 'AS',
-    color: '#9B72CF',
+    color: '#8B5CF6',
     subscribers: 890000,
     videoCount: 421,
     healthScore: 81,
@@ -178,14 +178,14 @@ const MOCK_CHANNELS: ClientChannel[] = [
 ];
 
 const MOCK_SIGNALS: SignalQueueItem[] = [
-  { id: 's-1', client: 'TechVision Pro', clientColor: '#4A9EFF', clientInitials: 'TV', type: 'viral', message: 'AI phone review hit 500K views in 18 hours — viral score 94. Consider follow-up content.', time: new Date(Date.now() - 15 * 60 * 1000).toISOString(), priority: 'high' },
+  { id: 's-1', client: 'TechVision Pro', clientColor: '#3B82F6', clientInitials: 'TV', type: 'viral', message: 'AI phone review hit 500K views in 18 hours — viral score 94. Consider follow-up content.', time: new Date(Date.now() - 15 * 60 * 1000).toISOString(), priority: 'high' },
   { id: 's-2', client: 'FitLife Academy', clientColor: '#10B981', clientInitials: 'FA', type: 'trend', message: '"Zone 2 cardio" search volume up 340% this week. Perfect timing for a deep-dive video.', time: new Date(Date.now() - 45 * 60 * 1000).toISOString(), priority: 'high' },
   { id: 's-3', client: 'Crypto Daily', clientColor: '#FDBA2D', clientInitials: 'CD', type: 'gap', message: 'No upload in 4 days. Audience engagement dropping — 12% comment decline vs last week.', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
-  { id: 's-4', client: 'Art Studio NG', clientColor: '#9B72CF', clientInitials: 'AS', type: 'arbitrage', message: 'Art supply CPM at $14.80 but affiliate program offers $28 per sale. 4.2x revenue opportunity.', time: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(), priority: 'high' },
+  { id: 's-4', client: 'Art Studio NG', clientColor: '#8B5CF6', clientInitials: 'AS', type: 'arbitrage', message: 'Art supply CPM at $14.80 but affiliate program offers $28 per sale. 4.2x revenue opportunity.', time: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(), priority: 'high' },
   { id: 's-5', client: 'EduTech Masters', clientColor: '#EF4444', clientInitials: 'EM', type: 'threat', message: 'New competitor "LearnCode Pro" gained 50K subs this month in same niche.', time: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
-  { id: 's-6', client: 'TechVision Pro', clientColor: '#4A9EFF', clientInitials: 'TV', type: 'trend', message: 'Apple Vision Pro 2 leaks trending — 2.1M searches. Perfect for a preview/analysis video.', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
+  { id: 's-6', client: 'TechVision Pro', clientColor: '#3B82F6', clientInitials: 'TV', type: 'trend', message: 'Apple Vision Pro 2 leaks trending — 2.1M searches. Perfect for a preview/analysis video.', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
   { id: 's-7', client: 'FitLife Academy', clientColor: '#10B981', clientInitials: 'FA', type: 'gap', message: 'Meal prep content gap: audience asking for budget-friendly options in comments.', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(), priority: 'low' },
-  { id: 's-8', client: 'Art Studio NG', clientColor: '#9B72CF', clientInitials: 'AS', type: 'viral', message: 'Time-lapse portrait video reached 1.2M views. Replicate format with different subjects.', time: new Date(Date.now() - 10 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
+  { id: 's-8', client: 'Art Studio NG', clientColor: '#8B5CF6', clientInitials: 'AS', type: 'viral', message: 'Time-lapse portrait video reached 1.2M views. Replicate format with different subjects.', time: new Date(Date.now() - 10 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
 ];
 
 const MOCK_REPORTS: Report[] = [
@@ -197,10 +197,10 @@ const MOCK_REPORTS: Report[] = [
 ];
 
 const MOCK_ACTIVITY: TeamActivity[] = [
-  { id: 'a-1', user: 'Sarah K.', initials: 'SK', color: '#4A9EFF', action: 'completed audit for', target: 'TechVision Pro', time: new Date(Date.now() - 30 * 60 * 1000).toISOString() },
+  { id: 'a-1', user: 'Sarah K.', initials: 'SK', color: '#3B82F6', action: 'completed audit for', target: 'TechVision Pro', time: new Date(Date.now() - 30 * 60 * 1000).toISOString() },
   { id: 'a-2', user: 'Mike R.', initials: 'MR', color: '#10B981', action: 'generated SEO report for', target: 'FitLife Academy', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
-  { id: 'a-3', user: 'Sarah K.', initials: 'SK', color: '#4A9EFF', action: 'flagged stale content on', target: 'Crypto Daily', time: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString() },
-  { id: 'a-4', user: 'Alex T.', initials: 'AT', color: '#9B72CF', action: 'updated strategy for', target: 'EduTech Masters', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString() },
+  { id: 'a-3', user: 'Sarah K.', initials: 'SK', color: '#3B82F6', action: 'flagged stale content on', target: 'Crypto Daily', time: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString() },
+  { id: 'a-4', user: 'Alex T.', initials: 'AT', color: '#8B5CF6', action: 'updated strategy for', target: 'EduTech Masters', time: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString() },
   { id: 'a-5', user: 'Mike R.', initials: 'MR', color: '#10B981', action: 'exported data for', target: 'all channels', time: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString() },
 ];
 
@@ -224,7 +224,7 @@ function reportTypeBadge(type: Report['type']): { bg: string; text: string; bord
     case 'Audit':
       return { bg: 'bg-[rgba(239,68,68,0.1)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.2)]', icon: <Shield className="w-3 h-3" /> };
     case 'Strategy':
-      return { bg: 'bg-[rgba(74,158,255,0.1)]', text: 'text-[#4A9EFF]', border: 'border-[rgba(74,158,255,0.2)]', icon: <TrendingUp className="w-3 h-3" /> };
+      return { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.2)]', icon: <TrendingUp className="w-3 h-3" /> };
     case 'SEO':
       return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.2)]', icon: <SearchCode className="w-3 h-3" /> };
   }
@@ -234,9 +234,9 @@ function signalTypeInfo(type: SignalQueueItem['type']): { icon: LucideIcon; colo
   switch (type) {
     case 'viral': return { icon: Zap, color: '#FDBA2D', label: 'VIRAL' };
     case 'trend': return { icon: TrendingUp, color: '#10B981', label: 'TREND' };
-    case 'gap': return { icon: Target, color: '#4A9EFF', label: 'GAP' };
+    case 'gap': return { icon: Target, color: '#3B82F6', label: 'GAP' };
     case 'threat': return { icon: AlertTriangle, color: '#EF4444', label: 'THREAT' };
-    case 'arbitrage': return { icon: DollarSign, color: '#9B72CF', label: 'ARBITRAGE' };
+    case 'arbitrage': return { icon: DollarSign, color: '#8B5CF6', label: 'ARBITRAGE' };
   }
 }
 
@@ -244,7 +244,7 @@ function statusRing(status: ClientChannel['status']): { color: string; label: st
   switch (status) {
     case 'performing': return { color: '#10B981', label: 'Performing Well', pulse: true };
     case 'stale': return { color: '#FDBA2D', label: 'No Uploads (3+ days)', pulse: false };
-    case 'arbitrage': return { color: '#9B72CF', label: 'High Arbitrage', pulse: false };
+    case 'arbitrage': return { color: '#8B5CF6', label: 'High Arbitrage', pulse: false };
   }
 }
 
@@ -276,9 +276,9 @@ function StatCard({ icon: Icon, label, value, color, sub }: { icon: LucideIcon; 
         <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15`, border: `1px solid ${color}30` }}>
           <Icon className="w-4 h-4" style={{ color }} />
         </div>
-        <span className="text-xs text-[#888888] font-medium">{label}</span>
+        <span className="text-xs text-[#A3A3A3] font-medium">{label}</span>
       </div>
-      <p className="text-xl font-bold text-[#E8E8E8]">{value}</p>
+      <p className="text-xl font-bold text-[#FFFFFF]">{value}</p>
       {sub && <p className="text-[10px] text-[#666666] mt-1">{sub}</p>}
     </div>
   );
@@ -325,7 +325,7 @@ export function AgencyDashboardTool() {
   const [wlLogo, setWlLogo] = useState<string | null>(null);
   const [wlBrandName, setWlBrandName] = useState('');
   const [wlSubdomain, setWlSubdomain] = useState('');
-  const [wlAccentColor, setWlAccentColor] = useState('#9B72CF');
+  const [wlAccentColor, setWlAccentColor] = useState('#8B5CF6');
   const [wlNoWatermark, setWlNoWatermark] = useState(true);
 
   const BRIEFING_MESSAGES = [
@@ -504,8 +504,8 @@ export function AgencyDashboardTool() {
           <div className="w-14 h-14 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
             <Lock className="w-7 h-7 text-[#EF4444]" />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Failed to Load Dashboard</h3>
-          <p className="text-sm text-[#888888] mb-4">{error}</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Failed to Load Dashboard</h3>
+          <p className="text-sm text-[#A3A3A3] mb-4">{error}</p>
           <button onClick={() => window.location.reload()} className="px-5 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <Loader2 className="w-3.5 h-3.5" /> Retry
           </button>
@@ -522,15 +522,15 @@ export function AgencyDashboardTool() {
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]">
-                <Building2 className="w-5 h-5 text-[#9B72CF]" />
+              <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]">
+                <Building2 className="w-5 h-5 text-[#8B5CF6]" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h2 className="text-base font-bold text-[#E8E8E8]">Agency Hub</h2>
-                  <Crown className="w-3.5 h-3.5 text-[#9B72CF]" />
+                  <h2 className="text-base font-bold text-[#FFFFFF]">Agency Hub</h2>
+                  <Crown className="w-3.5 h-3.5 text-[#8B5CF6]" />
                 </div>
-                <p className="text-xs text-[#888888] mt-0.5">Multi-seat command center for managing {MOCK_CHANNELS.length} client channels</p>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">Multi-seat command center for managing {MOCK_CHANNELS.length} client channels</p>
               </div>
             </div>
           </div>
@@ -556,7 +556,7 @@ export function AgencyDashboardTool() {
                 >
                   {ch.initials}
                 </div>
-                <span className="text-[11px] font-medium" style={{ color: selectedClient === ch.id ? ch.color : '#888888' }}>
+                <span className="text-[11px] font-medium" style={{ color: selectedClient === ch.id ? ch.color : '#A3A3A3' }}>
                   {ch.name}
                 </span>
               </button>
@@ -567,8 +567,8 @@ export function AgencyDashboardTool() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        <StatCard icon={Users} label="Fleet Size" value={String(MOCK_CHANNELS.length)} color="#9B72CF" sub="Active clients" />
-        <StatCard icon={Eye} label="Total Views/mo" value={fmtV(totalMonthlyViews)} color="#4A9EFF" sub="Across fleet" />
+        <StatCard icon={Users} label="Fleet Size" value={String(MOCK_CHANNELS.length)} color="#8B5CF6" sub="Active clients" />
+        <StatCard icon={Eye} label="Total Views/mo" value={fmtV(totalMonthlyViews)} color="#3B82F6" sub="Across fleet" />
         <StatCard icon={DollarSign} label="Fleet Revenue" value={`$${totalMonthlyRevenue.toLocaleString()}`} color="#FDBA2D" sub="Monthly total" />
         <StatCard icon={BarChart3} label="Avg Health" value={`${avgHealth}`} color="#10B981" sub={avgHealth >= 85 ? 'Excellent' : 'Good'} />
         <StatCard icon={Signal} label="Active Signals" value={String(MOCK_SIGNALS.filter((s) => s.priority === 'high').length)} color="#EF4444" sub="High priority" />
@@ -582,8 +582,8 @@ export function AgencyDashboardTool() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
-                ? 'bg-[#9B72CF]/10 text-[#9B72CF] border border-[#9B72CF]/20'
-                : 'bg-[#141414] border border-[#222222] text-[#888888] hover:text-[#E8E8E8] hover:border-[#333333]'
+                ? 'bg-[#8B5CF6]/10 text-[#8B5CF6] border border-[#8B5CF6]/20'
+                : 'bg-[#141414] border border-[#222222] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333]'
             }`}
           >
             <tab.icon className="w-3.5 h-3.5" />
@@ -605,34 +605,68 @@ export function AgencyDashboardTool() {
           {/* Portfolio ROI Chart (CSS) */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <BarChart3 className="w-3.5 h-3.5 text-[#9B72CF]" /> Portfolio ROI
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
+                <BarChart3 className="w-3.5 h-3.5 text-[#8B5CF6]" /> Portfolio ROI
               </h3>
               <span className="text-[10px] text-[#666666]">Last 6 months</span>
             </div>
             <div className="p-5">
-              <div className="flex items-end gap-2 h-28">
-                {[42, 58, 71, 65, 82, 96].map((val, i) => {
-                  const months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-                  return (
-                    <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                      <span className="text-[9px] text-[#888888] font-medium">${val}K</span>
-                      <div
-                        className="w-full rounded-t-md transition-all duration-500"
-                        style={{
-                          height: `${(val / 100) * 100}%`,
-                          background: i === 5 ? 'linear-gradient(to top, #9B72CF, #B08ADF)' : `linear-gradient(to top, #9B72CF40, #9B72CF15)`,
-                          minHeight: 8,
-                        }}
-                      />
-                      <span className="text-[9px] text-[#555555]">{months[i]}</span>
-                    </div>
-                  );
-                })}
-              </div>
+              {(() => {
+                const data = [42, 58, 71, 65, 82, 96];
+                const months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+                const w = 520, h = 140, px = 36, py = 10, pb = 24;
+                const chartW = w - px - 10;
+                const chartH = h - py - pb;
+                const minVal = 30, maxVal = 100;
+                const getX = (i: number) => px + (i / (data.length - 1)) * chartW;
+                const getY = (v: number) => py + (1 - (v - minVal) / (maxVal - minVal)) * chartH;
+                // Build smooth bezier curve path
+                const pts = data.map((v, i) => ({ x: getX(i), y: getY(v) }));
+                let linePath = `M ${pts[0].x} ${pts[0].y}`;
+                for (let i = 1; i < pts.length; i++) {
+                  const prev = pts[i - 1];
+                  const cur = pts[i];
+                  const cpx = (prev.x + cur.x) / 2;
+                  linePath += ` C ${cpx} ${prev.y}, ${cpx} ${cur.y}, ${cur.x} ${cur.y}`;
+                }
+                // Area path: same line + close to bottom
+                const areaPath = `${linePath} L ${pts[pts.length - 1].x} ${h - pb} L ${pts[0].x} ${h - pb} Z`;
+                // Y-axis grid lines and labels
+                const yTicks = [42, 58, 71, 82, 96];
+                return (
+                  <svg viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxHeight: 160 }}>
+                    <defs>
+                      <linearGradient id="roi-area-gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#FDBA2D" stopOpacity="0.4" />
+                        <stop offset="100%" stopColor="#FDBA2D" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    {/* Horizontal grid lines */}
+                    {yTicks.map((v) => (
+                      <line key={v} x1={px} y1={getY(v)} x2={w - 10} y2={getY(v)} stroke="#1F1F1F" strokeWidth="1" />
+                    ))}
+                    {/* Filled area */}
+                    <path d={areaPath} fill="url(#roi-area-gradient)" />
+                    {/* Line */}
+                    <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    {/* Data points */}
+                    {pts.map((pt, i) => (
+                      <circle key={i} cx={pt.x} cy={pt.y} r="4" fill="#FDBA2D" style={{ filter: 'drop-shadow(0 0 4px rgba(253,186,45,0.6))' }} />
+                    ))}
+                    {/* X-axis month labels */}
+                    {months.map((m, i) => (
+                      <text key={m} x={getX(i)} y={h - 4} textAnchor="middle" fill="#555555" fontSize="9" fontFamily="sans-serif">{m}</text>
+                    ))}
+                    {/* Y-axis value labels */}
+                    {yTicks.map((v) => (
+                      <text key={`y-${v}`} x={px - 6} y={getY(v) + 3} textAnchor="end" fill="#A3A3A3" fontSize="9" fontFamily="sans-serif">${v}K</text>
+                    ))}
+                  </svg>
+                );
+              })()}
               <div className="flex items-center gap-4 mt-4 pt-3 border-t border-[#1A1A1A]">
                 <div className="flex items-center gap-1.5 text-[10px] text-[#666666]">
-                  <div className="w-2 h-2 rounded-sm" style={{ background: 'linear-gradient(to top, #9B72CF, #B08ADF)' }} />
+                  <div className="w-2 h-2 rounded-full bg-[#FDBA2D]" />
                   <span>Current: $96K</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px] text-[#10B981]">
@@ -659,10 +693,10 @@ export function AgencyDashboardTool() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <p className="text-sm font-semibold text-[#E8E8E8]">{ch.name}</p>
+                          <p className="text-sm font-semibold text-[#FFFFFF]">{ch.name}</p>
                           <StatusRingDot status={ch.status} />
                         </div>
-                        <p className="text-[11px] text-[#888888]">{fmtV(ch.subscribers)} subs · {ch.niche}</p>
+                        <p className="text-[11px] text-[#A3A3A3]">{fmtV(ch.subscribers)} subs · {ch.niche}</p>
                       </div>
                     </div>
                     <HealthCircle score={ch.healthScore} size={42} strokeWidth={3} />
@@ -671,7 +705,7 @@ export function AgencyDashboardTool() {
                   <div className="grid grid-cols-3 gap-2 mb-3">
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center">
                       <p className="text-[9px] text-[#666666]">Views/mo</p>
-                      <p className="text-xs font-semibold text-[#E8E8E8]">{fmtV(ch.monthlyViews)}</p>
+                      <p className="text-xs font-semibold text-[#FFFFFF]">{fmtV(ch.monthlyViews)}</p>
                     </div>
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center">
                       <p className="text-[9px] text-[#666666]">Revenue</p>
@@ -687,7 +721,7 @@ export function AgencyDashboardTool() {
                     <span className="px-2 py-0.5 rounded-full text-[9px] font-medium border" style={{ backgroundColor: `${statusInfo.color}10`, color: statusInfo.color, borderColor: `${statusInfo.color}25` }}>
                       {statusInfo.label}
                     </span>
-                    <button className="text-[11px] text-[#9B72CF] hover:text-[#B08ADF] font-medium flex items-center gap-0.5 transition-colors group-hover:underline">
+                    <button className="text-[11px] text-[#8B5CF6] hover:text-[#B08ADF] font-medium flex items-center gap-0.5 transition-colors group-hover:underline">
                       Details <ChevronRight className="w-3 h-3" />
                     </button>
                   </div>
@@ -704,8 +738,8 @@ export function AgencyDashboardTool() {
       {activeTab === 'signals' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-1.5">
-              <Signal className="w-4 h-4 text-[#9B72CF]" /> Intelligence Signals
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-1.5">
+              <Signal className="w-4 h-4 text-[#8B5CF6]" /> Intelligence Signals
               <span className="text-[10px] text-[#666666] font-normal ml-1">{MOCK_SIGNALS.length} active</span>
             </h3>
             <div className="flex items-center gap-1.5">
@@ -738,7 +772,7 @@ export function AgencyDashboardTool() {
                         >
                           {signal.clientInitials}
                         </div>
-                        <span className="text-[11px] font-semibold text-[#E8E8E8]">{signal.client}</span>
+                        <span className="text-[11px] font-semibold text-[#FFFFFF]">{signal.client}</span>
                         <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: `${typeInfo.color}15`, color: typeInfo.color }}>
                           {typeInfo.label}
                         </span>
@@ -773,12 +807,12 @@ export function AgencyDashboardTool() {
           {/* Tactical Briefing Generator */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden relative">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Radar className="w-3.5 h-3.5 text-[#FDBA2D]" /> Tactical Briefing
               </h3>
             </div>
             <div className="p-5">
-              <p className="text-xs text-[#888888] mb-4">Generate a comprehensive tactical intelligence briefing for your entire fleet. Includes competitor analysis, signal arbitrage mapping, and content funnel optimization.</p>
+              <p className="text-xs text-[#A3A3A3] mb-4">Generate a comprehensive tactical intelligence briefing for your entire fleet. Includes competitor analysis, signal arbitrage mapping, and content funnel optimization.</p>
               {!briefingLoading && !briefingComplete && (
                 <button
                   onClick={handleGenerateBriefing}
@@ -846,8 +880,8 @@ export function AgencyDashboardTool() {
                   <div className="w-14 h-14 rounded-full bg-[rgba(16,185,129,0.1)] border-2 border-[#10B981] flex items-center justify-center mb-4">
                     <CheckCircle2 className="w-7 h-7 text-[#10B981]" />
                   </div>
-                  <h4 className="text-base font-bold text-[#E8E8E8] mb-1">Tactical Brief Generated</h4>
-                  <p className="text-xs text-[#888888] mb-4">Your intelligence briefing is ready for review.</p>
+                  <h4 className="text-base font-bold text-[#FFFFFF] mb-1">Tactical Brief Generated</h4>
+                  <p className="text-xs text-[#A3A3A3] mb-4">Your intelligence briefing is ready for review.</p>
                   <div className="flex items-center gap-3">
                     <button
                       onClick={handleDownloadReport}
@@ -858,7 +892,7 @@ export function AgencyDashboardTool() {
                     </button>
                     <button
                       onClick={() => setBriefingComplete(false)}
-                      className="px-4 py-2.5 rounded-lg text-sm font-medium bg-[#0D0D0D] border border-[#222222] text-[#888888] hover:text-[#E8E8E8] hover:border-[#333333] transition-all flex items-center gap-2"
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium bg-[#0D0D0D] border border-[#222222] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333] transition-all flex items-center gap-2"
                     >
                       <Radar className="w-3.5 h-3.5" /> New Briefing
                     </button>
@@ -871,19 +905,19 @@ export function AgencyDashboardTool() {
           {/* Intelligence Link Generator */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                <Link2 className="w-3.5 h-3.5 text-[#9B72CF]" /> Shareable Intelligence Link Generator
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
+                <Link2 className="w-3.5 h-3.5 text-[#8B5CF6]" /> Shareable Intelligence Link Generator
               </h3>
             </div>
             <div className="p-5">
-              <p className="text-xs text-[#888888] mb-4">Generate shareable intelligence briefs for clients or team members. Links contain real-time fleet data.</p>
+              <p className="text-xs text-[#A3A3A3] mb-4">Generate shareable intelligence briefs for clients or team members. Links contain real-time fleet data.</p>
               <div className="flex gap-2 flex-wrap items-end">
                 <div className="flex-1 min-w-[200px]">
                   <label className="text-[10px] text-[#666666] font-medium uppercase tracking-wider block mb-1.5">Select Client</label>
                   <select
                     value={selectedClient || ''}
                     onChange={(e) => setSelectedClient(e.target.value || null)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#E8E8E8] text-sm focus:outline-none focus:border-[#9B72CF]/40 transition-all appearance-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm focus:outline-none focus:border-[#8B5CF6]/40 transition-all appearance-none"
                   >
                     <option value="">All Channels</option>
                     {MOCK_CHANNELS.map((ch) => (
@@ -894,7 +928,7 @@ export function AgencyDashboardTool() {
                 <button
                   onClick={handleGenerateWarLink}
                   className="px-4 py-2.5 rounded-lg text-white text-sm font-medium transition-all flex items-center gap-2"
-                  style={{ background: '#9B72CF' }}
+                  style={{ background: '#8B5CF6' }}
                 >
                   <Globe className="w-4 h-4" /> Generate Link
                 </button>
@@ -905,23 +939,23 @@ export function AgencyDashboardTool() {
           {/* Generated Links */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Radio className="w-3.5 h-3.5 text-[#10B981]" /> Active Intelligence Links
               </h3>
             </div>
             {warRoomLinks.length === 0 ? (
               <div className="p-8 text-center">
                 <Radio className="w-8 h-8 text-[#333333] mx-auto mb-2" />
-                <p className="text-xs text-[#888888]">No intelligence links generated yet</p>
+                <p className="text-xs text-[#A3A3A3]">No intelligence links generated yet</p>
               </div>
             ) : (
               <div className="divide-y divide-[#1A1A1A]">
                 {warRoomLinks.map((link) => (
                   <div key={link.id} className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-[rgba(255,255,255,0.02)] transition-colors">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-[#E8E8E8] font-medium truncate">{link.label}</p>
+                      <p className="text-sm text-[#FFFFFF] font-medium truncate">{link.label}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] text-[#888888]">{link.client}</span>
+                        <span className="text-[10px] text-[#A3A3A3]">{link.client}</span>
                         <span className="text-[10px] text-[#444444]">·</span>
                         <span className="text-[10px] text-[#666666]">{timeAgo(link.created)}</span>
                       </div>
@@ -930,7 +964,7 @@ export function AgencyDashboardTool() {
                       <code className="text-[10px] text-[#666666] max-w-[200px] truncate hidden sm:block">{link.url}</code>
                       <button
                         onClick={() => handleCopyLink(link.url)}
-                        className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#E8E8E8]"
+                        className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#FFFFFF]"
                         title="Copy link"
                       >
                         {copiedLink ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
@@ -945,19 +979,19 @@ export function AgencyDashboardTool() {
           {/* Client Acquisition Module */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Client Acquisition — Gap Analysis
               </h3>
             </div>
             <div className="p-5 space-y-4">
-              <p className="text-xs text-[#888888]">AI-powered gap analysis identifies under-served niches and potential client targets based on your agency&apos;s strengths.</p>
+              <p className="text-xs text-[#A3A3A3]">AI-powered gap analysis identifies under-served niches and potential client targets based on your agency&apos;s strengths.</p>
               <button className="px-4 py-2.5 rounded-lg text-white text-sm font-medium transition-all flex items-center gap-2" style={{ background: 'linear-gradient(135deg, #FDBA2D, #E09100)' }}>
                 <Cpu className="w-4 h-4" /> Generate Acquisition Report
               </button>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { label: 'Identified Gaps', value: '12', color: '#FDBA2D' },
-                  { label: 'Potential Clients', value: '28', color: '#4A9EFF' },
+                  { label: 'Potential Clients', value: '28', color: '#3B82F6' },
                   { label: 'Est. Revenue Potential', value: '$84K/mo', color: '#10B981' },
                 ].map((stat) => (
                   <div key={stat.label} className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-3 text-center">
@@ -968,6 +1002,116 @@ export function AgencyDashboardTool() {
               </div>
             </div>
           </div>
+
+          {/* Resource Allocation */}
+          {(() => {
+            const treemapData = [
+              { name: 'TechVision Pro', initials: 'TV', scans: 34, color: '#10B981' },
+              { name: 'FitLife Academy', initials: 'FA', scans: 28, color: '#10B981' },
+              { name: 'Art Studio NG', initials: 'AS', scans: 22, color: '#FDBA2D' },
+              { name: 'Crypto Daily', initials: 'CD', scans: 10, color: '#FDBA2D' },
+              { name: 'EduTech Masters', initials: 'EM', scans: 6, color: '#A3A3A3' },
+            ];
+            const totalScans = treemapData.reduce((s, d) => s + d.scans, 0);
+            const teamData = [
+              { name: 'Sarah K.', allocation: 92, color: '#3B82F6' },
+              { name: 'Mike R.', allocation: 78, color: '#10B981' },
+              { name: 'Alex T.', allocation: 65, color: '#8B5CF6' },
+              { name: 'Jordan P.', allocation: 45, color: '#FDBA2D' },
+            ];
+            const totalScripts = 147;
+            return (
+              <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+                <div className="px-4 py-3 border-b border-[#1A1A1A]">
+                  <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
+                    <Cpu className="w-3.5 h-3.5 text-[#FDBA2D]" /> Resource Allocation
+                  </h3>
+                </div>
+                <div className="p-5 space-y-5">
+                  {/* Treemap */}
+                  <div>
+                    <p className="text-[10px] text-[#666666] mb-2 font-medium uppercase tracking-wider">Scans by Client</p>
+                    <div className="flex gap-1.5 h-24">
+                      {treemapData.map((d) => (
+                        <div
+                          key={d.name}
+                          className="rounded-md flex flex-col items-center justify-center gap-1 transition-all hover:opacity-80 cursor-default"
+                          style={{
+                            flex: d.scans,
+                            backgroundColor: `${d.color}18`,
+                            border: `1px solid ${d.color}35`,
+                            minWidth: 40,
+                          }}
+                        >
+                          <span className="text-[10px] font-bold" style={{ color: d.color }}>{d.initials}</span>
+                          <span className="text-[9px] text-[#A3A3A3]">{d.scans}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Legend */}
+                    <div className="flex items-center gap-4 mt-2">
+                      <div className="flex items-center gap-1.5 text-[9px] text-[#666666]">
+                        <div className="w-2 h-2 rounded-sm bg-[#10B981]" />
+                        <span>High activity</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[9px] text-[#666666]">
+                        <div className="w-2 h-2 rounded-sm bg-[#FDBA2D]" />
+                        <span>Medium</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[9px] text-[#666666]">
+                        <div className="w-2 h-2 rounded-sm bg-[#A3A3A3]" />
+                        <span>Low</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Workload */}
+                  <div>
+                    <p className="text-[10px] text-[#666666] mb-3 font-medium uppercase tracking-wider">Team Workload</p>
+                    <div className="space-y-3">
+                      {teamData.map((m) => (
+                        <div key={m.name} className="flex items-center gap-3">
+                          <div
+                            className="w-7 h-7 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0"
+                            style={{ backgroundColor: `${m.color}20`, border: `1.5px solid ${m.color}40`, color: m.color }}
+                          >
+                            {m.name.split(' ').map((n) => n[0]).join('')}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs font-medium text-[#FFFFFF]">{m.name}</span>
+                              <span className="text-[10px] font-bold" style={{ color: m.color }}>{m.allocation}%</span>
+                            </div>
+                            <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden">
+                              <div
+                                className="h-full rounded-full transition-all duration-500"
+                                style={{ width: `${m.allocation}%`, backgroundColor: m.color }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Summary Row */}
+                  <div className="flex items-center justify-center gap-6 pt-3 border-t border-[#1A1A1A]">
+                    <span className="text-[10px] text-[#666666]">
+                      Total Scans: <span className="font-bold text-[#FFFFFF]">{totalScans}</span>
+                    </span>
+                    <span className="text-[10px] text-[#444444]">|</span>
+                    <span className="text-[10px] text-[#666666]">
+                      Total Scripts: <span className="font-bold text-[#FFFFFF]">{totalScripts}</span>
+                    </span>
+                    <span className="text-[10px] text-[#444444]">|</span>
+                    <span className="text-[10px] text-[#666666]">
+                      Active Clients: <span className="font-bold text-[#FFFFFF]">{treemapData.length}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       )}
 
@@ -980,8 +1124,8 @@ export function AgencyDashboardTool() {
             {/* Recent Reports */}
             <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
-                <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#9B72CF]" /> Recent Reports
+                <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-[#8B5CF6]" /> Recent Reports
                 </h3>
                 <span className="text-[10px] text-[#666666]">{MOCK_REPORTS.length} reports</span>
               </div>
@@ -991,9 +1135,9 @@ export function AgencyDashboardTool() {
                   return (
                     <div key={r.id} className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-[rgba(255,255,255,0.02)] transition-colors">
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-[#E8E8E8] font-medium truncate">{r.name}</p>
+                        <p className="text-sm text-[#FFFFFF] font-medium truncate">{r.name}</p>
                         <div className="flex items-center gap-2 mt-1">
-                          <span className="text-[10px] text-[#888888]">{r.client}</span>
+                          <span className="text-[10px] text-[#A3A3A3]">{r.client}</span>
                           <span className="text-[10px] text-[#444444]">·</span>
                           <span className="text-[10px] text-[#666666]">{timeAgo(r.date)}</span>
                         </div>
@@ -1002,7 +1146,7 @@ export function AgencyDashboardTool() {
                         <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium border flex items-center gap-1 ${badge.bg} ${badge.text} ${badge.border}`}>
                           {badge.icon} {r.type}
                         </span>
-                        <button className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#E8E8E8]" title="Download">
+                        <button className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#666666] hover:text-[#FFFFFF]" title="Download">
                           <Download className="w-3.5 h-3.5" />
                         </button>
                       </div>
@@ -1015,7 +1159,7 @@ export function AgencyDashboardTool() {
             {/* Team Activity */}
             <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
-                <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
+                <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-[#10B981]" /> Team Activity
                 </h3>
                 <span className="text-[10px] text-[#666666]">Recent</span>
@@ -1027,10 +1171,10 @@ export function AgencyDashboardTool() {
                       {a.initials}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-[#E8E8E8]">
+                      <p className="text-sm text-[#FFFFFF]">
                         <span className="font-medium">{a.user}</span>{' '}
-                        <span className="text-[#888888]">{a.action}</span>{' '}
-                        <span className="text-[#4A9EFF] font-medium">{a.target}</span>
+                        <span className="text-[#A3A3A3]">{a.action}</span>{' '}
+                        <span className="text-[#3B82F6] font-medium">{a.target}</span>
                       </p>
                       <p className="text-[10px] text-[#666666] mt-0.5">{timeAgo(a.time)}</p>
                     </div>
@@ -1042,7 +1186,7 @@ export function AgencyDashboardTool() {
 
           {/* Quick Actions */}
           <div>
-            <h3 className="text-sm font-semibold text-[#E8E8E8] mb-3 flex items-center gap-1.5">
+            <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-1.5">
               <Zap className="w-4 h-4 text-[#FDBA2D]" /> Quick Actions
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1051,27 +1195,27 @@ export function AgencyDashboardTool() {
                   <UserPlus className="w-4 h-4 text-[#10B981]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#10B981] transition-colors">Add New Client</p>
+                  <p className="text-sm font-medium text-[#FFFFFF] group-hover:text-[#10B981] transition-colors">Add New Client</p>
                   <p className="text-[10px] text-[#666666]">Onboard a new channel</p>
                 </div>
                 <Plus className="w-4 h-4 text-[#444444] group-hover:text-[#10B981] transition-colors" />
               </button>
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#4A9EFF]/30 hover:bg-[rgba(74,158,255,0.03)] transition-all group text-left">
-                <div className="p-2 rounded-lg bg-[rgba(74,158,255,0.1)] border border-[rgba(74,158,255,0.2)]">
-                  <FileBarChart className="w-4 h-4 text-[#4A9EFF]" />
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#3B82F6]/30 hover:bg-[rgba(59,130,246,0.03)] transition-all group text-left">
+                <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)]">
+                  <FileBarChart className="w-4 h-4 text-[#3B82F6]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#4A9EFF] transition-colors">Generate Bulk Report</p>
+                  <p className="text-sm font-medium text-[#FFFFFF] group-hover:text-[#3B82F6] transition-colors">Generate Bulk Report</p>
                   <p className="text-[10px] text-[#666666]">All channels at once</p>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-[#444444] group-hover:text-[#4A9EFF] transition-colors" />
+                <ArrowUpRight className="w-4 h-4 text-[#444444] group-hover:text-[#3B82F6] transition-colors" />
               </button>
               <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#FDBA2D]/30 hover:bg-[rgba(253,186,45,0.03)] transition-all group text-left">
                 <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)]">
                   <FolderOutput className="w-4 h-4 text-[#FDBA2D]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[#E8E8E8] group-hover:text-[#FDBA2D] transition-colors">Export Fleet Data</p>
+                  <p className="text-sm font-medium text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors">Export Fleet Data</p>
                   <p className="text-[10px] text-[#666666]">CSV / PDF export</p>
                 </div>
                 <Download className="w-4 h-4 text-[#444444] group-hover:text-[#FDBA2D] transition-colors" />
@@ -1083,14 +1227,14 @@ export function AgencyDashboardTool() {
           <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden mt-6">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center gap-2">
               <Shield className="w-3.5 h-3.5 text-[#FDBA2D]" />
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider">White-Label Branding</h3>
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">White-Label Branding</h3>
             </div>
             <div className="p-5 space-y-5">
-              <p className="text-xs text-[#888888]">Customize your agency reports with your own branding. Your clients will see your logo, colors, and subdomain — no NychIQ watermarks.</p>
+              <p className="text-xs text-[#A3A3A3]">Customize your agency reports with your own branding. Your clients will see your logo, colors, and subdomain — no NychIQ watermarks.</p>
 
               {/* Logo Upload */}
               <div className="space-y-2">
-                <label className="text-xs font-medium text-[#E8E8E8]">Agency Logo</label>
+                <label className="text-xs font-medium text-[#FFFFFF]">Agency Logo</label>
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-lg border-2 border-dashed border-[#333333] flex items-center justify-center overflow-hidden" style={wlLogo ? {} : { backgroundColor: '#1A1A1A' }}>
                     {wlLogo ? (
@@ -1115,7 +1259,7 @@ export function AgencyDashboardTool() {
                         };
                         input.click();
                       }}
-                      className="px-3 py-1.5 rounded-md text-xs font-medium bg-[#1A1A1A] border border-[#333333] text-[#E8E8E8] hover:border-[#FDBA2D]/50 transition-colors"
+                      className="px-3 py-1.5 rounded-md text-xs font-medium bg-[#1A1A1A] border border-[#333333] text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors"
                     >
                       Upload Logo
                     </button>
@@ -1127,24 +1271,24 @@ export function AgencyDashboardTool() {
               {/* Brand Name & Subdomain */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-[#E8E8E8]">Brand Name</label>
+                  <label className="text-xs font-medium text-[#FFFFFF]">Brand Name</label>
                   <input
                     type="text"
                     value={wlBrandName}
                     onChange={(e) => setWlBrandName(e.target.value)}
                     placeholder="Your Agency Name"
-                    className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-[#E8E8E8]">Custom Subdomain</label>
+                  <label className="text-xs font-medium text-[#FFFFFF]">Custom Subdomain</label>
                   <div className="flex items-center h-10 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden focus-within:border-[#FDBA2D]/50 transition-colors">
                     <input
                       type="text"
                       value={wlSubdomain}
                       onChange={(e) => setWlSubdomain(e.target.value.replace(/[^a-z0-9-]/g, ''))}
                       placeholder="portal"
-                      className="flex-1 h-full px-3 bg-transparent text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none"
+                      className="flex-1 h-full px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none"
                     />
                     <span className="pr-3 text-xs text-[#555555] whitespace-nowrap">.youragency.com</span>
                   </div>
@@ -1153,11 +1297,11 @@ export function AgencyDashboardTool() {
 
               {/* Accent Color */}
               <div className="space-y-2">
-                <label className="text-xs font-medium text-[#E8E8E8] flex items-center gap-1.5">
-                  <Palette className="w-3 h-3 text-[#888888]" /> Accent Color
+                <label className="text-xs font-medium text-[#FFFFFF] flex items-center gap-1.5">
+                  <Palette className="w-3 h-3 text-[#A3A3A3]" /> Accent Color
                 </label>
                 <div className="flex items-center gap-3">
-                  {['#9B72CF', '#4A9EFF', '#10B981', '#FDBA2D', '#EF4444', '#F472B6'].map((color) => (
+                  {['#8B5CF6', '#3B82F6', '#10B981', '#FDBA2D', '#EF4444', '#F472B6'].map((color) => (
                     <button
                       key={color}
                       onClick={() => setWlAccentColor(color)}
@@ -1173,7 +1317,7 @@ export function AgencyDashboardTool() {
                     type="text"
                     value={wlAccentColor}
                     onChange={(e) => setWlAccentColor(e.target.value)}
-                    className="w-24 h-8 px-2 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#E8E8E8] font-mono focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-24 h-8 px-2 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#FFFFFF] font-mono focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                 </div>
               </div>
@@ -1183,7 +1327,7 @@ export function AgencyDashboardTool() {
                 <div className="flex items-center gap-2.5">
                   <Shield className="w-4 h-4 text-[#10B981]" />
                   <div>
-                    <p className="text-xs font-medium text-[#E8E8E8]">Zero Watermark Mode</p>
+                    <p className="text-xs font-medium text-[#FFFFFF]">Zero Watermark Mode</p>
                     <p className="text-[10px] text-[#555555]">Remove all "Powered by NychIQ" branding from reports</p>
                   </div>
                 </div>
@@ -1222,7 +1366,7 @@ export function AgencyDashboardTool() {
               <button
                 onClick={() => showToast('White-Label settings saved!', 'success')}
                 className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #9B72CF, #7B52AF)', color: 'white' }}
+                style={{ background: 'linear-gradient(135deg, #8B5CF6, #7B52AF)', color: 'white' }}
               >
                 <Check className="w-4 h-4" /> Save Brand Settings
               </button>
@@ -1236,28 +1380,28 @@ export function AgencyDashboardTool() {
           ═══════════════════════════════════════ */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 py-3 border-b border-[#1A1A1A]">
-          <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-1.5">
-            <Command className="w-3.5 h-3.5 text-[#9B72CF]" /> Command Bar
+          <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
+            <Command className="w-3.5 h-3.5 text-[#8B5CF6]" /> Command Bar
           </h3>
         </div>
         <div className="p-4">
           <div className="flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9B72CF] font-mono text-sm font-bold">/</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8B5CF6] font-mono text-sm font-bold">/</span>
               <input
                 type="text"
                 value={commandInput}
                 onChange={(e) => setCommandInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleCommand()}
                 placeholder="compare ClientA ClientB  |  report-all"
-                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#E8E8E8] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all"
+                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all"
               />
             </div>
             <button
               onClick={handleCommand}
               disabled={!commandInput.trim()}
               className="px-4 py-2.5 rounded-lg text-white text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2"
-              style={{ background: commandInput.trim() ? '#9B72CF' : '#333333' }}
+              style={{ background: commandInput.trim() ? '#8B5CF6' : '#333333' }}
             >
               <Send className="w-4 h-4" /> Run
             </button>
@@ -1272,7 +1416,7 @@ export function AgencyDashboardTool() {
               <button
                 key={cmd}
                 onClick={() => { setCommandInput(cmd); }}
-                className="px-2.5 py-1 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-[10px] text-[#888888] hover:text-[#9B72CF] hover:border-[#9B72CF]/20 transition-all font-mono"
+                className="px-2.5 py-1 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-[10px] text-[#A3A3A3] hover:text-[#8B5CF6] hover:border-[#8B5CF6]/20 transition-all font-mono"
               >
                 {cmd}
               </button>

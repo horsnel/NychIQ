@@ -14,7 +14,7 @@ import { playNav, playClick } from '@/lib/sounds';
 /* ── Plan badge colors ── */
 const PLAN_COLORS: Record<Plan, string> = {
   trial: 'text-[#444444]',
-  starter: 'text-[#888888]',
+  starter: 'text-[#A3A3A3]',
   pro: 'text-blue',
   elite: 'text-purple',
   agency: 'text-amber',
@@ -43,9 +43,9 @@ function getUpsellBadge(toolId: string, userPlan: Plan): BadgeInfo {
   if (userRank >= minRank) return null;
 
   switch (minPlan) {
-    case 'starter': return { text: 'NEW', color: '#4A9EFF' };
+    case 'starter': return { text: 'NEW', color: '#3B82F6' };
     case 'pro':     return { text: 'PRO+', color: '#FDBA2D' };
-    case 'elite':   return { text: 'ELITE+', color: '#9B72CF' };
+    case 'elite':   return { text: 'ELITE+', color: '#8B5CF6' };
     case 'agency':  return { text: 'AGENCY', color: '#10B981' };
     default:        return null;
   }
@@ -78,10 +78,10 @@ export function Sidebar() {
           </svg>
         </div>
         <div className="flex flex-col">
-          <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#E8E8E8' }}>
+          <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#FFFFFF' }}>
             NY<span className="text-[#FDBA2D]">CHIQ</span>
           </span>
-          <span className="text-[9px] text-[#888888] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
+          <span className="text-[9px] text-[#A3A3A3] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
         </div>
         <span className={cn('text-xs font-medium ml-auto', PLAN_COLORS[userPlan])}>
           {userPlan.toUpperCase()}
@@ -95,7 +95,7 @@ export function Sidebar() {
             {/* Section header */}
             <button
               onClick={() => toggleSection(section.id)}
-              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-[#444444] hover:text-[#888888] transition-colors uppercase"
+              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-[#444444] hover:text-[#A3A3A3] transition-colors uppercase"
             >
               {collapsedSections[section.id] ? (
                 <ChevronRight className="w-3 h-3" />
@@ -131,7 +131,7 @@ export function Sidebar() {
                         'flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-all duration-150',
                         isActive
                           ? 'sidebar-active bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
-                          : 'text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A]'
+                          : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A]'
                       )}
                     >
                       <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#FDBA2D]' : '')} />
@@ -166,7 +166,7 @@ export function Sidebar() {
       <div className="border-t border-[#1E1E1E] px-3 py-3">
         <button
           onClick={() => setPage('about')}
-          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#444444] hover:text-[#888888] transition-colors"
+          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#444444] hover:text-[#A3A3A3] transition-colors"
         >
           <span>About</span>
         </button>
@@ -190,8 +190,8 @@ export function Sidebar() {
           />
           <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0D0D0D] border-r border-[#1E1E1E] z-50 lg:hidden animate-fade-in-up">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E]">
-              <span className="text-sm font-semibold text-[#888888]">Navigation</span>
-              <button onClick={() => setSidebarOpen(false)} className="text-[#444444] hover:text-[#E8E8E8]">
+              <span className="text-sm font-semibold text-[#A3A3A3]">Navigation</span>
+              <button onClick={() => setSidebarOpen(false)} className="text-[#444444] hover:text-[#FFFFFF]">
                 <X className="w-5 h-5" />
               </button>
             </div>

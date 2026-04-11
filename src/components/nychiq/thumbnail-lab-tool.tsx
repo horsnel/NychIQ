@@ -78,26 +78,26 @@ Return ONLY the JSON object.`;
       setLoading(false);
     }
   };
-  const ctrColor = result ? (result.ctrScore >= 75 ? '#10B981' : result.ctrScore >= 50 ? '#FDBA2D' : '#EF4444') : '#888888';
+  const ctrColor = result ? (result.ctrScore >= 75 ? '#10B981' : result.ctrScore >= 50 ? '#FDBA2D' : '#EF4444') : '#A3A3A3';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(155,114,207,0.1)]"><ImageIcon className="w-5 h-5 text-[#9B72CF]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]"><ImageIcon className="w-5 h-5 text-[#8B5CF6]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Thumbnail Lab</h2>
-              <p className="text-xs text-[#888888] mt-0.5">CTR score 0-100, color psychology, text readability, improvements.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Thumbnail Lab</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">CTR score 0-100, color psychology, text readability, improvements.</p>
             </div>
           </div>
           <div className="flex gap-2">
             <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
               placeholder="Paste thumbnail image URL..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#9B72CF] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Analyze
             </button>
@@ -117,11 +117,11 @@ Return ONLY the JSON object.`;
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#9B72CF]" /> Thumbnail Analysis</h3>
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#8B5CF6]" /> Thumbnail Analysis</h3>
 
           {/* CTR Score */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">CTR Score</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">CTR Score</h4>
             <div className="text-5xl font-bold mb-2" style={{ color: ctrColor }}>{result.ctrScore}</div>
             <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden max-w-xs mx-auto">
               <div className="h-full rounded-full transition-all duration-700" style={{ width: `${result.ctrScore}%`, backgroundColor: ctrColor }} />
@@ -134,7 +134,7 @@ Return ONLY the JSON object.`;
           {/* Text Readability */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Text Readability</h4>
+              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Text Readability</h4>
               <span className="text-sm font-bold" style={{ color: result.textReadability >= 75 ? '#10B981' : result.textReadability >= 50 ? '#FDBA2D' : '#EF4444' }}>{result.textReadability}/100</span>
             </div>
             <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
@@ -144,24 +144,24 @@ Return ONLY the JSON object.`;
 
           {/* Color Psychology */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2 flex items-center gap-2"><Palette className="w-3.5 h-3.5" /> Color Psychology</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.colorPsychology}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><Palette className="w-3.5 h-3.5" /> Color Psychology</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.colorPsychology}</p>
           </div>
 
           {/* Composition */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2 flex items-center gap-2"><Layout className="w-3.5 h-3.5" /> Composition Critique</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.composition}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><Layout className="w-3.5 h-3.5" /> Composition Critique</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.composition}</p>
           </div>
 
           {/* Improvements */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-3">3 Improvement Suggestions</h4>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">3 Improvement Suggestions</h4>
             <div className="space-y-2">
               {result.improvements.map((imp, i) => (
                 <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(16,185,129,0.05)] border border-[rgba(16,185,129,0.1)]">
                   <CheckCircle className="w-4 h-4 text-[#10B981] mt-0.5 shrink-0" />
-                  <p className="text-sm text-[#E8E8E8]">{imp}</p>
+                  <p className="text-sm text-[#FFFFFF]">{imp}</p>
                 </div>
               ))}
             </div>
@@ -171,9 +171,9 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(155,114,207,0.1)] border border-[rgba(155,114,207,0.2)] flex items-center justify-center mb-4"><ImageIcon className="w-8 h-8 text-[#9B72CF]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Analyze Thumbnails</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Paste a thumbnail URL to get a comprehensive CTR and design analysis.</p>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center mb-4"><ImageIcon className="w-8 h-8 text-[#8B5CF6]" /></div>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Thumbnails</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Paste a thumbnail URL to get a comprehensive CTR and design analysis.</p>
         </div>
       )}
 

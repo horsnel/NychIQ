@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: string; features: string[] }> = [
   {
-    id: 'starter', name: 'Starter', icon: Zap, color: '#4A9EFF',
+    id: 'starter', name: 'Starter', icon: Zap, color: '#3B82F6',
     features: ['500 tokens/mo', 'Viral Predictor', 'Rankings', 'Shorts', 'Studio', 'Priority support'],
   },
   {
@@ -22,7 +22,7 @@ const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: str
     features: ['3,500 tokens/mo', 'Everything in Starter', 'Niche Spy', 'Algorithm', 'SEO Optimizer', 'Hook Generator', 'AI Script Writer', 'Automation', 'Outlier Scout'],
   },
   {
-    id: 'elite', name: 'Elite', icon: Shield, color: '#9B72CF',
+    id: 'elite', name: 'Elite', icon: Shield, color: '#8B5CF6',
     features: ['Unlimited tokens', 'Everything in Pro', 'CPM Estimator', 'Channel Audit', 'Perf Forensics', 'History Intel', 'Safe Check', 'Social Intelligence'],
   },
   {
@@ -36,10 +36,10 @@ export function UpgradeModal() {
 
   return (
     <Dialog open={upgradeModalOpen} onOpenChange={setUpgradeModalOpen}>
-      <DialogContent className="sm:max-w-2xl bg-[#141414] border-[#222] text-[#E8E8E8] p-0 max-h-[85vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl bg-[#141414] border-[#222] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="text-xl font-bold text-gradient-amber">Upgrade Your Plan</DialogTitle>
-          <p className="text-sm text-[#888888] mt-1">Unlock powerful features and get more tokens.</p>
+          <p className="text-sm text-[#A3A3A3] mt-1">Unlock powerful features and get more tokens.</p>
         </DialogHeader>
         <div className="p-6 grid gap-4 sm:grid-cols-2">
           {PLANS.map((plan) => {
@@ -65,12 +65,12 @@ export function UpgradeModal() {
                   )}
                 </div>
                 <div className="mb-3">
-                  <span className="text-2xl font-bold text-[#E8E8E8]">₦{PLAN_PRICES[plan.id].monthly.toLocaleString()}</span>
-                  <span className="text-xs text-[#888888]">/mo</span>
+                  <span className="text-2xl font-bold text-[#FFFFFF]">₦{PLAN_PRICES[plan.id].monthly.toLocaleString()}</span>
+                  <span className="text-xs text-[#A3A3A3]">/mo</span>
                 </div>
                 <ul className="space-y-1.5">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-xs text-[#888888]">
+                    <li key={f} className="flex items-center gap-2 text-xs text-[#A3A3A3]">
                       <Check className="w-3 h-3 text-[#10B981] shrink-0" />
                       {f}
                     </li>

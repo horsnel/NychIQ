@@ -120,8 +120,8 @@ export function RankingsTool() {
                 <BarChart3 className="w-5 h-5 text-[#FDBA2D]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#E8E8E8]">Rankings</h2>
-                <p className="text-xs text-[#888888] mt-0.5">
+                <h2 className="text-base font-bold text-[#FFFFFF]">Rankings</h2>
+                <p className="text-xs text-[#A3A3A3] mt-0.5">
                   Top performing content this week
                 </p>
               </div>
@@ -131,7 +131,7 @@ export function RankingsTool() {
               disabled={loading}
               className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
-              <RefreshCw className={cn('w-4 h-4 text-[#888888]', loading && 'animate-spin')} />
+              <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
             </button>
           </div>
 
@@ -145,7 +145,7 @@ export function RankingsTool() {
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   tab === t.key
                     ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                    : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
+                    : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#FFFFFF]'
                 )}
               >
                 {t.icon}
@@ -160,10 +160,10 @@ export function RankingsTool() {
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8]">{error}</p>
+          <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={fetchRankings}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#D9A013] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             Try Again
           </button>
@@ -226,16 +226,16 @@ export function RankingsTool() {
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-medium text-[#E8E8E8] truncate hover:text-[#FDBA2D] transition-colors">
+                  <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#FDBA2D] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-[#888888] mt-0.5 truncate">{item.channelTitle}</p>
+                  <p className="text-xs text-[#A3A3A3] mt-0.5 truncate">{item.channelTitle}</p>
                 </div>
 
                 {/* Stats */}
                 <div className="hidden sm:flex items-center gap-4 shrink-0">
                   <div className="text-right">
-                    <div className="flex items-center gap-1 text-xs text-[#888888]">
+                    <div className="flex items-center gap-1 text-xs text-[#A3A3A3]">
                       <Eye className="w-3 h-3" />
                       {fmtV(item.viewCount)}
                     </div>

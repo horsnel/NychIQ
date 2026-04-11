@@ -49,7 +49,7 @@ interface RoadmapResult {
 
 /* ── Phase Icon Map ── */
 const PHASE_CONFIG = [
-  { name: 'Foundation', icon: Zap, color: '#4A9EFF', subsRange: '0 → 1K' },
+  { name: 'Foundation', icon: Zap, color: '#3B82F6', subsRange: '0 → 1K' },
   { name: 'Acceleration', icon: Rocket, color: '#FDBA2D', subsRange: '1K → 10K' },
   { name: 'Diversification', icon: DollarSign, color: '#10B981', subsRange: '$1K/mo+' },
 ];
@@ -71,7 +71,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
               <span className="text-[10px] font-bold" style={{ color: phase.color }}>PHASE {index + 1}</span>
               {isActive && <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse" style={{ backgroundColor: `${phase.color}20`, color: phase.color }}>YOU ARE HERE</span>}
             </div>
-            <h4 className="text-sm font-bold text-[#E8E8E8]">{phase.name}</h4>
+            <h4 className="text-sm font-bold text-[#FFFFFF]">{phase.name}</h4>
           </div>
         </div>
         <span className="text-[10px] font-medium text-[#666666]">{phase.timeline}</span>
@@ -81,7 +81,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
         {/* Subscribers range */}
         <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
           <Target className="w-3.5 h-3.5 text-[#666666]" />
-          <span className="text-[11px] text-[#888888]">{phase.subsRange}</span>
+          <span className="text-[11px] text-[#A3A3A3]">{phase.subsRange}</span>
         </div>
 
         {/* Goals */}
@@ -89,7 +89,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
           <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#666666] mb-2">Goals</h5>
           <ul className="space-y-1">
             {phase.goals.map((g, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-[#888888]">
+              <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
                 <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: phase.color }} />
                 {g}
               </li>
@@ -102,7 +102,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
           <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#666666] mb-2">Strategy</h5>
           <ul className="space-y-1">
             {phase.strategies.map((s, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-[#888888]">
+              <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
                 <Sparkles className="w-3 h-3 shrink-0 mt-0.5" style={{ color: phase.color }} />
                 {s}
               </li>
@@ -129,7 +129,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Foundation',
         icon: Zap,
-        color: '#4A9EFF',
+        color: '#3B82F6',
         subsRange: '0 → 1K subscribers',
         timeline: '3-6 months',
         goals: [
@@ -304,8 +304,8 @@ Return ONLY the JSON object, no other text.`;
               <Target className="w-5 h-5" style={{ color: '#FDBA2D' }} />
             </div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Revenue Roadmap</h2>
-              <p className="text-xs text-[#888888] mt-0.5">
+              <h2 className="text-base font-bold text-[#FFFFFF]">Revenue Roadmap</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">
                 3-phase monetization roadmap from $0 to $1,000/month
               </p>
             </div>
@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNiche(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Your niche..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <input
@@ -329,14 +329,14 @@ Return ONLY the JSON object, no other text.`;
               value={subs}
               onChange={(e) => setSubs(e.target.value)}
               placeholder="Current subscribers"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
             <input
               type="number"
               value={views}
               onChange={(e) => setViews(e.target.value)}
               placeholder="Monthly views"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
           </div>
           <button
@@ -355,7 +355,7 @@ Return ONLY the JSON object, no other text.`;
       {error && (
         <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8] mb-3">{error}</p>
+          <p className="text-sm text-[#FFFFFF] mb-3">{error}</p>
           <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
             Retry
           </button>
@@ -387,11 +387,11 @@ Return ONLY the JSON object, no other text.`;
             <div className="p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
-                <h3 className="text-sm font-bold text-[#E8E8E8]">Power Level</h3>
+                <h3 className="text-sm font-bold text-[#FFFFFF]">Power Level</h3>
                 <span className="ml-auto text-xs font-bold" style={{ color: '#FDBA2D' }}>{powerLevel}%</span>
               </div>
               <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
-                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #4A9EFF, #FDBA2D, #10B981)` }} />
+                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #3B82F6, #FDBA2D, #10B981)` }} />
               </div>
               <div className="flex items-center justify-between text-[10px] text-[#555555]">
                 <span>0 subs</span>
@@ -403,15 +403,15 @@ Return ONLY the JSON object, no other text.`;
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
                   <p className="text-base font-bold text-[#10B981]">{result.viewsFor1K.toLocaleString()}</p>
-                  <p className="text-[10px] text-[#888888] mt-0.5">Views for $1K/mo</p>
+                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">Views for $1K/mo</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
                   <p className="text-base font-bold text-[#FDBA2D]">${result.rpmBenchmark}</p>
-                  <p className="text-[10px] text-[#888888] mt-0.5">RPM Benchmark</p>
+                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">RPM Benchmark</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] col-span-2 sm:col-span-1">
-                  <p className="text-base font-bold text-[#4A9EFF]">{result.currentSubs.toLocaleString()}</p>
-                  <p className="text-[10px] text-[#888888] mt-0.5">Current Subs</p>
+                  <p className="text-base font-bold text-[#3B82F6]">{result.currentSubs.toLocaleString()}</p>
+                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">Current Subs</p>
                 </div>
               </div>
             </div>
@@ -421,7 +421,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="space-y-4">
             <div className="flex items-center gap-2 px-1">
               <BarChart3 className="w-4 h-4" style={{ color: '#FDBA2D' }} />
-              <h3 className="text-sm font-semibold text-[#E8E8E8]">3-Phase Roadmap</h3>
+              <h3 className="text-sm font-semibold text-[#FFFFFF]">3-Phase Roadmap</h3>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {result.phases.map((phase, i) => (
@@ -434,13 +434,13 @@ Return ONLY the JSON object, no other text.`;
           {result.seasonalPredictions.length > 0 && (
             <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Calendar className="w-4 h-4" style={{ color: '#9B72CF' }} />
-                <h3 className="text-sm font-semibold text-[#E8E8E8]">Seasonal Predictions</h3>
+                <Calendar className="w-4 h-4" style={{ color: '#8B5CF6' }} />
+                <h3 className="text-sm font-semibold text-[#FFFFFF]">Seasonal Predictions</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.seasonalPredictions.map((pred, i) => (
                   <div key={i} className="px-4 py-3">
-                    <p className="text-xs text-[#888888] leading-relaxed">{pred}</p>
+                    <p className="text-xs text-[#A3A3A3] leading-relaxed">{pred}</p>
                   </div>
                 ))}
               </div>
@@ -452,12 +452,12 @@ Return ONLY the JSON object, no other text.`;
             <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
-                <h3 className="text-sm font-semibold text-[#E8E8E8]">Bottleneck Detection</h3>
+                <h3 className="text-sm font-semibold text-[#FFFFFF]">Bottleneck Detection</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.bottlenecks.map((b, i) => (
                   <div key={i} className="px-4 py-3">
-                    <p className="text-xs text-[#888888] leading-relaxed">{b}</p>
+                    <p className="text-xs text-[#A3A3A3] leading-relaxed">{b}</p>
                   </div>
                 ))}
               </div>
@@ -469,7 +469,7 @@ Return ONLY the JSON object, no other text.`;
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />
-                <h3 className="text-sm font-semibold text-[#E8E8E8]">AI Strategic Advice</h3>
+                <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Strategic Advice</h3>
               </div>
               <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#FDBA2D] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
@@ -481,14 +481,14 @@ Return ONLY the JSON object, no other text.`;
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(253,186,45,0.1)' }}>
                   <Bot className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} />
                 </div>
-                <p className="text-xs text-[#888888] leading-relaxed">{result.advice}</p>
+                <p className="text-xs text-[#A3A3A3] leading-relaxed">{result.advice}</p>
               </div>
             </div>
           </div>
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#888888] hover:text-[#FDBA2D] transition-colors">
+            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#A3A3A3] hover:text-[#FDBA2D] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Regenerate
             </button>
@@ -502,8 +502,8 @@ Return ONLY the JSON object, no other text.`;
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
             <Target className="w-8 h-8" style={{ color: '#FDBA2D' }} />
           </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Your Revenue Roadmap</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Your Revenue Roadmap</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
             Enter your niche and current stats to get a personalized 3-phase monetization roadmap to $1,000/month.
           </p>
         </div>

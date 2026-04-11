@@ -12,9 +12,9 @@ interface PlanGateProps {
 
 const PLAN_HIERARCHY: Plan[] = ['starter', 'pro', 'elite', 'agency'];
 const PLAN_CONFIG: Record<string, { icon: React.ElementType; color: string; name: string }> = {
-  starter: { icon: Zap, color: '#4A9EFF', name: 'Starter' },
+  starter: { icon: Zap, color: '#3B82F6', name: 'Starter' },
   pro: { icon: Crown, color: '#FDBA2D', name: 'Pro' },
-  elite: { icon: Shield, color: '#9B72CF', name: 'Elite' },
+  elite: { icon: Shield, color: '#8B5CF6', name: 'Elite' },
   agency: { icon: Building2, color: '#10B981', name: 'Agency' },
 };
 
@@ -65,10 +65,10 @@ export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
         </div>
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">{toolLabel}</h2>
+        <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">{toolLabel}</h2>
 
         {/* Description */}
-        <p className="text-sm text-[#888888] mb-2">
+        <p className="text-sm text-[#A3A3A3] mb-2">
           Upgrade to{' '}
           <span style={{ color: config.color }} className="font-semibold">
             {config.name}

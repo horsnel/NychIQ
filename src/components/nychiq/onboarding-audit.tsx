@@ -53,7 +53,7 @@ function HealthGauge({ score }: { score: number }) {
   const getColor = () => {
     if (score >= 80) return '#10B981';
     if (score >= 60) return '#FDBA2D';
-    if (score >= 40) return '#4A9EFF';
+    if (score >= 40) return '#3B82F6';
     return '#EF4444';
   };
 
@@ -213,7 +213,7 @@ export function OnboardingAudit() {
               <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="w-8 h-8 text-[#FDBA2D]" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mb-2">Free Channel Audit</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">Free Channel Audit</h2>
               <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
                 Enter your YouTube channel URL to get a free AI-powered performance analysis.
               </p>
@@ -225,7 +225,7 @@ export function OnboardingAudit() {
                     value={channelUrl}
                     onChange={(e) => setChannelUrl(e.target.value)}
                     placeholder="https://youtube.com/@yourchannel"
-                    className="pl-9 bg-[#141414] border-[#222] text-[#E8E8E8] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
+                    className="pl-9 bg-[#141414] border-[#222] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
                     onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
                   />
                 </div>
@@ -233,11 +233,11 @@ export function OnboardingAudit() {
                 <div className="flex items-center justify-center gap-4 text-xs text-[#555]">
                   <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#FDBA2D]" /> Viral Score</span>
                   <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-[#10B981]" /> Growth Tips</span>
-                  <span className="flex items-center gap-1"><Search className="w-3 h-3 text-[#4A9EFF]" /> SEO</span>
+                  <span className="flex items-center gap-1"><Search className="w-3 h-3 text-[#3B82F6]" /> SEO</span>
                 </div>
 
                 <Button
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={handleAudit}
                   disabled={!channelUrl.trim()}
                 >
@@ -261,7 +261,7 @@ export function OnboardingAudit() {
               <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="w-8 h-8 text-[#FDBA2D] animate-pulse" />
               </div>
-              <h2 className="text-xl font-bold text-[#E8E8E8] mb-6">Analyzing Channel...</h2>
+              <h2 className="text-xl font-bold text-[#FFFFFF] mb-6">Analyzing Channel...</h2>
 
               <div className="space-y-3 max-w-xs mx-auto">
                 {AUDIT_STEPS.map((step, i) => {
@@ -296,7 +296,7 @@ export function OnboardingAudit() {
           {report && (
             <div className="animate-fade-in-up">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-[#E8E8E8] mb-2">Audit Report</h2>
+                <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Audit Report</h2>
                 <p className="text-xs text-[#555] font-mono">{channelUrl}{channelData ? ` — ${channelData.name}` : ''}</p>
               </div>
 
@@ -308,8 +308,8 @@ export function OnboardingAudit() {
               {/* AI Insights */}
               <div className="bg-[#0D0D0D] border border-[#1E1E1E] rounded-xl p-5 mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-4 h-4 text-[#9B72CF]" />
-                  <span className="text-xs font-semibold text-[#9B72CF]">AI INSIGHTS</span>
+                  <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+                  <span className="text-xs font-semibold text-[#8B5CF6]">AI INSIGHTS</span>
                 </div>
                 <ul className="space-y-2.5">
                   {insights.map((insight, i) => (
@@ -337,15 +337,15 @@ export function OnboardingAudit() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-base font-bold text-[#E8E8E8] truncate">{channelData.name || 'Channel'}</h3>
+                      <h3 className="text-base font-bold text-[#FFFFFF] truncate">{channelData.name || 'Channel'}</h3>
                       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
-                        <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
                           <Users className="w-3.5 h-3.5" /> {fmtV(channelData.subscribers)} subs
                         </span>
-                        <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
                           <Video className="w-3.5 h-3.5" /> {fmtV(channelData.videoCount)} videos
                         </span>
-                        <span className="text-xs text-[#888888] flex items-center gap-1.5">
+                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
                           <Eye className="w-3.5 h-3.5" /> {fmtV(channelData.totalViews)} views
                         </span>
                       </div>
@@ -359,13 +359,13 @@ export function OnboardingAudit() {
                 {(channelData ? [
                   { label: 'Videos', value: fmtV(channelData.videoCount), color: '#FDBA2D' },
                   { label: 'Subscribers', value: fmtV(channelData.subscribers), color: '#10B981' },
-                  { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#4A9EFF' },
-                  { label: 'Engagement', value: `${(Math.random() * 4 + 4).toFixed(1)}%`, color: '#9B72CF' },
+                  { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#3B82F6' },
+                  { label: 'Engagement', value: `${(Math.random() * 4 + 4).toFixed(1)}%`, color: '#8B5CF6' },
                 ] : [
                   { label: 'Videos', value: '47', color: '#FDBA2D' },
                   { label: 'Subscribers', value: '12.4K', color: '#10B981' },
-                  { label: 'Avg Views', value: '3.2K', color: '#4A9EFF' },
-                  { label: 'Engagement', value: '6.8%', color: '#9B72CF' },
+                  { label: 'Avg Views', value: '3.2K', color: '#3B82F6' },
+                  { label: 'Engagement', value: '6.8%', color: '#8B5CF6' },
                 ]).map((stat) => (
                   <div
                     key={stat.label}
@@ -380,7 +380,7 @@ export function OnboardingAudit() {
               {/* Action */}
               <div className="flex flex-col items-center gap-3">
                 <Button
-                  className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
                   onClick={() => setPage('ob-extension')}
                 >
                   Continue

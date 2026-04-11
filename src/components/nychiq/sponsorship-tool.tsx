@@ -33,7 +33,7 @@ function CopyBtn({ text, label }: { text: string; label?: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
   return (
-    <button onClick={handleCopy} className="flex items-center gap-1 text-xs text-[#888888] hover:text-[#10B981] transition-colors" title="Copy">
+    <button onClick={handleCopy} className="flex items-center gap-1 text-xs text-[#A3A3A3] hover:text-[#10B981] transition-colors" title="Copy">
       {copied ? <><Check className="w-3 h-3 text-[#10B981]" /> Copied</> : <><Copy className="w-3 h-3" /> {label || 'Copy'}</>}
     </button>
   );
@@ -122,34 +122,34 @@ Return ONLY the JSON object.`;
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><Handshake className="w-5 h-5 text-[#10B981]" /></div>
             <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Sponsorship ROI Calculator</h2>
-              <p className="text-xs text-[#888888] mt-0.5">Calculate exact what to charge for brand deals.</p>
+              <h2 className="text-base font-bold text-[#FFFFFF]">Sponsorship ROI Calculator</h2>
+              <p className="text-xs text-[#A3A3A3] mt-0.5">Calculate exact what to charge for brand deals.</p>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="text-[10px] text-[#666666] mb-1 block">Subscriber Count</label>
               <input type="number" value={subs} onChange={(e) => setSubs(e.target.value)} placeholder="e.g., 50000"
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
               />
             </div>
             <div>
               <label className="text-[10px] text-[#666666] mb-1 block">Average Views</label>
               <input type="number" value={views} onChange={(e) => setViews(e.target.value)} placeholder="e.g., 10000"
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
               />
             </div>
             <div>
               <label className="text-[10px] text-[#666666] mb-1 block">Niche</label>
               <select value={niche} onChange={(e) => setNiche(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] focus:outline-none appearance-none cursor-pointer">
+                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none appearance-none cursor-pointer">
                 {NICHES.map((n) => <option key={n} value={n}>{n}</option>)}
               </select>
             </div>
             <div>
               <label className="text-[10px] text-[#666666] mb-1 block">Engagement Rate (%)</label>
               <input type="number" step="0.1" value={engagement} onChange={(e) => setEngagement(e.target.value)} placeholder="e.g., 4.5"
-                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
+                className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
               />
             </div>
           </div>
@@ -163,14 +163,14 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#10B981] mx-auto mb-3" />
-          <p className="text-sm text-[#888888]">Calculating sponsorship rates...</p>
+          <p className="text-sm text-[#A3A3A3]">Calculating sponsorship rates...</p>
         </div>
       )}
 
       {!loading && result && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Your Rate Card</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Your Rate Card</h3>
             <CopyBtn text={rateCardText} label="Copy Rate Card" />
           </div>
 
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Minimum Rate</p>
-              <p className="text-2xl font-bold text-[#4A9EFF]">{fmtDollar(result.minRate)}</p>
+              <p className="text-2xl font-bold text-[#3B82F6]">{fmtDollar(result.minRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
             </div>
             <div className="rounded-lg bg-[#141414] border border-[rgba(16,185,129,0.3)] p-4 text-center">
@@ -197,18 +197,18 @@ Return ONLY the JSON object.`;
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Views</p>
-              <p className="text-lg font-bold text-[#E8E8E8]">{fmtDollar(result.ratePerKViews)}</p>
+              <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKViews)}</p>
             </div>
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Subs</p>
-              <p className="text-lg font-bold text-[#E8E8E8]">{fmtDollar(result.ratePerKSubs)}</p>
+              <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKSubs)}</p>
             </div>
           </div>
 
           {/* Market Comparison */}
           <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-            <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-2">Market Comparison</h4>
-            <p className="text-sm text-[#E8E8E8] leading-relaxed">{result.marketComparison}</p>
+            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Market Comparison</h4>
+            <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.marketComparison}</p>
           </div>
         </div>
       )}
@@ -216,8 +216,8 @@ Return ONLY the JSON object.`;
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-16 h-16 rounded-2xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-4"><Handshake className="w-8 h-8 text-[#10B981]" /></div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Calculate Your Worth</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center">Enter your channel stats to get a detailed sponsorship rate card.</p>
+          <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Calculate Your Worth</h3>
+          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter your channel stats to get a detailed sponsorship rate card.</p>
         </div>
       )}
 

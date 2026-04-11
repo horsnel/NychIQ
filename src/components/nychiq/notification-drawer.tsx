@@ -141,23 +141,23 @@ function healthGlowConfig(status: HealthStatus) {
         glowColor: 'rgba(255,255,255,0.15)',
         borderColor: 'rgba(255,255,255,0.1)',
         bgColor: 'rgba(255,255,255,0.03)',
-        textColor: '#E8E8E8',
+        textColor: '#FFFFFF',
         icon: <Eye className="w-4 h-4" />,
         badge: 'NEW',
-        badgeColor: '#E8E8E8',
+        badgeColor: '#FFFFFF',
         badgeBg: 'rgba(255,255,255,0.08)',
         ringClass: 'health-glow-white',
       };
     case 'healthy':
       return {
-        glowColor: 'rgba(74,158,255,0.3)',
-        borderColor: 'rgba(74,158,255,0.2)',
-        bgColor: 'rgba(74,158,255,0.05)',
-        textColor: '#4A9EFF',
+        glowColor: 'rgba(59,130,246,0.3)',
+        borderColor: 'rgba(59,130,246,0.2)',
+        bgColor: 'rgba(59,130,246,0.05)',
+        textColor: '#3B82F6',
         icon: <ShieldCheck className="w-4 h-4" />,
         badge: 'OK',
-        badgeColor: '#4A9EFF',
-        badgeBg: 'rgba(74,158,255,0.12)',
+        badgeColor: '#3B82F6',
+        badgeBg: 'rgba(59,130,246,0.12)',
         ringClass: 'health-glow-blue',
       };
   }
@@ -218,11 +218,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     if (totalTokensSpent > 0) {
       items.push({
         id: 'intel-spent',
-        icon: <TrendingUp className="w-4 h-4 text-[#4A9EFF]" />,
+        icon: <TrendingUp className="w-4 h-4 text-[#3B82F6]" />,
         title: 'Usage Insight',
         message: `You've spent ${totalTokensSpent} tokens this cycle. Check Token Usage for a breakdown.`,
-        color: '#4A9EFF',
-        bgColor: 'rgba(74,158,255,0.08)',
+        color: '#3B82F6',
+        bgColor: 'rgba(59,130,246,0.08)',
       });
     }
 
@@ -258,11 +258,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     }
     items.push({
       id: 'intel-time',
-      icon: <Sparkles className="w-4 h-4 text-[#9B72CF]" />,
+      icon: <Sparkles className="w-4 h-4 text-[#8B5CF6]" />,
       title: greeting,
       message: tip,
-      color: '#9B72CF',
-      bgColor: 'rgba(155,114,207,0.08)',
+      color: '#8B5CF6',
+      bgColor: 'rgba(139,92,246,0.08)',
     });
 
     return items;
@@ -293,7 +293,7 @@ export function NotificationDrawer() {
       case 'good':
         return { icon: <ShieldCheck className="w-4 h-4" />, color: '#10B981', label: 'Good' };
       case 'neutral':
-        return { icon: <Activity className="w-4 h-4" />, color: '#E8E8E8', label: 'Fair' };
+        return { icon: <Activity className="w-4 h-4" />, color: '#FFFFFF', label: 'Fair' };
     }
   }, [channelHealthStatus]);
 
@@ -373,7 +373,7 @@ export function NotificationDrawer() {
               <>
                 <button
                   onClick={handleMarkAllRead}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
                   title="Mark all as read"
                 >
                   <CheckCheck className="w-3.5 h-3.5" />
@@ -381,7 +381,7 @@ export function NotificationDrawer() {
                 </button>
                 <button
                   onClick={handleClearAll}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
                   title="Clear all"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -390,7 +390,7 @@ export function NotificationDrawer() {
             )}
             <button
               onClick={() => { playClick(); setNotifDrawerOpen(false); }}
-              className="p-1 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              className="p-1 rounded-md text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -504,7 +504,7 @@ export function NotificationDrawer() {
                             {cfg.badge}
                           </span>
                         </div>
-                        <p className="text-xs text-[#888888] mt-0.5 leading-relaxed line-clamp-2">
+                        <p className="text-xs text-[#A3A3A3] mt-0.5 leading-relaxed line-clamp-2">
                           {alert.message}
                         </p>
 
@@ -569,7 +569,7 @@ export function NotificationDrawer() {
                                 <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: notif.color }} />
                               )}
                             </div>
-                            <p className="text-xs text-[#888888] mt-0.5 leading-relaxed line-clamp-2">
+                            <p className="text-xs text-[#A3A3A3] mt-0.5 leading-relaxed line-clamp-2">
                               {notif.message}
                             </p>
                             <p className="text-[10px] text-[#555555] mt-1">
@@ -596,7 +596,7 @@ export function NotificationDrawer() {
           {/* Intelligence Feed Section */}
           <div className="mb-4">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-[#9B72CF]" />
+              <Sparkles className="w-3 h-3 text-[#8B5CF6]" />
               Intelligence Feed
             </p>
             <div className="space-y-1.5">
@@ -615,7 +615,7 @@ export function NotificationDrawer() {
                       <p className="text-sm font-medium" style={{ color: item.color }}>
                         {item.title}
                       </p>
-                      <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                      <p className="text-xs text-[#A3A3A3] mt-0.5 leading-relaxed">
                         {item.message}
                       </p>
                     </div>
@@ -650,12 +650,12 @@ export function NotificationDrawer() {
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-medium text-[#E8E8E8]">{notif.title}</p>
+                    <p className="text-sm font-medium text-[#FFFFFF]">{notif.title}</p>
                     {notif.read && (
                       <Check className="w-3 h-3 text-[#444444] shrink-0" />
                     )}
                   </div>
-                  <p className="text-xs text-[#888888] mt-0.5">{notif.message}</p>
+                  <p className="text-xs text-[#A3A3A3] mt-0.5">{notif.message}</p>
                   <p className="text-[11px] text-[#555555] mt-1">{notif.time}</p>
                 </div>
               </div>

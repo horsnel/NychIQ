@@ -24,7 +24,7 @@ const SUGGESTIONS = [
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-2 animate-fade-in-up">
-      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0">
+      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shrink-0">
         <Bot className="w-3.5 h-3.5 text-black" />
       </div>
       <div className="bg-[#1A1A1A] px-4 py-3 rounded-2xl rounded-tl-sm">
@@ -108,11 +108,11 @@ export function SakuPanel() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E] shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center">
               <Bot className="w-4.5 h-4.5 text-black" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-[#E8E8E8]">Saku AI</h3>
+              <h3 className="text-sm font-semibold text-[#FFFFFF]">Saku AI</h3>
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-live" />
                 <p className="text-[10px] text-[#10B981]">Online</p>
@@ -122,21 +122,21 @@ export function SakuPanel() {
           <div className="flex items-center gap-0.5">
             <button
               onClick={() => { setSakuOpen(false); setSakuFullOpen(true); }}
-              className="p-1.5 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              className="p-1.5 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               title="Expand Page"
             >
               <SquareArrowOutUpRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => { setSakuOpen(false); setSakuFullOpen(true); }}
-              className="p-1.5 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              className="p-1.5 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               title="Expand"
             >
               <Maximize2 className="w-4 h-4" />
             </button>
             <button
               onClick={() => setSakuOpen(false)}
-              className="p-1.5 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+              className="p-1.5 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               title="Close"
             >
               <X className="w-4 h-4" />
@@ -149,10 +149,10 @@ export function SakuPanel() {
           {/* Welcome state (no messages) */}
           {messages.length === 0 && !isTyping && (
             <div className="flex flex-col items-center justify-center h-full py-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center mx-auto mb-3">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center mx-auto mb-3">
                 <Bot className="w-7 h-7 text-black" />
               </div>
-              <p className="text-sm font-semibold text-[#E8E8E8] mb-1">Hey! I&apos;m Saku</p>
+              <p className="text-sm font-semibold text-[#FFFFFF] mb-1">Hey! I&apos;m Saku</p>
               <p className="text-xs text-[#666]">Your YouTube AI assistant. Ask me anything!</p>
             </div>
           )}
@@ -164,7 +164,7 @@ export function SakuPanel() {
               className={cn('flex items-start gap-2', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               {msg.role === 'assistant' && (
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shrink-0 mt-0.5">
                   <Bot className="w-3.5 h-3.5 text-black" />
                 </div>
               )}
@@ -173,7 +173,7 @@ export function SakuPanel() {
                   'max-w-[82%] px-3.5 py-2.5 text-[13px] leading-relaxed',
                   msg.role === 'user'
                     ? 'bg-[#FDBA2D] text-black rounded-2xl rounded-tr-sm'
-                    : 'bg-[#1A1A1A] text-[#E8E8E8] rounded-2xl rounded-tl-sm'
+                    : 'bg-[#1A1A1A] text-[#FFFFFF] rounded-2xl rounded-tl-sm'
                 )}
               >
                 {msg.content}
@@ -197,7 +197,7 @@ export function SakuPanel() {
                   <button
                     key={sug.text}
                     onClick={() => handleSuggestionClick(sug.text)}
-                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#E8E8E8] hover:border-[rgba(253,186,45,0.25)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
+                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#FFFFFF] hover:border-[rgba(253,186,45,0.25)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
                     style={{ animationDelay: `${idx * 80}ms` }}
                   >
                     <sug.icon className="w-3.5 h-3.5 text-[#666] shrink-0" />
@@ -224,7 +224,7 @@ export function SakuPanel() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
                 placeholder="Ask Saku anything..."
-                className="flex-1 bg-transparent text-sm text-[#E8E8E8] placeholder-[#555] outline-none"
+                className="flex-1 bg-transparent text-sm text-[#FFFFFF] placeholder-[#555] outline-none"
                 disabled={isTyping}
               />
               <button

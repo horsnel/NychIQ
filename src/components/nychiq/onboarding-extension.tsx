@@ -23,7 +23,7 @@ const STEPS = [
     title: 'Add to Chrome',
     desc: 'Click the install button below to add NychIQ to your Chrome browser from the Chrome Web Store.',
     icon: Download,
-    color: '#4A9EFF',
+    color: '#3B82F6',
   },
   {
     num: '2',
@@ -55,7 +55,7 @@ const SETUP_STEPS = [
     title: 'Saku AI Welcome',
     desc: 'Get your first personalized intelligence briefing',
     icon: Sparkles,
-    color: '#9B72CF',
+    color: '#8B5CF6',
   },
   {
     num: '3',
@@ -105,7 +105,7 @@ export function OnboardingExtension() {
   const postInstallRoadmap = extensionClicked && (
     <div className="animate-fade-in-up space-y-3">
       <div className="rounded-xl bg-[#141414] border border-[#222222] p-4">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-[#888888] mb-3">What comes next</p>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-[#A3A3A3] mb-3">What comes next</p>
         <div className="space-y-2.5">
           {SETUP_STEPS.map((step, idx) => {
             const StepIcon = step.icon;
@@ -118,7 +118,7 @@ export function OnboardingExtension() {
                   <StepIcon className="w-3.5 h-3.5" style={{ color: step.color }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-[#E8E8E8]">{step.title}</p>
+                  <p className="text-xs font-semibold text-[#FFFFFF]">{step.title}</p>
                   <p className="text-[10px] text-[#666666]">{step.desc}</p>
                 </div>
                 {idx < SETUP_STEPS.length - 1 && (
@@ -131,7 +131,7 @@ export function OnboardingExtension() {
       </div>
 
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
         onClick={handleContinueToSetup}
       >
         Continue to Setup
@@ -144,7 +144,7 @@ export function OnboardingExtension() {
   const preInstallActions = !extensionClicked && (
     <>
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
         onClick={handleGoToDashboard}
       >
         Go to Dashboard
@@ -192,10 +192,10 @@ export function OnboardingExtension() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8">
         <div className="max-w-lg w-full">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(74,158,255,0.1)] border border-[rgba(74,158,255,0.2)] flex items-center justify-center mx-auto mb-6">
-              <Download className="w-8 h-8 text-[#4A9EFF]" />
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)] flex items-center justify-center mx-auto mb-6">
+              <Download className="w-8 h-8 text-[#3B82F6]" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#E8E8E8] mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">
               Install NychIQ Extension
             </h2>
             <p className="text-sm text-[#666] max-w-sm mx-auto">
@@ -227,7 +227,7 @@ export function OnboardingExtension() {
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#E8E8E8] mb-1">{step.title}</h3>
+                    <h3 className="text-sm font-semibold text-[#FFFFFF] mb-1">{step.title}</h3>
                     <p className="text-xs text-[#666] leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export function OnboardingExtension() {
                 'w-full h-11 font-semibold shadow-lg transition-all',
                 extensionClicked
                   ? 'bg-[#10B981] text-white shadow-[rgba(16,185,129,0.15)]'
-                  : 'bg-[#4A9EFF] text-white hover:bg-[#3A8AEF] shadow-[rgba(74,158,255,0.15)]',
+                  : 'bg-[#3B82F6] text-white hover:bg-[#3A8AEF] shadow-[rgba(59,130,246,0.15)]',
               ].join(' ')}
               onClick={handleInstallExtension}
             >
@@ -288,10 +288,10 @@ export function OnboardingExtension() {
                 </div>
               </div>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#E8E8E8] mb-2 text-center">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-2 text-center">
               Personalize Your AI Assistant
             </h2>
-            <p className="text-sm text-[#888888] text-center mb-8 leading-relaxed">
+            <p className="text-sm text-[#A3A3A3] text-center mb-8 leading-relaxed">
               Customize your Channel Assistant with your brand voice, audience goals, and content strategy. It&apos;s free for all plans!
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -306,7 +306,7 @@ export function OnboardingExtension() {
             </div>
             <div className="space-y-3">
               <Button
-                className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
                 onClick={handleCustomizeNow}
               >
                 Customize Now
