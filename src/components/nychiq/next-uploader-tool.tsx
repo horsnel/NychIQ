@@ -154,7 +154,7 @@ function retentionColor(retention: number): string {
    ════════════════════════════════════════════════ */
 
 function generateRetentionGraph(base: number): number[] {
-  const points = [];
+  const points: number[] = [];
   let val = base;
   for (let i = 0; i < 12; i++) {
     val = Math.max(5, val - (Math.random() * 8 + 2));
@@ -257,9 +257,9 @@ function getSuggestedIdeas(niche: string): string[] {
    ════════════════════════════════════════════════ */
 
 /* ── Tactical Corner Bracket ── */
-function TacticalCorners({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function TacticalCorners({ children, className = '', style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} style={style}>
       <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#9B72CF] opacity-40 rounded-tl-sm pointer-events-none" />
       <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#9B72CF] opacity-40 rounded-tr-sm pointer-events-none" />
       <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#9B72CF] opacity-40 rounded-bl-sm pointer-events-none" />

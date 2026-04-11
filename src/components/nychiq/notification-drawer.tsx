@@ -501,7 +501,7 @@ export function NotificationDrawer() {
                               backgroundColor: cfg.badgeBg,
                             }}
                           >
-                            {alert.badge}
+                            {cfg.badge}
                           </span>
                         </div>
                         <p className="text-xs text-[#888888] mt-0.5 leading-relaxed line-clamp-2">

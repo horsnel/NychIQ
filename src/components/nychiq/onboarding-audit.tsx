@@ -356,7 +356,7 @@ export function OnboardingAudit() {
 
               {/* Stats pills */}
               <div className="flex flex-wrap gap-2 mb-8 justify-center">
-                {channelData ? [
+                {(channelData ? [
                   { label: 'Videos', value: fmtV(channelData.videoCount), color: '#FDBA2D' },
                   { label: 'Subscribers', value: fmtV(channelData.subscribers), color: '#10B981' },
                   { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#4A9EFF' },
@@ -366,7 +366,7 @@ export function OnboardingAudit() {
                   { label: 'Subscribers', value: '12.4K', color: '#10B981' },
                   { label: 'Avg Views', value: '3.2K', color: '#4A9EFF' },
                   { label: 'Engagement', value: '6.8%', color: '#9B72CF' },
-                ].map((stat) => (
+                ]).map((stat) => (
                   <div
                     key={stat.label}
                     className="px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]"
