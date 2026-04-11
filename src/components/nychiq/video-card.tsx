@@ -25,6 +25,7 @@ export interface VideoData {
   duration?: string;
   viralScore?: number;
   thumbnail?: string;
+  description?: string;
 }
 
 interface VideoCardProps {
@@ -108,7 +109,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
   };
 
   const handleCopyDescription = async () => {
-    const ok = await copyToClipboard(video.title);
+    const ok = await copyToClipboard(video.description || video.title);
     showToast(ok ? 'Description copied!' : 'Failed to copy description', ok ? 'success' : 'error');
   };
 

@@ -158,7 +158,7 @@ function healthGlowConfig(status: HealthStatus) {
         badge: 'OK',
         badgeColor: '#4A9EFF',
         badgeBg: 'rgba(74,158,255,0.12)',
-        ringClass: '',
+        ringClass: 'health-glow-blue',
       };
   }
 }

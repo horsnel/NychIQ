@@ -114,6 +114,7 @@ function buildSystemPrompt(ctx: VideoContext): string {
 2. Audience retention simulation and optimization
 3. Green flag identification for maximizing video performance
 4. Ad revenue optimization and monetization strategy
+5. General performance analysis including SEO, thumbnail effectiveness, and title optimization
 
 You have analyzed the following video:
 
@@ -134,6 +135,8 @@ Viral Score: ${ctx.viralScore}/100
 3. **Green Flag Analysis**: Identify all positive signals this video has (strong title, good timing, trending topic, high engagement rate, etc.) that increase ad revenue. Rate each on a 1-10 scale and suggest how to amplify these strengths.
 
 4. **Ad Revenue Maximization**: Analyze the estimated CPM for this niche, calculate projected earnings, and suggest strategies to increase ad revenue (mid-roll placement, video length optimization, audience demographics targeting).
+
+5. **General Performance Analysis**: Evaluate SEO effectiveness, thumbnail click-through rate, title optimization, and overall content strategy. Provide actionable recommendations for improving discoverability and click performance.
 
 Always provide actionable, data-driven insights. Use specific numbers and percentages when possible.`;
 }

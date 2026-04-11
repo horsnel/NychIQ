@@ -43,6 +43,8 @@ import {
   Clock,
   CircleDot,
   Radar,
+  Image as ImageIcon,
+  Palette,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -318,6 +320,13 @@ export function AgencyDashboardTool() {
   const [briefingComplete, setBriefingComplete] = useState(false);
   const [briefingStep, setBriefingStep] = useState(0);
   const [briefingProgress, setBriefingProgress] = useState(0);
+
+  // White-Label state
+  const [wlLogo, setWlLogo] = useState<string | null>(null);
+  const [wlBrandName, setWlBrandName] = useState('');
+  const [wlSubdomain, setWlSubdomain] = useState('');
+  const [wlAccentColor, setWlAccentColor] = useState('#9B72CF');
+  const [wlNoWatermark, setWlNoWatermark] = useState(true);
 
   const BRIEFING_MESSAGES = [
     'Analyzing Competitor DNA...',
@@ -1066,6 +1075,156 @@ export function AgencyDashboardTool() {
                   <p className="text-[10px] text-[#666666]">CSV / PDF export</p>
                 </div>
                 <Download className="w-4 h-4 text-[#444444] group-hover:text-[#FDBA2D] transition-colors" />
+              </button>
+            </div>
+          </div>
+
+          {/* White-Label Configuration */}
+          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden mt-6">
+            <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center gap-2">
+              <Shield className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider">White-Label Branding</h3>
+            </div>
+            <div className="p-5 space-y-5">
+              <p className="text-xs text-[#888888]">Customize your agency reports with your own branding. Your clients will see your logo, colors, and subdomain — no NychIQ watermarks.</p>
+
+              {/* Logo Upload */}
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-[#E8E8E8]">Agency Logo</label>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-lg border-2 border-dashed border-[#333333] flex items-center justify-center overflow-hidden" style={wlLogo ? {} : { backgroundColor: '#1A1A1A' }}>
+                    {wlLogo ? (
+                      <img src={wlLogo} alt="Agency logo" className="w-full h-full object-cover" />
+                    ) : (
+                      <ImageIcon className="w-6 h-6 text-[#555555]" />
+                    )}
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        const input = document.createElement('input');
+                        input.type = 'file';
+                        input.accept = 'image/*';
+                        input.onchange = (e) => {
+                          const file = (e.target as HTMLInputElement).files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (ev) => setWlLogo(ev.target?.result as string);
+                            reader.readAsDataURL(file);
+                          }
+                        };
+                        input.click();
+                      }}
+                      className="px-3 py-1.5 rounded-md text-xs font-medium bg-[#1A1A1A] border border-[#333333] text-[#E8E8E8] hover:border-[#FDBA2D]/50 transition-colors"
+                    >
+                      Upload Logo
+                    </button>
+                    <p className="text-[10px] text-[#555555] mt-1">PNG or SVG, max 2MB</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Brand Name & Subdomain */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-[#E8E8E8]">Brand Name</label>
+                  <input
+                    type="text"
+                    value={wlBrandName}
+                    onChange={(e) => setWlBrandName(e.target.value)}
+                    placeholder="Your Agency Name"
+                    className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-[#E8E8E8]">Custom Subdomain</label>
+                  <div className="flex items-center h-10 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden focus-within:border-[#FDBA2D]/50 transition-colors">
+                    <input
+                      type="text"
+                      value={wlSubdomain}
+                      onChange={(e) => setWlSubdomain(e.target.value.replace(/[^a-z0-9-]/g, ''))}
+                      placeholder="portal"
+                      className="flex-1 h-full px-3 bg-transparent text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none"
+                    />
+                    <span className="pr-3 text-xs text-[#555555] whitespace-nowrap">.youragency.com</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Accent Color */}
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-[#E8E8E8] flex items-center gap-1.5">
+                  <Palette className="w-3 h-3 text-[#888888]" /> Accent Color
+                </label>
+                <div className="flex items-center gap-3">
+                  {['#9B72CF', '#4A9EFF', '#10B981', '#FDBA2D', '#EF4444', '#F472B6'].map((color) => (
+                    <button
+                      key={color}
+                      onClick={() => setWlAccentColor(color)}
+                      className="w-8 h-8 rounded-lg transition-all hover:scale-110"
+                      style={{
+                        backgroundColor: color,
+                        border: wlAccentColor === color ? '2px solid white' : '2px solid transparent',
+                        boxShadow: wlAccentColor === color ? `0 0 12px ${color}60` : 'none',
+                      }}
+                    />
+                  ))}
+                  <input
+                    type="text"
+                    value={wlAccentColor}
+                    onChange={(e) => setWlAccentColor(e.target.value)}
+                    className="w-24 h-8 px-2 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#E8E8E8] font-mono focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Zero Watermark Toggle */}
+              <div className="flex items-center justify-between p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="flex items-center gap-2.5">
+                  <Shield className="w-4 h-4 text-[#10B981]" />
+                  <div>
+                    <p className="text-xs font-medium text-[#E8E8E8]">Zero Watermark Mode</p>
+                    <p className="text-[10px] text-[#555555]">Remove all "Powered by NychIQ" branding from reports</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setWlNoWatermark(!wlNoWatermark)}
+                  className="w-10 h-6 rounded-full transition-colors relative"
+                  style={{ backgroundColor: wlNoWatermark ? '#10B981' : '#333333' }}
+                >
+                  <div className="absolute top-1 w-4 h-4 rounded-full bg-white transition-all" style={{ left: wlNoWatermark ? '22px' : '4px' }} />
+                </button>
+              </div>
+
+              {/* Preview */}
+              <div className="rounded-lg border border-dashed border-[#333333] p-4" style={{ backgroundColor: `${wlAccentColor}05` }}>
+                <p className="text-[10px] text-[#666666] uppercase tracking-wider font-bold mb-3">Report Preview</p>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-md flex items-center justify-center overflow-hidden" style={{ backgroundColor: `${wlAccentColor}20` }}>
+                    {wlLogo ? (
+                      <img src={wlLogo} alt="Logo" className="w-full h-full object-cover" />
+                    ) : (
+                      <Building2 className="w-4 h-4" style={{ color: wlAccentColor }} />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold" style={{ color: wlAccentColor }}>{wlBrandName || 'Your Agency'}</p>
+                    <p className="text-[10px] text-[#555555]">{wlSubdomain ? `${wlSubdomain}.youragency.com` : 'portal.youragency.com'}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  {wlNoWatermark && <span className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-[rgba(16,185,129,0.15)] text-[#10B981]">NO WATERMARK</span>}
+                  <span className="px-1.5 py-0.5 rounded text-[8px] font-bold border" style={{ backgroundColor: `${wlAccentColor}15`, color: wlAccentColor, borderColor: `${wlAccentColor}30` }}>WHITE-LABEL</span>
+                </div>
+              </div>
+
+              {/* Save Button */}
+              <button
+                onClick={() => showToast('White-Label settings saved!', 'success')}
+                className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 hover:opacity-90"
+                style={{ background: 'linear-gradient(135deg, #9B72CF, #7B52AF)', color: 'white' }}
+              >
+                <Check className="w-4 h-4" /> Save Brand Settings
               </button>
             </div>
           </div>

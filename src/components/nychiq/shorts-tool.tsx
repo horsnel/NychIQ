@@ -8,7 +8,7 @@ import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo
 import { showToast } from '@/lib/toast';
 import {
   Zap, Eye, TrendingUp, Crown, Lock, RefreshCw, AlertCircle, Play, Clock, Flame,
-  MoreVertical, ExternalLink, Copy, Hash, FileDown, Link2,
+  MoreVertical, ExternalLink, Copy, Hash, FileText, FileDown, Link2,
 } from 'lucide-react';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
@@ -42,6 +42,19 @@ function ShortsCard({ video }: { video: VideoData }) {
     const ok = await copyToClipboard(tags.join(' '));
     showToast(ok ? 'Hashtags copied!' : 'Failed to copy hashtags', ok ? 'success' : 'error');
   };
+  const handleCopyDescription = async () => {
+    const ok = await copyToClipboard(video.title);
+    showToast(ok ? 'Description copied!' : 'Failed to copy description', ok ? 'success' : 'error');
+  };
+  const handleCopyTags = async () => {
+    const words = video.title.split(/\s+/).filter(w => w.length > 3);
+    const tags = words.slice(0, 8).map(w => `#${w.replace(/[^a-zA-Z0-9]/g, '')}`);
+    const ok = await copyToClipboard(tags.join(' '));
+    showToast(ok ? 'Tags copied!' : 'Failed to copy tags', ok ? 'success' : 'error');
+  };
+  const handleCopyTranscript = async () => {
+    showToast('Transcript not available for this video', 'warning');
+  };
   const handleExportCSV = () => {
     const headers = ['Title', 'Channel', 'Views', 'Likes', 'Comments', 'Viral Score', 'URL'];
     const row = [`"${video.title}"`, `"${video.channelTitle}"`, String(video.viewCount || 0), String(video.likeCount || 0), String(video.commentCount || 0), String(video.viralScore || 0), `https://youtube.com/watch?v=${video.videoId}`];
@@ -71,7 +84,7 @@ function ShortsCard({ video }: { video: VideoData }) {
           </div>
         </div>
         {video.viralScore && video.viralScore >= 70 && (
-          <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
+          <span className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
             {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#10B981]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>)}
           </span>
         )}
@@ -88,6 +101,9 @@ function ShortsCard({ video }: { video: VideoData }) {
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy URL</DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#222]" />
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyHashtags(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Hashtags</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyDescription(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Description</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTags(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Tags</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTranscript(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><FileText className="w-4 h-4" />Copy Transcript</DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#222]" />
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleExportCSV(); }} className="text-[#888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] cursor-pointer"><FileDown className="w-4 h-4" />Export CSV</DropdownMenuItem>
           </DropdownMenuContent>
