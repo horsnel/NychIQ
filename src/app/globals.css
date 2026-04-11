@@ -400,3 +400,39 @@
 @keyframes glitchText { 0% { opacity: 0; transform: translateX(-2px); } 25% { opacity: 1; transform: translateX(1px); } 50% { opacity: 0.8; transform: translateX(-1px); } 100% { opacity: 1; transform: translateX(0); } }
 @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 4px var(--glow-color); } 50% { box-shadow: 0 0 12px var(--glow-color); } }
 @keyframes breathe { 0%,100% { border-color: #222222; } 50% { border-color: #333333; } }
+
+/* Saku floating button glow animation */
+@keyframes sakuGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(155,114,207,0.3), 0 0 16px rgba(253,186,45,0.15); }
+  50%      { box-shadow: 0 0 16px rgba(155,114,207,0.5), 0 0 32px rgba(253,186,45,0.3); }
+}
+
+.animate-saku-glow {
+  animation: sakuGlow 2s ease-in-out infinite;
+}
+
+/* Channel avatar multicolor ring animation */
+@keyframes channelRingAmber {
+  0%, 100% { box-shadow: 0 0 4px rgba(253,186,45,0.3), 0 0 0 0 rgba(253,186,45,0.3); }
+  50%      { box-shadow: 0 0 8px rgba(253,186,45,0.6), 0 0 0 4px rgba(253,186,45,0); }
+}
+
+@keyframes channelRingPurple {
+  0%, 100% { box-shadow: 0 0 4px rgba(155,114,207,0.3), 0 0 0 0 rgba(155,114,207,0.3); }
+  50%      { box-shadow: 0 0 8px rgba(155,114,207,0.6), 0 0 0 4px rgba(155,114,207,0); }
+}
+
+@keyframes channelRingGreen {
+  0%, 100% { box-shadow: 0 0 4px rgba(16,185,129,0.3), 0 0 0 0 rgba(16,185,129,0.3); }
+  50%      { box-shadow: 0 0 8px rgba(16,185,129,0.6), 0 0 0 4px rgba(16,185,129,0); }
+}
+
+@keyframes channelRingBlue {
+  0%, 100% { box-shadow: 0 0 4px rgba(74,158,255,0.3), 0 0 0 0 rgba(74,158,255,0.3); }
+  50%      { box-shadow: 0 0 8px rgba(74,158,255,0.6), 0 0 0 4px rgba(74,158,255,0); }
+}
+
+.channel-ring-amber { animation: channelRingAmber 2s ease-in-out infinite; }
+.channel-ring-purple { animation: channelRingPurple 2.5s ease-in-out infinite; }
+.channel-ring-green { animation: channelRingGreen 3s ease-in-out infinite; }
+.channel-ring-blue { animation: channelRingBlue 2.2s ease-in-out infinite; }

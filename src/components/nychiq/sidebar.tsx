@@ -32,8 +32,8 @@ const ICON_MAP: Record<string, React.ElementType> = {
 
 /* ── Plan badge colors ── */
 const PLAN_COLORS: Record<Plan, string> = {
-  trial: 'text-text-muted',
-  starter: 'text-text-secondary',
+  trial: 'text-[#444444]',
+  starter: 'text-[#888888]',
   pro: 'text-blue',
   elite: 'text-purple',
   agency: 'text-amber',
@@ -114,7 +114,7 @@ export function Sidebar() {
             {/* Section header */}
             <button
               onClick={() => toggleSection(section.id)}
-              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-text-muted hover:text-text-secondary transition-colors uppercase"
+              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-[#444444] hover:text-[#888888] transition-colors uppercase"
             >
               {collapsedSections[section.id] ? (
                 <ChevronRight className="w-3 h-3" />
@@ -170,7 +170,7 @@ export function Sidebar() {
                         ) : null;
                       })()}
                       {!hasAccess && (
-                        <Lock className="w-3 h-3 ml-auto text-text-muted shrink-0" />
+                        <Lock className="w-3 h-3 ml-auto text-[#444444] shrink-0" />
                       )}
                     </button>
                   );
@@ -185,7 +185,7 @@ export function Sidebar() {
       <div className="border-t border-[#1E1E1E] px-3 py-3">
         <button
           onClick={() => setPage('about')}
-          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-text-muted hover:text-text-secondary transition-colors"
+          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#444444] hover:text-[#888888] transition-colors"
         >
           <span>About</span>
         </button>
@@ -209,8 +209,8 @@ export function Sidebar() {
           />
           <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0D0D0D] border-r border-[#1E1E1E] z-50 lg:hidden animate-fade-in-up">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E]">
-              <span className="text-sm font-semibold text-text-secondary">Navigation</span>
-              <button onClick={() => setSidebarOpen(false)} className="text-text-muted hover:text-text-primary">
+              <span className="text-sm font-semibold text-[#888888]">Navigation</span>
+              <button onClick={() => setSidebarOpen(false)} className="text-[#444444] hover:text-[#E8E8E8]">
                 <X className="w-5 h-5" />
               </button>
             </div>

@@ -32,7 +32,7 @@ export function MobileNav() {
               }}
               className={cn(
                 'relative flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-lg transition-colors',
-                isActive ? 'text-[#FDBA2D]' : 'text-text-muted'
+                isActive ? 'text-[#FDBA2D]' : 'text-[#444444]'
               )}
             >
               <Icon className={cn('w-5 h-5', isActive && 'drop-shadow-[0_0_6px_rgba(253,186,45,0.5)]')} />

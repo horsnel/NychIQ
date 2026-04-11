@@ -364,7 +364,7 @@ export function LegalPage({ type }: LegalPageProps) {
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
-          className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+          className="p-1.5 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -402,11 +402,11 @@ export function LegalPage({ type }: LegalPageProps) {
 
       {/* Footer */}
       <footer className="border-t border-[#1E1E1E] px-6 py-6 mt-auto">
-        <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-text-muted">
+        <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#444444]">
           <span>&copy; {new Date().getFullYear()} NychIQ</span>
-          <button onClick={() => setPage('privacy')} className="hover:text-text-secondary transition-colors">Privacy</button>
-          <button onClick={() => setPage('terms')} className="hover:text-text-secondary transition-colors">Terms</button>
-          <button onClick={() => setPage('contact')} className="hover:text-text-secondary transition-colors">Contact</button>
+          <button onClick={() => setPage('privacy')} className="hover:text-[#888888] transition-colors">Privacy</button>
+          <button onClick={() => setPage('terms')} className="hover:text-[#888888] transition-colors">Terms</button>
+          <button onClick={() => setPage('contact')} className="hover:text-[#888888] transition-colors">Contact</button>
         </div>
       </footer>
     </div>

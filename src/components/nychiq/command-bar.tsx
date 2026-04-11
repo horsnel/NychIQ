@@ -41,7 +41,7 @@ export function CommandBar() {
       <div className="relative w-full max-w-lg bg-[#141414] border border-[#222] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
         {/* Search input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1E1E1E]">
-          <Search className="w-4 h-4 text-text-muted shrink-0" />
+          <Search className="w-4 h-4 text-[#444444] shrink-0" />
           <input
             type="text"
             value={query}
@@ -52,7 +52,7 @@ export function CommandBar() {
           />
           <button
             onClick={() => setCommandBarOpen(false)}
-            className="p-1 rounded text-text-muted hover:text-text-primary"
+            className="p-1 rounded text-[#444444] hover:text-[#E8E8E8]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -61,7 +61,7 @@ export function CommandBar() {
         {/* Results */}
         <div className="max-h-72 overflow-y-auto p-2">
           {filteredTools.length === 0 ? (
-            <div className="py-6 text-center text-sm text-text-muted">No results found</div>
+            <div className="py-6 text-center text-sm text-[#444444]">No results found</div>
           ) : (
             filteredTools.map(([id, meta]) => (
               <button

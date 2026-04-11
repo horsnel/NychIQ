@@ -300,7 +300,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
       <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
-          className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+          className="p-1.5 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -339,11 +339,11 @@ export function CompanyPage({ type }: CompanyPageProps) {
 
       {/* Footer */}
       <footer className="border-t border-[#1E1E1E] px-6 py-6 mt-auto">
-        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-text-muted">
+        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#444444]">
           <span>© {new Date().getFullYear()} NychIQ</span>
-          <button onClick={() => setPage('privacy')} className="hover:text-text-secondary transition-colors">Privacy</button>
-          <button onClick={() => setPage('terms')} className="hover:text-text-secondary transition-colors">Terms</button>
-          <button onClick={() => setPage('contact')} className="hover:text-text-secondary transition-colors">Contact</button>
+          <button onClick={() => setPage('privacy')} className="hover:text-[#888888] transition-colors">Privacy</button>
+          <button onClick={() => setPage('terms')} className="hover:text-[#888888] transition-colors">Terms</button>
+          <button onClick={() => setPage('contact')} className="hover:text-[#888888] transition-colors">Contact</button>
         </div>
       </footer>
     </div>
@@ -902,7 +902,7 @@ function ChangelogSection() {
                   >
                     {entry.ver}
                   </span>
-                  <span className="text-[11px] text-text-muted">{entry.date}</span>
+                  <span className="text-[11px] text-[#444444]">{entry.date}</span>
                   {entry.highlight && (
                     <span className="text-[10px] font-semibold text-[#FDBA2D] bg-[rgba(253,186,45,0.1)] px-2 py-0.5 rounded">
                       Latest

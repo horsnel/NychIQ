@@ -217,21 +217,39 @@ export function SettingsTool() {
     showToast('Referral code applied! +20 tokens added', 'success');
   };
 
-  /* Share via native share API */
+  /* Share via social options */
+  const [showShareMenu, setShowShareMenu] = useState(false);
+
+  const shareUrl = `https://nychiq.com/?ref=${refCode}`;
+  const shareText = `Sign up for NychIQ using my referral code ${refCode} and we both get +20 free tokens!`;
+
+  const socialShares = [
+    { name: 'Twitter', color: '#E8E8E8', url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}` },
+    { name: 'WhatsApp', color: '#10B981', url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}` },
+    { name: 'Telegram', color: '#4A9EFF', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
+    { name: 'Facebook', color: '#4A9EFF', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
+    { name: 'Email', color: '#FDBA2D', url: `mailto:?subject=${encodeURIComponent('Join me on NychIQ')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}` },
+  ];
+
+  const handleSocialShare = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
+    setShowShareMenu(false);
+  };
+
   const handleShareRef = async () => {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
           title: 'Join me on NychIQ',
-          text: `Sign up for NychIQ using my referral code ${refCode} and we both get +20 free tokens!`,
+          text: shareText,
           url: referralLink,
         });
       } catch {
-        // User cancelled or share failed — fall back to copy
-        await handleCopyRef();
+        // User cancelled or share failed — show share menu
+        setShowShareMenu(true);
       }
     } else {
-      await handleCopyRef();
+      setShowShareMenu(true);
     }
   };
 
@@ -460,6 +478,30 @@ export function SettingsTool() {
                 <Share2 className="w-4 h-4" />
                 Share
               </button>
+              {/* Social share dropdown */}
+              {showShareMenu && (
+                <div className="absolute right-0 top-full mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
+                  <button
+                    onClick={() => { handleCopyRef(); setShowShareMenu(false); }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy Link</span>
+                  </button>
+                  {socialShares.map((social) => (
+                    <button
+                      key={social.name}
+                      onClick={() => handleSocialShare(social.url)}
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+                    >
+                      <span className="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ backgroundColor: `${social.color}20`, color: social.color }}>
+                        {social.name[0]}
+                      </span>
+                      <span>{social.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 

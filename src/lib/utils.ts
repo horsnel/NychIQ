@@ -42,7 +42,7 @@ export function viralScore(score: number): { label: string; class: string; color
   if (score >= 80) return { label: 'Viral', class: 'text-green', color: '#10B981' };
   if (score >= 60) return { label: 'Hot', class: 'text-amber', color: '#FDBA2D' };
   if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#4A9EFF' };
-  return { label: 'Cold', class: 'text-text-secondary', color: '#888888' };
+  return { label: 'Cold', class: 'text-[#888888]', color: '#888888' };
 }
 
 /* ── Score CSS class for Tailwind ── */

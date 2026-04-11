@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin, Sliders } from 'lucide-react';
-import { useNychIQStore, TOOL_META, TOKEN_COSTS } from '@/lib/store';
+import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin, Sliders, X } from 'lucide-react';
+import { useNychIQStore, TOOL_META, TOKEN_COSTS, SIDEBAR_SECTIONS } from '@/lib/store';
 import { TokenPill } from './token-pill';
+import { FeatureSearchOverlay } from './feature-search-overlay';
 import { cn } from '@/lib/utils';
 import { useGeolocation } from '@/hooks/use-geolocation';
 import { playClick, playNotification } from '@/lib/sounds';
@@ -81,6 +82,9 @@ export function Topbar() {
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
 
+  // Feature search state
+  const [featureSearchOpen, setFeatureSearchOpen] = useState(false);
+
   // Channel profile from localStorage (set during onboarding audit)
   const [channelProfile] = useState(() => {
     try {
@@ -147,18 +151,19 @@ export function Topbar() {
   };
 
   return (
+    <>
     <header className="flex items-center gap-3 h-14 px-4 bg-[#0D0D0D] border-b border-[#1E1E1E] sticky top-0 z-30">
       {/* Hamburger (mobile) */}
       <button
         onClick={toggleSidebar}
-        className="lg:hidden p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+        className="lg:hidden p-1.5 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
         aria-label="Toggle sidebar"
       >
         <Menu className="w-5 h-5" />
       </button>
 
       {/* Page title */}
-      <h1 className="text-base font-semibold text-text-primary truncate">
+      <h1 className="text-base font-semibold text-[#E8E8E8] truncate">
         {pageTitle}
       </h1>
 
@@ -174,7 +179,7 @@ export function Topbar() {
         <div className="relative flex items-center">
           {/* Search input */}
           <div className="flex items-center h-8 bg-[#141414] border border-[#222222] rounded-l-lg px-3 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors">
-            <Search className="w-3.5 h-3.5 text-text-muted shrink-0" />
+            <Search className="w-3.5 h-3.5 text-[#444444] shrink-0" />
             <input
               type="text"
               value={searchQuery}
@@ -260,7 +265,7 @@ export function Topbar() {
         {REFRESH_PAGES.includes(activeTool) && (
           <button
             onClick={() => window.location.reload()}
-            className="hidden md:flex p-2 rounded-full text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+            className="hidden md:flex p-2 rounded-full text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
             aria-label="Refresh"
             title="Refresh data"
           >
@@ -272,7 +277,7 @@ export function Topbar() {
         <div ref={countryRef} className="hidden md:block relative">
           <button
             onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-text-secondary text-xs hover:border-[#2A2A2A] hover:text-text-primary transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-[#888888] text-xs hover:border-[#2A2A2A] hover:text-[#E8E8E8] transition-colors"
           >
             <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#FDBA2D]">
               {region.charAt(0)}
@@ -307,7 +312,7 @@ export function Topbar() {
         {/* Command bar trigger */}
         <button
           onClick={() => setCommandBarOpen(true)}
-          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#222222] text-text-muted text-xs hover:border-[#2A2A2A] hover:text-text-secondary transition-colors"
+          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#222222] text-[#444444] text-xs hover:border-[#2A2A2A] hover:text-[#888888] transition-colors"
         >
           <Command className="w-3 h-3" />
           <span>Search</span>
@@ -317,7 +322,7 @@ export function Topbar() {
         {/* Notification bell */}
         <button
           onClick={() => { playNotification(); setNotifDrawerOpen(true); }}
-          className="relative p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-[#1A1A1A] transition-colors"
+          className="relative p-2 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
           aria-label="Notifications"
         >
           <Bell className="w-4 h-4" />
@@ -327,21 +332,58 @@ export function Topbar() {
         {/* Token pill */}
         <TokenPill />
 
+        {/* Search icon with glow */}
+        <button
+          onClick={() => setFeatureSearchOpen(true)}
+          className="relative p-2 rounded-full hover:bg-[#1A1A1A] transition-colors group"
+          aria-label="Feature Search"
+          title="Search tools"
+        >
+          <span className="absolute inset-0 rounded-full channel-ring-amber" />
+          <Search className="w-4 h-4 text-[#FDBA2D] relative z-10" />
+        </button>
+
+        {/* Channel avatar with multicolor glowing rings */}
+        {channelProfile ? (
+          <button
+            onClick={() => handleAvatarAction('channel')}
+            className="relative w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
+            title={channelProfile.name}
+            style={{ backgroundColor: channelProfile.avatarColor || '#FDBA2D', color: '#0D0D0D' }}
+          >
+            {/* Animated ring layer 1 — amber */}
+            <span className="absolute inset-[-3px] rounded-full channel-ring-amber" />
+            {/* Animated ring layer 2 — purple */}
+            <span className="absolute inset-[-6px] rounded-full channel-ring-purple" />
+            {/* Animated ring layer 3 — green */}
+            <span className="absolute inset-[-9px] rounded-full channel-ring-green" />
+            {/* Animated ring layer 4 — blue */}
+            <span className="absolute inset-[-12px] rounded-full channel-ring-blue opacity-50" />
+            {/* Avatar content */}
+            <span className="relative z-10">{channelProfile.name.charAt(0).toUpperCase()}</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => handleAvatarAction('channel')}
+            className="relative p-1.5 rounded-full hover:bg-[#1A1A1A] transition-colors"
+            aria-label="Channel Assistant"
+            title="Channel Assistant"
+          >
+            <span className="absolute inset-[-2px] rounded-full channel-ring-amber" />
+            <span className="absolute inset-[-5px] rounded-full channel-ring-purple opacity-50" />
+            <Sliders className="w-4 h-4 text-[#888888] relative z-10" />
+          </button>
+        )}
+
         {/* User avatar dropdown */}
         <div ref={avatarRef} className="relative">
           <button
             onClick={() => setShowAvatarMenu(!showAvatarMenu)}
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity ${
-              channelProfile
-                ? 'ring-2 ring-[#FDBA2D]/50'
-                : 'bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A]'
-            }`}
-            title={channelProfile ? channelProfile.name : userName || 'User'}
-            style={channelProfile ? { backgroundColor: channelProfile.avatarColor || '#FDBA2D', color: '#0D0D0D' } : { color: 'black' }}
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#FDE68A] flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
+            title={userName || 'User'}
+            style={{ color: 'black' }}
           >
-            {channelProfile
-              ? channelProfile.name.charAt(0).toUpperCase()
-              : (userName ? userName[0].toUpperCase() : 'U')}
+            {userName ? userName[0].toUpperCase() : 'U'}
           </button>
           {showAvatarMenu && (
             <div className="absolute top-full right-0 mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
@@ -388,5 +430,10 @@ export function Topbar() {
         </div>
       </div>
     </header>
+    {/* Feature Search Overlay */}
+    {featureSearchOpen && (
+      <FeatureSearchOverlay onClose={() => setFeatureSearchOpen(false)} />
+    )}
+    </>
   );
 }

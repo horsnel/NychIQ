@@ -76,7 +76,7 @@ import { PlanGate } from '@/components/nychiq/plan-gate';
 import { initAudio, playClick } from '@/lib/sounds';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Bot } from 'lucide-react';
 
 /* ── Side-effects wrapper (hooks must be inside a component) ── */
 function AppEffects() {
@@ -249,6 +249,8 @@ function ToolRouter() {
 
 /* ── App shell (sidebar + topbar + content) ── */
 function AppShell() {
+  const { sakuOpen, sakuFullOpen, setSakuOpen, isLoggedIn } = useNychIQStore();
+
   return (
     <div className="flex min-h-screen bg-[#0D0D0D]">
       {/* Sidebar */}
@@ -267,6 +269,17 @@ function AppShell() {
 
       {/* Mobile bottom nav */}
       <MobileNav />
+
+      {/* Saku floating trigger button */}
+      {isLoggedIn && !sakuOpen && !sakuFullOpen && (
+        <button
+          onClick={() => setSakuOpen(true)}
+          className="fixed bottom-6 right-6 z-[100] w-14 h-14 rounded-full bg-gradient-to-br from-[#9B72CF] to-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.25)] hover:scale-110 transition-transform animate-saku-glow"
+          aria-label="Open Saku AI"
+        >
+          <Bot className="w-6 h-6 text-white" />
+        </button>
+      )}
 
       {/* Saku floating panel */}
       <SakuPanel />
