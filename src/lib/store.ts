@@ -147,9 +147,11 @@ function todayStr(): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-/* ── Helper: check if today is the 31st ── */
+/* ── Helper: check if today is the last day of the month ── */
 function isMonthlyResetDay(): boolean {
-  return new Date().getDate() === 31;
+  const today = new Date();
+  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+  return today.getDate() === lastDayOfMonth;
 }
 
 /* ── Helper: generate unique ID ── */
@@ -169,7 +171,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   /* ── NYCHIQ STUDIO (Pre-Upload Suite) ── */
   studio:          { label: 'Studio Hub',       icon: 'Palette',          category: 'studio' },
   lume:            { label: 'Lume',             icon: 'Layers',           category: 'studio' },
-  hooklab:         { label: 'HookLab',          icon: 'Activity',         category: 'studio' },
+  hooklab:         { label: 'HookLab',          icon: 'Flame',            category: 'studio' },
   pulsecheck:      { label: 'PulseCheck',       icon: 'Scan',             category: 'studio' },
   'blueprint-ai':  { label: 'Blueprint AI',     icon: 'Wrench',           category: 'studio' },
   scriptflow:      { label: 'ScriptFlow',       icon: 'ScrollText',       category: 'studio' },

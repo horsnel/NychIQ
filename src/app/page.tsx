@@ -73,9 +73,8 @@ import { HookLabTool } from '@/components/nychiq/hooklab-tool';
 import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { ChannelAssistantTool } from '@/components/nychiq/channel-assistant-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
-import { initAudio, playClick } from '@/lib/sounds';
+import { initAudio } from '@/lib/sounds';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Sparkles, Bot } from 'lucide-react';
 
 /* ── Side-effects wrapper (hooks must be inside a component) ── */

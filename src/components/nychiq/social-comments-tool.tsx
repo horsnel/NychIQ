@@ -6,8 +6,6 @@ import { askAI } from '@/lib/api';
 import { truncate } from '@/lib/utils';
 import {
   Heart,
-  Crown,
-  Lock,
   Loader2,
   Sparkles,
   RefreshCw,
@@ -385,7 +383,7 @@ Return ONLY the JSON object, no other text.`;
       )}
 
       {searched && !loading && (
-        <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.sentiment} tokens per analysis</div>
+        <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['social-comments']} tokens per analysis</div>
       )}
     </div>
   );

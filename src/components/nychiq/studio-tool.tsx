@@ -20,7 +20,6 @@ import {
   Clock,
   Sparkles,
   ChevronRight,
-  Flame,
   BrainCircuit,
   Layers,
   Activity,
