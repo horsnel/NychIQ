@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { askAI } from '@/lib/api';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,6 @@ import {
   BarChart3,
   Target,
   Zap,
-  ArrowRight,
   AlertTriangle,
   CheckCircle2,
   Info,
@@ -29,14 +28,27 @@ import {
   RefreshCw,
   Copy,
   Check,
-  ChevronDown,
-  ChevronUp,
   Activity,
+  ThumbsUp,
+  ThumbsDown,
+  MessageSquare,
+  DollarSign,
+  Calendar,
+  Lightbulb,
+  BrainCircuit,
+  Radar,
+  CircleDot,
+  ArrowUpRight,
+  ArrowDownRight,
+  XCircle,
+  Send,
 } from 'lucide-react';
 
 /* ════════════════════════════════════════════════
    TYPES
    ════════════════════════════════════════════════ */
+
+type UploaderTab = 'analysis' | 'recent' | 'insights';
 
 interface RetentionPoint {
   mark: string;
@@ -54,6 +66,14 @@ interface LatestVideo {
   ctr: string;
   engagement: number;
   published: string;
+  /* Enhanced fields */
+  retentionGraph: number[];
+  sentimentPositive: number;
+  sentimentNeutral: number;
+  sentimentNegative: number;
+  thumbnailScore: number;
+  nicheAvgEngagement: number;
+  ctrAnalysis: string;
 }
 
 interface DeeperAnalytics {
@@ -72,6 +92,7 @@ interface UploadAnalysis {
   latestVideos: LatestVideo[];
   deeperAnalytics: DeeperAnalytics;
   overallVerdict: string;
+  goNoGo: 'go' | 'nogo' | 'caution';
 }
 
 interface ChannelConfig {
@@ -91,6 +112,12 @@ const TOOL_BG = 'rgba(155,114,207,0.1)';
 const TOOL_BORDER = 'rgba(155,114,207,0.2)';
 const TOOL_TOKEN_COST = 10;
 
+const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
+  { id: 'analysis', label: 'Content Analysis', icon: BrainCircuit },
+  { id: 'recent', label: 'Recent Videos', icon: Flame },
+  { id: 'insights', label: 'Deep Insights', icon: Radar },
+];
+
 /* ── Score color helper ── */
 function scoreColor(score: number): string {
   if (score >= 80) return '#10B981';
@@ -108,6 +135,12 @@ function scoreLabel(score: number): string {
   return 'Poor';
 }
 
+function noveltyLevel(score: number): { label: string; color: string } {
+  if (score >= 75) return { label: 'High', color: '#10B981' };
+  if (score >= 45) return { label: 'Medium', color: '#FDBA2D' };
+  return { label: 'Low', color: '#EF4444' };
+}
+
 /* ── Retention bar color based on value ── */
 function retentionColor(retention: number): string {
   if (retention >= 70) return '#10B981';
@@ -120,10 +153,26 @@ function retentionColor(retention: number): string {
    MOCK DATA GENERATOR
    ════════════════════════════════════════════════ */
 
+function generateRetentionGraph(base: number): number[] {
+  const points = [];
+  let val = base;
+  for (let i = 0; i < 12; i++) {
+    val = Math.max(5, val - (Math.random() * 8 + 2));
+    points.push(Math.round(val));
+  }
+  return points;
+}
+
 function getMockAnalysis(input: string, channelConfig: ChannelConfig): UploadAnalysis {
   const niche = channelConfig.niche || 'technology';
   const brandBase = channelConfig.channelName ? 68 : 45;
   const hash = input.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+
+  const brandScore = Math.min(100, Math.max(20, brandBase + (hash % 20)));
+  const noveltyScore = Math.min(100, Math.max(15, 42 + (hash % 45)));
+  const authenticityScore = Math.min(100, Math.max(30, 55 + (hash % 35)));
+  const overallAvg = Math.round((brandScore + noveltyScore + authenticityScore) / 3);
+  const goNoGo: UploadAnalysis['goNoGo'] = overallAvg >= 70 ? 'go' : overallAvg >= 50 ? 'caution' : 'nogo';
 
   return {
     retentionData: [
@@ -134,39 +183,36 @@ function getMockAnalysis(input: string, channelConfig: ChannelConfig): UploadAna
       { mark: '5m', seconds: 300, retention: 41 + (hash % 14), label: 'Deep dive point' },
       { mark: '10m', seconds: 600, retention: 28 + (hash % 12), label: 'Tail retention' },
     ],
-    brandScore: Math.min(100, Math.max(20, brandBase + (hash % 20))),
-    noveltyScore: Math.min(100, Math.max(15, 42 + (hash % 45))),
-    authenticityScore: Math.min(100, Math.max(30, 55 + (hash % 35))),
+    brandScore,
+    noveltyScore,
+    authenticityScore,
     latestVideos: [
       {
         title: `${niche.charAt(0).toUpperCase() + niche.slice(1)} Trends Breaking Down the Latest Changes`,
-        views: '124.8K',
-        avgViewDuration: '6:42',
-        retentionRate: 58,
-        likes: '8.2K',
-        ctr: '7.3%',
-        engagement: 6.8,
-        published: '3 days ago',
+        views: '124.8K', avgViewDuration: '6:42', retentionRate: 58, likes: '8.2K', ctr: '7.3%',
+        engagement: 6.8, published: '3 days ago',
+        retentionGraph: generateRetentionGraph(92),
+        sentimentPositive: 68, sentimentNeutral: 24, sentimentNegative: 8,
+        thumbnailScore: 74, nicheAvgEngagement: 5.2,
+        ctrAnalysis: 'CTR 42% above niche average — strong thumbnail/title combo',
       },
       {
         title: `Complete ${niche.charAt(0).toUpperCase() + niche.slice(1)} Guide for Beginners in 2025`,
-        views: '89.3K',
-        avgViewDuration: '9:15',
-        retentionRate: 48,
-        likes: '5.6K',
-        ctr: '5.9%',
-        engagement: 5.4,
-        published: '1 week ago',
+        views: '89.3K', avgViewDuration: '9:15', retentionRate: 48, likes: '5.6K', ctr: '5.9%',
+        engagement: 5.4, published: '1 week ago',
+        retentionGraph: generateRetentionGraph(85),
+        sentimentPositive: 72, sentimentNeutral: 20, sentimentNegative: 8,
+        thumbnailScore: 61, nicheAvgEngagement: 5.2,
+        ctrAnalysis: 'CTR near niche average — consider A/B testing thumbnail variants',
       },
       {
         title: `Honest Review: ${niche.charAt(0).toUpperCase() + niche.slice(1)} Tools That Actually Work`,
-        views: '203.1K',
-        avgViewDuration: '5:03',
-        retentionRate: 72,
-        likes: '14.7K',
-        ctr: '9.1%',
-        engagement: 8.9,
-        published: '2 weeks ago',
+        views: '203.1K', avgViewDuration: '5:03', retentionRate: 72, likes: '14.7K', ctr: '9.1%',
+        engagement: 8.9, published: '2 weeks ago',
+        retentionGraph: generateRetentionGraph(96),
+        sentimentPositive: 81, sentimentNeutral: 14, sentimentNegative: 5,
+        thumbnailScore: 88, nicheAvgEngagement: 5.2,
+        ctrAnalysis: 'CTR 78% above niche average — exceptional title curiosity gap',
       },
     ],
     deeperAnalytics: {
@@ -180,20 +226,91 @@ function getMockAnalysis(input: string, channelConfig: ChannelConfig): UploadAna
       optimalPostingWindow: 'Tuesday 2:00 PM – 4:00 PM (EST) or Thursday 3:00 PM – 5:00 PM (EST) — your audience engagement data shows 42% higher CTR during these windows.',
       aiSummary: `Based on the analysis of "${input.slice(0, 60)}${input.length > 60 ? '...' : ''}", this video has moderate-to-strong potential. The ${niche} niche is competitive but there are clear content gaps you can exploit. Focus on strengthening your hook in the first 30 seconds and front-loading value to improve retention past the 3-minute mark.`,
     },
-    overallVerdict: 'The video shows strong potential for above-average performance. Key optimization areas: hook intensity in the first 30s, clearer topic transitions at the 1-minute mark, and adding a mid-video payoff around 3:00 to prevent viewer drop-off.',
+    overallVerdict: goNoGo === 'go'
+      ? 'Strong signal detected. This content aligns well with your brand and shows high audience demand. Recommended to proceed with minor optimizations to the hook and mid-video pacing.'
+      : goNoGo === 'caution'
+      ? 'Moderate potential with some risk factors. The content has merit but needs refinement in hook strength and topic differentiation. Consider reworking the angle before uploading.'
+      : 'Weak signal detected. This content idea shows low novelty and may struggle to differentiate in the current algorithm landscape. Recommend pivoting to one of the suggested alternatives.',
+    goNoGo,
   };
+}
+
+function getSuggestedIdeas(niche: string): string[] {
+  const ideas: Record<string, string[]> = {
+    technology: [
+      'I Built an AI Agent That Replaces My Entire Workflow — Here\'s What Happened',
+      'The Hidden Feature in [Tool] That 99% of Developers Don\'t Know About',
+      'I Compared Every [Category] App in 2025 — Only 3 Are Worth Using',
+    ],
+    general: [
+      'The Strategy That 10x\'d My Results in 30 Days (With Proof)',
+      'Everyone Gets This Wrong About [Topic] — Here\'s the Truth',
+      'I Tried the Latest Trend for a Week and the Results Shocked Me',
+    ],
+  };
+  const nicheIdeas = ideas[niche.toLowerCase()] || ideas.general;
+  return nicheIdeas.length >= 3 ? nicheIdeas : ideas.general;
+}
+
+/* ════════════════════════════════════════════════
+   SHARED DESIGN COMPONENTS (from studio-tool.tsx)
+   ════════════════════════════════════════════════ */
+
+/* ── Tactical Corner Bracket ── */
+function TacticalCorners({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`relative ${className}`}>
+      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#9B72CF] opacity-40 rounded-tl-sm pointer-events-none" />
+      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#9B72CF] opacity-40 rounded-tr-sm pointer-events-none" />
+      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#9B72CF] opacity-40 rounded-bl-sm pointer-events-none" />
+      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#9B72CF] opacity-40 rounded-br-sm pointer-events-none" />
+      {children}
+    </div>
+  );
+}
+
+/* ── Scanning Line Animation ── */
+function ScanLine() {
+  return (
+    <div className="relative w-full overflow-hidden h-1 rounded-full bg-[#1A1A1A]">
+      <div
+        className="absolute inset-y-0 w-1/3 rounded-full"
+        style={{
+          background: 'linear-gradient(90deg, transparent, #9B72CF, transparent)',
+          animation: 'scanLine 2s ease-in-out infinite',
+        }}
+      />
+      <style>{`
+        @keyframes scanLine {
+          0% { left: -33%; }
+          100% { left: 100%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ── Glow Pulse Dot ── */
+function GlowDot({ color = '#9B72CF' }: { color?: string }) {
+  return (
+    <span className="relative flex h-2 w-2">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ backgroundColor: color }} />
+      <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: color }} />
+    </span>
+  );
 }
 
 /* ════════════════════════════════════════════════
    SUB-COMPONENTS
    ════════════════════════════════════════════════ */
 
-/* ── Circular Score Gauge ── */
-function ScoreGauge({ score, label, icon: Icon, size = 88 }: {
+/* ── Circular Score Gauge with glow ── */
+function ScoreGauge({ score, label, icon: Icon, size = 88, showGlow = false }: {
   score: number;
   label: string;
   icon: React.ElementType;
   size?: number;
+  showGlow?: boolean;
 }) {
   const color = scoreColor(score);
   const radius = (size - 12) / 2;
@@ -203,37 +320,20 @@ function ScoreGauge({ score, label, icon: Icon, size = 88 }: {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative" style={{ width: size, height: size }}>
+      <div className="relative" style={{ width: size, height: size, ...(showGlow ? { filter: `drop-shadow(0 0 8px ${color}40)` } : {}) }}>
         <svg width={size} height={size} className="transform -rotate-90">
-          {/* Background track */}
+          <circle cx={center} cy={center} r={radius} fill="none" stroke="#1A1A1A" strokeWidth="6" />
           <circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="none"
-            stroke="#1A1A1A"
-            strokeWidth="6"
-          />
-          {/* Progress arc */}
-          <circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="none"
-            stroke={color}
-            strokeWidth="6"
-            strokeLinecap="round"
+            cx={center} cy={center} r={radius} fill="none"
+            stroke={color} strokeWidth="6" strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={circumference - progress}
             style={{ transition: 'stroke-dashoffset 1s ease-out' }}
           />
         </svg>
-        {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <Icon className="w-3.5 h-3.5 mb-0.5" style={{ color }} />
-          <span className="text-lg font-bold" style={{ color }}>
-            {score}
-          </span>
+          <span className="text-lg font-bold" style={{ color }}>{score}</span>
         </div>
       </div>
       <div className="text-center">
@@ -241,6 +341,36 @@ function ScoreGauge({ score, label, icon: Icon, size = 88 }: {
         <p className="text-[10px] font-medium mt-0.5" style={{ color }}>{scoreLabel(score)}</p>
       </div>
     </div>
+  );
+}
+
+/* ── Go / No-Go / Caution Verdict Badge ── */
+function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
+  const config = {
+    go: { label: 'GO', color: '#10B981', bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.3)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
+    nogo: { label: 'NO-GO', color: '#EF4444', bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.3)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
+    caution: { label: 'CAUTION', color: '#FDBA2D', bg: 'rgba(253,186,45,0.12)', border: 'rgba(253,186,45,0.3)', icon: AlertTriangle, desc: 'Moderate potential — optimize before publishing' },
+  }[verdict];
+  const Icon = config.icon;
+
+  return (
+    <TacticalCorners className="rounded-lg p-4" style={{ backgroundColor: config.bg }}>
+      <div className="flex items-center gap-3">
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+          style={{ backgroundColor: config.border, boxShadow: `0 0 16px ${config.color}30` }}
+        >
+          <Icon className="w-6 h-6" style={{ color: config.color }} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="text-base font-bold tracking-wider" style={{ color: config.color }}>{config.label}</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: config.color, backgroundColor: config.bg, border: `1px solid ${config.border}` }}>VERDICT</span>
+          </div>
+          <p className="text-xs text-[#888888] mt-0.5">{config.desc}</p>
+        </div>
+      </div>
+    </TacticalCorners>
   );
 }
 
@@ -255,7 +385,6 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
   return (
     <div className="w-full">
       <svg viewBox={`0 0 ${chartW + 20} ${chartH + 40}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-        {/* Horizontal grid lines */}
         {[100, 75, 50, 25, 0].map((pct) => {
           const y = 10 + ((100 - pct) / maxRetention) * chartH;
           return (
@@ -265,7 +394,6 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
             </g>
           );
         })}
-        {/* Bars */}
         {data.map((point, i) => {
           const x = 10 + i * (barW + gap);
           const barHeight = (point.retention / maxRetention) * chartH;
@@ -273,50 +401,10 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
           const color = retentionColor(point.retention);
           return (
             <g key={point.mark}>
-              {/* Bar with rounded top */}
-              <rect
-                x={x}
-                y={y}
-                width={barW}
-                height={barHeight}
-                rx={3}
-                ry={3}
-                fill={color}
-                opacity={0.85}
-                style={{ transition: 'all 0.6s ease-out' }}
-              />
-              {/* Retention percentage on top */}
-              <text
-                x={x + barW / 2}
-                y={y - 3}
-                fill={color}
-                fontSize="4"
-                textAnchor="middle"
-                fontWeight="bold"
-              >
-                {point.retention}%
-              </text>
-              {/* Time label below */}
-              <text
-                x={x + barW / 2}
-                y={10 + chartH + 10}
-                fill="#888888"
-                fontSize="3.5"
-                textAnchor="middle"
-                fontWeight="500"
-              >
-                {point.mark}
-              </text>
-              {/* Label below time */}
-              <text
-                x={x + barW / 2}
-                y={10 + chartH + 16}
-                fill="#555555"
-                fontSize="2.5"
-                textAnchor="middle"
-              >
-                {point.label}
-              </text>
+              <rect x={x} y={y} width={barW} height={barHeight} rx={3} ry={3} fill={color} opacity={0.85} style={{ transition: 'all 0.6s ease-out' }} />
+              <text x={x + barW / 2} y={y - 3} fill={color} fontSize="4" textAnchor="middle" fontWeight="bold">{point.retention}%</text>
+              <text x={x + barW / 2} y={10 + chartH + 10} fill="#888888" fontSize="3.5" textAnchor="middle" fontWeight="500">{point.mark}</text>
+              <text x={x + barW / 2} y={10 + chartH + 16} fill="#555555" fontSize="2.5" textAnchor="middle">{point.label}</text>
             </g>
           );
         })}
@@ -325,11 +413,53 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
   );
 }
 
-/* ── Latest Video Card ── */
-function VideoCard({ video, index }: { video: LatestVideo; index: number }) {
-  const retColor = retentionColor(video.retentionRate);
+/* ── Mini Retention Sparkline (for video cards) ── */
+function MiniRetentionGraph({ data }: { data: number[] }) {
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+  const w = 100;
+  const h = 32;
+  const step = w / (data.length - 1);
+
+  const points = data.map((v, i) => `${i * step},${h - ((v - min) / range) * (h - 4) - 2}`).join(' ');
+  const areaPoints = `0,${h} ${points} ${w},${h}`;
+
   return (
-    <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 hover:border-[#2A2A2A] transition-colors">
+    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-8">
+      <defs>
+        <linearGradient id={`grad-${data[0]}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={TOOL_COLOR} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={TOOL_COLOR} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <polygon points={areaPoints} fill={`url(#grad-${data[0]})`} />
+      <polyline points={points} fill="none" stroke={TOOL_COLOR} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/* ── Metric Pill ── */
+function MetricPill({ label, value, color }: { label: string; value: string; color?: string }) {
+  return (
+    <div className="rounded-md bg-[#141414] border border-[#1A1A1A] px-2 py-1.5 text-center">
+      <p className="text-[9px] text-[#555555] uppercase tracking-wider">{label}</p>
+      <p className="text-[11px] font-semibold mt-0.5" style={{ color: color || '#E8E8E8' }}>{value}</p>
+    </div>
+  );
+}
+
+/* ── Enhanced Video Card ── */
+function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number }) {
+  const retColor = retentionColor(video.retentionRate);
+  const sentColor = video.sentimentPositive >= 70 ? '#10B981' : video.sentimentPositive >= 50 ? '#FDBA2D' : '#EF4444';
+  const thumbColor = video.thumbnailScore >= 75 ? '#10B981' : video.thumbnailScore >= 50 ? '#FDBA2D' : '#EF4444';
+  const engDiff = video.engagement - video.nicheAvgEngagement;
+  const engPositive = engDiff >= 0;
+
+  return (
+    <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#2A2A2A] transition-colors">
+      {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div
           className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold"
@@ -342,168 +472,297 @@ function VideoCard({ video, index }: { video: LatestVideo; index: number }) {
           <p className="text-[10px] text-[#555555] mt-1">{video.published}</p>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-2">
+
+      {/* Mini retention graph */}
+      <div className="mb-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Retention Curve</span>
+          <span className="text-[10px] font-bold" style={{ color: retColor }}>{video.retentionRate}% avg</span>
+        </div>
+        <MiniRetentionGraph data={video.retentionGraph} />
+      </div>
+
+      {/* Metrics grid */}
+      <div className="grid grid-cols-3 gap-2 mb-3">
         <MetricPill label="Views" value={video.views} />
         <MetricPill label="Avg. Watch" value={video.avgViewDuration} />
-        <MetricPill label="Retention" value={`${video.retentionRate}%`} color={retColor} />
+        <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#10B981' : '#E8E8E8'} />
         <MetricPill label="Likes" value={video.likes} />
-        <MetricPill label="CTR" value={video.ctr} />
-        <MetricPill label="Engagement" value={`${video.engagement}%`} color={scoreColor(video.engagement)} />
+        <MetricPill label="Thumbnail" value={`${video.thumbnailScore}/100`} color={thumbColor} />
+        <MetricPill
+          label="Engagement"
+          value={`${video.engagement}%`}
+          color={scoreColor(video.engagement)}
+        />
+      </div>
+
+      {/* Engagement vs Niche */}
+      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2 mb-2">
+        <div className="flex items-center justify-between">
+          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Engagement vs Niche Avg</span>
+          <div className="flex items-center gap-1">
+            {engPositive ? <ArrowUpRight className="w-3 h-3 text-[#10B981]" /> : <ArrowDownRight className="w-3 h-3 text-[#EF4444]" />}
+            <span className="text-[10px] font-bold" style={{ color: engPositive ? '#10B981' : '#EF4444' }}>
+              {engPositive ? '+' : ''}{engDiff.toFixed(1)}%
+            </span>
+          </div>
+        </div>
+        <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mt-1.5">
+          <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.min(100, (video.engagement / 10) * 100)}%`, backgroundColor: scoreColor(video.engagement) }} />
+        </div>
+      </div>
+
+      {/* CTR Analysis */}
+      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2 mb-2">
+        <div className="flex items-center gap-1.5 mb-1">
+          <Target className="w-3 h-3 text-[#FDBA2D]" />
+          <span className="text-[9px] text-[#555555] uppercase tracking-wider">CTR Analysis</span>
+        </div>
+        <p className="text-[10px] text-[#888888] leading-relaxed">{video.ctrAnalysis}</p>
+      </div>
+
+      {/* Sentiment breakdown */}
+      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2">
+        <div className="flex items-center gap-1.5 mb-2">
+          <MessageSquare className="w-3 h-3" style={{ color: TOOL_COLOR }} />
+          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Comment Sentiment</span>
+        </div>
+        <div className="flex gap-1.5 h-2 rounded-full overflow-hidden">
+          <div className="rounded-l-full" style={{ width: `${video.sentimentPositive}%`, backgroundColor: '#10B981' }} title="Positive" />
+          <div style={{ width: `${video.sentimentNeutral}%`, backgroundColor: '#FDBA2D' }} title="Neutral" />
+          <div className="rounded-r-full" style={{ width: `${video.sentimentNegative}%`, backgroundColor: '#EF4444' }} title="Negative" />
+        </div>
+        <div className="flex items-center justify-between mt-1.5">
+          <div className="flex items-center gap-1">
+            <ThumbsUp className="w-2.5 h-2.5 text-[#10B981]" />
+            <span className="text-[9px] text-[#888888]">{video.sentimentPositive}%</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <CircleDot className="w-2.5 h-2.5 text-[#FDBA2D]" />
+            <span className="text-[9px] text-[#888888]">{video.sentimentNeutral}%</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <ThumbsDown className="w-2.5 h-2.5 text-[#EF4444]" />
+            <span className="text-[9px] text-[#888888]">{video.sentimentNegative}%</span>
+          </div>
+        </div>
+      </div>
+    </TacticalCorners>
+  );
+}
+
+/* ── Heatmap Grid (Viewer Behavior) ── */
+function HeatmapGrid() {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const hours = ['6AM', '9AM', '12PM', '3PM', '6PM', '9PM'];
+
+  // Generate heatmap data (higher values = more viewer activity)
+  const heatData = [
+    [15, 30, 55, 72, 60, 45],
+    [20, 45, 68, 88, 65, 50],
+    [18, 40, 62, 78, 58, 42],
+    [22, 48, 70, 92, 68, 55],
+    [25, 50, 72, 82, 75, 62],
+    [35, 55, 65, 58, 70, 78],
+    [30, 48, 58, 52, 65, 72],
+  ];
+
+  const getHeatColor = (val: number): string => {
+    if (val >= 80) return 'rgba(16,185,129,0.8)';
+    if (val >= 65) return 'rgba(16,185,129,0.5)';
+    if (val >= 50) return 'rgba(253,186,45,0.5)';
+    if (val >= 35) return 'rgba(253,186,45,0.25)';
+    return 'rgba(155,114,207,0.15)';
+  };
+
+  return (
+    <div>
+      <div className="grid gap-1" style={{ gridTemplateColumns: '40px repeat(6, 1fr)' }}>
+        {/* Header row */}
+        <div />
+        {hours.map((h) => (
+          <div key={h} className="text-[8px] text-[#555555] text-center">{h}</div>
+        ))}
+        {/* Data rows */}
+        {days.map((day, di) => (
+          <React.Fragment key={day}>
+            <div className="text-[9px] text-[#555555] flex items-center">{day}</div>
+            {heatData[di].map((val, hi) => (
+              <div
+                key={`${di}-${hi}`}
+                className="h-7 rounded-sm flex items-center justify-center text-[8px] font-bold transition-colors"
+                style={{ backgroundColor: getHeatColor(val), color: val >= 60 ? '#fff' : '#888' }}
+                title={`${day} ${hours[hi]}: ${val}% activity`}
+              >
+                {val}%
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
+      <div className="flex items-center justify-end gap-2 mt-2">
+        <span className="text-[8px] text-[#444444]">Low</span>
+        <div className="flex gap-0.5">
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(155,114,207,0.15)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.25)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.5)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(16,185,129,0.5)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(16,185,129,0.8)' }} />
+        </div>
+        <span className="text-[8px] text-[#444444]">High</span>
       </div>
     </div>
   );
 }
 
-function MetricPill({ label, value, color }: { label: string; value: string; color?: string }) {
+/* ── CPM Analysis Bars ── */
+function CPMAnalysis() {
+  const categories = [
+    { label: 'Technology', cpm: 18.50, avg: 12.00 },
+    { label: 'Finance', cpm: 24.00, avg: 16.00 },
+    { label: 'Education', cpm: 14.20, avg: 10.50 },
+    { label: 'Entertainment', cpm: 8.50, avg: 7.00 },
+    { label: 'Gaming', cpm: 6.80, avg: 5.50 },
+  ];
+
+  const maxCpm = Math.max(...categories.map(c => c.cpm));
+
   return (
-    <div className="rounded-md bg-[#141414] border border-[#1A1A1A] px-2 py-1.5 text-center">
-      <p className="text-[9px] text-[#555555] uppercase tracking-wider">{label}</p>
-      <p className="text-[11px] font-semibold mt-0.5" style={{ color: color || '#E8E8E8' }}>{value}</p>
+    <div className="space-y-3">
+      {categories.map((cat) => {
+        const barWidth = (cat.cpm / maxCpm) * 100;
+        const avgWidth = (cat.avg / maxCpm) * 100;
+        return (
+          <div key={cat.label}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-[#888888]">{cat.label}</span>
+              <span className="text-[10px] font-bold text-[#FDBA2D]">${cat.cpm.toFixed(2)}</span>
+            </div>
+            <div className="relative h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
+              {/* Niche average line */}
+              <div
+                className="absolute top-0 h-full rounded-full bg-[#333333] opacity-50"
+                style={{ width: `${avgWidth}%` }}
+              />
+              {/* Your CPM bar */}
+              <div
+                className="absolute top-0 h-full rounded-full transition-all duration-700"
+                style={{ width: `${barWidth}%`, backgroundColor: '#FDBA2D', boxShadow: '0 0 8px rgba(253,186,45,0.3)' }}
+              />
+            </div>
+          </div>
+        );
+      })}
+      <div className="flex items-center gap-3 pt-1">
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-1.5 rounded-sm bg-[#FDBA2D]" />
+          <span className="text-[8px] text-[#555555]">Your est. CPM</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-1.5 rounded-sm bg-[#333333]" />
+          <span className="text-[8px] text-[#555555]">Niche avg</span>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* ── Deeper Analytics Section ── */
-function DeeperSection({
-  analytics,
-  expanded,
-  onToggle,
-}: {
-  analytics: DeeperAnalytics;
-  expanded: boolean;
-  onToggle: () => void;
-}) {
-  const satColor = scoreColor(analytics.audienceSatisfaction);
+/* ── Demographics Breakdown ── */
+function DemographicsBreakdown() {
+  const ageData = [
+    { label: '18-24', pct: 32, color: '#9B72CF' },
+    { label: '25-34', pct: 38, color: '#4A9EFF' },
+    { label: '35-44', pct: 17, color: '#FDBA2D' },
+    { label: '45-54', pct: 8, color: '#10B981' },
+    { label: '55+', pct: 5, color: '#EF4444' },
+  ];
+
+  const genderData = [
+    { label: 'Male', pct: 62, color: '#4A9EFF' },
+    { label: 'Female', pct: 31, color: '#9B72CF' },
+    { label: 'Other', pct: 7, color: '#FDBA2D' },
+  ];
 
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-      {/* Section header */}
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-3.5 hover:bg-[#1A1A1A]/40 transition-colors"
-      >
-        <div className="flex items-center gap-2">
-          <Activity className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-          <h3 className="text-sm font-semibold text-[#E8E8E8]">What YouTube Won&apos;t Show You</h3>
-          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: TOOL_COLOR, backgroundColor: TOOL_BG }}>
-            DEEP ANALYTICS
-          </span>
+    <div className="space-y-4">
+      {/* Age */}
+      <div>
+        <div className="flex items-center gap-1.5 mb-2">
+          <Users className="w-3.5 h-3.5 text-[#9B72CF]" />
+          <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Age Distribution</span>
         </div>
-        {expanded ? (
-          <ChevronUp className="w-4 h-4 text-[#666666]" />
-        ) : (
-          <ChevronDown className="w-4 h-4 text-[#666666]" />
-        )}
-      </button>
-
-      {expanded && (
-        <div className="border-t border-[#1A1A1A] px-4 py-4 space-y-4 animate-fade-in-up">
-          {/* Audience Satisfaction */}
-          <div className="flex items-center gap-4 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-            <div
-              className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-              style={{ backgroundColor: `${satColor}12`, border: `1px solid ${satColor}30` }}
-            >
-              <span className="text-base font-bold" style={{ color: satColor }}>
-                {analytics.audienceSatisfaction}
-              </span>
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-semibold text-[#E8E8E8]">Audience Satisfaction Score</p>
-              <p className="text-[11px] text-[#888888] mt-0.5">
-                Based on return viewer rate, comment sentiment, and watch session patterns.
-              </p>
-              <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mt-2">
-                <div
-                  className="h-full rounded-full transition-all duration-700"
-                  style={{ width: `${analytics.audienceSatisfaction}%`, backgroundColor: satColor }}
-                />
+        <div className="space-y-2">
+          {ageData.map((d) => (
+            <div key={d.label} className="flex items-center gap-2">
+              <span className="text-[10px] text-[#888888] w-10 shrink-0">{d.label}</span>
+              <div className="flex-1 h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
+                <div className="h-full rounded-full transition-all duration-700" style={{ width: `${d.pct}%`, backgroundColor: d.color }} />
               </div>
+              <span className="text-[10px] font-bold w-8 text-right" style={{ color: d.color }}>{d.pct}%</span>
             </div>
-          </div>
-
-          {/* Hidden Growth Potential */}
-          <div className="p-3 rounded-lg border" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}20` }}>
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-              <p className="text-xs font-semibold text-[#E8E8E8]">Hidden Growth Potential</p>
-            </div>
-            <p className="text-[11px] text-[#888888] leading-relaxed">{analytics.hiddenGrowth}</p>
-          </div>
-
-          {/* Content Gap Analysis */}
-          <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-            <div className="flex items-center gap-2 mb-2.5">
-              <Target className="w-4 h-4 text-[#FDBA2D]" />
-              <p className="text-xs font-semibold text-[#E8E8E8]">Content Gap Analysis</p>
-            </div>
-            <div className="space-y-2">
-              {analytics.contentGaps.map((gap, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-md bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
-                  </div>
-                  <p className="text-[11px] text-[#888888] leading-relaxed">{gap}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Optimal Posting Window */}
-          <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-            <div className="flex items-center gap-2 mb-2">
-              <Clock className="w-4 h-4 text-[#4A9EFF]" />
-              <p className="text-xs font-semibold text-[#E8E8E8]">Optimal Posting Window</p>
-            </div>
-            <p className="text-[11px] text-[#888888] leading-relaxed">{analytics.optimalPostingWindow}</p>
-          </div>
-
-          {/* AI Summary */}
-          <div className="p-3 rounded-lg border" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}18` }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-              <p className="text-xs font-semibold text-[#E8E8E8]">AI Insight</p>
-            </div>
-            <p className="text-[11px] text-[#888888] leading-relaxed">{analytics.aiSummary}</p>
-          </div>
+          ))}
         </div>
-      )}
+      </div>
+
+      {/* Gender */}
+      <div>
+        <div className="flex items-center gap-1.5 mb-2">
+          <Users className="w-3.5 h-3.5 text-[#4A9EFF]" />
+          <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Gender Split</span>
+        </div>
+        <div className="flex gap-1.5 h-3 rounded-full overflow-hidden">
+          {genderData.map((d) => (
+            <div key={d.label} style={{ width: `${d.pct}%`, backgroundColor: d.color }} className="rounded-full" title={`${d.label}: ${d.pct}%`} />
+          ))}
+        </div>
+        <div className="flex items-center gap-4 mt-2">
+          {genderData.map((d) => (
+            <div key={d.label} className="flex items-center gap-1">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: d.color }} />
+              <span className="text-[9px] text-[#888888]">{d.label} {d.pct}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
+
+/* ── Scanning Steps (for loading) ── */
+const SCANNING_STEPS = [
+  { label: 'Analyzing content idea against channel brand DNA', icon: <BrainCircuit className="w-4 h-4" /> },
+  { label: 'Simulating audience retention flow', icon: <Eye className="w-4 h-4" /> },
+  { label: 'Scanning niche for saturation & novelty', icon: <Fingerprint className="w-4 h-4" /> },
+  { label: 'Evaluating authenticity signals', icon: <ShieldCheck className="w-4 h-4" /> },
+  { label: 'Generating Go/No-Go verdict', icon: <Sparkles className="w-4 h-4" /> },
+];
 
 /* ════════════════════════════════════════════════
    MAIN COMPONENT
    ════════════════════════════════════════════════ */
 export function NextUploaderTool() {
   const { spendTokens } = useNychIQStore();
+  const [activeTab, setActiveTab] = useState<UploaderTab>('analysis');
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<UploadAnalysis | null>(null);
   const [searched, setSearched] = useState(false);
   const [copiedVerdict, setCopiedVerdict] = useState(false);
-  const [deeperExpanded, setDeeperExpanded] = useState(true);
+  const [scanStep, setScanStep] = useState(0);
   const [channelConfig, setChannelConfig] = useState<ChannelConfig>({});
 
-  /* Load channel config from localStorage on mount */
   useEffect(() => {
     try {
       const stored = localStorage.getItem('nychiq_channel_assistant_config');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setChannelConfig(parsed);
-      }
-    } catch {
-      // Ignore parse errors
-    }
+      if (stored) setChannelConfig(JSON.parse(stored));
+    } catch { /* ignore */ }
   }, []);
 
-  const isYouTubeUrl = (text: string) => {
-    return /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)/.test(text.trim());
-  };
+  const isYouTubeUrl = (text: string) =>
+    /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)/.test(text.trim());
 
-  const handleAnalyze = async () => {
+  const handleAnalyze = useCallback(async () => {
     const trimmed = input.trim();
     if (!trimmed) return;
 
@@ -511,14 +770,18 @@ export function NextUploaderTool() {
     setError(null);
     setSearched(true);
     setResult(null);
+    setScanStep(0);
 
     const ok = spendTokens('next-uploader');
-    if (!ok) {
-      setLoading(false);
-      return;
-    }
+    if (!ok) { setLoading(false); return; }
 
     try {
+      /* Step-by-step scanning animation */
+      for (let i = 0; i < SCANNING_STEPS.length; i++) {
+        setScanStep(i);
+        await new Promise((r) => setTimeout(r, 500 + Math.random() * 400));
+      }
+
       const isUrl = isYouTubeUrl(trimmed);
       const inputType = isUrl ? 'YouTube URL' : 'topic/title';
 
@@ -548,30 +811,39 @@ Return ONLY the JSON object, no other text.`;
       const cleaned = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
       const parsed = JSON.parse(cleaned);
 
+      const mock = getMockAnalysis(trimmed, channelConfig);
+
+      const brandScore = Math.min(100, Math.max(0, parseInt(parsed.brandScore, 10) || 50));
+      const noveltyScore = Math.min(100, Math.max(0, parseInt(parsed.noveltyScore, 10) || 50));
+      const authenticityScore = Math.min(100, Math.max(0, parseInt(parsed.authenticityScore, 10) || 50));
+      const overallAvg = Math.round((brandScore + noveltyScore + authenticityScore) / 3);
+      const goNoGo: UploadAnalysis['goNoGo'] = overallAvg >= 70 ? 'go' : overallAvg >= 50 ? 'caution' : 'nogo';
+
       setResult({
         retentionData: Array.isArray(parsed.retentionData)
           ? parsed.retentionData.map((r: any) => ({
-              mark: r.mark || '',
-              seconds: typeof r.seconds === 'number' ? r.seconds : 0,
-              retention: Math.min(100, Math.max(0, parseInt(r.retention, 10) || 50)),
-              label: r.label || '',
+              mark: r.mark || '', seconds: typeof r.seconds === 'number' ? r.seconds : 0,
+              retention: Math.min(100, Math.max(0, parseInt(r.retention, 10) || 50)), label: r.label || '',
             }))
-          : getMockAnalysis(trimmed, channelConfig).retentionData,
-        brandScore: Math.min(100, Math.max(0, parseInt(parsed.brandScore, 10) || 50)),
-        noveltyScore: Math.min(100, Math.max(0, parseInt(parsed.noveltyScore, 10) || 50)),
-        authenticityScore: Math.min(100, Math.max(0, parseInt(parsed.authenticityScore, 10) || 50)),
+          : mock.retentionData,
+        brandScore, noveltyScore, authenticityScore,
         latestVideos: Array.isArray(parsed.latestVideos)
           ? parsed.latestVideos.slice(0, 3).map((v: any) => ({
-              title: v.title || 'Untitled Video',
-              views: v.views || '0',
+              title: v.title || 'Untitled Video', views: v.views || '0',
               avgViewDuration: v.avgViewDuration || '0:00',
               retentionRate: Math.min(100, Math.max(0, parseInt(v.retentionRate, 10) || 50)),
-              likes: v.likes || '0',
-              ctr: v.ctr || '0%',
+              likes: v.likes || '0', ctr: v.ctr || '0%',
               engagement: Math.min(100, Math.max(0, parseInt(v.engagement, 10) || 50)),
               published: v.published || 'recently',
+              retentionGraph: generateRetentionGraph(80 + Math.random() * 15),
+              sentimentPositive: 55 + Math.floor(Math.random() * 30),
+              sentimentNeutral: 10 + Math.floor(Math.random() * 20),
+              sentimentNegative: 3 + Math.floor(Math.random() * 10),
+              thumbnailScore: 50 + Math.floor(Math.random() * 40),
+              nicheAvgEngagement: 5.2,
+              ctrAnalysis: v.ctr ? `CTR analysis for this video — ${parseFloat(v.ctr) >= 7 ? 'above' : 'near'} niche average` : mock.latestVideos[0].ctrAnalysis,
             }))
-          : getMockAnalysis(trimmed, channelConfig).latestVideos,
+          : mock.latestVideos,
         deeperAnalytics: parsed.deeperAnalytics
           ? {
               audienceSatisfaction: Math.min(100, Math.max(0, parseInt(parsed.deeperAnalytics.audienceSatisfaction, 10) || 50)),
@@ -580,321 +852,613 @@ Return ONLY the JSON object, no other text.`;
               optimalPostingWindow: parsed.deeperAnalytics.optimalPostingWindow || '',
               aiSummary: parsed.deeperAnalytics.aiSummary || '',
             }
-          : getMockAnalysis(trimmed, channelConfig).deeperAnalytics,
+          : mock.deeperAnalytics,
         overallVerdict: parsed.overallVerdict || 'Analysis complete.',
+        goNoGo,
       });
     } catch {
       setResult(getMockAnalysis(trimmed, channelConfig));
     } finally {
       setLoading(false);
     }
-  };
+  }, [input, spendTokens, channelConfig]);
 
   const handleCopyVerdict = async () => {
     if (!result) return;
-    const text = `NEXT UPLOADER — Pre-Upload Analysis Report\n\nOverall Verdict:\n${result.overallVerdict}\n\nBrand Consistency: ${result.brandScore}/100\nNovelty Score: ${result.noveltyScore}/100\nAuthenticity: ${result.authenticityScore}/100\n\nRetention Predictions:\n${result.retentionData.map(r => `  ${r.mark}: ${r.retention}% (${r.label})`).join('\n')}\n\nDeeper Analytics:\n  Audience Satisfaction: ${result.deeperAnalytics.audienceSatisfaction}/100\n  Hidden Growth: ${result.deeperAnalytics.hiddenGrowth}\n  Optimal Posting: ${result.deeperAnalytics.optimalPostingWindow}\n  Content Gaps:\n${result.deeperAnalytics.contentGaps.map((g, i) => `    ${i + 1}. ${g}`).join('\n')}`;
+    const text = `NEXT UPLOADER — Pre-Upload Analysis Report\n\nVerdict: ${result.goNoGo.toUpperCase()}\n${result.overallVerdict}\n\nBrand Consistency: ${result.brandScore}/100\nNovelty Score: ${result.noveltyScore}/100\nAuthenticity: ${result.authenticityScore}/100\n\nRetention Predictions:\n${result.retentionData.map(r => `  ${r.mark}: ${r.retention}% (${r.label})`).join('\n')}`;
     await navigator.clipboard.writeText(text);
     setCopiedVerdict(true);
     showToast('Report copied to clipboard', 'success');
     setTimeout(() => setCopiedVerdict(false), 2000);
   };
 
+  const handleUseIdea = useCallback((idea: string) => {
+    setInput(idea);
+    setActiveTab('analysis');
+  }, []);
+
+  const niche = channelConfig.niche || 'general';
+  const suggestedIdeas = getSuggestedIdeas(niche);
+
   return (
-    <div className="space-y-5 animate-fade-in-up">
-      {/* ──────── HEADER CARD ──────── */}
+    <div className="space-y-4 animate-fade-in-up">
+      {/* ──────── HEADER CARD WITH TABS ──────── */}
       <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-        <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: TOOL_BG }}>
-              <Upload className="w-5 h-5" style={{ color: TOOL_COLOR }} />
-            </div>
-            <div>
-              <h2 className="text-base font-bold text-[#E8E8E8]">Next Uploader AI</h2>
-              <p className="text-xs text-[#888888] mt-0.5">
-                Pre-Upload Intelligence — Analyze before you publish
-              </p>
-            </div>
-          </div>
-          <p className="text-sm text-[#888888] mb-4">
-            Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
-            including audience retention, brand alignment, and growth potential before you hit publish.
-          </p>
-
-          {/* Input Section */}
-          <div className="space-y-2">
-            <div className="relative">
-              {isYouTubeUrl(input) ? (
-                <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
-              ) : (
-                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
-              )}
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
-                placeholder="Paste YouTube URL or enter video topic/title..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none transition-colors"
-                style={{ caretColor: TOOL_COLOR }}
-                onFocus={(e) => { e.target.style.borderColor = `${TOOL_COLOR}80`; }}
-                onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
-              />
-              {input && (
-                <button
-                  onClick={() => setInput('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#E8E8E8] transition-colors"
-                >
-                  ×
-                </button>
-              )}
-            </div>
-
-            {/* Channel Config indicator */}
-            {channelConfig.channelName && (
-              <div className="flex items-center gap-1.5 px-2">
-                <Info className="w-3 h-3 text-[#555555]" />
-                <span className="text-[10px] text-[#555555]">
-                  Analyzing for channel: <span className="text-[#888888]">{channelConfig.channelName}</span>
-                  {channelConfig.niche && <> · Niche: <span className="text-[#888888]">{channelConfig.niche}</span></>}
-                </span>
+        <div className="px-4 sm:px-5 py-4 relative">
+          {/* Background grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: 'linear-gradient(#9B72CF 1px, transparent 1px), linear-gradient(90deg, #9B72CF 1px, transparent 1px)',
+              backgroundSize: '24px 24px',
+            }}
+          />
+          <div className="relative z-10">
+            {/* Title row */}
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 rounded-lg border" style={{ borderColor: `${TOOL_BORDER}`, background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
+                <Upload className="w-5 h-5" style={{ color: TOOL_COLOR }} />
               </div>
-            )}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-base font-bold text-[#E8E8E8] tracking-tight">Next Uploader AI</h2>
+                  <span className="px-2 py-0.5 rounded text-[9px] font-bold" style={{ color: TOOL_COLOR, backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>AGENT</span>
+                </div>
+                <p className="text-[11px] text-[#888888] mt-0.5">Pre-Upload Intelligence — Analyze before you publish</p>
+              </div>
+              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                <Zap className="w-3 h-3" style={{ color: TOOL_COLOR }} />
+                <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>{TOOL_TOKEN_COST} TOKENS / ANALYSIS</span>
+              </div>
+            </div>
 
-            {/* Analyze Button */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleAnalyze}
-                disabled={loading || !input.trim()}
-                className="px-5 h-10 rounded-lg text-[#0D0D0D] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
-                style={{ backgroundColor: TOOL_COLOR }}
-              >
-                {loading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Sparkles className="w-4 h-4" />
-                )}
-                Analyze Pre-Upload
-              </button>
-              {searched && !loading && (
+            <ScanLine />
+
+            {/* Tab bar */}
+            <div className="flex gap-1 overflow-x-auto pb-0.5 mt-3 -mb-1 scrollbar-none">
+              {TABS.map((tab) => (
                 <button
-                  onClick={handleAnalyze}
-                  className="flex items-center gap-1.5 px-3 h-10 rounded-lg border border-[#222222] text-xs text-[#888888] hover:bg-[#1A1A1A] hover:text-[#E8E8E8] transition-colors"
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                    activeTab === tab.id
+                      ? 'text-[#9B72CF] border shadow-[0_0_12px_rgba(155,114,207,0.1)]'
+                      : 'text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] border border-transparent'
+                  }`}
+                  style={activeTab === tab.id ? { backgroundColor: 'rgba(155,114,207,0.15)', borderColor: 'rgba(155,114,207,0.3)' } : undefined}
                 >
-                  <RefreshCw className="w-3 h-3" />
-                  Re-analyze
+                  <tab.icon className="w-3.5 h-3.5" />
+                  {tab.label}
                 </button>
-              )}
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* ──────── ERROR STATE ──────── */}
-      {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
-          <p className="text-sm text-[#E8E8E8]">{error}</p>
-          <button
-            onClick={handleAnalyze}
-            className="mt-3 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
-            style={{ backgroundColor: TOOL_COLOR, color: '#0D0D0D' }}
-          >
-            Try Again
-          </button>
+      {/* ──────── CONTENT ANALYSIS TAB ──────── */}
+      {activeTab === 'analysis' && (
+        <div className="space-y-4">
+          {/* Input Section */}
+          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <p className="text-sm text-[#888888] mb-3">
+              Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
+              including audience retention, brand alignment, and growth potential.
+            </p>
+            <div className="space-y-2">
+              <div className="relative group">
+                {/* Conic gradient rotating border on hover */}
+                <div
+                  className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: 'conic-gradient(from var(--angle, 0deg), #9B72CF, #4A9EFF, #10B981, #FDBA2D, #EF4444, #9B72CF)',
+                    animation: 'rotateBorder 3s linear infinite',
+                  }}
+                />
+                <style>{`
+                  @keyframes rotateBorder {
+                    from { --angle: 0deg; }
+                    to { --angle: 360deg; }
+                  }
+                  @property --angle {
+                    syntax: '<angle>';
+                    initial-value: 0deg;
+                    inherits: false;
+                  }
+                `}</style>
+                <div className="relative">
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      {isYouTubeUrl(input) ? (
+                        <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
+                      ) : (
+                        <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
+                      )}
+                      <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
+                        placeholder="Paste YouTube URL or enter video topic/title..."
+                        className="w-full h-12 pl-10 pr-4 rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/40 transition-all duration-300"
+                        style={{ caretColor: TOOL_COLOR }}
+                      />
+                    </div>
+                    <button
+                      onClick={handleAnalyze}
+                      disabled={loading || !input.trim()}
+                      className="px-5 h-12 rounded-xl text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(155,114,207,0.2)] hover:shadow-[0_0_30px_rgba(155,114,207,0.3)]"
+                      style={{ backgroundColor: TOOL_COLOR }}
+                    >
+                      {loading ? (
+                        <><Loader2 className="w-4 h-4 animate-spin" /><span className="hidden sm:inline">Scanning</span></>
+                      ) : (
+                        <><Sparkles className="w-4 h-4" /><span className="hidden sm:inline">Analyze</span></>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Channel Config indicator */}
+              {channelConfig.channelName && (
+                <div className="flex items-center gap-1.5 px-2">
+                  <Info className="w-3 h-3 text-[#555555]" />
+                  <span className="text-[10px] text-[#555555]">
+                    Analyzing for: <span className="text-[#888888]">{channelConfig.channelName}</span>
+                    {channelConfig.niche && <> · Niche: <span className="text-[#888888]">{channelConfig.niche}</span></>}
+                  </span>
+                </div>
+              )}
+
+              {searched && !loading && (
+                <button
+                  onClick={handleAnalyze}
+                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#222222] text-xs text-[#888888] hover:bg-[#1A1A1A] hover:text-[#E8E8E8] transition-colors"
+                >
+                  <RefreshCw className="w-3 h-3" /> Re-analyze
+                </button>
+              )}
+            </div>
+          </TacticalCorners>
+
+          {/* Suggested Ideas (only when no input and not loading/searched) */}
+          {!input.trim() && !loading && !searched && (
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(253,186,45,0.2) 0%, transparent 70%)' }}>
+                  <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-[#E8E8E8]">Suggested Ideas</h3>
+                  <p className="text-[10px] text-[#888888]">AI-generated based on deep analysis of your niche</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                {suggestedIdeas.map((idea, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleUseIdea(idea)}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[rgba(155,114,207,0.3)] hover:bg-[rgba(155,114,207,0.04)] transition-all group text-left"
+                  >
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: TOOL_BG }}>
+                      <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>{i + 1}</span>
+                    </div>
+                    <p className="text-xs text-[#E8E8E8] line-clamp-2 flex-1 leading-relaxed">{idea}</p>
+                    <Send className="w-3.5 h-3.5 text-[#444444] group-hover:text-[#9B72CF] transition-colors shrink-0" />
+                  </button>
+                ))}
+              </div>
+            </TacticalCorners>
+          )}
+
+          {/* ── Loading State (Scanning Animation) ── */}
+          {loading && (
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-fade-in-up">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="relative">
+                  <Radar className="w-5 h-5 text-[#9B72CF] animate-pulse" />
+                </div>
+                <span className="text-sm font-bold text-[#E8E8E8]">Running Deep Analysis...</span>
+                <span className="ml-auto text-[10px] text-[#888888] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mb-5">
+                <div
+                  className="h-full rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    width: `${((scanStep + 1) / SCANNING_STEPS.length) * 100}%`,
+                    background: 'linear-gradient(90deg, #9B72CF, #4A9EFF)',
+                    boxShadow: '0 0 10px rgba(155,114,207,0.4)',
+                  }}
+                />
+              </div>
+              <div className="space-y-3">
+                {SCANNING_STEPS.map((step, i) => {
+                  const isComplete = i < scanStep;
+                  const isActive = i === scanStep;
+                  return (
+                    <div key={i} className="flex items-center gap-3">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
+                        style={{
+                          backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(155,114,207,0.2)' : '#1A1A1A',
+                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(155,114,207,0.4)' : '#222222'}`,
+                        }}
+                      >
+                        {isComplete ? (
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
+                        ) : isActive ? (
+                          <span style={{ color: '#9B72CF' }}>{step.icon}</span>
+                        ) : (
+                          <span className="text-[10px] text-[#444444] font-mono">{i + 1}</span>
+                        )}
+                      </div>
+                      <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#888888]' : isActive ? 'text-[#E8E8E8]' : 'text-[#444444]'}`}>
+                        {step.label}
+                      </span>
+                      {isComplete && <Check className="w-3 h-3 text-[#10B981] ml-auto" />}
+                      {isActive && <Loader2 className="w-3 h-3 text-[#9B72CF] ml-auto animate-spin" />}
+                    </div>
+                  );
+                })}
+              </div>
+            </TacticalCorners>
+          )}
+
+          {/* ── Error State ── */}
+          {error && (
+            <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
+              <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+              <p className="text-sm text-[#E8E8E8]">{error}</p>
+              <button onClick={handleAnalyze} className="mt-3 px-4 py-2 rounded-lg text-sm font-bold" style={{ backgroundColor: TOOL_COLOR, color: '#0D0D0D' }}>Try Again</button>
+            </div>
+          )}
+
+          {/* ── Analysis Results ── */}
+          {!loading && result && (
+            <div className="space-y-4 animate-fade-in-up">
+              {/* Go/No-Go Verdict */}
+              <GoNoGoBadge verdict={result.goNoGo} />
+
+              {/* Overall Verdict Text */}
+              <div className="rounded-lg p-4 border flex items-start gap-3" style={{ backgroundColor: `${TOOL_COLOR}08`, borderColor: `${TOOL_COLOR}25` }}>
+                <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: TOOL_COLOR }} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Analysis Report</h3>
+                    <button onClick={handleCopyVerdict} className="flex items-center gap-1 text-[10px] text-[#888888] hover:text-[#E8E8E8] transition-colors shrink-0">
+                      {copiedVerdict ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                      {copiedVerdict ? 'Copied' : 'Copy Report'}
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-[#888888] leading-relaxed">{result.overallVerdict}</p>
+                </div>
+              </div>
+
+              {/* Core Scores with Gauges */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+                <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-5 flex items-center gap-2">
+                  <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
+                  Core Scores
+                </h3>
+                <div className="flex items-start justify-around sm:justify-center sm:gap-12">
+                  <ScoreGauge score={result.brandScore} label="Brand Consistency" icon={Palette} showGlow />
+                  <ScoreGauge score={result.noveltyScore} label="Novelty" icon={Fingerprint} showGlow />
+                  <ScoreGauge score={result.authenticityScore} label="Authenticity" icon={ShieldCheck} showGlow />
+                </div>
+                {/* Novelty Level Badge */}
+                <div className="flex items-center justify-center mt-4">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold" style={{
+                    color: noveltyLevel(result.noveltyScore).color,
+                    backgroundColor: `${noveltyLevel(result.noveltyScore).color}15`,
+                    border: `1px solid ${noveltyLevel(result.noveltyScore).color}30`,
+                  }}>
+                    <Fingerprint className="w-3 h-3" />
+                    Novelty: {noveltyLevel(result.noveltyScore).label}
+                  </span>
+                </div>
+              </TacticalCorners>
+
+              {/* Audience Retention Simulation */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
+                    <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
+                    Audience Retention Simulation
+                  </h3>
+                  <span className="text-[10px] text-[#555555]">Predicted drop-off</span>
+                </div>
+                <RetentionChart data={result.retentionData} />
+                <div className="mt-4 space-y-1.5">
+                  {result.retentionData.slice(1).map((point, i) => {
+                    const prev = result.retentionData[i].retention;
+                    const drop = prev - point.retention;
+                    const isHighDrop = drop >= 20;
+                    return (
+                      <div key={point.mark} className="flex items-center gap-2 text-[10px]">
+                        {isHighDrop ? <AlertTriangle className="w-3 h-3 text-[#FDBA2D] shrink-0" /> : <div className="w-3 shrink-0" />}
+                        <span className="text-[#888888]">
+                          <span className="text-[#E8E8E8] font-medium">{point.mark}</span> &mdash; {point.label}
+                        </span>
+                        {isHighDrop && <span className="font-bold text-[#FDBA2D]">(-{drop}% drop)</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </TacticalCorners>
+            </div>
+          )}
+
+          {/* ── Initial Idle State ── */}
+          {!loading && !searched && (
+            <div className="flex flex-col items-center justify-center py-12">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                <Upload className="w-8 h-8" style={{ color: TOOL_COLOR }} />
+              </div>
+              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Pre-Upload Intelligence</h3>
+              <p className="text-sm text-[#888888] max-w-xs text-center mb-6">
+                Enter a video idea above or click a suggestion to get a full performance prediction.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg w-full">
+                {[
+                  { icon: Eye, label: 'Retention Simulation', desc: 'Predicted viewer drop-off' },
+                  { icon: Palette, label: 'Brand Alignment', desc: 'Consistency scoring' },
+                  { icon: Fingerprint, label: 'Novelty Check', desc: 'Content uniqueness' },
+                  { icon: ShieldCheck, label: 'Authenticity', desc: 'Over-saturation detect' },
+                  { icon: BarChart3, label: 'Go/No-Go Verdict', desc: 'AI publish recommendation' },
+                  { icon: Activity, label: 'Deep Insights', desc: 'Hidden analytics' },
+                ].map((f) => (
+                  <div key={f.label} className="rounded-lg bg-[#141414] border border-[#1A1A1A] p-3 text-center hover:border-[#2A2A2A] transition-colors">
+                    <f.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: TOOL_COLOR }} />
+                    <p className="text-[11px] font-semibold text-[#E8E8E8]">{f.label}</p>
+                    <p className="text-[9px] text-[#555555] mt-0.5">{f.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* ──────── LOADING SKELETON ──────── */}
-      {loading && (
+      {/* ──────── RECENT VIDEOS TAB ──────── */}
+      {activeTab === 'recent' && (
         <div className="space-y-4">
-          {/* Scores skeleton */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-            <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-4" />
-            <div className="flex items-center justify-around">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="flex flex-col items-center gap-2">
-                  <div className="w-20 h-20 rounded-full bg-[#1A1A1A] animate-pulse" />
-                  <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-16" />
-                  <div className="h-2 bg-[#1A1A1A] rounded animate-pulse w-12" />
-                </div>
-              ))}
+          {!result ? (
+            <div className="flex flex-col items-center justify-center py-16">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                <Flame className="w-8 h-8" style={{ color: TOOL_COLOR }} />
+              </div>
+              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Recent Video Analytics</h3>
+              <p className="text-sm text-[#888888] max-w-sm text-center">
+                Run a Content Analysis first to unlock deep analytics for your 3 most recent videos — including retention curves, sentiment breakdowns, and thumbnail effectiveness.
+              </p>
+              <button
+                onClick={() => setActiveTab('analysis')}
+                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0D0D0D] flex items-center gap-2"
+                style={{ backgroundColor: TOOL_COLOR }}
+              >
+                <BrainCircuit className="w-3.5 h-3.5" />
+                Run Analysis First
+              </button>
             </div>
-          </div>
-          {/* Retention skeleton */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-            <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/2 mb-4" />
-            <div className="h-40 bg-[#1A1A1A] rounded animate-pulse" />
-          </div>
-          {/* Video cards skeleton */}
-          <div className="space-y-3">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#1A1A1A] animate-pulse" />
-                  <div className="flex-1 space-y-2">
-                    <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-3/4" />
-                    <div className="h-2 bg-[#1A1A1A] rounded animate-pulse w-1/4" />
+          ) : (
+            <>
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
+                    <Flame className="w-4 h-4 text-[#9B72CF]" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-bold text-[#E8E8E8]">Channel&apos;s Latest 3 Videos</h3>
+                    <p className="text-[11px] text-[#888888]">Deep analytics including retention curves, sentiment, and thumbnail scores</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                    <GlowDot color="#9B72CF" />
+                    <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>3 VIDEOS</span>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {Array.from({ length: 6 }).map((_, j) => (
-                    <div key={j} className="h-10 bg-[#1A1A1A] rounded-md animate-pulse" />
+              </TacticalCorners>
+
+              <div className="space-y-4">
+                {result.latestVideos.map((video, i) => (
+                  <EnhancedVideoCard key={i} video={video} index={i} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* ──────── DEEP INSIGHTS TAB ──────── */}
+      {activeTab === 'insights' && (
+        <div className="space-y-4">
+          {!result ? (
+            <div className="flex flex-col items-center justify-center py-16">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                <Radar className="w-8 h-8" style={{ color: TOOL_COLOR }} />
+              </div>
+              <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Deep Insights</h3>
+              <p className="text-sm text-[#888888] max-w-sm text-center">
+                Analytics that YouTube doesn&apos;t show you. Run a Content Analysis first to unlock viewer behavior heatmaps, CPM analysis, demographics, and content gap opportunities.
+              </p>
+              <button
+                onClick={() => setActiveTab('analysis')}
+                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0D0D0D] flex items-center gap-2"
+                style={{ backgroundColor: TOOL_COLOR }}
+              >
+                <BrainCircuit className="w-3.5 h-3.5" />
+                Run Analysis First
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Section header */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(155,114,207,0.2) 0%, transparent 70%)' }}>
+                    <Activity className="w-4 h-4 text-[#9B72CF]" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-bold text-[#E8E8E8]">What YouTube Won&apos;t Show You</h3>
+                    <p className="text-[11px] text-[#888888]">Hidden growth signals and deeper analytics</p>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
+                    <GlowDot color="#10B981" />
+                    <span className="text-[10px] font-bold text-[#10B981]">DEEP ANALYTICS</span>
+                  </div>
+                </div>
+              </TacticalCorners>
+
+              {/* Viewer Behavior Heatmap */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
+                    <Activity className="w-4 h-4 text-[#10B981]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Viewer Behavior Heatmap</h3>
+                    <p className="text-[10px] text-[#888888]">When your audience is most active (simulated)</p>
+                  </div>
+                </div>
+                <HeatmapGrid />
+              </TacticalCorners>
+
+              {/* Best Publishing Window */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(74,158,255,0.15)' }}>
+                    <Calendar className="w-4 h-4 text-[#4A9EFF]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Best Publishing Window</h3>
+                    <p className="text-[10px] text-[#888888]">Calculated from audience engagement patterns</p>
+                  </div>
+                </div>
+                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                  <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.optimalPostingWindow}</p>
+                </div>
+              </TacticalCorners>
+
+              {/* Revenue per 1000 views (CPM Analysis) */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
+                    <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Revenue per 1000 Views (CPM Analysis)</h3>
+                    <p className="text-[10px] text-[#888888]">Estimated earnings vs niche averages</p>
+                  </div>
+                </div>
+                <CPMAnalysis />
+              </TacticalCorners>
+
+              {/* Audience Demographics */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(155,114,207,0.15)' }}>
+                    <Users className="w-4 h-4 text-[#9B72CF]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Audience Demographics</h3>
+                    <p className="text-[10px] text-[#888888]">Age and gender breakdown (simulated)</p>
+                  </div>
+                </div>
+                <DemographicsBreakdown />
+              </TacticalCorners>
+
+              {/* Content Gap Opportunities */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
+                    <Target className="w-4 h-4 text-[#FDBA2D]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Content Gap Opportunities</h3>
+                    <p className="text-[10px] text-[#888888]">High-demand, low-competition topics in your niche</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {result.deeperAnalytics.contentGaps.map((gap, i) => (
+                    <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                      <div className="w-5 h-5 rounded-md bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
+                      </div>
+                      <p className="text-[11px] text-[#888888] leading-relaxed">{gap}</p>
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+              </TacticalCorners>
 
-      {/* ──────── RESULTS ──────── */}
-      {!loading && result && (
-        <div className="space-y-4">
-          {/* ── Overall Verdict Banner ── */}
-          <div
-            className="rounded-lg p-4 border flex items-start gap-3"
-            style={{
-              backgroundColor: `${TOOL_COLOR}08`,
-              borderColor: `${TOOL_COLOR}25`,
-            }}
-          >
-            <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: TOOL_COLOR }} />
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <h3 className="text-xs font-bold text-[#E8E8E8]">Pre-Upload Verdict</h3>
-                <button
-                  onClick={handleCopyVerdict}
-                  className="flex items-center gap-1 text-[10px] text-[#888888] hover:text-[#E8E8E8] transition-colors shrink-0"
-                >
-                  {copiedVerdict ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
-                  {copiedVerdict ? 'Copied' : 'Copy Report'}
-                </button>
-              </div>
-              <p className="text-[11px] text-[#888888] leading-relaxed">{result.overallVerdict}</p>
-            </div>
-          </div>
-
-          {/* ── Three Core Scores ── */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-            <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider mb-5 flex items-center gap-2">
-              <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
-              Core Scores
-            </h3>
-            <div className="flex items-start justify-around sm:justify-center sm:gap-12">
-              <ScoreGauge score={result.brandScore} label="Brand Consistency" icon={Palette} />
-              <ScoreGauge score={result.noveltyScore} label="Novelty" icon={Fingerprint} />
-              <ScoreGauge score={result.authenticityScore} label="Authenticity" icon={ShieldCheck} />
-            </div>
-          </div>
-
-          {/* ── Audience Retention Simulation ── */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs font-bold text-[#888888] uppercase tracking-wider flex items-center gap-2">
-                <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
-                Predicted Audience Retention
-              </h3>
-              <span className="text-[10px] text-[#555555]">Simulated drop-off</span>
-            </div>
-            <RetentionChart data={result.retentionData} />
-            {/* Retention insights */}
-            <div className="mt-4 space-y-1.5">
-              {result.retentionData.slice(1).map((point, i) => {
-                const prev = result.retentionData[i].retention;
-                const drop = prev - point.retention;
-                const isHighDrop = drop >= 20;
-                return (
-                  <div key={point.mark} className="flex items-center gap-2 text-[10px]">
-                    {isHighDrop && (
-                      <AlertTriangle className="w-3 h-3 text-[#FDBA2D] shrink-0" />
-                    )}
-                    {!isHighDrop && (
-                      <div className="w-3 shrink-0" />
-                    )}
-                    <span className="text-[#888888]">
-                      <span className="text-[#E8E8E8] font-medium">{point.mark}</span>
-                      {' '}&mdash; {point.label}
-                    </span>
-                    {isHighDrop && (
-                      <span className="font-bold text-[#FDBA2D]">
-                        (-{drop}% drop)
-                      </span>
-                    )}
+              {/* Audience Satisfaction */}
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
+                    <TrendingUp className="w-4 h-4 text-[#10B981]" />
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#E8E8E8]">Audience Satisfaction Score</h3>
+                    <p className="text-[10px] text-[#888888]">Based on return viewer rate, comment sentiment, and watch sessions</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
+                    style={{
+                      backgroundColor: `${scoreColor(result.deeperAnalytics.audienceSatisfaction)}12`,
+                      border: `1px solid ${scoreColor(result.deeperAnalytics.audienceSatisfaction)}30`,
+                      boxShadow: `0 0 16px ${scoreColor(result.deeperAnalytics.audienceSatisfaction)}20`,
+                    }}
+                  >
+                    <span className="text-lg font-bold" style={{ color: scoreColor(result.deeperAnalytics.audienceSatisfaction) }}>
+                      {result.deeperAnalytics.audienceSatisfaction}
+                    </span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="w-full h-2.5 rounded-full bg-[#1A1A1A] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{
+                          width: `${result.deeperAnalytics.audienceSatisfaction}%`,
+                          backgroundColor: scoreColor(result.deeperAnalytics.audienceSatisfaction),
+                          boxShadow: `0 0 8px ${scoreColor(result.deeperAnalytics.audienceSatisfaction)}40`,
+                        }}
+                      />
+                    </div>
+                    <p className="text-[10px] mt-1.5" style={{ color: scoreColor(result.deeperAnalytics.audienceSatisfaction) }}>
+                      {scoreLabel(result.deeperAnalytics.audienceSatisfaction)} satisfaction
+                    </p>
+                  </div>
+                </div>
+              </TacticalCorners>
 
-          {/* ── 3 Latest Video Analytics ── */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-[#E8E8E8] flex items-center gap-2">
-              <Flame className="w-4 h-4" style={{ color: TOOL_COLOR }} />
-              Channel&apos;s Latest 3 Videos
-              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: TOOL_COLOR, backgroundColor: TOOL_BG }}>
-                ANALYTICS
-              </span>
-            </h3>
-            {result.latestVideos.map((video, i) => (
-              <VideoCard key={i} video={video} index={i} />
-            ))}
-          </div>
+              {/* Hidden Growth Potential */}
+              <TacticalCorners className="rounded-lg p-4" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}20` }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="w-4 h-4" style={{ color: TOOL_COLOR }} />
+                  <h3 className="text-xs font-bold text-[#E8E8E8]">Hidden Growth Potential</h3>
+                </div>
+                <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.hiddenGrowth}</p>
+              </TacticalCorners>
 
-          {/* ── Deeper Analytics ── */}
-          <DeeperSection
-            analytics={result.deeperAnalytics}
-            expanded={deeperExpanded}
-            onToggle={() => setDeeperExpanded(!deeperExpanded)}
-          />
-        </div>
-      )}
-
-      {/* ──────── INITIAL IDLE STATE ──────── */}
-      {!loading && !searched && (
-        <div className="flex flex-col items-center justify-center py-16">
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
-            style={{
-              backgroundColor: TOOL_BG,
-              border: `1px solid ${TOOL_BORDER}`,
-            }}
-          >
-            <Upload className="w-8 h-8" style={{ color: TOOL_COLOR }} />
-          </div>
-          <h3 className="text-base font-semibold text-[#E8E8E8] mb-1">Pre-Upload Intelligence</h3>
-          <p className="text-sm text-[#888888] max-w-xs text-center mb-6">
-            Paste a YouTube URL or enter a video topic to predict performance, retention, and brand alignment before you hit publish.
-          </p>
-
-          {/* Feature highlights */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg w-full">
-            {[
-              { icon: Eye, label: 'Retention Prediction', desc: 'Simulated drop-off analysis' },
-              { icon: Palette, label: 'Brand Alignment', desc: 'Consistency scoring' },
-              { icon: Fingerprint, label: 'Novelty Check', desc: 'Content uniqueness rating' },
-              { icon: ShieldCheck, label: 'Authenticity Score', desc: 'Clickbait detection' },
-              { icon: BarChart3, label: 'Video Analytics', desc: 'Last 3 video metrics' },
-              { icon: Activity, label: 'Deep Insights', desc: 'Hidden growth signals' },
-            ].map((f) => (
-              <div
-                key={f.label}
-                className="rounded-lg bg-[#141414] border border-[#1A1A1A] p-3 text-center hover:border-[#2A2A2A] transition-colors"
-              >
-                <f.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: TOOL_COLOR }} />
-                <p className="text-[11px] font-semibold text-[#E8E8E8]">{f.label}</p>
-                <p className="text-[9px] text-[#555555] mt-0.5">{f.desc}</p>
-              </div>
-            ))}
-          </div>
+              {/* AI Insight */}
+              <TacticalCorners className="rounded-lg p-4" style={{ backgroundColor: `${TOOL_COLOR}06`, borderColor: `${TOOL_COLOR}18` }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-4 h-4" style={{ color: TOOL_COLOR }} />
+                  <h3 className="text-xs font-bold text-[#E8E8E8]">AI Insight Summary</h3>
+                </div>
+                <p className="text-[11px] text-[#888888] leading-relaxed">{result.deeperAnalytics.aiSummary}</p>
+              </TacticalCorners>
+            </>
+          )}
         </div>
       )}
 
       {/* ──────── TOKEN COST FOOTER ──────── */}
-      {searched && (
-        <div className="text-center text-[11px] text-[#444444]">
-          Cost: {TOOL_TOKEN_COST} tokens per analysis
-        </div>
-      )}
+      <div className="text-center text-[11px] text-[#444444] flex items-center justify-center gap-1.5">
+        <Zap className="w-3 h-3" />
+        Cost: {TOOL_TOKEN_COST} tokens per analysis
+      </div>
     </div>
   );
 }

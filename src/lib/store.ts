@@ -23,6 +23,17 @@ export interface TokenTransaction {
   type: 'spend' | 'earn' | 'reset' | 'bonus';
 }
 
+export interface Notification {
+  id: string;
+  type: 'channel_health' | 'viral_alert' | 'saku_tip' | 'system';
+  title: string;
+  message: string;
+  timestamp: number; // epoch ms
+  read: boolean;
+  color: string; // hex color for the glow
+  link?: string; // tool page to navigate to
+}
+
 export interface NychIQState {
   /* Routing */
   currentPage: PageId;
@@ -69,6 +80,11 @@ export interface NychIQState {
   trendingVideos: any[];
   shorts: any[];
 
+  /* Channel Health */
+  channelHealth: number; // 0-100 score
+  channelHealthStatus: 'danger' | 'good' | 'neutral'; // derived from health score
+  notifications: Notification[];
+
   /* ── Actions ── */
   setPage: (page: PageId) => void;
   setActiveTool: (tool: string) => void;
@@ -101,11 +117,17 @@ export interface NychIQState {
   setShorts: (videos: any[]) => void;
   canAccess: (tool: string) => boolean;
   addTokenHistory: (entry: TokenTransaction) => void;
+
+  /* Channel Health Actions */
+  setChannelHealth: (score: number) => void;
+  addNotification: (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => void;
+  markNotificationRead: (id: string) => void;
+  clearNotifications: () => void;
 }
 
 /* ── Token costs per feature ── */
 export const TOKEN_COSTS: Record<string, number> = {
-  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0, 'sovereign-vault': 0, 'channel-assistant': 0,
+  dashboard: 0, profile: 0, settings: 0, usage: 0, studio: 0, 'sovereign-vault': 0, 'channel-assistant': 0, 'auto-uploader': 0,
   viral: 1, saku: 1, rankings: 2, cpm: 2, keywords: 2, 'vph-tracker': 2,
   trending: 3, algorithm: 3, deepchat: 3, 'trend-alerts': 3, posttime: 5, shorts: 5, seo: 5, 'safe-check': 5, pulsecheck: 5, 'blueprint-ai': 5, 'social-channels': 5,
   ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8, lume: 8, scriptflow: 8, arbitrage: 8, 'sponsorship-roi': 8,
@@ -116,15 +138,15 @@ export const TOKEN_COSTS: Record<string, number> = {
 
 /* ── Plan access levels ── */
 export const PLAN_ACCESS: Record<Plan, string[]> = {
-  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'channel-assistant'],
-  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'channel-assistant'],
-  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant'],
-  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant'],
-  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant'],
+  trial: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'channel-assistant', 'auto-uploader'],
+  starter: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'channel-assistant', 'auto-uploader'],
+  pro: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant', 'auto-uploader'],
+  elite: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant', 'auto-uploader'],
+  agency: ['dashboard', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant', 'auto-uploader'],
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
-const FREE_TOOLS = new Set(['dashboard', 'profile', 'settings', 'usage', 'studio', 'sovereign-vault']);
+const FREE_TOOLS = new Set(['dashboard', 'profile', 'settings', 'usage', 'studio', 'sovereign-vault', 'auto-uploader']);
 
 export const PLAN_PRICES: Record<Plan, { monthly: number; yearly: number }> = {
   trial: { monthly: 0, yearly: 0 },
@@ -176,6 +198,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   pulsecheck:      { label: 'PulseCheck',       icon: 'Scan',             category: 'studio' },
   'blueprint-ai':  { label: 'Blueprint AI',     icon: 'Wrench',           category: 'studio' },
   'next-uploader': { label: 'Next Uploader',    icon: 'UploadCloud',      category: 'studio' },
+  'auto-uploader': { label: 'Auto Uploader',    icon: 'Upload',           category: 'studio' },
   scriptflow:      { label: 'ScriptFlow',       icon: 'ScrollText',       category: 'studio' },
   arbitrage:       { label: 'Arbitrage',        icon: 'Scale',            category: 'studio' },
 
@@ -296,6 +319,11 @@ export const useNychIQStore = create<NychIQState>()(
       // Data
       trendingVideos: [],
       shorts: [],
+
+      // Channel Health
+      channelHealth: 78,
+      channelHealthStatus: 'good' as const,
+      notifications: [],
 
       // ── Actions ──
 
@@ -533,6 +561,39 @@ export const useNychIQStore = create<NychIQState>()(
           tokenHistory: [entry, ...s.tokenHistory].slice(0, 200),
         }));
       },
+
+      /* Channel Health Actions */
+      setChannelHealth: (score: number) => {
+        const clamped = Math.max(0, Math.min(100, score));
+        let status: 'danger' | 'good' | 'neutral' = 'neutral';
+        if (clamped >= 70) status = 'good';
+        else if (clamped < 40) status = 'danger';
+        set({ channelHealth: clamped, channelHealthStatus: status });
+      },
+
+      addNotification: (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
+        const newNotif: Notification = {
+          ...notification,
+          id: uid(),
+          timestamp: Date.now(),
+          read: false,
+        };
+        set((s) => ({
+          notifications: [newNotif, ...s.notifications].slice(0, 100), // Keep last 100
+        }));
+      },
+
+      markNotificationRead: (id: string) => {
+        set((s) => ({
+          notifications: s.notifications.map((n) =>
+            n.id === id ? { ...n, read: true } : n
+          ),
+        }));
+      },
+
+      clearNotifications: () => {
+        set({ notifications: [] });
+      },
     }),
     {
       name: 'nychiq-store',
@@ -551,11 +612,13 @@ export const useNychIQStore = create<NychIQState>()(
         signupTimestamp: state.signupTimestamp,
         lastResetDate: state.lastResetDate,
         tokenHistory: state.tokenHistory,
-        workerUrl: state.workerUrl,
         region: state.region,
         detectedRegion: state.detectedRegion,
         referralCode: state.referralCode,
         searchFilter: state.searchFilter,
+        notifications: state.notifications,
+        channelHealth: state.channelHealth,
+        channelHealthStatus: state.channelHealthStatus,
       }),
     }
   )

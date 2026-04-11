@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useNychIQStore } from '@/lib/store';
 import { showToast } from '@/lib/toast';
 import {
@@ -33,7 +33,9 @@ import {
   Activity,
   ShieldCheck,
   AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 /* ── Local storage key ── */
 const STORAGE_KEY = 'nychiq_channel_assistant_config';
@@ -223,6 +225,281 @@ function TagInput({
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+/* ── Webtoon-Style Tip Bubble ── */
+const ASSISTANT_TIPS = [
+  {
+    icon: 'activity' as const,
+    text: "Your latest video's retention drops at 0:45. Consider adding a pattern interrupt.",
+    label: 'Retention Alert',
+    color: '#FDBA2D',
+  },
+  {
+    icon: 'users' as const,
+    text: "Competitor @TechChannel just posted about AI automation. Consider covering it this week.",
+    label: 'Competitor Intel',
+    color: '#4A9EFF',
+  },
+  {
+    icon: 'trending' as const,
+    text: 'Your CTR is 3.2% above niche average. Great thumbnail performance!',
+    label: 'Performance Win',
+    color: '#10B981',
+  },
+  {
+    icon: 'zap' as const,
+    text: "New trending keyword detected in your niche: 'AI agents'. Use it in your next title.",
+    label: 'Trending Keyword',
+    color: '#9B72CF',
+  },
+];
+
+const TYPING_SPEED = 30; /* ms per character */
+const FIRST_MSG_DELAY = 3000; /* ms before first message */
+const NEXT_MSG_DELAY = 8000; /* ms between completed message and next */
+
+function TipIcon({ type, color }: { type: string; color: string }) {
+  const cls = 'w-4 h-4';
+  switch (type) {
+    case 'activity': return <Activity className={cls} style={{ color }} />;
+    case 'users': return <Users className={cls} style={{ color }} />;
+    case 'trending': return <TrendingUp className={cls} style={{ color }} />;
+    case 'zap': return <Zap className={cls} style={{ color }} />;
+    default: return <Sparkles className={cls} style={{ color }} />;
+  }
+}
+
+function WebtoonTipBubble({ visible }: { visible: boolean }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+
+  const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const cycleRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const currentIdxRef = useRef(0);
+
+  /* Keep ref in sync */
+  useEffect(() => { currentIdxRef.current = currentIdx; }, [currentIdx]);
+
+  /* Typewriter engine */
+  const startTyping = useCallback((text: string) => {
+    setDisplayText('');
+    setIsTyping(true);
+    let i = 0;
+    if (typingRef.current) clearInterval(typingRef.current);
+    typingRef.current = setInterval(() => {
+      i++;
+      if (i <= text.length) {
+        setDisplayText(text.substring(0, i));
+      } else {
+        if (typingRef.current) clearInterval(typingRef.current);
+        typingRef.current = null;
+        setIsTyping(false);
+        /* Schedule next message */
+        if (cycleRef.current) clearTimeout(cycleRef.current);
+        cycleRef.current = setTimeout(() => {
+          const nextIdx = (currentIdxRef.current + 1) % ASSISTANT_TIPS.length;
+          setCurrentIdx(nextIdx);
+          startTyping(ASSISTANT_TIPS[nextIdx].text);
+        }, NEXT_MSG_DELAY);
+      }
+    }, TYPING_SPEED);
+  }, []);
+
+  /* Show bubble when tab becomes visible */
+  useEffect(() => {
+    if (!visible) {
+      /* Cleanup when switching away */
+      setShowBubble(false);
+      setDisplayText('');
+      setIsTyping(false);
+      if (typingRef.current) { clearInterval(typingRef.current); typingRef.current = null; }
+      if (cycleRef.current) { clearTimeout(cycleRef.current); cycleRef.current = null; }
+      if (showRef.current) { clearTimeout(showRef.current); showRef.current = null; }
+      return;
+    }
+    if (visible && !isDismissed) {
+      setIsExiting(false);
+      showRef.current = setTimeout(() => {
+        setShowBubble(true);
+        setIsMinimized(false);
+        startTyping(ASSISTANT_TIPS[currentIdxRef.current].text);
+      }, FIRST_MSG_DELAY);
+    }
+    return () => {
+      if (showRef.current) { clearTimeout(showRef.current); showRef.current = null; }
+    };
+  }, [visible, isDismissed, startTyping]);
+
+  /* Cleanup on unmount */
+  useEffect(() => {
+    return () => {
+      if (typingRef.current) clearInterval(typingRef.current);
+      if (cycleRef.current) clearTimeout(cycleRef.current);
+      if (showRef.current) clearTimeout(showRef.current);
+    };
+  }, []);
+
+  const handleDismiss = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setShowBubble(false);
+      setIsDismissed(true);
+      setIsExiting(false);
+      if (typingRef.current) { clearInterval(typingRef.current); typingRef.current = null; }
+      if (cycleRef.current) { clearTimeout(cycleRef.current); cycleRef.current = null; }
+    }, 300);
+  };
+
+  const handleMinimize = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setIsMinimized(true);
+      setIsExiting(false);
+      if (typingRef.current) { clearInterval(typingRef.current); typingRef.current = null; }
+      if (cycleRef.current) { clearTimeout(cycleRef.current); cycleRef.current = null; }
+    }, 250);
+  };
+
+  const handleRestore = () => {
+    setIsExiting(false);
+    setIsMinimized(false);
+    startTyping(ASSISTANT_TIPS[currentIdxRef.current].text);
+  };
+
+  if (!visible || isDismissed) return null;
+
+  const tip = ASSISTANT_TIPS[currentIdx];
+  const typingComplete = displayText.length === tip.text.length && !isTyping;
+
+  return (
+    <div className="fixed bottom-20 right-4 sm:right-6 z-50 flex flex-col items-end gap-2">
+      {/* Main bubble */}
+      {showBubble && !isMinimized && (
+        <div
+          className={cn(
+            'relative w-[320px] sm:w-[360px] transition-all duration-300 ease-out',
+            isExiting ? 'opacity-0 translate-y-4 scale-95' : 'opacity-100 translate-y-0 scale-100',
+          )}
+          style={{
+            animation: isExiting ? 'none' : 'webtoonSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          }}
+        >
+          {/* Bubble body – webtoon shape: rounded-tl-sm, rounded-br-2xl */}
+          <div
+            className="relative bg-[#1A1A1A] border border-[#222] p-4 shadow-2xl shadow-black/40"
+            style={{
+              borderRadius: '4px 16px 16px 16px',
+            }}
+          >
+            {/* Top bar: label + controls */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <div
+                  className="flex items-center justify-center w-6 h-6 rounded-full"
+                  style={{ backgroundColor: `${tip.color}20` }}
+                >
+                  <TipIcon type={tip.icon} color={tip.color} />
+                </div>
+                <span
+                  className="text-[10px] font-bold uppercase tracking-wider"
+                  style={{ color: tip.color }}
+                >
+                  {tip.label}
+                </span>
+              </div>
+              <div className="flex items-center gap-0.5">
+                <button
+                  onClick={handleMinimize}
+                  className="p-1 rounded-md text-[#555] hover:text-[#E8E8E8] hover:bg-[#222] transition-colors"
+                  aria-label="Minimize"
+                >
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  onClick={handleDismiss}
+                  className="p-1 rounded-md text-[#555] hover:text-[#EF4444] hover:bg-[#222] transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Typewriter text */}
+            <div className="min-h-[48px]">
+              <p className="text-[13px] leading-relaxed text-[#E8E8E8]">
+                {displayText}
+                {isTyping && (
+                  <span className="inline-block w-[2px] h-[14px] bg-[#FDBA2D] ml-0.5 align-middle animate-pulse" />
+                )}
+              </p>
+            </div>
+
+            {/* View details link (appears after typing completes) */}
+            <div
+              className={cn(
+                'mt-3 overflow-hidden transition-all duration-300 ease-out',
+                typingComplete ? 'max-h-8 opacity-100' : 'max-h-0 opacity-0',
+              )}
+            >
+              <button
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#FDBA2D] hover:text-[#FBBF24] transition-colors group"
+              >
+                View Details
+                <ExternalLink className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Bubble tail */}
+          <div
+            className="absolute -bottom-[6px] right-5 w-3 h-3 bg-[#1A1A1A] border-r border-b border-[#222] rotate-45"
+          />
+        </div>
+      )}
+
+      {/* Minimized pill */}
+      {showBubble && isMinimized && (
+        <button
+          onClick={handleRestore}
+          className={cn(
+            'flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1A1A] border border-[#222] shadow-lg transition-all duration-300',
+            isExiting ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0',
+          )}
+        >
+          <div
+            className="flex items-center justify-center w-5 h-5 rounded-full"
+            style={{ backgroundColor: `${tip.color}20` }}
+          >
+            <TipIcon type={tip.icon} color={tip.color} />
+          </div>
+          <span className="text-[11px] font-medium text-[#888]">{tip.label}</span>
+          <ChevronDown className="w-3 h-3 text-[#555] rotate-180" />
+        </button>
+      )}
+
+      {/* Inline keyframes via style tag */}
+      <style>{`
+        @keyframes webtoonSlideUp {
+          from {
+            opacity: 0;
+            transform: translateY(24px) scale(0.92);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -591,6 +868,9 @@ export function ChannelAssistantTool() {
                 </div>
               </div>
             </SectionCard>
+
+            {/* Webtoon-style assistant tip bubble (dashboard only) */}
+            <WebtoonTipBubble visible={activeTab === 'dashboard'} />
           </>
         )}
 

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { askAIStream } from '@/lib/api';
-import { fmtV } from '@/lib/utils';
+import { fmtV, cn } from '@/lib/utils';
 import {
   MessageSquare,
   Play,
@@ -18,6 +18,11 @@ import {
   Coins,
   ChevronRight,
   RotateCcw,
+  GitCompareArrows,
+  BarChart3,
+  ShieldCheck,
+  TrendingUp,
+  type LucideIcon,
 } from 'lucide-react';
 
 /* ── Types ── */
@@ -47,21 +52,70 @@ const LOADING_STEPS = [
   'Building full context...',
 ];
 
-/* ── Suggestion Chips ── */
-const SUGGESTIONS = [
-  { text: 'Underground competitor comparison', icon: 'eye' },
-  { text: 'Simulate audience retention curve', icon: 'activity' },
-  { text: 'How to increase green flags?', icon: 'check' },
-  { text: 'Maximize ad revenue from this video', icon: 'dollar' },
-  { text: 'Why is this underperforming?', icon: 'alert' },
-  { text: 'Rewrite the title for more CTR', icon: 'edit' },
-  { text: 'Suggest 3 improvements', icon: 'sparkles' },
-  { text: 'Analyze the thumbnail strategy', icon: 'image' },
+/* ── Quick Action Buttons ── */
+interface QuickAction {
+  id: string;
+  icon: LucideIcon;
+  label: string;
+  description: string;
+  prompt: string;
+  accent: string;
+  accentBg: string;
+  accentBorder: string;
+}
+
+const QUICK_ACTIONS: QuickAction[] = [
+  {
+    id: 'compare',
+    icon: GitCompareArrows,
+    label: 'Compare Videos',
+    description: 'Underground head-to-head analysis',
+    prompt: 'Run an underground comparison: How does this video stack up against the top 5 videos in the same niche? Compare CTR, average view duration, engagement rate, and subscriber conversion. What did competitors do differently?',
+    accent: 'text-[#FDBA2D]',
+    accentBg: 'bg-[rgba(253,186,45,0.08)]',
+    accentBorder: 'border-[rgba(253,186,45,0.2)] hover:border-[rgba(253,186,45,0.5)]',
+  },
+  {
+    id: 'retention',
+    icon: BarChart3,
+    label: 'Retention Simulator',
+    description: 'Simulate audience retention curve',
+    prompt: 'Simulate a minute-by-minute audience retention curve for this video. Based on its title, duration, topic, and niche benchmarks, identify expected retention drop-off points. Suggest exactly where to add hooks, visual changes, or pattern interrupts to maximize retention.',
+    accent: 'text-[#9B72CF]',
+    accentBg: 'bg-[rgba(155,114,207,0.08)]',
+    accentBorder: 'border-[rgba(155,114,207,0.2)] hover:border-[rgba(155,114,207,0.5)]',
+  },
+  {
+    id: 'greenflag',
+    icon: ShieldCheck,
+    label: 'Green Flag Check',
+    description: 'Find positive signals for revenue',
+    prompt: 'Run a comprehensive green flag analysis on this video. Identify all positive signals (strong title, good timing, trending topic, high engagement rate, etc.) that boost ad revenue. Rate each green flag on a 1-10 scale and suggest how to amplify each strength.',
+    accent: 'text-[#10B981]',
+    accentBg: 'bg-[rgba(16,185,129,0.08)]',
+    accentBorder: 'border-[rgba(16,185,129,0.2)] hover:border-[rgba(16,185,129,0.5)]',
+  },
+  {
+    id: 'revenue',
+    icon: TrendingUp,
+    label: 'Ad Revenue Boost',
+    description: 'Maximize earnings from ads',
+    prompt: 'Analyze the ad revenue potential of this video. Estimate the CPM for this niche, calculate projected earnings, and provide a specific strategy to increase ad revenue — including mid-roll placement, video length optimization, and audience demographics targeting. Give me exact numbers.',
+    accent: 'text-[#F472B6]',
+    accentBg: 'bg-[rgba(244,114,182,0.08)]',
+    accentBorder: 'border-[rgba(244,114,182,0.2)] hover:border-[rgba(244,114,182,0.5)]',
+  },
 ];
 
 /* ── System Prompt ── */
 function buildSystemPrompt(ctx: VideoContext): string {
-  return `You are Deep Chat AI, an advanced YouTube analytics expert assistant with deep intelligence capabilities. You have analyzed the following video:
+  return `You are Deep Chat AI, NychIQ's underground intelligence agent. You specialize in:
+1. Underground video/channel comparison analysis
+2. Audience retention simulation and optimization
+3. Green flag identification for maximizing video performance
+4. Ad revenue optimization and monetization strategy
+
+You have analyzed the following video:
 
 Title: "${ctx.title}"
 Channel: ${ctx.channel}
@@ -73,17 +127,15 @@ Viral Score: ${ctx.viralScore}/100
 
 ## Your Capabilities:
 
-1. **Underground Comparison**: When asked for competitor comparisons, provide a detailed analysis of how this video stacks up against the top 5 videos in the same niche. Include metrics like CTR, average view duration, engagement rate, and subscriber conversion. Show what competitors did differently.
+1. **Underground Comparison**: Provide a detailed analysis of how this video stacks up against the top 5 videos in the same niche. Include metrics like CTR, average view duration, engagement rate, and subscriber conversion. Show what competitors did differently with specific numbers.
 
-2. **Audience Retention Simulation**: When asked about retention, simulate a minute-by-minute audience retention curve based on the video's title, duration, topic, and niche benchmarks. Identify retention drop-off points and suggest where to add hooks, visual changes, or pattern interrupts to keep viewers engaged.
+2. **Audience Retention Simulation**: Simulate a minute-by-minute audience retention curve based on the video's title, duration, topic, and niche benchmarks. Identify retention drop-off points and suggest where to add hooks, visual changes, or pattern interrupts to keep viewers engaged.
 
-3. **Green Flag Analysis**: When asked about green flags, identify all the positive signals this video has (strong title, good timing, trending topic, high engagement rate, etc.) and suggest how to amplify these strengths to maximize reach.
+3. **Green Flag Analysis**: Identify all positive signals this video has (strong title, good timing, trending topic, high engagement rate, etc.) that increase ad revenue. Rate each on a 1-10 scale and suggest how to amplify these strengths.
 
-4. **Ad Revenue Maximization**: When asked about revenue, analyze the estimated CPM for this niche, calculate projected earnings, and suggest strategies to increase ad revenue (mid-roll placement, video length optimization, audience demographics targeting).
+4. **Ad Revenue Maximization**: Analyze the estimated CPM for this niche, calculate projected earnings, and suggest strategies to increase ad revenue (mid-roll placement, video length optimization, audience demographics targeting).
 
-5. **General Analysis**: Performance breakdown, audience demographics, SEO optimization, thumbnail critique, title A/B testing suggestions, engagement strategy, and growth opportunities.
-
-Always be specific, data-driven, and actionable. Use bullet points and numbered lists. Include estimated metrics where possible.`;
+Always provide actionable, data-driven insights. Use specific numbers and percentages when possible.`;
 }
 
 /* ── Mock video data generator ── */
@@ -424,55 +476,78 @@ You can ask me about:
             </div>
           </div>
 
-          {/* Suggestion Chips (shown only on first load, no user messages yet) */}
+          {/* Quick Action Buttons (shown only on first load, no user messages yet) */}
           {messages.length <= 1 && (
             <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
-              <p className="text-xs text-[#666666] mb-3 flex items-center gap-1.5"><Sparkles className="w-3 h-3 text-[#9B72CF]" /> Deep analysis suggestions:</p>
-              <div className="flex flex-wrap gap-2">
-                {SUGGESTIONS.map((suggestion, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleSend(suggestion.text)}
-                    className={cn(
-                      'px-3 py-1.5 rounded-full text-xs text-[#E8E8E8] bg-[#0D0D0D] border transition-colors',
-                      i < 4
-                        ? 'border-[#9B72CF]/20 hover:border-[#9B72CF]/50 hover:text-[#9B72CF] hover:bg-[rgba(155,114,207,0.08)]'
-                        : 'border-[#1A1A1A] hover:border-[#333333] hover:text-[#FDBA2D]'
-                    )}
-                  >
-                    {suggestion.text}
-                  </button>
-                ))}
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-xs text-[#888888] font-medium flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-[#9B72CF]" /> Quick Actions
+                </p>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)]">
+                  <Coins className="w-3 h-3 text-[#FDBA2D]" />
+                  <span className="text-[10px] font-bold text-[#FDBA2D]">{TOKEN_COSTS.deepchat} tokens per message</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                {QUICK_ACTIONS.map((action) => {
+                  const Icon = action.icon;
+                  return (
+                    <button
+                      key={action.id}
+                      onClick={() => handleSend(action.prompt)}
+                      disabled={isTyping}
+                      className={cn(
+                        'group flex flex-col items-start gap-2 p-3 rounded-xl border transition-all duration-200 text-left',
+                        action.accentBg,
+                        action.accentBorder,
+                        'disabled:opacity-50 disabled:cursor-not-allowed',
+                        'hover:shadow-lg hover:shadow-black/20'
+                      )}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-[#0D0D0D]/60 flex items-center justify-center">
+                          <Icon className={cn('w-4 h-4 transition-transform duration-200 group-hover:scale-110', action.accent)} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className={cn('text-xs font-bold leading-tight', action.accent)}>{action.label}</p>
+                          <p className="text-[10px] text-[#666666] mt-0.5 leading-tight">{action.description}</p>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
 
           {/* Chat Messages */}
-          <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#222222 #0D0D0D' }}>
+          <div className="rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#222222 #0D0D0D' }}>
             {messages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-3 animate-fade-in-up">
                 {msg.role === 'bot' ? (
                   <>
-                    <div className="w-8 h-8 rounded-full bg-[rgba(155,114,207,0.15)] flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(155,114,207,0.25)] to-[rgba(155,114,207,0.08)] border border-[rgba(155,114,207,0.2)] flex items-center justify-center flex-shrink-0">
                       <MessageSquare className="w-4 h-4 text-[#9B72CF]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="rounded-2xl rounded-tl-sm bg-[#1A1A1A] border border-[#222222] px-4 py-3 max-w-[85%]">
+                      <div className="rounded-2xl rounded-tl-md bg-[#1A1A1A] border border-[#222222] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                        <div className="w-8 h-[2px] bg-[#9B72CF]/40 rounded-full mb-2.5" />
                         <p className="text-sm text-[#E8E8E8] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
                       <span className="text-[10px] text-[#444444] mt-1 block">
-                        Deep Chat AI
+                        Deep Chat AI · Underground Intelligence
                       </span>
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="flex-1 min-w-0 flex flex-col items-end">
-                      <div className="rounded-2xl rounded-tr-sm bg-[rgba(253,186,45,0.15)] border border-[rgba(253,186,45,0.2)] px-4 py-3 max-w-[85%]">
-                        <p className="text-sm text-[#E8E8E8] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+                      <div className="rounded-2xl rounded-tr-md bg-[rgba(253,186,45,0.12)] border border-[rgba(253,186,45,0.25)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                        <p className="text-sm text-[#F5F0E1] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
+                      <span className="text-[10px] text-[#444444] mt-1 text-right block">You</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[rgba(253,186,45,0.15)] flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(253,186,45,0.25)] to-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center flex-shrink-0">
                       <span className="text-xs font-bold text-[#FDBA2D]">You</span>
                     </div>
                   </>
@@ -494,14 +569,14 @@ You can ask me about:
           )}
 
           {/* Input Area */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-3">
+          <div className="rounded-xl bg-[#141414] border border-[#222222] p-3">
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about this video..."
+                placeholder="Ask Deep Chat anything about this video..."
                 rows={1}
                 disabled={isTyping}
                 className="flex-1 resize-none bg-[#0D0D0D] border border-[#1A1A1A] rounded-lg px-4 py-2.5 text-sm text-[#E8E8E8] placeholder:text-[#555555] focus:outline-none focus:border-[#9B72CF]/50 transition-colors disabled:opacity-50 min-h-[40px] max-h-[120px]"
@@ -515,8 +590,11 @@ You can ask me about:
               </button>
             </div>
             <div className="flex items-center justify-between mt-2 px-1">
-              <span className="text-[10px] text-[#444444]">{TOKEN_COSTS.deepchat} tokens per message</span>
-              <span className="text-[10px] text-[#444444]">Press Enter to send, Shift+Enter for new line</span>
+              <div className="flex items-center gap-1.5">
+                <Coins className="w-3 h-3 text-[#FDBA2D]" />
+                <span className="text-[10px] font-semibold text-[#FDBA2D]">{TOKEN_COSTS.deepchat} tokens per message</span>
+              </div>
+              <span className="text-[10px] text-[#444444]">Enter to send · Shift+Enter for new line</span>
             </div>
           </div>
         </div>

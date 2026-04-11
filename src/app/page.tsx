@@ -73,6 +73,7 @@ import { LumeTool } from '@/components/nychiq/lume-tool';
 import { HookLabTool } from '@/components/nychiq/hooklab-tool';
 import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { ChannelAssistantTool } from '@/components/nychiq/channel-assistant-tool';
+import { AutoUploaderTool } from '@/components/nychiq/auto-uploader-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
 import { initAudio } from '@/lib/sounds';
 import { Card, CardContent } from '@/components/ui/card';
@@ -244,6 +245,8 @@ function ToolRouter() {
       return <SakuFullPage />;
     case 'channel-assistant':
       return <ChannelAssistantTool />;
+    case 'auto-uploader':
+      return <AutoUploaderTool />;
     default:
       return <ToolPlaceholder />;
   }

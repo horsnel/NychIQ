@@ -81,7 +81,7 @@ function CopyLinkButton({ videoId }: { videoId: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="absolute bottom-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
+      className="absolute top-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
       aria-label="Copy video link"
     >
       <Link2 className="w-3.5 h-3.5 text-white" />
@@ -167,7 +167,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="absolute top-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
+          className="absolute bottom-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
           onClick={(e) => e.stopPropagation()}
           aria-label="Video options"
         >
@@ -304,8 +304,8 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           {showViralScore && video.viralScore && video.viralScore >= 70 && (
             <ViralBadge score={video.viralScore} />
           )}
+            <CopyLinkButton videoId={video.videoId} />
           <VideoContextMenu video={video} />
-          <CopyLinkButton videoId={video.videoId} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
           <h3 className="text-sm font-medium text-[#E8E8E8] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">

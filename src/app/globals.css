@@ -432,7 +432,19 @@
   50%      { box-shadow: 0 0 8px rgba(74,158,255,0.6), 0 0 0 4px rgba(74,158,255,0); }
 }
 
+@keyframes channelRingRed {
+  0%, 100% { box-shadow: 0 0 4px rgba(239,68,68,0.3), 0 0 0 0 rgba(239,68,68,0.3); }
+  50%      { box-shadow: 0 0 10px rgba(239,68,68,0.7), 0 0 0 5px rgba(239,68,68,0); }
+}
+
+@keyframes channelRingWhite {
+  0%, 100% { box-shadow: 0 0 3px rgba(255,255,255,0.1), 0 0 0 0 rgba(255,255,255,0.1); }
+  50%      { box-shadow: 0 0 6px rgba(255,255,255,0.2), 0 0 0 3px rgba(255,255,255,0); }
+}
+
 .channel-ring-amber { animation: channelRingAmber 2s ease-in-out infinite; }
 .channel-ring-purple { animation: channelRingPurple 2.5s ease-in-out infinite; }
 .channel-ring-green { animation: channelRingGreen 3s ease-in-out infinite; }
 .channel-ring-blue { animation: channelRingBlue 2.2s ease-in-out infinite; }
+.channel-ring-red { animation: channelRingRed 1.8s ease-in-out infinite; }
+.channel-ring-white { animation: channelRingWhite 2.5s ease-in-out infinite; }

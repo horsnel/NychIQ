@@ -7,10 +7,11 @@ import {
   Download,
   Globe,
   Settings,
-  Zap,
   Check,
   Coins,
   PartyPopper,
+  Bot,
+  BarChart3,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNychIQStore } from '@/lib/store';
@@ -40,12 +41,46 @@ const STEPS = [
   },
 ];
 
+/* ── Next-steps roadmap (shown after extension install) ── */
+const SETUP_STEPS = [
+  {
+    num: '1',
+    title: 'Customize Your AI Assistant',
+    desc: 'Set brand voice, audience goals & content strategy',
+    icon: Bot,
+    color: '#FDBA2D',
+  },
+  {
+    num: '2',
+    title: 'Saku AI Welcome',
+    desc: 'Get your first personalized intelligence briefing',
+    icon: Sparkles,
+    color: '#9B72CF',
+  },
+  {
+    num: '3',
+    title: 'Channel Intelligence',
+    desc: 'View real audit data & activate your assistant',
+    icon: BarChart3,
+    color: '#10B981',
+  },
+];
+
 export function OnboardingExtension() {
   const { completeOnboarding, setPage, setActiveTool } = useNychIQStore();
   const [showChannelPopup, setShowChannelPopup] = useState(false);
+  const [extensionClicked, setExtensionClicked] = useState(false);
 
-  const handleComplete = () => {
+  const handleInstallExtension = () => {
+    setExtensionClicked(true);
+  };
+
+  const handleContinueToSetup = () => {
+    /* Mark extension installed so Saku knows to show welcome */
+    localStorage.setItem('nychiq_extension_installed', 'true');
     completeOnboarding();
+    setActiveTool('channel-assistant');
+    setPage('app');
   };
 
   const handleGoToDashboard = () => {
@@ -66,6 +101,65 @@ export function OnboardingExtension() {
     completeOnboarding();
   };
 
+  /* Post-install roadmap section */
+  const postInstallRoadmap = extensionClicked && (
+    <div className="animate-fade-in-up space-y-3">
+      <div className="rounded-xl bg-[#141414] border border-[#222222] p-4">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-[#888888] mb-3">What comes next</p>
+        <div className="space-y-2.5">
+          {SETUP_STEPS.map((step, idx) => {
+            const StepIcon = step.icon;
+            return (
+              <div key={step.num} className="flex items-center gap-3">
+                <div
+                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: step.color + '15' }}
+                >
+                  <StepIcon className="w-3.5 h-3.5" style={{ color: step.color }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-semibold text-[#E8E8E8]">{step.title}</p>
+                  <p className="text-[10px] text-[#666666]">{step.desc}</p>
+                </div>
+                {idx < SETUP_STEPS.length - 1 && (
+                  <ArrowRight className="w-3 h-3 text-[#333] shrink-0" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <Button
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        onClick={handleContinueToSetup}
+      >
+        Continue to Setup
+        <ArrowRight className="w-4 h-4 ml-2" />
+      </Button>
+    </div>
+  );
+
+  /* Pre-install actions */
+  const preInstallActions = !extensionClicked && (
+    <>
+      <Button
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        onClick={handleGoToDashboard}
+      >
+        Go to Dashboard
+        <ArrowRight className="w-4 h-4 ml-2" />
+      </Button>
+
+      <button
+        onClick={handleSkipExtension}
+        className="block text-xs text-[#444] hover:text-[#888] transition-colors mx-auto"
+      >
+        Skip extension, start using NychIQ &#x2192;
+      </button>
+    </>
+  );
+
   return (
     <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
       {/* Top bar */}
@@ -73,8 +167,8 @@ export function OnboardingExtension() {
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M10 6L18 12L10 18V6Z" fill="white"/>
-              <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+              <path d="M10 6L18 12L10 18V6Z" fill="white" />
+              <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white" />
             </svg>
           </div>
           <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
@@ -121,7 +215,7 @@ export function OnboardingExtension() {
                   <div className="flex items-center gap-3 shrink-0">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: `${step.color}15` }}
+                      style={{ backgroundColor: step.color + '15' }}
                     >
                       <StepIcon className="w-5 h-5" style={{ color: step.color }} />
                     </div>
@@ -152,26 +246,29 @@ export function OnboardingExtension() {
           {/* Actions */}
           <div className="space-y-3 max-w-xs mx-auto">
             <Button
-              className="w-full bg-[#4A9EFF] text-white hover:bg-[#3A8AEF] h-11 font-semibold shadow-lg shadow-[rgba(74,158,255,0.15)]"
+              className={[
+                'w-full h-11 font-semibold shadow-lg transition-all',
+                extensionClicked
+                  ? 'bg-[#10B981] text-white shadow-[rgba(16,185,129,0.15)]'
+                  : 'bg-[#4A9EFF] text-white hover:bg-[#3A8AEF] shadow-[rgba(74,158,255,0.15)]',
+              ].join(' ')}
+              onClick={handleInstallExtension}
             >
-              <Download className="w-4 h-4 mr-2" />
-              Install Extension
+              {extensionClicked ? (
+                <>
+                  <Check className="w-4 h-4 mr-2" />
+                  Extension Installing…
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4 mr-2" />
+                  Install Extension
+                </>
+              )}
             </Button>
 
-            <Button
-              className="w-full bg-[#FDBA2D] text-black hover:bg-[#D9A013] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
-              onClick={handleGoToDashboard}
-            >
-              Go to Dashboard
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-
-            <button
-              onClick={handleSkipExtension}
-              className="block text-xs text-[#444] hover:text-[#888] transition-colors mx-auto"
-            >
-              Skip extension, start using NychIQ &#x2192;
-            </button>
+            {postInstallRoadmap}
+            {preInstallActions}
           </div>
         </div>
       </div>

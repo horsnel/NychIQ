@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { X, Bell, Check, CheckCheck, AlertTriangle, Crown, TrendingUp, Coins, Sparkles, Activity, Zap, ShieldAlert, ShieldCheck, Eye } from 'lucide-react';
-import { useNychIQStore, PLAN_TOKENS } from '@/lib/store';
+import { X, Bell, Check, CheckCheck, AlertTriangle, Crown, TrendingUp, Coins, Sparkles, Activity, Zap, ShieldAlert, ShieldCheck, Eye, Heart, ChevronRight } from 'lucide-react';
+import { useNychIQStore, PLAN_TOKENS, type Notification as StoreNotification } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { playNotification, playClick } from '@/lib/sounds';
 
-interface Notification {
+interface LocalNotification {
   id: string;
   title: string;
   message: string;
@@ -39,7 +39,7 @@ interface ChannelHealthAlert {
   time: string;
 }
 
-const INITIAL_NOTIFS: Notification[] = [
+const INITIAL_NOTIFS: LocalNotification[] = [
   { id: '1', title: 'Welcome to NychIQ', message: 'Your trial account is ready with 100 tokens. More tokens unlock over 3 days!', time: 'Just now', read: false, type: 'info', navigateTo: 'dashboard' },
   { id: '2', title: 'Trending Alert', message: 'Your niche "Tech Reviews" has 3 viral videos today.', time: '2h ago', read: false, type: 'success', navigateTo: 'trending' },
   { id: '3', title: 'Token Reset Info', message: 'Free tokens reset automatically on the 31st of every month.', time: '1d ago', read: true, type: 'warning', navigateTo: 'usage' },
@@ -270,26 +270,70 @@ function useIntelligenceFeed(): IntelligenceItem[] {
 }
 
 export function NotificationDrawer() {
-  const { notifDrawerOpen, setNotifDrawerOpen, setActiveTool, setPage } = useNychIQStore();
-  const [notifications, setNotifications] = useState<Notification[]>(INITIAL_NOTIFS);
+  const {
+    notifDrawerOpen,
+    setNotifDrawerOpen,
+    setActiveTool,
+    setPage,
+    channelHealth,
+    channelHealthStatus,
+    notifications: storeNotifications,
+    markNotificationRead,
+    clearNotifications,
+  } = useNychIQStore();
+  const [localNotifs, setLocalNotifs] = useState<LocalNotification[]>(INITIAL_NOTIFS);
   const intelligenceItems = useIntelligenceFeed();
   const healthAlerts = useMemo(() => generateHealthAlerts(), []);
 
-  const unreadCount = notifications.filter((n) => !n.read).length + healthAlerts.filter(a => a.status === 'danger' || a.status === 'viral').length;
+  // Derive channel health icon config from store status
+  const healthIconConfig = useMemo(() => {
+    switch (channelHealthStatus) {
+      case 'danger':
+        return { icon: <ShieldAlert className="w-4 h-4" />, color: '#EF4444', label: 'Danger' };
+      case 'good':
+        return { icon: <ShieldCheck className="w-4 h-4" />, color: '#10B981', label: 'Good' };
+      case 'neutral':
+        return { icon: <Activity className="w-4 h-4" />, color: '#E8E8E8', label: 'Fair' };
+    }
+  }, [channelHealthStatus]);
+
+  // Total unread = store notifications + local + health alerts (danger/viral)
+  const unreadCount = storeNotifications.filter((n) => !n.read).length
+    + localNotifs.filter((n) => !n.read).length
+    + healthAlerts.filter((a) => a.status === 'danger' || a.status === 'viral').length;
 
   const handleMarkAllRead = () => {
     playClick();
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+    setLocalNotifs((prev) => prev.map((n) => ({ ...n, read: true })));
+    storeNotifications.forEach((n) => {
+      if (!n.read) markNotificationRead(n.id);
+    });
   };
 
-  const handleNotificationClick = (notif: Notification) => {
+  const handleNotificationClick = (notif: LocalNotification) => {
     playClick();
-    setNotifications((prev) =>
+    setLocalNotifs((prev) =>
       prev.map((n) => (n.id === notif.id ? { ...n, read: true } : n))
     );
     setActiveTool(notif.navigateTo);
     setPage('app');
     setNotifDrawerOpen(false);
+  };
+
+  const handleStoreNotifClick = (notif: StoreNotification) => {
+    playClick();
+    markNotificationRead(notif.id);
+    if (notif.link) {
+      setActiveTool(notif.link);
+      setPage('app');
+    }
+    setNotifDrawerOpen(false);
+  };
+
+  const handleClearAll = () => {
+    playClick();
+    setLocalNotifs((prev) => prev.map((n) => ({ ...n, read: true })));
+    clearNotifications();
   };
 
   const handleHealthClick = (alert: ChannelHealthAlert) => {
@@ -318,7 +362,7 @@ export function NotificationDrawer() {
             <Bell className="w-5 h-5 text-[#FDBA2D]" />
             <h2 className="text-base font-semibold">Notifications</h2>
             {unreadCount > 0 && (
-              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#FDBA2D] text-black">
+              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#FDBA2D] text-black animate-pulse">
                 {unreadCount}
               </span>
             )}
@@ -326,14 +370,23 @@ export function NotificationDrawer() {
           <div className="flex items-center gap-1">
             {/* Mark all read */}
             {unreadCount > 0 && (
-              <button
-                onClick={handleMarkAllRead}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
-                title="Mark all as read"
-              >
-                <CheckCheck className="w-3.5 h-3.5" />
-                <span>Mark all read</span>
-              </button>
+              <>
+                <button
+                  onClick={handleMarkAllRead}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
+                  title="Mark all as read"
+                >
+                  <CheckCheck className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Mark all read</span>
+                </button>
+                <button
+                  onClick={handleClearAll}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#888888] hover:text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
+                  title="Clear all"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </>
             )}
             <button
               onClick={() => { playClick(); setNotifDrawerOpen(false); }}
@@ -346,11 +399,51 @@ export function NotificationDrawer() {
 
         {/* Notification list */}
         <div className="overflow-y-auto h-[calc(100%-57px)] p-3 space-y-2">
+          {/* Channel Health Score Banner */}
+          <div className="mb-3 p-3 rounded-lg border border-[#222]"
+            style={{
+              backgroundColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.06)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.06)' : 'rgba(255,255,255,0.03)',
+              borderColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.2)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.2)' : '#222',
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{
+                    backgroundColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.15)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.06)',
+                    border: `1.5px solid ${channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.3)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)'}`,
+                    boxShadow: channelHealthStatus === 'danger' ? '0 0 8px rgba(239,68,68,0.4)' : channelHealthStatus === 'good' ? '0 0 8px rgba(16,185,129,0.4)' : 'none',
+                  }}
+                >
+                  <span style={{ color: healthIconConfig.color }}>{healthIconConfig.icon}</span>
+                </div>
+                <div>
+                  <p className="text-sm font-medium" style={{ color: healthIconConfig.color }}>
+                    Channel Health: {healthIconConfig.label}
+                  </p>
+                  <p className="text-[10px] text-[#666666]">Score: {channelHealth}/100</p>
+                </div>
+              </div>
+              <div className="relative w-10 h-10">
+                <svg className="w-10 h-10 -rotate-90" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#1E1E1E" strokeWidth="2.5" />
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke={healthIconConfig.color} strokeWidth="2.5" strokeLinecap="round"
+                    strokeDasharray={`${(channelHealth / 100) * 97.4} 97.4`}
+                    style={{ transition: 'stroke-dasharray 0.6s ease' }}
+                  />
+                </svg>
+                <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold" style={{ color: healthIconConfig.color }}>
+                  {channelHealth}
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Channel Health Alerts Section — with glow indicators */}
           <div className="mb-4">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
-              <Activity className="w-3 h-3 text-[#EF4444]" />
-              Channel Health
+              <Activity className="w-3 h-3" style={{ color: healthIconConfig.color }} />
+              Health Alerts
             </p>
             <div className="space-y-2">
               {healthAlerts.map((alert) => {
@@ -431,6 +524,72 @@ export function NotificationDrawer() {
             </div>
           </div>
 
+          {/* Store Notifications — channel health, viral, saku, system */}
+          {storeNotifications.length > 0 && (
+            <>
+              <div className="border-t border-[#1E1E1E] my-2" />
+              <div className="mb-4">
+                <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
+                  <Bell className="w-3 h-3 text-[#FDBA2D]" />
+                  Alerts & Tips
+                </p>
+                <div className="space-y-1.5">
+                  {storeNotifications.map((notif) => {
+                    const typeIcon = notif.type === 'channel_health' ? <Heart className="w-4 h-4" />
+                      : notif.type === 'viral_alert' ? <Zap className="w-4 h-4" />
+                      : notif.type === 'saku_tip' ? <Sparkles className="w-4 h-4" />
+                      : <Activity className="w-4 h-4" />;
+
+                    return (
+                      <button
+                        key={notif.id}
+                        onClick={() => handleStoreNotifClick(notif)}
+                        className={cn(
+                          'w-full text-left p-3 rounded-lg border transition-all cursor-pointer relative overflow-hidden',
+                          notif.read
+                            ? 'bg-[#0D0D0D] border-[#1E1E1E] hover:border-[#2A2A2A]'
+                            : 'hover:border-[#333333]',
+                        )}
+                        style={{
+                          backgroundColor: notif.read ? '#0D0D0D' : `${notif.color}08`,
+                          borderColor: notif.read ? '#1E1E1E' : `${notif.color}30`,
+                          boxShadow: !notif.read ? `0 0 8px ${notif.color}15` : 'none',
+                        }}
+                      >
+                        <div className="flex items-start gap-2.5">
+                          <div className="mt-0.5 shrink-0" style={{ color: notif.color }}>
+                            {typeIcon}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <p className="text-sm font-medium" style={{ color: notif.color }}>
+                                {notif.title}
+                              </p>
+                              {!notif.read && (
+                                <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: notif.color }} />
+                              )}
+                            </div>
+                            <p className="text-xs text-[#888888] mt-0.5 leading-relaxed line-clamp-2">
+                              {notif.message}
+                            </p>
+                            <p className="text-[10px] text-[#555555] mt-1">
+                              {new Date(notif.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </p>
+                          </div>
+                          {notif.link && (
+                            <span className="text-[10px] text-[#555555] shrink-0 mt-1">
+                              <ChevronRight className="w-3 h-3" />
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          )}
+
           {/* Separator */}
           <div className="border-t border-[#1E1E1E] my-2" />
 
@@ -474,7 +633,7 @@ export function NotificationDrawer() {
             Recent
           </p>
 
-          {notifications.map((notif) => (
+          {localNotifs.map((notif) => (
             <button
               key={notif.id}
               onClick={() => handleNotificationClick(notif)}
@@ -503,7 +662,7 @@ export function NotificationDrawer() {
             </button>
           ))}
 
-          {notifications.length === 0 && (
+          {localNotifs.length === 0 && storeNotifications.length === 0 && (
             <div className="flex flex-col items-center justify-center py-12 text-[#666666]">
               <Bell className="w-8 h-8 mb-2 opacity-50" />
               <p className="text-sm">No notifications yet</p>

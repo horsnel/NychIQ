@@ -48,6 +48,8 @@ export function Topbar() {
     searchFilter,
     setSearchFilter,
     setDetectedRegion,
+    channelHealthStatus,
+    notifications,
   } = useNychIQStore();
 
   // Geolocation hook
@@ -319,14 +321,29 @@ export function Topbar() {
           <kbd className="ml-2 px-1.5 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[#222222]">⌘K</kbd>
         </button>
 
-        {/* Notification bell */}
+        {/* Notification bell — channel health glow */}
         <button
           onClick={() => { playNotification(); setNotifDrawerOpen(true); }}
-          className="relative p-2 rounded-md text-[#888888] hover:text-[#E8E8E8] hover:bg-[#1A1A1A] transition-colors"
+          className="relative p-2 rounded-full hover:bg-[#1A1A1A] transition-colors"
           aria-label="Notifications"
         >
-          <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#EF4444]" />
+          {/* Glow ring based on channel health */}
+          <span className={cn(
+            'absolute inset-0 rounded-full',
+            channelHealthStatus === 'danger' && 'channel-ring-red',
+            channelHealthStatus === 'good' && 'channel-ring-green',
+            channelHealthStatus === 'neutral' && 'channel-ring-white',
+          )} />
+          <Bell className={cn(
+            'w-4 h-4 relative z-10 transition-colors',
+            channelHealthStatus === 'danger' && 'text-[#EF4444]',
+            channelHealthStatus === 'good' && 'text-[#10B981]',
+            channelHealthStatus === 'neutral' && 'text-[#888888]',
+          )} />
+          {/* Unread dot */}
+          {notifications.some((n) => !n.read) && (
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#EF4444] z-20" />
+          )}
         </button>
 
         {/* Token pill */}

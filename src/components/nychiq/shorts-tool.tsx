@@ -4,12 +4,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { StatCard } from '@/components/nychiq/stat-card';
-import { SciFiVideoCard, SciFiVideoCardSkeleton } from '@/components/nychiq/sci-fi-video-card';
 import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo, copyToClipboard } from '@/lib/utils';
 import { showToast } from '@/lib/toast';
 import {
   Zap, Eye, TrendingUp, Crown, Lock, RefreshCw, AlertCircle, Play, Clock, Flame,
-  MoreVertical, ExternalLink, Copy, Hash, FileDown, Sparkles, LayoutGrid,
+  MoreVertical, ExternalLink, Copy, Hash, FileDown,
 } from 'lucide-react';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
@@ -17,8 +16,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 type SortOption = 'views' | 'viral' | 'newest';
-type ViewMode = 'default' | 'scifi';
-
 const SORT_OPTIONS: { key: SortOption; label: string; icon: React.ReactNode }[] = [
   { key: 'views', label: 'Most Views', icon: <Eye className="w-3 h-3" /> },
   { key: 'viral', label: 'Viral Score', icon: <Flame className="w-3 h-3" /> },
@@ -122,7 +119,6 @@ function ShortsSkeleton() {
 export function ShortsTool() {
   const { spendTokens, region } = useNychIQStore();
   const [sortBy, setSortBy] = useState<SortOption>('views');
-  const [viewMode, setViewMode] = useState<ViewMode>('default');
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -200,7 +196,7 @@ export function ShortsTool() {
             </button>
           </div>
 
-          {/* Sort Chips + View Mode Toggle */}
+          {/* Sort Chips */}
           <div className="flex items-center gap-1.5 flex-wrap">
             {SORT_OPTIONS.map((s) => (
               <button
@@ -217,18 +213,6 @@ export function ShortsTool() {
                 {s.label}
               </button>
             ))}
-            <button
-              onClick={() => setViewMode(viewMode === 'default' ? 'scifi' : 'default')}
-              className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 ml-auto',
-                viewMode === 'scifi'
-                  ? 'bg-[#9B72CF]/15 text-[#9B72CF] border border-[#9B72CF]/30'
-                  : 'bg-[#0D0D0D] text-[#888888] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#E8E8E8]'
-              )}
-            >
-              {viewMode === 'scifi' ? <Sparkles className="w-3 h-3" /> : <LayoutGrid className="w-3 h-3" />}
-              {viewMode === 'scifi' ? 'Sci-Fi' : 'Default'}
-            </button>
           </div>
         </div>
       </div>
@@ -253,26 +237,18 @@ export function ShortsTool() {
       {loading && (
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
-            viewMode === 'scifi' ? <SciFiVideoCardSkeleton key={i} /> : <ShortsSkeleton key={i} />
+            <ShortsSkeleton key={i} />
           ))}
         </div>
       )}
 
       {/* Video Grid */}
       {!loading && !error && sortedVideos.length > 0 && (
-        viewMode === 'scifi' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {sortedVideos.map((video) => (
-              <SciFiVideoCard key={video.videoId} video={video} showAnalysis />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {sortedVideos.map((video) => (
-              <ShortsCard key={video.videoId} video={video} />
-            ))}
-          </div>
-        )
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {sortedVideos.map((video) => (
+            <ShortsCard key={video.videoId} video={video} />
+          ))}
+        </div>
       )}
 
       {/* Empty State */}
