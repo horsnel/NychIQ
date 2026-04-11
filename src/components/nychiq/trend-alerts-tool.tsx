@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useNychIQStore, TOKEN_COSTS, tokenHistory } from '@/lib/store';
+import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { askAI } from '@/lib/api';
 import {
   BellRing,
@@ -32,7 +32,7 @@ interface TrendSpike {
 }
 
 export function TrendAlertsTool() {
-  const { spendTokens, region, tokenHistory } = useNychIQStore();
+  const { spendTokens, region } = useNychIQStore();
   const [keyword, setKeyword] = useState('');
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [adding, setAdding] = useState(false);

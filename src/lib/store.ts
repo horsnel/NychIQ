@@ -93,6 +93,7 @@ export interface NychIQState {
   setSakuFullOpen: (open: boolean) => void;
   setNotifDrawerOpen: (open: boolean) => void;
   setUpgradeModalOpen: (open: boolean) => void;
+  setTokenExhaustedPopupOpen: (open: boolean) => void;
   setTokenModalOpen: (open: boolean) => void;
   setCommandBarOpen: (open: boolean) => void;
   setSearchFilter: (filter: string) => void;
@@ -454,7 +455,7 @@ export const useNychIQStore = create<NychIQState>()(
         const today = todayStr();
         const lastReset = state.lastResetDate;
 
-        // Free tokens reset only on the 31st of every month
+        // Free tokens reset on the last day of every month
         if (isMonthlyResetDay() && lastReset !== today) {
           const planTokens = PLAN_TOKENS[state.userPlan];
           // For trial plan, reset to 100 free tokens
@@ -514,6 +515,7 @@ export const useNychIQStore = create<NychIQState>()(
       setSakuFullOpen: (open: boolean) => set({ sakuFullOpen: open }),
       setNotifDrawerOpen: (open: boolean) => set({ notifDrawerOpen: open }),
       setUpgradeModalOpen: (open: boolean) => set({ upgradeModalOpen: open }),
+      setTokenExhaustedPopupOpen: (open: boolean) => set({ tokenExhaustedPopupOpen: open }),
       setTokenModalOpen: (open: boolean) => set({ tokenModalOpen: open }),
       setCommandBarOpen: (open: boolean) => set({ commandBarOpen: open }),
       setSearchFilter: (filter: string) => set({ searchFilter: filter }),
@@ -533,8 +535,8 @@ export const useNychIQStore = create<NychIQState>()(
     }),
     {
       name: 'nychiq-store',
-      storage: ssrSafeStorage,
-      partialize: (state) => ({
+      storage: ssrSafeStorage as any,
+      partialize: (state: NychIQState) => ({
         currentPage: state.currentPage,
         activeTool: state.activeTool,
         isLoggedIn: state.isLoggedIn,

@@ -353,7 +353,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
 /* ═══════════════════════════ ABOUT ═══════════════════════════ */
 
 function AboutSection() {
-  const { setPage } = useNychIQStore();
+  const { setPage, isLoggedIn } = useNychIQStore();
 
   return (
     <div className="space-y-12">

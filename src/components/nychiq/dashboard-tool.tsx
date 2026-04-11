@@ -209,7 +209,7 @@ function ActivityFeed() {
     for (const txn of recent) {
       const toolLabel = TOOL_META[txn.tool]?.label ?? txn.tool;
       const txnType = txn.type;
-      const timeStr = timeAgo(txn.time);
+      const timeStr = timeAgo(String(txn.time));
 
       switch (txnType) {
         case 'spend':

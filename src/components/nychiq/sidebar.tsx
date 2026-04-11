@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { useNychIQStore, SIDEBAR_SECTIONS, TOOL_META, PLAN_ACCESS, type Plan } from '@/lib/store';
 import { ICON_MAP } from '@/lib/icon-map';
+
+const FALLBACK_ICON = ICON_MAP.LayoutDashboard;
 import { cn } from '@/lib/utils';
 import { playNav, playClick } from '@/lib/sounds';
 
@@ -108,7 +110,7 @@ export function Sidebar() {
               <div className="space-y-0.5">
                 {section.tools.map((tool) => {
                   const isActive = activeTool === tool.id;
-                  const Icon = ICON_MAP[tool.icon] || LayoutDashboard;
+                  const Icon = ICON_MAP[tool.icon] || FALLBACK_ICON;
                   const toolId = tool.id;
                   const hasAccess = PLAN_ACCESS[userPlan]?.includes(toolId) ?? false;
 

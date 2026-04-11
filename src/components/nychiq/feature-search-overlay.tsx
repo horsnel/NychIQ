@@ -92,11 +92,11 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
       .map((section) => ({
         ...section,
         tools: Object.entries(TOOL_META)
-          .filter(([, meta]) => meta.category === section.id)
-          .filter(([, meta]) =>
+          .filter(([id, meta]) => meta.category === section.id)
+          .filter(([id, meta]) =>
             query.trim() === '' ||
             meta.label.toLowerCase().includes(query.toLowerCase()) ||
-            (TOOL_DESCRIPTIONS[meta.id] || '').toLowerCase().includes(query.toLowerCase())
+            (TOOL_DESCRIPTIONS[id] || '').toLowerCase().includes(query.toLowerCase())
           )
           .map(([id, meta]) => ({
             id,
