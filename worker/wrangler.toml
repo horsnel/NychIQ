@@ -1,0 +1,47 @@
+name = "nychiq-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "YOUR_KV_NAMESPACE_ID"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "nychiq-db"
+database_id = "YOUR_D1_DATABASE_ID"
+
+# R2 Bucket
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "nychiq-storage"
+
+# Vectorize Index
+[[vectorize]]
+binding = "VECTORS"
+index_name = "nychiq-embeddings"
+
+# Durable Objects (for WebSocket real-time)
+[[durable_objects.bindings]]
+name = "REALTIME"
+class_name = "RealtimeRoom"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["RealtimeRoom"]
+
+# Queues
+[[queues.producers]]
+binding = "TASK_QUEUE"
+queue = "nychiq-tasks"
+
+# Cron Triggers — every 15 min + every 6 hrs
+[triggers]
+crons = ["*/15 * * * *", "0 */6 * * *"]
+
+# Env vars (non-secret)
+[vars]
+ENVIRONMENT = "production"
