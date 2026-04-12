@@ -55,7 +55,7 @@ crons = ["*/15 * * * *", "0 */6 * * *", "0 6 * * *", "0 9,12,15 * * *", "0 18 * 
 [vars]
 ENVIRONMENT = "production"
 APP_URL = "https://nychiq.pages.dev"
-CORS_ORIGINS = "https://nychiq.com,https://app.nychiq.com"
+CORS_ORIGINS = "https://nychiq.com,https://app.nychiq.com,https://nychiq.pages.dev"
 
 # ══════════════════════════════════════════════
 # Static assets from Next.js export
