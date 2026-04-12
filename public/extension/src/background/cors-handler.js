@@ -45,31 +45,5 @@ export function installCORSHandler() {
     ['blocking', 'responseHeaders']
   );
 
-  // Handle preflight OPTIONS requests
-  browser.webRequest.onBeforeSendHeaders.addListener(
-    (details) => {
-      const headers = details.requestHeaders || [];
-
-      // Ensure Origin and method headers for CORS preflight
-      const hasOrigin = headers.some(h => h.name.toLowerCase() === 'origin');
-      if (!hasOrigin) {
-        headers.push({ name: 'Origin', value: details.originUrl || details.url });
-      }
-
-      return { requestHeaders: headers };
-    },
-    {
-      urls: ['https://*.nychiq.com/api/*', 'https://nychiq.com/api/*'],
-      types: ['xmlhttprequest'],
-    },
-    ['blocking', 'requestHeaders']
-  );
-
   console.debug('[NychIQ Firefox] CORS handler installed');
-}
-
-// Auto-install when loaded as a background module in Firefox
-// (listed in manifest.firefox.json scripts array before background.js)
-if (typeof browser !== 'undefined' && browser.webRequest) {
-  installCORSHandler();
 }

@@ -60,21 +60,26 @@ if (typeof browser !== 'undefined') {
   if (!chrome.scripting) {
     chrome.scripting = {
       executeScript: function(details) {
-        // Fallback: inject via tabs
+        // Fallback: inject via tabs, return Chrome-compatible shape
         if (details.target && details.target.tabId) {
-          return browser.tabs.executeScript(details.target.tabId, {
-            file: details.files ? details.files[0] : undefined,
-            code: details.func ? `(${details.func.toString()})(${JSON.stringify(details.args || [])})` : undefined,
-          }).then(results => ({ results: results || [] }));
+          const tabId = details.target.tabId;
+          const frameId = details.target.frameId ?? 0;
+          const injectSpec = details.files
+            ? { file: details.files[0] }
+            : { code: details.func ? `(${details.func.toString()})(${JSON.stringify(details.args || [])})` : undefined };
+          return browser.tabs.executeScript(tabId, injectSpec).then(results => ({
+            results: (results || []).map(r => ({ frameId, result: r })),
+          }));
         }
         return Promise.resolve({ results: [] });
       },
       insertCSS: function(details) {
         if (details.target && details.target.tabId) {
-          return browser.tabs.insertCSS(details.target.tabId, {
-            file: details.files ? details.files[0] : undefined,
-            code: details.css,
-          });
+          // Only pass file OR code, not both
+          const injectSpec = details.files
+            ? { file: details.files[0] }
+            : { code: details.css };
+          return browser.tabs.insertCSS(details.target.tabId, injectSpec);
         }
         return Promise.resolve();
       },

@@ -112,6 +112,9 @@ build_firefox() {
   # Firefox-specific manifest
   cp "$EXT_DIR/manifest.firefox.json" "$dest/manifest.json"
 
+  # Remove content.legacy.js from Firefox build (not used, just bloats the .xpi)
+  rm -f "$dest/content.legacy.js"
+
   # Firefox polyfill
   mkdir -p "$dest/src/polyfill"
   cp "$EXT_DIR/src/polyfill/browser-polyfill.js" "$dest/src/polyfill/browser-polyfill.js"
@@ -127,7 +130,9 @@ build_firefox() {
   # Insert cors-handler.js import at the top of background.js
   local bg_file="$dest/src/background/background.js"
   if ! grep -q "cors-handler" "$bg_file"; then
-    sed -i '1s|^|/* Firefox: CORS handler loaded via polyfill */\n|' "$bg_file"
+    # POSIX-compatible: use a temp file for insertion
+    { echo "/* Firefox: CORS handler loaded via polyfill */"; cat "$bg_file"; } > "$bg_file.tmp"
+    mv "$bg_file.tmp" "$bg_file"
   fi
 
   # Package as zip (for AMO submission)

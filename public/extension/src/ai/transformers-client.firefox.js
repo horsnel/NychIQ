@@ -131,8 +131,35 @@ async function ensureWorker() {
     }
   };
 
-  // Wait for worker to be ready (it loads transformers.js via importScripts)
-  await new Promise((resolve) => setTimeout(resolve, 100));
+  // Wait for worker to signal ready (replaces fragile setTimeout)
+  await new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      // Fallback: if no ready signal after 2s, proceed anyway
+      // (worker may have already sent messages before we set up onmessage)
+      console.warn('[NychIQ Firefox] Worker ready signal timeout — proceeding anyway');
+      resolve();
+    }, 2000);
+
+    const originalHandler = worker.onmessage;
+    worker.onmessage = (event) => {
+      if (event.data.type === 'WORKER_READY') {
+        clearTimeout(timeout);
+        // Restore the real message handler
+        worker.onmessage = (e) => {
+          const { id, ...payload } = e.data;
+          const resolver = pendingMessages.get(id);
+          if (resolver) {
+            pendingMessages.delete(id);
+            resolver(payload);
+          }
+        };
+        resolve();
+      } else {
+        // Worker sent a message before ready — buffer it via original handler
+        originalHandler.call(worker, event);
+      }
+    };
+  });
 }
 
 /**

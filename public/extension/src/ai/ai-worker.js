@@ -34,6 +34,9 @@ async function loadTransformers() {
   throw new Error('Failed to load Transformers.js from both CDNs');
 }
 
+// Signal ready after script loads (before any messages arrive)
+self.postMessage({ type: 'WORKER_READY' });
+
 /* ── Message handler ── */
 
 self.onmessage = async function(event) {
