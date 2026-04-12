@@ -129,7 +129,7 @@ app.use('/api/*', async (c, next) => {
 });
 
 // ── Health check ──
-app.get('/', (c) => {
+app.get('/api/health', (c) => {
   return c.json({
     name: 'NychIQ API',
     version: '2.0.0',
@@ -223,6 +223,16 @@ async function cleanupExpiredCache(env: Env) {
 // ── Worker Export ──
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+    const url = new URL(request.url);
+
+    // API routes go through Hono
+    // Static assets are served automatically by [assets] config
+    if (url.pathname.startsWith('/api/')) {
+      return app.fetch(request, env, ctx);
+    }
+
+    // Non-API: let the [assets] config serve static files
+    // If no static file matches, fall through to Hono (which returns 404)
     return app.fetch(request, env, ctx);
   },
 

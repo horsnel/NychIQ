@@ -63,9 +63,13 @@ CORS_ORIGINS = "https://nychiq.com,https://app.nychiq.com,https://nychiq.pages.d
 
 # ══════════════════════════════════════════════
 # Static assets from Next.js export
+# [assets] serves files BEFORE the worker runs.
+# Only non-matching requests reach the worker fetch handler.
 # ══════════════════════════════════════════════
-[site]
-bucket = "../out"
+[assets]
+directory = "../out"
+
+# Not found page (optional)
 
 # ══════════════════════════════════════════════
 # SECRETS — Set via `wrangler secret put KEY_NAME`

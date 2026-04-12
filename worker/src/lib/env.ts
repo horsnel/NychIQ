@@ -12,6 +12,7 @@ export interface Env {
   VECTORS: VectorizeIndex;
   TASK_QUEUE: Queue<unknown>;
   AI: Ai; // Workers AI — inference for embeddings, vision, translation, image gen
+  ASSETS: Fetcher; // Static assets from [site] config
 
   // ── AI Keys (rotated: _1 through _4) ──
   GROQ_KEY_1?: string;
