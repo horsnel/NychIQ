@@ -176,7 +176,15 @@ hashtagRoutes.get('/research', async (c) => {
             contents: [{
               role: 'user',
               parts: [{
-                text: `Generate ${limit} relevant hashtags for "${q}" on ${platform}. Return ONLY a JSON array of objects with keys: tag (string), volume (estimated monthly search count number), competition (low/medium/high), trend (up/down/stable). Be realistic with volume estimates. No explanation, just JSON array.`,
+                text: `You are a YouTube/social media hashtag strategist. Generate exactly ${limit} hashtags for "${q}" on ${platform}.
+
+Rules:
+- Mix sizes: 40% niche-specific (10k-100k volume), 30% mid-range (100k-500k), 30% broad (500k+)
+- Include 2-3 trending tags if relevant
+- Prioritize tags with high discovery potential
+- Return ONLY a JSON array, no explanation
+
+Format: [{"tag":"string","volume":number,"competition":"low|medium|high","trend":"up|down|stable"}]`,
               }],
             }],
           }),
@@ -245,16 +253,21 @@ hashtagRoutes.get('/analyze', async (c) => {
             contents: [{
               role: 'user',
               parts: [{
-                text: `Analyze the hashtag #${tag} for ${platform} content creators. Provide a JSON object with:
-- tag: "${tag}"
-- estimatedVolume: estimated monthly usage (number)
-- competition: "low" | "medium" | "high"
-- trend: "up" | "down" | "stable"
-- bestPostingTimes: array of strings
-- relatedHashtags: array of 5-8 related hashtags
-- contentTips: array of 3-5 content tips for this hashtag
-- nicheRelevance: brief description of which niches this hashtag works best for
-Return ONLY valid JSON, no explanation.`,
+                text: `Analyze #${tag} for ${platform} creators. Provide actionable intelligence.
+
+Return ONLY valid JSON:
+{
+  "tag": "${tag}",
+  "estimatedVolume": number,
+  "competition": "low|medium|high",
+  "trend": "up|down|stable",
+  "bestPostingTimes": ["day/time1","day/time2"],
+  "relatedHashtags": ["tag1","tag2","tag3","tag4","tag5"],
+  "contentTips": ["tip1","tip2","tip3"],
+  "nicheRelevance": "description"
+}
+
+Base volume estimates on real ${platform} hashtag data patterns. Be specific and actionable.`,
               }],
             }],
           }),

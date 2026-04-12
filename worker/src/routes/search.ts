@@ -126,27 +126,6 @@ searchRoutes.get('/web', async (c) => {
     console.error('DuckDuckGo error:', err?.message);
   }
 
-  // 4. SerpAPI fallback
-  try {
-    if (results.length === 0 && c.env.SERP_KEY_1) {
-      const params = new URLSearchParams({ q, num: String(num), api_key: c.env.SERP_KEY_1 });
-      const res = await fetch(`https://serpapi.com/search?${params}`);
-      if (res.ok) {
-        const data: any = await res.json();
-        const items = (data.organic_results || []).map((r: any, i: number) => ({
-          url: r.link || '',
-          name: r.title || '',
-          snippet: r.snippet || '',
-          rank: i + 1,
-          host_name: new URL(r.link || 'https://example.com').hostname,
-        }));
-        results.push(...items);
-      }
-    }
-  } catch (err: any) {
-    console.error('SerpAPI error:', err?.message);
-  }
-
   if (results.length > 0) {
     await setCached(c.env.CACHE, ck, { results: results.slice(0, num) }, CACHE_TTL.SEARCH);
     return c.json({ results: results.slice(0, num) });

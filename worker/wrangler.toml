@@ -77,7 +77,6 @@ bucket = "../out"
 # ── Search ──
 # BRAVE_KEY_1, BRAVE_KEY_2
 # TAVILY_KEY_1, TAVILY_KEY_2
-# SERP_KEY_1
 #
 # ── YouTube ──
 # YT_KEY_1, YT_KEY_2, YT_KEY_3, YT_KEY_4

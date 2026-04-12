@@ -36,7 +36,6 @@ export interface Env {
   BRAVE_KEY_2?: string;
   TAVILY_KEY_1?: string;
   TAVILY_KEY_2?: string;
-  SERP_KEY_1?: string;
 
   // ── Social Scraping ──
   SOCIAVAULT_KEY_1?: string;

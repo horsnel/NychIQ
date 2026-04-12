@@ -186,7 +186,9 @@ youtubeRoutes.get('/search', async (c) => {
 
   if (!q) return c.json({ error: 'Query parameter "q" is required' }, 400);
 
-  const ck = cacheKey('yt:search', { q, regionCode, type, maxResults, pageToken });
+  // Normalize query for better cache hits: lowercase, trim, collapse whitespace
+  const normalizedQ = q.toLowerCase().trim().replace(/\s+/g, ' ');
+  const ck = cacheKey('yt:search', { q: normalizedQ, regionCode, type, maxResults, pageToken });
   const cached = await getCached<any>(c.env.CACHE, ck);
   if (cached) return c.json(cached);
 

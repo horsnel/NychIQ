@@ -28,6 +28,8 @@ import { emailRoutes } from './routes/email';
 import { storageRoutes } from './routes/storage';
 import { auditRoutes } from './routes/audit';
 import { realtimeRoutes } from './routes/realtime';
+import { geolocationRoutes } from './routes/geolocation';
+import { webRoutes } from './routes/web';
 
 // ── Export Durable Object class ──
 export { RealtimeRoom };
@@ -43,7 +45,7 @@ app.use('*', async (c, next) => {
       origin: allowed,
       allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       allowHeaders: ['Content-Type', 'Authorization'],
-      exposeHeaders: ['Content-Length', 'X-RateLimit-Remaining'],
+      exposeHeaders: ['Content-Length', 'X-RateLimit-Remaining', 'X-Cache-Status'],
       maxAge: 86400,
       credentials: true,
     })(c, next);
@@ -53,7 +55,7 @@ app.use('*', async (c, next) => {
     origin: '*',
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
-    exposeHeaders: ['Content-Length', 'X-RateLimit-Remaining'],
+    exposeHeaders: ['Content-Length', 'X-RateLimit-Remaining', 'X-Cache-Status'],
     maxAge: 86400,
   })(c, next);
 });
@@ -115,6 +117,15 @@ app.use('/api/*', async (c, next) => {
   await next();
 });
 
+// ── Cache status tracker (injects X-Cache-Status header) ──
+app.use('/api/*', async (c, next) => {
+  await next();
+  // This is set by route handlers that return cached data
+  if (!c.res.headers.get('X-Cache-Status')) {
+    c.header('X-Cache-Status', 'MISS');
+  }
+});
+
 // ── Health check ──
 app.get('/', (c) => {
   return c.json({
@@ -156,6 +167,8 @@ app.route('/api/email', emailRoutes);
 app.route('/api/storage', storageRoutes);
 app.route('/api/audit', auditRoutes);
 app.route('/api/realtime', realtimeRoutes);
+app.route('/api/geolocation', geolocationRoutes);
+app.route('/api/web', webRoutes);
 
 // ── Cron Handler ──
 // Triggered every 15 min and every 6 hrs via wrangler.toml cron triggers.

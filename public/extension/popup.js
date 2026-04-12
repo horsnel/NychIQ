@@ -133,6 +133,19 @@
     });
   });
 
+  const toggleDeep = document.getElementById('toggle-deep');
+  if (toggleDeep) {
+    toggleDeep.addEventListener('change', async () => {
+      const state = await loadState();
+      state.deepScraping = toggleDeep.checked;
+      await saveState(state);
+    });
+    // Load initial state
+    loadState().then(state => {
+      if (toggleDeep) toggleDeep.checked = state.deepScraping === true;
+    });
+  }
+
   /* ── Initialize ── */
   loadState().then(updateUI);
 })();

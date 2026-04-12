@@ -319,3 +319,47 @@ socialRoutes.get('/twitter/profile', async (c) => {
 
   return c.json({ error: 'All Twitter providers failed' }, 500);
 });
+
+/**
+ * GET /api/social/tiktok/comments — Scrape TikTok video comments
+ * Params: url (TikTok video URL), count (default 20)
+ * Fallback: TikWM → TikTok oEmbed (limited)
+ */
+socialRoutes.get('/tiktok/comments', async (c) => {
+  const url = c.req.query('url') || '';
+  const count = parseInt(c.req.query('count') || '20', 10);
+
+  if (!url) return c.json({ error: 'url parameter is required' }, 400);
+
+  const ck = cacheKey('social:tiktok:comments', { url, count: String(count) });
+  const cached = await getCached<any>(c.env.CACHE, ck);
+  if (cached) return c.json(cached);
+
+  // 1. TikWM (no key needed — has comment data)
+  try {
+    const res = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}&hd=1`);
+    if (res.ok) {
+      const data: any = await res.json();
+      if (data.code === 0 && data.data) {
+        const comments = (data.data.comments || []).slice(0, count).map((cm: any) => ({
+          id: cm.cid || cm.id || '',
+          text: cm.text || cm.content || '',
+          user: cm.user?.nickname || cm.author?.nickname || '',
+          userId: cm.user?.unique_id || cm.author?.unique_id || '',
+          likes: cm.digg_count || cm.like_count || 0,
+          replies: cm.reply_comment_total || 0,
+          timestamp: cm.create_time ? new Date(cm.create_time * 1000).toISOString() : '',
+        }));
+        if (comments.length > 0) {
+          const result = { comments, source: 'tikwm', total: data.data.comment_count || comments.length };
+          await setCached(c.env.CACHE, ck, result, 3600);
+          return c.json(result);
+        }
+      }
+    }
+  } catch (err: any) {
+    console.error('TikWM comments error:', err?.message);
+  }
+
+  return c.json({ error: 'No comments found', comments: [] }, 200);
+});

@@ -1,10 +1,15 @@
 /* ══════════════════════════════════════════════════
-   NychIQ Chrome Extension — Content Styles
+   NychIQ Chrome Extension v2.0 — Content Styles
    Additional styles injected on YouTube pages
    ══════════════════════════════════════════════════ */
 
 /* Note: Main styles are injected via content.js injectStyles() */
 /* This file is loaded via manifest content_scripts CSS */
+
+/* ── Performance: Contain layout recalculations ── */
+.ytd-rich-item-renderer {
+  contain: layout style paint;
+}
 
 /* ── Thumbnail container position fix ── */
 ytd-thumbnail,
