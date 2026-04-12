@@ -81,15 +81,22 @@ async function handleRun(message) {
     const { task, input, options = {} } = message;
 
     if (!pipeline) {
-      return { ok: false, error: 'Pipeline not initialized' };
+      // Try to auto-initialize if task specified
+      if (task) {
+        const initResult = await handleInit(message);
+        if (!initResult.ok) return initResult;
+      } else {
+        return { ok: false, error: 'Pipeline not initialized' };
+      }
     }
 
-    let result;
-    if (Array.isArray(input)) {
-      result = await pipeline(input, options);
-    } else {
-      result = await pipeline(input, options);
+    // Ensure pipeline matches requested task
+    if (task && currentTask !== task) {
+      const initResult = await handleInit(message);
+      if (!initResult.ok) return { ok: false, error: `Pipeline is ${currentTask}, need ${task}. Re-init failed.` };
     }
+
+    let result = await pipeline(input, options);
 
     // Normalize result format
     if (result && Array.isArray(result)) {

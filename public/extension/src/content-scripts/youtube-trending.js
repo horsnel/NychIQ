@@ -159,7 +159,7 @@
     if (message.type === 'REINJECT') { lastScrape = 0; runScrape(); sendResponse({ ok: true }); return false; }
     if (message.type === 'GET_PAGE_DATA') {
       const items = scrapeTrendingPage();
-      sendResponse({ payload: { items: items.map(i => ({ ...i, dataType: 'trending' })), platform: 'youtube', url: window.location.href } });
+      sendResponse({ payload: { items: items.map(i => ({ ...i, dataType: 'trending', scrapedAt: new Date().toISOString() })), platform: 'youtube', url: window.location.href } });
       return false;
     }
     return false;

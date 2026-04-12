@@ -125,7 +125,7 @@
     }
     if (message.type === 'GET_PAGE_DATA') {
       const data = scrapeStudioAnalytics();
-      sendResponse({ payload: { items: data ? [{ ...data, dataType: 'studio-analytics' }] : [], platform: 'youtube', url: window.location.href } });
+      sendResponse({ payload: { items: data ? [{ ...data, dataType: 'studio-analytics', scrapedAt: new Date().toISOString() }] : [], platform: 'youtube', url: window.location.href } });
       return false;
     }
     return false;

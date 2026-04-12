@@ -97,21 +97,48 @@ export async function dispose() {
 /**
  * Create offscreen document for WASM execution.
  */
+let offscreenCreating = false;
+
 async function ensureOffscreenDocument() {
   if (offscreenDoc) return;
 
-  // Check if offscreen document already exists
-  const existingContexts = await chrome.runtime.getContexts({
-    contextTypes: ['OFFSCREEN_DOCUMENT'],
-    documentUrls: [chrome.runtime.getURL('offscreen.html')],
-  });
+  // Prevent race condition from simultaneous callers
+  if (offscreenCreating) {
+    // Wait for the other caller to finish
+    while (offscreenCreating) {
+      await new Promise(r => setTimeout(r, 50));
+    }
+    return;
+  }
 
-  if (existingContexts.length > 0) return;
+  offscreenCreating = true;
 
-  await chrome.offscreen.createDocument({
-    url: 'offscreen.html',
-    reasons: ['WORKERS'],
-    justification: 'Transformers.js WASM execution for on-device AI',
-  });
-  offscreenDoc = true;
+  try {
+    // Check if offscreen document already exists
+    const existingContexts = await chrome.runtime.getContexts({
+      contextTypes: ['OFFSCREEN_DOCUMENT'],
+      documentUrls: [chrome.runtime.getURL('offscreen.html')],
+    });
+
+    if (existingContexts.length > 0) {
+      offscreenDoc = true;
+      return;
+    }
+
+    await chrome.offscreen.createDocument({
+      url: 'offscreen.html',
+      reasons: ['WORKERS'],
+      justification: 'Transformers.js WASM execution for on-device AI',
+    });
+    offscreenDoc = true;
+  } catch (err) {
+    // If document already exists (race condition), just mark as ready
+    if (err?.message?.includes('Only a single offscreen')) {
+      offscreenDoc = true;
+    } else {
+      console.error('[NychIQ] Failed to create offscreen document:', err);
+    }
+  } finally {
+    offscreenCreating = false;
+  }
 }

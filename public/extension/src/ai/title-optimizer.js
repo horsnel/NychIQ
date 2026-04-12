@@ -107,7 +107,7 @@ export function generateVariants(title, count = 5) {
   variants.push(`Why ${title} Is More Important Than You Think`);
 
   // Pattern 2: How/What prefix
-  variants.push(`How ${title} Can Change Everything in 2025`);
+  variants.push(`How ${title} Can Change Everything in ${new Date().getFullYear()}`);
   variants.push(`What ${title} Experts Don't Want You to Know`);
 
   // Pattern 3: Emotional

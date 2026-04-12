@@ -3,7 +3,7 @@
    Track sync timestamps, pending items, failures
    ══════════════════════════════════════════════════════════════════ */
 
-import { get, put, getAll } from './indexeddb.js';
+import { get, put, getAll, query, count as idbCount } from './indexeddb.js';
 
 const SETTINGS_STORE = 'settings';
 const SCRAPED_STORE = 'scraped-data';
