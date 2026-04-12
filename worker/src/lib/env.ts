@@ -10,7 +10,6 @@ export interface Env {
   DB: D1Database;
   STORAGE: R2Bucket;
   VECTORS: VectorizeIndex;
-  REALTIME: DurableObjectNamespace;
   TASK_QUEUE: Queue<unknown>;
 
   // ── AI Keys (rotated: _1 through _4) ──

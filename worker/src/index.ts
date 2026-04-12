@@ -7,7 +7,6 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import type { Env } from './lib/env';
-import { RealtimeRoom } from './realtime';
 import { checkRateLimit, RATE_LIMITS } from './lib/rate-limit';
 
 // ── Route modules ──
@@ -30,9 +29,6 @@ import { auditRoutes } from './routes/audit';
 import { realtimeRoutes } from './routes/realtime';
 import { geolocationRoutes } from './routes/geolocation';
 import { webRoutes } from './routes/web';
-
-// ── Export Durable Object class ──
-export { RealtimeRoom };
 
 const app = new Hono<{ Bindings: Env }>();
 

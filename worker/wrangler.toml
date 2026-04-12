@@ -28,15 +28,6 @@ bucket_name = "nychiq-storage"
 binding = "VECTORS"
 index_name = "nychiq-embeddings"
 
-# Durable Objects — WebSocket real-time (fallback to Supabase RT → Ably → Soketi)
-[[durable_objects.bindings]]
-name = "REALTIME"
-class_name = "RealtimeRoom"
-
-[[migrations]]
-tag = "v1"
-new_classes = ["RealtimeRoom"]
-
 # Queues — async task processing (email, reports, webhooks)
 [[queues.producers]]
 binding = "TASK_QUEUE"
