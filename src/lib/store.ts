@@ -101,6 +101,40 @@ export interface NychIQState {
     auditCategories: Array<{ name: string; score: number; icon: string }>;
   };
 
+  /* Agency Channels (multi-channel management) */
+  agencyChannels: Array<{
+    id: string;
+    handle: string;
+    title: string;
+    description: string;
+    avatar: string;
+    subscriberCount: number;
+    videoCount: number;
+    viewCount: number;
+    publishedAt: string;
+    healthScore: number;
+    auditDate: number;
+    auditCategories: Array<{ name: string; score: number; icon: string }>;
+    niche: string;
+    status: 'performing' | 'stale' | 'arbitrage' | 'growth';
+    monthlyViews: number;
+    monthlyRevenue: number;
+    cpm: number;
+    addedAt: number;
+    // Per-channel assistant config
+    assistantConfig: {
+      brandVoice: string;
+      tone: string;
+      audience: string;
+      language: string;
+      goals: string[];
+      contentTypes: string[];
+      keywords: string[];
+      customInstructions: string;
+    };
+  }>;
+  activeAgencyChannelId: string | null;
+
   /* ── Actions ── */
   setPage: (page: PageId) => void;
   setActiveTool: (tool: string) => void;
@@ -143,6 +177,13 @@ export interface NychIQState {
   /* Personal Channel Actions */
   setPersonalChannel: (data: Partial<NychIQState['personalChannel']> & { handle: string }) => void;
   clearPersonalChannel: () => void;
+
+  /* Agency Channels Actions */
+  addAgencyChannel: (channel: Omit<NychIQState['agencyChannels'][number], 'id' | 'addedAt' | 'assistantConfig'>) => void;
+  removeAgencyChannel: (id: string) => void;
+  updateAgencyChannel: (id: string, data: Partial<NychIQState['agencyChannels'][number]>) => void;
+  setActiveAgencyChannel: (id: string | null) => void;
+  bulkUpdateAssistantConfig: (channelIds: string[], config: Partial<NychIQState['agencyChannels'][number]['assistantConfig']>) => void;
 }
 
 /* ── Token costs per feature ── */
@@ -361,6 +402,10 @@ export const useNychIQStore = create<NychIQState>()(
         auditDate: 0,
         auditCategories: [],
       },
+
+      // Agency Channels
+      agencyChannels: [],
+      activeAgencyChannelId: null,
 
       // ── Actions ──
 
@@ -651,6 +696,57 @@ export const useNychIQStore = create<NychIQState>()(
           },
         });
       },
+
+      /* Agency Channels Actions */
+      addAgencyChannel: (channelData) => {
+        const newChannel: NychIQState['agencyChannels'][number] = {
+          ...channelData,
+          id: uid(),
+          addedAt: Date.now(),
+          assistantConfig: {
+            brandVoice: '',
+            tone: 'professional',
+            audience: '',
+            language: 'English',
+            goals: [],
+            contentTypes: [],
+            keywords: [],
+            customInstructions: '',
+          },
+        };
+        set((s) => ({
+          agencyChannels: [...s.agencyChannels, newChannel],
+        }));
+      },
+
+      removeAgencyChannel: (id: string) => {
+        set((s) => ({
+          agencyChannels: s.agencyChannels.filter((c) => c.id !== id),
+          activeAgencyChannelId: s.activeAgencyChannelId === id ? null : s.activeAgencyChannelId,
+        }));
+      },
+
+      updateAgencyChannel: (id: string, data) => {
+        set((s) => ({
+          agencyChannels: s.agencyChannels.map((c) =>
+            c.id === id ? { ...c, ...data } : c
+          ),
+        }));
+      },
+
+      setActiveAgencyChannel: (id: string | null) => {
+        set({ activeAgencyChannelId: id });
+      },
+
+      bulkUpdateAssistantConfig: (channelIds: string[], config) => {
+        set((s) => ({
+          agencyChannels: s.agencyChannels.map((c) =>
+            channelIds.includes(c.id)
+              ? { ...c, assistantConfig: { ...c.assistantConfig, ...config } }
+              : c
+          ),
+        }));
+      },
     }),
     {
       name: 'nychiq-store',
@@ -677,6 +773,8 @@ export const useNychIQStore = create<NychIQState>()(
         channelHealth: state.channelHealth,
         channelHealthStatus: state.channelHealthStatus,
         personalChannel: state.personalChannel,
+        agencyChannels: state.agencyChannels,
+        activeAgencyChannelId: state.activeAgencyChannelId,
       }),
     }
   )
