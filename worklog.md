@@ -401,3 +401,26 @@ Stage Summary:
 - TypeScript: 0 errors
 - Route count: 56 total (55 existing + 1 new my-channel)
 
+---
+Task ID: agency-dashboard-multi-channel
+Agent: Main
+Task: Agency Dashboard overhaul — multi-channel switching, bulk customization, AI agents, per-channel My Channel features
+
+Work Log:
+- Read and analyzed full codebase: store.ts (684→781 lines), agency-tool.tsx (1598 lines), my-channel-tool.tsx (519 lines), channel-assistant-tool.tsx, page.tsx (341 lines)
+- Updated store.ts with agencyChannels array type, activeAgencyChannelId, and 5 new actions (addAgencyChannel, removeAgencyChannel, updateAgencyChannel, setActiveAgencyChannel, bulkUpdateAssistantConfig)
+- Added agencyChannels and activeAgencyChannelId to persist config
+- Rewrote agency-tool.tsx from scratch (1598 → 1483 lines) with 7 tabs instead of 4
+- New tab: Channels — multi-channel list view + per-channel detail view with all 7 My Channel sections
+- New tab: Bulk Customize — channel selector with checkboxes, brand voice/tone/audience/language/goals/content types/keywords/custom instructions, apply to multiple channels
+- New tab: AI Agents — per-channel AI agent status cards, configured/unconfigured summary, quick actions
+- Preserved existing tabs: Fleet Overview (ROI chart + client cards), Signal Queue, War Room (briefing + what-if + white-label), Reports
+- Added sub-components: HealthRing, GrowthChart, HeatmapBlock, ToolCard, KPICard, ActivityItem, TagInput
+- Updated audit-tool.tsx to auto-save channels to agency list when user is on agency plan
+- 3-round verification: ESLint 0/0, TypeScript 0, zero forbidden colors in modified files, 56 routes connected
+
+Stage Summary:
+- Files modified: store.ts, agency-tool.tsx (full rewrite), audit-tool.tsx
+- New features: Multi-channel management, channel switching, bulk AI assistant customization, per-channel analytics dashboard, AI agents panel
+- All 7 tabs functional with complete UI
+- Channel detail view replicates My Channel 7-section layout for each agency channel

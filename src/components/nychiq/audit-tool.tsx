@@ -70,7 +70,7 @@ function HealthGauge({ score }: { score: number }) {
 }
 
 export function AuditTool() {
-  const { spendTokens, setPersonalChannel } = useNychIQStore();
+  const { spendTokens, setPersonalChannel, userPlan, addAgencyChannel, agencyChannels } = useNychIQStore();
   const [channel, setChannel] = useState('');
   const [result, setResult] = useState<AuditResult | null>(null);
   const [channelData, setChannelData] = useState<ChannelData | null>(null);
@@ -220,6 +220,32 @@ Return ONLY the JSON object.`;
         auditDate: Date.now(),
         auditCategories: auditResult.categories,
       });
+
+      // ── Also save to agency channels if on agency plan ──
+      if (userPlan === 'agency') {
+        const handle = channel.trim();
+        const alreadyExists = agencyChannels.some((c) => c.handle === handle);
+        if (!alreadyExists) {
+          addAgencyChannel({
+            handle,
+            title: channelData?.title || handle,
+            description: channelData?.description || '',
+            avatar: channelData?.thumbnail || '',
+            subscriberCount: channelData?.subscriberCount || 0,
+            videoCount: channelData?.videoCount || 0,
+            viewCount: channelData?.viewCount || 0,
+            publishedAt: channelData?.publishedAt || '',
+            healthScore: auditResult.healthScore,
+            auditDate: Date.now(),
+            auditCategories: auditResult.categories,
+            niche: '',
+            status: auditResult.healthScore >= 80 ? 'performing' as const : auditResult.healthScore >= 60 ? 'growth' as const : 'stale' as const,
+            monthlyViews: Math.round((channelData?.viewCount || 0) * 0.15),
+            monthlyRevenue: 0,
+            cpm: 0,
+          });
+        }
+      }
     } catch {
       const fallbackResult = {
         healthScore: 67,
