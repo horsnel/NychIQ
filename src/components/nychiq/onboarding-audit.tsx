@@ -91,7 +91,7 @@ function HealthGauge({ score }: { score: number }) {
           {animatedScore}
         </span>
         <span className="text-[10px] text-[#555] font-medium mt-0.5">/ 100</span>
-        <span className="text-[10px] text-[#888] font-semibold mt-1">Health Score</span>
+        <span className="text-[10px] text-[#A3A3A3] font-semibold mt-1">Health Score</span>
       </div>
     </div>
   );
@@ -195,7 +195,7 @@ export function OnboardingAudit() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 1 ? 'bg-[#FDBA2D]' : 'bg-[#222]'
+                  i <= 1 ? 'bg-[#FDBA2D]' : 'bg-[#1F1F1F]'
                 }`}
               />
             ))}
@@ -225,7 +225,7 @@ export function OnboardingAudit() {
                     value={channelUrl}
                     onChange={(e) => setChannelUrl(e.target.value)}
                     placeholder="https://youtube.com/@yourchannel"
-                    className="pl-9 bg-[#141414] border-[#222] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
+                    className="pl-9 bg-[#141414] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
                     onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
                   />
                 </div>
@@ -247,7 +247,7 @@ export function OnboardingAudit() {
 
                 <button
                   onClick={() => setPage('ob-extension')}
-                  className="text-xs text-[#444] hover:text-[#888] transition-colors"
+                  className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
                 >
                   Skip for now →
                 </button>
@@ -313,7 +313,7 @@ export function OnboardingAudit() {
                 </div>
                 <ul className="space-y-2.5">
                   {insights.map((insight, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-[#888] leading-relaxed">
+                    <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3] leading-relaxed">
                       <span className="w-1 h-1 rounded-full bg-[#FDBA2D] shrink-0 mt-1.5" />
                       {insight}
                     </li>
@@ -388,7 +388,7 @@ export function OnboardingAudit() {
                 </Button>
                 <button
                   onClick={() => { setReport(false); setCurrentStep(-1); }}
-                  className="text-xs text-[#444] hover:text-[#888] transition-colors"
+                  className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
                 >
                   ← Re-analyze another channel
                 </button>

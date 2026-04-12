@@ -145,7 +145,7 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
 
       {/* Mini-panel on hover */}
       {expanded && (
-        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#141414]/95 backdrop-blur-md border border-[#222222] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
+        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#141414]/95 backdrop-blur-md border border-[#1F1F1F] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('deepchat'); }}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
@@ -238,7 +238,7 @@ function AnalysisTeaser({ viralPoints, onNavigate }: { viralPoints: number; onNa
   const linkStart = fullText.indexOf('View Tactical Breakdown');
 
   return (
-    <div className="mt-2 pt-2 border-t border-[#222222]/60">
+    <div className="mt-2 pt-2 border-t border-[#1F1F1F]/60">
       <p className="text-[10px] font-mono text-[#555555] leading-relaxed select-none">
         {chars <= linkStart ? (
           fullText.slice(0, chars)
@@ -475,7 +475,7 @@ export function SciFiVideoCard({
 
 export function SciFiVideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#222222] animate-pulse">
+    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F] animate-pulse">
       <div className="h-[2px] bg-gradient-to-r from-[#8B5CF6] via-[#FDBA2D] to-transparent opacity-40" />
       <div className="aspect-video bg-[#1A1A1A]" />
       <div className="p-3 space-y-2">

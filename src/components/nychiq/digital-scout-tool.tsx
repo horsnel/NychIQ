@@ -264,7 +264,7 @@ Return ONLY valid JSON matching this schema:
     return (
       <div className="space-y-5 animate-fade-in-up">
         {/* Header */}
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -279,7 +279,7 @@ Return ONLY valid JSON matching this schema:
         </div>
 
         {/* Input Section */}
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 sm:p-6">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 sm:p-6">
           <div className="text-center mb-6">
             <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)] flex items-center justify-center mx-auto mb-4">
               <Package className="w-8 h-8 text-[#FDBA2D]" />
@@ -301,7 +301,7 @@ Return ONLY valid JSON matching this schema:
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleScout()}
                   placeholder="Paste a YouTube URL or enter a video topic..."
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/40 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1F1F1F] text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/40 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-all"
                 />
               </div>
               <button
@@ -343,7 +343,7 @@ Return ONLY valid JSON matching this schema:
               <button
                 key={ex}
                 onClick={() => setInput(ex)}
-                className="px-3 py-1.5 rounded-full bg-[#0D0D0D] border border-[#222222] text-[11px] text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                className="px-3 py-1.5 rounded-full bg-[#0D0D0D] border border-[#1F1F1F] text-[11px] text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
               >
                 {ex}
               </button>
@@ -361,7 +361,7 @@ Return ONLY valid JSON matching this schema:
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] animate-pulse">
@@ -375,7 +375,7 @@ Return ONLY valid JSON matching this schema:
           </div>
         </div>
 
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 text-center">
           <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
           </div>
@@ -398,7 +398,7 @@ Return ONLY valid JSON matching this schema:
   if (error) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -427,7 +427,7 @@ Return ONLY valid JSON matching this schema:
             </button>
             <button
               onClick={() => { setError(null); setResults(null); }}
-              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[#FFFFFF] text-sm font-medium hover:bg-[#222222] transition-colors"
+              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[#1F1F1F] text-[#FFFFFF] text-sm font-medium hover:bg-[#1F1F1F] transition-colors"
             >
               New Search
             </button>
@@ -443,7 +443,7 @@ Return ONLY valid JSON matching this schema:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -457,7 +457,7 @@ Return ONLY valid JSON matching this schema:
             </div>
             <button
               onClick={() => { setResults(null); setError(null); }}
-              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[#222222] text-[11px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[#1F1F1F] text-[11px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
             >
               <Search className="w-3 h-3" /> New Search
             </button>
@@ -467,15 +467,15 @@ Return ONLY valid JSON matching this schema:
 
       {/* Summary Stats */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
           <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
           <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
         </div>
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
           <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Est. Views</p>
           <p className="text-2xl font-bold text-[#3B82F6]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
         </div>
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
           <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Top Priority</p>
           <p className="text-2xl font-bold text-[#10B981]">{sortedOpps[0]?.priorityScore || 0}</p>
         </div>
@@ -496,7 +496,7 @@ Return ONLY valid JSON matching this schema:
             return (
               <div
                 key={opp.name}
-                className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden hover:border-[#333333] transition-colors"
+                className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden hover:border-[#333333] transition-colors"
               >
                 {/* Card Header */}
                 <div className="px-4 sm:px-5 py-4">
@@ -507,7 +507,7 @@ Return ONLY valid JSON matching this schema:
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
                         style={{
                           backgroundColor: idx === 0 ? 'rgba(253,186,45,0.15)' : '#1A1A1A',
-                          border: `1px solid ${idx === 0 ? 'rgba(253,186,45,0.3)' : '#222222'}`,
+                          border: `1px solid ${idx === 0 ? 'rgba(253,186,45,0.3)' : '#1F1F1F'}`,
                           color: idx === 0 ? '#FDBA2D' : '#666666',
                         }}
                       >
@@ -600,7 +600,7 @@ Return ONLY valid JSON matching this schema:
                     {/* Copy Sales Hook */}
                     <button
                       onClick={() => handleCopy(opp.salesHook, opp.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[#222222] text-xs text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
                     >
                       {isCopied ? (
                         <>

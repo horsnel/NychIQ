@@ -458,7 +458,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
   const engPositive = engDiff >= 0;
 
   return (
-    <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#2A2A2A] transition-colors">
+    <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#2A2A2A] transition-colors">
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div
@@ -883,7 +883,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* ──────── HEADER CARD WITH TABS ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 relative">
           {/* Background grid pattern */}
           <div
@@ -940,7 +940,7 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'analysis' && (
         <div className="space-y-4">
           {/* Input Section */}
-          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <p className="text-sm text-[#A3A3A3] mb-3">
               Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
               including audience retention, brand alignment, and growth potential.
@@ -1014,7 +1014,7 @@ Return ONLY the JSON object, no other text.`;
               {searched && !loading && (
                 <button
                   onClick={handleAnalyze}
-                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#222222] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
                 >
                   <RefreshCw className="w-3 h-3" /> Re-analyze
                 </button>
@@ -1024,7 +1024,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Suggested Ideas (only when no input and not loading/searched) */}
           {!input.trim() && !loading && !searched && (
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(253,186,45,0.2) 0%, transparent 70%)' }}>
                   <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
@@ -1054,7 +1054,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* ── Loading State (Scanning Animation) ── */}
           {loading && (
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-fade-in-up">
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-5">
                 <div className="relative">
                   <Radar className="w-5 h-5 text-[#8B5CF6] animate-pulse" />
@@ -1082,7 +1082,7 @@ Return ONLY the JSON object, no other text.`;
                         className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
                         style={{
                           backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
-                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#222222'}`,
+                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#1F1F1F'}`,
                         }}
                       >
                         {isComplete ? (
@@ -1136,7 +1136,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Core Scores with Gauges */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
                 <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-5 flex items-center gap-2">
                   <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                   Core Scores
@@ -1160,7 +1160,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Retention Simulation */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
                     <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
@@ -1243,7 +1243,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
           ) : (
             <>
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
                     <Flame className="w-4 h-4 text-[#8B5CF6]" />
@@ -1293,7 +1293,7 @@ Return ONLY the JSON object, no other text.`;
           ) : (
             <>
               {/* Section header */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
                     <Activity className="w-4 h-4 text-[#8B5CF6]" />
@@ -1310,7 +1310,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Viewer Behavior Heatmap */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
                     <Activity className="w-4 h-4 text-[#10B981]" />
@@ -1324,7 +1324,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Best Publishing Window */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(59,130,246,0.15)' }}>
                     <Calendar className="w-4 h-4 text-[#3B82F6]" />
@@ -1340,7 +1340,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Revenue per 1000 views (CPM Analysis) */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
@@ -1354,7 +1354,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Demographics */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }}>
                     <Users className="w-4 h-4 text-[#8B5CF6]" />
@@ -1368,7 +1368,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Content Gap Opportunities */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <Target className="w-4 h-4 text-[#FDBA2D]" />
@@ -1391,7 +1391,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Satisfaction */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
                     <TrendingUp className="w-4 h-4 text-[#10B981]" />

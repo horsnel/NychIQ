@@ -71,7 +71,7 @@ export function ProfileTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -86,7 +86,7 @@ export function ProfileTool() {
       </div>
 
       {/* ── Profile Card ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 sm:p-6">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           {/* Avatar */}
           <div className="w-20 h-20 rounded-2xl bg-[#FDBA2D] flex items-center justify-center text-[#0D0D0D] text-2xl font-bold shrink-0">
@@ -105,7 +105,7 @@ export function ProfileTool() {
           </div>
           <button
             onClick={handleEditProfile}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[#222222] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[#1F1F1F] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
           >
             Edit Profile
             <ChevronRight className="w-4 h-4 text-[#666666]" />
@@ -142,7 +142,7 @@ export function ProfileTool() {
       </div>
 
       {/* ── Token Progress ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Coins className="w-4 h-4 text-[#FDBA2D]" />
@@ -183,7 +183,7 @@ export function ProfileTool() {
         </button>
         <button
           onClick={handleSignOut}
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[#222222] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[#1F1F1F] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
         >
           <LogOut className="w-4 h-4" />
           SIGN OUT
@@ -191,7 +191,7 @@ export function ProfileTool() {
       </div>
 
       {/* ── Preferences / Links ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
             <Globe className="w-4 h-4 text-[#FDBA2D]" />

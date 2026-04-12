@@ -92,7 +92,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]"><Stethoscope className="w-5 h-5 text-[#EF4444]" /></div>
@@ -116,7 +116,7 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#EF4444] mx-auto mb-3" />
           <p className="text-sm text-[#A3A3A3]">Running forensic analysis...</p>
         </div>
@@ -141,7 +141,7 @@ Return ONLY the JSON object.`;
           })()}
 
           {/* Root Causes */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Root Cause Analysis</h4>
             <div className="space-y-2">
               {result.rootCauses.map((cause, i) => (
@@ -154,7 +154,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Fix Recommendations */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Fix Recommendations</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.fixRecommendations.map((rec, i) => {
@@ -173,7 +173,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Priority Action Plan</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.actionPlan}</p>
           </div>

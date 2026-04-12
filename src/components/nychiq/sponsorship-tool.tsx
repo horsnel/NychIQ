@@ -117,7 +117,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><Handshake className="w-5 h-5 text-[#10B981]" /></div>
@@ -161,7 +161,7 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#10B981] mx-auto mb-3" />
           <p className="text-sm text-[#A3A3A3]">Calculating sponsorship rates...</p>
         </div>
@@ -176,7 +176,7 @@ Return ONLY the JSON object.`;
 
           {/* Rate Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Minimum Rate</p>
               <p className="text-2xl font-bold text-[#3B82F6]">{fmtDollar(result.minRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
@@ -195,18 +195,18 @@ Return ONLY the JSON object.`;
 
           {/* Per-metric rates */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Views</p>
               <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKViews)}</p>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Subs</p>
               <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKSubs)}</p>
             </div>
           </div>
 
           {/* Market Comparison */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Market Comparison</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.marketComparison}</p>
           </div>

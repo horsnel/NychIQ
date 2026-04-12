@@ -127,7 +127,7 @@ function SectionCard({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
       <button
         type="button"
         onClick={() => collapsible && setOpen(!open)}
@@ -395,7 +395,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
         >
           {/* Bubble body – webtoon shape: rounded-tl-sm, rounded-br-2xl */}
           <div
-            className="relative bg-[#1A1A1A] border border-[#222] p-4 shadow-2xl shadow-black/40"
+            className="relative bg-[#1A1A1A] border border-[#1F1F1F] p-4 shadow-2xl shadow-black/40"
             style={{
               borderRadius: '4px 16px 16px 16px',
             }}
@@ -419,14 +419,14 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
               <div className="flex items-center gap-0.5">
                 <button
                   onClick={handleMinimize}
-                  className="p-1 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#222] transition-colors"
+                  className="p-1 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] transition-colors"
                   aria-label="Minimize"
                 >
                   <ChevronDown className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={handleDismiss}
-                  className="p-1 rounded-md text-[#555] hover:text-[#EF4444] hover:bg-[#222] transition-colors"
+                  className="p-1 rounded-md text-[#555] hover:text-[#EF4444] hover:bg-[#1F1F1F] transition-colors"
                   aria-label="Close"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -462,7 +462,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
 
           {/* Bubble tail */}
           <div
-            className="absolute -bottom-[6px] right-5 w-3 h-3 bg-[#1A1A1A] border-r border-b border-[#222] rotate-45"
+            className="absolute -bottom-[6px] right-5 w-3 h-3 bg-[#1A1A1A] border-r border-b border-[#1F1F1F] rotate-45"
           />
         </div>
       )}
@@ -472,7 +472,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
         <button
           onClick={handleRestore}
           className={cn(
-            'flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1A1A] border border-[#222] shadow-lg transition-all duration-300',
+            'flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1A1A] border border-[#1F1F1F] shadow-lg transition-all duration-300',
             isExiting ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0',
           )}
         >
@@ -482,7 +482,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
           >
             <TipIcon type={tip.icon} color={tip.color} />
           </div>
-          <span className="text-[11px] font-medium text-[#888]">{tip.label}</span>
+          <span className="text-[11px] font-medium text-[#A3A3A3]">{tip.label}</span>
           <ChevronDown className="w-3 h-3 text-[#555] rotate-180" />
         </button>
       )}
@@ -612,7 +612,7 @@ export function ChannelAssistantTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -642,7 +642,7 @@ export function ChannelAssistantTool() {
               </div>
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#222222] text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444444] transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 Reset
@@ -1212,7 +1212,7 @@ export function ChannelAssistantTool() {
       </div>
 
       {/* Bottom save bar (mobile friendly) */}
-      <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#222222]">
+      <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-[#1F1F1F]">
         <div className="flex items-center gap-2">
           <Bot className="w-4 h-4 text-[#FDBA2D]" />
           <span className="text-xs text-[#A3A3A3]">

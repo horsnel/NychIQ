@@ -170,7 +170,7 @@ function TypingIndicator() {
       <div className="w-8 h-8 rounded-full bg-[rgba(139,92,246,0.15)] flex items-center justify-center flex-shrink-0">
         <MessageSquare className="w-4 h-4 text-[#8B5CF6]" />
       </div>
-      <div className="rounded-2xl rounded-tl-sm bg-[#1A1A1A] border border-[#222222] px-4 py-3">
+      <div className="rounded-2xl rounded-tl-sm bg-[#1A1A1A] border border-[#1F1F1F] px-4 py-3">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-bounce" style={{ animationDelay: '0ms' }} />
           <span className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -329,7 +329,7 @@ You can ask me about:
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] px-4 sm:px-5 py-4">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] px-4 sm:px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]">
             <MessageSquare className="w-5 h-5 text-[#8B5CF6]" />
@@ -355,7 +355,7 @@ You can ask me about:
 
       {/* Video URL Input (shown when no video loaded) */}
       {!videoCtx && !loadingSteps && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
           <div className="text-center mb-5">
             <div className="w-16 h-16 rounded-2xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center mx-auto mb-3">
               <Play className="w-8 h-8 text-[#8B5CF6]" />
@@ -384,7 +384,7 @@ You can ask me about:
 
       {/* Loading Steps */}
       {loadingSteps && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
           <div className="flex items-center gap-3 mb-5">
             <Loader2 className="w-5 h-5 animate-spin text-[#8B5CF6]" />
             <span className="text-sm font-medium text-[#FFFFFF]">Analyzing video...</span>
@@ -428,10 +428,10 @@ You can ask me about:
       {videoCtx && !loadingSteps && (
         <div className="space-y-4">
           {/* Video Context Card */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Thumbnail placeholder */}
-              <div className="w-full sm:w-48 h-28 rounded-lg bg-gradient-to-br from-[#1A1A1A] to-[#222222] flex items-center justify-center flex-shrink-0">
+              <div className="w-full sm:w-48 h-28 rounded-lg bg-gradient-to-br from-[#1A1A1A] to-[#1F1F1F] flex items-center justify-center flex-shrink-0">
                 <div className="text-center">
                   <Play className="w-8 h-8 text-[#8B5CF6] mx-auto mb-1" />
                   <span className="text-[10px] text-[#666666]">Video Preview</span>
@@ -481,7 +481,7 @@ You can ask me about:
 
           {/* Quick Action Buttons (shown only on first load, no user messages yet) */}
           {messages.length <= 1 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs text-[#A3A3A3] font-medium flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 text-[#8B5CF6]" /> Quick Actions
@@ -524,7 +524,7 @@ You can ask me about:
           )}
 
           {/* Chat Messages */}
-          <div className="rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#222222 #0D0D0D' }}>
+          <div className="rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#1F1F1F #0D0D0D' }}>
             {messages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-3 animate-fade-in-up">
                 {msg.role === 'bot' ? (
@@ -533,7 +533,7 @@ You can ask me about:
                       <MessageSquare className="w-4 h-4 text-[#8B5CF6]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="rounded-2xl rounded-tl-md bg-[#1A1A1A] border border-[#222222] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                      <div className="rounded-2xl rounded-tl-md bg-[#1A1A1A] border border-[#1F1F1F] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
                         <div className="w-8 h-[2px] bg-[#8B5CF6]/40 rounded-full mb-2.5" />
                         <p className="text-sm text-[#FFFFFF] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
@@ -572,7 +572,7 @@ You can ask me about:
           )}
 
           {/* Input Area */}
-          <div className="rounded-xl bg-[#141414] border border-[#222222] p-3">
+          <div className="rounded-xl bg-[#141414] border border-[#1F1F1F] p-3">
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}

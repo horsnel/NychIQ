@@ -153,7 +153,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -176,7 +176,7 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={() => fetchReport()}
               disabled={loading}
-              className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
               <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
             </button>
@@ -187,7 +187,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-5">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#8B5CF6] animate-spin" />
               <span className="text-sm text-[#A3A3A3]">Analyzing YouTube algorithm signals...</span>
@@ -236,8 +236,8 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Recommendations */}
           {report.recommendations.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1F1F1F]">
                 <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>

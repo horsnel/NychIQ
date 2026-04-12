@@ -63,7 +63,7 @@ interface ClientChannel {
   videoCount: number;
   healthScore: number;
   lastAnalyzed: string;
-  status: 'performing' | 'stale' | 'arbitrage';
+  status: 'performing' | 'stale' | 'arbitrage' | 'growth';
   monthlyViews: number;
   monthlyRevenue: number;
   cpm: number;
@@ -155,9 +155,9 @@ const MOCK_CHANNELS: ClientChannel[] = [
     color: '#8B5CF6',
     subscribers: 890000,
     videoCount: 421,
-    healthScore: 81,
-    lastAnalyzed: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
-    status: 'arbitrage',
+    healthScore: 91,
+    lastAnalyzed: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    status: 'growth',
     monthlyViews: 7600000,
     monthlyRevenue: 4120,
     cpm: 14.80,
@@ -248,6 +248,7 @@ function statusRing(status: ClientChannel['status']): { color: string; label: st
     case 'performing': return { color: '#10B981', label: 'Performing Well', pulse: true };
     case 'stale': return { color: '#FDBA2D', label: 'No Uploads (3+ days)', pulse: false };
     case 'arbitrage': return { color: '#8B5CF6', label: 'High Arbitrage', pulse: false };
+    case 'growth': return { color: '#3B82F6', label: 'Rapid Growth', pulse: true };
   }
 }
 
@@ -274,7 +275,7 @@ function HealthCircle({ score, size = 48, strokeWidth = 4 }: { score: number; si
 
 function StatCard({ icon: Icon, label, value, color, sub }: { icon: LucideIcon; label: string; value: string; color: string; sub?: string }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
       <div className="flex items-center gap-2 mb-2">
         <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15`, border: `1px solid ${color}30` }}>
           <Icon className="w-4 h-4" style={{ color }} />
@@ -467,7 +468,7 @@ export function AgencyDashboardTool() {
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-pulse">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 animate-pulse">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-lg bg-[#1A1A1A]" />
             <div className="space-y-2 flex-1">
@@ -483,7 +484,7 @@ export function AgencyDashboardTool() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-pulse">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 animate-pulse">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-[#1A1A1A]" />
                 <div className="space-y-2 flex-1">
@@ -522,7 +523,7 @@ export function AgencyDashboardTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -587,7 +588,7 @@ export function AgencyDashboardTool() {
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
                 ? 'bg-[#8B5CF6]/10 text-[#8B5CF6] border border-[#8B5CF6]/20'
-                : 'bg-[#141414] border border-[#222222] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333]'
+                : 'bg-[#141414] border border-[#1F1F1F] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333]'
             }`}
           >
             <tab.icon className="w-3.5 h-3.5" />
@@ -607,7 +608,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'fleet' && (
         <div className="space-y-4">
           {/* Portfolio ROI Chart (CSS) */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <BarChart3 className="w-3.5 h-3.5 text-[#8B5CF6]" /> Portfolio ROI
@@ -686,7 +687,7 @@ export function AgencyDashboardTool() {
             {MOCK_CHANNELS.map((ch) => {
               const statusInfo = statusRing(ch.status);
               return (
-                <div key={ch.id} className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
+                <div key={ch.id} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#333333] transition-colors group">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div
@@ -761,7 +762,7 @@ export function AgencyDashboardTool() {
               const typeInfo = signalTypeInfo(signal.type);
               const TypeIcon = typeInfo.icon;
               return (
-                <div key={signal.id} className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-colors group">
+                <div key={signal.id} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#333333] transition-colors group">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 mt-0.5">
                       <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: `${typeInfo.color}15`, border: `1px solid ${typeInfo.color}25` }}>
@@ -809,7 +810,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'war-room' && (
         <div className="space-y-4">
           {/* Tactical Briefing Generator */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden relative">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden relative">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Radar className="w-3.5 h-3.5 text-[#FDBA2D]" /> Tactical Briefing
@@ -896,7 +897,7 @@ export function AgencyDashboardTool() {
                     </button>
                     <button
                       onClick={() => setBriefingComplete(false)}
-                      className="px-4 py-2.5 rounded-lg text-sm font-medium bg-[#0D0D0D] border border-[#222222] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333] transition-all flex items-center gap-2"
+                      className="px-4 py-2.5 rounded-lg text-sm font-medium bg-[#0D0D0D] border border-[#1F1F1F] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#333333] transition-all flex items-center gap-2"
                     >
                       <Radar className="w-3.5 h-3.5" /> New Briefing
                     </button>
@@ -907,7 +908,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Intelligence Link Generator */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Link2 className="w-3.5 h-3.5 text-[#8B5CF6]" /> Shareable Intelligence Link Generator
@@ -921,7 +922,7 @@ export function AgencyDashboardTool() {
                   <select
                     value={selectedClient || ''}
                     onChange={(e) => setSelectedClient(e.target.value || null)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm focus:outline-none focus:border-[#8B5CF6]/40 transition-all appearance-none"
+                    className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1F1F1F] text-[#FFFFFF] text-sm focus:outline-none focus:border-[#8B5CF6]/40 transition-all appearance-none"
                   >
                     <option value="">All Channels</option>
                     {MOCK_CHANNELS.map((ch) => (
@@ -941,7 +942,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Generated Links */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Radio className="w-3.5 h-3.5 text-[#10B981]" /> Active Intelligence Links
@@ -981,7 +982,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Client Acquisition Module */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Client Acquisition — Gap Analysis
@@ -1025,7 +1026,7 @@ export function AgencyDashboardTool() {
             ];
             const totalScripts = 147;
             return (
-              <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
                 <div className="px-4 py-3 border-b border-[#1A1A1A]">
                   <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                     <Cpu className="w-3.5 h-3.5 text-[#FDBA2D]" /> Resource Allocation
@@ -1126,7 +1127,7 @@ export function AgencyDashboardTool() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Recent Reports */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
                 <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-[#8B5CF6]" /> Recent Reports
@@ -1161,7 +1162,7 @@ export function AgencyDashboardTool() {
             </div>
 
             {/* Team Activity */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
                 <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-[#10B981]" /> Team Activity
@@ -1194,7 +1195,7 @@ export function AgencyDashboardTool() {
               <Zap className="w-4 h-4 text-[#FDBA2D]" /> Quick Actions
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#10B981]/30 hover:bg-[rgba(16,185,129,0.03)] transition-all group text-left">
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#10B981]/30 hover:bg-[rgba(16,185,129,0.03)] transition-all group text-left">
                 <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
                   <UserPlus className="w-4 h-4 text-[#10B981]" />
                 </div>
@@ -1204,7 +1205,7 @@ export function AgencyDashboardTool() {
                 </div>
                 <Plus className="w-4 h-4 text-[#444444] group-hover:text-[#10B981] transition-colors" />
               </button>
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#3B82F6]/30 hover:bg-[rgba(59,130,246,0.03)] transition-all group text-left">
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#3B82F6]/30 hover:bg-[rgba(59,130,246,0.03)] transition-all group text-left">
                 <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)]">
                   <FileBarChart className="w-4 h-4 text-[#3B82F6]" />
                 </div>
@@ -1214,7 +1215,7 @@ export function AgencyDashboardTool() {
                 </div>
                 <ArrowUpRight className="w-4 h-4 text-[#444444] group-hover:text-[#3B82F6] transition-colors" />
               </button>
-              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#FDBA2D]/30 hover:bg-[rgba(253,186,45,0.03)] transition-all group text-left">
+              <button className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#FDBA2D]/30 hover:bg-[rgba(253,186,45,0.03)] transition-all group text-left">
                 <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)]">
                   <FolderOutput className="w-4 h-4 text-[#FDBA2D]" />
                 </div>
@@ -1542,7 +1543,7 @@ export function AgencyDashboardTool() {
       {/* ═══════════════════════════════════════
           COMMAND BAR (always visible)
           ═══════════════════════════════════════ */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 py-3 border-b border-[#1A1A1A]">
           <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
             <Command className="w-3.5 h-3.5 text-[#8B5CF6]" /> Command Bar
@@ -1558,7 +1559,7 @@ export function AgencyDashboardTool() {
                 onChange={(e) => setCommandInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleCommand()}
                 placeholder="compare ClientA ClientB  |  report-all"
-                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#222222] text-[#FFFFFF] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all"
+                className="w-full pl-8 pr-4 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1F1F1F] text-[#FFFFFF] text-sm font-mono placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all"
               />
             </div>
             <button

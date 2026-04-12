@@ -130,7 +130,7 @@ Rules:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><BellRing className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -154,7 +154,7 @@ Rules:
       </div>
 
       {/* Active Alerts */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
         <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
         {alerts.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-4">No active alerts. Add keywords above to start monitoring.</p>
@@ -179,7 +179,7 @@ Rules:
       </div>
 
       {/* Trend Feed — AI-powered */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
             <Zap className="w-3.5 h-3.5 text-[#EF4444]" />

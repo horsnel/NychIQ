@@ -193,7 +193,7 @@ export function SakuFullPage() {
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 sakuMode === '2.0'
                   ? 'bg-[#FDBA2D] text-black shadow-sm'
-                  : 'text-[#555] hover:text-[#888]'
+                  : 'text-[#555] hover:text-[#A3A3A3]'
               }`}
             >
               Saku 2.0
@@ -205,7 +205,7 @@ export function SakuFullPage() {
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 sakuMode === '3x'
                   ? 'bg-[#8B5CF6] text-white shadow-sm'
-                  : 'text-[#555] hover:text-[#888]'
+                  : 'text-[#555] hover:text-[#A3A3A3]'
               }`}
             >
               Saku 3X
@@ -243,7 +243,7 @@ export function SakuFullPage() {
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeMode === mode.id
                     ? 'bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)] text-[#FDBA2D]'
-                    : 'hover:bg-[rgba(255,255,255,0.02)] text-[#666] hover:text-[#888] border border-transparent'
+                    : 'hover:bg-[rgba(255,255,255,0.02)] text-[#666] hover:text-[#A3A3A3] border border-transparent'
                 }`}
               >
                 <mode.icon className="w-4 h-4 shrink-0" />
@@ -291,7 +291,7 @@ export function SakuFullPage() {
                         className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#141414] border border-[#1E1E1E] text-left hover:border-[#333] hover:bg-[#161616] transition-all group"
                       >
                         <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#FDBA2D] transition-colors shrink-0" />
-                        <span className="text-xs text-[#888] group-hover:text-[#FFFFFF] transition-colors">{sug}</span>
+                        <span className="text-xs text-[#A3A3A3] group-hover:text-[#FFFFFF] transition-colors">{sug}</span>
                       </button>
                     ))}
                   </div>
@@ -349,7 +349,7 @@ export function SakuFullPage() {
           {/* Input area */}
           <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 pt-3 shrink-0">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-end gap-3 bg-[#141414] rounded-xl px-4 py-3 border border-[#222] focus-within:border-[rgba(139,92,246,0.3)] transition-colors">
+              <div className="flex items-end gap-3 bg-[#141414] rounded-xl px-4 py-3 border border-[#1F1F1F] focus-within:border-[rgba(139,92,246,0.3)] transition-colors">
                 <textarea
                   ref={inputRef}
                   value={input}

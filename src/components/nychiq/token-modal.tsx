@@ -257,7 +257,7 @@ export function TokenModal() {
         if (!open) handleSkip();
       }}
     >
-      <DialogContent className="sm:max-w-md bg-[#141414] border-[#222] text-[#FFFFFF] p-6">
+      <DialogContent className="sm:max-w-md bg-[#141414] border-[#1F1F1F] text-[#FFFFFF] p-6">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
             <Coins className="w-5 h-5 text-[#FDBA2D]" />

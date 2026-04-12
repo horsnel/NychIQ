@@ -355,7 +355,7 @@ export function StudioTool() {
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* ── Header Card ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] px-4 sm:px-5 py-4 relative overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] px-4 sm:px-5 py-4 relative overflow-hidden">
         {/* Background subtle grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -429,7 +429,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
   return (
     <div className="space-y-4">
       {/* Channel Health Card */}
-      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
         <div className="flex flex-col md:flex-row items-start gap-6">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
@@ -467,7 +467,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="rounded-lg bg-[#141414] border border-[#222222] p-4 flex flex-col gap-2 hover:border-[#333333] transition-colors group"
+            className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 flex flex-col gap-2 hover:border-[#333333] transition-colors group"
           >
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-[#666666] uppercase tracking-wider">{stat.label}</span>
@@ -492,7 +492,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
             <button
               key={tool.id}
               onClick={() => onLaunch(tool.id)}
-              className="rounded-lg bg-[#141414] border border-[#222222] p-4 text-left hover:border-[#333333] transition-all duration-200 group hover:shadow-[0_0_20px_rgba(139,92,246,0.06)]"
+              className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-left hover:border-[#333333] transition-all duration-200 group hover:shadow-[0_0_20px_rgba(139,92,246,0.06)]"
             >
               <div className="flex items-start gap-3">
                 <div
@@ -526,7 +526,7 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
   return (
     <div className="space-y-4">
       {/* Suite Header */}
-      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)' }}>
             <Shield className="w-5 h-5 text-[#8B5CF6]" />
@@ -550,7 +550,7 @@ function ForensicsTab({ onLaunch }: { onLaunch: (id: string) => void }) {
         {FORENSICS_TOOLS.map((tool, idx) => (
           <div
             key={tool.id}
-            className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden hover:border-[#333333] transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.05)] animate-fade-in-up"
+            className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden hover:border-[#333333] transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.05)] animate-fade-in-up"
             style={{ animationDelay: `${idx * 80}ms`, animationFillMode: 'backwards' }}
           >
             {/* Top accent line */}
@@ -657,7 +657,7 @@ function ChecklistTab() {
   return (
     <div className="space-y-4">
       {/* Progress Header */}
-      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+      <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
@@ -674,7 +674,7 @@ function ChecklistTab() {
             </span>
             <button
               onClick={resetChecklist}
-              className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent hover:border-[#222222] transition-all"
+              className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent hover:border-[#1F1F1F] transition-all"
             >
               <RotateCcw className="w-3 h-3" /> Reset
             </button>
@@ -708,7 +708,7 @@ function ChecklistTab() {
         const catTotal = cat.items.length;
         const catPct = catTotal > 0 ? Math.round((catChecked / catTotal) * 100) : 0;
         return (
-          <div key={cat.name} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div key={cat.name} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-[#8B5CF6]">{cat.icon}</span>
               <h4 className="text-xs font-bold text-[#FFFFFF] uppercase tracking-wider">{cat.name}</h4>
@@ -844,7 +844,7 @@ function PreUploadTab() {
   return (
     <div className="space-y-4">
       {/* Ninja AI Input Bar with Conic Gradient Border */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
         <div className="flex items-center gap-2 mb-3">
           <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
             <Bot className="w-4 h-4 text-[#8B5CF6]" />
@@ -906,7 +906,7 @@ function PreUploadTab() {
 
       {/* Scanning Animation */}
       {loading && (
-        <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 animate-fade-in-up">
+        <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 animate-fade-in-up">
           <div className="flex items-center gap-3 mb-5">
             <div className="relative">
               <Radar className="w-5 h-5 text-[#8B5CF6] animate-pulse" />
@@ -943,7 +943,7 @@ function PreUploadTab() {
                     style={{
                       backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
                       border: `1px solid ${
-                        isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#222222'
+                        isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#1F1F1F'
                       }`,
                     }}
                   >
@@ -995,14 +995,14 @@ function PreUploadTab() {
           {/* Score + Views */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Algorithm Score Gauge */}
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 flex flex-col items-center justify-center">
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 flex flex-col items-center justify-center">
               <span className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-3">Algorithm Score</span>
               <HealthGauge score={result.algoScore} size="lg" />
               <p className="text-[10px] text-[#666666] mt-2">Based on SEO, timing, and niche alignment</p>
             </TacticalCorners>
 
             {/* Estimated Views */}
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5 flex flex-col justify-center">
+            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 flex flex-col justify-center">
               <span className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-3">Estimated Views (30d)</span>
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="w-5 h-5 text-[#10B981]" />
@@ -1015,7 +1015,7 @@ function PreUploadTab() {
           </div>
 
           {/* AI Strategy Recommendations */}
-          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <div className="flex items-center gap-2 mb-4">
               <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
                 <BrainCircuit className="w-4 h-4 text-[#8B5CF6]" />
@@ -1057,7 +1057,7 @@ function PreUploadTab() {
 
       {/* Empty State (no result, not loading) */}
       {!result && !loading && (
-        <TacticalCorners className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
+        <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8 text-center">
           <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)' }}>
             <Radar className="w-8 h-8 text-[#8B5CF6] opacity-50" />
           </div>

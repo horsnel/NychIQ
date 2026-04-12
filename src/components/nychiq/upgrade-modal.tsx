@@ -36,7 +36,7 @@ export function UpgradeModal() {
 
   return (
     <Dialog open={upgradeModalOpen} onOpenChange={setUpgradeModalOpen}>
-      <DialogContent className="sm:max-w-2xl bg-[#141414] border-[#222] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl bg-[#141414] border-[#1F1F1F] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="text-xl font-bold text-gradient-amber">Upgrade Your Plan</DialogTitle>
           <p className="text-sm text-[#A3A3A3] mt-1">Unlock powerful features and get more tokens.</p>
@@ -52,7 +52,7 @@ export function UpgradeModal() {
                   'rounded-xl border p-4 transition-all cursor-pointer',
                   isCurrent
                     ? 'border-[#FDBA2D] bg-[rgba(253,186,45,0.05)]'
-                    : 'border-[#222] bg-[#0D0D0D] hover:border-[#2A2A2A]'
+                    : 'border-[#1F1F1F] bg-[#0D0D0D] hover:border-[#2A2A2A]'
                 )}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -81,7 +81,7 @@ export function UpgradeModal() {
                   disabled={isCurrent}
                   style={{
                     backgroundColor: isCurrent ? '#1A1A1A' : plan.color,
-                    color: isCurrent ? '#888' : '#0D0D0D',
+                    color: isCurrent ? '#A3A3A3' : '#0D0D0D',
                   }}
                 >
                   {isCurrent ? 'Current Plan' : 'Upgrade'}

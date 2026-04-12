@@ -185,7 +185,7 @@ function TrendingHeader({
   loading: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
       <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -208,7 +208,7 @@ function TrendingHeader({
           <button
             onClick={onRefresh}
             disabled={loading}
-            className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+            className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
           >
             <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
           </button>
@@ -276,7 +276,7 @@ export function TrendingTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card with Tabs */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
@@ -447,7 +447,7 @@ function LiveTab() {
 
       {/* Video Grid */}
       {error ? (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8 text-center">
           <AlertCircle className="w-10 h-10 text-[#EF4444] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Failed to Load</h3>
           <p className="text-sm text-[#A3A3A3] mb-4">{error}</p>
@@ -466,7 +466,7 @@ function LiveTab() {
           ))}
         </div>
       ) : sortedVideos.length === 0 ? (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-8 text-center">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8 text-center">
           <TrendingUp className="w-10 h-10 text-[#444444] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Trending Videos</h3>
           <p className="text-sm text-[#A3A3A3]">No trending data available for {selectedRegion} right now.</p>
@@ -564,7 +564,7 @@ function PipelineTab() {
   return (
     <div className="space-y-4">
       {/* Pick a Trend Section */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-4">
           <Flame className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Pick a Trend</h3>
@@ -621,7 +621,7 @@ function PipelineTab() {
       {selectedTrend && (
         <div className="space-y-4">
           {/* Pipeline Score + Full Pipeline Button */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center gap-3 flex-1">
                 <div className="p-2 rounded-lg" style={{ backgroundColor: `${selectedTrend.color}15` }}>
@@ -670,7 +670,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 1: Title & Hook */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>1</div>
@@ -731,7 +731,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 2: Script Outline */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981' }}>2</div>
@@ -806,7 +806,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 3: Metadata */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3B82F6' }}>3</div>
@@ -909,7 +909,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 4: Publishing Plan */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' }}>4</div>

@@ -95,7 +95,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]"><Clock className="w-5 h-5 text-[#3B82F6]" /></div>
@@ -135,8 +135,8 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 h-48 animate-pulse" />
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 h-48 animate-pulse" />
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
           </div>
         </div>
@@ -160,7 +160,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#3B82F6]" /> Schedule Analysis for &quot;{niche.trim()}&quot;</h3>
 
           {/* Best Days */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Best Days of the Week (Ranked)</h4>
             <div className="space-y-2">
               {[...result.bestDays].sort((a, b) => b.score - a.score).map((d, i) => (
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
 
           {/* Heatmap */}
           {heatmapData.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 overflow-x-auto">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 overflow-x-auto">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Weekly Heatmap</h4>
               <div className="min-w-[500px]">
                 <div className="flex gap-1 mb-1 pl-16">
@@ -207,7 +207,7 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Best Time Slots */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Best Time Slots</h4>
             <div className="flex flex-wrap gap-2">
               {result.bestTimes.map((time, i) => (
@@ -222,7 +222,7 @@ Return ONLY the JSON object.`;
 
           {/* Pro Tips */}
           {result.proTips.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Pro Tips</h4>
               <div className="space-y-2">
                 {result.proTips.map((tip, i) => (

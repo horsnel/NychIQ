@@ -197,7 +197,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
@@ -244,7 +244,7 @@ Return ONLY the JSON object, no other text.`;
                   <ChevronDown className="w-3.5 h-3.5 text-[#666666]" />
                 </button>
                 {catOpen && (
-                  <div className="absolute z-20 top-full mt-1 w-full max-h-48 overflow-y-auto rounded-lg bg-[#151515] border border-[#222222] shadow-xl">
+                  <div className="absolute z-20 top-full mt-1 w-full max-h-48 overflow-y-auto rounded-lg bg-[#151515] border border-[#1F1F1F] shadow-xl">
                     {CATEGORIES.map((c) => (
                       <button
                         key={c}
@@ -269,7 +269,7 @@ Return ONLY the JSON object, no other text.`;
                   <ChevronDown className="w-3.5 h-3.5 text-[#666666]" />
                 </button>
                 {langOpen && (
-                  <div className="absolute z-20 top-full mt-1 w-full rounded-lg bg-[#151515] border border-[#222222] shadow-xl">
+                  <div className="absolute z-20 top-full mt-1 w-full rounded-lg bg-[#151515] border border-[#1F1F1F] shadow-xl">
                     {LANGUAGES.map((l) => (
                       <button
                         key={l.code}
@@ -317,7 +317,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -349,7 +349,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Title Variations */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Title Variations
@@ -372,7 +372,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Description */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Description
@@ -383,7 +383,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Tags */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Tag className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Optimized Tags ({result.tags.length})
@@ -398,7 +398,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Hashtags */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Hash className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Hashtags
@@ -413,7 +413,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Searchable Phrases */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-1.5">
                 <Search className="w-3.5 h-3.5" style={{ color: '#10B981' }} /> Searchable Phrases (Long-tail Keywords)

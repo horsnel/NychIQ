@@ -214,7 +214,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(139,92,246,0.1)' }}>
@@ -279,7 +279,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Skeleton */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 space-y-4">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 space-y-4">
           <div className="flex items-center justify-center gap-4 py-6">
             <div className="w-16 h-16 rounded-xl bg-[#1A1A1A] animate-pulse" />
             <div className="text-2xl font-black text-[#444444] animate-pulse">VS</div>
@@ -309,7 +309,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Comparison Table */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="grid grid-cols-3 text-center border-b border-[#1A1A1A]">
               <div className="px-4 py-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' }}>A</span>
@@ -352,7 +352,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Automation Potential Bars */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
               <TrendingUp className="w-4 h-4" style={{ color: '#8B5CF6' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Automation Potential</h3>
@@ -380,7 +380,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Strategic Advice */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#8B5CF6' }} />

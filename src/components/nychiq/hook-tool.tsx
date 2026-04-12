@@ -187,7 +187,7 @@ Return ONLY the JSON array.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Anchor className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -235,7 +235,7 @@ Return ONLY the JSON array.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/4 mb-3" />
               <div className="space-y-2"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-5/6" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-4/6" /></div>
             </div>
@@ -273,7 +273,7 @@ Return ONLY the JSON array.`;
             const sc = styleColor(i);
             const pill = hook.scrollStopScore != null ? scorePillColor(hook.scrollStopScore) : null;
             return (
-              <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 rounded-md text-[10px] font-bold" style={{ color: sc.color, backgroundColor: sc.bg, border: `1px solid ${sc.border}` }}>

@@ -87,7 +87,7 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 sm:p-5">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">{icon}</div>
         <h3 className="text-sm font-bold text-[#FFFFFF]">{title}</h3>
@@ -259,7 +259,7 @@ export function SettingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -439,7 +439,7 @@ export function SettingsTool() {
               </button>
               <button
                 onClick={handleShareRef}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#222222] text-[#A3A3A3] text-sm font-medium hover:border-[#333333] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#1F1F1F] text-[#A3A3A3] text-sm font-medium hover:border-[#333333] hover:text-[#FFFFFF] transition-colors"
                 title="Share referral link"
               >
                 <Share2 className="w-4 h-4" />
@@ -447,7 +447,7 @@ export function SettingsTool() {
               </button>
               {/* Social share dropdown */}
               {showShareMenu && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
                   <button
                     onClick={() => { handleCopyRef(); setShowShareMenu(false); }}
                     className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"

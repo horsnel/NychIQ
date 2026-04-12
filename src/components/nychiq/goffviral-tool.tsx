@@ -502,7 +502,7 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'tiktok' && (
       <>
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -668,7 +668,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Steps */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 space-y-3">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 space-y-3">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Flame className="w-4 h-4 text-[#FDBA2D] animate-pulse" />
@@ -702,7 +702,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Probability Card */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Circle */}
               <CircleProgress value={result.probability} size={130} strokeWidth={10} />
@@ -734,7 +734,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Strengths */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" /> Strengths
             </h4>
@@ -749,7 +749,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Weaknesses */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingDown className="w-3.5 h-3.5 text-[#EF4444]" /> Weaknesses
             </h4>
@@ -764,7 +764,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-[#3B82F6]" /> Action Plan
             </h4>
@@ -802,7 +802,7 @@ Return ONLY the JSON object, no other text.`;
       {/* YouTube Viral Score Tab */}
       {activeTab === 'youtube' && (
         <div className="space-y-5 animate-fade-in-up">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-1">
                 <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
@@ -889,7 +889,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* YouTube Loading */}
           {ytLoading && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex items-center justify-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 flex items-center justify-center">
               <div className="text-center">
                 <Loader2 className="w-8 h-8 text-[#EF4444] animate-spin mx-auto mb-3" />
                 <p className="text-sm text-[#A3A3A3]">Analyzing viral potential...</p>
@@ -901,7 +901,7 @@ Return ONLY the JSON object, no other text.`;
           {!ytLoading && ytResult && (
             <div className="space-y-4">
               {/* Composite Score */}
-              <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <YTCircleGauge value={ytResult.compositeScore} size={140} strokeWidth={10} />
                   <div className="flex-1 text-center sm:text-left">
@@ -918,7 +918,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Breakdown Scores */}
-              <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Score Breakdown
                 </h4>
@@ -943,7 +943,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Suggestions */}
-              <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                 <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5 text-[#FDBA2D]" /> Improvement Suggestions
                 </h4>

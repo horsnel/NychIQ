@@ -128,7 +128,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -216,7 +216,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-3">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-16 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
                 <div className="w-12 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
@@ -246,7 +246,7 @@ Return ONLY the JSON array, no other text.`;
               return (
                 <div
                   key={i}
-                  className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#333333] transition-all group"
+                  className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#333333] transition-all group"
                 >
                   {/* Top row: platform + category + spike */}
                   <div className="flex items-center justify-between mb-3">

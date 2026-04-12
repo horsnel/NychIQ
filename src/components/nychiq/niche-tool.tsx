@@ -53,7 +53,7 @@ function CompBadge({ level }: { level: string }) {
 /* ── Niche Card ── */
 function NicheCard({ niche, index }: { niche: NicheResult; index: number }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#2A2A2A] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#2A2A2A] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-[#666666]">#{index + 1}</span>
@@ -154,7 +154,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -220,7 +220,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-start justify-between mb-3">
                 <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3" />
                 <div className="w-10 h-10 rounded-full bg-[#1A1A1A] animate-pulse" />

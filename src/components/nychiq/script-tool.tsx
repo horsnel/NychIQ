@@ -121,7 +121,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><FileText className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -181,7 +181,7 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="h-5 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
             <div className="space-y-2">
               {Array.from({ length: 8 }).map((_, i) => <div key={i} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}
@@ -213,7 +213,7 @@ Return ONLY the JSON object.`;
             <CopyBtn text={fullScript} />
           </div>
           {result.sections.map((section, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider" style={{
                   color: i === 0 ? '#EF4444' : i === 1 ? '#3B82F6' : i === 2 ? '#FDBA2D' : i === 3 ? '#10B981' : '#8B5CF6'

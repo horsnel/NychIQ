@@ -89,7 +89,7 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]"><GitCompare className="w-5 h-5 text-[#8B5CF6]" /></div>
@@ -132,8 +132,8 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
           </div>
         </div>
       )}
@@ -151,7 +151,7 @@ Return ONLY the JSON object.`;
 
           {/* Side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className={`rounded-lg border p-4 ${result.winner === 'A' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#222222]'}`}>
+            <div className={`rounded-lg border p-4 ${result.winner === 'A' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#1F1F1F]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-[#A3A3A3]">TITLE A</span>
                 {result.winner === 'A' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#10B981] text-[#0D0D0D]">WINNER</span>}
@@ -165,7 +165,7 @@ Return ONLY the JSON object.`;
                 <div className="h-full rounded-full bg-[#3B82F6]" style={{ width: `${Math.min(100, result.ctrA * 8)}%` }} />
               </div>
             </div>
-            <div className={`rounded-lg border p-4 ${result.winner === 'B' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#222222]'}`}>
+            <div className={`rounded-lg border p-4 ${result.winner === 'B' ? 'bg-[rgba(16,185,129,0.05)] border-[rgba(16,185,129,0.3)]' : 'bg-[#141414] border-[#1F1F1F]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-[#A3A3A3]">TITLE B</span>
                 {result.winner === 'B' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#10B981] text-[#0D0D0D]">WINNER</span>}
@@ -182,7 +182,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Reasoning */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">AI Reasoning</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.reasoning}</p>
           </div>

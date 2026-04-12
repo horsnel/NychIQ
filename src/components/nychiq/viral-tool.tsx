@@ -359,7 +359,7 @@ function AutopsyTab() {
   return (
     <div className="space-y-5">
       {/* Input bar */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
@@ -393,7 +393,7 @@ function AutopsyTab() {
 
       {/* Loading state */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] p-8">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8">
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="w-20 h-20 rounded-full border-4 border-[#1F1F1F] border-t-[#10B981] animate-spin" />
             <div className="text-center">
@@ -410,7 +410,7 @@ function AutopsyTab() {
           {/* Section 1: Viral Score + Radar Chart */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {/* Viral Score gauge */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
               <h3 className="text-sm font-semibold text-[#FFFFFF] mb-4 flex items-center gap-2">
                 <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 Viral Score
@@ -421,7 +421,7 @@ function AutopsyTab() {
             </div>
 
             {/* Virality DNA Radar Chart */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
               <h3 className="text-sm font-semibold text-[#FFFFFF] mb-4 flex items-center gap-2">
                 <Brain className="w-4 h-4 text-[#10B981]" />
                 Virality DNA
@@ -431,7 +431,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 2: Thumbnail Psychology */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <ImageIcon className="w-4 h-4 text-[#3B82F6]" />
               Thumbnail Psychology
@@ -440,7 +440,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 3: Title Formula */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <Target className="w-4 h-4 text-[#FDBA2D]" />
               Title Formula
@@ -468,7 +468,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 4: Hook Structure */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <Play className="w-4 h-4 text-[#10B981]" />
               Hook Structure (First 10 Seconds)
@@ -503,7 +503,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 5: Algorithm Signals */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-[#8B5CF6]" />
               Algorithm Signals
@@ -542,7 +542,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 6: Share Triggers */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <Share2 className="w-4 h-4 text-[#EC4899]" />
               Share Triggers
@@ -580,7 +580,7 @@ function AutopsyTab() {
           </div>
 
           {/* Section 7: Apply These Lessons */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
               <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
               Apply These Lessons
@@ -700,7 +700,7 @@ export function ViralTool() {
       {activeTab === 'predictor' && (
         <>
           {/* Header Card */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -723,7 +723,7 @@ export function ViralTool() {
                 <button
                   onClick={() => { setHasSpent(false); fetchViral(); }}
                   disabled={loading}
-                  className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+                  className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
                 >
                   <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
                 </button>
@@ -798,7 +798,7 @@ export function ViralTool() {
 
           {/* Loading State */}
           {loading && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="divide-y divide-[#1A1A1A]">
                 {Array.from({ length: 8 }).map((_, i) => (
                   <div key={i} className="flex items-center gap-4 p-4">
@@ -816,8 +816,8 @@ export function ViralTool() {
 
           {/* Score Breakdown List */}
           {!loading && !error && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F]">
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">
                   Score Breakdown
                   {threshold !== 'all' && (

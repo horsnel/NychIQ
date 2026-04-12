@@ -34,13 +34,13 @@ const FILTERS: { key: FilterType; label: string; icon: React.ReactNode }[] = [
 /* ── Channel Card ── */
 function ChannelCard({ channel }: { channel: ChannelResult }) {
   return (
-    <div className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
+    <div className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
       onClick={() => window.open(`https://youtube.com/channel/${channel.channelId}`, '_blank', 'noopener')}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') window.open(`https://youtube.com/channel/${channel.channelId}`, '_blank', 'noopener'); }}
     >
-      <div className="w-16 h-16 rounded-full overflow-hidden bg-[#1A1A1A] shrink-0 ring-2 ring-[#222222]">
+      <div className="w-16 h-16 rounded-full overflow-hidden bg-[#1A1A1A] shrink-0 ring-2 ring-[#1F1F1F]">
         <img
           src={channel.thumbnail}
           alt={channel.title}
@@ -203,7 +203,7 @@ export function SearchTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]">
@@ -284,7 +284,7 @@ export function SearchTool() {
           {filter === 'channel' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#222222]">
+                <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-[#141414] border border-[#1F1F1F]">
                   <div className="w-16 h-16 rounded-full bg-[#1A1A1A] animate-shrink animate-pulse shrink-0" />
                   <div className="flex-1 space-y-2">
                     <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3" />

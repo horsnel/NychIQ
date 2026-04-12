@@ -312,7 +312,7 @@ function CalendarTab() {
   return (
     <div className="space-y-5">
       {/* Input bar */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -366,12 +366,12 @@ function CalendarTab() {
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-3">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="h-20 rounded-lg bg-[#141414] border border-[#222222] p-4 animate-pulse" />
+              <div key={i} className="h-20 rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 animate-pulse" />
             ))}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-36 rounded-lg bg-[#141414] border border-[#222222] p-4 animate-pulse" />
+              <div key={i} className="h-36 rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 animate-pulse" />
             ))}
           </div>
         </div>
@@ -383,7 +383,7 @@ function CalendarTab() {
           {/* Summary bar */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Total ideas */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <BarChart3 className="w-4 h-4 text-[#FDBA2D]" />
                 <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-medium">Total Ideas</span>
@@ -392,7 +392,7 @@ function CalendarTab() {
             </div>
 
             {/* High potential */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <Flame className="w-4 h-4 text-[#10B981]" />
                 <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-medium">High Potential</span>
@@ -401,7 +401,7 @@ function CalendarTab() {
             </div>
 
             {/* Content type distribution */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Tag className="w-4 h-4 text-[#8B5CF6]" />
                 <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-medium">Content Types</span>
@@ -461,7 +461,7 @@ function CalendarTab() {
                       key={entry.day}
                       className={`rounded-lg border p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 ${
                         isActiveDay
-                          ? 'bg-[#141414] border-[#222222]'
+                          ? 'bg-[#141414] border-[#1F1F1F]'
                           : 'bg-[#0D0D0D] border-[#1A1A1A] opacity-60'
                       }`}
                     >
@@ -628,7 +628,7 @@ Return ONLY the JSON array.`;
       {/* Tab 1: Video Ideas (original content) */}
       {activeTab === 'ideas' && (
         <>
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Lightbulb className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -675,7 +675,7 @@ Return ONLY the JSON array.`;
           {loading && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                   <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-3/4 mb-2" />
                   <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full mb-1" />
                   <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-3" />
@@ -709,7 +709,7 @@ Return ONLY the JSON array.`;
                 {ideas.map((idea, i) => {
                   const vc = viralColor(idea.viralScore);
                   return (
-                    <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 hover:border-[#2A2A2A] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
+                    <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#2A2A2A] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <span className="text-[10px] font-bold text-[#666666]">#{i + 1}</span>
                         <div className="flex items-center gap-2">

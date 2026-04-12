@@ -231,7 +231,7 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -256,10 +256,10 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex items-center justify-center">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 flex items-center justify-center">
             <div className="w-36 h-36 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-3">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 space-y-3">
             {Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-4 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${50 + Math.random() * 50}%` }} />)}
           </div>
         </div>
@@ -279,13 +279,13 @@ Return ONLY the JSON object.`;
 
           {/* Channel Profile Card */}
           {channelData && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
               <div className="flex items-center gap-4">
                 {channelData.thumbnail ? (
                   <img
                     src={channelData.thumbnail}
                     alt={channelData.title}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-[#222222]"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#1F1F1F]"
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-[#FDBA2D]/20 border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
@@ -314,12 +314,12 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Health Score */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 flex flex-col items-center">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 flex flex-col items-center">
             <HealthGauge score={result.healthScore} />
           </div>
 
           {/* Category Scores */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Category Scores</h4>
             <div className="space-y-3">
               {result.categories.map((cat) => {
@@ -340,7 +340,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Items */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Action Items</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.actionItems.map((item, i) => {
@@ -357,7 +357,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Improvement Potential */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Improvement Potential</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.improvementPotential}</p>
           </div>

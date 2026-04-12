@@ -480,7 +480,7 @@ export function WelcomePage() {
             {/* Right column — Dashboard mockup */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
               <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(16,185,129,0.06)] rounded-2xl blur-2xl" />
-              <div className="relative bg-[#0D0D0D] border border-[#222] rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative bg-[#0D0D0D] border border-[#1F1F1F] rounded-xl overflow-hidden shadow-2xl">
                 {/* Browser bar */}
                 <div className="flex items-center gap-3 px-4 py-3 bg-[#141414] border-b border-[#1E1E1E]">
                   <div className="flex gap-1.5">
@@ -618,7 +618,7 @@ export function WelcomePage() {
                 className={`relative rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 ${
                   plan.highlight
                     ? 'bg-[#0D0D0D] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.1)]'
-                    : 'bg-[#0D0D0D] border border-[#222] hover:border-[#2A2A2A]'
+                    : 'bg-[#0D0D0D] border border-[#1F1F1F] hover:border-[#2A2A2A]'
                 }`}
               >
                 {/* Badge */}
@@ -629,7 +629,7 @@ export function WelcomePage() {
                 )}
 
                 {/* Tier name */}
-                <h3 className="text-sm font-semibold text-[#888] tracking-wide uppercase mb-4 mt-1">
+                <h3 className="text-sm font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4 mt-1">
                   {plan.tier}
                 </h3>
 
@@ -642,7 +642,7 @@ export function WelcomePage() {
                 {/* Features list */}
                 <ul className="space-y-2.5 mb-6">
                   {plan.features.map((feat) => (
-                    <li key={feat} className="flex items-start gap-2 text-xs text-[#888]">
+                    <li key={feat} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
                       <Check className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </li>
@@ -654,7 +654,7 @@ export function WelcomePage() {
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
                       ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.15)]'
-                      : 'bg-[#1A1A1A] text-[#888] hover:text-[#FFFFFF] hover:bg-[#222] border border-[#222]'
+                      : 'bg-[#1A1A1A] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] border border-[#1F1F1F]'
                   }`}
                   onClick={() => setPage('login')}
                 >
@@ -688,12 +688,12 @@ export function WelcomePage() {
 
               {/* Product */}
               <div>
-                <h4 className="text-xs font-semibold text-[#888] tracking-wide uppercase mb-4">Product</h4>
+                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Product</h4>
                 <ul className="space-y-2.5">
                   <li>
                   <button
                     onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                   >
                     Features
                   </button>
@@ -701,7 +701,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                   >
                     Pricing
                   </button>
@@ -709,7 +709,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => setPage('login')}
-                    className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                   >
                     Live Demo
                   </button>
@@ -717,7 +717,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => setPage('changelog')}
-                    className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                   >
                     Changelog
                   </button>
@@ -727,7 +727,7 @@ export function WelcomePage() {
 
               {/* Company */}
               <div>
-                <h4 className="text-xs font-semibold text-[#888] tracking-wide uppercase mb-4">Company</h4>
+                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Company</h4>
                 <ul className="space-y-2.5">
                   {[
                     { label: 'About', page: 'about' as const },
@@ -738,7 +738,7 @@ export function WelcomePage() {
                     <li key={item.label}>
                       <button
                         onClick={() => setPage(item.page)}
-                        className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                        className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                       >
                         {item.label}
                       </button>
@@ -749,7 +749,7 @@ export function WelcomePage() {
 
               {/* Legal */}
               <div>
-                <h4 className="text-xs font-semibold text-[#888] tracking-wide uppercase mb-4">Legal</h4>
+                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Legal</h4>
                 <ul className="space-y-2.5">
                   {[
                     { label: 'Privacy Policy', page: 'privacy' as const },
@@ -760,7 +760,7 @@ export function WelcomePage() {
                     <li key={item.label}>
                       <button
                         onClick={() => setPage(item.page)}
-                        className="text-xs text-[#555] hover:text-[#888] transition-colors"
+                        className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
                       >
                         {item.label}
                       </button>

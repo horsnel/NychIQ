@@ -58,7 +58,7 @@ function ViralBadge({ score }: { score: number }) {
 
 function VideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#222222]">
+    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F]">
       <div className="aspect-video bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-shimmer w-full" />
@@ -325,7 +325,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] border border-[#222222]',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F]',
         'transition-all duration-200',
         'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]',
         className

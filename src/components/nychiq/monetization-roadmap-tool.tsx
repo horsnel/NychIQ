@@ -59,7 +59,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
   const Icon = phase.icon;
 
   return (
-    <div className="rounded-lg bg-[#141414] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#222222' }}>
+    <div className="rounded-lg bg-[#141414] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#1F1F1F' }}>
       {/* Phase header */}
       <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -297,7 +297,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(253,186,45,0.1)' }}>
@@ -365,12 +365,12 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-4" />
             <div className="h-3 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-5 space-y-3">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 space-y-3">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3" />
@@ -383,7 +383,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <>
           {/* Power Level + Key Metrics */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
@@ -432,7 +432,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Seasonal Predictions */}
           {result.seasonalPredictions.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Calendar className="w-4 h-4" style={{ color: '#8B5CF6' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Seasonal Predictions</h3>
@@ -449,7 +449,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Bottleneck Detection */}
           {result.bottlenecks.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Bottleneck Detection</h3>
@@ -465,7 +465,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* AI Advice */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />

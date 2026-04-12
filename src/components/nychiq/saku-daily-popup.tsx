@@ -206,7 +206,7 @@ export function SakuDailyPopup() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        className="sm:max-w-lg bg-[#141414] border-[#222222] p-0 overflow-hidden"
+        className="sm:max-w-lg bg-[#141414] border-[#1F1F1F] p-0 overflow-hidden"
         showCloseButton={true}
       >
         {/* ── Header ── */}
@@ -338,7 +338,7 @@ export function SakuDailyPopup() {
           {!isLast ? (
             <Button
               onClick={handleNext}
-              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#333333] text-[#FFFFFF] hover:bg-[#222222] hover:border-[#444444] rounded-lg transition-all"
+              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#333333] text-[#FFFFFF] hover:bg-[#1F1F1F] hover:border-[#444444] rounded-lg transition-all"
             >
               Next Insight
               <ChevronRight className="w-4 h-4 ml-2" />

@@ -92,7 +92,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><Activity className="w-5 h-5 text-[#10B981]" /></div>
@@ -117,7 +117,7 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-end gap-1 h-40">
               {Array.from({ length: 12 }).map((_, i) => (
                 <div key={i} className="flex-1 bg-[#1A1A1A] rounded-t animate-pulse" style={{ height: `${30 + Math.random() * 70}%`, animationDelay: `${i * 0.1}s` }} />
@@ -139,17 +139,17 @@ Return ONLY the JSON object.`;
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1"><BarChart3 className="w-3.5 h-3.5 text-[#3B82F6]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{(result.totalViews / 1000).toFixed(1)}K</p>
               <span className="text-[10px] text-[#666666]">Total Views</span>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1"><Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{result.avgVelocity}</p>
               <span className="text-[10px] text-[#666666]">Avg Velocity</span>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-3 text-center">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1"><Zap className="w-3.5 h-3.5 text-[#EF4444]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{result.peakHour.replace('Hour ', 'H')}</p>
               <span className="text-[10px] text-[#666666]">Peak Hour</span>
@@ -157,7 +157,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Bar Chart */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4">Hourly Views Chart</h4>
             <div className="flex items-end gap-1.5 h-44">
               {result.hourlyData.map((d, i) => {
@@ -179,7 +179,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Trajectory */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Viral Trajectory</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.viralTrajectory}</p>
           </div>

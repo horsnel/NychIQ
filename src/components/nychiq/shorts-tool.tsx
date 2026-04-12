@@ -69,7 +69,7 @@ function ShortsCard({ video }: { video: VideoData }) {
   };
 
   return (
-    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#141414] border border-[#222222] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]"
+    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#141414] border border-[#1F1F1F] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]"
       onClick={() => window.open(youtubeUrl, '_blank', 'noopener')} role="button" tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') window.open(youtubeUrl, '_blank', 'noopener'); }}>
       <div className="relative aspect-[9/16] bg-[#1A1A1A] overflow-hidden">
@@ -94,18 +94,18 @@ function ShortsCard({ video }: { video: VideoData }) {
           <DropdownMenuTrigger asChild>
             <button className="absolute bottom-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" onClick={(e) => e.stopPropagation()} aria-label="Shorts options"><MoreVertical className="w-4 h-4 text-white" /></button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side="bottom" align="end" className="bg-[#141414] border-[#222] min-w-[200px]">
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); window.open(youtubeUrl, '_blank', 'noopener'); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><ExternalLink className="w-4 h-4" />Open on YouTube</DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-[#222]" />
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Title</DropdownMenuItem>
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy URL</DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-[#222]" />
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyHashtags(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Hashtags</DropdownMenuItem>
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyDescription(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Description</DropdownMenuItem>
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTags(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Tags</DropdownMenuItem>
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTranscript(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><FileText className="w-4 h-4" />Copy Transcript</DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-[#222]" />
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleExportCSV(); }} className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><FileDown className="w-4 h-4" />Export CSV</DropdownMenuItem>
+          <DropdownMenuContent side="bottom" align="end" className="bg-[#141414] border-[#1F1F1F] min-w-[200px]">
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); window.open(youtubeUrl, '_blank', 'noopener'); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><ExternalLink className="w-4 h-4" />Open on YouTube</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Title</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy URL</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyHashtags(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Hashtags</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyDescription(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Description</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTags(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Tags</DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTranscript(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><FileText className="w-4 h-4" />Copy Transcript</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleExportCSV(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><FileDown className="w-4 h-4" />Export CSV</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -123,7 +123,7 @@ function ShortsCard({ video }: { video: VideoData }) {
 
 function ShortsSkeleton() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#141414] border border-[#222222]">
+    <div className="rounded-xl overflow-hidden bg-[#141414] border border-[#1F1F1F]">
       <div className="aspect-[9/16] bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -193,7 +193,7 @@ export function ShortsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -208,7 +208,7 @@ export function ShortsTool() {
                 <p className="text-xs text-[#A3A3A3] mt-0.5">Top performing YouTube Shorts right now</p>
               </div>
             </div>
-            <button onClick={() => { setHasSpent(false); fetchShorts(); }} disabled={loading} className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50">
+            <button onClick={() => { setHasSpent(false); fetchShorts(); }} disabled={loading} className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50">
               <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
             </button>
           </div>

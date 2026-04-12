@@ -117,7 +117,7 @@ export function LoginPage() {
         </button>
 
         {/* Card */}
-        <div className="bg-[#141414] border border-[#222] rounded-xl p-6 sm:p-8">
+        <div className="bg-[#141414] border border-[#1F1F1F] rounded-xl p-6 sm:p-8">
           {/* Tab toggle */}
           <div className="flex items-center bg-[#0D0D0D] rounded-lg p-1 mb-6">
             <button
@@ -125,7 +125,7 @@ export function LoginPage() {
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'signup'
                   ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
-                  : 'text-[#666] hover:text-[#888]'
+                  : 'text-[#666] hover:text-[#A3A3A3]'
               }`}
             >
               Sign Up
@@ -135,7 +135,7 @@ export function LoginPage() {
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'login'
                   ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
-                  : 'text-[#666] hover:text-[#888]'
+                  : 'text-[#666] hover:text-[#A3A3A3]'
               }`}
             >
               Log In
@@ -169,9 +169,9 @@ export function LoginPage() {
 
               {/* Divider */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="flex-1 h-px bg-[#222]" />
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
                 <span className="text-[10px] text-[#444] font-medium tracking-wider uppercase">OR</span>
-                <div className="flex-1 h-px bg-[#222]" />
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -185,7 +185,7 @@ export function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -217,12 +217,12 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Min. 6 characters"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#888] transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#A3A3A3] transition-colors"
                     >
                       {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -290,9 +290,9 @@ export function LoginPage() {
 
               {/* Divider */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="flex-1 h-px bg-[#222]" />
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
                 <span className="text-[10px] text-[#444] font-medium tracking-wider uppercase">OR</span>
-                <div className="flex-1 h-px bg-[#222]" />
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -307,7 +307,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -328,12 +328,12 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#222] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#888] transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#A3A3A3] transition-colors"
                     >
                       {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -377,7 +377,7 @@ export function LoginPage() {
         {/* Back link */}
         <button
           onClick={() => setPage('welcome')}
-          className="mt-6 text-xs text-[#444] hover:text-[#888] transition-colors mx-auto block flex items-center gap-1"
+          className="mt-6 text-xs text-[#444] hover:text-[#A3A3A3] transition-colors mx-auto block flex items-center gap-1"
         >
           <ArrowRight className="w-3 h-3 rotate-180" />
           Back to home

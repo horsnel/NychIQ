@@ -58,7 +58,7 @@ export function OnboardingQuestions() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i === 0 ? 'bg-[#FDBA2D]' : 'bg-[#222]'
+                  i === 0 ? 'bg-[#FDBA2D]' : 'bg-[#1F1F1F]'
                 }`}
               />
             ))}
@@ -109,7 +109,7 @@ export function OnboardingQuestions() {
                   </div>
                   <span
                     className={`text-xs font-medium transition-colors ${
-                      isSelected ? 'text-[#FDBA2D]' : 'text-[#888] group-hover:text-[#FFFFFF]'
+                      isSelected ? 'text-[#FDBA2D]' : 'text-[#A3A3A3] group-hover:text-[#FFFFFF]'
                     }`}
                   >
                     {opt.label}
@@ -137,7 +137,7 @@ export function OnboardingQuestions() {
             </Button>
             <button
               onClick={() => logout()}
-              className="text-xs text-[#444] hover:text-[#888] transition-colors"
+              className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
             >
               ← Sign out
             </button>

@@ -106,7 +106,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]"><Key className="w-5 h-5 text-[#3B82F6]" /></div>
@@ -145,12 +145,12 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="h-6 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-3" />
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3" />
           </div>
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-3 flex items-center justify-between">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 flex items-center justify-between">
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-1/2" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-20" />
             </div>
@@ -174,7 +174,7 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Main keyword */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Main Keyword</h4>
@@ -188,7 +188,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Related keywords table */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Related Keywords</h4>
               <CopyBtn text={allText} />
@@ -211,7 +211,7 @@ Return ONLY the JSON object.`;
 
           {/* Opportunities */}
           {result.opportunities.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Keyword Opportunities</h4>
               <div className="space-y-2">
                 {result.opportunities.map((opp, i) => (

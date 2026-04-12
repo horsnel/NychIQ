@@ -97,7 +97,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]"><Cpu className="w-5 h-5 text-[#8B5CF6]" /></div>
@@ -116,7 +116,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2">{Array.from({ length: 3 }).map((_, j) => <div key={j} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
             </div>
@@ -132,7 +132,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Top Niches */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><DollarSign className="w-3.5 h-3.5 text-[#10B981]" /> Top 5 Automation Niches</h4>
             <div className="space-y-2">
               {result.niches.map((n, i) => (
@@ -152,13 +152,13 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Schedule */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Content Schedule Template</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.schedule}</p>
           </div>
 
           {/* Tools */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Recommended Tools</h4>
             <div className="space-y-2">
               {result.tools.map((tool, i) => (
@@ -171,13 +171,13 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Revenue Projections */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><TrendingUp className="w-3.5 h-3.5" /> Revenue Projections</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.revenueProjections}</p>
           </div>
 
           {/* Checklist */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><CheckSquare className="w-3.5 h-3.5" /> Setup Checklist</h4>
             <div className="space-y-2">
               {result.checklist.map((item, i) => (

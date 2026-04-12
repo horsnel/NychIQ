@@ -104,7 +104,7 @@ export function OnboardingExtension() {
   /* Post-install roadmap section */
   const postInstallRoadmap = extensionClicked && (
     <div className="animate-fade-in-up space-y-3">
-      <div className="rounded-xl bg-[#141414] border border-[#222222] p-4">
+      <div className="rounded-xl bg-[#141414] border border-[#1F1F1F] p-4">
         <p className="text-[10px] font-bold uppercase tracking-wider text-[#A3A3A3] mb-3">What comes next</p>
         <div className="space-y-2.5">
           {SETUP_STEPS.map((step, idx) => {
@@ -153,7 +153,7 @@ export function OnboardingExtension() {
 
       <button
         onClick={handleSkipExtension}
-        className="block text-xs text-[#444] hover:text-[#888] transition-colors mx-auto"
+        className="block text-xs text-[#444] hover:text-[#A3A3A3] transition-colors mx-auto"
       >
         Skip extension, start using NychIQ &#x2192;
       </button>
@@ -179,7 +179,7 @@ export function OnboardingExtension() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#222]'
+                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#1F1F1F]'
                 }`}
               />
             ))}
@@ -314,7 +314,7 @@ export function OnboardingExtension() {
               </Button>
               <button
                 onClick={handleSkipPopup}
-                className="block w-full text-center text-xs text-[#555] hover:text-[#888] transition-colors py-2"
+                className="block w-full text-center text-xs text-[#555] hover:text-[#A3A3A3] transition-colors py-2"
               >
                 Skip, Go to Dashboard &#x2192;
               </button>

@@ -180,7 +180,7 @@ export function Topbar() {
       <div className="hidden md:flex items-center ml-3">
         <div className="relative flex items-center">
           {/* Search input */}
-          <div className="flex items-center h-8 bg-[#141414] border border-[#222222] rounded-l-lg px-3 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors">
+          <div className="flex items-center h-8 bg-[#141414] border border-[#1F1F1F] rounded-l-lg px-3 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors">
             <Search className="w-3.5 h-3.5 text-[#444444] shrink-0" />
             <input
               type="text"
@@ -200,7 +200,7 @@ export function Topbar() {
                 <ChevronDown className="w-2.5 h-2.5" />
               </button>
               {showSearchFilter && (
-                <div className="absolute top-full left-0 mt-1 w-32 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+                <div className="absolute top-full left-0 mt-1 w-32 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1">
                   {FILTER_OPTIONS.map((opt) => (
                     <button
                       key={opt}
@@ -240,7 +240,7 @@ export function Topbar() {
               'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
               searchFilter === opt
                 ? 'bg-[#FDBA2D] text-black border-[#FDBA2D]'
-                : 'bg-transparent text-[#A3A3A3] border-[#222222] hover:border-[#333333] hover:text-[#FFFFFF]'
+                : 'bg-transparent text-[#A3A3A3] border-[#1F1F1F] hover:border-[#333333] hover:text-[#FFFFFF]'
             )}
           >
             {opt}
@@ -279,7 +279,7 @@ export function Topbar() {
         <div ref={countryRef} className="hidden md:block relative">
           <button
             onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#222222] text-[#A3A3A3] text-xs hover:border-[#2A2A2A] hover:text-[#FFFFFF] transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#1F1F1F] text-[#A3A3A3] text-xs hover:border-[#2A2A2A] hover:text-[#FFFFFF] transition-colors"
           >
             <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#FDBA2D]">
               {region.charAt(0)}
@@ -288,7 +288,7 @@ export function Topbar() {
             <ChevronDown className="w-3 h-3" />
           </button>
           {showCountryDropdown && (
-            <div className="absolute top-full right-0 mt-1 w-44 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1 max-h-64 overflow-y-auto">
+            <div className="absolute top-full right-0 mt-1 w-44 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1 max-h-64 overflow-y-auto">
               {REGIONS.map((r) => (
                 <button
                   key={r.code}
@@ -314,11 +314,11 @@ export function Topbar() {
         {/* Command bar trigger */}
         <button
           onClick={() => setCommandBarOpen(true)}
-          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#222222] text-[#444444] text-xs hover:border-[#2A2A2A] hover:text-[#A3A3A3] transition-colors"
+          className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#1F1F1F] text-[#444444] text-xs hover:border-[#2A2A2A] hover:text-[#A3A3A3] transition-colors"
         >
           <Command className="w-3 h-3" />
           <span>Search</span>
-          <kbd className="ml-2 px-1.5 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[#222222]">⌘K</kbd>
+          <kbd className="ml-2 px-1.5 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[#1F1F1F]">⌘K</kbd>
         </button>
 
         {/* Notification bell — channel health glow */}
@@ -403,7 +403,7 @@ export function Topbar() {
             {userName ? userName[0].toUpperCase() : 'U'}
           </button>
           {showAvatarMenu && (
-            <div className="absolute top-full right-0 mt-2 w-48 bg-[#141414] border border-[#222222] rounded-lg shadow-xl z-50 py-1">
+            <div className="absolute top-full right-0 mt-2 w-48 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1">
               {channelProfile && (
                 <button
                   onClick={() => handleAvatarAction('channel')}

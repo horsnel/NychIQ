@@ -112,7 +112,7 @@ export function RankingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -129,7 +129,7 @@ export function RankingsTool() {
             <button
               onClick={fetchRankings}
               disabled={loading}
-              className="p-2 rounded-lg border border-[#222222] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
               <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
             </button>
@@ -172,7 +172,7 @@ export function RankingsTool() {
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="flex items-center gap-4 p-4">
@@ -190,7 +190,7 @@ export function RankingsTool() {
 
       {/* Ranked List */}
       {!loading && !error && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {items.map((item, i) => (
               <div
@@ -243,7 +243,7 @@ export function RankingsTool() {
                   <div className={cn(
                     'w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold',
                     scoreClass(item.viralScore),
-                    'bg-[#0D0D0D] border border-[#222222]'
+                    'bg-[#0D0D0D] border border-[#1F1F1F]'
                   )}>
                     {item.viralScore}
                   </div>
@@ -253,7 +253,7 @@ export function RankingsTool() {
                 <div className={cn(
                   'sm:hidden w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0',
                   scoreClass(item.viralScore),
-                  'bg-[#0D0D0D] border border-[#222222]'
+                  'bg-[#0D0D0D] border border-[#1F1F1F]'
                 )}>
                   {item.viralScore}
                 </div>

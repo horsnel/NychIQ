@@ -99,7 +99,7 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Copy className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -125,7 +125,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2">{Array.from({ length: 3 }).map((_, j) => <div key={j} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
             </div>
@@ -141,7 +141,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Title Formula */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Title Formula Identified</h4>
               <CopyBtn text={result.titleFormula} />
@@ -150,7 +150,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Thumbnail Style */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><ImageIcon className="w-3.5 h-3.5" /> Thumbnail Style Analysis</h4>
               <CopyBtn text={result.thumbnailStyle} />
@@ -159,7 +159,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Posting Frequency */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Posting Frequency Pattern</h4>
               <CopyBtn text={result.postingFrequency} />
@@ -168,7 +168,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Content Pillars */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Layers className="w-3.5 h-3.5" /> Content Pillar Themes</h4>
             <div className="space-y-2">
               {result.contentPillars.map((pillar, i) => (

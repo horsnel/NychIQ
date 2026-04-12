@@ -102,7 +102,7 @@ Rules:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
@@ -122,7 +122,7 @@ Rules:
         <button
           onClick={loadCPMData}
           disabled={loading}
-          className="w-full p-4 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#10B981]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#FFFFFF]"
+          className="w-full p-4 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#10B981]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#FFFFFF]"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#10B981]" />}
           {loading ? 'Loading CPM rates...' : `Load CPM Rates for ${region}`}
@@ -132,8 +132,8 @@ Rules:
 
       {/* CPM Rates Table */}
       {hasLoaded && (
-        <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F]">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">CPM Rates by Niche — {region}</h3>
@@ -203,8 +203,8 @@ Rules:
       )}
 
       {/* Revenue Calculator */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#222222]">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1F1F1F]">
           <Calculator className="w-4 h-4 text-[#3B82F6]" />
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Revenue Calculator</h3>
         </div>

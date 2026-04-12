@@ -178,7 +178,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -230,7 +230,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* Profile skeleton */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 flex items-center gap-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 flex items-center gap-4">
             <div className="w-16 h-16 rounded-full bg-[#1A1A1A] animate-pulse" />
             <div className="flex-1 space-y-2">
               <div className="h-5 bg-[#1A1A1A] rounded animate-pulse w-48" />
@@ -241,14 +241,14 @@ Return ONLY the JSON object, no other text.`;
           {/* Stats grid skeleton */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-lg bg-[#141414] border border-[#222222] p-4 space-y-2">
+              <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-16" />
                 <div className="h-6 bg-[#1A1A1A] rounded animate-pulse w-24" />
               </div>
             ))}
           </div>
           {/* Bar chart skeleton */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5 space-y-3">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 space-y-3">
             <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-32" />
             <div className="flex items-end gap-3 h-32">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -263,7 +263,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-5">
           {/* Channel Profile Card */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <div className="flex items-start gap-4">
               <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.1)] border-2 border-[rgba(253,186,45,0.3)] flex items-center justify-center flex-shrink-0">
                 <span className="text-lg font-bold text-[#FDBA2D]">{result.profile.avatarInitial}</span>
@@ -282,7 +282,7 @@ Return ONLY the JSON object, no other text.`;
               const val = result.stats[stat.key as keyof ChannelStats];
               const Icon = stat.icon;
               return (
-                <div key={stat.key} className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+                <div key={stat.key} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`p-1.5 rounded-md ${stat.bg}`}>
                       <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
@@ -296,7 +296,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Subscriber Growth - Bar Chart */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-4 h-4 text-[#10B981]" />
               <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Subscriber Growth (6 Months)</h4>
@@ -327,7 +327,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Content Category Breakdown */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
             <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-2">
               <Video className="w-3.5 h-3.5" /> Content Breakdown
             </h4>

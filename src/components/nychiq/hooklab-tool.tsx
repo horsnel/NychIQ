@@ -282,7 +282,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
@@ -338,7 +338,7 @@ Return ONLY the JSON object, no other text.`;
             {searched && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[#222222] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
                 Reset
@@ -366,7 +366,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-6">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#EF4444] animate-spin" />
               <span className="text-sm text-[#A3A3A3]">Scanning retention patterns...</span>
@@ -391,14 +391,14 @@ Return ONLY the JSON object, no other text.`;
         <>
           {/* Stats Row */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingDown className="w-4 h-4 text-[#EF4444]" />
                 <span className="text-xs text-[#A3A3A3]">Predicted Retention</span>
               </div>
               <div className="text-2xl font-bold text-[#FFFFFF]">{result.overallRetention}%</div>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 <span className="text-xs text-[#A3A3A3]">Hook Score</span>
@@ -413,7 +413,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Retention Graph */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="w-4 h-4 text-[#EF4444]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Retention Curve (First 30 Seconds)</h3>
@@ -438,7 +438,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Lull Zones & Fatigue Alerts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Lull Detector */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Timer className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Lull Detector</h3>
@@ -479,7 +479,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
 
             {/* Visual Fatigue */}
-            <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Eye className="w-4 h-4 text-[#3B82F6]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Visual Fatigue Alerts</h3>
@@ -505,7 +505,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Hook Mismatch */}
           {result.hookMismatch.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <SkipForward className="w-4 h-4 text-[#EF4444]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Hook Mismatch Detection</h3>
@@ -520,7 +520,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* Competitor Benchmark */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp className="w-4 h-4 text-[#3B82F6]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Competitor Benchmark</h3>
@@ -533,7 +533,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Auto-Trim Suggestions */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Scissors className="w-4 h-4 text-[#10B981]" />
@@ -584,7 +584,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Summary */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Summary</h3>

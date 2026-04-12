@@ -38,7 +38,7 @@ export function CommandBar() {
   return (
     <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
       <div className="fixed inset-0 bg-black/60" onClick={() => setCommandBarOpen(false)} />
-      <div className="relative w-full max-w-lg bg-[#141414] border border-[#222] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#141414] border border-[#1F1F1F] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
         {/* Search input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1E1E1E]">
           <Search className="w-4 h-4 text-[#444444] shrink-0" />

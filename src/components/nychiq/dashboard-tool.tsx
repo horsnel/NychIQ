@@ -175,10 +175,10 @@ function QuickActions() {
         <button
           key={action.tool}
           onClick={() => setActiveTool(action.tool)}
-          className="group flex items-center gap-3 p-4 rounded-lg border border-[#222222] bg-[#141414] hover:bg-[#0D0D0D] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 text-left"
+          className="group flex items-center gap-3 p-4 rounded-lg border border-[#1F1F1F] bg-[#141414] hover:bg-[#0D0D0D] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 text-left"
           style={{ '--hover-border': action.border } as React.CSSProperties}
           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = action.border; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#222222'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1F1F1F'; }}
         >
           <div className="p-2.5 rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ backgroundColor: action.bg, color: action.color }}>
             {action.icon}
@@ -259,8 +259,8 @@ function ActivityFeed() {
   // If no history, show welcome items
   if (feedItems.length === 0) {
     return (
-      <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F]">
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-semibold text-[#FFFFFF]">Activity</h3>
           </div>
@@ -275,8 +275,8 @@ function ActivityFeed() {
   }
 
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#222222]">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F]">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Recent Activity</h3>
           <span className="px-2 py-0.5 rounded-full bg-[rgba(16,185,129,0.1)] text-[10px] font-bold text-[#10B981]">
@@ -350,7 +350,7 @@ function GrowthChart() {
   };
 
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#222222] p-4">
+    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
       <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
         <BarChart3 className="w-4 h-4 text-[#3B82F6]" />
         Token Usage This Week

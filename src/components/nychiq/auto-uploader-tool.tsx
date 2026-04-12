@@ -75,7 +75,7 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
         dotColor: '#FDBA2D',
         ringColor: 'rgba(253,186,45,0.2)',
         textColor: '#FDBA2D',
-        lineColor: '#222222',
+        lineColor: '#1F1F1F',
         icon: <Loader2 className="w-3 h-3 animate-spin" />,
       };
     case 'upcoming':
@@ -83,7 +83,7 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
         dotColor: '#555555',
         ringColor: 'rgba(85,85,85,0.2)',
         textColor: '#555555',
-        lineColor: '#222222',
+        lineColor: '#1F1F1F',
         icon: null,
       };
   }
@@ -195,7 +195,7 @@ export function AutoUploaderTool() {
         {FEATURES.map((feature) => (
           <div
             key={feature.title}
-            className="rounded-lg bg-[#141414] border border-[#222222] p-5 hover:border-[#333333] transition-colors group"
+            className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 hover:border-[#333333] transition-colors group"
           >
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-transform group-hover:scale-110"
@@ -210,7 +210,7 @@ export function AutoUploaderTool() {
       </div>
 
       {/* ──────── WAITLIST SECTION ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 sm:p-8">
         <div className="flex flex-col items-center text-center max-w-md mx-auto">
           {/* Confirmation State */}
           {submitted ? (
@@ -302,7 +302,7 @@ export function AutoUploaderTool() {
       </div>
 
       {/* ──────── STATUS TIMELINE ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#222222] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 sm:p-8">
         <h3 className="text-sm font-bold text-[#FFFFFF] mb-5 flex items-center gap-2">
           <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           Development Progress
