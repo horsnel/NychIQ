@@ -52,13 +52,35 @@ export interface Env {
 
   // ── Email ──
   RESEND_KEY?: string;
+  BREVO_KEY?: string;
 
   // ── Payments ──
   PAYSTACK_SECRET?: string;
 
-  // ── Supabase ──
+  // ── Supabase (PRIMARY) ──
   SUPABASE_URL?: string;
   SUPABASE_SERVICE_KEY?: string;
+
+  // ── Upstash Redis (fallback cache/rate-limit) ──
+  UPSTASH_REDIS_URL?: string;
+  UPSTASH_REDIS_TOKEN?: string;
+
+  // ── Turso (fallback database) ──
+  TURSO_DB_URL?: string;
+  TURSO_DB_TOKEN?: string;
+
+  // ── Backblaze B2 (fallback storage) ──
+  BACKBLAZE_KEY_ID?: string;
+  BACKBLAZE_APP_KEY?: string;
+  BACKBLAZE_BUCKET?: string;
+  BACKBLAZE_ENDPOINT?: string;
+
+  // ── Realtime Fallbacks ──
+  ABLY_KEY?: string;
+  SOKETI_URL?: string;
+
+  // ── Scheduled Tasks ──
+  QSTASH_TOKEN?: string;
 
   // ── Geocoding / Maps ──
   LOCATIONIQ_KEY?: string;
@@ -70,7 +92,11 @@ export interface Env {
   HASHTAG_AI_KEY?: string;
   KEYWORDSEVERYWHERE_KEY?: string;
 
+  // ── Geolocation (ipapi.co fallback) ──
+  IPAPI_KEY?: string;
+
   // ── App ──
   ENVIRONMENT: string;
   CORS_ORIGINS?: string;
+  APP_URL?: string;
 }

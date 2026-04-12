@@ -1,6 +1,6 @@
 /**
  * NychIQ Worker — AI Chat Routes
- * Fallback chain: Groq → Gemini Flash → Cerebras → Workers AI Llama 3.3 → OpenRouter
+ * Fallback chain: Groq → Gemini Flash → Cerebras → Workers AI → Z.ai GLM-4 → Pollinations → OpenRouter
  */
 
 import { Hono } from 'hono';
@@ -104,7 +104,35 @@ aiRoutes.post('/chat', async (c) => {
         },
         timeout: 15000,
       },
-      // 5. OpenRouter
+      // 5. z-ai-web-dev-sdk — GLM-4 Flash (key-rotated)
+      {
+        name: 'zai',
+        fn: async () => {
+          const key = rotateKey([c.env.ZAI_KEY_1, c.env.ZAI_KEY_2]);
+          if (!key) throw new Error('No Z.ai key');
+          const res = await openAIChat('https://open.bigmodel.cn/api/paas/v4', key, messages, 'glm-4-flash');
+          if (!res.ok) throw new Error(`Z.ai ${res.status}`);
+          const data: any = await res.json();
+          return data.choices?.[0]?.message?.content || '';
+        },
+        timeout: 12000,
+      },
+      // 6. Pollinations AI text (free, no key needed)
+      {
+        name: 'pollinations',
+        fn: async () => {
+          const res = await fetch('https://text.pollinations.ai/openai/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'openai', messages, stream: false }),
+          });
+          if (!res.ok) throw new Error(`Pollinations ${res.status}`);
+          const data: any = await res.json();
+          return data.choices?.[0]?.message?.content || '';
+        },
+        timeout: 20000,
+      },
+      // 7. OpenRouter
       {
         name: 'openrouter',
         fn: async () => {
@@ -299,7 +327,48 @@ aiRoutes.post('/stream', async (c) => {
       errors.push({ provider: 'workers-ai', error: err?.message });
     }
 
-    // 5. OpenRouter
+    // 5. z-ai-web-dev-sdk — GLM-4 Flash streaming
+    try {
+      const key = rotateKey([c.env.ZAI_KEY_1, c.env.ZAI_KEY_2]);
+      if (key) {
+        const res = await openAIChat('https://open.bigmodel.cn/api/paas/v4', key, fullMessages, 'glm-4-flash', true);
+        if (res.ok) {
+          return new Response(res.body, {
+            headers: {
+              'Content-Type': 'text/event-stream',
+              'Cache-Control': 'no-cache',
+              'Connection': 'keep-alive',
+            },
+          });
+        }
+        errors.push({ provider: 'zai', error: `HTTP ${res.status}` });
+      }
+    } catch (err: any) {
+      errors.push({ provider: 'zai', error: err?.message });
+    }
+
+    // 6. Pollinations AI text (free, no key)
+    try {
+      const res = await fetch('https://text.pollinations.ai/openai/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'openai', messages: fullMessages, stream: true }),
+      });
+      if (res.ok) {
+        return new Response(res.body, {
+          headers: {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+          },
+        });
+      }
+      errors.push({ provider: 'pollinations', error: `HTTP ${res.status}` });
+    } catch (err: any) {
+      errors.push({ provider: 'pollinations', error: err?.message });
+    }
+
+    // 7. OpenRouter
     try {
       const key = rotateKey([c.env.OPENROUTER_KEY_1, c.env.OPENROUTER_KEY_2]);
       if (key) {

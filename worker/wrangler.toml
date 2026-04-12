@@ -3,28 +3,32 @@ main = "src/index.ts"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 
-# KV Namespace for caching
+# ══════════════════════════════════════════════
+# CloudFlare Bindings
+# ══════════════════════════════════════════════
+
+# KV Namespace — primary cache layer
 [[kv_namespaces]]
 binding = "CACHE"
 id = "YOUR_KV_NAMESPACE_ID"
 
-# D1 Database
+# D1 Database — SQL database (fallback to Supabase → Turso)
 [[d1_databases]]
 binding = "DB"
 database_name = "nychiq-db"
 database_id = "YOUR_D1_DATABASE_ID"
 
-# R2 Bucket
+# R2 Bucket — object storage (fallback to Supabase Storage → Backblaze B2)
 [[r2_buckets]]
 binding = "STORAGE"
 bucket_name = "nychiq-storage"
 
-# Vectorize Index
+# Vectorize Index — embeddings search
 [[vectorize]]
 binding = "VECTORS"
 index_name = "nychiq-embeddings"
 
-# Durable Objects (for WebSocket real-time)
+# Durable Objects — WebSocket real-time (fallback to Supabase RT → Ably → Soketi)
 [[durable_objects.bindings]]
 name = "REALTIME"
 class_name = "RealtimeRoom"
@@ -33,19 +37,101 @@ class_name = "RealtimeRoom"
 tag = "v1"
 new_classes = ["RealtimeRoom"]
 
-# Queues
+# Queues — async task processing (email, reports, webhooks)
 [[queues.producers]]
 binding = "TASK_QUEUE"
 queue = "nychiq-tasks"
 
-# Cron Triggers — every 15 min + every 6 hrs
+# ══════════════════════════════════════════════
+# Cron Triggers
+# ══════════════════════════════════════════════
+# Every 15 min: refresh trending cache (YouTube, TikTok, Twitter)
+# Every 6 hrs:  deep refresh + cache cleanup + maintenance
 [triggers]
 crons = ["*/15 * * * *", "0 */6 * * *"]
 
-# Env vars (non-secret)
+# ══════════════════════════════════════════════
+# Env vars (non-secret — set here)
+# ══════════════════════════════════════════════
 [vars]
 ENVIRONMENT = "production"
 
+# ══════════════════════════════════════════════
 # Static assets from Next.js export
+# ══════════════════════════════════════════════
 [site]
 bucket = "../out"
+
+# ══════════════════════════════════════════════
+# SECRETS — Set via `wrangler secret put KEY_NAME`
+# ══════════════════════════════════════════════
+#
+# ── AI Keys (rotated) ──
+# GROQ_KEY_1, GROQ_KEY_2, GROQ_KEY_3, GROQ_KEY_4
+# GEMINI_KEY_1, GEMINI_KEY_2, GEMINI_KEY_3, GEMINI_KEY_4
+# CEREBRAS_KEY_1, CEREBRAS_KEY_2
+# OPENROUTER_KEY_1, OPENROUTER_KEY_2
+# HF_TOKEN_1, HF_TOKEN_2
+# ZAI_KEY_1, ZAI_KEY_2
+#
+# ── Search ──
+# BRAVE_KEY_1, BRAVE_KEY_2
+# TAVILY_KEY_1, TAVILY_KEY_2
+# SERP_KEY_1
+#
+# ── YouTube ──
+# YT_KEY_1, YT_KEY_2, YT_KEY_3, YT_KEY_4
+#
+# ── Social Scraping ──
+# SOCIAVAULT_KEY_1, SOCIAVAULT_KEY_2
+# ENSEMBLE_KEY_1
+# TIKHUB_KEY_1
+#
+# ── Email (Brevo primary, Resend fallback) ──
+# BREVO_KEY
+# RESEND_KEY
+#
+# ── Payments (Paystack ONLY) ──
+# PAYSTACK_SECRET
+#
+# ── Supabase (PRIMARY: Auth, DB, Storage, Realtime) ──
+# SUPABASE_URL
+# SUPABASE_SERVICE_KEY
+#
+# ── Upstash Redis (fallback: cache + rate limiting) ──
+# UPSTASH_REDIS_URL
+# UPSTASH_REDIS_TOKEN
+#
+# ── Turso (fallback database) ──
+# TURSO_DB_URL
+# TURSO_DB_TOKEN
+#
+# ── Backblaze B2 (fallback storage) ──
+# BACKBLAZE_KEY_ID
+# BACKBLAZE_APP_KEY
+# BACKBLAZE_BUCKET
+# BACKBLAZE_ENDPOINT
+#
+# ── Realtime Fallbacks ──
+# ABLY_KEY
+# SOKETI_URL
+#
+# ── Scheduled Tasks ──
+# QSTASH_TOKEN
+#
+# ── Geocoding ──
+# LOCATIONIQ_KEY
+# RADAR_KEY
+#
+# ── Trending / Hashtag Research ──
+# TRENDTOK_KEY
+# PENTOS_KEY
+# HASHTAG_AI_KEY
+# KEYWORDSEVERYWHERE_KEY
+#
+# ── Geolocation ──
+# IPAPI_KEY
+#
+# ── App ──
+# CORS_ORIGINS (comma-separated origins)
+# APP_URL (e.g. https://nychiq.com)
