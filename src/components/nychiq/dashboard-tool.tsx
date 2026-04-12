@@ -50,7 +50,7 @@ function WelcomeBanner() {
               userPlan === 'starter' && 'bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30',
               userPlan === 'pro' && 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30',
               userPlan === 'elite' && 'bg-[#8B5CF6]/15 text-[#8B5CF6] border border-[#8B5CF6]/30',
-              userPlan === 'agency' && 'bg-[#EF4444]/15 text-[#EF4444] border border-[E05252]/30',
+              userPlan === 'agency' && 'bg-[#EF4444]/15 text-[#EF4444] border border-[#E05252]/30',
             )}
           >
             {planLabel}

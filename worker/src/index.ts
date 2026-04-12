@@ -52,13 +52,14 @@ app.use('*', async (c, next) => {
       credentials: true,
     })(c, next);
   }
-  // Dev mode: allow all origins
+  // Dev mode: allow all origins (no credentials with wildcard)
   return cors({
     origin: '*',
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
     exposeHeaders: ['Content-Length', 'X-RateLimit-Remaining', 'X-Cache-Status'],
     maxAge: 86400,
+    credentials: false,
   })(c, next);
 });
 
@@ -77,8 +78,8 @@ app.use('*', async (c, next) => {
 app.use('/api/*', async (c, next) => {
   const path = new URL(c.req.url).pathname;
 
-  // Skip rate limiting for auth endpoints, health, and static
-  if (path.startsWith('/api/auth') || path.startsWith('/api/payments/webhook') || path === '/') {
+  // Skip rate limiting for webhook and health check
+  if (path.startsWith('/api/payments/webhook') || path === '/') {
     await next();
     return;
   }
@@ -98,8 +99,7 @@ app.use('/api/*', async (c, next) => {
   }
 
   // Determine rate limit based on plan (default: trial)
-  const plan = c.req.header('X-User-Plan') || 'trial';
-  const tier = RATE_LIMITS[plan] || RATE_LIMITS.trial;
+  const tier = RATE_LIMITS.trial;
 
   const result = await checkRateLimit(c.env, identifier, tier.limit, tier.window);
 
@@ -234,9 +234,9 @@ const worker = {
           // Retry email delivery via fallback chain
           console.log(`[Queue] Retrying email to: ${body.to || 'unknown'}`);
           // Import dynamically to avoid circular deps at startup
-          const { default: emailLib } = await import('./lib/email');
-          if (emailLib?.sendEmailFallback) {
-            await emailLib.sendEmailFallback(body);
+          const emailLib = await import('./lib/email');
+          if (emailLib?.sendEmail) {
+            await emailLib.sendEmail(env, body.payload || body);
           }
           message.ack();
         } else if (body.type === 'ANALYZE_TRENDING') {

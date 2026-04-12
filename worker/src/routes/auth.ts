@@ -28,7 +28,7 @@ authRoutes.post('/signup', async (c) => {
     const data = await supabase.auth.signUp({ email, password });
 
     if (data.error) {
-      return c.json({ error: data.error.message }, 400);
+      return c.json({ error: typeof data.error === 'string' ? data.error : data.error?.message || 'Auth error' }, 400);
     }
 
     // Store userName in user_metadata if provided
@@ -44,10 +44,14 @@ authRoutes.post('/signup', async (c) => {
       });
     }
 
-    return c.json({
-      user: { id: data.user?.id, email: data.user?.email },
-      session: data.session,
-    });
+    const session = data.access_token ? {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_in: data.expires_in,
+      token_type: data.token_type,
+    } : data.session || null;
+    const user = data.user || { id: data.id, email: data.email };
+    return c.json({ user, session });
   } catch (err: any) {
     return c.json({ error: err?.message || 'Signup failed' }, 500);
   }
@@ -71,13 +75,17 @@ authRoutes.post('/login', async (c) => {
     const data = await supabase.auth.signInWithPassword({ email, password });
 
     if (data.error) {
-      return c.json({ error: data.error.message }, 401);
+      return c.json({ error: typeof data.error === 'string' ? data.error : data.error?.message || 'Auth error' }, 401);
     }
 
-    return c.json({
-      user: { id: data.user?.id, email: data.user?.email },
-      session: data.session,
-    });
+    const session = data.access_token ? {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_in: data.expires_in,
+      token_type: data.token_type,
+    } : data.session || null;
+    const user = data.user || { id: data.id, email: data.email };
+    return c.json({ user, session });
   } catch (err: any) {
     return c.json({ error: err?.message || 'Login failed' }, 500);
   }
@@ -151,7 +159,7 @@ authRoutes.post('/oauth/google', async (c) => {
     });
 
     const data: any = await res.json();
-    if (data.error) return c.json({ error: data.error.message }, 400);
+    if (data.error) return c.json({ error: typeof data.error === 'string' ? data.error : data.error?.message || 'Auth error' }, 400);
 
     return c.json({
       user: { id: data.user?.id, email: data.user?.email },
@@ -187,7 +195,7 @@ authRoutes.post('/oauth/github', async (c) => {
     });
 
     const data: any = await res.json();
-    if (data.error) return c.json({ error: data.error.message }, 400);
+    if (data.error) return c.json({ error: typeof data.error === 'string' ? data.error : data.error?.message || 'Auth error' }, 400);
 
     return c.json({
       user: { id: data.user?.id, email: data.user?.email },

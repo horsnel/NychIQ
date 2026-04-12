@@ -136,7 +136,7 @@ visionRoutes.post('/analyze', async (c) => {
       if (key) {
         const imageContent = imageBase64 ? `data:${mimeType};base64,${imageBase64}` : imageUrl;
         const body = {
-          model: 'openai/clip-vision-large-patch14-336',
+          model: 'google/gemini-2.0-flash-001',
           messages: [
             {
               role: 'user',

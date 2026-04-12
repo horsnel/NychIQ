@@ -429,7 +429,7 @@ export function SettingsTool() {
           <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Your Referral Code</p>
             <p className="text-lg font-bold text-[#FDBA2D] tracking-widest mb-3">{refCode}</p>
-            <div className="flex items-center gap-2">
+            <div className="relative flex items-center gap-2">
               <button
                 onClick={handleCopyRef}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"

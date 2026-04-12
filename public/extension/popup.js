@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Stats ──
 function loadStats() {
   chrome.runtime.sendMessage({ type: 'GET_STATS' }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.warn('Extension error:', chrome.runtime.lastError.message);
+      return;
+    }
     if (!response) return;
 
     $('statVideos').textContent = formatNum(response.videosAnalyzed || 0);
@@ -91,6 +95,10 @@ function setupButtons() {
     $('btnSyncNow').disabled = true;
 
     chrome.runtime.sendMessage({ type: 'SYNC_NOW' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.warn('Extension error:', chrome.runtime.lastError.message);
+        return;
+      }
       $('syncSpinner').classList.remove('active');
       $('btnSyncNow').disabled = false;
 
@@ -106,6 +114,10 @@ function setupButtons() {
   // Export Data
   $('btnExport').addEventListener('click', () => {
     chrome.runtime.sendMessage({ type: 'EXPORT_DATA' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.warn('Extension error:', chrome.runtime.lastError.message);
+        return;
+      }
       if (!response) return;
       const blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -121,6 +133,10 @@ function setupButtons() {
   $('btnClear').addEventListener('click', () => {
     if (confirm('Clear all scraped data? This cannot be undone.')) {
       chrome.runtime.sendMessage({ type: 'CLEAR_DATA' }, () => {
+        if (chrome.runtime.lastError) {
+          console.warn('Extension error:', chrome.runtime.lastError.message);
+          return;
+        }
         loadStats();
         $('syncStatus').textContent = 'Data cleared';
       });

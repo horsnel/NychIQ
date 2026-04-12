@@ -11,7 +11,7 @@ import type { Env } from '../lib/env';
 import { getCached, setCached, cacheKey, CACHE_TTL } from '../lib/cache';
 import { invalidateCached } from '../lib/cache';
 import { publishRealtime } from '../lib/fallback-realtime';
-import { sendEmail } from '../lib/email';
+// import { sendEmail } from '../lib/email'; // TODO: re-enable when user email lookup is implemented
 
 export const auditRoutes = new Hono<{ Bindings: Env }>();
 
@@ -271,14 +271,10 @@ auditRoutes.post('/run', async (c) => {
         apiCallsUsed,
       }).catch(() => {});
 
-      // Send email notification for deep audits
-      if (auditStage === 2) {
-        sendEmail(c.env, {
-          to: '', // will be resolved by the notify route if needed
-          subject: 'NychIQ — Your Deep Channel Audit is Ready',
-          html: `<p>Your deep audit for ${identifier} is complete. ${apiCallsUsed} API calls were used. Log in to NychIQ to view the results.</p>`,
-        }).catch(() => {});
-      }
+      // TODO: Send email notification for deep audits — need to resolve user email from userId
+      // if (auditStage === 2 && userEmail) {
+      //   sendEmail(c.env, { to: userEmail, ... }).catch(() => {});
+      // }
     }
 
     return c.json(auditResult);

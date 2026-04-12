@@ -120,7 +120,7 @@ export function getRealtimeEndpoint(
   if (env.SUPABASE_URL) {
     const wsUrl = env.SUPABASE_URL.replace('https://', 'wss://').replace('http://', 'ws://');
     return {
-      url: `${wsUrl}/realtime/v1/websocket?apikey=${encodeURIComponent(env.SUPABASE_SERVICE_KEY || '')}&channel=${encodeURIComponent(channel)}`,
+      url: `${wsUrl}/realtime/v1/websocket?apikey=${encodeURIComponent(env.SUPABASE_ANON_KEY || env.SUPABASE_SERVICE_KEY || '')}`,
       provider: 'supabase',
     };
   }

@@ -305,9 +305,6 @@ function AppShell() {
       {/* Saku floating panel */}
       <SakuPanel />
 
-      {/* Saku full-page overlay */}
-      <SakuFullPage />
-
       {/* Saku daily popup */}
       <SakuDailyPopup />
 

@@ -5,8 +5,7 @@
 
 import { Hono } from 'hono';
 import type { Env } from '../lib/env';
-import { rotateKey } from '../lib/fallback';
-import { geminiChat } from '../lib/fallback';
+import { rotateKey, geminiChat } from '../lib/fallback';
 
 export const translateRoutes = new Hono<{ Bindings: Env }>();
 

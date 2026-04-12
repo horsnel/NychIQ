@@ -47,3 +47,8 @@ export function installCORSHandler() {
 
   console.debug('[NychIQ Firefox] CORS handler installed');
 }
+
+// Auto-install when loaded as background script
+if (typeof window !== 'undefined') {
+  installCORSHandler();
+}

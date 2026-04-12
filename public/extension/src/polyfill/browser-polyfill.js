@@ -91,16 +91,19 @@ if (typeof browser !== 'undefined') {
   const originalSet = chrome.storage.local.set.bind(chrome.storage.local);
 
   chrome.storage.local.get = function(keys, callback) {
-    return originalGet(keys).then(result => {
-      if (callback) callback(result);
-      return result;
-    });
+    const result = originalGet(keys);
+    if (result && typeof result.then === 'function') {
+      return result.then(r => { if (callback) callback(r); return r; });
+    }
+    return result;
   };
 
   chrome.storage.local.set = function(items, callback) {
-    return originalSet(items).then(() => {
-      if (callback) callback();
-    });
+    const result = originalSet(items);
+    if (result && typeof result.then === 'function') {
+      return result.then(() => { if (callback) callback(); });
+    }
+    return result;
   };
 
   console.debug('[NychIQ Firefox] Browser polyfill loaded');

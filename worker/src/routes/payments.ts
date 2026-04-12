@@ -113,7 +113,7 @@ paystackRoutes.post('/verify', async (c) => {
 
     const tx = data.data;
     const plan = tx.metadata?.plan;
-    const userId = tx.metadata?.user_id;
+    const userId = tx.metadata?.userId;
 
     // Update user plan in Supabase if payment is successful
     if (tx.status === 'success' && plan && userId) {
@@ -189,7 +189,7 @@ paystackRoutes.post('/webhook', async (c) => {
     if (event.event === 'charge.success') {
       const tx = event.data;
       const plan = tx.metadata?.plan;
-      const userId = tx.metadata?.user_id;
+      const userId = tx.metadata?.userId;
 
       if (plan && userId) {
         const supabase = getSupabase(c.env);

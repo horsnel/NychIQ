@@ -18,7 +18,7 @@ export const CACHE_TTL = {
   VIDEO_LIST: 7200,    // 2 hours
   AUDIT: 86400,        // 24 hours
   HASHTAG: 14400,      // 4 hours
-  TRANSCRIPT: -1,      // permanent (never expires)
+  TRANSCRIPT: 604800,   // 7 days
   RATE_LIMIT: 3600,    // 1 hour
 } as const;
 

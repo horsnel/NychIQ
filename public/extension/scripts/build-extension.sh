@@ -126,12 +126,11 @@ build_firefox() {
   cp "$EXT_DIR/src/ai/ai-worker.js" "$dest/src/ai/ai-worker.js"
   cp "$EXT_DIR/src/ai/transformers-client.firefox.js" "$dest/src/ai/transformers-client.js"
 
-  # Patch: Add CORS handler import to background.js
-  # Insert cors-handler.js import at the top of background.js
+  # Patch: Mark background.js as Firefox-patched (cors-handler.js auto-installs via manifest scripts order)
   local bg_file="$dest/src/background/background.js"
-  if ! grep -q "cors-handler" "$bg_file"; then
-    # POSIX-compatible: use a temp file for insertion
-    { echo "/* Firefox: CORS handler loaded via polyfill */"; cat "$bg_file"; } > "$bg_file.tmp"
+  if ! grep -q "installCORSHandler" "$bg_file"; then
+    printf "/* Firefox: CORS handler auto-installs via cors-handler.js */\n" > "$bg_file.tmp"
+    cat "$bg_file" >> "$bg_file.tmp"
     mv "$bg_file.tmp" "$bg_file"
   fi
 

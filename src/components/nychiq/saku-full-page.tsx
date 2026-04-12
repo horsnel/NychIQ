@@ -120,7 +120,7 @@ export function SakuFullPage() {
 
     await askAIStream(
       [
-        { role: 'assistant', content: systemPrompt },
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: messageText },
       ],
       (token, _fullText) => {

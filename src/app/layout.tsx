@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -37,7 +36,6 @@ export default function RootLayout({
         style={{ fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif" }}
       >
         {children}
-        <Toaster />
         <SonnerToaster />
       </body>
     </html>

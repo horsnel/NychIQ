@@ -6,7 +6,7 @@
 /**
  * Parse count strings like "1.2K", "3.5M", "456,789" into integers.
  */
-export function parseCount(str) {
+function parseCount(str) {
   if (typeof str === 'number') return str;
   if (!str) return 0;
   str = String(str).replace(/,/g, '').replace(/\s/g, '').trim();
@@ -19,7 +19,7 @@ export function parseCount(str) {
 /**
  * Format large numbers for display.
  */
-export function formatNumber(n) {
+function formatNumber(n) {
   if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
   if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
   if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
@@ -29,7 +29,7 @@ export function formatNumber(n) {
 /**
  * Envelope every scraped record with metadata.
  */
-export function envelope(platform, dataType, data, source) {
+function envelope(platform, dataType, data, source) {
   return {
     platform,
     dataType,
@@ -44,7 +44,7 @@ export function envelope(platform, dataType, data, source) {
 /**
  * Heuristic reliability score 0-100 based on field population.
  */
-export function computeReliability(data) {
+function computeReliability(data) {
   if (!data || typeof data !== 'object') return 0;
   const fields = Object.values(data).filter(v => v !== undefined && v !== null && v !== '' && v !== 0);
   const total = Object.keys(data).length;
@@ -55,14 +55,14 @@ export function computeReliability(data) {
 /**
  * Safe JSON.parse with fallback.
  */
-export function safeJSONParse(text) {
+function safeJSONParse(text) {
   try { return JSON.parse(text); } catch { return null; }
 }
 
 /**
  * Debounce helper.
  */
-export function debounce(fn, ms) {
+function debounce(fn, ms) {
   let t;
   return function (...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
 }
@@ -70,12 +70,12 @@ export function debounce(fn, ms) {
 /**
  * Sleep for ms.
  */
-export function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 /**
  * Search all script tags for a regex match and return parsed JSON.
  */
-export function extractFromScript(regex) {
+function extractFromScript(regex) {
   for (const s of document.querySelectorAll('script')) {
     const text = s.textContent || '';
     const match = text.match(regex);
@@ -87,7 +87,7 @@ export function extractFromScript(regex) {
 /**
  * Detect current platform from hostname.
  */
-export function detectPlatform() {
+function detectPlatform() {
   const h = window.location.hostname;
   if (/^(www\.)?youtube\.com$/.test(h)) return 'youtube';
   if (/^studio\.youtube\.com$/.test(h)) return 'youtube-studio';
@@ -100,7 +100,7 @@ export function detectPlatform() {
 /**
  * Send scraped data to background service worker.
  */
-export function sendToBackground(platform, items) {
+function sendToBackground(platform, items) {
   if (!items || items.length === 0) return;
   try {
     chrome.runtime.sendMessage({
@@ -115,7 +115,7 @@ export function sendToBackground(platform, items) {
 /**
  * Set up MutationObserver to detect SPA navigations.
  */
-export function watchNavigation(callback) {
+function watchNavigation(callback) {
   let lastUrl = window.location.href;
 
   // History API pushState/replaceState interception
@@ -149,7 +149,7 @@ export function watchNavigation(callback) {
 /**
  * Set up message listener for REINJECT and GET_PAGE_DATA.
  */
-export function setupMessageListener(getPageDataFn) {
+function setupMessageListener(getPageDataFn) {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'REINJECT') {
       sendResponse({ ok: true });

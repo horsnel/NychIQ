@@ -28,11 +28,12 @@ export async function fetchBalance() {
     const data = await resp.json();
     const balance = data.balance ?? data.tokens ?? data.credits ?? 0;
 
-    // Cache the result
+    // Cache the result and reconcile any pending optimistic decrements
     await chromeStorageSet(BALANCE_KEY, {
       balance,
       fetchedAt: Date.now(),
       source: 'api',
+      pendingDecrement: 0,
     });
 
     // Also update extension state

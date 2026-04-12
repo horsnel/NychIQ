@@ -5,6 +5,8 @@
 
 (function () {
   'use strict';
+  if (window.__nychiq_initialized) return;
+  window.__nychiq_initialized = true;
 
   let settings = { deepScraping: false };
   let pollInterval = null;

@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === 'TRANSFORMERS_DISPOSE') {
-    handleDispose().then(sendResponse);
+    handleDispose().then(sendResponse).catch(err => sendResponse({ ok: false, error: err.message }));
     return true;
   }
 

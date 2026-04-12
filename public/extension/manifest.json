@@ -21,6 +21,7 @@
     "https://x.com/*",
     "https://www.instagram.com/*",
     "https://instagram.com/*",
+    "https://nychiq.com/*",
     "https://*.nychiq.com/*",
     "https://*.workers.dev/*"
   ],
@@ -49,37 +50,37 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/watch*", "https://youtube.com/watch*", "https://www.youtube.com/shorts/*", "https://youtube.com/shorts/*"],
-      "js": ["src/content-scripts/youtube-watch.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/youtube-watch.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://studio.youtube.com/*"],
-      "js": ["src/content-scripts/youtube-studio.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/youtube-studio.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://www.youtube.com/feed/trending*", "https://youtube.com/feed/trending*"],
-      "js": ["src/content-scripts/youtube-trending.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/youtube-trending.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://twitter.com/*", "https://x.com/*"],
-      "js": ["src/content-scripts/social-twitter.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/social-twitter.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://www.instagram.com/*", "https://instagram.com/*"],
-      "js": ["src/content-scripts/social-instagram.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/social-instagram.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://www.tiktok.com/*", "https://tiktok.com/*"],
-      "js": ["src/content-scripts/social-tiktok.js"],
+      "js": ["src/content-scripts/utils.js", "src/content-scripts/social-tiktok.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     }
@@ -93,7 +94,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["icons/*", "offscreen.html"],
+      "resources": ["icons/*"],
       "matches": ["<all_urls>"]
     }
   ]

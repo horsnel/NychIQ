@@ -137,6 +137,5 @@ bucket = "../out"
 # ── Geolocation ──
 # IPAPI_KEY
 #
-# ── App ──
-# CORS_ORIGINS (comma-separated origins)
-# APP_URL (e.g. https://nychiq.com)
+# ── App (already in [vars]) ──
+# No additional secrets needed for CORS_ORIGINS or APP_URL

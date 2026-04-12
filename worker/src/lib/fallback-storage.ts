@@ -204,7 +204,7 @@ async function b2GetBucketId(env: Env, apiUrl: string, token: string): Promise<s
   const res = await fetch(`${apiUrl}/b2api/v2/b2_list_buckets`, {
     method: 'POST',
     headers: { 'Authorization': token, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ bucketName: env.BACKBLAZE_BUCKET, bucketType: 'allPrivate' }),
+    body: JSON.stringify({ bucketName: env.BACKBLAZE_BUCKET, bucketType: 'all' }),
   });
   if (!res.ok) return null;
   const data: any = await res.json();

@@ -210,7 +210,7 @@ embeddingsRoutes.post('/index', async (c) => {
       return c.json({ error: 'Vectorize binding not configured' }, 500);
     }
 
-    const ids = await vectorsDB.insert(
+    const ids = await vectorsDB.upsert(
       vectors.map(v => ({
         id: v.id,
         values: v.values,

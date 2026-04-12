@@ -35,14 +35,8 @@ export function initSync() {
     }
   });
 
-  // Also listen for connectivity changes
-  if (typeof navigator !== 'undefined' && navigator.onLine) {
-    setTimeout(() => forceSync(), 3000); // try sync 3s after load
-  }
-  self.addEventListener('online', () => {
-    console.debug('[NychIQ] Back online — triggering sync');
-    forceSync();
-  });
+  // Always try initial sync 3s after load (navigator.onLine is always true in service workers)
+  setTimeout(() => forceSync(), 3000);
 }
 
 /**
@@ -93,6 +87,7 @@ export async function enqueueItems(items, platform, sender) {
 
   let state = await chromeStorageGet(STORAGE_KEY) || {};
   let analyzedIds = await chromeStorageGet(ANALYZED_IDS_KEY) || [];
+  let analyzedSet = new Set(analyzedIds);
   const platformBreakdown = state.platformBreakdown || { youtube: 0, tiktok: 0, twitter: 0, instagram: 0 };
 
   let newItems = 0;
@@ -104,8 +99,8 @@ export async function enqueueItems(items, platform, sender) {
                    `${item.url}_${item.scrapedAt}`;
     const dedupeKey = `${platform}:${itemId}`;
 
-    if (analyzedIds.includes(dedupeKey)) continue;
-    analyzedIds.push(dedupeKey);
+    if (analyzedSet.has(dedupeKey)) continue;
+    analyzedSet.add(dedupeKey);
     newItems++;
 
     // Track viral detections (engagement rate > 5%)
@@ -124,9 +119,12 @@ export async function enqueueItems(items, platform, sender) {
   }
 
   // Trim analyzed IDs
-  if (analyzedIds.length > ANALYZED_IDS_MAX) {
-    analyzedIds = analyzedIds.slice(-ANALYZED_IDS_MAX);
+  if (analyzedSet.size > ANALYZED_IDS_MAX) {
+    const arr = [...analyzedSet];
+    analyzedSet = new Set(arr.slice(-ANALYZED_IDS_MAX));
   }
+
+  analyzedIds = [...analyzedSet];
 
   // Update state
   state.totalDataPoints = (state.totalDataPoints || 0) + newItems;

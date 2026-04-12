@@ -5,6 +5,8 @@
 
 (function () {
   'use strict';
+  if (window.__nychiq_initialized) return;
+  window.__nychiq_initialized = true;
 
   const CACHE_TTL = 30 * 60 * 1000;
   let lastScrape = 0;
