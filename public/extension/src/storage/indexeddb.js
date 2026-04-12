@@ -17,7 +17,16 @@ const STORES = {
  * Open (or create) the database with required object stores.
  */
 export function initDB() {
-  if (dbInstance) return Promise.resolve(dbInstance);
+  if (dbInstance) {
+    // Verify connection is alive (handles service worker hibernation)
+    try {
+      const tx = dbInstance.transaction(STORES.SCRAPED, 'readonly');
+      tx.abort();
+      return Promise.resolve(dbInstance);
+    } catch {
+      dbInstance = null;
+    }
+  }
 
   return new Promise((resolve, reject) => {
     if (typeof indexedDB === 'undefined') {

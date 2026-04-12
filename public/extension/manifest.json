@@ -88,6 +88,9 @@
     "service_worker": "src/background/background.js",
     "type": "module"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' https://cdn.jsdelivr.net; object-src 'self'"
+  },
   "web_accessible_resources": [
     {
       "resources": ["icons/*", "offscreen.html"],

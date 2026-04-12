@@ -4,6 +4,7 @@
    ══════════════════════════════════════════════════════════════════ */
 
 import { addToQueue, drainQueue, removeItems, markSynced, getQueueSize, pruneSynced } from './offline-queue.js';
+import { getToken } from './auth-bridge.js';
 
 const STORAGE_KEY = 'nychiq_ext_state';
 const BATCH_QUEUE_KEY = 'nychiq_batch_queue';
@@ -163,8 +164,7 @@ export async function enqueueItems(items, platform, sender) {
  */
 async function sendBatchToAPI(items) {
   try {
-    const state = await chromeStorageGet(STORAGE_KEY) || {};
-    const jwt = state.jwt;
+    const jwt = await getToken();
     const headers = { 'Content-Type': 'application/json' };
     if (jwt) headers['Authorization'] = `Bearer ${jwt}`;
 
@@ -200,8 +200,9 @@ async function syncChromeStorageQueue(state) {
   const remaining = batchQueue.slice(CHUNK_SIZE);
 
   try {
+    const jwt = await getToken();
     const headers = { 'Content-Type': 'application/json' };
-    if (state.jwt) headers['Authorization'] = `Bearer ${state.jwt}`;
+    if (jwt) headers['Authorization'] = `Bearer ${jwt}`;
 
     const resp = await fetch(`${API_BASE}/scrape/batch`, {
       method: 'POST',

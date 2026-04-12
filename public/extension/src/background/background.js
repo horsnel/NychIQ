@@ -136,8 +136,12 @@ const messageHandlers = {
    ═══════════════════════════════════════════════════════════════ */
 
 async function handleStateChange(message) {
-  const state = message.state;
-  if (!state) return { ok: false };
+  const stateUpdate = message.state;
+  if (!stateUpdate) return { ok: false };
+
+  // Merge partial state update with existing state
+  const currentState = await chromeStorageGet(STORAGE_KEY) || {};
+  const state = { ...currentState, ...stateUpdate };
 
   if (state.connected) {
     const count = state.viralDetected > 0 ? state.viralDetected.toString() : '';

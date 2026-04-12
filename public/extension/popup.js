@@ -53,9 +53,9 @@ function loadStats() {
 }
 
 function updateTokens(count, maxTokens) {
-  const max = maxTokens || Math.max(count * 2, 1000); // dynamic max based on balance
+  const max = maxTokens || (count > 0 ? Math.max(count * 2, 1000) : 1000);
   $('tokensLeft').textContent = `${formatNum(count)} tokens left`;
-  const pct = Math.min((count / max) * 100, 100);
+  const pct = max > 0 ? Math.min((count / max) * 100, 100) : 0;
   $('tokensFill').style.width = pct + '%';
   $('tokensStatus').textContent = pct > 50 ? 'Healthy' : pct > 20 ? 'Low' : 'Critical';
   $('tokensStatus').style.color = pct > 50 ? '#10B981' : pct > 20 ? '#FDBA2D' : '#EF4444';
@@ -72,13 +72,8 @@ function createToggle(elId, stateKey) {
   $(elId).addEventListener('click', () => {
     const btn = $(elId);
     const isOn = btn.classList.toggle('on');
-
-    chrome.runtime.sendMessage({ type: 'GET_STATS' }, (response) => {
-      if (response) {
-        const state = { ...response, [stateKey]: isOn };
-        chrome.runtime.sendMessage({ type: 'STATE_CHANGED', state });
-      }
-    });
+    // Send only the changed key to avoid race conditions with other state
+    chrome.runtime.sendMessage({ type: 'STATE_CHANGED', state: { [stateKey]: isOn } });
   });
 }
 

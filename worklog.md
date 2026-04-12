@@ -182,3 +182,21 @@ Stage Summary:
 - MEDIUM fixes: sync-manager.js missing instagram in platformBreakdown, background.js unused import, popup.js hardcoded token max, youtube-trending.js redundant check
 - NEW FILES CREATED: proxy-rotator.js (proxy rotation with failure tracking), embeddings.js (384-dim vector generation via Transformers.js), chroma-client.js (ChromaDB vector store client via Worker API)
 - ALL 28 files now validated and passing syntax checks
+
+---
+Task ID: 2
+Agent: main
+Task: Second-pass deep audit for remaining bugs
+
+Work Log:
+- Re-read all modified files to verify first-pass fixes were clean
+- Deep integration audit: cross-module imports, async patterns, error handling
+- Found 8 additional bugs in second pass
+- Fixed all 8: toggle race condition, partial state merge, JWT auth flow, IndexedDB stale connection, CSP for CDN, embedding unwrap, token display edge case, sync-state self-message
+- Ran full automated validation: 0 IIFE syntax errors, 0 JSON errors, 0 broken imports, 0 missing files
+- Compiled pre-deployment checklist
+
+Stage Summary:
+- Second pass found: popup.js toggle race condition (2 sequential sendMessages), background.js overwriting full state on partial toggle update, sync-manager.js using stale JWT from storage instead of getToken(), sync-state.js self-referencing message loop, indexeddb.js stale dbInstance after SW hibernation, manifest.json missing CSP for CDN, embeddings.js not unwrapping offscreen envelope, popup.js 0-token edge case
+- All 28 files now passing automated validation
+- Total bugs fixed across both passes: 25

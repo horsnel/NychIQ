@@ -38,25 +38,33 @@ export async function embed(text) {
   }
 
   try {
-    const result = await runInference(EMBEDDING_TASK, text, {
+    const response = await runInference(EMBEDDING_TASK, text, {
       pooling: 'mean',
       normalize: true,
     });
 
+    if (!response) return null;
+
+    // Unwrap from offscreen message envelope: { ok, result: actualData }
+    let embedding = response;
+    if (response && typeof response === 'object' && response.ok !== undefined && response.result !== undefined) {
+      embedding = response.result;
+    }
+
     // Transformers.js feature-extraction returns { data: Float32Array }
-    if (result?.data && Array.isArray(result.data)) {
-      return Array.from(result.data);
+    if (embedding?.data && (Array.isArray(embedding.data) || embedding.data instanceof Float32Array)) {
+      return Array.from(embedding.data);
     }
-    if (Array.isArray(result)) {
-      return result;
+    if (Array.isArray(embedding)) {
+      return embedding;
     }
-    if (result && typeof result === 'object') {
+    if (embedding && typeof embedding === 'object') {
       // Handle various output formats
-      const values = Object.values(result).filter(v => typeof v === 'number');
+      const values = Object.values(embedding).filter(v => typeof v === 'number');
       if (values.length > 0) return values;
     }
 
-    return result;
+    return embedding;
   } catch (err) {
     console.error('[NychIQ] Embedding failed:', err);
     return null;

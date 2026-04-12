@@ -52,7 +52,6 @@ export async function setLastSync(platform, timestamp) {
 export async function getPendingCount() {
   try {
     // Count unsynced items in scraped-data store
-    const { query, count: idbCount } = await import('./indexeddb.js');
     let count = 0;
     try {
       const unsynced = await query(SCRAPED_STORE, 'synced', 0);
@@ -61,12 +60,20 @@ export async function getPendingCount() {
       count = await idbCount(SCRAPED_STORE);
     }
 
-    // Offline queue count from background (via message) not available in content script
-    // Only works when called from background service worker context
+    // Try to get offline queue count directly (works in background context)
+    // In content script context, this import will fail silently
     try {
-      const response = await chrome.runtime.sendMessage({ type: 'GET_QUEUE_SIZE' });
-      if (response && typeof response.size === 'number') count += response.size;
-    } catch { /* not available in this context */ }
+      const { getQueueSize: getOfflineQueueSize } = await import('../background/offline-queue.js');
+      const offlineSize = await getOfflineQueueSize();
+      count += offlineSize || 0;
+    } catch {
+      // Not in background context — offline-queue not accessible via import
+      // Try via message as last resort (only works if background responds)
+      try {
+        const response = await chrome.runtime.sendMessage({ type: 'GET_QUEUE_SIZE' });
+        if (response && typeof response.size === 'number') count += response.size;
+      } catch { /* not available */ }
+    }
 
     return count;
   } catch {
