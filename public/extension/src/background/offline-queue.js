@@ -18,7 +18,7 @@ function openDB() {
 
   return new Promise((resolve, reject) => {
     // Check if IndexedDB is available
-    if (!window.indexedDB) {
+    if (typeof indexedDB === 'undefined') {
       reject(new Error('IndexedDB not available'));
       return;
     }

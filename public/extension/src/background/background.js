@@ -6,6 +6,11 @@
 import { setupAuthListener, storeToken, clearToken, validateToken, getToken } from './auth-bridge.js';
 import { initSync, forceSync, enqueueItems } from './sync-manager.js';
 import { fetchBalance, getBalance, decrementTokens } from './token-cache.js';
+import { getQueueSize } from './offline-queue.js';
+import { analyze as sentimentAnalyze, getOverallSentiment } from '../ai/sentiment-analysis.js';
+import { classifyNiche, extractTopics } from '../ai/content-classification.js';
+import { scoreHook, compareTitles, suggestImprovements } from '../ai/hook-scoring.js';
+import { analyzeSEO, generateVariants } from '../ai/title-optimizer.js';
 
 const STORAGE_KEY = 'nychiq_ext_state';
 const BATCH_QUEUE_KEY = 'nychiq_batch_queue';
@@ -118,6 +123,12 @@ const messageHandlers = {
   GET_BALANCE: handleGetBalance,
   DECREMENT_TOKENS: handleDecrementTokens,
   REFRESH_BALANCE: handleRefreshBalance,
+  GET_QUEUE_SIZE: handleGetQueueSize,
+  AI_SENTIMENT: handleAISentiment,
+  AI_CLASSIFY_NICHE: handleAIClassifyNiche,
+  AI_SCORE_HOOK: handleAIScoreHook,
+  AI_ANALYZE_SEO: handleAIAnalyzeSEO,
+  AI_GENERATE_VARIANTS: handleAIGenerateVariants,
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -219,7 +230,6 @@ async function handleBatchData(message, sender) {
 async function handleGetStats() {
   const state = await chromeStorageGet(STORAGE_KEY) || {};
   const batchQueue = await chromeStorageGet(BATCH_QUEUE_KEY) || [];
-  const { getQueueSize } = await import('./offline-queue.js');
   const offlineSize = await getQueueSize();
   return {
     ...state,
@@ -271,6 +281,39 @@ async function handleDecrementTokens(message) {
 
 async function handleRefreshBalance() {
   return fetchBalance();
+}
+
+async function handleGetQueueSize() {
+  const size = await getQueueSize();
+  return { size };
+}
+
+async function handleAISentiment(message) {
+  const { text, comments } = message;
+  if (comments && Array.isArray(comments)) {
+    return getOverallSentiment(comments);
+  }
+  return sentimentAnalyze(text);
+}
+
+function handleAIClassifyNiche(message) {
+  const { title, description, tags } = message;
+  return classifyNiche(title, description, tags);
+}
+
+function handleAIScoreHook(message) {
+  const { title } = message;
+  return scoreHook(title);
+}
+
+function handleAIAnalyzeSEO(message) {
+  const { title, description, tags } = message;
+  return analyzeSEO(title, description, tags);
+}
+
+function handleAIGenerateVariants(message) {
+  const { title, count } = message;
+  return generateVariants(title, count || 5);
 }
 
 /* ═══════════════════════════════════════════════════════════════

@@ -20,7 +20,7 @@ export function initDB() {
   if (dbInstance) return Promise.resolve(dbInstance);
 
   return new Promise((resolve, reject) => {
-    if (!window.indexedDB) {
+    if (typeof indexedDB === 'undefined') {
       reject(new Error('IndexedDB not available in this context'));
       return;
     }

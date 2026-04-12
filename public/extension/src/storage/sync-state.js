@@ -61,11 +61,12 @@ export async function getPendingCount() {
       count = await idbCount(SCRAPED_STORE);
     }
 
-    // Also check offline queue
+    // Offline queue count from background (via message) not available in content script
+    // Only works when called from background service worker context
     try {
-      const { getQueueSize } = await import('../background/offline-queue.js');
-      count += await getQueueSize();
-    } catch { /* offline-queue not available in content script context */ }
+      const response = await chrome.runtime.sendMessage({ type: 'GET_QUEUE_SIZE' });
+      if (response && typeof response.size === 'number') count += response.size;
+    } catch { /* not available in this context */ }
 
     return count;
   } catch {

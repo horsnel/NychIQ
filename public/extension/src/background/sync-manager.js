@@ -35,10 +35,10 @@ export function initSync() {
   });
 
   // Also listen for connectivity changes
-  if (navigator.onLine) {
+  if (typeof navigator !== 'undefined' && navigator.onLine) {
     setTimeout(() => forceSync(), 3000); // try sync 3s after load
   }
-  window.addEventListener('online', () => {
+  self.addEventListener('online', () => {
     console.debug('[NychIQ] Back online — triggering sync');
     forceSync();
   });
