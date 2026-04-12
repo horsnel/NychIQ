@@ -52,10 +52,10 @@ function loadStats() {
   });
 }
 
-function updateTokens(count) {
+function updateTokens(count, maxTokens) {
+  const max = maxTokens || Math.max(count * 2, 1000); // dynamic max based on balance
   $('tokensLeft').textContent = `${formatNum(count)} tokens left`;
-  // Assume 10000 max for visual bar
-  const pct = Math.min((count / 10000) * 100, 100);
+  const pct = Math.min((count / max) * 100, 100);
   $('tokensFill').style.width = pct + '%';
   $('tokensStatus').textContent = pct > 50 ? 'Healthy' : pct > 20 ? 'Low' : 'Critical';
   $('tokensStatus').style.color = pct > 50 ? '#10B981' : pct > 20 ? '#FDBA2D' : '#EF4444';

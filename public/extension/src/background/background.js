@@ -8,7 +8,7 @@ import { initSync, forceSync, enqueueItems } from './sync-manager.js';
 import { fetchBalance, getBalance, decrementTokens } from './token-cache.js';
 import { getQueueSize } from './offline-queue.js';
 import { analyze as sentimentAnalyze, getOverallSentiment } from '../ai/sentiment-analysis.js';
-import { classifyNiche, extractTopics } from '../ai/content-classification.js';
+import { classifyNiche } from '../ai/content-classification.js';
 import { scoreHook, compareTitles, suggestImprovements } from '../ai/hook-scoring.js';
 import { analyzeSEO, generateVariants } from '../ai/title-optimizer.js';
 

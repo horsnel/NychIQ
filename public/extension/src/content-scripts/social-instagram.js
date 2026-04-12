@@ -127,9 +127,11 @@
     } catch { /* silent */ }
   }
 
-  function scrapeReel() {
+  function scrapeReel() { scrapeReelData(); }
+
+  function scrapeReelData() {
     const reelId = getReelId();
-    if (!reelId) return;
+    if (!reelId) return null;
 
     const data = { reelId, dataType: 'reel', _ts: Date.now() };
 
@@ -170,11 +172,14 @@
 
       sendBatch('instagram', [{ ...data, platform: 'instagram', scrapedAt: new Date().toISOString(), url: window.location.href }]);
     } catch { /* silent */ }
+    return data;
   }
 
-  function scrapeProfile() {
+  function scrapeProfile() { scrapeProfileData(); }
+
+  function scrapeProfileData() {
     const username = getUsername();
-    if (!username) return;
+    if (!username) return null;
 
     const data = { username, dataType: 'profile', scrapedAt: new Date().toISOString(), url: window.location.href };
 
@@ -210,6 +215,7 @@
 
       sendBatch('instagram', [{ ...data, platform: 'instagram' }]);
     } catch { /* silent */ }
+    return data;
   }
 
   function scrapeExplore() {
@@ -257,7 +263,27 @@
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'REINJECT') { runScrape(); sendResponse({ ok: true }); return false; }
     if (message.type === 'GET_PAGE_DATA') {
-      sendResponse({ payload: { items: [], platform: 'instagram', url: window.location.href } });
+      const items = [];
+      if (isPostPage()) {
+        const postId = getPostId();
+        if (postId) {
+          const cached = postCache.get(`post_${postId}`);
+          if (cached) items.push(cached);
+        }
+      } else if (isReelPage()) {
+        // Reels don't cache — do a quick scrape
+        const reelId = getReelId();
+        if (reelId) {
+          const d = scrapeReelData();
+          if (d) items.push(d);
+        }
+      } else if (isProfilePage()) {
+        const d = scrapeProfileData();
+        if (d) items.push(d);
+      } else if (isExplorePage()) {
+        // Explore sends directly via sendBatch — no cached data to return
+      }
+      sendResponse({ payload: { items, platform: 'instagram', url: window.location.href } });
       return false;
     }
     return false;

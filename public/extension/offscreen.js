@@ -105,14 +105,14 @@ async function handleRun(message) {
         const positive = normalized.find(r => r.label === 'POSITIVE');
         const negative = normalized.find(r => r.label === 'NEGATIVE');
         if (positive && negative) {
-          return { result: { score: (positive.score - negative.score), label: positive.score > negative.score ? 'positive' : 'negative', confidence: Math.max(positive.score, negative.score) } };
+          return { ok: true, result: { score: (positive.score - negative.score), label: positive.score > negative.score ? 'positive' : 'negative', confidence: Math.max(positive.score, negative.score) } };
         }
       }
 
-      return { result: normalized[0] || null };
+      return { ok: true, result: normalized[0] || null };
     }
 
-    return { result };
+    return { ok: true, result };
   } catch (err) {
     console.error('[NychIQ Offscreen] Run failed:', err);
     return { ok: false, error: err.message };

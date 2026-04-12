@@ -148,7 +148,7 @@ function generateSuggestions(title, breakdown) {
   if (breakdown.lengthPoints < 8) {
     suggestions.push(`Optimize length: currently ${breakdown.length.value} chars, aim for 40-60`);
   }
-  if (breakdown.powerWords < 5) {
+  if (breakdown.powerPoints < 5) {
     suggestions.push('Add power words: "Ultimate", "Proven", "Essential"');
   }
   if (breakdown.urgencyPoints < 3) {

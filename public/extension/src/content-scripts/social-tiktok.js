@@ -114,9 +114,11 @@
     } catch { /* silent */ }
   }
 
-  function scrapeProfile() {
+  function scrapeProfile() { return scrapeProfileData(); }
+
+  function scrapeProfileData() {
     const username = getUsername();
-    if (!username) return;
+    if (!username) return null;
 
     const data = { username, dataType: 'profile', scrapedAt: new Date().toISOString(), url: window.location.href };
 
@@ -149,6 +151,7 @@
 
       sendBatch('tiktok', [{ ...data, platform: 'tiktok' }]);
     } catch { /* silent */ }
+    return data;
   }
 
   function scrapeFeed() {
@@ -192,7 +195,18 @@
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'REINJECT') { runScrape(); sendResponse({ ok: true }); return false; }
     if (message.type === 'GET_PAGE_DATA') {
-      sendResponse({ payload: { items: [], platform: 'tiktok', url: window.location.href } });
+      const items = [];
+      if (isVideoPage()) {
+        const videoId = getVideoId();
+        if (videoId) {
+          const cached = videoCache.get(videoId);
+          if (cached) items.push(cached);
+        }
+      } else if (isProfilePage()) {
+        const d = scrapeProfileData();
+        if (d) items.push(d);
+      }
+      sendResponse({ payload: { items, platform: 'tiktok', url: window.location.href } });
       return false;
     }
     return false;

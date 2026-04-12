@@ -121,7 +121,7 @@
 
   function scrapeProfilePage() {
     const username = getUsername();
-    if (!username) return;
+    if (!username) return null;
 
     const data = { username, dataType: 'profile', scrapedAt: new Date().toISOString(), url: window.location.href };
 
@@ -172,6 +172,7 @@
 
       sendBatch('twitter', [{ ...data, platform: 'twitter' }]);
     } catch { /* silent */ }
+    return data;
   }
 
   function scrapeTrending() {
@@ -248,19 +249,22 @@
     if (message.type === 'REINJECT') { runScrape(); sendResponse({ ok: true }); return false; }
     if (message.type === 'GET_PAGE_DATA') {
       const items = [];
-      if (isTweetPage()) { const d = scrapeTweetData(); if (d) items.push(d); }
+      if (isTweetPage()) {
+        const tweetId = getTweetId();
+        if (tweetId) {
+          const cached = tweetCache.get(tweetId);
+          if (cached) items.push(cached);
+        }
+      } else if (isProfilePage()) {
+        const d = scrapeProfilePage();
+        if (d) items.push(d);
+      } else if (isExploreTrending()) {
+        scrapeTrending(); // sends directly via sendBatch
+      }
       sendResponse({ payload: { items, platform: 'twitter', url: window.location.href } });
       return false;
     }
     return false;
   });
 
-  function scrapeTweetData() {
-    const tweetId = getTweetId();
-    if (!tweetId) return null;
-    const data = { tweetId, dataType: 'tweet', platform: 'twitter' };
-    const tweetEls = document.querySelectorAll('article [data-testid="tweetText"]');
-    data.text = Array.from(tweetEls).map(el => el.textContent.trim()).join('\n');
-    return data;
-  }
 })();

@@ -92,7 +92,7 @@ export async function enqueueItems(items, platform, sender) {
 
   let state = await chromeStorageGet(STORAGE_KEY) || {};
   let analyzedIds = await chromeStorageGet(ANALYZED_IDS_KEY) || [];
-  const platformBreakdown = state.platformBreakdown || { youtube: 0, tiktok: 0, twitter: 0 };
+  const platformBreakdown = state.platformBreakdown || { youtube: 0, tiktok: 0, twitter: 0, instagram: 0 };
 
   let newItems = 0;
   let viralCount = 0;

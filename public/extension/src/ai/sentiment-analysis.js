@@ -9,7 +9,7 @@ const POSITIVE_WORDS = new Set([
   'great', 'amazing', 'love', 'awesome', 'best', 'fantastic', 'excellent', 'perfect',
   'beautiful', 'brilliant', 'incredible', 'wonderful', 'superb', 'outstanding',
   'favorite', 'helpful', 'genius', 'fire', 'goat', 'legend', 'slaps', 'banger',
-  'underrated', 'underrated', 'impressive', 'enjoy', 'enjoyed', 'enjoying',
+  'underrated', 'impressive', 'enjoy', 'enjoyed', 'enjoying',
   'good', 'nice', 'cool', 'dope', 'lit', 'insane', 'clean', 'smooth', 'hard',
   'facts', 'based', 'valid', 'agreed', 'exactly', 'absolutely', 'definitely',
   'subscribe', 'subscribed', 'liked', 'shared', 'saved', 'recommended',
@@ -25,7 +25,7 @@ const NEGATIVE_WORDS = new Set([
 ]);
 
 const POSITIVE_EMOJIS = new Set(['❤️', '😍', '🔥', '👏', '💯', '🎉', '💪', '⭐', '🤩', '😎', '👑', '🙌', '✨', '👍', '😂']);
-const NEGATIVE_EMOJIS = new Set(['👎', '😡', '😤', '呕', '💀', '🤮', '😞', '❌', '🗑️', '📉', ' 😑', '🙄']);
+const NEGATIVE_EMOJIS = new Set(['👎', '😡', '😤', '呕', '💀', '🤮', '😞', '❌', '🗑️', '📉', '😑', '🙄']);
 
 /**
  * Analyze sentiment of a single text.

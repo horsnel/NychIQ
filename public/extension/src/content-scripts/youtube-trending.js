@@ -11,7 +11,7 @@
 
   chrome.storage.local.get('nychiq_ext_state', () => {
     // Only run on trending page
-    if (window.location.pathname.includes('/feed/trending') || window.location.pathname === '/feed/trending') {
+    if (window.location.pathname.includes('/feed/trending')) {
       runScrape();
     }
   });
