@@ -39,7 +39,7 @@ export function installCORSHandler() {
       return { responseHeaders: headers };
     },
     {
-      urls: ['https://*.nychiq.com/api/*', 'https://nychiq.com/api/*'],
+      urls: ['https://*.nychiq.com/api/*', 'https://nychiq.com/api/*', 'https://nychiq-api.bm4413212.workers.dev/api/*'],
       types: ['xmlhttprequest', 'main_frame', 'sub_frame'],
     },
     ['blocking', 'responseHeaders']

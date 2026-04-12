@@ -9,7 +9,7 @@
 
   const NS = 'nychiq-ext';
   const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
-  const API_BASE = 'https://nychiq.com/api';
+  const API_BASE = 'https://nychiq-api.bm4413212.workers.dev/api';
   const BATCH_KEY = 'nychiq_batch_queue';
   const MAX_BATCH_SIZE = 50;
   const MAX_COMMENTS_SCROLL = 20; // scroll iterations for comment loading
@@ -1676,7 +1676,7 @@
       </div>
       <div class="nq-of">
         <button class="secondary" id="${NS}-deep-btn">Deep Scrape</button>
-        <a href="https://nychiq.com" target="_blank">Open Dashboard</a>
+        <a href="https://nychiq.pages.dev" target="_blank">Open Dashboard</a>
       </div>
     `;
     document.body.appendChild(overlay);

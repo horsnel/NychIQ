@@ -4,8 +4,8 @@
    ══════════════════════════════════════════════════════════════════ */
 
 const FALLBACK_ENDPOINTS = [
-  'https://nychiq.com/api',
-  'https://nychiq.com/api/v1',
+  'https://nychiq-api.bm4413212.workers.dev/api',
+  'https://nychiq-api.bm4413212.workers.dev/api/v1',
 ];
 
 let currentEndpointIndex = 0;

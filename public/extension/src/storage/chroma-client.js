@@ -4,7 +4,7 @@
    Handles similarity search and embedding storage
    ══════════════════════════════════════════════════════════════════ */
 
-const API_BASE = 'https://nychiq.com/api';
+const API_BASE = 'https://nychiq-api.bm4413212.workers.dev/api';
 const COLLECTION_NAME = 'nychiq_content';
 
 /**

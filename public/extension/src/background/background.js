@@ -17,7 +17,7 @@ const STORAGE_KEY = 'nychiq_ext_state';
 const BATCH_QUEUE_KEY = 'nychiq_batch_queue';
 const ANALYZED_IDS_KEY = 'nychiq_analyzed_ids';
 const API_CACHE_KEY = 'nychiq_api_cache';
-const API_BASE = 'https://nychiq.com/api';
+const API_BASE = 'https://nychiq-api.bm4413212.workers.dev/api';
 const API_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 const PLATFORM_HOSTS = ['youtube.com', 'tiktok.com', 'twitter.com', 'x.com', 'studio.youtube.com', 'instagram.com'];
@@ -56,7 +56,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     chrome.action.setBadgeText({ text: '' });
     chrome.action.setBadgeBackgroundColor({ color: '#FDBA2D' });
     // Open welcome page
-    chrome.tabs.create({ url: 'https://nychiq.com' });
+    chrome.tabs.create({ url: 'https://nychiq.pages.dev' });
   }
 
   if (details.reason === 'update') {

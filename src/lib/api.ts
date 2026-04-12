@@ -1,10 +1,18 @@
 /* ── NychIQ API helpers ──
  * In development: Next.js API routes at src/app/api/ handle requests
  *   using z-ai-web-dev-sdk (AI) and YouTube Data API v3 (YouTube).
- * In production: Cloudflare Worker serves both static files and /api/* routes.
+ * In production (Pages): frontend on nychiq.pages.dev → API calls go to the Worker.
+ * In production (Worker): nychiq-api.bm4413212.workers.dev serves both static + API.
  */
 
-const API_BASE = '/api';
+const WORKER_API = 'https://nychiq-api.bm4413212.workers.dev/api';
+
+function getApiBase(): string {
+  if (typeof window === 'undefined') return '/api';
+  if (window.location.hostname === 'localhost') return '/api';
+  if (window.location.hostname.endsWith('.pages.dev')) return WORKER_API;
+  return '/api';
+}
 
 /* ── YouTube Data API proxy ── */
 export async function ytFetch(
@@ -15,7 +23,7 @@ export async function ytFetch(
   Object.entries(params).forEach(([k, v]) => {
     if (v !== undefined && v !== '') sp.set(k, String(v));
   });
-  const url = `${API_BASE}/youtube/${endpoint}?${sp.toString()}`;
+  const url = `${getApiBase()}/youtube/${endpoint}?${sp.toString()}`;
   const res = await fetch(url);
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: res.statusText }));
@@ -29,7 +37,7 @@ export async function askAI(
   prompt: string,
   systemPrompt?: string
 ): Promise<string> {
-  const res = await fetch(`${API_BASE}/ai/chat`, {
+  const res = await fetch(`${getApiBase()}/ai/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt, systemPrompt }),
@@ -50,7 +58,7 @@ export async function askAIStream(
   onError?: (error: Error) => void
 ): Promise<void> {
   try {
-    const res = await fetch(`${API_BASE}/ai/stream`, {
+    const res = await fetch(`${getApiBase()}/ai/stream`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages }),

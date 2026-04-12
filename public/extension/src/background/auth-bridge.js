@@ -5,7 +5,7 @@
 
 const AUTH_KEY = 'nychiq_auth';
 const TOKEN_REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 min before expiry
-const API_BASE = 'https://nychiq.com/api';
+const API_BASE = 'https://nychiq-api.bm4413212.workers.dev/api';
 
 /**
  * Store JWT token from NychIQ web app.

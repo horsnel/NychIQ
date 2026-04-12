@@ -5,7 +5,7 @@
 
 const BALANCE_KEY = 'nychiq_token_balance';
 const BALANCE_TTL = 5 * 60 * 1000; // 5 minutes
-const API_BASE = 'https://nychiq.com/api';
+const API_BASE = 'https://nychiq-api.bm4413212.workers.dev/api';
 
 /**
  * Fetch fresh token balance from API.
