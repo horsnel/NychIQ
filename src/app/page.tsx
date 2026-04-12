@@ -73,6 +73,7 @@ import { LumeTool } from '@/components/nychiq/lume-tool';
 import { HookLabTool } from '@/components/nychiq/hooklab-tool';
 import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { ChannelAssistantTool } from '@/components/nychiq/channel-assistant-tool';
+import { MyChannelTool } from '@/components/nychiq/my-channel-tool';
 import { AutoUploaderTool } from '@/components/nychiq/auto-uploader-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
 import { initAudio } from '@/lib/sounds';
@@ -139,6 +140,8 @@ function ToolRouter() {
   switch (activeTool) {
     case 'dashboard':
       return <DashboardTool />;
+    case 'my-channel':
+      return <MyChannelTool />;
     case 'trending':
       return <TrendingTool />;
     case 'search':

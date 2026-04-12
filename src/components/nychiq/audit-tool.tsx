@@ -70,7 +70,7 @@ function HealthGauge({ score }: { score: number }) {
 }
 
 export function AuditTool() {
-  const { spendTokens } = useNychIQStore();
+  const { spendTokens, setPersonalChannel } = useNychIQStore();
   const [channel, setChannel] = useState('');
   const [result, setResult] = useState<AuditResult | null>(null);
   const [channelData, setChannelData] = useState<ChannelData | null>(null);
@@ -197,15 +197,31 @@ Return ONLY the JSON object.`;
       const response = await askAI(prompt);
       const cleaned = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
       const parsed = JSON.parse(cleaned);
-      setResult({
+      const auditResult = {
         healthScore: Math.min(100, Math.max(0, parseInt(parsed.healthScore, 10) || 65)),
         grade: parsed.grade || 'C',
         categories: Array.isArray(parsed.categories) ? parsed.categories : [],
         actionItems: Array.isArray(parsed.actionItems) ? parsed.actionItems : [],
         improvementPotential: parsed.improvementPotential || 'Follow the action items above to see improvements.',
+      };
+      setResult(auditResult);
+
+      // ── Save to personal channel store ──
+      setPersonalChannel({
+        handle: channel.trim(),
+        title: channelData?.title || channel.trim(),
+        description: channelData?.description || '',
+        avatar: channelData?.thumbnail || '',
+        subscriberCount: channelData?.subscriberCount || 0,
+        videoCount: channelData?.videoCount || 0,
+        viewCount: channelData?.viewCount || 0,
+        publishedAt: channelData?.publishedAt || '',
+        healthScore: auditResult.healthScore,
+        auditDate: Date.now(),
+        auditCategories: auditResult.categories,
       });
     } catch {
-      setResult({
+      const fallbackResult = {
         healthScore: 67,
         grade: 'C',
         categories: [
@@ -216,14 +232,30 @@ Return ONLY the JSON object.`;
           { name: 'Growth', score: 61, icon: '📈' },
         ],
         actionItems: [
-          { priority: 'high', text: 'Optimize video titles with target keywords — current titles are too generic and miss search intent.' },
-          { priority: 'high', text: 'Add end screens and cards to all videos to improve session duration and channel navigation.' },
-          { priority: 'medium', text: 'Increase upload frequency to at least 2 videos per week to maintain algorithm momentum.' },
-          { priority: 'medium', text: 'Improve thumbnail consistency by using a recognizable brand color and font style.' },
-          { priority: 'low', text: 'Add chapters/timestamps to long-form videos to improve viewer retention and SEO.' },
-          { priority: 'low', text: 'Engage with comments in the first hour after posting to boost initial engagement signals.' },
+          { priority: 'high' as const, text: 'Optimize video titles with target keywords — current titles are too generic and miss search intent.' },
+          { priority: 'high' as const, text: 'Add end screens and cards to all videos to improve session duration and channel navigation.' },
+          { priority: 'medium' as const, text: 'Increase upload frequency to at least 2 videos per week to maintain algorithm momentum.' },
+          { priority: 'medium' as const, text: 'Improve thumbnail consistency by using a recognizable brand color and font style.' },
+          { priority: 'low' as const, text: 'Add chapters/timestamps to long-form videos to improve viewer retention and SEO.' },
+          { priority: 'low' as const, text: 'Engage with comments in the first hour after posting to boost initial engagement signals.' },
         ],
         improvementPotential: `Based on the analysis, "${channel.trim()}" has solid foundations but significant room for growth. By implementing the high-priority action items, estimated improvement of 35-50% in views within 3 months is achievable. The channel shows strong monetization potential that can be unlocked with better SEO practices and consistent upload scheduling.`,
+      };
+      setResult(fallbackResult);
+
+      // ── Save fallback to personal channel store ──
+      setPersonalChannel({
+        handle: channel.trim(),
+        title: channelData?.title || channel.trim(),
+        description: channelData?.description || '',
+        avatar: channelData?.thumbnail || '',
+        subscriberCount: channelData?.subscriberCount || 0,
+        videoCount: channelData?.videoCount || 0,
+        viewCount: channelData?.viewCount || 0,
+        publishedAt: channelData?.publishedAt || '',
+        healthScore: fallbackResult.healthScore,
+        auditDate: Date.now(),
+        auditCategories: fallbackResult.categories,
       });
     } finally {
       setLoading(false);

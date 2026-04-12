@@ -9,6 +9,7 @@ import {
   BarChart2, Settings, Coins, User, Sparkles,
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
   Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
+  MonitorPlay,
 } from 'lucide-react';
 
 /* ── Shared icon map: maps TOOL_META icon strings to lucide components ── */
@@ -22,4 +23,5 @@ export const ICON_MAP: Record<string, React.ElementType> = {
   BarChart2, Settings, Coins, User, Sparkles,
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
   Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
+  MonitorPlay,
 };
