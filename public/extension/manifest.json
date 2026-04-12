@@ -1,22 +1,26 @@
 {
   "manifest_version": 3,
   "name": "NychIQ - YouTube & Social Intelligence",
-  "version": "3.0.0",
-  "description": "Real-time YouTube, TikTok & Twitter/X insights powered by NychIQ AI. Deep scrape video data, analyze engagement, predict virality.",
+  "version": "4.0.0",
+  "description": "Real-time YouTube, TikTok, Twitter/X & Instagram insights powered by NychIQ AI. Deep scrape data, analyze engagement, predict virality.",
   "permissions": [
     "activeTab",
     "storage",
     "scripting",
     "declarativeNetRequest",
-    "alarms"
+    "alarms",
+    "offscreen"
   ],
   "host_permissions": [
     "https://www.youtube.com/*",
     "https://youtube.com/*",
+    "https://studio.youtube.com/*",
     "https://www.tiktok.com/*",
     "https://tiktok.com/*",
     "https://twitter.com/*",
     "https://x.com/*",
+    "https://www.instagram.com/*",
+    "https://instagram.com/*",
     "https://*.nychiq.com/*",
     "https://*.workers.dev/*"
   ],
@@ -44,30 +48,49 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
-      "js": ["content.js"],
+      "matches": ["https://www.youtube.com/watch*", "https://youtube.com/watch*", "https://www.youtube.com/shorts/*", "https://youtube.com/shorts/*"],
+      "js": ["src/content-scripts/youtube-watch.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
-      "matches": ["https://www.tiktok.com/*", "https://tiktok.com/*"],
-      "js": ["content.js"],
+      "matches": ["https://studio.youtube.com/*"],
+      "js": ["src/content-scripts/youtube-studio.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.youtube.com/feed/trending*", "https://youtube.com/feed/trending*"],
+      "js": ["src/content-scripts/youtube-trending.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://twitter.com/*", "https://x.com/*"],
-      "js": ["content.js"],
+      "js": ["src/content-scripts/social-twitter.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.instagram.com/*", "https://instagram.com/*"],
+      "js": ["src/content-scripts/social-instagram.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.tiktok.com/*", "https://tiktok.com/*"],
+      "js": ["src/content-scripts/social-tiktok.js"],
       "css": ["content.css"],
       "run_at": "document_idle"
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/background.js",
+    "type": "module"
   },
   "web_accessible_resources": [
     {
-      "resources": ["icons/*"],
+      "resources": ["icons/*", "offscreen.html"],
       "matches": ["<all_urls>"]
     }
   ]

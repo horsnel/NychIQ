@@ -132,3 +132,32 @@ Stage Summary:
 - Dead code: server-api/ removed (was 6 unused files)
 - Architecture: Clear dual-mode setup documented — dev uses Next.js API routes, prod uses CF Worker
 
+---
+Task ID: 2-a
+Agent: main
+Task: Chrome extension full architecture rebuild + worker cron jobs + build fix
+
+Work Log:
+- Read all 19 existing extension files (manifest.json, background.js, content.js, popup.html, popup.js, sidebar.js, content.css, cors_rules.json)
+- Identified architecture gaps vs target spec
+- Created src/background/ (5 files): background.js, auth-bridge.js, sync-manager.js, token-cache.js, offline-queue.js
+- Created src/content-scripts/ (7 files): utils.js, youtube-watch.js, youtube-studio.js, youtube-trending.js, social-twitter.js, social-instagram.js, social-tiktok.js
+- Created src/ai/ (5 files): transformers-client.js, sentiment-analysis.js, content-classification.js, hook-scoring.js, title-optimizer.js
+- Created src/storage/ (2 files): indexeddb.js, sync-state.js
+- Updated manifest.json to v4.0.0 with modular content scripts, offscreen permission, module type
+- Rebuilt popup.html with sci-fi theme (dark, cyan/emerald accents, stat cards, toggle controls)
+- Rebuilt popup.js with stats loading, toggle management, sync/export/clear buttons
+- Created offscreen.html + offscreen.js for Transformers.js WASM execution
+- Created worker/src/cron/ (4 files): morningTrending.ts, metadataBackfill.ts, aiOptimization.ts, nightlyArchive.ts
+- Wired cron jobs into worker/src/index.ts scheduled handler
+- Updated wrangler.toml with 6 cron triggers (15min, 6hr, 06:00, 09/12/15h, 18:00, 01:00)
+- Fixed build errors: removed redundant /api/ai/* and /api/youtube/* Next.js routes (Worker handles all API)
+- Fixed package.json build script (removed standalone copy that conflicts with export mode)
+- Verified build passes: `bun run build` succeeds, /out generated
+
+Stage Summary:
+- Chrome extension: 23 new files, 3843 lines of modular code
+- Worker cron: 4 new files, 6 scheduled triggers
+- Build: clean pass with output: "export"
+- All CloudFlare resources created and configured
+- Extension ready for Chrome Web Store or manual loading

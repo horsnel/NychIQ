@@ -30,6 +30,12 @@ import { realtimeRoutes } from './routes/realtime';
 import { geolocationRoutes } from './routes/geolocation';
 import { webRoutes } from './routes/web';
 
+// ── Cron modules ──
+import { morningTrending } from './cron/morningTrending';
+import { metadataBackfill } from './cron/metadataBackfill';
+import { aiOptimization } from './cron/aiOptimization';
+import { nightlyArchive } from './cron/nightlyArchive';
+
 const app = new Hono<{ Bindings: Env }>();
 
 // ── CORS middleware ──
@@ -230,6 +236,26 @@ const worker = {
     if (event.cron === '0 */6 * * *') {
       ctx.waitUntil(refreshTrendingCache(env));
       ctx.waitUntil(cleanupExpiredCache(env));
+    }
+
+    // 06:00 — Morning trending discovery (8 regions, all platforms)
+    if (event.cron === '0 6 * * *') {
+      ctx.waitUntil(morningTrending(env));
+    }
+
+    // 09:00, 12:00, 15:00 — Metadata backfill
+    if (event.cron === '0 9,12,15 * * *') {
+      ctx.waitUntil(metadataBackfill(env));
+    }
+
+    // 18:00 — Batch AI optimization
+    if (event.cron === '0 18 * * *') {
+      ctx.waitUntil(aiOptimization(env));
+    }
+
+    // 01:00 — Nightly archive
+    if (event.cron === '0 1 * * *') {
+      ctx.waitUntil(nightlyArchive(env));
     }
   },
 };
