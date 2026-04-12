@@ -54,7 +54,7 @@ crons = ["*/15 * * * *", "0 */6 * * *", "0 6 * * *", "0 9,12,15 * * *", "0 18 * 
 # ══════════════════════════════════════════════
 [vars]
 ENVIRONMENT = "production"
-APP_URL = "https://nychiq-api.a5b0ea0a8f1511ea5f37e45c5d60e1a1.workers.dev"
+APP_URL = "https://nychiq.pages.dev"
 CORS_ORIGINS = "https://nychiq.com,https://app.nychiq.com"
 
 # ══════════════════════════════════════════════
