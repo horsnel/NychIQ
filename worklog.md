@@ -18,3 +18,28 @@ Stage Summary:
 - MEDIUM FIX: youtube-studio.js — GET_PAGE_DATA now includes scrapedAt
 - LOW FIX: title-optimizer.js — hardcoded 2025 replaced with dynamic year
 - Dead code noted: content.legacy.js (930+ lines), src/content-scripts/utils.js (166 lines) — not referenced
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Create Firefox addon adaptation for NychIQ Chrome extension
+
+Work Log:
+- Analyzed full Chrome extension structure (34 files, MV3)
+- Identified 3 critical incompatibilities: offscreen API, declarativeNetRequest, chrome.* namespace
+- Created manifest.firefox.json with browser_specific_settings, gecko ID, Firefox permissions
+- Created src/ai/ai-worker.js — Web Worker that replaces Chrome offscreen document for Transformers.js WASM
+- Created src/ai/transformers-client.firefox.js — Worker-based client (Firefox background scripts support Worker creation)
+- Created src/background/cors-handler.js — webRequest-based CORS handler replacing declarativeNetRequest
+- Created src/polyfill/browser-polyfill.js — Polyfills for chrome.offscreen, chrome.runtime.getContexts, chrome.declarativeNetRequest, chrome.action, chrome.scripting
+- Created src/background/bootstrap-firefox.js — Firefox background bootstrap module
+- Created scripts/build-extension.sh — Cross-browser build script for Chrome + Firefox packaging
+- Validated all file paths in Firefox manifest (all exist, icons/* is glob pattern)
+- Verified content scripts use only cross-browser compatible APIs
+
+Stage Summary:
+- Firefox addon fully adapted with 7 new files
+- Build script packages both Chrome (.zip) and Firefox (.zip + .xpi)
+- Firefox gecko ID: nychiq-intelligence@nychiq.com (min Firefox 128)
+- Key architectural difference: Firefox uses Web Worker instead of offscreen document (actually cleaner)
+- All content scripts are cross-browser compatible (chrome.* API works in Firefox)
