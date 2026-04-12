@@ -33,6 +33,10 @@ index_name = "nychiq-embeddings"
 binding = "TASK_QUEUE"
 queue = "nychiq-tasks"
 
+# Workers AI — inference for embeddings, vision, translation, image gen
+[ai]
+binding = "AI"
+
 # ══════════════════════════════════════════════
 # Cron Triggers
 # ══════════════════════════════════════════════
@@ -50,6 +54,8 @@ crons = ["*/15 * * * *", "0 */6 * * *", "0 6 * * *", "0 9,12,15 * * *", "0 18 * 
 # ══════════════════════════════════════════════
 [vars]
 ENVIRONMENT = "production"
+APP_URL = "https://nychiq-api.a5b0ea0a8f1511ea5f37e45c5d60e1a1.workers.dev"
+CORS_ORIGINS = "https://nychiq.com,https://app.nychiq.com"
 
 # ══════════════════════════════════════════════
 # Static assets from Next.js export
