@@ -15,8 +15,8 @@
     if (typeof str === 'number') return str;
     if (!str) return 0;
     str = String(str).replace(/,/g, '').replace(/\s/g, '').trim();
-    const mult = { K: 1e3, M: 1e6, B: 1e9 };
-    const match = str.match(/^([\d.]+)([KMB]?)$/i);
+    const mult = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
+    const match = str.match(/^([\d.]+)([KMBT]?)$/i);
     if (match) return Math.round(parseFloat(match[1]) * (mult[match[2].toUpperCase()] || 1));
     return parseInt(str, 10) || 0;
   }

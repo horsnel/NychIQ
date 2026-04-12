@@ -6,6 +6,11 @@ const $ = (id) => document.getElementById(id);
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
+  // Verify critical DOM elements exist before initializing
+  if (!$('statVideos') || !$('statusDot')) {
+    console.error('[NychIQ] Popup DOM elements missing — cannot initialize');
+    return;
+  }
   loadStats();
   setupToggles();
   setupButtons();

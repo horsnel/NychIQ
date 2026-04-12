@@ -28,6 +28,8 @@
   }
 
   function runScrape() {
+    // Don't run if not on Studio page (SPA navigation guard)
+    if (!window.location.hostname.includes('studio.youtube.com')) return;
     const data = scrapeStudioAnalytics();
     if (data && Object.keys(data).length > 3) {
       sendBatch('youtube', [{ ...data, dataType: 'studio-analytics', scrapedAt: new Date().toISOString(), url: window.location.href, platform: 'youtube' }]);
@@ -112,10 +114,30 @@
     } catch { /* extension context invalidated */ }
   }
 
-  // Cleanup on unload
-  window.addEventListener('unload', () => {
-    if (pollInterval) clearInterval(pollInterval);
-  });
+  // Cleanup on unload and SPA navigation
+  function cleanup() {
+    if (pollInterval) {
+      clearInterval(pollInterval);
+      pollInterval = null;
+    }
+  }
+  window.addEventListener('unload', cleanup);
+
+  // SPA nav — clear interval when leaving Studio, restart when entering
+  let lastUrl = window.location.href;
+  const origPush = history.pushState;
+  history.pushState = function (...a) { origPush.apply(this, a); checkNav(); };
+  window.addEventListener('popstate', checkNav);
+  function checkNav() {
+    if (window.location.href !== lastUrl) {
+      lastUrl = window.location.href;
+      cleanup();
+      if (window.location.hostname.includes('studio.youtube.com')) {
+        runScrape();
+        pollInterval = setInterval(runScrape, 30000);
+      }
+    }
+  }
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'REINJECT') {

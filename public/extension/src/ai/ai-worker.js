@@ -4,10 +4,35 @@
    Replaces Chrome's offscreen document approach
    ══════════════════════════════════════════════════════════════════ */
 
-importScripts('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+const CDN_URL = 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+const CDN_FALLBACK = 'https://unpkg.com/@xenova/transformers@2.17.2';
 
 let pipeline = null;
 let currentTask = null;
+let loadFailed = false;
+
+/* ── CDN loader with fallback ── */
+
+async function loadTransformers() {
+  // Try primary CDN
+  try {
+    importScripts(CDN_URL);
+    if (typeof transformers !== 'undefined') return;
+  } catch (err) {
+    console.warn('[NychIQ Worker] Primary CDN failed, trying fallback:', err.message);
+  }
+
+  // Try fallback CDN
+  try {
+    importScripts(CDN_FALLBACK);
+    if (typeof transformers !== 'undefined') return;
+  } catch (err) {
+    console.error('[NychIQ Worker] Fallback CDN also failed:', err.message);
+  }
+
+  loadFailed = true;
+  throw new Error('Failed to load Transformers.js from both CDNs');
+}
 
 /* ── Message handler ── */
 
@@ -15,6 +40,16 @@ self.onmessage = async function(event) {
   const { type, id, task, modelId, input, options } = event.data;
 
   try {
+    // Lazy-load Transformers.js on first message
+    if (!loadFailed && typeof transformers === 'undefined') {
+      await loadTransformers();
+    }
+
+    if (loadFailed) {
+      self.postMessage({ id, ok: false, error: 'Transformers.js failed to load. Check your internet connection.' });
+      return;
+    }
+
     let result;
 
     switch (type) {

@@ -7,9 +7,10 @@ import { setupAuthListener, storeToken, clearToken, validateToken, getToken } fr
 import { initSync, forceSync, enqueueItems } from './sync-manager.js';
 import { fetchBalance, getBalance, decrementTokens } from './token-cache.js';
 import { getQueueSize } from './offline-queue.js';
+// AI modules imported for message handler routing
 import { analyze as sentimentAnalyze, getOverallSentiment } from '../ai/sentiment-analysis.js';
 import { classifyNiche } from '../ai/content-classification.js';
-import { scoreHook, compareTitles, suggestImprovements } from '../ai/hook-scoring.js';
+import { scoreHook, suggestImprovements } from '../ai/hook-scoring.js';
 import { analyzeSEO, generateVariants } from '../ai/title-optimizer.js';
 
 const STORAGE_KEY = 'nychiq_ext_state';
@@ -129,6 +130,7 @@ const messageHandlers = {
   AI_SCORE_HOOK: handleAIScoreHook,
   AI_ANALYZE_SEO: handleAIAnalyzeSEO,
   AI_GENERATE_VARIANTS: handleAIGenerateVariants,
+  AI_SUGGEST_IMPROVEMENTS: handleAISuggestImprovements,
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -320,6 +322,11 @@ function handleAIGenerateVariants(message) {
   return generateVariants(title, count || 5);
 }
 
+function handleAISuggestImprovements(message) {
+  const { title, niche } = message;
+  return suggestImprovements(title, niche);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    TAB NAVIGATION TRACKING
    ═══════════════════════════════════════════════════════════════ */
@@ -332,28 +339,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
   }
 });
-
-/* ═══════════════════════════════════════════════════════════════
-   CROSS-TAB DATA AGGREGATION
-   ═══════════════════════════════════════════════════════════════ */
-
-async function aggregateFromAllTabs() {
-  const tabs = await chrome.tabs.query({ url: PLATFORM_URLS });
-  const results = [];
-
-  for (const tab of tabs) {
-    try {
-      const response = await chrome.tabs.sendMessage(tab.id, { type: 'GET_PAGE_DATA' });
-      if (response?.payload?.items) {
-        results.push({ tabId: tab.id, url: tab.url, ...response.payload });
-      }
-    } catch {
-      // Tab not ready or content script not injected
-    }
-  }
-
-  return results;
-}
 
 /* ═══════════════════════════════════════════════════════════════
    STORAGE HELPERS

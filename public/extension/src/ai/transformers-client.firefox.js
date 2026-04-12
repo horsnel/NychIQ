@@ -149,7 +149,7 @@ function sendToWorker(data) {
     const timeout = setTimeout(() => {
       pendingMessages.delete(id);
       reject(new Error('Worker timeout'));
-    }, 60000); // 60s timeout for model loading
+    }, 180000); // 3 minutes — first-time model download can be ~200MB
 
     pendingMessages.set(id, (response) => {
       clearTimeout(timeout);
