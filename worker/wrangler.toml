@@ -45,3 +45,7 @@ crons = ["*/15 * * * *", "0 */6 * * *"]
 # Env vars (non-secret)
 [vars]
 ENVIRONMENT = "production"
+
+# Static assets from Next.js export
+[site]
+bucket = "../out"

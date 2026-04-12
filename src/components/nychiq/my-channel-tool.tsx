@@ -32,6 +32,12 @@ import {
   Target,
   Lightbulb,
   BrainCircuit,
+  Settings2,
+  Tag,
+  Rocket,
+  Lock,
+  Tv,
+  UserCircle,
 } from 'lucide-react';
 
 /* ── Constants ── */
@@ -148,7 +154,24 @@ function ActivityItem({ icon: Icon, title, time, status, color }: {
   );
 }
 
-/* ── Unlinked state ── */
+/* ── Channel Assistant config shape ── */
+interface ChannelAssistantConfig {
+  channelUrl: string;
+  channelName: string;
+  niche: string;
+  subNiche: string;
+  brandVoice: string;
+  tone: string;
+  audience: string;
+  language: string;
+  goals: string[];
+  customInstructions: string;
+  contentTypes: string[];
+  competitors: string[];
+  keywords: string[];
+}
+
+/* ── Truly unlinked (no config either) ── */
 function UnlinkedView() {
   const setActiveTool = useNychIQStore((s) => s.setActiveTool);
   return (
@@ -166,6 +189,390 @@ function UnlinkedView() {
         Go to Channel Audit
       </button>
       <p className="text-[11px] text-[#444444] mt-4">Cost: {TOKEN_COSTS.audit} tokens per audit</p>
+    </div>
+  );
+}
+
+/* ── Lite channel view (has config but not yet audited) ── */
+function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
+  const userName = useNychIQStore((s) => s.userName);
+  const userPlan = useNychIQStore((s) => s.userPlan);
+  const setActiveTool = useNychIQStore((s) => s.setActiveTool);
+
+  const [activeMetric, setActiveMetric] = useState<'views' | 'engagement' | 'watchtime' | 'subs'>('views');
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiInsights, setAiInsights] = useState<Array<{
+    priority: 'high' | 'medium' | 'low';
+    title: string;
+    description: string;
+  }> | null>(null);
+
+  const growthData = useMemo(() => ({
+    views: [120, 180, 150, 220, 310, 280, 420, 380, 510, 470, 620, 580, 710],
+    engagement: [3.2, 3.5, 3.1, 4.0, 4.5, 4.2, 5.1, 4.8, 5.5, 5.2, 6.0, 5.8, 6.3],
+    watchtime: [4.1, 4.3, 3.8, 4.5, 5.0, 4.7, 5.3, 5.1, 5.8, 5.5, 6.2, 5.9, 6.5],
+    subs: [40, 55, 48, 72, 95, 88, 120, 110, 145, 135, 170, 160, 195],
+  }), []);
+
+  const heatmapData = useMemo(() => {
+    const data: number[][] = [];
+    for (let d = 0; d < 7; d++) {
+      const row: number[] = [];
+      for (let h = 0; h < 8; h++) {
+        const base = ((d >= 1 && d <= 5) && (h >= 3 && h <= 6)) ? 70 : 30;
+        row.push(Math.min(100, base + Math.floor(Math.sin(d * h) * 25)));
+      }
+      data.push(row);
+    }
+    return data;
+  }, []);
+
+  const metricOptions = [
+    { key: 'views' as const, label: 'Views', color: '#FDBA2D', data: growthData.views },
+    { key: 'engagement' as const, label: 'Engagement %', color: '#10B981', data: growthData.engagement },
+    { key: 'watchtime' as const, label: 'Watch Time (min)', color: '#3B82F6', data: growthData.watchtime },
+    { key: 'subs' as const, label: 'New Subs/week', color: '#8B5CF6', data: growthData.subs },
+  ];
+  const currentMetric = metricOptions.find((m) => m.key === activeMetric)!;
+
+  const quickTools = [
+    { icon: Zap, label: 'Viral Predictor', desc: 'Forecast next video potential', cost: TOKEN_COSTS.viral, toolId: 'viral', color: '#10B981' },
+    { icon: Crosshair, label: 'Niche Radar', desc: 'Trends for your niche', cost: TOKEN_COSTS.niche, toolId: 'niche', color: '#FDBA2D' },
+    { icon: Clock, label: 'Best Post Time', desc: 'Personalized upload windows', cost: TOKEN_COSTS.posttime, toolId: 'posttime', color: '#3B82F6' },
+    { icon: Anchor, label: 'My HookLab', desc: 'Generate video intros', cost: TOKEN_COSTS.hooklab, toolId: 'hooklab', color: '#EF4444' },
+    { icon: SearchCode, label: 'SEO Optimizer', desc: 'Refine video descriptions', cost: TOKEN_COSTS.seo, toolId: 'seo', color: '#8B5CF6' },
+    { icon: GitCompare, label: 'Competitor Track', desc: 'Side-by-side comparison', cost: TOKEN_COSTS.competitor, toolId: 'competitor', color: '#10B981' },
+  ];
+
+  const liteActivityFeed = useMemo(() => [
+    { icon: Settings2, title: `Channel Assistant configured — ${config.channelName}`, time: 'Just now', status: 'done' as const, color: '#FDBA2D' },
+    { icon: Target, title: `${config.goals.length} growth goals set`, time: 'Recently', status: 'new' as const, color: '#10B981' },
+    { icon: Tv, title: `${config.contentTypes.length} content types selected`, time: 'Recently', status: 'done' as const, color: '#3B82F6' },
+    { icon: UserCircle, title: `Audience profile: ${config.audience || 'General'}`, time: 'Recently', status: 'done' as const, color: '#8B5CF6' },
+    { icon: Lock, title: 'Channel Audit required to unlock analytics', time: 'Pending', status: 'pending' as const, color: '#666666' },
+  ], [config]);
+
+  const handleGenerateInsights = useCallback(() => {
+    setAiLoading(true);
+    setTimeout(() => {
+      setAiInsights([
+        { priority: 'high', title: 'Run Channel Audit First', description: `Your channel "${config.channelName}" is configured but not yet audited. Running a channel audit will provide real analytics, a verified health score, and unlock personalized AI recommendations.` },
+        { priority: 'medium', title: 'Niche Positioning Detected', description: `Your niche "${config.niche}${config.subNiche ? ' → ' + config.subNiche : ''}" has strong growth potential. Top creators in this space are posting 3x per week with average watch times above 6 minutes.` },
+        { priority: 'medium', title: 'Content Strategy Alignment', description: `Your selected content types (${config.contentTypes.slice(0, 3).join(', ')}${config.contentTypes.length > 3 ? ` +${config.contentTypes.length - 3} more` : ''}) align with trending formats. Consider diversifying with Shorts for algorithmic reach.` },
+        { priority: 'low', title: 'Goals Ready for Tracking', description: `Your ${config.goals.length} goals are set. After running a channel audit, we\'ll create a personalized roadmap and track your progress against each goal.` },
+      ]);
+      setAiLoading(false);
+    }, 2000);
+  }, [config]);
+
+  return (
+    <div className="space-y-5 animate-fade-in-up">
+
+      {/* ═══ CTA BANNER: Run Audit ═══ */}
+      <div className="rounded-lg border overflow-hidden relative" style={{ background: 'linear-gradient(135deg, rgba(253,186,45,0.12) 0%, rgba(13,13,13,0.95) 60%)', borderColor: 'rgba(253,186,45,0.25)' }}>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(253,186,45,0.05) 40px, rgba(253,186,45,0.05) 41px)' }} />
+        <div className="relative px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <Rocket className="w-4 h-4 text-[#FDBA2D] shrink-0" />
+              <span className="text-sm font-bold text-[#FDBA2D]">Unlock Full Channel Analytics</span>
+            </div>
+            <p className="text-xs text-[#A3A3A3] leading-relaxed">
+              Your channel &quot;{config.channelName}&quot; is configured. Run a Channel Audit to link your YouTube data, get a real health score, and unlock personalized insights.
+            </p>
+          </div>
+          <button onClick={() => setActiveTool('audit')}
+            className="shrink-0 px-5 py-2.5 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors flex items-center gap-2 shadow-lg shadow-[rgba(253,186,45,0.2)]">
+            <ClipboardCheck className="w-4 h-4" />
+            Run Channel Audit
+          </button>
+        </div>
+      </div>
+
+      {/* ═══════ 1. CHANNEL HEADER (Lite) ═══════ */}
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        {/* Banner gradient */}
+        <div className="h-24 sm:h-28 bg-gradient-to-r from-[#0D0D0D] via-[#141414] to-[rgba(253,186,45,0.08)] relative">
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(253,186,45,0.06) 50px, rgba(253,186,45,0.06) 51px)' }} />
+          {/* Preview badge */}
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.3)]">
+            <Settings2 className="w-3 h-3 text-[#FDBA2D]" />
+            <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider">Preview Mode</span>
+          </div>
+          {/* Plan badge */}
+          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.3)]">
+            <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider">{userPlan}</span>
+          </div>
+        </div>
+        {/* Profile row */}
+        <div className="px-4 sm:px-6 pb-5 -mt-10 relative z-10">
+          <div className="flex items-end gap-4">
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FDBA2D]/60 to-[#C69320]/60 flex items-center justify-center text-2xl font-bold text-[#0D0D0D] border-4 border-[#141414] shadow-lg">
+              {config.channelName.charAt(0).toUpperCase()}
+            </div>
+            <div className="flex-1 min-w-0 pb-1">
+              <p className="text-[10px] text-[#FDBA2D] font-semibold uppercase tracking-wider mb-0.5">Welcome back, {userName || 'Creator'}</p>
+              <h1 className="text-lg sm:text-xl font-bold text-[#FFFFFF] truncate">{config.channelName}</h1>
+              <p className="text-xs text-[#A3A3A3] truncate">{config.niche}{config.subNiche ? ` → ${config.subNiche}` : ''}</p>
+            </div>
+            <button onClick={() => setActiveTool('channel-assistant')}
+              className="shrink-0 px-3 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.3)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors flex items-center gap-1.5">
+              <Settings2 className="w-3 h-3" /> Edit Config
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════ 2. CHANNEL CONFIG INFO ═══════ */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* Niche */}
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="flex items-center gap-2 mb-2.5">
+            <div className="p-1.5 rounded-md" style={{ backgroundColor: 'rgba(253,186,45,0.1)', color: '#FDBA2D' }}>
+              <Crosshair className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-semibold">Niche</span>
+          </div>
+          <p className="text-sm font-bold text-[#FFFFFF] truncate">{config.niche}</p>
+          {config.subNiche && <p className="text-[11px] text-[#A3A3A3] truncate mt-0.5">{config.subNiche}</p>}
+        </div>
+        {/* Content Types */}
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="flex items-center gap-2 mb-2.5">
+            <div className="p-1.5 rounded-md" style={{ backgroundColor: 'rgba(16,185,129,0.1)', color: '#10B981' }}>
+              <Video className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-semibold">Content Types</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {config.contentTypes.map((ct, i) => (
+              <span key={i} className="px-2 py-0.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-[11px] text-[#A3A3A3]">{ct}</span>
+            ))}
+          </div>
+        </div>
+        {/* Goals */}
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="flex items-center gap-2 mb-2.5">
+            <div className="p-1.5 rounded-md" style={{ backgroundColor: 'rgba(59,130,246,0.1)', color: '#3B82F6' }}>
+              <Target className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-semibold">Goals</span>
+          </div>
+          <div className="space-y-1">
+            {config.goals.slice(0, 3).map((g, i) => (
+              <p key={i} className="text-[11px] text-[#A3A3A3] flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-[#3B82F6] shrink-0" />{g}
+              </p>
+            ))}
+            {config.goals.length > 3 && <p className="text-[10px] text-[#555555]">+{config.goals.length - 3} more</p>}
+          </div>
+        </div>
+        {/* Audience & Language */}
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="flex items-center gap-2 mb-2.5">
+            <div className="p-1.5 rounded-md" style={{ backgroundColor: 'rgba(139,92,246,0.1)', color: '#8B5CF6' }}>
+              <UserCircle className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[10px] text-[#A3A3A3] uppercase tracking-wider font-semibold">Audience</span>
+          </div>
+          <p className="text-sm font-bold text-[#FFFFFF] truncate">{config.audience || 'General'}</p>
+          <p className="text-[11px] text-[#A3A3A3] truncate mt-0.5">{config.brandVoice}{config.tone ? ` · ${config.tone}` : ''}</p>
+          {config.language && <p className="text-[10px] text-[#555555] mt-1">{config.language}</p>}
+        </div>
+      </div>
+
+      {/* ═══════ 3. GROWTH TREND (Simulated) ═══════ */}
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+          <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
+            <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Growth Trends
+            <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(253,186,45,0.2)]">Simulated</span>
+          </h3>
+          <div className="flex gap-1 p-0.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+            {metricOptions.map((m) => (
+              <button key={m.key} onClick={() => setActiveMetric(m.key)}
+                className={`px-2.5 py-1 rounded text-[11px] font-medium transition-all ${
+                  activeMetric === m.key ? 'text-[#FFFFFF] shadow-sm' : 'text-[#555555] hover:text-[#A3A3A3]'
+                }`}
+                style={activeMetric === m.key ? { backgroundColor: `${m.color}20`, color: m.color } : undefined}>
+                {m.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="relative">
+          <GrowthChart data={currentMetric.data} color={currentMetric.color} />
+          <div className="absolute inset-0 bg-[#141414]/30 backdrop-blur-[1px] flex items-center justify-center pointer-events-none">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0D0D0D]/80 border border-[#1F1F1F]">
+              <Lock className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <span className="text-xs text-[#A3A3A3]">Run audit to see real data</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-2 px-1">
+          <span className="text-[10px] text-[#444444]">4 weeks ago</span>
+          <span className="text-[10px] text-[#444444]">This week</span>
+        </div>
+      </div>
+
+      {/* ═══════ TWO-COLUMN: AI Insights + Heatmap ═══════ */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        {/* ═══════ 4. AI-DRIVEN INSIGHTS ═══════ */}
+        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
+              <BrainCircuit className="w-3.5 h-3.5 text-[#FDBA2D]" /> AI Insights
+            </h3>
+            {!aiInsights && (
+              <button onClick={handleGenerateInsights} disabled={aiLoading}
+                className="px-3 py-1.5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-[11px] font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-1.5">
+                {aiLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                Analyze
+              </button>
+            )}
+            {aiInsights && (
+              <button onClick={() => { setAiInsights(null); }}
+                className="px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[#1F1F1F] text-[#A3A3A3] text-[11px] font-medium hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5">
+                <RefreshCw className="w-3 h-3" /> Refresh
+              </button>
+            )}
+          </div>
+
+          {aiLoading && (
+            <div className="space-y-3">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-16 rounded-md bg-[#0D0D0D] animate-pulse" />
+              ))}
+            </div>
+          )}
+
+          {!aiLoading && aiInsights && (
+            <div className="space-y-2.5 max-h-[400px] overflow-y-auto pr-1">
+              {aiInsights.map((insight, i) => {
+                const pColor = insight.priority === 'high' ? '#EF4444' : insight.priority === 'medium' ? '#FDBA2D' : '#10B981';
+                const PIcon = insight.priority === 'high' ? XCircle : insight.priority === 'medium' ? AlertTriangle : CheckCircle;
+                return (
+                  <div key={i} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <PIcon className="w-3.5 h-3.5 shrink-0" style={{ color: pColor }} />
+                      <span className="text-xs font-bold text-[#FFFFFF]">{insight.title}</span>
+                      <span className="text-[9px] font-bold uppercase tracking-wider ml-auto" style={{ color: pColor }}>
+                        {insight.priority}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{insight.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {!aiLoading && !aiInsights && (
+            <div className="flex flex-col items-center py-8">
+              <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.08)] flex items-center justify-center mb-3">
+                <Lightbulb className="w-6 h-6 text-[#FDBA2D]" />
+              </div>
+              <p className="text-xs text-[#A3A3A3] text-center max-w-[220px]">Click Analyze to generate personalized AI insights based on your channel configuration.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Post Time Heatmap (Simulated) */}
+        <div className="space-y-5">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+            <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2 mb-3">
+              <Clock className="w-3.5 h-3.5 text-[#FDBA2D]" /> Best Post Times
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(253,186,45,0.2)]">Simulated</span>
+            </h3>
+            <div className="relative">
+              <div className="flex gap-1 mb-1">
+                <div className="w-8" />
+                {HOURS.map((h) => (
+                  <div key={h} className="flex-1 text-center text-[9px] text-[#444444]">{h}</div>
+                ))}
+              </div>
+              {heatmapData.map((row, di) => (
+                <div key={di} className="flex gap-1 mb-0.5">
+                  <div className="w-8 text-[9px] text-[#444444] flex items-center">{DAYS[di]}</div>
+                  {row.map((val, hi) => (
+                    <div key={hi} className="flex-1"><HeatmapBlock value={val} /></div>
+                  ))}
+                </div>
+              ))}
+              <div className="absolute inset-0 bg-[#141414]/30 backdrop-blur-[1px] flex items-center justify-center pointer-events-none rounded">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0D0D0D]/80 border border-[#1F1F1F]">
+                  <Lock className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                  <span className="text-xs text-[#A3A3A3]">Run audit to personalize</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 mt-3 justify-end">
+              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#1A1A1A]" /><span className="text-[9px] text-[#444444]">Low</span></div>
+              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#3B82F6]/30" /><span className="text-[9px] text-[#444444]">Fair</span></div>
+              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#FDBA2D]/40" /><span className="text-[9px] text-[#444444]">Good</span></div>
+              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#10B981]/70" /><span className="text-[9px] text-[#444444]">Best</span></div>
+            </div>
+          </div>
+
+          {/* Keywords & Competitors summary */}
+          {(config.keywords.length > 0 || config.competitors.length > 0) && (
+            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                <span className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Keywords & Competitors</span>
+              </div>
+              {config.keywords.length > 0 && (
+                <div className="mb-3">
+                  <p className="text-[10px] text-[#555555] uppercase tracking-wider mb-1.5">Keywords</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {config.keywords.slice(0, 8).map((kw, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-[10px] text-[#A3A3A3]">{kw}</span>
+                    ))}
+                    {config.keywords.length > 8 && <span className="text-[10px] text-[#555555] self-center">+{config.keywords.length - 8}</span>}
+                  </div>
+                </div>
+              )}
+              {config.competitors.length > 0 && (
+                <div>
+                  <p className="text-[10px] text-[#555555] uppercase tracking-wider mb-1.5">Competitors</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {config.competitors.slice(0, 5).map((comp, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(253,186,45,0.15)] text-[10px] text-[#FDBA2D]">{comp}</span>
+                    ))}
+                    {config.competitors.length > 5 && <span className="text-[10px] text-[#555555] self-center">+{config.competitors.length - 5}</span>}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ═══════ 5. COMMAND CENTER ═══════ */}
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+        <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2 mb-4">
+          <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Command Center
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          {quickTools.map((tool) => (
+            <ToolCard key={tool.toolId} {...tool} />
+          ))}
+        </div>
+      </div>
+
+      {/* ═══════ 6. ACTIVITY FEED ═══════ */}
+      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+        <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2 mb-3">
+          <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Recent Activity
+        </h3>
+        <div className="divide-y divide-[#1A1A1A]">
+          {liteActivityFeed.map((item, i) => (
+            <ActivityItem key={i} {...item} />
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
@@ -256,8 +663,26 @@ export function MyChannelTool() {
     }, 2000);
   }, []);
 
-  /* If no channel linked yet */
-  if (!pc.linked) return <UnlinkedView />;
+  /* Read Channel Assistant config from localStorage (lazy init avoids effect setState) */
+  const [channelConfig] = useState<ChannelAssistantConfig | null>(() => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const raw = localStorage.getItem('nychiq_channel_assistant_config');
+      if (raw) {
+        const parsed = JSON.parse(raw) as ChannelAssistantConfig;
+        if (parsed?.channelName) return parsed;
+      }
+    } catch {
+      // ignore parse errors
+    }
+    return null;
+  });
+
+  /* If no channel linked yet — show lite view if config exists, otherwise empty state */
+  if (!pc.linked) {
+    if (channelConfig) return <ChannelLiteView config={channelConfig} />;
+    return <UnlinkedView />;
+  }
 
   return (
     <div className="space-y-5 animate-fade-in-up">

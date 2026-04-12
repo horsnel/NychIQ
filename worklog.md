@@ -510,3 +510,26 @@ Stage Summary:
 - 59 routes connected (56 existing + 3 new: team-collab, scheduled-reports, video-batch)
 - GitHub repo created and pushed: github.com/horsnel/NychIQ
 - All existing features preserved intact
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Fix My Channel page visibility + Prepare CloudFlare deployment
+
+Work Log:
+- Audited sidebar, store, and tool routing — confirmed 'my-channel' and 'channel-assistant' are separate tools
+- Identified issue: MyChannelTool showed empty "No Channel Linked" state even when Channel Assistant was configured
+- Added ChannelLiteView component that reads Channel Assistant config from localStorage
+- MyChannelTool now branches: linked channel → full view, config exists → lite view, nothing → empty state
+- Moved all API routes from src/app/api/ to server-api/ (preserved for reference)
+- Changed next.config.ts output from "standalone" to "export" with unoptimized images
+- Updated worker/wrangler.toml with [site] bucket = "../out"
+- Added build:cf script to package.json
+- Created .cfignore for CloudFlare deployment
+- Lint passes clean with no errors
+
+Stage Summary:
+- My Channel page now shows rich lite view when Channel Assistant is configured but no audit has been run
+- Project is ready for CloudFlare Pages static deployment
+- Build command: `bun run build:cf` → outputs to `out/`
+- Worker serves API routes + static assets from out/

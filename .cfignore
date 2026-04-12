@@ -1,0 +1,9 @@
+node_modules/
+.next/
+worker/
+server-api/
+skills/
+upload/
+agent-ctx/
+*.log
+db/
