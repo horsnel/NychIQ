@@ -45,6 +45,9 @@ import {
   Radar,
   Image as ImageIcon,
   Palette,
+  GitBranch,
+  Flame,
+  SlidersHorizontal,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -327,6 +330,7 @@ export function AgencyDashboardTool() {
   const [wlSubdomain, setWlSubdomain] = useState('');
   const [wlAccentColor, setWlAccentColor] = useState('#8B5CF6');
   const [wlNoWatermark, setWlNoWatermark] = useState(true);
+  const [whatIfPercent, setWhatIfPercent] = useState(20);
 
   const BRIEFING_MESSAGES = [
     'Analyzing Competitor DNA...',
@@ -1223,8 +1227,168 @@ export function AgencyDashboardTool() {
             </div>
           </div>
 
+          {/* ═══ 3-Tier Report Layout ═══ */}
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden mt-4">
+            <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center gap-2">
+              <BarChart3 className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Tactical Report Preview</h3>
+              <span className="ml-auto px-2 py-0.5 rounded-full text-[9px] font-bold bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(253,186,45,0.2)]">3-TIER</span>
+            </div>
+            <div className="p-5 space-y-5">
+              {/* Tier 1: The Pulse (Metrics) */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Activity className="w-4 h-4 text-[#10B981]" />
+                  <span className="text-xs font-bold text-[#FFFFFF] uppercase tracking-wider">Tier 1 — The Pulse</span>
+                  <span className="text-[9px] text-[#666666] ml-auto">Live KPIs</span>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: 'Total Views', value: '2.4M', change: '+24%', color: '#10B981' },
+                    { label: 'Avg CTR', value: '8.7%', change: '+1.2%', color: '#3B82F6' },
+                    { label: 'Est. Revenue', value: '$12.8K', change: '+18%', color: '#FDBA2D' },
+                  ].map((kpi) => (
+                    <div key={kpi.label} className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 text-center relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at 50% 0%, ${kpi.color}, transparent 70%)` }} />
+                      <p className="text-[10px] text-[#666666] uppercase tracking-wider mb-1 relative">{kpi.label}</p>
+                      <p className="text-xl font-bold text-[#FFFFFF] relative">{kpi.value}</p>
+                      <p className="text-xs font-medium mt-1 relative" style={{ color: kpi.color }}>{kpi.change}</p>
+                    </div>
+                  ))}
+                </div>
+                {/* Growth Velocity Gauge */}
+                <div className="mt-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 flex items-center gap-5">
+                  <div className="relative w-16 h-16 flex-shrink-0">
+                    <svg viewBox="0 0 64 64" className="w-full h-full -rotate-90">
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="#1F1F1F" strokeWidth="5" />
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="#10B981" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${163 * 0.78} ${163}`} />
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-[#10B981]">78%</span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#FFFFFF]">Growth Velocity</p>
+                    <p className="text-[10px] text-[#A3A3A3] mt-0.5">Your fleet is growing 78% faster than the previous month. Strong momentum across 4 of 5 clients.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tier 2: The Logic (Content Funnel Diagram) */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <GitBranch className="w-4 h-4 text-[#3B82F6]" />
+                  <span className="text-xs font-bold text-[#FFFFFF] uppercase tracking-wider">Tier 2 — The Logic</span>
+                  <span className="text-[9px] text-[#666666] ml-auto">Content Funnel</span>
+                </div>
+                <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-5">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    {[
+                      { label: 'TikTok Short', color: '#F472B6', icon: '📱' },
+                      { label: 'YouTube Video', color: '#EF4444', icon: '🎬' },
+                      { label: 'Link in Bio', color: '#8B5CF6', icon: '🔗' },
+                      { label: 'Subscribe', color: '#10B981', icon: '✅' },
+                    ].map((step, i) => (
+                      <React.Fragment key={step.label}>
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ borderColor: `${step.color}30`, backgroundColor: `${step.color}08` }}>
+                          <span className="text-sm">{step.icon}</span>
+                          <span className="text-xs font-medium" style={{ color: step.color }}>{step.label}</span>
+                        </div>
+                        {i < 3 && (
+                          <svg width="24" height="12" viewBox="0 0 24 12" className="flex-shrink-0">
+                            <path d="M0 6 L20 6" stroke="#333333" strokeWidth="1.5" />
+                            <path d="M16 2 L22 6 L16 10" fill="none" stroke="#333333" strokeWidth="1.5" />
+                          </svg>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-[#666666] mt-3">TikTok awareness → YouTube deep-dive → Bio conversion → Subscriber growth pipeline.</p>
+                </div>
+              </div>
+
+              {/* Tier 3: The Evidence (HookLab Heatmap) */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Flame className="w-4 h-4 text-[#EF4444]" />
+                  <span className="text-xs font-bold text-[#FFFFFF] uppercase tracking-wider">Tier 3 — The Evidence</span>
+                  <span className="text-[9px] text-[#666666] ml-auto">Retention Forensics</span>
+                </div>
+                <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-5">
+                  <div className="flex items-end gap-1 h-20">
+                    {[72, 68, 85, 92, 88, 45, 30].map((val, i) => (
+                      <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                        <div
+                          className="w-full rounded-sm transition-all"
+                          style={{
+                            height: `${val}%`,
+                            backgroundColor: val >= 80 ? '#10B981' : val >= 60 ? '#FDBA2D' : '#EF4444',
+                            opacity: 0.6 + (val / 250),
+                          }}
+                        />
+                        <span className="text-[8px] text-[#555555]">{i * 5}s</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mt-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] text-[#10B981] font-medium">Peak: 0:20 (92%)</span>
+                      <span className="text-[9px] text-[#EF4444] font-medium">Drop: 0:30 (45%)</span>
+                    </div>
+                    <span className="text-[9px] text-[#A3A3A3]">Avg Retention: 68%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ═══ What-If Projections Slider ═══ */}
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden mt-4">
+            <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center gap-2">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#8B5CF6]" />
+              <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">What-If Projection</h3>
+            </div>
+            <div className="p-5 space-y-4">
+              <p className="text-xs text-[#A3A3A3]">Adjust the slider to see projected fleet growth under different upload frequency scenarios.</p>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-medium text-[#FFFFFF]">Upload Frequency Increase</label>
+                  <span className="text-sm font-bold text-[#8B5CF6]">{whatIfPercent}%</span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={whatIfPercent}
+                  onChange={(e) => setWhatIfPercent(Number(e.target.value))}
+                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                  style={{
+                    background: `linear-gradient(to right, #8B5CF6 ${whatIfPercent}%, #1F1F1F ${whatIfPercent}%)`,
+                  }}
+                />
+                <div className="flex justify-between text-[9px] text-[#555555]">
+                  <span>Same frequency</span>
+                  <span>+50%</span>
+                  <span>Double uploads</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3 mt-2">
+                <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-3 text-center">
+                  <p className="text-[10px] text-[#666666]">Projected Views</p>
+                  <p className="text-lg font-bold text-[#10B981]">{(2.4 * (1 + whatIfPercent / 100)).toFixed(1)}M</p>
+                </div>
+                <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-3 text-center">
+                  <p className="text-[10px] text-[#666666]">Projected Revenue</p>
+                  <p className="text-lg font-bold text-[#FDBA2D]">${(12.8 * (1 + whatIfPercent / 100)).toFixed(1)}K</p>
+                </div>
+                <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-3 text-center">
+                  <p className="text-[10px] text-[#666666]">Subscriber Gain</p>
+                  <p className="text-lg font-bold text-[#3B82F6]">+{(8.2 * (1 + whatIfPercent / 100)).toFixed(1)}K</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* White-Label Configuration */}
-          <div className="rounded-lg bg-[#141414] border border-[#222222] overflow-hidden mt-6">
+          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden mt-6">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center gap-2">
               <Shield className="w-3.5 h-3.5 text-[#FDBA2D]" />
               <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">White-Label Branding</h3>

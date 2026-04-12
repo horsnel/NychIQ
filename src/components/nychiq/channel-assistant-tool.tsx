@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { useNychIQStore } from '@/lib/store';
 import { showToast } from '@/lib/toast';
 import {
@@ -524,6 +524,25 @@ export function ChannelAssistantTool() {
   const [saved, setSaved] = useState(false);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'identity' | 'voice' | 'audience' | 'instructions'>('dashboard');
 
+  /* Stable dashboard stats — memoized to prevent Math.random() flicker */
+  const dashboardStats = useMemo(() => ({
+    estViews: (Math.random() * 50 + 5).toFixed(1),
+    growthPct: (Math.random() * 15 + 2).toFixed(1),
+    viralScore: Math.floor(Math.random() * 30) + 60,
+    healthScore: Math.floor(Math.random() * 25) + 65,
+    growthBars: Array.from({ length: 12 }, (_, i) => ({
+      height: 30 + Math.random() * 60 + (i * 2),
+      isUp: Math.random() > 0.3,
+    })),
+    healthMetrics: [
+      { label: 'Upload Consistency', value: Math.floor(Math.random() * 40) + 60, color: '#10B981' },
+      { label: 'SEO Optimization', value: Math.floor(Math.random() * 35) + 55, color: '#FDBA2D' },
+      { label: 'Engagement Rate', value: Math.floor(Math.random() * 30) + 50, color: '#3B82F6' },
+      { label: 'Thumbnail Quality', value: Math.floor(Math.random() * 40) + 50, color: '#8B5CF6' },
+      { label: 'Content Freshness', value: Math.floor(Math.random() * 25) + 65, color: '#10B981' },
+    ],
+  }), []);
+
   /* Save handler */
   const handleSave = useCallback(() => {
     try {
@@ -716,28 +735,28 @@ export function ChannelAssistantTool() {
                       <Eye className="w-3.5 h-3.5 text-[#3B82F6]" />
                       <span className="text-[10px] text-[#666666]">Est. Views</span>
                     </div>
-                    <p className="text-base font-bold text-[#3B82F6]">{(Math.random() * 50 + 5).toFixed(1)}K</p>
+                    <p className="text-base font-bold text-[#3B82F6]">{dashboardStats.estViews}K</p>
                   </div>
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
                       <Activity className="w-3.5 h-3.5 text-[#10B981]" />
                       <span className="text-[10px] text-[#666666]">Growth</span>
                     </div>
-                    <p className="text-base font-bold text-[#10B981]">+{(Math.random() * 15 + 2).toFixed(1)}%</p>
+                    <p className="text-base font-bold text-[#10B981]">+{dashboardStats.growthPct}%</p>
                   </div>
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
                       <Zap className="w-3.5 h-3.5 text-[#FDBA2D]" />
                       <span className="text-[10px] text-[#666666]">Viral Score</span>
                     </div>
-                    <p className="text-base font-bold text-[#FDBA2D]">{Math.floor(Math.random() * 30) + 60}</p>
+                    <p className="text-base font-bold text-[#FDBA2D]">{dashboardStats.viralScore}</p>
                   </div>
                   <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
                       <TrendingUp className="w-3.5 h-3.5 text-[#8B5CF6]" />
                       <span className="text-[10px] text-[#666666]">Health</span>
                     </div>
-                    <p className="text-base font-bold text-[#8B5CF6]">{Math.floor(Math.random() * 25) + 65}/100</p>
+                    <p className="text-base font-bold text-[#8B5CF6]">{dashboardStats.healthScore}/100</p>
                   </div>
                 </div>
               </div>
@@ -752,16 +771,14 @@ export function ChannelAssistantTool() {
                 <p className="text-xs text-[#A3A3A3]">Simulated growth trend based on your niche and content strategy.</p>
                 {/* Mini bar chart */}
                 <div className="flex items-end gap-1.5 h-24 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-                  {Array.from({ length: 12 }).map((_, i) => {
-                    const height = 30 + Math.random() * 60 + (i * 2);
-                    const isUp = Math.random() > 0.3;
+                  {dashboardStats.growthBars.map((bar, i) => {
                     return (
                       <div key={i} className="flex-1 flex flex-col items-center gap-1">
                         <div
                           className="w-full rounded-sm transition-all"
                           style={{
-                            height: `${height}%`,
-                            backgroundColor: isUp ? 'rgba(16,185,129,0.6)' : 'rgba(239,68,68,0.6)',
+                            height: `${bar.height}%`,
+                            backgroundColor: bar.isUp ? 'rgba(16,185,129,0.6)' : 'rgba(239,68,68,0.6)',
                             minHeight: 4,
                           }}
                         />
@@ -827,13 +844,7 @@ export function ChannelAssistantTool() {
               icon={<Activity className="w-4 h-4 text-[#FDBA2D]" />}
             >
               <div className="space-y-3">
-                {[
-                  { label: 'Upload Consistency', value: Math.floor(Math.random() * 40) + 60, color: '#10B981' },
-                  { label: 'SEO Optimization', value: Math.floor(Math.random() * 35) + 55, color: '#FDBA2D' },
-                  { label: 'Engagement Rate', value: Math.floor(Math.random() * 30) + 50, color: '#3B82F6' },
-                  { label: 'Thumbnail Quality', value: Math.floor(Math.random() * 40) + 50, color: '#8B5CF6' },
-                  { label: 'Content Freshness', value: Math.floor(Math.random() * 25) + 65, color: '#10B981' },
-                ].map((metric) => (
+                {dashboardStats.healthMetrics.map((metric) => (
                   <div key={metric.label}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-[#FFFFFF]">{metric.label}</span>

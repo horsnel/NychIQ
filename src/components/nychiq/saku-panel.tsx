@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Maximize2, Bot, Sparkles, Zap, TrendingUp, Lightbulb, Search, SquareArrowOutUpRight } from 'lucide-react';
+import { X, Send, Maximize2, Bot, Sparkles, Zap, TrendingUp, Lightbulb, Search } from 'lucide-react';
 import { useNychIQStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { askAI } from '@/lib/api';
@@ -102,11 +102,11 @@ export function SakuPanel() {
       />
 
       {/* Panel */}
-      <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] bg-[#141414] border border-[#222] rounded-xl shadow-2xl flex flex-col animate-fade-in-up lg:bottom-5 lg:right-5"
+      <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] bg-[#141414] border border-[#1F1F1F] rounded-xl shadow-2xl flex flex-col animate-fade-in-up lg:bottom-5 lg:right-5"
         style={{ height: '580px', maxHeight: '80vh' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E] shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F] shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center">
               <Bot className="w-4.5 h-4.5 text-black" />
@@ -123,14 +123,7 @@ export function SakuPanel() {
             <button
               onClick={() => { setSakuOpen(false); setSakuFullOpen(true); }}
               className="p-1.5 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
-              title="Expand Page"
-            >
-              <SquareArrowOutUpRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => { setSakuOpen(false); setSakuFullOpen(true); }}
-              className="p-1.5 rounded-md text-[#555] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
-              title="Expand"
+              title="Expand Full Page"
             >
               <Maximize2 className="w-4 h-4" />
             </button>
@@ -188,7 +181,7 @@ export function SakuPanel() {
         </div>
 
         {/* Suggestion bubbles + Input area — stacked at bottom */}
-        <div className="shrink-0 border-t border-[#1E1E1E]">
+        <div className="shrink-0 border-t border-[#1F1F1F]">
           {/* Suggestion bubbles — stacked semi-rounded above chat bar */}
           {messages.length === 0 && !isTyping && (
             <div className="px-4 pt-3 pb-1">
@@ -197,7 +190,7 @@ export function SakuPanel() {
                   <button
                     key={sug.text}
                     onClick={() => handleSuggestionClick(sug.text)}
-                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[#222] text-xs text-[#888] hover:text-[#FFFFFF] hover:border-[rgba(253,186,45,0.25)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
+                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[rgba(253,186,45,0.25)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
                     style={{ animationDelay: `${idx * 80}ms` }}
                   >
                     <sug.icon className="w-3.5 h-3.5 text-[#666] shrink-0" />
@@ -216,7 +209,7 @@ export function SakuPanel() {
 
           {/* Chat input bar */}
           <div className="p-4 pt-2">
-            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[#222] focus-within:border-[rgba(253,186,45,0.4)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
+            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[#1F1F1F] focus-within:border-[rgba(253,186,45,0.4)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
               <input
                 ref={inputRef}
                 type="text"

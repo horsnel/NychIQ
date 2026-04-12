@@ -591,7 +591,7 @@ function HeatmapGrid() {
               <div
                 key={`${di}-${hi}`}
                 className="h-7 rounded-sm flex items-center justify-center text-[8px] font-bold transition-colors"
-                style={{ backgroundColor: getHeatColor(val), color: val >= 60 ? '#fff' : '#888' }}
+                style={{ backgroundColor: getHeatColor(val), color: val >= 60 ? '#FFFFFF' : '#A3A3A3' }}
                 title={`${day} ${hours[hi]}: ${val}% activity`}
               >
                 {val}%

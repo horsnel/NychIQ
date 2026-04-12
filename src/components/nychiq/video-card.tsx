@@ -178,78 +178,78 @@ function VideoContextMenu({ video }: { video: VideoData }) {
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="bg-[#141414] border-[#222] min-w-[200px]"
+        className="bg-[#141414] border-[#1F1F1F] min-w-[200px]"
       >
         <DropdownMenuItem
           onClick={handleOpenYouTube}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <ExternalLink className="w-4 h-4" />
           Open on YouTube
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
         <DropdownMenuItem
           onClick={handleCopyTitle}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Title
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyUrl}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy URL
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyDescription}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Description
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
         <DropdownMenuItem
           onClick={handleGenerateSeo}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <SearchCode className="w-4 h-4" />
           Generate SEO
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleDeepChat}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <MessageSquare className="w-4 h-4" />
           Analyse with Deep Chat
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
         <DropdownMenuItem
           onClick={handleCopyTags}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Tags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyHashtags}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Hashtags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyTranscript}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileText className="w-4 h-4" />
           Copy Transcript
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#222]" />
+        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
         <DropdownMenuItem
           onClick={handleExportCSV}
-          className="text-[#888] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileDown className="w-4 h-4" />
           Export CSV

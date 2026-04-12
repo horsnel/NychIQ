@@ -352,7 +352,7 @@ export function NotificationDrawer() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#141414] border-l border-[#222] z-50 transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#141414] border-l border-[#1F1F1F] z-50 transition-transform duration-300 ${
           notifDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -400,10 +400,10 @@ export function NotificationDrawer() {
         {/* Notification list */}
         <div className="overflow-y-auto h-[calc(100%-57px)] p-3 space-y-2">
           {/* Channel Health Score Banner */}
-          <div className="mb-3 p-3 rounded-lg border border-[#222]"
+          <div className="mb-3 p-3 rounded-lg border border-[#1F1F1F]"
             style={{
               backgroundColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.06)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.06)' : 'rgba(255,255,255,0.03)',
-              borderColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.2)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.2)' : '#222',
+              borderColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.2)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.2)' : '#1F1F1F',
             }}
           >
             <div className="flex items-center justify-between">
