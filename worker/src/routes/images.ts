@@ -20,8 +20,6 @@ imageRoutes.get('/generate', async (c) => {
   if (!prompt) return c.json({ error: 'prompt parameter is required' }, 400);
 
   // Validate size
-  const validSizes = ['1024x1024', '768x1344', '864x1152', '1344x768', '1152x864', '1440x720', '720x1440'];
-  const [w, h] = size.split('x').map(Number);
   const finalSize = validSizes.includes(size) ? size : '1024x1024';
   const [fw, fh] = finalSize.split('x').map(Number);
 

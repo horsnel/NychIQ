@@ -33,6 +33,11 @@ index_name = "nychiq-embeddings"
 binding = "TASK_QUEUE"
 queue = "nychiq-tasks"
 
+[[queues.consumers]]
+queue = "nychiq-tasks"
+max_batch_size = 10
+max_batch_timeout = 30
+
 # Workers AI — inference for embeddings, vision, translation, image gen
 [ai]
 binding = "AI"

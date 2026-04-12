@@ -226,6 +226,33 @@ const worker = {
     return app.fetch(request, env, ctx);
   },
 
+  async queue(batch: MessageBatch<unknown>, env: Env): Promise<void> {
+    for (const message of batch.messages) {
+      const body = message.body as any;
+      try {
+        if (body.type === 'send_email') {
+          // Retry email delivery via fallback chain
+          console.log(`[Queue] Retrying email to: ${body.to || 'unknown'}`);
+          // Import dynamically to avoid circular deps at startup
+          const { default: emailLib } = await import('./lib/email');
+          if (emailLib?.sendEmailFallback) {
+            await emailLib.sendEmailFallback(body);
+          }
+          message.ack();
+        } else if (body.type === 'ANALYZE_TRENDING') {
+          console.log(`[Queue] Processing trending analysis for region: ${body.region || 'unknown'}`);
+          message.ack();
+        } else {
+          console.log(`[Queue] Unknown message type: ${body.type}, acking`);
+          message.ack();
+        }
+      } catch (err: any) {
+        console.error(`[Queue] Error processing message:`, err?.message);
+        message.retry({ delaySeconds: 60 });
+      }
+    }
+  },
+
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
     console.log(`Cron triggered: ${event.cron}`);
 

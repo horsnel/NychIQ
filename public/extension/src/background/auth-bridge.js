@@ -81,7 +81,9 @@ export function decodeJWT(jwt) {
     const parts = jwt.split('.');
     if (parts.length !== 3) return null;
     const payload = parts[1].replace(/-/g, '+').replace(/_/g, '/');
-    const decoded = atob(payload);
+    const binary = atob(payload);
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+    const decoded = new TextDecoder().decode(bytes);
     return JSON.parse(decoded);
   } catch {
     return null;

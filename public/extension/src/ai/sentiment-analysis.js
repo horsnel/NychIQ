@@ -3,7 +3,7 @@
    On-device comment sentiment scoring with rule-based fallback
    ══════════════════════════════════════════════════════════════════ */
 
-import { runInference, isReady } from './transformers-client.js';
+import { runInference, isReady, initPipeline } from './transformers-client.js';
 
 const POSITIVE_WORDS = new Set([
   'great', 'amazing', 'love', 'awesome', 'best', 'fantastic', 'excellent', 'perfect',
@@ -36,7 +36,12 @@ export async function analyze(text) {
 
   const normalized = text.toLowerCase().trim();
 
-  // Try ML model first if available
+  // Try ML model first — auto-initialize if not ready
+  if (!isReady()) {
+    try {
+      await initPipeline('sentiment', undefined, { dtype: 'q8' });
+    } catch { /* model load failed, fall through to rule-based */ }
+  }
   if (isReady()) {
     try {
       const result = await runInference('sentiment', normalized);

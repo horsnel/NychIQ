@@ -7,6 +7,11 @@ let pipeline = null;
 let currentTask = null;
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'TRANSFORMERS_PING') {
+    sendResponse({ ok: true });
+    return false;
+  }
+
   if (message.type === 'TRANSFORMERS_INIT') {
     handleInit(message).then(sendResponse).catch(err => sendResponse({ ok: false, error: err.message }));
     return true;

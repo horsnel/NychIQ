@@ -46,7 +46,11 @@ export async function initPipeline(task, modelId, options = {}) {
  * Run inference via offscreen document.
  */
 export async function runInference(task, input, options = {}) {
-  if (currentStatus !== MODEL_STATUS.READY) return null;
+  if (currentStatus !== MODEL_STATUS.READY) {
+    // Attempt auto-initialization
+    const ok = await initPipeline(task, undefined, options);
+    if (!ok) return null;
+  }
 
   try {
     await ensureOffscreenDocument();
@@ -130,6 +134,8 @@ async function ensureOffscreenDocument() {
       reasons: ['WORKERS'],
       justification: 'Transformers.js WASM execution for on-device AI',
     });
+    // Wait for offscreen.js to register its listener
+    await new Promise(r => setTimeout(r, 200));
     offscreenDoc = true;
   } catch (err) {
     // If document already exists (race condition), just mark as ready
@@ -142,3 +148,11 @@ async function ensureOffscreenDocument() {
     offscreenCreating = false;
   }
 }
+
+// Handle service worker hibernation — reset state on wake-up
+self.addEventListener('suspend', () => {
+  offscreenDoc = null;
+  currentStatus = MODEL_STATUS.NONE;
+  currentTask = null;
+  currentModel = null;
+});

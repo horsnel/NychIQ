@@ -135,7 +135,7 @@ function extractVideoAnalysis(analysis: any, videoId: string): any | null {
   try {
     const parsed = typeof analysis === 'string' ? JSON.parse(analysis) : analysis;
     const videoAnalysis = (parsed.analyses || []).find((a: any) => a.videoId === videoId);
-    return videoAnalysis || (parsed.analyses || [])[0] || null;
+    return videoAnalysis || null;
   } catch {
     return null;
   }

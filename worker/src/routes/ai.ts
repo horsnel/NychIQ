@@ -404,7 +404,7 @@ aiRoutes.post('/stream', async (c) => {
 
     // 4. Workers AI — Llama 3.3 70B (free, no key)
     try {
-      const ai = (c.env as any).AI;
+      const ai = c.env.AI;
       if (ai) {
         const res = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
           messages: fullMessages.map(m => ({

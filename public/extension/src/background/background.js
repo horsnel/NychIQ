@@ -149,12 +149,14 @@ async function handleStateChange(message) {
     const count = state.viralDetected > 0 ? state.viralDetected.toString() : '';
     chrome.action.setBadgeText({ text: count });
     chrome.action.setBadgeBackgroundColor({ color: '#10B981' });
-    // Notify all platform tabs
-    chrome.tabs.query({ url: PLATFORM_URLS }, (tabs) => {
-      tabs.forEach((tab) => {
-        chrome.tabs.sendMessage(tab.id, { type: 'REINJECT' }).catch(() => {});
+    // Only broadcast REINJECT on connection or deep scraping state changes
+    if (stateUpdate.connected !== undefined || stateUpdate.deepScraping !== undefined) {
+      chrome.tabs.query({ url: PLATFORM_URLS }, (tabs) => {
+        tabs.forEach((tab) => {
+          chrome.tabs.sendMessage(tab.id, { type: 'REINJECT' }).catch(() => {});
+        });
       });
-    });
+    }
   } else {
     chrome.action.setBadgeText({ text: '' });
   }

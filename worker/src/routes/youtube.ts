@@ -147,7 +147,7 @@ function invidiousToYtVideos(items: any[]): any[] {
     statistics: {
       viewCount: String(v.viewCount || 0),
       likeCount: String(v.likeCount || 0),
-      commentCount: String(v.subCountText || 0),
+      commentCount: String(v.commentCount || 0),
     },
     contentDetails: {
       duration: v.lengthSeconds ? `PT${Math.floor(v.lengthSeconds / 60)}M${v.lengthSeconds % 60}S` : 'PT0S',

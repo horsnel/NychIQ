@@ -21,7 +21,13 @@ export async function nightlyArchive(env: Env): Promise<void> {
     // Move rows older than 30 days to an archive table
     await env.DB.exec(`
       CREATE TABLE IF NOT EXISTS scraped_data_archive (
-        LIKE scraped_data
+        id INTEGER PRIMARY KEY,
+        video_id TEXT,
+        platform TEXT,
+        data TEXT,
+        scraped_at TEXT,
+        synced INTEGER DEFAULT 0,
+        synced_at TEXT
       );
     `);
 
@@ -52,7 +58,12 @@ export async function nightlyArchive(env: Env): Promise<void> {
   try {
     await env.DB.exec(`
       CREATE TABLE IF NOT EXISTS analysis_archive (
-        LIKE analysis_results
+        id INTEGER PRIMARY KEY,
+        video_id TEXT,
+        analysis_type TEXT,
+        result TEXT,
+        confidence REAL,
+        created_at TEXT
       );
     `);
 
@@ -145,13 +156,8 @@ export async function nightlyArchive(env: Env): Promise<void> {
     console.error('[Cron:NightlyArchive] Report generation error:', err?.message);
   }
 
-  // 5. Vacuum D1 database (optimize storage)
-  try {
-    await env.DB.prepare('VACUUM').run();
-    console.log('[Cron:NightlyArchive] D1 VACUUM completed');
-  } catch (err: any) {
-    console.error('[Cron:NightlyArchive] VACUUM error:', err?.message);
-  }
+  // 5. Note: D1 is a managed service — CloudFlare handles storage optimization.
+  // VACUUM is unnecessary and can timeout the worker. Removed.
 
   console.log(`[Cron:NightlyArchive] Completed — archive: ${stats.d1RowsArchived}, deleted: ${stats.d1RowsDeleted}, pruned: ${stats.kvKeysPruned}`);
 }
