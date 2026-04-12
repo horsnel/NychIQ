@@ -47,12 +47,11 @@ binding = "AI"
 # ══════════════════════════════════════════════
 # Every 15 min: refresh trending cache (YouTube, TikTok, Twitter)
 # Every 6 hrs:  deep refresh + cache cleanup + maintenance
-# 06:00 daily: morning trending discovery (8 regions)
-# 09,12,15h: metadata backfill from extension-scraped data
+# 06,09,12,15h: morning trending (06:00) + metadata backfill (09,12,15) — merged to fit 5-cron limit
 # 18:00 daily: batch AI optimization (title scoring, niche detection)
 # 01:00 daily: nightly archive (compress, cleanup, report)
 [triggers]
-crons = ["*/15 * * * *", "0 */6 * * *", "0 6 * * *", "0 9,12,15 * * *", "0 18 * * *", "0 1 * * *"]
+crons = ["*/15 * * * *", "0 */6 * * *", "0 6,9,12,15 * * *", "0 18 * * *", "0 1 * * *"]
 
 # ══════════════════════════════════════════════
 # Env vars (non-secret — set here)

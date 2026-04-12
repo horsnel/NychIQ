@@ -265,14 +265,14 @@ const worker = {
       ctx.waitUntil(cleanupExpiredCache(env));
     }
 
-    // 06:00 — Morning trending discovery (8 regions, all platforms)
-    if (event.cron === '0 6 * * *') {
-      ctx.waitUntil(morningTrending(env));
-    }
-
-    // 09:00, 12:00, 15:00 — Metadata backfill
-    if (event.cron === '0 9,12,15 * * *') {
-      ctx.waitUntil(metadataBackfill(env));
+    // 06:00 — Morning trending discovery; 09,12,15 — Metadata backfill
+    if (event.cron === '0 6,9,12,15 * * *') {
+      const hour = new Date().getUTCHours();
+      if (hour === 6) {
+        ctx.waitUntil(morningTrending(env));
+      } else {
+        ctx.waitUntil(metadataBackfill(env));
+      }
     }
 
     // 18:00 — Batch AI optimization

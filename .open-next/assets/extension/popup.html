@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=380">
+<title>NychIQ Extension</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 380px; min-height: 460px; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0D0D0D; color: #E5E5E5; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #1A1A1A; border-bottom: 1px solid #2A2A2A; }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .logo { width: 28px; height: 28px; background: linear-gradient(135deg, #06B6D4, #10B981); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #0D0D0D; }
+  .header h1 { font-size: 15px; font-weight: 600; color: #fff; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #EF4444; transition: background 0.3s; }
+  .status-dot.connected { background: #10B981; box-shadow: 0 0 6px rgba(16,185,129,0.5); }
+
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px; }
+  .stat-card { background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 8px; padding: 10px 12px; }
+  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 4px; }
+  .stat-value { font-size: 20px; font-weight: 700; color: #fff; }
+  .stat-value.accent { color: #06B6D4; }
+  .stat-value.green { color: #10B981; }
+  .stat-value.warn { color: #FDBA2D; }
+
+  .section { padding: 0 16px 12px; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-bottom: 8px; }
+
+  .platforms { display: flex; gap: 6px; flex-wrap: wrap; }
+  .platform-tag { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; background: #1A1A1A; border: 1px solid #2A2A2A; color: #aaa; }
+  .platform-tag.active { border-color: #06B6D4; color: #06B6D4; background: rgba(6,182,212,0.08); }
+
+  .actions { display: flex; flex-direction: column; gap: 6px; }
+  .btn { padding: 8px 14px; border-radius: 6px; border: none; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+  .btn-primary { background: linear-gradient(135deg, #06B6D4, #10B981); color: #0D0D0D; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-secondary { background: #1A1A1A; border: 1px solid #2A2A2A; color: #E5E5E5; }
+  .btn-secondary:hover { border-color: #3A3A3A; background: #222; }
+  .btn-danger { background: #1A1A1A; border: 1px solid #2A2A2A; color: #EF4444; }
+  .btn-danger:hover { background: rgba(239,68,68,0.1); border-color: #EF4444; }
+
+  .sync-info { padding: 8px 16px; font-size: 11px; color: #666; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1A1A1A; }
+  .sync-spinner { width: 12px; height: 12px; border: 2px solid #2A2A2A; border-top-color: #06B6D4; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; }
+  .sync-spinner.active { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tokens-bar { padding: 0 16px 12px; }
+  .tokens-track { width: 100%; height: 4px; background: #1A1A1A; border-radius: 2px; overflow: hidden; }
+  .tokens-fill { height: 100%; background: linear-gradient(90deg, #06B6D4, #10B981); border-radius: 2px; transition: width 0.3s; }
+  .tokens-text { font-size: 10px; color: #666; margin-top: 4px; display: flex; justify-content: space-between; }
+
+  .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+  .toggle-label { font-size: 12px; color: #ccc; }
+  .toggle { width: 36px; height: 20px; background: #2A2A2A; border-radius: 10px; position: relative; cursor: pointer; transition: background 0.2s; border: none; }
+  .toggle.on { background: #06B6D4; }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: left 0.2s; }
+  .toggle.on::after { left: 18px; }
+
+  .error-msg { padding: 8px 16px; font-size: 11px; color: #EF4444; display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">N</div>
+    <h1>NychIQ</h1>
+  </div>
+  <div class="status-dot" id="statusDot"></div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Videos Analyzed</div>
+    <div class="stat-value accent" id="statVideos">0</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Data Points</div>
+    <div class="stat-value green" id="statDataPoints">0</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Viral Detected</div>
+    <div class="stat-value warn" id="statViral">0</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Queue</div>
+    <div class="stat-value" id="statQueue">0</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Active Platforms</div>
+  <div class="platforms">
+    <div class="platform-tag" id="pYouTube">YouTube</div>
+    <div class="platform-tag" id="pTikTok">TikTok</div>
+    <div class="platform-tag" id="pTwitter">Twitter</div>
+    <div class="platform-tag" id="pInstagram">Instagram</div>
+  </div>
+</div>
+
+<div class="tokens-bar">
+  <div class="tokens-track"><div class="tokens-fill" id="tokensFill" style="width:0%"></div></div>
+  <div class="tokens-text">
+    <span id="tokensLeft">0 tokens left</span>
+    <span id="tokensStatus">---</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Settings</div>
+  <div class="toggle-row">
+    <span class="toggle-label">Auto-analyze pages</span>
+    <button class="toggle" id="toggleAuto"></button>
+  </div>
+  <div class="toggle-row">
+    <span class="toggle-label">Deep scraping</span>
+    <button class="toggle" id="toggleDeep"></button>
+  </div>
+  <div class="toggle-row">
+    <span class="toggle-label">Show badges</span>
+    <button class="toggle on" id="toggleBadges"></button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="actions">
+    <button class="btn btn-primary" id="btnSyncNow">Sync Now</button>
+    <button class="btn btn-secondary" id="btnExport">Export Data (JSON)</button>
+    <button class="btn btn-danger" id="btnClear">Clear All Data</button>
+  </div>
+</div>
+
+<div class="sync-info">
+  <span id="syncStatus">Idle</span>
+  <div class="sync-spinner" id="syncSpinner"></div>
+</div>
+
+<div class="error-msg" id="errorMsg"></div>
+
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+/* ══════════════════════════════════════════════════════════════════
+   NychIQ Chrome Extension v3.0 — Content Styles
+   Multi-platform badge & overlay styles for YouTube, TikTok, Twitter/X
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   YOUTUBE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Performance: Contain layout recalculations */
+.ytd-rich-item-renderer {
+  contain: layout style paint;
+}
+
+/* Thumbnail container position fix */
+ytd-thumbnail,
+#thumbnail,
+ytd-rich-item-renderer #dismissible ytd-thumbnail,
+ytd-compact-video-renderer #dismissible ytd-thumbnail {
+  position: relative !important;
+}
+
+/* Ensure badge is visible above YouTube overlays */
+.ytp-ce-element,
+.ytp-ce-covering-overlay {
+  z-index: 999 !important;
+}
+
+/* Badge hover effect */
+.nychiq-score-badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nychiq-score-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Pulse animation for high viral scores */
+.nychiq-viral-high {
+  animation: nychiq-fade-in 0.4s ease forwards, nychiq-pulse-glow 2s infinite 0.5s;
+}
+
+@keyframes nychiq-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Analysis overlay entrance */
+.nychiq-overlay {
+  animation: nychiq-overlay-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes nychiq-overlay-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Analyze button bounce */
+.nychiq-analyze-btn {
+  animation: nychiq-slide-up 0.5s ease, nychiq-fab-bounce 3s infinite 1s;
+}
+
+@keyframes nychiq-fab-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes nychiq-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar for overlay body */
+.nychiq-overlay-body::-webkit-scrollbar,
+.nq-ob::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nychiq-overlay-body::-webkit-scrollbar-track,
+.nq-ob::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nychiq-overlay-body::-webkit-scrollbar-thumb,
+.nq-ob::-webkit-scrollbar-thumb {
+  background: #1F1F1F;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TIKTOK STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Ensure TikTok feed cards are relative for badge positioning */
+[data-e2e="recommend-list-item-container"],
+.tiktok-1srot6y-DivItemContainerForFeed,
+[data-e2e="video-card"],
+.tiktok-yz6ijl-DivContainer {
+  position: relative !important;
+}
+
+/* TikTok badge placement — top-right corner of video cards */
+.tiktok-1srot6y-DivItemContainerForFeed .nychiq-score-badge,
+[data-e2e="recommend-list-item-container"] .nychiq-score-badge {
+  top: 12px !important;
+  right: 12px !important;
+}
+
+/* TikTok-specific badge style override */
+.nq-tiktok-badge {
+  background: rgba(254, 44, 85, 0.9) !important;
+  border-color: rgba(254, 44, 85, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(254, 44, 85, 0.3) !important;
+}
+
+.nq-tiktok-badge.nq-high {
+  animation: nychiq-fade-in 0.4s ease forwards, nq-tiktok-pulse 2s infinite 0.5s !important;
+}
+
+@keyframes nq-tiktok-pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(254, 44, 85, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(254, 44, 85, 0.6);
+  }
+}
+
+/* TikTok profile page adjustments */
+.tiktok-18zf8sx-DivUserStats {
+  /* Don't interfere with stat display */
+}
+
+/* TikTok comment section badge area */
+[data-e2e="comment-list"] .nychiq-score-badge {
+  display: none; /* Don't show badges inside comment lists */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TWITTER/X STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Ensure tweet containers are relative */
+article[data-testid="tweet"] {
+  position: relative !important;
+}
+
+/* Twitter badge placement — top-right of tweet text area */
+article[data-testid="tweet"] .nychiq-score-badge {
+  top: 8px !important;
+  right: 8px !important;
+  z-index: 2;
+}
+
+/* Twitter/X-specific badge style override */
+.nq-twitter-badge {
+  background: rgba(29, 155, 240, 0.9) !important;
+  border-color: rgba(29, 155, 240, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(29, 155, 240, 0.3) !important;
+}
+
+.nq-twitter-badge.nq-high {
+  animation: nychiq-fade-in 0.4s ease forwards, nq-twitter-pulse 2s infinite 0.5s !important;
+}
+
+@keyframes nq-twitter-pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(29, 155, 240, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(29, 155, 240, 0.6);
+  }
+}
+
+/* Ensure overlay appears above Twitter UI */
+[data-testid="primaryColumn"] .nychiq-overlay {
+  z-index: 99999 !important;
+}
+
+/* Don't show badges inside retweet indicators or quote tweets */
+[data-testid="retweet"] .nychiq-score-badge,
+article[data-testid="tweet"] article .nychiq-score-badge {
+  display: none;
+}
+
+/* Trend section badge adjustments */
+section[aria-label*="Trend"] .nychiq-score-badge {
+  display: none; /* Don't badge trends */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SHARED / CROSS-PLATFORM STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Base badge animation (used by all platforms) */
+@keyframes nychiq-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Floating button across all platforms */
+.nychiq-analyze-btn {
+  z-index: 99999 !important;
+}
+
+/* Overlay across all platforms */
+.nychiq-overlay {
+  z-index: 99999 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Dark theme compatibility for TikTok (which uses a dark UI by default) */
+.tiktok-dark .nychiq-score-badge,
+[data-theme="dark"] .nychiq-score-badge {
+  filter: brightness(1.1);
+}
+
+/* Light theme compatibility for Twitter/X */
+body[data-title="light"] .nychiq-score-badge,
+[data-testid="tweet"] .nychiq-score-badge {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure badges don't interfere with platform interactions */
+.nychiq-score-badge {
+  pointer-events: none !important;
+  user-select: none;
+}
+
+/* Prevent layout shift from badges */
+.nychiq-score-badge {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* Smooth transitions for badge updates */
+.nychiq-score-badge * {
+  pointer-events: none;
+}
