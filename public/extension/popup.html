@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NychIQ Extension v2.0</title>
+  <title>NychIQ Extension v3.0</title>
   <style>
     * {
       margin: 0;
@@ -12,8 +12,8 @@
     }
 
     body {
-      width: 360px;
-      min-height: 420px;
+      width: 380px;
+      min-height: 480px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #0D0D0D;
       color: #FFFFFF;
@@ -24,7 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
+      padding: 14px 20px;
       border-bottom: 1px solid #1F1F1F;
     }
 
@@ -58,6 +58,13 @@
 
     .logo-text span {
       color: #FDBA2D;
+    }
+
+    .logo-version {
+      font-size: 9px;
+      color: #444;
+      font-weight: 400;
+      margin-left: 4px;
     }
 
     .status-badge {
@@ -102,19 +109,19 @@
       50% { opacity: 0.4; }
     }
 
-    /* ── Stats ── */
+    /* ── Stats Grid ── */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 16px 20px;
+      gap: 8px;
+      padding: 14px 20px;
     }
 
     .stat-card {
       background: #141414;
       border: 1px solid #1F1F1F;
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px;
       text-align: center;
       transition: border-color 0.2s;
     }
@@ -124,7 +131,7 @@
     }
 
     .stat-value {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 2px;
     }
@@ -133,17 +140,81 @@
     .stat-value.purple { color: #8B5CF6; }
     .stat-value.green { color: #10B981; }
     .stat-value.blue { color: #3B82F6; }
+    .stat-value.pink { color: #FE2C55; }
+    .stat-value.cyan { color: #1D9BF0; }
 
     .stat-label {
-      font-size: 10px;
+      font-size: 9px;
       color: #666;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
+    /* ── Platform Breakdown ── */
+    .platform-breakdown {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px 12px;
+    }
+
+    .platform-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      background: #141414;
+      border: 1px solid #1F1F1F;
+    }
+
+    .platform-pill .pp-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .platform-pill.youtube .pp-dot { background: #FF0000; }
+    .platform-pill.tiktok .pp-dot { background: #FE2C55; }
+    .platform-pill.twitter .pp-dot { background: #1D9BF0; }
+
+    .platform-pill .pp-count {
+      color: #A3A3A3;
+    }
+
+    /* ── Queue Info ── */
+    .queue-info {
+      padding: 0 20px 12px;
+    }
+
+    .queue-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .queue-progress {
+      width: 100%;
+      height: 4px;
+      background: #1F1F1F;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .queue-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #FDBA2D, #8B5CF6);
+      transition: width 0.5s ease;
+    }
+
     /* ── Actions ── */
     .actions {
-      padding: 0 20px 16px;
+      padding: 0 20px 12px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -154,9 +225,9 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px;
+      padding: 11px;
       border-radius: 10px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       border: none;
       cursor: pointer;
@@ -197,12 +268,21 @@
       background: rgba(239, 68, 68, 0.2);
     }
 
+    .btn-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-row .btn {
+      flex: 1;
+    }
+
     /* ── Toggle ── */
     .toggle-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
+      padding: 10px 20px;
       border-top: 1px solid #1F1F1F;
     }
 
@@ -211,11 +291,18 @@
       color: #A3A3A3;
     }
 
+    .toggle-sublabel {
+      font-size: 9px;
+      color: #555;
+      margin-top: 1px;
+    }
+
     .toggle-switch {
       position: relative;
       width: 40px;
       height: 22px;
       cursor: pointer;
+      flex-shrink: 0;
     }
 
     .toggle-switch input {
@@ -257,7 +344,7 @@
 
     /* ── Footer ── */
     .footer {
-      padding: 12px 20px;
+      padding: 10px 20px;
       border-top: 1px solid #1F1F1F;
       text-align: center;
     }
@@ -273,17 +360,17 @@
       color: #A3A3A3;
     }
 
-    /* ── Hidden state ── */
+    /* ── Hidden ── */
     .hidden {
       display: none !important;
     }
 
-    /* ── Connect view ── */
+    /* ── Connect View ── */
     .connect-view {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 32px 20px;
       text-align: center;
     }
 
@@ -315,16 +402,16 @@
       font-size: 12px;
       color: #A3A3A3;
       line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       max-width: 280px;
     }
 
     .features-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .feature-item {
@@ -353,6 +440,27 @@
     .feature-item strong {
       color: #FFFFFF;
     }
+
+    /* ── Sync status indicator ── */
+    .sync-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 20px;
+      font-size: 9px;
+      color: #555;
+    }
+
+    .sync-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #555;
+    }
+
+    .sync-dot.active {
+      background: #10B981;
+    }
   </style>
 </head>
 <body>
@@ -367,7 +475,7 @@
             <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
           </svg>
         </div>
-        <div class="logo-text">NY<span>CHIQ</span></div>
+        <div class="logo-text">NY<span>CHIQ</span><span class="logo-version">v3</span></div>
       </div>
       <div class="status-badge disconnected">
         <div class="status-dot"></div>
@@ -384,32 +492,36 @@
       </div>
       <div class="connect-title">Connect to NychIQ</div>
       <div class="connect-desc">
-        Sign in to your NychIQ account to unlock real-time YouTube insights, viral scores, and AI analysis on every video page.
+        Deep scrape YouTube, TikTok, and Twitter/X. Get viral scores, engagement metrics, and AI-powered insights on every page.
       </div>
 
       <div class="features-list">
         <div class="feature-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-          <span><strong>Viral Score</strong> on every video</span>
+          <span><strong>Multi-Platform</strong> YouTube · TikTok · Twitter/X</span>
         </div>
         <div class="feature-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-          <span><strong>Engagement</strong> & SEO analysis</span>
+          <span><strong>Deep Scrape</strong> Comments, feeds, profiles, trends</span>
         </div>
         <div class="feature-item">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
-          <span><strong>Analyze</strong> any video in 1 click</span>
+          <span><strong>Batch Collection</strong> Auto-collect from all tabs</span>
+        </div>
+        <div class="feature-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span><strong>Export Data</strong> Download all scraped data as JSON</span>
         </div>
       </div>
 
-      <button class="btn btn-primary" id="btn-connect">
+      <button class="btn btn-primary" id="btn-connect" style="width:100%">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
         Connect Account
       </button>
     </div>
 
     <div class="footer">
-      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; YouTube Intelligence Platform</a>
+      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; Social Intelligence Platform</a>
     </div>
   </div>
 
@@ -423,7 +535,7 @@
             <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
           </svg>
         </div>
-        <div class="logo-text">NY<span>CHIQ</span></div>
+        <div class="logo-text">NY<span>CHIQ</span><span class="logo-version">v3</span></div>
       </div>
       <div class="status-badge connected">
         <div class="status-dot"></div>
@@ -445,9 +557,42 @@
         <div class="stat-label">Viral Detected</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value blue" id="stat-tokens">0</div>
-        <div class="stat-label">Tokens Left</div>
+        <div class="stat-value blue" id="stat-total">0</div>
+        <div class="stat-label">Data Points</div>
       </div>
+    </div>
+
+    <div class="platform-breakdown">
+      <div class="platform-pill youtube">
+        <div class="pp-dot"></div>
+        <span id="stat-youtube-breakdown">0</span>
+        <span class="pp-count">YT</span>
+      </div>
+      <div class="platform-pill tiktok">
+        <div class="pp-dot"></div>
+        <span id="stat-tiktok-breakdown">0</span>
+        <span class="pp-count">TT</span>
+      </div>
+      <div class="platform-pill twitter">
+        <div class="pp-dot"></div>
+        <span id="stat-twitter-breakdown">0</span>
+        <span class="pp-count">X</span>
+      </div>
+    </div>
+
+    <div class="queue-info">
+      <div class="queue-bar">
+        <span>Batch Queue</span>
+        <span id="stat-queue">0 / 500</span>
+      </div>
+      <div class="queue-progress">
+        <div class="queue-fill" id="queue-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="sync-status">
+      <div class="sync-dot" id="sync-dot"></div>
+      <span id="sync-status-text">Ready</span>
     </div>
 
     <div class="actions">
@@ -455,14 +600,23 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
         Open Dashboard
       </a>
-      <button class="btn btn-secondary" id="btn-analyze">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        Analyze Current Page
-      </button>
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="btn-analyze">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Analyze
+        </button>
+        <button class="btn btn-secondary" id="btn-export">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Export JSON
+        </button>
+      </div>
     </div>
 
     <div class="toggle-row">
-      <span class="toggle-label">Show badges on YouTube</span>
+      <div>
+        <div class="toggle-label">Show badges</div>
+        <div class="toggle-sublabel">Viral/HOT scores on content</div>
+      </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-badges" checked>
         <span class="toggle-slider"></span>
@@ -470,7 +624,10 @@
     </div>
 
     <div class="toggle-row">
-      <span class="toggle-label">Auto-analyze on load</span>
+      <div>
+        <div class="toggle-label">Auto-collect data</div>
+        <div class="toggle-sublabel">Scrape on page load</div>
+      </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-auto">
         <span class="toggle-slider"></span>
@@ -478,7 +635,10 @@
     </div>
 
     <div class="toggle-row">
-      <span class="toggle-label">Deep scraping mode</span>
+      <div>
+        <div class="toggle-label">Deep scraping mode</div>
+        <div class="toggle-sublabel">Scroll-to-load comments & feeds</div>
+      </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-deep">
         <span class="toggle-slider"></span>
@@ -493,7 +653,7 @@
     </div>
 
     <div class="footer">
-      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; YouTube Intelligence Platform</a>
+      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; Social Intelligence Platform</a>
     </div>
   </div>
 
