@@ -64,7 +64,6 @@ wrangler secret put ZAI_KEY_1
 # Search Keys
 wrangler secret put BRAVE_KEY_1
 wrangler secret put TAVILY_KEY_1
-wrangler secret put SERP_KEY_1
 
 # Social Scraping
 wrangler secret put SOCIAVAULT_KEY_1
@@ -161,7 +160,7 @@ bun run build && wrangler pages deploy out --project-name=nychiq-frontend
 | ZAI_KEY | open.bigmodel.cn | Image Gen (F3) |
 | BRAVE_KEY | api.search.brave.com | Web Search (primary) |
 | TAVILY_KEY | tavily.com | Web Search (F1) |
-| SERP_KEY | serpapi.com | Web Search (F2) |
+| SERP_KEY | — | ~~Web Search~~ **REMOVED** — using DuckDuckGo HTML fallback |
 | SOCIAVAULT_KEY | sociavault.com/signup | Social scraping (primary) |
 | ENSEMBLE_KEY | ensembledata.com | Social scraping (F1) |
 | TIKHUB_KEY | rapidapi.com (Tikhub) | Social scraping (F2) |
