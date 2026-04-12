@@ -10,7 +10,7 @@ compatibility_flags = ["nodejs_compat"]
 # KV Namespace — primary cache layer
 [[kv_namespaces]]
 binding = "CACHE"
-id = "YOUR_KV_NAMESPACE_ID"
+id = "da4935f64f674805a074eec42bd2ddb9"
 
 # D1 Database — SQL database (fallback to Supabase → Turso)
 [[d1_databases]]
