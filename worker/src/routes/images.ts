@@ -43,9 +43,9 @@ imageRoutes.get('/generate', async (c) => {
 
   // 2. Workers AI SDXL
   try {
-    const ai = (c.env as any).AI;
+    const ai = c.env.AI;
     if (ai) {
-      const response = await ai.run('@cf/stabilityai/stable-diffusion-xl-base-1.0', {
+      const response: any = await ai.run('@cf/stabilityai/stable-diffusion-xl-base-1.0', {
         prompt,
         width: fw,
         height: fh,

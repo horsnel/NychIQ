@@ -14,18 +14,15 @@ export async function GET(request: NextRequest) {
 
   const apiKey = process.env.YOUTUBE_API_KEY;
 
-  // If no API key, return mock data
   if (!apiKey) {
     const channelName = handle?.replace('@', '') || 'Unknown Channel';
     return NextResponse.json(generateMockChannel(channelName, handle));
   }
 
   try {
-    // Step 1: If we have a handle, search for the channel first to get the ID
     let channelId = id;
 
     if (!channelId && handle) {
-      // Search for the channel by handle
       const searchQuery = handle.startsWith('@') ? handle : `@${handle}`;
       const searchParams = new URLSearchParams({
         part: 'snippet',
@@ -46,9 +43,7 @@ export async function GET(request: NextRequest) {
         }
       }
 
-      // If search didn't return a result, try the channels.list with the handle directly
       if (!channelId) {
-        // YouTube allows @handle lookup via forHandle parameter
         const forHandleParams = new URLSearchParams({
           part: 'snippet,statistics,brandingSettings',
           forHandle: handle.startsWith('@') ? handle.slice(1) : handle,
@@ -69,12 +64,10 @@ export async function GET(request: NextRequest) {
     }
 
     if (!channelId) {
-      // Fallback to mock if we can't find the channel
       const channelName = handle?.replace('@', '') || 'Unknown Channel';
       return NextResponse.json(generateMockChannel(channelName, handle));
     }
 
-    // Step 2: Fetch full channel details
     const channelParams = new URLSearchParams({
       part: 'snippet,statistics,brandingSettings,contentDetails',
       id: channelId,
@@ -152,13 +145,12 @@ function generateMockChannel(name: string, handle: string) {
   };
 }
 
-/* ── Helpers ── */
 function hashString(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
+    hash = hash & hash;
   }
   return Math.abs(hash);
 }

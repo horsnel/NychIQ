@@ -43,7 +43,7 @@ embeddingsRoutes.post('/', async (c) => {
 
     // 1. Workers AI — BGE Large EN v1.5 (free, built-in, no key)
     try {
-      const ai = (c.env as any).AI;
+      const ai = c.env.AI;
       if (ai) {
         // Workers AI processes one text at a time
         const embeddings: number[][] = [];

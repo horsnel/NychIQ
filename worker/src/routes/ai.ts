@@ -212,7 +212,7 @@ aiRoutes.post('/chat', async (c) => {
       {
         name: 'workers-ai',
         fn: async () => {
-          const ai = (c.env as any).AI;
+          const ai = c.env.AI;
           if (!ai) throw new Error('Workers AI not available');
           const res = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
             messages: messages.map(m => ({

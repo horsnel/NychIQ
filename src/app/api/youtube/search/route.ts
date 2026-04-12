@@ -7,38 +7,26 @@ export async function GET(request: NextRequest) {
   const maxResults = searchParams.get('maxResults') || '20';
   const type = searchParams.get('type') || 'video';
   const pageToken = searchParams.get('pageToken') || '';
+  const regionCode = searchParams.get('regionCode') || '';
 
   if (!q) {
     return NextResponse.json({ error: 'Query parameter "q" is required' }, { status: 400 });
   }
 
-  const regionCode = searchParams.get('regionCode') || '';
-
-  const params = new URLSearchParams({
-    part,
-    q,
-    maxResults,
-    type,
-  });
-
-  if (regionCode) {
-    params.set('regionCode', regionCode);
-  }
-  if (pageToken) {
-    params.set('pageToken', pageToken);
-  }
+  const params = new URLSearchParams({ part, q, maxResults, type });
+  if (regionCode) params.set('regionCode', regionCode);
+  if (pageToken) params.set('pageToken', pageToken);
 
   const apiKey = process.env.YOUTUBE_API_KEY;
 
   if (!apiKey) {
-    // Return mock data if no API key is configured
     return NextResponse.json(generateMockSearch(q, type, parseInt(maxResults, 10)));
   }
 
   try {
     const res = await fetch(
       `https://www.googleapis.com/youtube/v3/search?${params.toString()}`,
-      { next: { revalidate: 60 } } // Cache for 1 minute
+      { next: { revalidate: 60 } }
     );
 
     if (!res.ok) {
@@ -61,7 +49,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-/* ── Mock search data ── */
+/* ── Mock search data (used when YOUTUBE_API_KEY is not set) ── */
 function generateMockSearch(query: string, type: string, count: number) {
   const channels = [
     'TechVision Africa', 'Naija Trends', 'CodeMaster NG', 'Comedy Central Naija',

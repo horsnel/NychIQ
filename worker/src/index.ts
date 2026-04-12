@@ -182,7 +182,7 @@ async function refreshTrendingCache(env: Env) {
         signal: AbortSignal.timeout(10000),
       });
       if (res.ok) {
-        const data = await res.json();
+        const data: any = await res.json();
         const key = `nychiq:trending:youtube:maxResults=20&regionCode=${region}`;
         await env.CACHE.put(key, JSON.stringify({
           items: (data || []).slice(0, 20),

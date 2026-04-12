@@ -1,14 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const SYSTEM_PROMPT = `You are Saku, the AI assistant for NychIQ — a YouTube Intelligence Platform. You help YouTube creators with:
-- Content strategy and viral prediction
-- SEO optimization (titles, descriptions, tags)
-- Trend analysis and niche discovery
-- Channel growth tips and monetization advice
-- Competitor analysis insights
-- Thumbnail and hook optimization
-
-Be concise, actionable, and specific. Use data and examples when possible. Keep responses under 200 words unless asked for detailed analysis. Use a friendly, expert tone.`;
+const SYSTEM_PROMPT = `You are Saku, the AI assistant for NychIQ — a YouTube Intelligence Platform built for creators in Africa and beyond. You specialize in YouTube algorithm optimization, content strategy, SEO, virality mechanics, monetization, competitive intelligence, and trend prediction. Be concise, actionable, and specific. Use YouTube metrics (CTR, AVD, RPM, CPV, VPH, ER). Keep responses under 300 words unless asked for deep analysis.`;
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,7 +15,7 @@ export async function POST(req: NextRequest) {
 
     // Build messages with system prompt prepended
     const fullMessages = [
-      { role: 'assistant', content: SYSTEM_PROMPT },
+      { role: 'system', content: SYSTEM_PROMPT },
       ...messages,
     ];
 
@@ -34,11 +26,10 @@ export async function POST(req: NextRequest) {
 
     const text = completion.choices?.[0]?.message?.content || 'Sorry, I couldn\'t generate a response.';
 
-    // Simulate streaming by sending the full response as a single SSE event
+    // Simulate streaming by chunking the full response into SSE events
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       start(controller) {
-        // Send in chunks to simulate streaming
         const words = text.split(' ');
         let index = 0;
         const chunkSize = 3; // words per chunk

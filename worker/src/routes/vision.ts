@@ -65,7 +65,7 @@ visionRoutes.post('/analyze', async (c) => {
 
     // 2. Workers AI LLaVA (free, built-in)
     try {
-      const ai = (c.env as any).AI;
+      const ai = c.env.AI;
       if (ai && imageUrl) {
         // Fetch image and convert to array buffer for Workers AI
         const imgRes = await fetch(imageUrl, { signal: AbortSignal.timeout(10000) });

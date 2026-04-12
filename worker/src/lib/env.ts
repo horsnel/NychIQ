@@ -11,6 +11,7 @@ export interface Env {
   STORAGE: R2Bucket;
   VECTORS: VectorizeIndex;
   TASK_QUEUE: Queue<unknown>;
+  AI: Ai; // Workers AI — inference for embeddings, vision, translation, image gen
 
   // ── AI Keys (rotated: _1 through _4) ──
   GROQ_KEY_1?: string;

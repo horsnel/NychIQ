@@ -86,7 +86,7 @@ translateRoutes.post('/translate', async (c) => {
 
     // 4. Workers AI M2M100 (free, built-in, no key needed)
     try {
-      const ai = (c.env as any).AI;
+      const ai = c.env.AI;
       if (ai) {
         // M2M100 supports: en, zh, de, fr, ru, es, etc.
         // Map common language codes to M2M100 codes

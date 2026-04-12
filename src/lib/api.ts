@@ -1,6 +1,7 @@
 /* ── NychIQ API helpers ──
- * These proxy through Next.js API routes so the backend
- * can use z-ai-web-dev-sdk securely.
+ * In development: Next.js API routes at src/app/api/ handle requests
+ *   using z-ai-web-dev-sdk (AI) and YouTube Data API v3 (YouTube).
+ * In production: Cloudflare Worker serves both static files and /api/* routes.
  */
 
 const API_BASE = '/api';

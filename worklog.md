@@ -96,3 +96,39 @@ Stage Summary:
 - API Call Minimization: 2 new utilities (deduplicateRequest, conditionalFetch) added to cache.ts
 - Chrome Extension: v3.0 — 3,625 lines, multi-platform (YouTube + TikTok + Twitter/X), heavy scraping with 90% reliability target
 - Extension features: auto-scroll comments, batch data collection, periodic background sync, cross-tab aggregation, platform-specific badges/scores, data export
+
+---
+Task ID: 4
+Agent: Main Agent + 3 Sub-Agents
+Task: Fix Worker TypeScript errors, clean up dead server-api, fix frontend API routing, add AI binding to Env
+
+Work Log:
+- FIXED Worker TypeScript errors:
+  - index.ts:185 — Added `: any` annotation to `await res.json()` to fix TS2339 on `.slice()`
+  - audit.ts:181 — Parenthesized `await` expression `(await capRes.text()).replace(...)` to fix TS2339 on `Promise<string>`
+  - images.ts:48 — Added `: any` annotation to Workers AI SDXL response to fix TS2339 on `.image`
+- CLEANED UP dead server-api/ directory:
+  - Deleted entire server-api/ (6 files: route.ts, ai/chat, ai/stream, youtube/search, youtube/videos, youtube/channel)
+  - These were Next.js App Router route handlers placed outside src/app/, never executed by Next.js
+  - With output: "export", API routes in non-standard locations are dead code
+- FIXED frontend API routing for static export:
+  - Created src/app/api/ai/chat/route.ts — z-ai-web-dev-sdk with upgraded SAKU_SYSTEM_PROMPT (7 expertise sections)
+  - Created src/app/api/ai/stream/route.ts — z-ai-web-dev-sdk with word-chunked SSE streaming
+  - Created src/app/api/youtube/search/route.ts — YouTube Data API v3 with mock fallback
+  - Created src/app/api/youtube/videos/route.ts — YouTube Data API v3 with mock fallback
+  - Created src/app/api/youtube/channel/route.ts — YouTube Data API v3 with handle lookup + mock fallback
+  - Updated src/lib/api.ts comments to document dual-mode architecture (dev: Next.js API routes, prod: CF Worker)
+  - In dev mode: next dev serves API routes from src/app/api/ (works even with output: "export")
+  - In production: Cloudflare Worker serves static files from /out + handles all /api/* routes
+- ADDED AI binding to Env interface:
+  - Added `AI: Ai` to worker/src/lib/env.ts (CloudFlare Workers AI binding for embeddings, vision, translation, image gen)
+  - Replaced all 6 `(c.env as any).AI` casts with typed `c.env.AI` across vision.ts, embeddings.ts, ai.ts, translate.ts, images.ts
+  - Zero `as any` casts remaining for AI binding access
+- VERIFICATION: 0 TypeScript errors (worker), 0 ESLint errors (frontend)
+
+Stage Summary:
+- Worker: 0 TypeScript errors, properly typed AI binding across 5 route modules
+- Frontend: 5 API routes now functional in dev mode via src/app/api/
+- Dead code: server-api/ removed (was 6 unused files)
+- Architecture: Clear dual-mode setup documented — dev uses Next.js API routes, prod uses CF Worker
+

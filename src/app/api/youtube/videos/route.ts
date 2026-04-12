@@ -9,32 +9,23 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get('id') || '';
   const pageToken = searchParams.get('pageToken') || '';
 
-  const params = new URLSearchParams({
-    part,
-    chart,
-    regionCode,
-    maxResults,
-  });
-
+  const params = new URLSearchParams({ part, chart, regionCode, maxResults });
   if (id) {
     params.set('id', id);
     params.delete('chart');
   }
-  if (pageToken) {
-    params.set('pageToken', pageToken);
-  }
+  if (pageToken) params.set('pageToken', pageToken);
 
   const apiKey = process.env.YOUTUBE_API_KEY;
 
   if (!apiKey) {
-    // Return mock data if no API key is configured
     return NextResponse.json(generateMockVideos(parseInt(maxResults, 10)));
   }
 
   try {
     const res = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?${params.toString()}`,
-      { next: { revalidate: 300 } } // Cache for 5 minutes
+      { next: { revalidate: 300 } }
     );
 
     if (!res.ok) {

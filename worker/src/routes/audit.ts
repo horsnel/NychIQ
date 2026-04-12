@@ -178,7 +178,7 @@ auditRoutes.post('/run', async (c) => {
             if (enCap?.url) {
               const capRes = await fetch(enCap.url);
               if (capRes.ok) {
-                const text = await capRes.text()
+                const text = (await capRes.text())
                   .replace(/<[^>]+>/g, '')
                   .replace(/\d{2}:\d{2}:\d{2}[.,]\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}[.,]\d{3}/g, '')
                   .replace(/WEBVTT[\s\S]*?\n\n/, '')
