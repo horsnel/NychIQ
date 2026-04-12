@@ -20,6 +20,7 @@ import { CompanyPage } from '@/components/nychiq/company-page';
 import { OnboardingQuestions } from '@/components/nychiq/onboarding-questions';
 import { OnboardingAudit } from '@/components/nychiq/onboarding-audit';
 import { OnboardingExtension } from '@/components/nychiq/onboarding-extension';
+import { SakuGuide } from '@/components/nychiq/saku-guide';
 import { DashboardTool } from '@/components/nychiq/dashboard-tool';
 import { TrendingTool } from '@/components/nychiq/trending-tool';
 import { SearchTool } from '@/components/nychiq/search-tool';
@@ -75,6 +76,9 @@ import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { ChannelAssistantTool } from '@/components/nychiq/channel-assistant-tool';
 import { MyChannelTool } from '@/components/nychiq/my-channel-tool';
 import { AutoUploaderTool } from '@/components/nychiq/auto-uploader-tool';
+import { CollaborationTool } from '@/components/nychiq/collaboration-tool';
+import { ScheduledReportsTool } from '@/components/nychiq/scheduled-reports-tool';
+import { VideoBatchTool } from '@/components/nychiq/video-batch-tool';
 import { PlanGate } from '@/components/nychiq/plan-gate';
 import { initAudio } from '@/lib/sounds';
 import { Card, CardContent } from '@/components/ui/card';
@@ -250,6 +254,12 @@ function ToolRouter() {
       return <ChannelAssistantTool />;
     case 'auto-uploader':
       return <AutoUploaderTool />;
+    case 'team-collab':
+      return <CollaborationTool />;
+    case 'scheduled-reports':
+      return <ScheduledReportsTool />;
+    case 'video-batch':
+      return <VideoBatchTool />;
     default:
       return <ToolPlaceholder />;
   }
@@ -277,6 +287,9 @@ function AppShell() {
 
       {/* Mobile bottom nav */}
       <MobileNav />
+
+      {/* Saku Virtual Guide overlay */}
+      <SakuGuide />
 
       {/* Saku floating trigger button */}
       {isLoggedIn && !sakuOpen && !sakuFullOpen && (

@@ -72,6 +72,8 @@ export function OnboardingExtension() {
   const [extensionClicked, setExtensionClicked] = useState(false);
 
   const handleInstallExtension = () => {
+    // Open the extension popup in a new tab (simulates extension experience)
+    window.open('/extension/popup.html', '_blank');
     setExtensionClicked(true);
   };
 
@@ -122,7 +124,7 @@ export function OnboardingExtension() {
                   <p className="text-[10px] text-[#666666]">{step.desc}</p>
                 </div>
                 {idx < SETUP_STEPS.length - 1 && (
-                  <ArrowRight className="w-3 h-3 text-[#333] shrink-0" />
+                  <ArrowRight className="w-3 h-3 text-[#555555] shrink-0" />
                 )}
               </div>
             );
@@ -153,7 +155,7 @@ export function OnboardingExtension() {
 
       <button
         onClick={handleSkipExtension}
-        className="block text-xs text-[#444] hover:text-[#A3A3A3] transition-colors mx-auto"
+        className="block text-xs text-[#555555] hover:text-[#A3A3A3] transition-colors mx-auto"
       >
         Skip extension, start using NychIQ &#x2192;
       </button>
@@ -184,7 +186,7 @@ export function OnboardingExtension() {
               />
             ))}
           </div>
-          <span className="text-[10px] text-[#444] font-mono">3 of 3</span>
+          <span className="text-[10px] text-[#555555] font-mono">3 of 3</span>
         </div>
       </div>
 
@@ -257,12 +259,12 @@ export function OnboardingExtension() {
               {extensionClicked ? (
                 <>
                   <Check className="w-4 h-4 mr-2" />
-                  Extension Installing…
+                  Extension Opened
                 </>
               ) : (
                 <>
                   <Download className="w-4 h-4 mr-2" />
-                  Install Extension
+                  Open Extension Preview
                 </>
               )}
             </Button>

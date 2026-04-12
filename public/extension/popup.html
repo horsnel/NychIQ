@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NychIQ Extension</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 360px;
+      min-height: 420px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0D0D0D;
+      color: #FFFFFF;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #1F1F1F;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #8B5CF6, #FDBA2D);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .logo-text {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .logo-text span {
+      color: #FDBA2D;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .status-badge.connected {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .status-badge.disconnected {
+      background: rgba(239, 68, 68, 0.1);
+      color: #EF4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .connected .status-dot {
+      background: #10B981;
+      animation: pulse-dot 2s infinite;
+    }
+
+    .disconnected .status-dot {
+      background: #EF4444;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── Stats ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 16px 20px;
+    }
+
+    .stat-card {
+      background: #141414;
+      border: 1px solid #1F1F1F;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      border-color: #2A2A2A;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .stat-value.amber { color: #FDBA2D; }
+    .stat-value.purple { color: #8B5CF6; }
+    .stat-value.green { color: #10B981; }
+    .stat-value.blue { color: #3B82F6; }
+
+    .stat-label {
+      font-size: 10px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Actions ── */
+    .actions {
+      padding: 0 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #FDBA2D, #C69320);
+      color: #000;
+      box-shadow: 0 4px 15px rgba(253, 186, 45, 0.15);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #1F1F1F;
+      color: #A3A3A3;
+      border: 1px solid #1F1F1F;
+    }
+
+    .btn-secondary:hover {
+      background: #2A2A2A;
+      color: #FFFFFF;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.1);
+      color: #EF4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-top: 1px solid #1F1F1F;
+    }
+
+    .toggle-label {
+      font-size: 12px;
+      color: #A3A3A3;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #1F1F1F;
+      border-radius: 11px;
+      border: 1px solid #2A2A2A;
+      transition: all 0.3s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #666;
+      transition: all 0.3s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: rgba(253, 186, 45, 0.2);
+      border-color: rgba(253, 186, 45, 0.4);
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(18px);
+      background: #FDBA2D;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 12px 20px;
+      border-top: 1px solid #1F1F1F;
+      text-align: center;
+    }
+
+    .footer a {
+      font-size: 10px;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: #A3A3A3;
+    }
+
+    /* ── Hidden state ── */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ── Connect view ── */
+    .connect-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .connect-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .connect-icon svg {
+      width: 32px;
+      height: 32px;
+      color: #8B5CF6;
+    }
+
+    .connect-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .connect-desc {
+      font-size: 12px;
+      color: #A3A3A3;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #141414;
+      border: 1px solid #1F1F1F;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .feature-item svg {
+      width: 16px;
+      height: 16px;
+      color: #FDBA2D;
+      flex-shrink: 0;
+    }
+
+    .feature-item span {
+      font-size: 11px;
+      color: #A3A3A3;
+    }
+
+    .feature-item strong {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Disconnected View ═══ -->
+  <div id="view-disconnected">
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+            <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+          </svg>
+        </div>
+        <div class="logo-text">NY<span>CHIQ</span></div>
+      </div>
+      <div class="status-badge disconnected">
+        <div class="status-dot"></div>
+        Offline
+      </div>
+    </div>
+
+    <div class="connect-view">
+      <div class="connect-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+      </div>
+      <div class="connect-title">Connect to NychIQ</div>
+      <div class="connect-desc">
+        Sign in to your NychIQ account to unlock real-time YouTube insights, viral scores, and AI analysis on every video page.
+      </div>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          <span><strong>Viral Score</strong> on every video</span>
+        </div>
+        <div class="feature-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          <span><strong>Engagement</strong> & SEO analysis</span>
+        </div>
+        <div class="feature-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+          <span><strong>Analyze</strong> any video in 1 click</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="btn-connect">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+        Connect Account
+      </button>
+    </div>
+
+    <div class="footer">
+      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; YouTube Intelligence Platform</a>
+    </div>
+  </div>
+
+  <!-- ═══ Connected View ═══ -->
+  <div id="view-connected" class="hidden">
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 6L18 12L10 18V6Z" fill="white"/>
+            <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
+          </svg>
+        </div>
+        <div class="logo-text">NY<span>CHIQ</span></div>
+      </div>
+      <div class="status-badge connected">
+        <div class="status-dot"></div>
+        Active
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value amber" id="stat-videos">0</div>
+        <div class="stat-label">Videos Analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value purple" id="stat-insights">0</div>
+        <div class="stat-label">Insights Found</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green" id="stat-viral">0</div>
+        <div class="stat-label">Viral Detected</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value blue" id="stat-tokens">0</div>
+        <div class="stat-label">Tokens Left</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="https://nychiq.com" target="_blank" class="btn btn-primary" id="btn-dashboard">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        Open Dashboard
+      </a>
+      <button class="btn btn-secondary" id="btn-analyze">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        Analyze Current Page
+      </button>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Show badges on YouTube</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-badges" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Auto-analyze on load</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-auto">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="actions" style="padding-top: 4px;">
+      <button class="btn btn-danger" id="btn-disconnect">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        Disconnect
+      </button>
+    </div>
+
+    <div class="footer">
+      <a href="https://nychiq.com" target="_blank">NychIQ &mdash; YouTube Intelligence Platform</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

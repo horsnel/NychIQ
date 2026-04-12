@@ -34,6 +34,33 @@ export interface Notification {
   link?: string; // tool page to navigate to
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  email: string;
+  role: 'owner' | 'admin' | 'analyst' | 'viewer';
+  status: 'active' | 'inactive' | 'invited';
+  color: string;
+  channels: string[];
+  joinedAt: number;
+}
+
+export interface PendingInvite {
+  id: string;
+  email: string;
+  role: 'owner' | 'admin' | 'analyst' | 'viewer';
+  sentAt: number;
+  expiresAt: number;
+}
+
+export interface TeamActivity {
+  id: string;
+  user: string;
+  action: string;
+  type: 'add' | 'remove' | 'update' | 'invite';
+  time: number;
+}
+
 export interface NychIQState {
   /* Routing */
   currentPage: PageId;
@@ -135,6 +162,11 @@ export interface NychIQState {
   }>;
   activeAgencyChannelId: string | null;
 
+  /* Team Collaboration */
+  teamMembers: TeamMember[];
+  pendingInvites: PendingInvite[];
+  teamActivityLog: TeamActivity[];
+
   /* ── Actions ── */
   setPage: (page: PageId) => void;
   setActiveTool: (tool: string) => void;
@@ -184,6 +216,15 @@ export interface NychIQState {
   updateAgencyChannel: (id: string, data: Partial<NychIQState['agencyChannels'][number]>) => void;
   setActiveAgencyChannel: (id: string | null) => void;
   bulkUpdateAssistantConfig: (channelIds: string[], config: Partial<NychIQState['agencyChannels'][number]['assistantConfig']>) => void;
+
+  /* Team Collaboration Actions */
+  addTeamMember: (member: Omit<TeamMember, 'id'>) => void;
+  removeTeamMember: (id: string) => void;
+  updateTeamMemberRole: (id: string, role: TeamMember['role']) => void;
+  toggleChannelAccess: (memberId: string, channelId: string) => void;
+  addTeamActivity: (activity: Omit<TeamActivity, 'id' | 'time'>) => void;
+  inviteTeamMember: (email: string, role: TeamMember['role']) => void;
+  revokeInvite: (id: string) => void;
 }
 
 /* ── Token costs per feature ── */
@@ -194,16 +235,16 @@ export const TOKEN_COSTS: Record<string, number> = {
   ideas: 6, hook: 8, 'ab-test': 8, 'social-trends': 8, 'social-mentions': 8, niche: 8, search: 8, 'thumbnail-lab': 8, lume: 8, scriptflow: 8, arbitrage: 8, 'sponsorship-roi': 8,
   'social-comments': 10, competitor: 10, hooklab: 10, 'digital-scout': 10, 'ghost-tracker': 10, 'automation': 10, 'next-uploader': 10, 'history-intel': 10,
   script: 12, 'outlier-scout': 12, 'niche-compare': 12, 'opportunity-heatmap': 12, 'monetization-roadmap': 12,
-  audit: 20, strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20,
+  audit: 20, strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20, 'team-collab': 0, 'video-batch': 15, 'scheduled-reports': 0,
 };
 
 /* ── Plan access levels ── */
 export const PLAN_ACCESS: Record<Plan, string[]> = {
   trial: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'channel-assistant', 'auto-uploader'],
   starter: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'channel-assistant', 'auto-uploader'],
-  pro: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant', 'auto-uploader'],
-  elite: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant', 'auto-uploader'],
-  agency: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant', 'auto-uploader'],
+  pro: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant', 'auto-uploader', 'video-batch'],
+  elite: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant', 'auto-uploader', 'video-batch'],
+  agency: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant', 'auto-uploader', 'team-collab', 'scheduled-reports'],
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
@@ -262,6 +303,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   'next-uploader': { label: 'Next Uploader',    icon: 'UploadCloud',      category: 'studio' },
   'auto-uploader': { label: 'Auto Uploader',    icon: 'Upload',           category: 'studio' },
   scriptflow:      { label: 'ScriptFlow',       icon: 'ScrollText',       category: 'studio' },
+  'video-batch':    { label: 'Video Batch',      icon: 'ListVideo',         category: 'studio' },
   arbitrage:       { label: 'Arbitrage',        icon: 'Scale',            category: 'studio' },
 
   /* ── INTELLIGENCE ── */
@@ -312,6 +354,8 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
 
   /* ── AGENCY ── */
   'agency-dashboard': { label: 'Agency Hub',     icon: 'Building2',        category: 'agency' },
+  'team-collab':     { label: 'Team Collab',     icon: 'UsersRound',       category: 'agency' },
+  'scheduled-reports':{ label: 'Scheduled Reports', icon: 'CalendarClock',  category: 'agency' },
 
   /* ── ACCOUNT ── */
   settings:        { label: 'Settings',         icon: 'Settings',         category: 'account' },
@@ -406,6 +450,11 @@ export const useNychIQStore = create<NychIQState>()(
       // Agency Channels
       agencyChannels: [],
       activeAgencyChannelId: null,
+
+      // Team Collaboration
+      teamMembers: [],
+      pendingInvites: [],
+      teamActivityLog: [],
 
       // ── Actions ──
 
@@ -747,6 +796,64 @@ export const useNychIQStore = create<NychIQState>()(
           ),
         }));
       },
+
+      /* Team Collaboration Actions */
+      addTeamMember: (memberData) => {
+        const newMember: TeamMember = { ...memberData, id: uid() };
+        set((s) => ({
+          teamMembers: [...s.teamMembers, newMember],
+        }));
+      },
+
+      removeTeamMember: (id: string) => {
+        set((s) => ({
+          teamMembers: s.teamMembers.filter((m) => m.id !== id),
+        }));
+      },
+
+      updateTeamMemberRole: (id: string, role: TeamMember['role']) => {
+        set((s) => ({
+          teamMembers: s.teamMembers.map((m) =>
+            m.id === id ? { ...m, role } : m
+          ),
+        }));
+      },
+
+      toggleChannelAccess: (memberId: string, channelId: string) => {
+        set((s) => ({
+          teamMembers: s.teamMembers.map((m) =>
+            m.id === memberId
+              ? { ...m, channels: m.channels.includes(channelId) ? m.channels.filter((c) => c !== channelId) : [...m.channels, channelId] }
+              : m
+          ),
+        }));
+      },
+
+      addTeamActivity: (activity) => {
+        const entry: TeamActivity = { ...activity, id: uid(), time: Date.now() };
+        set((s) => ({
+          teamActivityLog: [entry, ...s.teamActivityLog].slice(0, 100),
+        }));
+      },
+
+      inviteTeamMember: (email: string, role: TeamMember['role']) => {
+        const invite: PendingInvite = {
+          id: uid(),
+          email,
+          role,
+          sentAt: Date.now(),
+          expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        };
+        set((s) => ({
+          pendingInvites: [...s.pendingInvites, invite],
+        }));
+      },
+
+      revokeInvite: (id: string) => {
+        set((s) => ({
+          pendingInvites: s.pendingInvites.filter((i) => i.id !== id),
+        }));
+      },
     }),
     {
       name: 'nychiq-store',
@@ -775,6 +882,9 @@ export const useNychIQStore = create<NychIQState>()(
         personalChannel: state.personalChannel,
         agencyChannels: state.agencyChannels,
         activeAgencyChannelId: state.activeAgencyChannelId,
+        teamMembers: state.teamMembers,
+        pendingInvites: state.pendingInvites,
+        teamActivityLog: state.teamActivityLog,
       }),
     }
   )

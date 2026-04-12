@@ -1,0 +1,84 @@
+/* ══════════════════════════════════════════════════
+   NychIQ Chrome Extension — Content Styles
+   Additional styles injected on YouTube pages
+   ══════════════════════════════════════════════════ */
+
+/* Note: Main styles are injected via content.js injectStyles() */
+/* This file is loaded via manifest content_scripts CSS */
+
+/* ── Thumbnail container position fix ── */
+ytd-thumbnail,
+#thumbnail,
+ytd-rich-item-renderer #dismissible ytd-thumbnail,
+ytd-compact-video-renderer #dismissible ytd-thumbnail {
+  position: relative !important;
+}
+
+/* ── Ensure badge is visible above YouTube overlay ── */
+.ytp-ce-element,
+.ytp-ce-covering-overlay {
+  z-index: 999 !important;
+}
+
+/* ── Badge hover effect (pointer-events re-enabled on hover) ── */
+.nychiq-score-badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nychiq-score-badge:hover {
+  transform: scale(1.05);
+}
+
+/* ── Pulse animation for high viral scores ── */
+.nychiq-viral-high {
+  animation: nychiq-fade-in 0.4s ease forwards, nychiq-pulse-glow 2s infinite 0.5s;
+}
+
+@keyframes nychiq-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* ── Analysis overlay entrance ── */
+.nychiq-overlay {
+  animation: nychiq-overlay-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes nychiq-overlay-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Analyze button bounce ── */
+.nychiq-analyze-btn {
+  animation: nychiq-slide-up 0.5s ease, nychiq-fab-bounce 3s infinite 1s;
+}
+
+@keyframes nychiq-fab-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ── Scrollbar for overlay if needed ── */
+.nychiq-overlay-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nychiq-overlay-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nychiq-overlay-body::-webkit-scrollbar-thumb {
+  background: #1F1F1F;
+  border-radius: 2px;
+}

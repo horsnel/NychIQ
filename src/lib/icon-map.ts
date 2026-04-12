@@ -10,6 +10,7 @@ import {
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
   Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
   MonitorPlay,
+  UsersRound, CalendarClock, ListVideo,
 } from 'lucide-react';
 
 /* ── Shared icon map: maps TOOL_META icon strings to lucide components ── */
@@ -24,4 +25,5 @@ export const ICON_MAP: Record<string, React.ElementType> = {
   Layers, Scan, Wrench, ScrollText, Scale, Columns2, Grid3x3,
   Package, Target, EyeOff, Archive, Sliders, Upload, UploadCloud,
   MonitorPlay,
+  UsersRound, CalendarClock, ListVideo,
 };
