@@ -16,7 +16,7 @@ id = "da4935f64f674805a074eec42bd2ddb9"
 [[d1_databases]]
 binding = "DB"
 database_name = "nychiq-db"
-database_id = "YOUR_D1_DATABASE_ID"
+database_id = "20a58f92-c403-488f-9312-a52d6c81036e"
 
 # R2 Bucket — object storage (fallback to Supabase Storage → Backblaze B2)
 [[r2_buckets]]
