@@ -167,18 +167,23 @@ app.post('/webhook/github', async (c) => {
   // Trigger Cloudflare Pages deploy via API
   const accountId = c.env.CLOUDFLARE_ACCOUNT_ID || 'a3b3d388de22a4074b01905e65aeb92c';
   const cfToken = c.env.CF_API_TOKEN;
-  const hookId = c.env.PAGES_DEPLOY_HOOK_ID;
 
-  if (cfToken && hookId) {
+  if (cfToken) {
     try {
-      await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/nychiq/deploy_hooks/${hookId}`, {
+      const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/nychiq/deployments`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${cfToken}`,
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ branch: 'main' }),
       });
-      console.log(`[Webhook] Triggered Pages deploy for push to main`);
+      const data = await res.json() as any;
+      if (data.success) {
+        console.log(`[Webhook] Triggered Pages deploy: ${data.result?.id}`);
+      } else {
+        console.error(`[Webhook] Pages deploy failed:`, JSON.stringify(data.errors));
+      }
     } catch (err: any) {
       console.error(`[Webhook] Pages deploy trigger failed:`, err?.message);
     }
