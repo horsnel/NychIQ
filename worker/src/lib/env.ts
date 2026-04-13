@@ -14,15 +14,13 @@ export interface Env {
   AI: Ai; // Workers AI — inference for embeddings, vision, translation, image gen
   ASSETS: Fetcher; // Static assets from [site] config
 
-  // ── AI Keys (rotated: _1 through _4) ──
+  // ── AI Keys ──
   GROQ_KEY_1?: string;
   GROQ_KEY_2?: string;
   GROQ_KEY_3?: string;
-  GROQ_KEY_4?: string;
   GEMINI_KEY_1?: string;
   GEMINI_KEY_2?: string;
   GEMINI_KEY_3?: string;
-  GEMINI_KEY_4?: string;
   CEREBRAS_KEY_1?: string;
   CEREBRAS_KEY_2?: string;
   OPENROUTER_KEY_1?: string;

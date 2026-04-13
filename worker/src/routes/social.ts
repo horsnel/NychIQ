@@ -180,7 +180,7 @@ socialRoutes.get('/instagram/profile', async (c) => {
 
   // 3. Gemini Flash — infer insights from available data
   try {
-    const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+    const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
     if (key) {
       const messages = [
         {
@@ -284,7 +284,7 @@ socialRoutes.get('/twitter/profile', async (c) => {
 
   // 3. Gemini Flash — sentiment/analysis fallback
   try {
-    const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+    const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
     if (key) {
       const messages = [
         {

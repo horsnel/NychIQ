@@ -169,7 +169,7 @@ aiRoutes.post('/chat', async (c) => {
         fn: async () => {
           const key = rotateKey([
             c.env.GROQ_KEY_1, c.env.GROQ_KEY_2,
-            c.env.GROQ_KEY_3, c.env.GROQ_KEY_4,
+            c.env.GROQ_KEY_3,
           ]);
           if (!key) throw new Error('No Groq key');
           const res = await openAIChat('https://api.groq.com/openai/v1', key, messages, 'llama-4-scout-17b-16e-instruct');
@@ -185,7 +185,7 @@ aiRoutes.post('/chat', async (c) => {
         fn: async () => {
           const key = rotateKey([
             c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2,
-            c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4,
+            c.env.GEMINI_KEY_3,
           ]);
           if (!key) throw new Error('No Gemini key');
           const res = await geminiChat(key, messages, 'gemini-2.0-flash');
@@ -311,7 +311,7 @@ aiRoutes.post('/stream', async (c) => {
 
     // 1. Groq
     try {
-      const key = rotateKey([c.env.GROQ_KEY_1, c.env.GROQ_KEY_2, c.env.GROQ_KEY_3, c.env.GROQ_KEY_4]);
+      const key = rotateKey([c.env.GROQ_KEY_1, c.env.GROQ_KEY_2, c.env.GROQ_KEY_3]);
       if (key) {
         const res = await openAIChat('https://api.groq.com/openai/v1', key, fullMessages, 'llama-4-scout-17b-16e-instruct', true);
         if (res.ok) {
@@ -331,7 +331,7 @@ aiRoutes.post('/stream', async (c) => {
 
     // 2. Gemini Flash streaming
     try {
-      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
       if (key) {
         const res = await geminiChat(key, fullMessages, 'gemini-2.0-flash', true);
         if (res.ok) {

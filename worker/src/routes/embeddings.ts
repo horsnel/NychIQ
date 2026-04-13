@@ -69,7 +69,7 @@ embeddingsRoutes.post('/', async (c) => {
 
     // 2. Gemini text-embedding-004
     try {
-      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
       if (key) {
         const body = {
           model: 'text-embedding-004',

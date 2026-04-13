@@ -29,7 +29,7 @@ translateRoutes.post('/translate', async (c) => {
 
     // 1. Gemini Flash (prompt-based translation)
     try {
-      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
       if (key) {
         const messages = [
           {

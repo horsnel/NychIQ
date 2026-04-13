@@ -37,7 +37,7 @@ visionRoutes.post('/analyze', async (c) => {
 
     // 1. Gemini Flash Vision
     try {
-      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3, c.env.GEMINI_KEY_4]);
+      const key = rotateKey([c.env.GEMINI_KEY_1, c.env.GEMINI_KEY_2, c.env.GEMINI_KEY_3]);
       if (key) {
         const parts: any[] = [{ text: queryPrompt }];
         if (imageBase64) {
