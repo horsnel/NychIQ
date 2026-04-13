@@ -7,6 +7,4 @@
 /*.png            /*.png               200
 /*.jpg            /*.jpg               200
 /*.webp           /*.webp              200
-/*.json           /*.json              200
 /extension/*      /extension/:splat    200
-/*                /index.html          200
