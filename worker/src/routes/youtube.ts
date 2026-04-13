@@ -251,7 +251,7 @@ youtubeRoutes.get('/search', async (c) => {
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2, c.env.YT_KEY_3, c.env.YT_KEY_4]);
+          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
           if (!key) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet', q, type, maxResults });
           if (regionCode) params.set('regionCode', regionCode);
@@ -304,7 +304,7 @@ youtubeRoutes.get('/videos', async (c) => {
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2, c.env.YT_KEY_3, c.env.YT_KEY_4]);
+          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
           if (!key) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet,statistics,contentDetails', maxResults, regionCode });
           if (id) { params.set('id', id); params.delete('regionCode'); }
@@ -375,7 +375,7 @@ youtubeRoutes.get('/trending', async (c) => {
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2, c.env.YT_KEY_3, c.env.YT_KEY_4]);
+          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
           if (!key) throw new Error('No YouTube API key');
           const params = new URLSearchParams({
             part: 'snippet,statistics,contentDetails', chart: 'mostPopular', regionCode, maxResults,
@@ -427,7 +427,7 @@ youtubeRoutes.get('/channel', async (c) => {
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2, c.env.YT_KEY_3, c.env.YT_KEY_4]);
+          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
           if (!key) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet,statistics' });
           if (handle) params.set('forHandle', handle);

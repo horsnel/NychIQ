@@ -44,11 +44,9 @@ export interface Env {
   ENSEMBLE_KEY_1?: string;
   TIKHUB_KEY_1?: string;
 
-  // ── YouTube Data API v3 (rotated 4 keys) ──
+  // ── YouTube Data API v3 (rotated keys) ──
   YT_KEY_1?: string;
   YT_KEY_2?: string;
-  YT_KEY_3?: string;
-  YT_KEY_4?: string;
 
   // ── Email ──
   RESEND_KEY?: string;
