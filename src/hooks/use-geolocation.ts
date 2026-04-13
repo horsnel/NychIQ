@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { getApiBase } from '@/lib/api';
 
 /* ── Country code → region code mapping ── */
 const COUNTRY_REGION_MAP: Record<string, string> = {
@@ -19,12 +20,6 @@ interface GeolocationResult {
   countryName: string | null;
   isDetecting: boolean;
   error: string | null;
-}
-
-interface IPApiResult {
-  country_code: string;
-  country_name: string;
-  [key: string]: unknown;
 }
 
 /** Read cached region from localStorage (synchronous, for initial state) */
@@ -46,18 +41,18 @@ function readCachedRegion(): { region: string | null; name: string | null } {
   return { region: null, name: null };
 }
 
-/** Fetch country from IP API */
+/** Fetch country from IP API through Worker proxy */
 async function fetchIPGeo(): Promise<{ region: string; name: string } | null> {
   try {
-    const res = await fetch('https://ipapi.co/json/', {
+    const res = await fetch(`${getApiBase()}/geolocation`, {
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return null;
-    const data = (await res.json()) as IPApiResult;
-    const code = data.country_code;
-    const name = data.country_name;
+    const data = (await res.json()) as Record<string, unknown>;
+    const code = data.countryCode as string | undefined;
+    const name = (data.country || data.country_name) as string | undefined;
     if (code && COUNTRY_REGION_MAP[code]) {
-      return { region: COUNTRY_REGION_MAP[code], name };
+      return { region: COUNTRY_REGION_MAP[code], name: name || code };
     }
     return null;
   } catch {

@@ -3,8 +3,8 @@
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { useNychIQStore } from '@/lib/store';
 import { showToast } from '@/lib/toast';
-import { getApiBase, ytFetch } from '@/lib/api';
-import { fmtV } from '@/lib/utils';
+import { ytFetch } from '@/lib/api';
+import { cn, fmtV } from '@/lib/utils';
 import {
   Bot,
   Youtube,
@@ -37,7 +37,6 @@ import {
   AlertTriangle,
   ExternalLink,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 /* ── Local storage key ── */
 const STORAGE_KEY = 'nychiq_channel_assistant_config';

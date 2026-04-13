@@ -8,8 +8,7 @@
 
 import { Hono } from 'hono';
 import type { Env } from '../lib/env';
-import { getCached, setCached, cacheKey, CACHE_TTL } from '../lib/cache';
-import { invalidateCached } from '../lib/cache';
+import { getCached, setCached, cacheKey, CACHE_TTL, invalidateCached } from '../lib/cache';
 import { publishRealtime } from '../lib/fallback-realtime';
 // import { sendEmail } from '../lib/email'; // TODO: re-enable when user email lookup is implemented
 

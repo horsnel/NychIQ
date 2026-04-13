@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useNychIQStore } from '@/lib/store';
+import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { askAI } from '@/lib/api';
 import { fmtV } from '@/lib/utils';
 import {
@@ -24,7 +24,6 @@ import {
 } from 'lucide-react';
 
 /* ── Constants ── */
-import { TOKEN_COSTS } from '@/lib/store';
 
 /* ── Types ── */
 interface ChannelProfile {

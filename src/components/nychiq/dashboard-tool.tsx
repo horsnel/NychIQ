@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { useNychIQStore, PLAN_TOKENS, PLAN_ACCESS, type Plan } from '@/lib/store';
+import { useNychIQStore, PLAN_TOKENS, PLAN_ACCESS, TOOL_META, TOKEN_COSTS, type Plan } from '@/lib/store';
 import { StatCard } from '@/components/nychiq/stat-card';
 import { TokenPill } from '@/components/nychiq/token-pill';
-import { TOOL_META, TOKEN_COSTS } from '@/lib/store';
 import { cn, timeAgo } from '@/lib/utils';
 import {
   Search, Zap, TrendingUp, Eye, Heart, Coins,
