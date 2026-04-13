@@ -151,6 +151,42 @@ app.get('/api/health', (c) => {
   });
 });
 
+// ── GitHub Webhook: Auto-deploy trigger ──
+// Receives push events from GitHub and triggers Cloudflare Pages build
+app.post('/webhook/github', async (c) => {
+  const body = await c.req.json().catch(() => null);
+  if (!body) return c.json({ error: 'Invalid payload' }, 400);
+
+  const ref = body.ref || '';
+  const branch = ref.replace('refs/heads/', '');
+
+  if (branch !== 'main') {
+    return c.json({ skipped: true, reason: `Branch ${branch} is not main` });
+  }
+
+  // Trigger Cloudflare Pages deploy via API
+  const accountId = c.env.CLOUDFLARE_ACCOUNT_ID || 'a3b3d388de22a4074b01905e65aeb92c';
+  const cfToken = c.env.CF_API_TOKEN;
+  const hookId = c.env.PAGES_DEPLOY_HOOK_ID;
+
+  if (cfToken && hookId) {
+    try {
+      await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/nychiq/deploy_hooks/${hookId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${cfToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(`[Webhook] Triggered Pages deploy for push to main`);
+    } catch (err: any) {
+      console.error(`[Webhook] Pages deploy trigger failed:`, err?.message);
+    }
+  }
+
+  return c.json({ received: true, branch, commits: (body.commits || []).length });
+});
+
 // ── Mount API routes ──
 app.route('/api/ai', aiRoutes);
 app.route('/api/youtube', youtubeRoutes);
