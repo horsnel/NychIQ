@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { getApiBase } from '@/lib/api';
 import { VideoCard, VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { StatCard } from '@/components/nychiq/stat-card';
 import { cn, fmtV, copyToClipboard } from '@/lib/utils';
@@ -342,7 +343,7 @@ function LiveTab() {
 
     try {
       const res = await fetch(
-        `/api/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${selectedRegion}&maxResults=20`
+        `${getApiBase()}/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${selectedRegion}&maxResults=20`
       );
       if (!res.ok) {
         throw new Error(`Failed to fetch trending videos (${res.status})`);

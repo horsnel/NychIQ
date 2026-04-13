@@ -121,12 +121,23 @@ export function OnboardingAudit() {
     // Fetch real YouTube channel data
     try {
       const data = await ytFetch('channel', { handle: channelUrl.trim() });
-      setChannelData(data);
+      // Normalize from YouTube API v3 format to expected shape
+      const normalizedChannel = {
+        name: data.snippet?.title || channelUrl.split('/').pop()?.replace('@', '') || 'My Channel',
+        avatarUrl: data.snippet?.thumbnails?.high?.url || data.snippet?.thumbnails?.default?.url || '',
+        subscribers: parseInt(data.statistics?.subscriberCount || '0', 10),
+        totalViews: parseInt(data.statistics?.viewCount || '0', 10),
+        videoCount: parseInt(data.statistics?.videoCount || '0', 10),
+        description: data.snippet?.description || '',
+        publishedAt: data.snippet?.publishedAt || '',
+        keywords: [],
+      };
+      setChannelData(normalizedChannel);
 
       // Save channel profile to localStorage for topbar avatar
-      const avatarUrl = data.avatarUrl || '';
+      const avatarUrl = normalizedChannel.avatarUrl;
       localStorage.setItem('nychiq_channel_profile', JSON.stringify({
-        name: data.name || channelUrl.split('/').pop()?.replace('@', '') || 'My Channel',
+        name: normalizedChannel.name,
         url: channelUrl,
         avatarUrl,
         avatarColor: avatarUrl ? '#FDBA2D' : '#FDBA2D',

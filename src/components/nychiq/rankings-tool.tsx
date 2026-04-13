@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { getApiBase } from '@/lib/api';
 import { cn, fmtV, timeAgo, sanitizeText, thumbUrl, scoreClass } from '@/lib/utils';
 import {
   BarChart3,
@@ -82,7 +83,7 @@ export function RankingsTool() {
     try {
       const type = tab === 'shorts' ? 'short,video' : 'video';
       const res = await fetch(
-        `/api/youtube/search?part=snippet&q=${tab === 'shorts' ? 'shorts trending' : tab === 'channels' ? 'top channels' : 'trending videos'}&type=${tab === 'channels' ? 'channel' : type}&maxResults=15&order=viewCount&regionCode=${region}`
+        `${getApiBase()}/youtube/search?part=snippet&q=${tab === 'shorts' ? 'shorts trending' : tab === 'channels' ? 'top channels' : 'trending videos'}&type=${tab === 'channels' ? 'channel' : type}&maxResults=15&order=viewCount&regionCode=${region}`
       );
       if (!res.ok) throw new Error(`Failed to fetch rankings (${res.status})`);
       const data = await res.json();

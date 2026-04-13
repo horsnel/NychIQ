@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Activity, Cpu, Target, Play, ChevronRight, FileText, Tag, Key } from 'lucide-react';
+import { Activity, Cpu, Target, Play, ChevronRight, FileText, Tag, Key, Copy } from 'lucide-react';
 import { cn, thumbUrl, vidDuration, fmtV, copyToClipboard } from '@/lib/utils';
 import { useNychIQStore } from '@/lib/store';
 import { showToast } from '@/lib/toast';
@@ -127,8 +127,28 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
 
 /* ── Overlay button: Extraction Hub (top-right) ── */
 
-function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => void }) {
+function ExtractionHubButton({ onNavigate, videoTitle, videoId }: { onNavigate: (tool: string) => void; videoTitle: string; videoId: string }) {
   const [expanded, setExpanded] = useState(false);
+
+  const handleCopyTitle = useCallback(async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const ok = await copyToClipboard(videoTitle);
+    if (ok) {
+      showToast('Title copied to clipboard', 'success');
+    } else {
+      showToast('Failed to copy title', 'error');
+    }
+  }, [videoTitle]);
+
+  const handleCopyVideoId = useCallback(async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const ok = await copyToClipboard(videoId);
+    if (ok) {
+      showToast('Video ID copied to clipboard', 'success');
+    } else {
+      showToast('Failed to copy video ID', 'error');
+    }
+  }, [videoId]);
 
   return (
     <div
@@ -166,6 +186,20 @@ function ExtractionHubButton({ onNavigate }: { onNavigate: (tool: string) => voi
           >
             <Key className="w-3.5 h-3.5 text-[#10B981]" />
             Keywords
+          </button>
+          <button
+            onClick={handleCopyTitle}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+          >
+            <Copy className="w-3.5 h-3.5 text-[#8B5CF6]" />
+            Copy Title
+          </button>
+          <button
+            onClick={handleCopyVideoId}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+          >
+            <Copy className="w-3.5 h-3.5 text-[#8B5CF6]" />
+            Copy Video ID
           </button>
         </div>
       )}
@@ -417,7 +451,7 @@ export function SciFiVideoCard({
 
         {/* ── Three overlay buttons ── */}
         <HookLabButton onClick={(e) => { e.stopPropagation(); goTo('hooklab'); }} />
-        <ExtractionHubButton onNavigate={goTo} />
+        <ExtractionHubButton onNavigate={goTo} videoTitle={video.title} videoId={video.videoId} />
         <SmartCopyButton videoUrl={youtubeUrl} />
       </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { getApiBase } from '@/lib/api';
 import { StatCard } from '@/components/nychiq/stat-card';
 import { cn, fmtV, thumbUrl, sanitizeText, scoreClass } from '@/lib/utils';
 import {
@@ -643,7 +644,7 @@ export function ViralTool() {
 
     try {
       const res = await fetch(
-        `/api/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${region}&maxResults=24`
+        `${getApiBase()}/youtube/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=${region}&maxResults=24`
       );
       if (!res.ok) throw new Error(`Failed to fetch viral data (${res.status})`);
       const data = await res.json();

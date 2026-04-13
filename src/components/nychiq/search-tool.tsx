@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { getApiBase } from '@/lib/api';
 import { VideoCard, VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { cn } from '@/lib/utils';
 import {
@@ -129,7 +130,7 @@ export function SearchTool() {
         regionCode: region,
       });
 
-      const res = await fetch(`/api/youtube/search?${params}`);
+      const res = await fetch(`${getApiBase()}/youtube/search?${params}`);
       if (!res.ok) {
         throw new Error(`Search failed (${res.status})`);
       }
@@ -167,7 +168,7 @@ export function SearchTool() {
         if (videoIds.length > 0) {
           try {
             const statsRes = await fetch(
-              `/api/youtube/videos?part=statistics,contentDetails&id=${videoIds.join(',')}`
+              `${getApiBase()}/youtube/videos?part=statistics,contentDetails&id=${videoIds.join(',')}`
             );
             if (statsRes.ok) {
               const statsData = await statsRes.json();

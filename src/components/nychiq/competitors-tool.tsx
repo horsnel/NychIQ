@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { VideoCard, VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { cn, fmtV, thumbUrl, sanitizeText } from '@/lib/utils';
-import { askAI } from '@/lib/api';
+import { askAI, getApiBase } from '@/lib/api';
 import {
   Eye,
   Crown,
@@ -72,7 +72,7 @@ export function CompetitorsTool() {
     try {
       // Fetch channel search results
       const res = await fetch(
-        `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=channel&maxResults=1&regionCode=${region}`
+        `${getApiBase()}/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=channel&maxResults=1&regionCode=${region}`
       );
       if (!res.ok) throw new Error(`Search failed (${res.status})`);
       const data = await res.json();
@@ -97,7 +97,7 @@ export function CompetitorsTool() {
 
         // Fetch latest videos
         const vidRes = await fetch(
-          `/api/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=video&maxResults=6&order=date&regionCode=${region}`
+          `${getApiBase()}/youtube/search?part=snippet&q=${encodeURIComponent(trimmed)}&type=video&maxResults=6&order=date&regionCode=${region}`
         );
         if (vidRes.ok) {
           const vidData = await vidRes.json();

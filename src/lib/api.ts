@@ -7,7 +7,7 @@
 
 const WORKER_API = 'https://nychiq-api.bm4413212.workers.dev/api';
 
-function getApiBase(): string {
+export function getApiBase(): string {
   if (typeof window === 'undefined') return '/api';
   if (window.location.hostname === 'localhost') return '/api';
   if (window.location.hostname.endsWith('.pages.dev')) return WORKER_API;

@@ -170,13 +170,13 @@ export function AuditTool() {
         const trimmed = channel.trim();
         const data = await ytFetch('channel', { handle: trimmed });
         setChannelData({
-          title: data.name || trimmed,
-          description: data.description || '',
-          thumbnail: data.avatarUrl || '',
-          subscriberCount: data.subscribers || 0,
-          videoCount: data.videoCount || 0,
-          viewCount: data.totalViews || 0,
-          publishedAt: data.publishedAt || '',
+          title: data.snippet?.title || trimmed,
+          description: data.snippet?.description || '',
+          thumbnail: data.snippet?.thumbnails?.high?.url || data.snippet?.thumbnails?.default?.url || '',
+          subscriberCount: parseInt(data.statistics?.subscriberCount || '0', 10),
+          videoCount: parseInt(data.statistics?.videoCount || '0', 10),
+          viewCount: parseInt(data.statistics?.viewCount || '0', 10),
+          publishedAt: data.snippet?.publishedAt || '',
         });
       } catch {
         // Channel data fetch failed — continue without it

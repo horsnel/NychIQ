@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
+import { getApiBase } from '@/lib/api';
 import { VideoCardSkeleton, type VideoData } from '@/components/nychiq/video-card';
 import { StatCard } from '@/components/nychiq/stat-card';
 import { cn, fmtV, thumbUrl, vidDuration, scoreClass, viralScore as getViralInfo, copyToClipboard } from '@/lib/utils';
@@ -150,7 +151,7 @@ export function ShortsTool() {
       setHasSpent(true);
     }
     try {
-      const res = await fetch(`/api/youtube/search?part=snippet&q=trending shorts&type=video&maxResults=18&videoDuration=short&regionCode=${region}`);
+      const res = await fetch(`${getApiBase()}/youtube/search?part=snippet&q=trending shorts&type=video&maxResults=18&videoDuration=short&regionCode=${region}`);
       if (!res.ok) throw new Error(`Failed to fetch shorts (${res.status})`);
       const data = await res.json();
       const mapped: VideoData[] = (data.items || []).map((item: any) => ({
