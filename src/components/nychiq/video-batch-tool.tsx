@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { showToast } from '@/lib/toast';
-import { fmtV, viralScore as getViralScore } from '@/lib/utils';
+import { fmtV, viralScore as getViralScore, copyToClipboard } from '@/lib/utils';
 import { StatCard } from '@/components/nychiq/stat-card';
 import {
   ListVideo,
@@ -23,11 +23,15 @@ import {
   FileSpreadsheet,
   Zap,
   Crown,
+  Copy,
+  Link2,
+  Hash,
 } from 'lucide-react';
 
 /* ── Types ── */
 interface PlaylistVideo {
   id: string;
+  videoId?: string;
   title: string;
   thumbnail: string;
   views: number;
@@ -443,6 +447,44 @@ export function VideoBatchTool() {
                         <ScoreBar score={video.viralScore} label="VS" />
                         <ScoreBar score={video.engagementRate * 10} label="ER" />
                         <ScoreBar score={video.seoScore} label="SEO" />
+                      </div>
+
+                      {/* Copy buttons */}
+                      <div className="flex items-center gap-1.5 sm:hidden mt-2">
+                        <button
+                          onClick={async () => {
+                            const ok = await copyToClipboard(video.title);
+                            showToast(ok ? 'Title copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                          }}
+                          className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy title"
+                          title="Copy title"
+                        >
+                          <Copy className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                        </button>
+                        {video.videoId && (
+                          <>
+                            <button
+                              onClick={async () => {
+                                const ok = await copyToClipboard(`https://youtube.com/watch?v=${video.videoId}`);
+                                showToast(ok ? 'Link copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                              }}
+                              className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy URL"
+                              title="Copy URL"
+                            >
+                              <Link2 className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                            </button>
+                            <button
+                              onClick={async () => {
+                                const ok = await copyToClipboard(video.videoId);
+                                showToast(ok ? 'Video ID copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                              }}
+                              className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy video ID"
+                              title="Copy video ID"
+                            >
+                              <Hash className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                            </button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

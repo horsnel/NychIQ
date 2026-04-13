@@ -6,7 +6,7 @@
 
 import { Hono } from 'hono';
 import type { Env } from '../lib/env';
-import { withFallback, rotateKey } from '../lib/fallback';
+import { withFallback, rotateKey, ytV3WithRetry } from '../lib/fallback';
 import { getCached, setCached, cacheKey, CACHE_TTL } from '../lib/cache';
 
 export const youtubeRoutes = new Hono<{ Bindings: Env }>();
@@ -247,20 +247,22 @@ youtubeRoutes.get('/search', async (c) => {
         },
         timeout: 10000,
       },
-      // 4. YouTube Data API v3
+      // 4. YouTube Data API v3 (with key rotation on quota errors)
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
-          if (!key) throw new Error('No YouTube API key');
+          const keys = [c.env.YT_KEY_1, c.env.YT_KEY_2];
+          if (!keys.filter(Boolean).length) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet', q, type, maxResults });
           if (regionCode) params.set('regionCode', regionCode);
           if (pageToken) params.set('pageToken', pageToken);
-          const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${key}&${params}`);
-          if (!res.ok) throw new Error(`YouTube v3 ${res.status}`);
-          return res.json();
+          return ytV3WithRetry(
+            keys,
+            (key) => `https://www.googleapis.com/youtube/v3/search?key=${key}&${params}`,
+            (res) => res.json(),
+          );
         },
-        timeout: 10000,
+        timeout: 15000,
       },
     ], 'YouTube search');
 
@@ -300,20 +302,22 @@ youtubeRoutes.get('/videos', async (c) => {
         },
         timeout: 10000,
       }] : []),
-      // YouTube Data API v3
+      // YouTube Data API v3 (with key rotation on quota errors)
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
-          if (!key) throw new Error('No YouTube API key');
+          const keys = [c.env.YT_KEY_1, c.env.YT_KEY_2];
+          if (!keys.filter(Boolean).length) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet,statistics,contentDetails', maxResults, regionCode });
           if (id) { params.set('id', id); params.delete('regionCode'); }
           else { params.set('chart', chart); }
-          const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${key}&${params}`);
-          if (!res.ok) throw new Error(`YouTube v3 ${res.status}`);
-          return res.json();
+          return ytV3WithRetry(
+            keys,
+            (key) => `https://www.googleapis.com/youtube/v3/videos?key=${key}&${params}`,
+            (res) => res.json(),
+          );
         },
-        timeout: 10000,
+        timeout: 15000,
       },
     ], 'YouTube videos');
 
@@ -345,7 +349,7 @@ youtubeRoutes.get('/trending', async (c) => {
           if (!res.ok) throw new Error(`Piped ${res.status}`);
           const data: any = await res.json();
           const items = (data || []).map((v: any) => ({
-            id: v.url?.replace('/watch?v=', ''),
+            id: v.url?.replace('/watch?v=', '') || v.videoId || '',
             snippet: {
               title: v.title || '',
               channelTitle: v.uploaderName || '',
@@ -371,20 +375,22 @@ youtubeRoutes.get('/trending', async (c) => {
         },
         timeout: 10000,
       },
-      // 3. YouTube v3
+      // 3. YouTube v3 (with key rotation on quota errors)
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
-          if (!key) throw new Error('No YouTube API key');
+          const keys = [c.env.YT_KEY_1, c.env.YT_KEY_2];
+          if (!keys.filter(Boolean).length) throw new Error('No YouTube API key');
           const params = new URLSearchParams({
             part: 'snippet,statistics,contentDetails', chart: 'mostPopular', regionCode, maxResults,
           });
-          const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${key}&${params}`);
-          if (!res.ok) throw new Error(`YouTube v3 ${res.status}`);
-          return res.json();
+          return ytV3WithRetry(
+            keys,
+            (key) => `https://www.googleapis.com/youtube/v3/videos?key=${key}&${params}`,
+            (res) => res.json(),
+          );
         },
-        timeout: 10000,
+        timeout: 15000,
       },
     ], 'YouTube trending');
 
@@ -423,21 +429,23 @@ youtubeRoutes.get('/channel', async (c) => {
         },
         timeout: 10000,
       },
-      // 2. YouTube v3
+      // 2. YouTube v3 (with key rotation on quota errors)
       {
         name: 'youtube-v3',
         fn: async () => {
-          const key = rotateKey([c.env.YT_KEY_1, c.env.YT_KEY_2]);
-          if (!key) throw new Error('No YouTube API key');
+          const keys = [c.env.YT_KEY_1, c.env.YT_KEY_2];
+          if (!keys.filter(Boolean).length) throw new Error('No YouTube API key');
           const params = new URLSearchParams({ part: 'snippet,statistics' });
           if (handle) params.set('forHandle', handle);
           if (channelId) params.set('id', channelId);
-          const res = await fetch(`https://www.googleapis.com/youtube/v3/channels?key=${key}&${params}`);
-          if (!res.ok) throw new Error(`YouTube v3 ${res.status}`);
-          const data: any = await res.json();
+          const data: any = await ytV3WithRetry(
+            keys,
+            (key) => `https://www.googleapis.com/youtube/v3/channels?key=${key}&${params}`,
+            (res) => res.json(),
+          );
           return data.items?.[0] || null;
         },
-        timeout: 10000,
+        timeout: 15000,
       },
     ], 'YouTube channel');
 

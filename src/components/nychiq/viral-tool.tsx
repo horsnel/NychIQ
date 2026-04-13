@@ -4,7 +4,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNychIQStore, TOKEN_COSTS } from '@/lib/store';
 import { getApiBase } from '@/lib/api';
 import { StatCard } from '@/components/nychiq/stat-card';
-import { cn, fmtV, thumbUrl, sanitizeText, scoreClass } from '@/lib/utils';
+import { cn, fmtV, thumbUrl, sanitizeText, scoreClass, copyToClipboard } from '@/lib/utils';
+import { showToast } from '@/lib/toast';
 import {
   Zap,
   Eye,
@@ -32,6 +33,9 @@ import {
   Image as ImageIcon,
   Play,
   Lightbulb,
+  Copy,
+  Link2,
+  Hash,
 } from 'lucide-react';
 
 type Threshold = 'all' | '70' | '80' | '90';
@@ -874,6 +878,40 @@ export function ViralTool() {
                       <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
                         <span className="text-xs font-medium text-[#10B981]">↑ {item.growthRate}%</span>
                         <span className="text-[11px] text-[#A3A3A3]">{item.engagementRate}% engage</span>
+                      </div>
+
+                      {/* Copy buttons */}
+                      <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                        <button
+                          onClick={async () => {
+                            const ok = await copyToClipboard(item.title);
+                            showToast(ok ? 'Title copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                          }}
+                          className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy title"
+                          title="Copy title"
+                        >
+                          <Copy className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                        </button>
+                        <button
+                          onClick={async () => {
+                            const ok = await copyToClipboard(`https://youtube.com/watch?v=${item.videoId}`);
+                            showToast(ok ? 'Link copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                          }}
+                          className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy URL"
+                          title="Copy URL"
+                        >
+                          <Link2 className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                        </button>
+                        <button
+                          onClick={async () => {
+                            const ok = await copyToClipboard(item.videoId);
+                            showToast(ok ? 'Video ID copied!' : 'Failed to copy', ok ? 'success' : 'error');
+                          }}
+                          className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy video ID"
+                          title="Copy video ID"
+                        >
+                          <Hash className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                        </button>
                       </div>
                     </div>
                   ))

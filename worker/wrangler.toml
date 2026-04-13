@@ -76,8 +76,8 @@ directory = "../out"
 # ══════════════════════════════════════════════
 #
 # ── AI Keys (rotated) ──
-# GROQ_KEY_1, GROQ_KEY_2, GROQ_KEY_3, GROQ_KEY_4
-# GEMINI_KEY_1, GEMINI_KEY_2, GEMINI_KEY_3, GEMINI_KEY_4
+# GROQ_KEY_1, GROQ_KEY_2, GROQ_KEY_3
+# GEMINI_KEY_1, GEMINI_KEY_2, GEMINI_KEY_3
 # CEREBRAS_KEY_1, CEREBRAS_KEY_2
 # OPENROUTER_KEY_1, OPENROUTER_KEY_2
 # HF_TOKEN_1, HF_TOKEN_2
@@ -88,7 +88,7 @@ directory = "../out"
 # TAVILY_KEY_1, TAVILY_KEY_2
 #
 # ── YouTube ──
-# YT_KEY_1, YT_KEY_2, YT_KEY_3, YT_KEY_4
+# YT_KEY_1, YT_KEY_2
 #
 # ── Social Scraping ──
 # SOCIAVAULT_KEY_1, SOCIAVAULT_KEY_2

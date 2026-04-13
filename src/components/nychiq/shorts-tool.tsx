@@ -44,7 +44,12 @@ function ShortsCard({ video }: { video: VideoData }) {
     showToast(ok ? 'Hashtags copied!' : 'Failed to copy hashtags', ok ? 'success' : 'error');
   };
   const handleCopyDescription = async () => {
-    const ok = await copyToClipboard(video.title);
+    const text = video.description || '';
+    if (!text) {
+      showToast('No description available for this video', 'warning');
+      return;
+    }
+    const ok = await copyToClipboard(text);
     showToast(ok ? 'Description copied!' : 'Failed to copy description', ok ? 'success' : 'error');
   };
   const handleCopyTags = async () => {

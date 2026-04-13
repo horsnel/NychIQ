@@ -82,8 +82,7 @@ function CopyLinkButton({ videoId }: { videoId: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="absolute top-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
-      aria-label="Copy video link"
+      className="absolute top-2 left-2 z-10 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none"
     >
       <Link2 className="w-3.5 h-3.5 text-white" />
     </button>
@@ -109,7 +108,12 @@ function VideoContextMenu({ video }: { video: VideoData }) {
   };
 
   const handleCopyDescription = async () => {
-    const ok = await copyToClipboard(video.description || video.title);
+    const text = video.description || '';
+    if (!text) {
+      showToast('No description available for this video', 'warning');
+      return;
+    }
+    const ok = await copyToClipboard(text);
     showToast(ok ? 'Description copied!' : 'Failed to copy description', ok ? 'success' : 'error');
   };
 
@@ -141,6 +145,11 @@ function VideoContextMenu({ video }: { video: VideoData }) {
     showToast('Transcript not available for this video', 'warning');
   };
 
+  const handleCopyVideoId = async () => {
+    const ok = await copyToClipboard(video.videoId);
+    showToast(ok ? 'Video ID copied!' : 'Failed to copy video ID', ok ? 'success' : 'error');
+  };
+
   const handleExportCSV = () => {
     const headers = ['Title', 'Channel', 'Views', 'Likes', 'Comments', 'Viral Score', 'URL'];
     const row = [
@@ -157,11 +166,6 @@ function VideoContextMenu({ video }: { video: VideoData }) {
     a.download = `${video.videoId}.csv`;
     a.click();
     URL.revokeObjectURL(url);
-  };
-
-  const handleCopyLink = async () => {
-    const ok = await copyToClipboard(`https://youtube.com/watch?v=${video.videoId}`);
-    showToast(ok ? 'Link copied!' : 'Failed to copy link', ok ? 'success' : 'error');
   };
 
   return (
@@ -201,6 +205,13 @@ function VideoContextMenu({ video }: { video: VideoData }) {
         >
           <Copy className="w-4 h-4" />
           Copy URL
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyVideoId}
+          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+        >
+          <Copy className="w-4 h-4" />
+          Copy Video ID
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyDescription}
@@ -370,11 +381,11 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           <ViralBadge score={video.viralScore} />
         )}
 
-        {/* 3-dots context menu */}
-        <VideoContextMenu video={video} />
-
         {/* Copy link button */}
         <CopyLinkButton videoId={video.videoId} />
+
+        {/* 3-dots context menu */}
+        <VideoContextMenu video={video} />
       </div>
 
       {/* Info */}
