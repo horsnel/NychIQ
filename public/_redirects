@@ -1,0 +1,12 @@
+/_next/static/*  /_next/static/:splat  200
+/_next/image/*   /_next/image/:splat  200
+/*.woff2          /*.woff2             200
+/*.woff           /*.woff              200
+/*.ico            /*.ico               200
+/*.svg            /*.svg               200
+/*.png            /*.png               200
+/*.jpg            /*.jpg               200
+/*.webp           /*.webp              200
+/*.json           /*.json              200
+/extension/*      /extension/:splat    200
+/*                /index.html          200
