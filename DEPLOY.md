@@ -73,8 +73,6 @@ wrangler secret put TIKHUB_KEY_1
 # YouTube Data API v3
 wrangler secret put YT_KEY_1
 wrangler secret put YT_KEY_2
-wrangler secret put YT_KEY_3
-wrangler secret put YT_KEY_4
 
 # Email
 wrangler secret put RESEND_KEY
@@ -88,11 +86,10 @@ wrangler secret put SUPABASE_SERVICE_KEY
 ```
 
 ### Add More Keys (Key Rotation)
-For each provider, you can add up to 4 keys:
+For each provider, you can add up to 3 keys:
 ```bash
 wrangler secret put GROQ_KEY_2
 wrangler secret put GROQ_KEY_3
-wrangler secret put GROQ_KEY_4
 # Same pattern for GEMINI, CEREBRAS, OPENROUTER, etc.
 ```
 

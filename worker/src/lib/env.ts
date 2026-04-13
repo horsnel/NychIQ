@@ -91,6 +91,10 @@ export interface Env {
   // ── Geolocation (ipapi.co fallback) ──
   IPAPI_KEY?: string;
 
+  // ── CloudFlare ──
+  CLOUDFLARE_ACCOUNT_ID?: string;
+  CF_API_TOKEN?: string;
+
   // ── App ──
   ENVIRONMENT: string;
   CORS_ORIGINS?: string;

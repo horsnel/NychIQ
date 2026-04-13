@@ -60,15 +60,15 @@ wrangler secret put OPENROUTER_KEY_1
 
 **Next priority (AI fallbacks + search):**
 ```bash
-wrangler secret put GROQ_KEY_2 GROQ_KEY_3 GROQ_KEY_4
-wrangler secret put GEMINI_KEY_2 GEMINI_KEY_3 GEMINI_KEY_4
+wrangler secret put GROQ_KEY_2 GROQ_KEY_3
+wrangler secret put GEMINI_KEY_2 GEMINI_KEY_3
 wrangler secret put CEREBRAS_KEY_1 CEREBRAS_KEY_2
 wrangler secret put OPENROUTER_KEY_2
 wrangler secret put HF_TOKEN_1 HF_TOKEN_2
 wrangler secret put ZAI_KEY_1 ZAI_KEY_2
 wrangler secret put BRAVE_KEY_1 BRAVE_KEY_2
 wrangler secret put TAVILY_KEY_1 TAVILY_KEY_2
-wrangler secret put YT_KEY_2 YT_KEY_3 YT_KEY_4
+wrangler secret put YT_KEY_2
 ```
 
 **Social scraping:**

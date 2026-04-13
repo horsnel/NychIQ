@@ -165,7 +165,11 @@ app.post('/webhook/github', async (c) => {
   }
 
   // Trigger Cloudflare Pages deploy via API
-  const accountId = c.env.CLOUDFLARE_ACCOUNT_ID || 'a3b3d388de22a4074b01905e65aeb92c';
+  const accountId = c.env.CLOUDFLARE_ACCOUNT_ID;
+  if (!accountId) {
+    console.error('[Webhook] CLOUDFLARE_ACCOUNT_ID not set in env');
+    return c.json({ received: true, branch, error: 'CLOUDFLARE_ACCOUNT_ID not configured' });
+  }
   const cfToken = c.env.CF_API_TOKEN;
 
   if (cfToken) {

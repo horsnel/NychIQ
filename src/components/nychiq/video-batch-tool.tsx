@@ -450,7 +450,7 @@ export function VideoBatchTool() {
                       </div>
 
                       {/* Copy buttons */}
-                      <div className="flex items-center gap-1.5 sm:hidden mt-2">
+                      <div className="flex items-center gap-1.5 mt-2">
                         <button
                           onClick={async () => {
                             const ok = await copyToClipboard(video.title);

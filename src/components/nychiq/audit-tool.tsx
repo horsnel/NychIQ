@@ -183,9 +183,20 @@ export function AuditTool() {
         setChannelData(null);
       }
 
-      const prompt = `You are a YouTube channel auditor. Perform a comprehensive health check on the channel: "${channel.trim()}".
+      // Build data-driven AI prompt with real channel stats
+      const channelInfo = channelData ? `
+Channel Data:
+- Title: ${channelData.title}
+- Subscribers: ${fmtV(channelData.subscriberCount)}
+- Total Videos: ${channelData.videoCount}
+- Total Views: ${fmtV(channelData.viewCount)}
+- Channel Created: ${channelData.publishedAt || 'Unknown'}
+- Description: ${(channelData.description || '').substring(0, 500)}
+` : '';
 
-Return a JSON object with:
+      const prompt = `You are a YouTube channel auditor. Perform a comprehensive health check on the channel: "${channel.trim()}".
+${channelInfo}
+Using the data above (and your knowledge about this channel), return a JSON object with:
 - "healthScore": overall health score from 0 to 100
 - "grade": letter grade (A/B/C/D/F)
 - "categories": array of 5 category scores, each with "name" (one of: "SEO", "Content Quality", "Engagement", "Monetization", "Growth"), "score" (0-100), and "icon" (emoji)

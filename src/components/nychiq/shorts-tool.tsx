@@ -106,6 +106,8 @@ function ShortsCard({ video }: { video: VideoData }) {
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Title</DropdownMenuItem>
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy URL</DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); (() => { copyToClipboard(video.videoId).then(ok => showToast(ok ? 'Video ID copied!' : 'Failed to copy', ok ? 'success' : 'error')); })(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Video ID</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#1F1F1F]" />
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyHashtags(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Hashtags</DropdownMenuItem>
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyDescription(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Description</DropdownMenuItem>
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTags(); }} className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Hash className="w-4 h-4" />Copy Tags</DropdownMenuItem>
@@ -159,19 +161,60 @@ export function ShortsTool() {
       const res = await fetch(`${getApiBase()}/youtube/search?part=snippet&q=trending shorts&type=video&maxResults=18&videoDuration=short&regionCode=${region}`);
       if (!res.ok) throw new Error(`Failed to fetch shorts (${res.status})`);
       const data = await res.json();
-      const mapped: VideoData[] = (data.items || []).map((item: any) => ({
+      const items = data.items || [];
+
+      // Map basic info from search results
+      const mapped: VideoData[] = items.map((item: any) => ({
         videoId: item.id?.videoId || '',
         title: item.snippet?.title || 'Untitled',
         channelTitle: item.snippet?.channelTitle || 'Unknown',
         channelId: item.snippet?.channelId,
         publishedAt: item.snippet?.publishedAt,
-        viewCount: Math.floor(Math.random() * 10_000_000) + 500_000,
-        likeCount: Math.floor(Math.random() * 500_000) + 10_000,
-        commentCount: Math.floor(Math.random() * 20_000) + 100,
-        duration: 'PT0M' + (Math.floor(Math.random() * 50) + 10) + 'S',
+        viewCount: item.statistics?.viewCount ? parseInt(item.statistics.viewCount, 10) : 0,
+        likeCount: item.statistics?.likeCount ? parseInt(item.statistics.likeCount, 10) : 0,
+        commentCount: item.statistics?.commentCount ? parseInt(item.statistics.commentCount, 10) : 0,
+        duration: item.contentDetails?.duration || '',
+        description: item.snippet?.description || '',
         thumbnail: item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.medium?.url,
-        viralScore: Math.floor(Math.random() * 60) + 30,
+        viralScore: 0,
       }));
+
+      // Batch-fetch real video stats from YouTube API
+      const videoIds = mapped.map(v => v.videoId).filter(Boolean);
+      if (videoIds.length > 0) {
+        try {
+          const statsRes = await fetch(`${getApiBase()}/youtube/videos?part=statistics,contentDetails&id=${videoIds.join(',')}`);
+          if (statsRes.ok) {
+            const statsData = await statsRes.json();
+            const statsMap = new Map<string, any>();
+            (statsData.items || []).forEach((item: any) => {
+              statsMap.set(item.id, item);
+            });
+            mapped.forEach(v => {
+              const stats = statsMap.get(v.videoId);
+              if (stats) {
+                v.viewCount = parseInt(stats.statistics?.viewCount || '0', 10);
+                v.likeCount = parseInt(stats.statistics?.likeCount || '0', 10);
+                v.commentCount = parseInt(stats.statistics?.commentCount || '0', 10);
+                v.duration = stats.contentDetails?.duration || v.duration;
+              }
+              // Compute viral score from real data
+              const views = v.viewCount || 1;
+              const likes = v.likeCount || 0;
+              const comments = v.commentCount || 0;
+              const engagementRate = ((likes + comments) / views) * 100;
+              v.viralScore = Math.min(100, Math.round(
+                Math.log10(views + 1) * 8 +
+                engagementRate * 2 +
+                (v.duration && v.duration.includes('M') ? 5 : 0)
+              ));
+            });
+          }
+        } catch {
+          // Stats fetch failed — keep defaults
+        }
+      }
+
       setVideos(mapped);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
