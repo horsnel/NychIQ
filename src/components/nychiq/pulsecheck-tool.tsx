@@ -65,23 +65,23 @@ const NICHES = [
 ];
 
 const VELOCITY_CONFIG = {
-  rising: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', label: 'Rising' },
+  rising: { color: '#888888', bg: 'rgba(16,185,129,0.1)', label: 'Rising' },
   stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', label: 'Stable' },
-  new: { color: '#3B82F6', bg: 'rgba(59,130,246,0.1)', label: 'New' },
+  new: { color: '#888888', bg: 'rgba(59,130,246,0.1)', label: 'New' },
 };
 
 const SIGNAL_CONFIG = {
-  strong: { color: '#10B981', bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.3)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
+  strong: { color: '#888888', bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.3)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
   moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.08)', border: 'rgba(253,186,45,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
-  weak: { color: '#EF4444', bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
-  none: { color: '#444444', bg: 'rgba(68,68,68,0.08)', border: 'rgba(68,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'No Signal' },
+  weak: { color: '#888888', bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
+  none: { color: '#666666', bg: 'rgba(68,68,68,0.08)', border: 'rgba(68,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'No Signal' },
 };
 
 /* ── Sub-score card ── */
 function SubScoreCard({ sub }: { sub: SubScore }) {
-  const color = sub.score >= 75 ? '#10B981' : sub.score >= 50 ? '#FDBA2D' : sub.score >= 30 ? '#3B82F6' : '#EF4444';
+  const color = sub.score >= 75 ? '#888888' : sub.score >= 50 ? '#FDBA2D' : sub.score >= 30 ? '#888888' : '#888888';
   return (
-    <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 hover:border-[#2A2A2A] transition-colors">
+    <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span style={{ color }}>{sub.icon}</span>
@@ -100,7 +100,7 @@ function SubScoreCard({ sub }: { sub: SubScore }) {
           style={{ width: `${sub.score}%`, backgroundColor: color }}
         />
       </div>
-      <p className="text-[11px] text-[#A3A3A3] line-clamp-2">{sub.description}</p>
+      <p className="text-[11px] text-[#a0a0a0] line-clamp-2">{sub.description}</p>
     </div>
   );
 }
@@ -246,33 +246,33 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(59,130,246,0.1)]">
-              <Scan className="w-5 h-5 text-[#3B82F6]" />
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <Scan className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">PulseCheck — Algorithm Alignment</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 Check if your content aligns with what the algorithm is pushing
               </p>
             </div>
           </div>
-          <p className="text-sm text-[#A3A3A3] mb-4">
+          <p className="text-sm text-[#a0a0a0] mb-4">
             Paste your video title and description. AI checks if the content aligns with what the
             algorithm is currently pushing in your niche.
           </p>
 
           {/* Title Input */}
           <div className="relative mb-2">
-            <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555]" />
+            <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Video title..."
-              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 focus:ring-1 focus:ring-[#3B82F6]/20 transition-colors"
+              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
             />
           </div>
 
@@ -282,16 +282,16 @@ Return ONLY the JSON object, no other text.`;
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Video description (at least 10 characters)..."
             rows={3}
-            className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 focus:ring-1 focus:ring-[#3B82F6]/20 transition-colors resize-none mb-2"
+            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors resize-none mb-2"
           />
 
           {/* Niche Selector */}
           <div className="relative mb-4">
-            <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555] pointer-events-none" />
+            <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666] pointer-events-none" />
             <select
               value={niche}
               onChange={(e) => setNiche(e.target.value)}
-              className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#3B82F6]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#888888]/50 transition-colors appearance-none cursor-pointer"
             >
               {NICHES.map((n) => (
                 <option key={n} value={n}>{n}</option>
@@ -306,8 +306,8 @@ Return ONLY the JSON object, no other text.`;
               disabled={loading || !canCheck}
               className="px-5 h-11 rounded-lg text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{
-                backgroundColor: canCheck ? '#3B82F6' : '#333333',
-                color: canCheck ? '#0D0D0D' : '#A3A3A3',
+                backgroundColor: canCheck ? '#888888' : '#1a1a1a',
+                color: canCheck ? '#0a0a0a' : '#a0a0a0',
               }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Scan className="w-4 h-4" />}
@@ -316,7 +316,7 @@ Return ONLY the JSON object, no other text.`;
             {searched && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
                 Reset
@@ -328,13 +328,13 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={handleCheck}
             className="mt-3 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
-            style={{ backgroundColor: '#3B82F6', color: '#0D0D0D' }}
+            style={{ backgroundColor: '#888888', color: '#0a0a0a' }}
           >
             Try Again
           </button>
@@ -344,10 +344,10 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Loader2 className="w-5 h-5 text-[#3B82F6] animate-spin" />
-              <span className="text-sm text-[#A3A3A3]">Analyzing algorithm alignment...</span>
+              <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
+              <span className="text-sm text-[#a0a0a0]">Analyzing algorithm alignment...</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
               {Array.from({ length: 4 }).map((_, i) => (
@@ -381,7 +381,7 @@ Return ONLY the JSON object, no other text.`;
             >
               <div className="flex items-center gap-3 mb-2">
                 <Scan className="w-5 h-5" style={{ color: SIGNAL_CONFIG[result.signalStrength].color }} />
-                <span className="text-sm text-[#A3A3A3]">Overall Algorithm Score</span>
+                <span className="text-sm text-[#a0a0a0]">Overall Algorithm Score</span>
               </div>
               <div
                 className="text-4xl font-bold"
@@ -404,7 +404,7 @@ Return ONLY the JSON object, no other text.`;
                 <span style={{ color: SIGNAL_CONFIG[result.signalStrength].color }}>
                   {SIGNAL_CONFIG[result.signalStrength].icon}
                 </span>
-                <span className="text-sm text-[#A3A3A3]">Signal Strength</span>
+                <span className="text-sm text-[#a0a0a0]">Signal Strength</span>
               </div>
               <div
                 className="text-xl font-bold"
@@ -424,7 +424,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Sub-Scores */}
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-              <Scan className="w-4 h-4 text-[#3B82F6]" />
+              <Scan className="w-4 h-4 text-[#888888]" />
               Sub-Scores Breakdown
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -435,7 +435,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Trending Topics */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Flame className="w-4 h-4 text-[#FDBA2D]" />
@@ -448,7 +448,7 @@ Return ONLY the JSON object, no other text.`;
                 const velConfig = VELOCITY_CONFIG[topic.velocity];
                 return (
                   <div key={i} className="flex items-center gap-3 px-4 py-3 hover:bg-[#1A1A1A]/30 transition-colors">
-                    <span className="text-xs font-bold text-[#444444] w-4">{i + 1}</span>
+                    <span className="text-xs font-bold text-[#666666] w-4">{i + 1}</span>
                     <div className="flex-1 min-w-0">
                       <span className="text-xs font-medium text-[#FFFFFF]">{topic.title}</span>
                       <div className="flex items-center gap-2 mt-0.5">
@@ -461,7 +461,7 @@ Return ONLY the JSON object, no other text.`;
                         <span className="text-[10px] text-[#666666]">{topic.views} views</span>
                       </div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#444444] shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#666666] shrink-0" />
                   </div>
                 );
               })}
@@ -469,27 +469,27 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Recommendations */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#1F1F1F]">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors"
               >
-                {copied ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                {copied ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied!' : 'Copy Report'}
               </button>
             </div>
             <div className="divide-y divide-[#1A1A1A]">
               {result.recommendations.map((rec, i) => (
                 <div key={i} className="flex items-start gap-3 px-4 py-3">
-                  <div className="w-6 h-6 rounded-full bg-[#3B82F6]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-[10px] font-bold text-[#3B82F6]">{i + 1}</span>
+                  <div className="w-6 h-6 rounded-full bg-[#888888]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-[10px] font-bold text-[#888888]">{i + 1}</span>
                   </div>
-                  <p className="text-sm text-[#A3A3A3] leading-relaxed">{rec}</p>
+                  <p className="text-sm text-[#a0a0a0] leading-relaxed">{rec}</p>
                 </div>
               ))}
             </div>
@@ -504,10 +504,10 @@ Return ONLY the JSON object, no other text.`;
             }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-[#3B82F6]" />
+              <Sparkles className="w-4 h-4 text-[#888888]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Summary</h3>
             </div>
-            <p className="text-sm text-[#A3A3A3] leading-relaxed">{result.summary}</p>
+            <p className="text-sm text-[#a0a0a0] leading-relaxed">{result.summary}</p>
           </div>
         </>
       )}
@@ -515,11 +515,11 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial idle state */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)] flex items-center justify-center mb-4">
-            <Scan className="w-8 h-8 text-[#3B82F6]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+            <Scan className="w-8 h-8 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Algorithm Alignment Checker</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Enter your video title, description, and select a niche to check how well your content aligns with current algorithm signals.
           </p>
         </div>
@@ -527,7 +527,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Token cost footer */}
       {searched && (
-        <div className="text-center text-[11px] text-[#444444]">
+        <div className="text-center text-[11px] text-[#666666]">
           Cost: {TOKEN_COSTS.pulsecheck} tokens per analysis
         </div>
       )}

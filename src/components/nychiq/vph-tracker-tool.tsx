@@ -92,22 +92,22 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><Activity className="w-5 h-5 text-[#10B981]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Activity className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Views Per Hour Tracker</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Hour-by-hour velocity charts. Spot viral content in the first 6 hours.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Hour-by-hour velocity charts. Spot viral content in the first 6 hours.</p>
             </div>
           </div>
-          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+          <div className="flex rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
               placeholder="Paste video URL..."
-              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleTrack} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleTrack} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <TrendingUp className="w-4 h-4" />}
               Track
             </button>
@@ -117,7 +117,7 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
             <div className="flex items-end gap-1 h-40">
               {Array.from({ length: 12 }).map((_, i) => (
                 <div key={i} className="flex-1 bg-[#1A1A1A] rounded-t animate-pulse" style={{ height: `${30 + Math.random() * 70}%`, animationDelay: `${i * 0.1}s` }} />
@@ -131,34 +131,34 @@ Return ONLY the JSON object.`;
         <div className="space-y-4">
           {/* Status Badge */}
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> VPH Analysis</h3>
-            <span className={`px-3 py-1 rounded-full text-xs font-bold ${result.isViral ? 'bg-[rgba(16,185,129,0.1)] text-[#10B981] border border-[rgba(16,185,129,0.3)]' : 'bg-[rgba(136,136,136,0.1)] text-[#A3A3A3] border border-[rgba(136,136,136,0.3)]'}`}>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> VPH Analysis</h3>
+            <span className={`px-3 py-1 rounded-full text-xs font-bold ${result.isViral ? 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]' : 'bg-[rgba(255,255,255,0.06)] text-[#a0a0a0] border border-[rgba(255,255,255,0.06)]'}`}>
               {result.isViral ? '🔥 Going viral!' : '📊 Normal pace'}
             </span>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
-              <div className="flex items-center justify-center gap-1 mb-1"><BarChart3 className="w-3.5 h-3.5 text-[#3B82F6]" /></div>
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+              <div className="flex items-center justify-center gap-1 mb-1"><BarChart3 className="w-3.5 h-3.5 text-[#888888]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{(result.totalViews / 1000).toFixed(1)}K</p>
               <span className="text-[10px] text-[#666666]">Total Views</span>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1"><Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{result.avgVelocity}</p>
               <span className="text-[10px] text-[#666666]">Avg Velocity</span>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
-              <div className="flex items-center justify-center gap-1 mb-1"><Zap className="w-3.5 h-3.5 text-[#EF4444]" /></div>
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+              <div className="flex items-center justify-center gap-1 mb-1"><Zap className="w-3.5 h-3.5 text-[#888888]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{result.peakHour.replace('Hour ', 'H')}</p>
               <span className="text-[10px] text-[#666666]">Peak Hour</span>
             </div>
           </div>
 
           {/* Bar Chart */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4">Hourly Views Chart</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4">Hourly Views Chart</h4>
             <div className="flex items-end gap-1.5 h-44">
               {result.hourlyData.map((d, i) => {
                 const pct = (d.views / maxViews) * 100;
@@ -168,10 +168,10 @@ Return ONLY the JSON object.`;
                     <span className="text-[9px] text-[#666666]">{(d.views / 1000).toFixed(1)}K</span>
                     <div className="w-full rounded-t transition-all duration-500" style={{
                       height: `${Math.max(4, pct)}%`,
-                      backgroundColor: isPeak ? '#FDBA2D' : result.isViral ? '#10B981' : '#3B82F6',
+                      backgroundColor: isPeak ? '#FDBA2D' : result.isViral ? '#888888' : '#888888',
                       opacity: isPeak ? 1 : 0.6,
                     }} />
-                    <span className="text-[9px] text-[#555555]">H{i + 1}</span>
+                    <span className="text-[9px] text-[#666666]">H{i + 1}</span>
                   </div>
                 );
               })}
@@ -179,8 +179,8 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Trajectory */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Viral Trajectory</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Viral Trajectory</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.viralTrajectory}</p>
           </div>
         </div>
@@ -188,13 +188,13 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-4"><Activity className="w-8 h-8 text-[#10B981]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Activity className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Track View Velocity</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Paste a video URL to track hourly views and spot viral trends early.</p>
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Paste a video URL to track hourly views and spot viral trends early.</p>
         </div>
       )}
 
-      {searched && !loading && <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['vph-tracker']} tokens per track</div>}
+      {searched && !loading && <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS['vph-tracker']} tokens per track</div>}
     </div>
   );
 }

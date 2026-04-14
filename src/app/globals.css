@@ -45,57 +45,57 @@
   --color-amber: #FDBA2D;
   --color-amber-hover: #C69320;
   --color-amber-muted: rgba(253,186,45, 0.15);
-  --color-green: #10B981;
-  --color-green-muted: rgba(16,185,129, 0.15);
-  --color-blue: #3B82F6;
-  --color-purple: #8B5CF6;
-  --color-purple-muted: rgba(139, 92, 246, 0.15);
-  --color-red: #EF4444;
-  --color-red-muted: rgba(239,68,68, 0.15);
-  --color-surface: #0D0D0D;
-  --color-surface-card: #141414;
-  --color-surface-tertiary: #1A1A1A;
-  --color-surface-sidebar: #0D0D0D;
-  --color-border-primary: #1F1F1F;
-  --color-border-secondary: #2A2A2A;
+  --color-green: #22c55e;
+  --color-green-muted: rgba(34,197,94, 0.1);
+  --color-blue: #888888;
+  --color-purple: #888888;
+  --color-purple-muted: rgba(255,255,255, 0.06);
+  --color-red: #888888;
+  --color-red-muted: rgba(255,255,255, 0.06);
+  --color-surface: #0a0a0a;
+  --color-surface-card: #0f0f0f;
+  --color-surface-tertiary: #141414;
+  --color-surface-sidebar: #0a0a0a;
+  --color-border-primary: rgba(255,255,255,0.06);
+  --color-border-secondary: rgba(255,255,255,0.04);
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A3A3A3;
-  --color-text-muted: #444444;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
 }
 
 /* Dark-only theme — NychIQ is always dark */
 :root {
   --radius: 0.625rem;
-  --background: #0D0D0D;
+  --background: #0a0a0a;
   --foreground: #FFFFFF;
-  --card: #141414;
+  --card: #0f0f0f;
   --card-foreground: #FFFFFF;
-  --popover: #141414;
+  --popover: #0f0f0f;
   --popover-foreground: #FFFFFF;
   --primary: #FDBA2D;
-  --primary-foreground: #0D0D0D;
-  --secondary: #1A1A1A;
+  --primary-foreground: #0a0a0a;
+  --secondary: #141414;
   --secondary-foreground: #FFFFFF;
-  --muted: #1A1A1A;
-  --muted-foreground: #A3A3A3;
-  --accent: #1A1A1A;
+  --muted: #141414;
+  --muted-foreground: #a0a0a0;
+  --accent: #141414;
   --accent-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --border: #1F1F1F;
-  --input: #1F1F1F;
+  --destructive: #888888;
+  --border: rgba(255,255,255,0.06);
+  --input: rgba(255,255,255,0.06);
   --ring: #FDBA2D;
   --chart-1: #FDBA2D;
-  --chart-2: #10B981;
-  --chart-3: #3B82F6;
-  --chart-4: #8B5CF6;
-  --chart-5: #EF4444;
-  --sidebar: #0D0D0D;
+  --chart-2: #a0a0a0;
+  --chart-3: #888888;
+  --chart-4: #666666;
+  --chart-5: #444444;
+  --sidebar: #0a0a0a;
   --sidebar-foreground: #FFFFFF;
   --sidebar-primary: #FDBA2D;
-  --sidebar-primary-foreground: #0D0D0D;
-  --sidebar-accent: #1A1A1A;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #141414;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #1F1F1F;
+  --sidebar-border: rgba(255,255,255,0.06);
   --sidebar-ring: #FDBA2D;
 }
 
@@ -118,22 +118,22 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0D0D0D;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: #1a1a1a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444444;
+  background: #222222;
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #333333 #0D0D0D;
+  scrollbar-color: #1a1a1a #0a0a0a;
 }
 
 /* Glow animations */
@@ -216,21 +216,21 @@
 }
 
 /* Viral score color utility */
-.score-viral { color: #10B981; }
+.score-viral { color: #22c55e; }
 .score-hot { color: #FDBA2D; }
-.score-warm { color: #3B82F6; }
-.score-cold { color: #A3A3A3; }
+.score-warm { color: #888888; }
+.score-cold { color: #666666; }
 
 /* NychIQ-specific card hover */
 .nychiq-card {
-  background: #141414;
-  border: 1px solid #1F1F1F;
+  background: #0f0f0f;
+  border: 1px solid rgba(255,255,255,0.06);
   border-radius: 0.625rem;
   transition: all 0.2s ease;
 }
 
 .nychiq-card:hover {
-  border-color: #2A2A2A;
+  border-color: rgba(255,255,255,0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -244,7 +244,7 @@
 
 /* Sidebar active item indicator */
 .sidebar-active {
-  background: rgba(253,186,45, 0.1);
+  background: rgba(253,186,45, 0.08);
   border-right: 2px solid #FDBA2D;
 }
 
@@ -287,7 +287,7 @@
 .live-dot {
   width: 8px;
   height: 8px;
-  background: #10B981;
+  background: #22c55e;
   border-radius: 50%;
   animation: pulse-live 1.5s ease-in-out infinite;
 }
@@ -317,7 +317,7 @@
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid rgba(253,186,45, 0.5);
+  outline: 2px solid rgba(253,186,45, 0.4);
   outline-offset: 2px;
 }
 
@@ -400,7 +400,7 @@
 @keyframes flickerDigit { 0% { opacity: 0.5; } 20% { opacity: 1; } 40% { opacity: 0.7; } 60% { opacity: 1; } 80% { opacity: 0.3; } 100% { opacity: 1; } }
 @keyframes glitchText { 0% { opacity: 0; transform: translateX(-2px); } 25% { opacity: 1; transform: translateX(1px); } 50% { opacity: 0.8; transform: translateX(-1px); } 100% { opacity: 1; transform: translateX(0); } }
 @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 4px var(--glow-color); } 50% { box-shadow: 0 0 12px var(--glow-color); } }
-@keyframes breathe { 0%,100% { border-color: #1F1F1F; } 50% { border-color: #333333; } }
+@keyframes breathe { 0%,100% { border-color: rgba(255,255,255,0.06); } 50% { border-color: rgba(255,255,255,0.1); } }
 
 /* Saku floating button glow animation */
 @keyframes sakuGlow {

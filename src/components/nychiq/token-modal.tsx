@@ -26,7 +26,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
   return (
     <div className="space-y-4 mt-2">
       {/* Warning indicator */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.2)]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)]">
         <div className="relative w-12 h-12 flex items-center justify-center">
           <svg className="w-12 h-12 -rotate-90" viewBox="0 0 36 36">
             <path
@@ -48,13 +48,13 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
         </div>
         <div>
           <p className="text-sm font-semibold text-[#FDBA2D]">Running Low</p>
-          <p className="text-xs text-[#A3A3A3]">
+          <p className="text-xs text-[#a0a0a0]">
             {tokenBalance} of {maxTokens.toLocaleString()} tokens remaining
           </p>
         </div>
       </div>
 
-      <p className="text-sm text-[#A3A3A3]">
+      <p className="text-sm text-[#a0a0a0]">
         You&apos;re below 20% of your monthly token allocation. Upgrade your plan for more tokens, or wait
         until the <strong className="text-[#FFFFFF]">31st</strong> of this month for a free reset.
       </p>
@@ -62,25 +62,25 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
       {/* Quick earn options */}
       <div className="space-y-2">
         <h4 className="text-xs font-semibold text-[#666666] uppercase tracking-wide">Options</h4>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]">
-          <Gift className="w-4 h-4 text-[#10B981]" />
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+          <Gift className="w-4 h-4 text-[#888888]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Refer a Friend</p>
-            <p className="text-[11px] text-[#A3A3A3]">Earn 20 tokens per referral</p>
+            <p className="text-[11px] text-[#a0a0a0]">Earn 20 tokens per referral</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]">
-          <CalendarDays className="w-4 h-4 text-[#8B5CF6]" />
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+          <CalendarDays className="w-4 h-4 text-[#888888]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Monthly Reset</p>
-            <p className="text-[11px] text-[#A3A3A3]">Free tokens reset on the 31st of every month</p>
+            <p className="text-[11px] text-[#a0a0a0]">Free tokens reset on the 31st of every month</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]">
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
           <Zap className="w-4 h-4 text-[#FDBA2D]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Upgrade Plan</p>
-            <p className="text-[11px] text-[#A3A3A3]">Get up to unlimited tokens with Elite plan</p>
+            <p className="text-[11px] text-[#a0a0a0]">Get up to unlimited tokens with Elite plan</p>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
       <div className="flex gap-2 pt-1">
         <Button
           variant="outline"
-          className="flex-1 border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A]"
+          className="flex-1 border-[#333] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A]"
           onClick={onSkip}
         >
           Skip for Now
@@ -117,39 +117,39 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
   return (
     <div className="space-y-4 mt-2">
       {/* Exhausted indicator */}
-      <div className="flex items-center gap-3 p-4 rounded-lg bg-[rgba(239,68,68,0.08)] border border-[rgba(239,68,68,0.25)]">
-        <div className="w-12 h-12 rounded-full bg-[rgba(239,68,68,0.15)] flex items-center justify-center animate-pulse-live">
-          <AlertTriangle className="w-6 h-6 text-[#EF4444]" />
+      <div className="flex items-center gap-3 p-4 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+        <div className="w-12 h-12 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center animate-pulse-live">
+          <AlertTriangle className="w-6 h-6 text-[#888888]" />
         </div>
         <div>
-          <p className="text-base font-bold text-[#EF4444]">Tokens Exhausted</p>
-          <p className="text-xs text-[#A3A3A3]">You have no tokens remaining</p>
+          <p className="text-base font-bold text-[#888888]">Tokens Exhausted</p>
+          <p className="text-xs text-[#a0a0a0]">You have no tokens remaining</p>
         </div>
       </div>
 
-      <p className="text-sm text-[#A3A3A3] leading-relaxed">
-        Your token balance has reached <strong className="text-[#EF4444]">zero</strong>. You cannot use any
+      <p className="text-sm text-[#a0a0a0] leading-relaxed">
+        Your token balance has reached <strong className="text-[#888888]">zero</strong>. You cannot use any
         paid features until you upgrade your plan or wait for the{' '}
         <strong className="text-[#FFFFFF]">free monthly reset on the 31st</strong>.
       </p>
 
       {/* Countdown to reset */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]">
-        <Clock className="w-5 h-5 text-[#8B5CF6]" />
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+        <Clock className="w-5 h-5 text-[#888888]" />
         <div>
           <p className="text-xs font-medium text-[#FFFFFF]">Next Free Reset</p>
-          <p className="text-[11px] text-[#A3A3A3]">
+          <p className="text-[11px] text-[#a0a0a0]">
             <ResetCountdown />
           </p>
         </div>
       </div>
 
       {/* Current plan info */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
         <Coins className="w-4 h-4 text-[#FDBA2D]" />
         <div className="flex-1">
           <p className="text-xs font-medium text-[#FFFFFF]">Current Plan: {userPlan.charAt(0).toUpperCase() + userPlan.slice(1)}</p>
-          <p className="text-[11px] text-[#A3A3A3]">Monthly: ₦{planPrice.toLocaleString()}</p>
+          <p className="text-[11px] text-[#a0a0a0]">Monthly: ₦{planPrice.toLocaleString()}</p>
         </div>
       </div>
 
@@ -159,18 +159,18 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={onUpgrade}
-            className="p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.3)] hover:bg-[rgba(253,186,45,0.15)] transition-colors text-left"
+            className="p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(253,186,45,0.15)] transition-colors text-left"
           >
             <p className="text-sm font-bold text-[#FDBA2D]">Elite</p>
-            <p className="text-[11px] text-[#A3A3A3]">Unlimited tokens</p>
+            <p className="text-[11px] text-[#a0a0a0]">Unlimited tokens</p>
             <p className="text-[10px] text-[#666666] mt-1">₦70,000/mo</p>
           </button>
           <button
             onClick={onUpgrade}
-            className="p-3 rounded-lg bg-[rgba(16,185,129,0.08)] border border-[rgba(16,185,129,0.3)] hover:bg-[rgba(16,185,129,0.15)] transition-colors text-left"
+            className="p-3 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.06)] transition-colors text-left"
           >
-            <p className="text-sm font-bold text-[#10B981]">Agency</p>
-            <p className="text-[11px] text-[#A3A3A3]">50,000 tokens/mo</p>
+            <p className="text-sm font-bold text-[#888888]">Agency</p>
+            <p className="text-[11px] text-[#a0a0a0]">50,000 tokens/mo</p>
             <p className="text-[10px] text-[#666666] mt-1">₦150,000/mo</p>
           </button>
         </div>
@@ -184,7 +184,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
         Upgrade Plan to Continue
       </Button>
 
-      <p className="text-center text-[11px] text-[#555555]">
+      <p className="text-center text-[11px] text-[#666666]">
         Free tokens will reset on the 31st of this month.
         <br />
         Upgrade to continue using NychIQ features now.
@@ -230,7 +230,7 @@ function ResetCountdown() {
     return () => clearInterval(interval);
   }, []);
 
-  return <span className="text-[#10B981] font-medium">{countdown || 'Calculating...'}</span>;
+  return <span className="text-[#888888] font-medium">{countdown || 'Calculating...'}</span>;
 }
 
 /* ── Main TokenModal ── */
@@ -257,7 +257,7 @@ export function TokenModal() {
         if (!open) handleSkip();
       }}
     >
-      <DialogContent className="sm:max-w-md bg-[#141414] border-[#1F1F1F] text-[#FFFFFF] p-6">
+      <DialogContent className="sm:max-w-md bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] p-6">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
             <Coins className="w-5 h-5 text-[#FDBA2D]" />
@@ -293,15 +293,15 @@ export function TokenExhaustedOverlay() {
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
       {/* Content card */}
-      <div className="relative w-full max-w-md bg-[#141414] border border-[rgba(239,68,68,0.3)] rounded-xl p-6 animate-fade-in-up shadow-2xl">
+      <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl p-6 animate-fade-in-up shadow-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-[rgba(239,68,68,0.15)] flex items-center justify-center animate-pulse-live">
-            <AlertTriangle className="w-5 h-5 text-[#EF4444]" />
+          <div className="w-10 h-10 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center animate-pulse-live">
+            <AlertTriangle className="w-5 h-5 text-[#888888]" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-[#EF4444]">Tokens Exhausted</h3>
-            <p className="text-xs text-[#A3A3A3]">All tokens have been used</p>
+            <h3 className="text-lg font-bold text-[#888888]">Tokens Exhausted</h3>
+            <p className="text-xs text-[#a0a0a0]">All tokens have been used</p>
           </div>
         </div>
 

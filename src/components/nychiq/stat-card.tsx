@@ -33,15 +33,15 @@ export function StatCard({
       className={cn(
         'rounded-lg p-4 transition-all duration-200',
         dark
-          ? 'bg-[#0D0D0D] border border-[#1A1A1A]'
-          : 'bg-[#141414] border border-[#1F1F1F]',
-        'hover:border-[#2A2A2A] hover:shadow-lg hover:shadow-black/20',
+          ? 'bg-[#0a0a0a] border border-[#1A1A1A]'
+          : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]',
+        'hover:border-[rgba(255,255,255,0.1)] hover:shadow-lg hover:shadow-black/20',
         className
       )}
       style={{ borderTop: `2px solid ${color}` }}
     >
       <div className="flex items-start justify-between">
-        <p className="text-[11px] font-medium text-[#A3A3A3] uppercase tracking-wider">{label}</p>
+        <p className="text-[11px] font-medium text-[#a0a0a0] uppercase tracking-wider">{label}</p>
         {icon && (
           <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15` }}>
             <span style={{ color }}>{icon}</span>
@@ -56,9 +56,9 @@ export function StatCard({
           <div
             className={cn(
               'flex items-center gap-0.5 text-xs font-semibold mb-0.5',
-              isUp && 'text-[#10B981]',
-              isDown && 'text-[#EF4444]',
-              !isUp && !isDown && 'text-[#A3A3A3]'
+              isUp && 'text-[#888888]',
+              isDown && 'text-[#888888]',
+              !isUp && !isDown && 'text-[#a0a0a0]'
             )}
           >
             {isUp && <TrendingUp className="w-3 h-3" />}

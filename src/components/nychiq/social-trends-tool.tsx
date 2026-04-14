@@ -38,23 +38,23 @@ const REGIONS = [
 ];
 
 const PLATFORM_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  TikTok: { bg: 'bg-[rgba(255,0,80,0.1)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,0,80,0.2)]' },
-  'X': { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.2)]' },
-  Instagram: { bg: 'bg-[rgba(225,48,108,0.1)]', text: 'text-[#E1306C]', border: 'border-[rgba(225,48,108,0.2)]' },
-  YouTube: { bg: 'bg-[rgba(255,0,0,0.1)]', text: 'text-[#FF0000]', border: 'border-[rgba(255,0,0,0.2)]' },
+  TikTok: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,255,255,0.06)]' },
+  'X': { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' },
+  Instagram: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#E1306C]', border: 'border-[rgba(255,255,255,0.06)]' },
+  YouTube: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#FF0000]', border: 'border-[rgba(255,255,255,0.06)]' },
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Comedy: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]',
-  Music: 'bg-[rgba(139,92,246,0.1)] text-[#8B5CF6] border-[rgba(139,92,246,0.2)]',
-  Tech: 'bg-[rgba(59,130,246,0.1)] text-[#3B82F6] border-[rgba(59,130,246,0.2)]',
-  Gaming: 'bg-[rgba(16,185,129,0.1)] text-[#10B981] border-[rgba(16,185,129,0.2)]',
-  Fashion: 'bg-[rgba(225,48,108,0.1)] text-[#E1306C] border-[rgba(225,48,108,0.2)]',
-  Food: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]',
-  Sports: 'bg-[rgba(16,185,129,0.1)] text-[#10B981] border-[rgba(16,185,129,0.2)]',
-  News: 'bg-[rgba(59,130,246,0.1)] text-[#3B82F6] border-[rgba(59,130,246,0.2)]',
-  Lifestyle: 'bg-[rgba(139,92,246,0.1)] text-[#8B5CF6] border-[rgba(139,92,246,0.2)]',
-  Education: 'bg-[rgba(59,130,246,0.1)] text-[#3B82F6] border-[rgba(59,130,246,0.2)]',
+  Comedy: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.06)]',
+  Music: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  Tech: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  Gaming: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  Fashion: 'bg-[rgba(255,255,255,0.06)] text-[#E1306C] border-[rgba(255,255,255,0.06)]',
+  Food: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.06)]',
+  Sports: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  News: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  Lifestyle: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
+  Education: 'bg-[rgba(255,255,255,0.06)] text-[#888888] border-[rgba(255,255,255,0.06)]',
 };
 
 interface TrendItem {
@@ -128,7 +128,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -136,13 +136,13 @@ Return ONLY the JSON array, no other text.`;
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Cross-Platform Trends</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">TikTok, X, Instagram, YouTube trends before they blow up</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">TikTok, X, Instagram, YouTube trends before they blow up</p>
             </div>
           </div>
 
           {/* Platform Filter Chips */}
           <div className="mb-4">
-            <label className="text-xs font-medium text-[#A3A3A3] mb-2 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#a0a0a0] mb-2 flex items-center gap-1">
               <Filter className="w-3 h-3" /> Platform
             </label>
             <div className="flex flex-wrap gap-2 mt-1.5">
@@ -157,8 +157,8 @@ Return ONLY the JSON array, no other text.`;
                       isActive
                         ? colors
                           ? `${colors.bg} ${colors.text} ${colors.border}`
-                          : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(253,186,45,0.2)]'
-                        : 'bg-[#0D0D0D] text-[#A3A3A3] border-[#1A1A1A] hover:border-[#333333]'
+                          : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.06)]'
+                        : 'bg-[#0a0a0a] text-[#a0a0a0] border-[#1A1A1A] hover:border-[#1a1a1a]'
                     }`}
                   >
                     {p}
@@ -170,13 +170,13 @@ Return ONLY the JSON array, no other text.`;
 
           {/* Region Selector */}
           <div className="mb-4">
-            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
               <Globe className="w-3 h-3" /> Region
             </label>
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -190,7 +190,7 @@ Return ONLY the JSON array, no other text.`;
           <button
             onClick={fetchTrends}
             disabled={loading}
-            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Fetch Trends
@@ -200,12 +200,12 @@ Return ONLY the JSON array, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={fetchTrends}
-            className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -216,7 +216,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 space-y-3">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-16 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
                 <div className="w-12 h-6 bg-[#1A1A1A] rounded-full animate-pulse" />
@@ -241,12 +241,12 @@ Return ONLY the JSON array, no other text.`;
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {filteredTrends.map((trend, i) => {
               const pColors = PLATFORM_COLORS[trend.platform] || PLATFORM_COLORS['TikTok'];
-              const catColor = CATEGORY_COLORS[trend.category] || 'bg-[#1A1A1A] text-[#A3A3A3] border-[#1A1A1A]';
+              const catColor = CATEGORY_COLORS[trend.category] || 'bg-[#1A1A1A] text-[#a0a0a0] border-[#1A1A1A]';
               const isPositive = trend.spike > 0;
               return (
                 <div
                   key={i}
-                  className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#333333] transition-all group"
+                  className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[#1a1a1a] transition-all group"
                 >
                   {/* Top row: platform + category + spike */}
                   <div className="flex items-center justify-between mb-3">
@@ -258,7 +258,7 @@ Return ONLY the JSON array, no other text.`;
                         {trend.category}
                       </span>
                     </div>
-                    <div className={`flex items-center gap-1 text-xs font-bold ${isPositive ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                    <div className={`flex items-center gap-1 text-xs font-bold ${isPositive ? 'text-[#888888]' : 'text-[#888888]'}`}>
                       {isPositive ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
                       {Math.abs(trend.spike)}%
                     </div>
@@ -270,7 +270,7 @@ Return ONLY the JSON array, no other text.`;
                   </h4>
 
                   {/* Engagement Stats */}
-                  <div className="flex items-center gap-4 text-[11px] text-[#A3A3A3] mb-3">
+                  <div className="flex items-center gap-4 text-[11px] text-[#a0a0a0] mb-3">
                     <span className="flex items-center gap-1">
                       <Eye className="w-3 h-3" /> {fmtV(trend.engagement.views)}
                     </span>
@@ -286,11 +286,11 @@ Return ONLY the JSON array, no other text.`;
                   <div className="flex items-center justify-between pt-2 border-t border-[#1A1A1A]">
                     <span className="text-[10px] text-[#666666]">Crossing to YouTube?</span>
                     {trend.crossingToYouTube ? (
-                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(16,185,129,0.1)] text-[#10B981] border border-[rgba(16,185,129,0.2)]">
+                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]">
                         <ArrowUpRight className="w-3 h-3" /> Yes
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(136,136,136,0.1)] text-[#A3A3A3] border border-[rgba(136,136,136,0.2)]">
+                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#a0a0a0] border border-[rgba(255,255,255,0.06)]">
                         No
                       </span>
                     )}
@@ -305,25 +305,25 @@ Return ONLY the JSON array, no other text.`;
       {/* Filtered Empty */}
       {!loading && searched && trends.length > 0 && filteredTrends.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <Filter className="w-8 h-8 text-[#444444] mb-3" />
+          <Filter className="w-8 h-8 text-[#666666] mb-3" />
           <h3 className="text-sm font-semibold text-[#FFFFFF] mb-1">No trends for {platform}</h3>
-          <p className="text-xs text-[#A3A3A3]">Try selecting &quot;All&quot; or a different platform</p>
+          <p className="text-xs text-[#a0a0a0]">Try selecting &quot;All&quot; or a different platform</p>
         </div>
       )}
 
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
             <Share2 className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Cross-Platform Trends</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Select a region and fetch the hottest trends before they blow up on YouTube.</p>
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Select a region and fetch the hottest trends before they blow up on YouTube.</p>
         </div>
       )}
 
       {searched && !loading && (
-        <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.crossplatform} tokens per search</div>
+        <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS.crossplatform} tokens per search</div>
       )}
     </div>
   );

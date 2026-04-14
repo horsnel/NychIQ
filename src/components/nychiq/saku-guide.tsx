@@ -46,7 +46,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'Your mission control. See real-time stats, quick actions, channel health, and personalized insights all in one place. It updates live as your channel grows.',
     icon: LayoutDashboard,
-    accentColor: '#3B82F6',
+    accentColor: '#888888',
     targetHint: 'dashboard-content',
     position: 'bottom-center',
   },
@@ -56,7 +56,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'The trending intel feed surfaces viral topics before they peak. Filter by niche, region, and category to find your next big content opportunity.',
     icon: TrendingUp,
-    accentColor: '#10B981',
+    accentColor: '#888888',
     targetHint: 'trending',
     position: 'bottom-center',
   },
@@ -66,7 +66,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'I\'m always here for you! Click the floating button in the bottom-right corner anytime to ask me anything about YouTube strategy, SEO, scripting, or analytics.',
     icon: Bot,
-    accentColor: '#8B5CF6',
+    accentColor: '#888888',
     targetHint: 'saku-fab',
     position: 'bottom-right',
   },
@@ -86,7 +86,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'The My Channel tool gives you deep analytics on your own channel — subscriber growth, content performance, audience demographics, and AI-powered recommendations.',
     icon: Tv,
-    accentColor: '#EF4444',
+    accentColor: '#888888',
     targetHint: 'my-channel',
     position: 'bottom-center',
   },
@@ -96,7 +96,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'Tailor NychIQ to your workflow. Set preferences, manage your plan, configure notifications, and connect your YouTube account for deeper insights.',
     icon: Settings,
-    accentColor: '#A3A3A3',
+    accentColor: '#a0a0a0',
     targetHint: 'settings',
     position: 'bottom-center',
   },
@@ -134,7 +134,7 @@ function SparkleParticles() {
             top: `${p.top}%`,
             width: `${p.size}px`,
             height: `${p.size}px`,
-            backgroundColor: p.id % 3 === 0 ? '#FDBA2D' : p.id % 3 === 1 ? '#8B5CF6' : '#10B981',
+            backgroundColor: p.id % 3 === 0 ? '#FDBA2D' : p.id % 3 === 1 ? '#888888' : '#888888',
             opacity: 0.4,
             animationDelay: `${p.delay}s`,
             animationDuration: `${p.duration}s`,
@@ -159,7 +159,7 @@ function SakuAvatar({ size = 56, accentColor }: { size?: number; accentColor: st
       />
       {/* Avatar container */}
       <div
-        className="relative w-full h-full rounded-2xl bg-gradient-to-br from-[#8B5CF6] to-[#FDBA2D] flex items-center justify-center shadow-lg animate-saku-glow"
+        className="relative w-full h-full rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shadow-lg animate-saku-glow"
       >
         <Bot className="text-black" style={{ width: size * 0.5, height: size * 0.5 }} />
       </div>
@@ -179,7 +179,7 @@ function ProgressDots({ current, total }: { current: number; total: number }) {
           style={{
             width: i === current ? 24 : 6,
             height: 6,
-            backgroundColor: i === current ? '#FDBA2D' : i < current ? '#8B5CF6' : '#1F1F1F',
+            backgroundColor: i === current ? '#FDBA2D' : i < current ? '#888888' : '#0f0f0f',
           }}
         />
       ))}
@@ -317,9 +317,9 @@ export function SakuGuide() {
 
       {/* Top progress bar */}
       <div className="absolute top-0 left-0 right-0 z-[9999]">
-        <div className="h-1 bg-[#1F1F1F]">
+        <div className="h-1 bg-[#0f0f0f]">
           <div
-            className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#FDBA2D] transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-[#FDBA2D] to-[#C69320] transition-all duration-500 ease-out"
             style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
           />
         </div>
@@ -336,7 +336,7 @@ export function SakuGuide() {
       <div className="absolute top-10 right-4 z-[9999]">
         <button
           onClick={handleSkip}
-          className="text-xs text-[#555555] hover:text-[#A3A3A3] transition-colors flex items-center gap-1.5"
+          className="text-xs text-[#666666] hover:text-[#a0a0a0] transition-colors flex items-center gap-1.5"
         >
           <X className="w-3.5 h-3.5" />
           Skip Tour
@@ -349,7 +349,7 @@ export function SakuGuide() {
       >
         <div
           key={animKey}
-          className={`pointer-events-auto w-full max-w-[420px] rounded-2xl bg-[#141414] border border-[#1F1F1F] shadow-2xl shadow-black/50 transition-all duration-300 ${
+          className={`pointer-events-auto w-full max-w-[420px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] shadow-2xl shadow-black/50 transition-all duration-300 ${
             isExiting
               ? 'opacity-0 scale-95 translate-y-4'
               : 'opacity-100 scale-100 translate-y-0'
@@ -375,14 +375,14 @@ export function SakuGuide() {
             <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">{step.title}</h3>
 
             {/* Description */}
-            <p className="text-sm text-[#A3A3A3] leading-relaxed mb-5">{step.description}</p>
+            <p className="text-sm text-[#a0a0a0] leading-relaxed mb-5">{step.description}</p>
 
             {/* Action buttons */}
             <div className="flex items-center gap-3">
               {currentStep > 0 && (
                 <button
                   onClick={handlePrev}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium text-[#A3A3A3] bg-[#1F1F1F] hover:bg-[#2A2A2A] transition-colors"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium text-[#a0a0a0] bg-[#0f0f0f] hover:bg-[#111111] transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Back

@@ -12,10 +12,10 @@ interface PlanGateProps {
 
 const PLAN_HIERARCHY: Plan[] = ['starter', 'pro', 'elite', 'agency'];
 const PLAN_CONFIG: Record<string, { icon: React.ElementType; color: string; name: string }> = {
-  starter: { icon: Zap, color: '#3B82F6', name: 'Starter' },
+  starter: { icon: Zap, color: '#888888', name: 'Starter' },
   pro: { icon: Crown, color: '#FDBA2D', name: 'Pro' },
-  elite: { icon: Shield, color: '#8B5CF6', name: 'Elite' },
-  agency: { icon: Building2, color: '#10B981', name: 'Agency' },
+  elite: { icon: Shield, color: '#888888', name: 'Elite' },
+  agency: { icon: Building2, color: '#888888', name: 'Agency' },
 };
 
 export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
@@ -68,7 +68,7 @@ export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
         <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">{toolLabel}</h2>
 
         {/* Description */}
-        <p className="text-sm text-[#A3A3A3] mb-2">
+        <p className="text-sm text-[#a0a0a0] mb-2">
           Upgrade to{' '}
           <span style={{ color: config.color }} className="font-semibold">
             {config.name}
@@ -88,14 +88,14 @@ export function PlanGate({ toolId, toolLabel }: PlanGateProps) {
         {/* CTA */}
         <Button
           className="w-full font-semibold text-sm h-10"
-          style={{ backgroundColor: config.color, color: '#0D0D0D' }}
+          style={{ backgroundColor: config.color, color: '#0a0a0a' }}
           onClick={() => setUpgradeModalOpen(true)}
         >
           Upgrade to {config.name}
         </Button>
 
         {/* Subtle note */}
-        <p className="text-[11px] text-[#444444] mt-4">
+        <p className="text-[11px] text-[#666666] mt-4">
           7-day money-back guarantee · Cancel anytime
         </p>
       </div>

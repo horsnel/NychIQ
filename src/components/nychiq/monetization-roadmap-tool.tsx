@@ -49,9 +49,9 @@ interface RoadmapResult {
 
 /* ── Phase Icon Map ── */
 const PHASE_CONFIG = [
-  { name: 'Foundation', icon: Zap, color: '#3B82F6', subsRange: '0 → 1K' },
+  { name: 'Foundation', icon: Zap, color: '#888888', subsRange: '0 → 1K' },
   { name: 'Acceleration', icon: Rocket, color: '#FDBA2D', subsRange: '1K → 10K' },
-  { name: 'Diversification', icon: DollarSign, color: '#10B981', subsRange: '$1K/mo+' },
+  { name: 'Diversification', icon: DollarSign, color: '#888888', subsRange: '$1K/mo+' },
 ];
 
 /* ── Phase card ── */
@@ -59,7 +59,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
   const Icon = phase.icon;
 
   return (
-    <div className="rounded-lg bg-[#141414] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#1F1F1F' }}>
+    <div className="rounded-lg bg-[#0f0f0f] border overflow-hidden transition-all duration-300" style={{ borderColor: isActive ? phase.color + '60' : '#0f0f0f' }}>
       {/* Phase header */}
       <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -79,9 +79,9 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
 
       <div className="p-4 space-y-3">
         {/* Subscribers range */}
-        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
           <Target className="w-3.5 h-3.5 text-[#666666]" />
-          <span className="text-[11px] text-[#A3A3A3]">{phase.subsRange}</span>
+          <span className="text-[11px] text-[#a0a0a0]">{phase.subsRange}</span>
         </div>
 
         {/* Goals */}
@@ -89,7 +89,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
           <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#666666] mb-2">Goals</h5>
           <ul className="space-y-1">
             {phase.goals.map((g, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
+              <li key={i} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
                 <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: phase.color }} />
                 {g}
               </li>
@@ -102,7 +102,7 @@ function PhaseCard({ phase, index, isActive, totalPhases }: { phase: Phase; inde
           <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#666666] mb-2">Strategy</h5>
           <ul className="space-y-1">
             {phase.strategies.map((s, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
+              <li key={i} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
                 <Sparkles className="w-3 h-3 shrink-0 mt-0.5" style={{ color: phase.color }} />
                 {s}
               </li>
@@ -129,7 +129,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Foundation',
         icon: Zap,
-        color: '#3B82F6',
+        color: '#888888',
         subsRange: '0 → 1K subscribers',
         timeline: '3-6 months',
         goals: [
@@ -167,7 +167,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Diversification',
         icon: DollarSign,
-        color: '#10B981',
+        color: '#888888',
         subsRange: '$1K/month revenue+',
         timeline: '12-18 months',
         goals: [
@@ -297,7 +297,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(253,186,45,0.1)' }}>
@@ -305,7 +305,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Revenue Roadmap</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 3-phase monetization roadmap from $0 to $1,000/month
               </p>
             </div>
@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNiche(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Your niche..."
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <input
@@ -329,20 +329,20 @@ Return ONLY the JSON object, no other text.`;
               value={subs}
               onChange={(e) => setSubs(e.target.value)}
               placeholder="Current subscribers"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
             <input
               type="number"
               value={views}
               onChange={(e) => setViews(e.target.value)}
               placeholder="Monthly views"
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
             />
           </div>
           <button
             onClick={handleGenerate}
             disabled={loading || !niche.trim()}
-            className="w-full mt-3 px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full mt-3 px-5 h-11 rounded-lg text-[#0a0a0a] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             style={{ backgroundColor: '#FDBA2D' }}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />}
@@ -353,10 +353,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF] mb-3">{error}</p>
-          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
+          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888]/15 text-[#888888] text-xs font-medium hover:bg-[#888888]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -365,12 +365,12 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-4" />
             <div className="h-3 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 space-y-3">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 space-y-3">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3" />
@@ -383,7 +383,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <>
           {/* Power Level + Key Metrics */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
@@ -391,9 +391,9 @@ Return ONLY the JSON object, no other text.`;
                 <span className="ml-auto text-xs font-bold" style={{ color: '#FDBA2D' }}>{powerLevel}%</span>
               </div>
               <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
-                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #3B82F6, #FDBA2D, #10B981)` }} />
+                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #888888, #FDBA2D, #888888)` }} />
               </div>
-              <div className="flex items-center justify-between text-[10px] text-[#555555]">
+              <div className="flex items-center justify-between text-[10px] text-[#666666]">
                 <span>0 subs</span>
                 <span>1K</span>
                 <span>10K</span>
@@ -401,17 +401,17 @@ Return ONLY the JSON object, no other text.`;
 
               {/* Key metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-base font-bold text-[#10B981]">{result.viewsFor1K.toLocaleString()}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">Views for $1K/mo</p>
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <p className="text-base font-bold text-[#888888]">{result.viewsFor1K.toLocaleString()}</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">Views for $1K/mo</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <p className="text-base font-bold text-[#FDBA2D]">${result.rpmBenchmark}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">RPM Benchmark</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">RPM Benchmark</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] col-span-2 sm:col-span-1">
-                  <p className="text-base font-bold text-[#3B82F6]">{result.currentSubs.toLocaleString()}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">Current Subs</p>
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] col-span-2 sm:col-span-1">
+                  <p className="text-base font-bold text-[#888888]">{result.currentSubs.toLocaleString()}</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">Current Subs</p>
                 </div>
               </div>
             </div>
@@ -432,15 +432,15 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Seasonal Predictions */}
           {result.seasonalPredictions.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Calendar className="w-4 h-4" style={{ color: '#8B5CF6' }} />
+                <Calendar className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Seasonal Predictions</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.seasonalPredictions.map((pred, i) => (
                   <div key={i} className="px-4 py-3">
-                    <p className="text-xs text-[#A3A3A3] leading-relaxed">{pred}</p>
+                    <p className="text-xs text-[#a0a0a0] leading-relaxed">{pred}</p>
                   </div>
                 ))}
               </div>
@@ -449,15 +449,15 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Bottleneck Detection */}
           {result.bottlenecks.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
+                <AlertTriangle className="w-4 h-4 text-[#888888]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Bottleneck Detection</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.bottlenecks.map((b, i) => (
                   <div key={i} className="px-4 py-3">
-                    <p className="text-xs text-[#A3A3A3] leading-relaxed">{b}</p>
+                    <p className="text-xs text-[#a0a0a0] leading-relaxed">{b}</p>
                   </div>
                 ))}
               </div>
@@ -465,7 +465,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* AI Advice */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />
@@ -481,14 +481,14 @@ Return ONLY the JSON object, no other text.`;
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(253,186,45,0.1)' }}>
                   <Bot className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} />
                 </div>
-                <p className="text-xs text-[#A3A3A3] leading-relaxed">{result.advice}</p>
+                <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.advice}</p>
               </div>
             </div>
           </div>
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#A3A3A3] hover:text-[#FDBA2D] transition-colors">
+            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#a0a0a0] hover:text-[#FDBA2D] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Regenerate
             </button>
@@ -503,7 +503,7 @@ Return ONLY the JSON object, no other text.`;
             <Target className="w-8 h-8" style={{ color: '#FDBA2D' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Your Revenue Roadmap</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Enter your niche and current stats to get a personalized 3-phase monetization roadmap to $1,000/month.
           </p>
         </div>
@@ -511,7 +511,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Token cost footer */}
       {searched && (
-        <div className="text-center text-[11px] text-[#444444]">
+        <div className="text-center text-[11px] text-[#666666]">
           Cost: {TOKEN_COSTS['monetization-roadmap']} tokens per analysis
         </div>
       )}

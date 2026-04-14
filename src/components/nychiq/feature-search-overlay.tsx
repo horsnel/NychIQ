@@ -122,9 +122,9 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
 
       {/* Overlay */}
-      <div className="relative w-full max-w-3xl max-h-[75vh] bg-[#0D0D0D] border border-[#1F1F1F] rounded-2xl shadow-2xl animate-fade-in-up overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-3xl max-h-[75vh] bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] rounded-2xl shadow-2xl animate-fade-in-up overflow-hidden flex flex-col">
         {/* Search header */}
-        <div className="flex items-center gap-3 px-5 py-4 border-b border-[#1E1E1E]">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-[rgba(255,255,255,0.06)]">
           <Search className="w-5 h-5 text-[#FDBA2D] shrink-0" />
           <input
             ref={inputRef}
@@ -132,16 +132,16 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search all tools..."
-            className="flex-1 bg-transparent text-base text-[#FFFFFF] placeholder-[#555555] outline-none"
+            className="flex-1 bg-transparent text-base text-[#FFFFFF] placeholder-[#666666] outline-none"
           />
           {query && (
-            <span className="text-xs text-[#444444]">{totalResults} result{totalResults !== 1 ? 's' : ''}</span>
+            <span className="text-xs text-[#666666]">{totalResults} result{totalResults !== 1 ? 's' : ''}</span>
           )}
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-[#1A1A1A] transition-colors"
           >
-            <X className="w-4 h-4 text-[#A3A3A3]" />
+            <X className="w-4 h-4 text-[#a0a0a0]" />
           </button>
         </div>
 
@@ -149,14 +149,14 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
         <div className="flex-1 overflow-y-auto p-4 space-y-6 no-scrollbar">
           {toolsBySection.length === 0 ? (
             <div className="py-12 text-center">
-              <Search className="w-8 h-8 text-[#333333] mx-auto mb-3" />
-              <p className="text-sm text-[#555555]">No tools found for &ldquo;{query}&rdquo;</p>
-              <p className="text-xs text-[#444444] mt-1">Try a different search term</p>
+              <Search className="w-8 h-8 text-[#1a1a1a] mx-auto mb-3" />
+              <p className="text-sm text-[#666666]">No tools found for &ldquo;{query}&rdquo;</p>
+              <p className="text-xs text-[#666666] mt-1">Try a different search term</p>
             </div>
           ) : (
             toolsBySection.map((section) => (
               <div key={section.id}>
-                <h3 className="text-[10px] font-semibold tracking-widest text-[#444444] uppercase mb-3 px-1">
+                <h3 className="text-[10px] font-semibold tracking-widest text-[#666666] uppercase mb-3 px-1">
                   {section.label}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -166,9 +166,9 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
                       <button
                         key={tool.id}
                         onClick={() => handleSelect(tool.id)}
-                        className="flex items-start gap-3 p-3 rounded-xl bg-[#141414] border border-[#1E1E1E] hover:border-[#2A2A2A] hover:bg-[#1A1A1A] transition-all group text-left"
+                        className="flex items-start gap-3 p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] transition-all group text-left"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.12)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(253,186,45,0.12)] transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(253,186,45,0.12)] transition-colors">
                           <Icon className="w-4 h-4 text-[#FDBA2D]" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -176,7 +176,7 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
                             <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors truncate">
                               {tool.label}
                             </span>
-                            <ArrowRight className="w-3 h-3 text-[#444444] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all" />
+                            <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all" />
                           </div>
                           <p className="text-xs text-[#666666] mt-0.5 line-clamp-1 leading-relaxed">
                             {tool.description}
@@ -192,11 +192,11 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
         </div>
 
         {/* Footer hint */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-[#1E1E1E]">
-          <span className="text-[10px] text-[#444444]">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-[rgba(255,255,255,0.06)]">
+          <span className="text-[10px] text-[#666666]">
             {TOOL_META && Object.keys(TOOL_META).length} tools available
           </span>
-          <kbd className="px-2 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[#1F1F1F] text-[#444444]">
+          <kbd className="px-2 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#666666]">
             ESC to close
           </kbd>
         </div>

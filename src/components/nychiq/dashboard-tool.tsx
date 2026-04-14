@@ -13,22 +13,22 @@ import {
 
 /* ── Constants ── */
 const QUICK_TOOLS = [
-  { id: 'hooklab', label: 'HookLab', icon: Flame, color: '#8B5CF6' },
-  { id: 'thumbnail-lab', label: 'Thumbnail Lab', icon: Image, color: '#EC4899' },
-  { id: 'viral', label: 'Viral Predictor', icon: Zap, color: '#EF4444' },
+  { id: 'hooklab', label: 'HookLab', icon: Flame, color: '#888888' },
+  { id: 'thumbnail-lab', label: 'Thumbnail Lab', icon: Image, color: '#888888' },
+  { id: 'viral', label: 'Viral Predictor', icon: Zap, color: '#888888' },
   { id: 'posttime', label: 'Best Post Time', icon: Clock, color: '#FDBA2D' },
-  { id: 'audit', label: 'Channel Audit', icon: ShieldCheck, color: '#10B981' },
-  { id: 'ideas', label: 'Video Ideas', icon: Sparkles, color: '#3B82F6' },
-  { id: 'seo', label: 'SEO Optimizer', icon: SearchCode, color: '#06B6D4' },
-  { id: 'scriptflow', label: 'ScriptFlow', icon: FileText, color: '#6366F1' },
-  { id: 'competitor', label: 'Competitor Track', icon: Target, color: '#F97316' },
-  { id: 'trending', label: 'Analytics Deep Dive', icon: BarChart3, color: '#14B8A6' },
+  { id: 'audit', label: 'Channel Audit', icon: ShieldCheck, color: '#888888' },
+  { id: 'ideas', label: 'Video Ideas', icon: Sparkles, color: '#888888' },
+  { id: 'seo', label: 'SEO Optimizer', icon: SearchCode, color: '#888888' },
+  { id: 'scriptflow', label: 'ScriptFlow', icon: FileText, color: '#888888' },
+  { id: 'competitor', label: 'Competitor Track', icon: Target, color: '#888888' },
+  { id: 'trending', label: 'Analytics Deep Dive', icon: BarChart3, color: '#888888' },
 ];
 
 const ACTIVITY_ITEMS = [
-  { icon: ShieldCheck, label: 'Recent Channel Audits', time: '2m ago', category: 'CHANNEL AUDITS', progress: 60, color: '#10B981' },
+  { icon: ShieldCheck, label: 'Recent Channel Audits', time: '2m ago', category: 'CHANNEL AUDITS', progress: 60, color: '#888888' },
   { icon: TrendingUp, label: 'Viral Analysis', time: '2:02 am', category: 'VIRAL ANALYSIS', progress: 80, color: '#FDBA2D' },
-  { icon: Anchor, label: 'Hook Generation', time: '0:27 am', category: 'HOOK GENERATION', progress: 40, color: '#8B5CF6' },
+  { icon: Anchor, label: 'Hook Generation', time: '0:27 am', category: 'HOOK GENERATION', progress: 40, color: '#888888' },
 ];
 
 /* ── Copy Button ── */
@@ -40,7 +40,7 @@ function CopyButton({ text, label }: { text: string; label?: string }) {
   }, [text]);
   return (
     <button onClick={handleCopy} title={label || 'Copy'} className="p-1.5 rounded-full bg-[rgba(253,186,45,0.1)] hover:bg-[rgba(253,186,45,0.2)] transition-colors">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5 text-[#FDBA2D]" />}
+      {copied ? <Check className="w-3.5 h-3.5 text-[#888888]" /> : <Copy className="w-3.5 h-3.5 text-[#FDBA2D]" />}
     </button>
   );
 }
@@ -55,13 +55,13 @@ function VideoIndexCard({ video }: { video: any }) {
   const url = `https://youtube.com/watch?v=${videoId}`;
 
   return (
-    <div className="shrink-0 w-[240px] rounded-xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] overflow-hidden group hover:border-[rgba(255,255,255,0.1)] transition-all duration-200">
-      <div className="relative h-[135px] bg-[#141414] overflow-hidden">
+    <div className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden group hover:border-[rgba(255,255,255,0.1)] transition-all duration-200">
+      <div className="relative h-[135px] bg-[#0f0f0f] overflow-hidden">
         <img src={thumb} alt={title} className="w-full h-full object-cover" loading="lazy" />
       </div>
       <div className="p-3 pb-4">
         <h4 className="text-sm text-[#FFFFFF] font-medium leading-snug line-clamp-2 mb-1">{title}</h4>
-        <p className="text-[11px] text-[#555555]">{channel} {published ? `• ${timeAgo(published)}` : ''}</p>
+        <p className="text-[11px] text-[#666666]">{channel} {published ? `• ${timeAgo(published)}` : ''}</p>
         <div className="flex items-center justify-end mt-2">
           <CopyButton text={`${url}\n${title}`} label="Copy URL & title" />
         </div>
@@ -122,7 +122,7 @@ function GrowthChart() {
 
   if (!data) {
     return (
-      <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6 flex items-center justify-center">
+      <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex items-center justify-center">
         <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
       </div>
     );
@@ -157,13 +157,13 @@ function GrowthChart() {
   const labelStep = Math.max(1, Math.floor(data.labels.length / 7));
 
   return (
-    <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6">
+    <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-base font-semibold text-[#FFFFFF]">Growth Trend</h3>
-        <div className="flex gap-1 p-0.5 rounded-lg bg-[#0D0D0D] border border-[rgba(255,255,255,0.05)]">
+        <div className="flex gap-1 p-0.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
           {rangeBtns.map((b) => (
             <button key={b.key} onClick={() => setRange(b.key)}
-              className={cn('px-3 py-1 rounded-md text-xs font-medium transition-all', range === b.key ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]' : 'text-[#555555] hover:text-[#A3A3A3]')}>
+              className={cn('px-3 py-1 rounded-md text-xs font-medium transition-all', range === b.key ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]' : 'text-[#666666] hover:text-[#a0a0a0]')}>
               {b.label}
             </button>
           ))}
@@ -173,8 +173,8 @@ function GrowthChart() {
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+              <stop offset="0%" stopColor="#888888" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#888888" stopOpacity="0" />
             </linearGradient>
           </defs>
           {[0, 0.25, 0.5, 0.75, 1].map((frac) => {
@@ -182,17 +182,17 @@ function GrowthChart() {
             return (
               <g key={frac}>
                 <line x1={pad.left} y1={y} x2={width - pad.right} y2={y} stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                <text x={pad.left - 8} y={y + 4} textAnchor="end" className="text-[10px]" fill="#555555">{fmtAxis(maxVal * frac)}</text>
+                <text x={pad.left - 8} y={y + 4} textAnchor="end" className="text-[10px]" fill="#666666">{fmtAxis(maxVal * frac)}</text>
               </g>
             );
           })}
           <path d={areaPath} fill="url(#dashGrad)" />
-          <path d={prevLinePath} fill="none" stroke="#555555" strokeWidth="1.5" strokeDasharray="6 4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d={linePath} fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={prevLinePath} fill="none" stroke="#666666" strokeWidth="1.5" strokeDasharray="6 4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           {pts.map((p, i) => (
             <g key={i}>
-              <circle cx={p.x} cy={p.y} r="3" fill="#0D0D0D" stroke="#10B981" strokeWidth="2" />
-              {i % labelStep === 0 && <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#555555">{data.labels[i]}</text>}
+              <circle cx={p.x} cy={p.y} r="3" fill="#0a0a0a" stroke="#888888" strokeWidth="2" />
+              {i % labelStep === 0 && <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#666666">{data.labels[i]}</text>}
             </g>
           ))}
         </svg>
@@ -207,14 +207,14 @@ function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
   const Icon = tool.icon;
   return (
     <button onClick={() => setActiveTool(tool.id)}
-      className="flex items-center justify-between w-[160px] h-[80px] p-3 rounded-xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] hover:bg-[#252525] transition-colors group">
+      className="flex items-center justify-between w-[160px] h-[80px] p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:bg-[#111111] transition-colors group">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${tool.color}20`, color: tool.color }}>
+        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]" style={{ color: '#aaa' }}>
           <Icon className="w-4 h-4" />
         </div>
         <span className="text-[13px] font-medium text-[#FFFFFF] text-left leading-tight">{tool.label}</span>
       </div>
-      <button className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity text-[#555555] hover:text-[#A3A3A3]">
+      <button className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity text-[#666666] hover:text-[#a0a0a0]">
         <MoreHorizontal className="w-4 h-4" />
       </button>
     </button>
@@ -225,18 +225,18 @@ function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
 function ActivityCard({ item }: { item: typeof ACTIVITY_ITEMS[0] }) {
   const Icon = item.icon;
   return (
-    <div className="flex-1 min-w-0 shrink-0 w-[260px] sm:w-auto sm:flex-1 rounded-xl bg-[#141414] p-4 flex flex-col gap-3">
+    <div className="flex-1 min-w-0 shrink-0 w-[260px] sm:w-auto sm:flex-1 rounded-xl bg-[#0f0f0f] p-4 flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${item.color}20`, color: item.color }}>
+        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]" style={{ color: '#aaa' }}>
           <Icon className="w-[18px] h-[18px]" />
         </div>
         <div className="flex-1 min-w-0">
           <h4 className="text-sm font-medium text-[#FFFFFF] truncate">{item.label}</h4>
-          <p className="text-[11px] text-[#555555]">{item.time}</p>
+          <p className="text-[11px] text-[#666666]">{item.time}</p>
         </div>
       </div>
       <span className="text-[10px] font-semibold uppercase tracking-wider text-[#FDBA2D]">{item.category}</span>
-      <div className="w-full h-1 rounded-full bg-[#0D0D0D] overflow-hidden">
+      <div className="w-full h-1 rounded-full bg-[#0a0a0a] overflow-hidden">
         <div className="h-full rounded-full bg-[#FDBA2D]" style={{ width: `${item.progress}%` }} />
       </div>
     </div>
@@ -280,7 +280,7 @@ export function DashboardTool() {
   return (
     <div className="space-y-0 animate-fade-in-up">
       {/* ═══ WELCOME + VIDEO INDEX ═══ */}
-      <h2 className="text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #FDBA2D, #FDE68A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <h2 className="text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #FDBA2D, #C69320)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
         Welcome back, {displayName}!
       </h2>
 
@@ -289,7 +289,7 @@ export function DashboardTool() {
         {videosLoading ? (
           <div className="flex gap-4 overflow-hidden">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="shrink-0 w-[240px] h-[210px] rounded-xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] animate-pulse" />
+              <div key={i} className="shrink-0 w-[240px] h-[210px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] animate-pulse" />
             ))}
           </div>
         ) : videos.length > 0 ? (
@@ -301,9 +301,9 @@ export function DashboardTool() {
         ) : (
           <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="shrink-0 w-[240px] rounded-xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-4 flex flex-col items-center justify-center h-[210px]">
-                <Eye className="w-8 h-8 text-[#333333] mb-2" />
-                <p className="text-xs text-[#555555]">No videos yet</p>
+              <div key={i} className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 flex flex-col items-center justify-center h-[210px]">
+                <Eye className="w-8 h-8 text-[#1a1a1a] mb-2" />
+                <p className="text-xs text-[#666666]">No videos yet</p>
               </div>
             ))}
           </div>
@@ -320,10 +320,10 @@ export function DashboardTool() {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base font-semibold text-[#FFFFFF]">Quick Tools</h3>
           <div className="flex gap-1">
-            <button onClick={() => scrollTools(-1)} className="p-1.5 rounded-lg hover:bg-[#1F1F1F] text-[#555555] hover:text-[#A3A3A3] transition-colors">
+            <button onClick={() => scrollTools(-1)} className="p-1.5 rounded-lg hover:bg-[#0f0f0f] text-[#666666] hover:text-[#a0a0a0] transition-colors">
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button onClick={() => scrollTools(1)} className="p-1.5 rounded-lg hover:bg-[#1F1F1F] text-[#555555] hover:text-[#A3A3A3] transition-colors">
+            <button onClick={() => scrollTools(1)} className="p-1.5 rounded-lg hover:bg-[#0f0f0f] text-[#666666] hover:text-[#a0a0a0] transition-colors">
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -338,10 +338,10 @@ export function DashboardTool() {
       </div>
 
       {/* ═══ RECENT ACTIVITY ═══ */}
-      <div className="mt-6 rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-5">
+      <div className="mt-6 rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base font-semibold text-[#FFFFFF]">Recent Activity</h3>
-          <button className="text-xs font-medium text-[#FDBA2D] hover:text-[#FDE68A] transition-colors">View All</button>
+          <button className="text-xs font-medium text-[#FDBA2D] hover:text-[#FDBA2D] transition-colors">View All</button>
         </div>
         <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
           {ACTIVITY_ITEMS.map((item, i) => (

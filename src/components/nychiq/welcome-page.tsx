@@ -29,8 +29,8 @@ const FEATURES = [
     name: 'Live Trend Radar',
     desc: 'Real-time trending videos across 9 regions with viral scoring and category filtering.',
     tag: 'LIVE DATA',
-    tagColor: '#10B981',
-    iconBg: '#10B981',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '03',
@@ -40,7 +40,7 @@ const FEATURES = [
     desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.',
     tag: 'ALL PLANS',
     tagColor: '#FDBA2D',
-    iconBg: '#3B82F6',
+    iconBg: '#888888',
   },
   {
     num: '04',
@@ -49,7 +49,7 @@ const FEATURES = [
     name: 'Viral Score Engine',
     desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
+    tagColor: '#888888',
     iconBg: '#FDBA2D',
   },
   {
@@ -59,8 +59,8 @@ const FEATURES = [
     name: 'Niche Discovery',
     desc: 'Uncover untapped niches with high growth potential and low competition scores.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#3B82F6',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '06',
@@ -69,8 +69,8 @@ const FEATURES = [
     name: 'Algorithm Intel',
     desc: 'Understand how the YouTube algorithm ranks content in your specific niche.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#8B5CF6',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '07',
@@ -79,8 +79,8 @@ const FEATURES = [
     name: 'SEO Toolkit',
     desc: 'Optimize titles, descriptions, tags, and metadata for maximum discoverability.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#10B981',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '08',
@@ -89,8 +89,8 @@ const FEATURES = [
     name: 'Hook Creator',
     desc: 'Generate attention-grabbing video hooks and intros using AI trained on viral content.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#EF4444',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '09',
@@ -99,7 +99,7 @@ const FEATURES = [
     name: 'Keyword Research',
     desc: 'Find high-volume, low-competition keywords specific to YouTube search.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
+    tagColor: '#888888',
     iconBg: '#FDBA2D',
   },
   {
@@ -109,8 +109,8 @@ const FEATURES = [
     name: 'AI Script Studio',
     desc: 'Generate complete video scripts with structure, hooks, CTAs, and timing markers.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#3B82F6',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '11',
@@ -119,7 +119,7 @@ const FEATURES = [
     name: 'Idea Generator',
     desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
+    tagColor: '#888888',
     iconBg: '#FDBA2D',
   },
   {
@@ -129,8 +129,8 @@ const FEATURES = [
     name: 'Revenue Forecaster',
     desc: 'Estimate CPM rates and projected earnings across niches and regions.',
     tag: 'LIVE DATA',
-    tagColor: '#10B981',
-    iconBg: '#10B981',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '13',
@@ -139,8 +139,8 @@ const FEATURES = [
     name: 'Health Check',
     desc: 'Comprehensive channel audit with SEO, branding, content, and engagement scoring.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#8B5CF6',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '14',
@@ -149,8 +149,8 @@ const FEATURES = [
     name: 'Track & Analyze',
     desc: 'Monitor competitor channels, content strategies, and growth trajectories.',
     tag: 'LIVE DATA',
-    tagColor: '#10B981',
-    iconBg: '#EF4444',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '15',
@@ -159,8 +159,8 @@ const FEATURES = [
     name: 'Outlier Detection',
     desc: 'Find channels that are about to break out based on abnormal growth signals.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#10B981',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '16',
@@ -169,8 +169,8 @@ const FEATURES = [
     name: 'AI Assistant',
     desc: 'Your personal YouTube expert — ask anything about strategy, trends, or growth.',
     tag: 'AI POWERED',
-    tagColor: '#8B5CF6',
-    iconBg: '#8B5CF6',
+    tagColor: '#888888',
+    iconBg: '#888888',
   },
   {
     num: '17',
@@ -179,7 +179,7 @@ const FEATURES = [
     name: 'Auto Tasks',
     desc: 'Set up automated monitoring, alerts, and reporting for your channels.',
     tag: 'PRO+',
-    tagColor: '#3B82F6',
+    tagColor: '#888888',
     iconBg: '#FDBA2D',
   },
 ];
@@ -219,9 +219,9 @@ const PLANS = [
 
 /* ── Terminal typing animation ── */
 const TERMINAL_LINES = [
-  { text: '> SCANNING 12 TRENDING VIDEOS...', color: '#A3A3A3' },
-  { text: '> VIRAL SCORE: 94/99 ⚡', color: '#10B981' },
-  { text: '> AI ANALYSIS READY', color: '#3B82F6' },
+  { text: '> SCANNING 12 TRENDING VIDEOS...', color: '#a0a0a0' },
+  { text: '> VIRAL SCORE: 94/99 ⚡', color: '#888888' },
+  { text: '> AI ANALYSIS READY', color: '#888888' },
 ];
 
 function TerminalLine({ text, color, delay }: { text: string; color: string; delay: number }) {
@@ -282,18 +282,18 @@ export function WelcomePage() {
   if (isLoggedIn) return null;
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D] to-[#0D0D0D]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(253,186,45,0.02)] blur-[100px]" />
-      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(16,185,129,0.015)] blur-[80px]" />
+      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.06)] blur-[80px]" />
 
       <div className="relative z-10">
         {/* ═══ NAVIGATION BAR ═══ */}
         <nav
           className={`sticky top-0 z-50 transition-all duration-300 ${
             scrolled
-              ? 'bg-[#000]/95 backdrop-blur-md border-b border-[#141414]'
+              ? 'bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#0f0f0f]'
               : 'bg-transparent border-b border-transparent'
           }`}
         >
@@ -304,7 +304,7 @@ export function WelcomePage() {
                 onClick={() => setPage('welcome')}
                 className="flex items-center gap-2.5 group"
               >
-                <div className="w-9 h-9 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.2)] group-hover:shadow-[rgba(253,186,45,0.35)] transition-shadow">
+                <div className="w-9 h-9 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.12)] group-hover:shadow-[rgba(253,186,45,0.12)] transition-shadow">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M10 6L18 12L10 18V6Z" fill="white"/>
                     <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
@@ -317,25 +317,25 @@ export function WelcomePage() {
               <div className="hidden md:flex items-center gap-1">
                 <button
                   onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => setPage('privacy')}
-                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => setPage('login')}
-                  className="px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
                 >
                   Live Demo
                 </button>
@@ -345,13 +345,13 @@ export function WelcomePage() {
               <div className="hidden md:flex items-center gap-3">
                 <Button
                   variant="outline"
-                  className="border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent text-sm font-medium"
+                  className="border-[#333] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent text-sm font-medium"
                   onClick={() => setPage('login')}
                 >
                   Sign In
                 </Button>
                 <Button
-                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
                   onClick={() => setPage('login')}
                 >
                   Get Started
@@ -361,7 +361,7 @@ export function WelcomePage() {
 
               {/* Mobile hamburger */}
               <button
-                className="md:hidden p-2 text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors"
+                className="md:hidden p-2 text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -372,36 +372,36 @@ export function WelcomePage() {
 
           {/* Mobile dropdown menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-[#141414] border-t border-[#1E1E1E] animate-fade-in-up">
+            <div className="md:hidden bg-[#0f0f0f] border-t border-[rgba(255,255,255,0.06)] animate-fade-in-up">
               <div className="px-4 py-4 space-y-1">
                 <button
                   onClick={() => { featuresRef.current?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => { document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => { setPage('privacy'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
                 >
                   Live Demo
                 </button>
-                <div className="pt-3 border-t border-[#1E1E1E] flex flex-col gap-2">
+                <div className="pt-3 border-t border-[rgba(255,255,255,0.06)] flex flex-col gap-2">
                   <Button
                     variant="outline"
-                    className="w-full border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-transparent"
+                    className="w-full border-[#333] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-transparent"
                     onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
                   >
                     Sign In
@@ -424,7 +424,7 @@ export function WelcomePage() {
             {/* Left column */}
             <div className="animate-fade-in-up">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(16,185,129,0.08)] border border-[rgba(16,185,129,0.15)] text-xs text-[#10B981] font-semibold tracking-wide uppercase mb-6">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-xs text-[#888888] font-semibold tracking-wide uppercase mb-6">
                 <span className="live-dot" />
                 LIVE YOUTUBE INTELLIGENCE
               </div>
@@ -437,7 +437,7 @@ export function WelcomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-base sm:text-lg text-[#A3A3A3] max-w-lg mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-[#a0a0a0] max-w-lg mb-8 leading-relaxed">
                 Predict viral videos before they blow up. Discover trending niches, optimize your content with AI, and outsmart the algorithm — all from one dashboard.
               </p>
 
@@ -459,7 +459,7 @@ export function WelcomePage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
-                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.2)]"
+                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.12)]"
                   onClick={() => setPage('login')}
                 >
                   Start free trial
@@ -468,7 +468,7 @@ export function WelcomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-[#333] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent h-12 font-medium"
+                  className="border-[#333] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#444] hover:bg-transparent h-12 font-medium"
                   onClick={() => setPage('login')}
                 >
                   <Play className="w-4 h-4 mr-2 fill-current" />
@@ -480,21 +480,21 @@ export function WelcomePage() {
             {/* Right column — Dashboard mockup */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
               <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(16,185,129,0.06)] rounded-2xl blur-2xl" />
-              <div className="relative bg-[#0D0D0D] border border-[#1F1F1F] rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] rounded-xl overflow-hidden shadow-2xl">
                 {/* Browser bar */}
-                <div className="flex items-center gap-3 px-4 py-3 bg-[#141414] border-b border-[#1E1E1E]">
+                <div className="flex items-center gap-3 px-4 py-3 bg-[#0f0f0f] border-b border-[rgba(255,255,255,0.06)]">
                   <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-[#EF4444]" />
+                    <div className="w-3 h-3 rounded-full bg-[#888888]" />
                     <div className="w-3 h-3 rounded-full bg-[#FDBA2D]" />
-                    <div className="w-3 h-3 rounded-full bg-[#10B981]" />
+                    <div className="w-3 h-3 rounded-full bg-[#888888]" />
                   </div>
-                  <div className="flex-1 flex items-center gap-2 bg-[#0D0D0D] rounded-md px-3 py-1.5">
+                  <div className="flex-1 flex items-center gap-2 bg-[#0a0a0a] rounded-md px-3 py-1.5">
                     <Globe className="w-3 h-3 text-[#444]" />
                     <span className="text-xs text-[#666] font-mono">nychiq.com/dashboard</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
                     <span className="live-dot" style={{ width: 6, height: 6 }} />
-                    <span className="text-[10px] text-[#10B981] font-semibold">LIVE</span>
+                    <span className="text-[10px] text-[#888888] font-semibold">LIVE</span>
                   </div>
                 </div>
 
@@ -508,7 +508,7 @@ export function WelcomePage() {
                 {/* Play button overlay */}
                 <div className="relative -mt-2 flex justify-center pb-4">
                   <button
-                    className="w-14 h-14 rounded-full bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.3)] hover:scale-105 transition-transform animate-glow-amber"
+                    className="w-14 h-14 rounded-full bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.12)] hover:scale-105 transition-transform animate-glow-amber"
                     onClick={() => setPage('login')}
                   >
                     <Play className="w-6 h-6 text-black fill-black ml-1" />
@@ -516,7 +516,7 @@ export function WelcomePage() {
                 </div>
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-[#1E1E1E]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-[rgba(255,255,255,0.06)]">
                   {[
                     { label: 'Trending', value: '142' },
                     { label: 'Top Score', value: '94' },
@@ -525,7 +525,7 @@ export function WelcomePage() {
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="px-3 py-3 border-r border-[#1E1E1E] last:border-r-0 text-center"
+                      className="px-3 py-3 border-r border-[rgba(255,255,255,0.06)] last:border-r-0 text-center"
                     >
                       <div className="text-xs font-bold text-[#FFFFFF]">{stat.value}</div>
                       <div className="text-[10px] text-[#555] mt-0.5">{stat.label}</div>
@@ -552,7 +552,7 @@ export function WelcomePage() {
               <button
                 key={feat.num}
                 onClick={() => setPage('login')}
-                className="bg-[#0D0D0D] hover:bg-[#141414] p-5 sm:p-6 text-left transition-all duration-200 group cursor-pointer"
+                className="bg-[#0a0a0a] hover:bg-[#0f0f0f] p-5 sm:p-6 text-left transition-all duration-200 group cursor-pointer"
               >
                 {/* Number + tag */}
                 <div className="flex items-center justify-between mb-4">
@@ -617,8 +617,8 @@ export function WelcomePage() {
                 key={plan.tier}
                 className={`relative rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 ${
                   plan.highlight
-                    ? 'bg-[#0D0D0D] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.1)]'
-                    : 'bg-[#0D0D0D] border border-[#1F1F1F] hover:border-[#2A2A2A]'
+                    ? 'bg-[#0a0a0a] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
+                    : 'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
                 }`}
               >
                 {/* Badge */}
@@ -629,7 +629,7 @@ export function WelcomePage() {
                 )}
 
                 {/* Tier name */}
-                <h3 className="text-sm font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4 mt-1">
+                <h3 className="text-sm font-semibold text-[#a0a0a0] tracking-wide uppercase mb-4 mt-1">
                   {plan.tier}
                 </h3>
 
@@ -642,8 +642,8 @@ export function WelcomePage() {
                 {/* Features list */}
                 <ul className="space-y-2.5 mb-6">
                   {plan.features.map((feat) => (
-                    <li key={feat} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
-                      <Check className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
+                    <li key={feat} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
+                      <Check className="w-3.5 h-3.5 text-[#888888] shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -653,8 +653,8 @@ export function WelcomePage() {
                 <Button
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
-                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.15)]'
-                      : 'bg-[#1A1A1A] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] border border-[#1F1F1F]'
+                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.12)]'
+                      : 'bg-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]'
                   }`}
                   onClick={() => setPage('login')}
                 >
@@ -667,7 +667,7 @@ export function WelcomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer className="border-t border-[#1E1E1E]">
+        <footer className="border-t border-[rgba(255,255,255,0.06)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
               {/* Brand */}
@@ -688,12 +688,12 @@ export function WelcomePage() {
 
               {/* Product */}
               <div>
-                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Product</h4>
+                <h4 className="text-xs font-semibold text-[#a0a0a0] tracking-wide uppercase mb-4">Product</h4>
                 <ul className="space-y-2.5">
                   <li>
                   <button
                     onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                   >
                     Features
                   </button>
@@ -701,7 +701,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                   >
                     Pricing
                   </button>
@@ -709,7 +709,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => setPage('login')}
-                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                   >
                     Live Demo
                   </button>
@@ -717,7 +717,7 @@ export function WelcomePage() {
                 <li>
                   <button
                     onClick={() => setPage('changelog')}
-                    className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                    className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                   >
                     Changelog
                   </button>
@@ -727,7 +727,7 @@ export function WelcomePage() {
 
               {/* Company */}
               <div>
-                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Company</h4>
+                <h4 className="text-xs font-semibold text-[#a0a0a0] tracking-wide uppercase mb-4">Company</h4>
                 <ul className="space-y-2.5">
                   {[
                     { label: 'About', page: 'about' as const },
@@ -738,7 +738,7 @@ export function WelcomePage() {
                     <li key={item.label}>
                       <button
                         onClick={() => setPage(item.page)}
-                        className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                        className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                       >
                         {item.label}
                       </button>
@@ -749,7 +749,7 @@ export function WelcomePage() {
 
               {/* Legal */}
               <div>
-                <h4 className="text-xs font-semibold text-[#A3A3A3] tracking-wide uppercase mb-4">Legal</h4>
+                <h4 className="text-xs font-semibold text-[#a0a0a0] tracking-wide uppercase mb-4">Legal</h4>
                 <ul className="space-y-2.5">
                   {[
                     { label: 'Privacy Policy', page: 'privacy' as const },
@@ -760,7 +760,7 @@ export function WelcomePage() {
                     <li key={item.label}>
                       <button
                         onClick={() => setPage(item.page)}
-                        className="text-xs text-[#555] hover:text-[#A3A3A3] transition-colors"
+                        className="text-xs text-[#555] hover:text-[#a0a0a0] transition-colors"
                       >
                         {item.label}
                       </button>

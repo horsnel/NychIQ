@@ -39,10 +39,10 @@ export function timeAgo(dateStr: string): string {
 
 /* ── Viral score classification ── */
 export function viralScore(score: number): { label: string; class: string; color: string } {
-  if (score >= 80) return { label: 'Viral', class: 'text-green', color: '#10B981' };
+  if (score >= 80) return { label: 'Viral', class: 'text-green', color: '#22c55e' };
   if (score >= 60) return { label: 'Hot', class: 'text-amber', color: '#FDBA2D' };
-  if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#3B82F6' };
-  return { label: 'Cold', class: 'text-[#A3A3A3]', color: '#A3A3A3' };
+  if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#888888' };
+  return { label: 'Cold', class: 'text-[#a0a0a0]', color: '#a0a0a0' };
 }
 
 /* ── Score CSS class for Tailwind ── */

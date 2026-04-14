@@ -43,19 +43,19 @@ interface CompareResult {
 /* ── Color helpers ── */
 function valueColor(value: number, goodHigh = true): string {
   if (goodHigh) {
-    if (value >= 75) return '#10B981';
+    if (value >= 75) return '#888888';
     if (value >= 50) return '#FDBA2D';
-    return '#EF4444';
+    return '#888888';
   }
-  if (value <= 25) return '#10B981';
+  if (value <= 25) return '#888888';
   if (value <= 50) return '#FDBA2D';
-  return '#EF4444';
+  return '#888888';
 }
 
 function compColor(level: string): string {
-  if (level === 'Low') return '#10B981';
+  if (level === 'Low') return '#888888';
   if (level === 'Medium') return '#FDBA2D';
-  return '#EF4444';
+  return '#888888';
 }
 
 /* ── Comparison table cell ── */
@@ -85,7 +85,7 @@ function MetricCell({
 
   return (
     <tr className="border-b border-[#1A1A1A]">
-      <td className="px-4 py-3 text-xs font-medium text-[#A3A3A3]">{label}</td>
+      <td className="px-4 py-3 text-xs font-medium text-[#a0a0a0]">{label}</td>
       <td className="px-4 py-3 text-sm font-semibold text-center" style={{ color: colorA }}>
         {fmt(valueA)}
       </td>
@@ -214,15 +214,15 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(139,92,246,0.1)' }}>
-              <Columns2 className="w-5 h-5" style={{ color: '#8B5CF6' }} />
+              <Columns2 className="w-5 h-5" style={{ color: '#aaa' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Niche Compare</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 Side-by-side comparison with Profit-to-Effort (PTE) ratio
               </p>
             </div>
@@ -231,33 +231,33 @@ Return ONLY the JSON object, no other text.`;
           {/* Two inputs + button */}
           <div className="flex flex-col sm:flex-row gap-2 items-center">
             <div className="flex-1 w-full relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#8B5CF6]/20 text-[#8B5CF6]">A</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#888888]/20 text-[#888888]">A</span>
               <input
                 type="text"
                 value={nicheA}
                 onChange={(e) => setNicheA(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche A (e.g., Finance)"
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 focus:ring-1 focus:ring-[#8B5CF6]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
               />
             </div>
-            <div className="hidden sm:block text-lg font-bold text-[#444444] px-1">VS</div>
+            <div className="hidden sm:block text-lg font-bold text-[#666666] px-1">VS</div>
             <div className="flex-1 w-full relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#EF4444]/20 text-[#EF4444]">B</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#888888]/20 text-[#888888]">B</span>
               <input
                 type="text"
                 value={nicheB}
                 onChange={(e) => setNicheB(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche B (e.g., Gaming)"
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
               />
             </div>
             <button
               onClick={handleCompare}
               disabled={loading || !nicheA.trim() || !nicheB.trim()}
-              className="w-full sm:w-auto px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0"
-              style={{ backgroundColor: '#8B5CF6' }}
+              className="w-full sm:w-auto px-5 h-11 rounded-lg text-[#0a0a0a] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shrink-0"
+              style={{ backgroundColor: '#888888' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Columns2 className="w-4 h-4" />}
               Compare Niches
@@ -268,10 +268,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF] mb-3">{error}</p>
-          <button onClick={handleCompare} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
+          <button onClick={handleCompare} className="px-4 py-2 rounded-lg bg-[#888888]/15 text-[#888888] text-xs font-medium hover:bg-[#888888]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -279,10 +279,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Skeleton */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 space-y-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 space-y-4">
           <div className="flex items-center justify-center gap-4 py-6">
             <div className="w-16 h-16 rounded-xl bg-[#1A1A1A] animate-pulse" />
-            <div className="text-2xl font-black text-[#444444] animate-pulse">VS</div>
+            <div className="text-2xl font-black text-[#666666] animate-pulse">VS</div>
             <div className="w-16 h-16 rounded-xl bg-[#1A1A1A] animate-pulse" />
           </div>
           {Array.from({ length: 6 }).map((_, i) => (
@@ -299,27 +299,27 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && mA && mB && (
         <>
           {/* Winner Declaration */}
-          <div className="rounded-lg p-5 border" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.02) 100%)', borderColor: 'rgba(139,92,246,0.3)' }}>
+          <div className="rounded-lg p-5 border" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.02) 100%)', borderColor: 'rgba(255,255,255,0.06)' }}>
             <div className="flex items-center gap-3 mb-2">
-              <Trophy className="w-5 h-5" style={{ color: '#8B5CF6' }} />
-              <span className="text-sm font-bold" style={{ color: '#8B5CF6' }}>WINNER</span>
+              <Trophy className="w-5 h-5" style={{ color: '#aaa' }} />
+              <span className="text-sm font-bold" style={{ color: '#aaa' }}>WINNER</span>
             </div>
             <h3 className="text-xl font-black text-[#FFFFFF] mb-1">{result.winner}</h3>
-            <p className="text-xs text-[#A3A3A3]">{result.winnerReason}</p>
+            <p className="text-xs text-[#a0a0a0]">{result.winnerReason}</p>
           </div>
 
           {/* Comparison Table */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-3 text-center border-b border-[#1A1A1A]">
               <div className="px-4 py-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' }}>A</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>A</span>
                 <p className="text-sm font-bold text-[#FFFFFF] mt-1">{result.nicheA}</p>
               </div>
               <div className="px-4 py-3 flex items-center justify-center">
-                <span className="text-xs font-black text-[#444444] tracking-widest">VS</span>
+                <span className="text-xs font-black text-[#666666] tracking-widest">VS</span>
               </div>
               <div className="px-4 py-3">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#EF4444]/15 text-[#EF4444]">B</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#888888]/15 text-[#888888]">B</span>
                 <p className="text-sm font-bold text-[#FFFFFF] mt-1">{result.nicheB}</p>
               </div>
             </div>
@@ -333,7 +333,7 @@ Return ONLY the JSON object, no other text.`;
                 <MetricCell label="Ad Intent" valueA={mA.adIntent} valueB={mB.adIntent} format="percent" />
                 <MetricCell label="Automation" valueA={mA.automationPotential} valueB={mB.automationPotential} format="percent" />
                 <tr className="border-b border-[#1A1A1A]">
-                  <td className="px-4 py-3 text-xs font-bold" style={{ color: '#8B5CF6' }}>PTE Score</td>
+                  <td className="px-4 py-3 text-xs font-bold" style={{ color: '#aaa' }}>PTE Score</td>
                   <td className="px-4 py-3 text-center">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-black" style={{ backgroundColor: `${valueColor(mA.pteScore)}15`, color: valueColor(mA.pteScore) }}>
                       <Target className="w-3.5 h-3.5" />
@@ -352,9 +352,9 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Automation Potential Bars */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-              <TrendingUp className="w-4 h-4" style={{ color: '#8B5CF6' }} />
+              <TrendingUp className="w-4 h-4" style={{ color: '#aaa' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Automation Potential</h3>
             </div>
             <div className="p-4 space-y-4">
@@ -380,13 +380,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Strategic Advice */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4" style={{ color: '#8B5CF6' }} />
+                <Sparkles className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Strategic Advice</h3>
               </div>
-              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#8B5CF6] transition-colors">
+              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#888888] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -394,16 +394,16 @@ Return ONLY the JSON object, no other text.`;
             <div className="p-4">
               <div className="flex items-start gap-3">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(139,92,246,0.1)' }}>
-                  <Bot className="w-3.5 h-3.5" style={{ color: '#8B5CF6' }} />
+                  <Bot className="w-3.5 h-3.5" style={{ color: '#aaa' }} />
                 </div>
-                <p className="text-xs text-[#A3A3A3] leading-relaxed">{result.advice}</p>
+                <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.advice}</p>
               </div>
             </div>
           </div>
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleCompare} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#A3A3A3] hover:text-[#8B5CF6] transition-colors">
+            <button onClick={handleCompare} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#a0a0a0] hover:text-[#888888] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Re-compare
             </button>
@@ -415,10 +415,10 @@ Return ONLY the JSON object, no other text.`;
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)' }}>
-            <Columns2 className="w-8 h-8" style={{ color: '#8B5CF6' }} />
+            <Columns2 className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Compare Two Niches</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Enter two niche keywords above to get a comprehensive Profit-to-Effort comparison.
           </p>
         </div>
@@ -426,7 +426,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Token cost footer */}
       {searched && (
-        <div className="text-center text-[11px] text-[#444444]">
+        <div className="text-center text-[11px] text-[#666666]">
           Cost: {TOKEN_COSTS['niche-compare']} tokens per analysis
         </div>
       )}

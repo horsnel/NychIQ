@@ -41,7 +41,7 @@ function ViralBadge({ score }: { score: number }) {
     return (
       <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
         <span>🔥</span>
-        <span className="text-[#10B981]">VIRAL</span>
+        <span className="text-[#888888]">VIRAL</span>
       </span>
     );
   }
@@ -58,7 +58,7 @@ function ViralBadge({ score }: { score: number }) {
 
 function VideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F]">
+    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]">
       <div className="aspect-video bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-shimmer w-full" />
@@ -182,85 +182,85 @@ function VideoContextMenu({ video }: { video: VideoData }) {
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="bg-[#141414] border-[#1F1F1F] min-w-[200px]"
+        className="bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] min-w-[200px]"
       >
         <DropdownMenuItem
           onClick={handleOpenYouTube}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <ExternalLink className="w-4 h-4" />
           Open on YouTube
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+        <DropdownMenuSeparator className="bg-[#0f0f0f]" />
         <DropdownMenuItem
           onClick={handleCopyTitle}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Title
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyUrl}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy URL
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyVideoId}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Video ID
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyDescription}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Copy className="w-4 h-4" />
           Copy Description
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+        <DropdownMenuSeparator className="bg-[#0f0f0f]" />
         <DropdownMenuItem
           onClick={handleGenerateSeo}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <SearchCode className="w-4 h-4" />
           Generate SEO
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleDeepChat}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <MessageSquare className="w-4 h-4" />
           Analyse with Deep Chat
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+        <DropdownMenuSeparator className="bg-[#0f0f0f]" />
         <DropdownMenuItem
           onClick={handleCopyTags}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Tags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyHashtags}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <Hash className="w-4 h-4" />
           Copy Hashtags
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleCopyTranscript}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileText className="w-4 h-4" />
           Copy Transcript
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-[#1F1F1F]" />
+        <DropdownMenuSeparator className="bg-[#0f0f0f]" />
         <DropdownMenuItem
           onClick={handleExportCSV}
-          className="text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
+          className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] focus:bg-[#1A1A1A] focus:text-[#FFFFFF] cursor-pointer"
         >
           <FileDown className="w-4 h-4" />
           Export CSV
@@ -323,7 +323,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">
             {video.title}
           </h3>
-          <p className="text-xs text-[#A3A3A3] mt-1">{video.channelTitle}</p>
+          <p className="text-xs text-[#a0a0a0] mt-1">{video.channelTitle}</p>
           <div className="flex items-center gap-2 text-[11px] text-[#666666] mt-1">
             {video.viewCount != null && <span>{fmtV(video.viewCount)} views</span>}
             {video.publishedAt && <span>· {timeAgo(video.publishedAt)}</span>}
@@ -336,9 +336,9 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F]',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]',
         'transition-all duration-200',
-        'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[#2A2A2A]',
+        'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[rgba(255,255,255,0.1)]',
         className
       )}
       onClick={handleClick}
@@ -393,7 +393,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
         <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
           {video.title}
         </h3>
-        <p className="text-xs text-[#A3A3A3] mt-1.5">{video.channelTitle}</p>
+        <p className="text-xs text-[#a0a0a0] mt-1.5">{video.channelTitle}</p>
         <div className="flex items-center justify-between mt-1">
           <div className="flex items-center gap-2 text-[11px] text-[#666666]">
             {video.viewCount != null && <span>{fmtV(video.viewCount)} views</span>}

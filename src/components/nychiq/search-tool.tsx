@@ -73,14 +73,14 @@ const TOOL_DESCRIPTIONS: Record<string, string> = {
 /* ── Section accent colors ── */
 const SECTION_COLORS: Record<string, string> = {
   main: '#FDBA2D',
-  studio: '#8B5CF6',
-  intelligence: '#10B981',
-  competitor: '#EF4444',
-  'ai-tools': '#3B82F6',
-  social: '#EC4899',
-  'ai-assistants': '#F97316',
-  agency: '#06B6D4',
-  account: '#6B7280',
+  studio: '#888888',
+  intelligence: '#888888',
+  competitor: '#888888',
+  'ai-tools': '#888888',
+  social: '#888888',
+  'ai-assistants': '#888888',
+  agency: '#888888',
+  account: '#888888',
 };
 
 export function SearchTool() {
@@ -133,7 +133,7 @@ export function SearchTool() {
         <h2
           className="text-2xl font-bold mb-1"
           style={{
-            background: 'linear-gradient(135deg, #FDBA2D, #FDE68A)',
+            background: 'linear-gradient(135deg, #FDBA2D, #C69320)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -147,9 +147,9 @@ export function SearchTool() {
 
       {/* ── Search Input (pill) ── */}
       <div className="mb-8">
-        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#141414] border border-[#1F1F1F] focus-within:border-[#FDBA2D]/40">
+        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] focus-within:border-[#FDBA2D]/40">
           <div className="pl-4 sm:pl-5 flex items-center">
-            <Search className="w-5 h-5 text-[#555555]" />
+            <Search className="w-5 h-5 text-[#666666]" />
           </div>
           <input
             ref={inputRef}
@@ -157,18 +157,18 @@ export function SearchTool() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Filter tools by name or description..."
-            className="flex-1 h-full bg-transparent text-sm sm:text-[15px] text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none px-3"
+            className="flex-1 h-full bg-transparent text-sm sm:text-[15px] text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none px-3"
           />
           {query && (
             <button
               onClick={() => { setQuery(''); inputRef.current?.focus(); }}
               className="pr-4 p-1 rounded-full hover:bg-[#1A1A1A] transition-colors"
             >
-              <X className="w-4 h-4 text-[#555555]" />
+              <X className="w-4 h-4 text-[#666666]" />
             </button>
           )}
           {query && (
-            <span className="hidden sm:inline-flex pr-4 text-xs text-[#444444]">
+            <span className="hidden sm:inline-flex pr-4 text-xs text-[#666666]">
               {totalResults} result{totalResults !== 1 ? 's' : ''}
             </span>
           )}
@@ -180,17 +180,17 @@ export function SearchTool() {
         <div className="grid grid-cols-3 gap-3 mb-8">
           {[
             { label: 'Total Tools', value: Object.keys(TOOL_META).length, color: '#FDBA2D' },
-            { label: 'Free Tools', value: Object.keys(TOOL_META).filter(id => (TOKEN_COSTS[id] ?? 0) === 0).length, color: '#10B981' },
-            { label: 'AI-Powered', value: Object.keys(TOOL_META).filter(id => ['ai-tools', 'ai-assistants'].includes(TOOL_META[id]?.category)).length, color: '#8B5CF6' },
+            { label: 'Free Tools', value: Object.keys(TOOL_META).filter(id => (TOKEN_COSTS[id] ?? 0) === 0).length, color: '#888888' },
+            { label: 'AI-Powered', value: Object.keys(TOOL_META).filter(id => ['ai-tools', 'ai-assistants'].includes(TOOL_META[id]?.category)).length, color: '#888888' },
           ].map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl bg-[#141414] border border-[rgba(255,255,255,0.05)] p-3 sm:p-4 text-center"
+              className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 sm:p-4 text-center"
             >
               <div className="text-xl sm:text-2xl font-bold" style={{ color: stat.color }}>
                 {stat.value}
               </div>
-              <div className="text-[10px] sm:text-xs text-[#555555] mt-1 uppercase tracking-wider">
+              <div className="text-[10px] sm:text-xs text-[#666666] mt-1 uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>
@@ -202,23 +202,23 @@ export function SearchTool() {
       <div className="space-y-8">
         {toolsBySection.length === 0 ? (
           <div className="py-16 text-center">
-            <Search className="w-10 h-10 text-[#333333] mx-auto mb-3" />
-            <p className="text-sm text-[#555555] font-medium">
+            <Search className="w-10 h-10 text-[#1a1a1a] mx-auto mb-3" />
+            <p className="text-sm text-[#666666] font-medium">
               No tools found for &ldquo;{query}&rdquo;
             </p>
-            <p className="text-xs text-[#444444] mt-1">
+            <p className="text-xs text-[#666666] mt-1">
               Try a different search term
             </p>
             <button
               onClick={() => { setQuery(''); inputRef.current?.focus(); }}
-              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#FDBA2D] border border-[rgba(253,186,45,0.2)] hover:bg-[rgba(253,186,45,0.08)] transition-colors"
+              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#FDBA2D] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(253,186,45,0.08)] transition-colors"
             >
               Clear search
             </button>
           </div>
         ) : (
           toolsBySection.map((section) => {
-            const accentColor = SECTION_COLORS[section.id] || '#555555';
+            const accentColor = SECTION_COLORS[section.id] || '#666666';
             return (
               <div key={section.id}>
                 {/* Section header */}
@@ -230,8 +230,8 @@ export function SearchTool() {
                   <h3 className="text-xs font-semibold tracking-widest uppercase" style={{ color: accentColor }}>
                     {section.label}
                   </h3>
-                  <div className="flex-1 h-px bg-[rgba(255,255,255,0.04)]" />
-                  <span className="text-[10px] text-[#444444]">
+                  <div className="flex-1 h-px bg-[rgba(255,255,255,0.06)]" />
+                  <span className="text-[10px] text-[#666666]">
                     {section.tools.length} tool{section.tools.length !== 1 ? 's' : ''}
                   </span>
                 </div>
@@ -244,19 +244,14 @@ export function SearchTool() {
                       <button
                         key={tool.id}
                         onClick={() => handleSelect(tool.id)}
-                        className="group flex items-start gap-3 p-4 rounded-xl bg-[#141414] border border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] transition-all duration-200 text-left active:scale-[0.98]"
+                        className="group flex items-start gap-3 p-4 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] transition-all duration-200 text-left active:scale-[0.98]"
                       >
                         {/* Icon */}
                         <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-200"
-                          style={{
-                            backgroundColor: `${accentColor}10`,
-                            border: `1px solid ${accentColor}18`,
-                          }}
+                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]"
                         >
                           <Icon
-                            className="w-5 h-5 transition-colors duration-200"
-                            style={{ color: accentColor }}
+                            className="w-5 h-5 text-[#aaa]"
                           />
                         </div>
 
@@ -266,14 +261,14 @@ export function SearchTool() {
                             <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors truncate">
                               {tool.label}
                             </span>
-                            <ArrowRight className="w-3 h-3 text-[#333333] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all ml-auto" />
+                            <ArrowRight className="w-3 h-3 text-[#1a1a1a] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all ml-auto" />
                           </div>
                           <p className="text-xs text-[#666666] mt-1 line-clamp-2 leading-relaxed">
                             {tool.description}
                           </p>
                           {/* Token cost badge */}
                           {tool.tokenCost > 0 && (
-                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(253,186,45,0.12)]">
+                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]">
                               {tool.tokenCost} token{tool.tokenCost > 1 ? 's' : ''}
                             </span>
                           )}

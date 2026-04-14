@@ -20,33 +20,33 @@ type Status = TeamMember['status'];
 
 const ROLE_CONFIG: Record<Role, { label: string; color: string; bg: string; border: string; icon: LucideIcon; desc: string }> = {
   owner:   { label: 'Owner',   color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)',  border: 'rgba(253,186,45,0.25)', icon: Crown,          desc: 'Full access + team management + billing' },
-  admin:   { label: 'Admin',   color: '#8B5CF6', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.25)', icon: UserCog,        desc: 'All tools + channel management' },
-  analyst: { label: 'Analyst', color: '#3B82F6', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.25)', icon: BarChart3,       desc: 'Read-only analytics + reports' },
-  viewer:  { label: 'Viewer',  color: '#10B981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)', icon: Eye,             desc: 'Dashboard only' },
+  admin:   { label: 'Admin',   color: '#888888', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.25)', icon: UserCog,        desc: 'All tools + channel management' },
+  analyst: { label: 'Analyst', color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.25)', icon: BarChart3,       desc: 'Read-only analytics + reports' },
+  viewer:  { label: 'Viewer',  color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)', icon: Eye,             desc: 'Dashboard only' },
 };
 
 const STATUS_CONFIG: Record<Status, { label: string; color: string; dot: string }> = {
-  active:   { label: 'Active',   color: '#10B981', dot: 'bg-[#10B981]' },
+  active:   { label: 'Active',   color: '#888888', dot: 'bg-[#888888]' },
   inactive: { label: 'Inactive', color: '#666666', dot: 'bg-[#666666]' },
   invited:  { label: 'Invited',  color: '#FDBA2D', dot: 'bg-[#FDBA2D]' },
 };
 
 const ACTION_COLORS: Record<string, string> = {
-  add: '#10B981',
-  remove: '#EF4444',
-  update: '#3B82F6',
+  add: '#888888',
+  remove: '#888888',
+  update: '#888888',
   invite: '#FDBA2D',
 };
 
 const MOCK_CHANNELS = [
-  { id: 'ch-1', name: 'TechVision Pro', color: '#3B82F6' },
-  { id: 'ch-2', name: 'FitLife Academy', color: '#10B981' },
+  { id: 'ch-1', name: 'TechVision Pro', color: '#888888' },
+  { id: 'ch-2', name: 'FitLife Academy', color: '#888888' },
   { id: 'ch-3', name: 'Crypto Daily', color: '#FDBA2D' },
-  { id: 'ch-4', name: 'Art Studio NG', color: '#8B5CF6' },
-  { id: 'ch-5', name: 'EduTech Masters', color: '#EF4444' },
+  { id: 'ch-4', name: 'Art Studio NG', color: '#888888' },
+  { id: 'ch-5', name: 'EduTech Masters', color: '#888888' },
 ];
 
-const AVATAR_COLORS = ['#3B82F6', '#10B981', '#8B5CF6', '#FDBA2D', '#EF4444', '#EC4899', '#06B6D4', '#F97316'];
+const AVATAR_COLORS = ['#888888', '#888888', '#888888', '#FDBA2D', '#888888', '#888888', '#888888', '#888888'];
 
 /* ═══════════════════════════════════════════
    Helpers
@@ -91,7 +91,7 @@ function Avatar({ name, color, size = 36, status }: { name: string; color: strin
       </div>
       {statusInfo && (
         <div
-          className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#141414] ${statusInfo.dot}`}
+          className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#0f0f0f] ${statusInfo.dot}`}
           title={statusInfo.label}
         />
       )}
@@ -115,7 +115,7 @@ function RoleBadge({ role }: { role: Role }) {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
+    <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
       {children}
     </h3>
   );
@@ -123,7 +123,7 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5 ${className}`}>
+    <div className={`rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5 ${className}`}>
       {children}
     </div>
   );
@@ -149,14 +149,14 @@ function PermissionsTable() {
         <Shield className="w-3.5 h-3.5 text-[#FDBA2D]" />
         Role-Based Permissions
       </SectionHeader>
-      <p className="text-[11px] text-[#555555] mt-1 mb-4">
+      <p className="text-[11px] text-[#666666] mt-1 mb-4">
         Each role has different levels of access across the platform tools and features.
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-[#1F1F1F]">
-              <th className="text-left py-2.5 pr-4 text-[#A3A3A3] font-semibold">Feature</th>
+            <tr className="border-b border-[rgba(255,255,255,0.06)]">
+              <th className="text-left py-2.5 pr-4 text-[#a0a0a0] font-semibold">Feature</th>
               {(['owner', 'admin', 'analyst', 'viewer'] as const).map((role) => {
                 const cfg = ROLE_CONFIG[role];
                 return (
@@ -177,7 +177,7 @@ function PermissionsTable() {
                 {(['owner', 'admin', 'analyst', 'viewer'] as const).map((role) => (
                   <td key={role} className="text-center py-2.5 px-2">
                     {row[role] ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#10B981] mx-auto" />
+                      <CheckCircle2 className="w-4 h-4 text-[#888888] mx-auto" />
                     ) : (
                       <XCircle className="w-4 h-4 text-[#666666] mx-auto" />
                     )}
@@ -210,20 +210,20 @@ function MemberRow({
   const isOwner = member.role === 'owner';
 
   return (
-    <div className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#0D0D0D] transition-colors group">
+    <div className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#0a0a0a] transition-colors group">
       <Avatar name={member.name} color={member.color} status={member.status} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-sm font-semibold text-[#FFFFFF] truncate">{member.name}</span>
           <RoleBadge role={member.role} />
-          <span className="text-[10px] text-[#555555]">
+          <span className="text-[10px] text-[#666666]">
             Joined {timeAgo(member.joinedAt)}
           </span>
         </div>
         <p className="text-[11px] text-[#666666] truncate mt-0.5">{member.email}</p>
         {member.channels.length > 0 && (
           <div className="flex items-center gap-1 mt-1 flex-wrap">
-            <span className="text-[9px] text-[#555555] uppercase tracking-wider font-semibold">Channels:</span>
+            <span className="text-[9px] text-[#666666] uppercase tracking-wider font-semibold">Channels:</span>
             {member.channels.map((chId) => {
               const ch = MOCK_CHANNELS.find((c) => c.id === chId);
               if (!ch) return null;
@@ -243,17 +243,17 @@ function MemberRow({
       <div className="relative flex-shrink-0">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="p-1.5 rounded-md hover:bg-[#1F1F1F] text-[#666666] hover:text-[#FFFFFF] transition-colors opacity-0 group-hover:opacity-100"
+          className="p-1.5 rounded-md hover:bg-[#0f0f0f] text-[#666666] hover:text-[#FFFFFF] transition-colors opacity-0 group-hover:opacity-100"
         >
           <MoreHorizontal className="w-4 h-4" />
         </button>
         {menuOpen && (
           <>
             <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-            <div className="absolute right-0 top-full mt-1 w-48 z-50 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] shadow-xl py-1">
+            <div className="absolute right-0 top-full mt-1 w-48 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
               {!isOwner && (
                 <>
-                  <div className="px-3 py-1.5 text-[9px] text-[#555555] uppercase tracking-wider font-bold">Change Role</div>
+                  <div className="px-3 py-1.5 text-[9px] text-[#666666] uppercase tracking-wider font-bold">Change Role</div>
                   {(['admin', 'analyst', 'viewer'] as const).map((role) => {
                     const RCfg = ROLE_CONFIG[role];
                     const RIcon = RCfg.icon;
@@ -261,18 +261,18 @@ function MemberRow({
                     <button
                       key={role}
                       onClick={() => { onRoleChange(role); setMenuOpen(false); }}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#0D0D0D] transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0a0a0a] transition-colors"
                     >
                       <RIcon className="w-3.5 h-3.5" />
                       {RCfg.label}
-                      <span className="text-[9px] text-[#555555] ml-auto">— {RCfg.desc}</span>
+                      <span className="text-[9px] text-[#666666] ml-auto">— {RCfg.desc}</span>
                     </button>
                     );
                   })}
-                  <div className="border-t border-[#2A2A2A] my-1" />
+                  <div className="border-t border-[rgba(255,255,255,0.06)] my-1" />
                   <button
                     onClick={() => { onRemove(); setMenuOpen(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#EF4444] hover:bg-[rgba(239,68,68,0.05)] transition-colors"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
                   >
                     <UserMinus className="w-3.5 h-3.5" />
                     Remove Member
@@ -280,7 +280,7 @@ function MemberRow({
                 </>
               )}
               {isOwner && (
-                <div className="px-3 py-2 text-xs text-[#555555]">Owner cannot be modified</div>
+                <div className="px-3 py-2 text-xs text-[#666666]">Owner cannot be modified</div>
               )}
             </div>
           </>
@@ -301,12 +301,12 @@ function ChannelAccessCard({
   onToggle: (channelId: string) => void;
 }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
       <div className="flex items-center gap-3 mb-3">
         <Avatar name={member.name} color={member.color} size={28} />
         <div className="min-w-0">
           <span className="text-xs font-semibold text-[#FFFFFF] truncate block">{member.name}</span>
-          <span className="text-[10px] text-[#555555]">{member.email}</span>
+          <span className="text-[10px] text-[#666666]">{member.email}</span>
         </div>
         <RoleBadge role={member.role} />
       </div>
@@ -317,7 +317,7 @@ function ChannelAccessCard({
             <button
               key={ch.id}
               onClick={() => onToggle(ch.id)}
-              className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md border transition-all hover:bg-[#0D0D0D]"
+              className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md border transition-all hover:bg-[#0a0a0a]"
               style={{
                 borderColor: hasAccess ? `${ch.color}40` : '#1A1A1A',
                 backgroundColor: hasAccess ? `${ch.color}08` : undefined,
@@ -329,14 +329,14 @@ function ChannelAccessCard({
               />
               <span
                 className="text-[11px] font-medium flex-1 text-left truncate transition-colors"
-                style={{ color: hasAccess ? '#FFFFFF' : '#555555' }}
+                style={{ color: hasAccess ? '#FFFFFF' : '#666666' }}
               >
                 {ch.name}
               </span>
               {hasAccess ? (
                 <ToggleRight className="w-4 h-4 flex-shrink-0" style={{ color: ch.color }} />
               ) : (
-                <ToggleLeft className="w-4 h-4 flex-shrink-0 text-[#555555]" />
+                <ToggleLeft className="w-4 h-4 flex-shrink-0 text-[#666666]" />
               )}
             </button>
           );
@@ -350,23 +350,23 @@ function ChannelAccessCard({
    Activity Log Item
    ═══════════════════════════════════════════ */
 function ActivityLogItem({ item }: { item: TeamActivity }) {
-  const color = ACTION_COLORS[item.type] || '#A3A3A3';
+  const color = ACTION_COLORS[item.type] || '#a0a0a0';
   const ActionIcon = item.type === 'add' ? UserPlus
     : item.type === 'remove' ? UserMinus
     : item.type === 'invite' ? Send
     : Activity;
 
   return (
-    <div className="flex items-start gap-3 px-3 py-2.5 rounded-md hover:bg-[#0D0D0D] transition-colors group">
+    <div className="flex items-start gap-3 px-3 py-2.5 rounded-md hover:bg-[#0a0a0a] transition-colors group">
       <div className="mt-0.5 p-1 rounded-md flex-shrink-0" style={{ backgroundColor: `${color}15` }}>
         <ActionIcon className="w-3 h-3" style={{ color }} />
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-xs text-[#FFFFFF] leading-relaxed">
           <span className="font-semibold">{item.user}</span>{' '}
-          <span className="text-[#A3A3A3]">{item.action}</span>
+          <span className="text-[#a0a0a0]">{item.action}</span>
         </p>
-        <span className="text-[10px] text-[#555555] block mt-0.5">{timeAgo(item.time)}</span>
+        <span className="text-[10px] text-[#666666] block mt-0.5">{timeAgo(item.time)}</span>
       </div>
       <div
         className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
@@ -394,7 +394,7 @@ function PendingInviteRow({
   const isExpired = expiresDays <= 0;
 
   return (
-    <div className="flex items-center gap-3 px-3 py-3 rounded-lg border border-dashed border-[#1F1F1F] hover:border-[#2A2A2A] transition-colors group">
+    <div className="flex items-center gap-3 px-3 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors group">
       <div className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0">
         <Mail className="w-4 h-4 text-[#FDBA2D]" />
       </div>
@@ -402,7 +402,7 @@ function PendingInviteRow({
         <span className="text-xs font-medium text-[#FFFFFF] block truncate">{invite.email}</span>
         <div className="flex items-center gap-2 mt-0.5">
           <RoleBadge role={invite.role} />
-          <span className={`text-[10px] ${isExpired ? 'text-[#EF4444]' : 'text-[#555555]'}`}>
+          <span className={`text-[10px] ${isExpired ? 'text-[#888888]' : 'text-[#666666]'}`}>
             {isExpired ? 'Expired' : `Expires in ${expiresDays}d`}
           </span>
         </div>
@@ -411,7 +411,7 @@ function PendingInviteRow({
         {!isExpired && (
           <button
             onClick={onResend}
-            className="p-1.5 rounded-md hover:bg-[#1F1F1F] text-[#666666] hover:text-[#FDBA2D] transition-colors"
+            className="p-1.5 rounded-md hover:bg-[#0f0f0f] text-[#666666] hover:text-[#FDBA2D] transition-colors"
             title="Resend invite"
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -419,7 +419,7 @@ function PendingInviteRow({
         )}
         <button
           onClick={onRevoke}
-          className="p-1.5 rounded-md hover:bg-[rgba(239,68,68,0.1)] text-[#666666] hover:text-[#EF4444] transition-colors"
+          className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] text-[#666666] hover:text-[#888888] transition-colors"
           title="Revoke invite"
         >
           <Trash2 className="w-3.5 h-3.5" />
@@ -464,11 +464,11 @@ export function CollaborationTool() {
       // Add mock team members
       addTeamMember({
         name: 'Sarah Kim', email: 'sarah@agency.com', role: 'admin', status: 'active',
-        color: '#3B82F6', channels: ['ch-1', 'ch-2'], joinedAt: Date.now() - 30 * 24 * 60 * 60 * 1000,
+        color: '#888888', channels: ['ch-1', 'ch-2'], joinedAt: Date.now() - 30 * 24 * 60 * 60 * 1000,
       });
       addTeamMember({
         name: 'Mike Rodriguez', email: 'mike@agency.com', role: 'analyst', status: 'active',
-        color: '#10B981', channels: ['ch-1', 'ch-3'], joinedAt: Date.now() - 15 * 24 * 60 * 60 * 1000,
+        color: '#888888', channels: ['ch-1', 'ch-3'], joinedAt: Date.now() - 15 * 24 * 60 * 60 * 1000,
       });
       addTeamMember({
         name: 'Alex Thompson', email: 'alex@agency.com', role: 'viewer', status: 'inactive',
@@ -596,36 +596,36 @@ export function CollaborationTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* ── HEADER ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-6">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-6">
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2.5 rounded-xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)]">
-            <UsersRound className="w-5 h-5 text-[#8B5CF6]" />
+          <div className="p-2.5 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+            <UsersRound className="w-5 h-5 text-[#888888]" />
           </div>
           <div>
             <h1 className="text-lg sm:text-xl font-bold text-[#FFFFFF]">Team Collaboration</h1>
-            <p className="text-xs text-[#A3A3A3]">Manage your agency team, roles, and channel access</p>
+            <p className="text-xs text-[#a0a0a0]">Manage your agency team, roles, and channel access</p>
           </div>
         </div>
 
         {/* Stats Row */}
-        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[#1F1F1F] flex-wrap">
+        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[rgba(255,255,255,0.06)] flex-wrap">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#10B981]" />
-            <span className="text-xs text-[#A3A3A3]"><span className="text-[#FFFFFF] font-bold">{activeCount}</span> Active</span>
+            <div className="w-2 h-2 rounded-full bg-[#888888]" />
+            <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{activeCount}</span> Active</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#666666]" />
-            <span className="text-xs text-[#A3A3A3]"><span className="text-[#FFFFFF] font-bold">{memberCount - activeCount}</span> Inactive</span>
+            <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{memberCount - activeCount}</span> Inactive</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#FDBA2D]" />
-            <span className="text-xs text-[#A3A3A3]"><span className="text-[#FFFFFF] font-bold">{inviteCount}</span> Pending Invites</span>
+            <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{inviteCount}</span> Pending Invites</span>
           </div>
         </div>
       </div>
 
       {/* ── TABS ── */}
-      <div className="flex gap-1 p-1 rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-x-auto">
+      <div className="flex gap-1 p-1 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -633,15 +633,15 @@ export function CollaborationTool() {
             className={`flex items-center gap-1.5 px-3 py-2 rounded-md text-xs font-medium transition-all whitespace-nowrap flex-1 justify-center min-w-0 ${
               activeTab === tab.id
                 ? 'text-[#FFFFFF] shadow-sm'
-                : 'text-[#555555] hover:text-[#A3A3A3]'
+                : 'text-[#666666] hover:text-[#a0a0a0]'
             }`}
-            style={activeTab === tab.id ? { backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' } : undefined}
+            style={activeTab === tab.id ? { backgroundColor: '#1a1a1a', color: '#888888' } : undefined}
           >
             <tab.icon className="w-3.5 h-3.5 flex-shrink-0" />
             <span className="hidden sm:inline truncate">{tab.label}</span>
             {tab.count !== null && (
               <span className={`ml-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${
-                activeTab === tab.id ? 'bg-[#8B5CF6] text-white' : 'bg-[#1F1F1F] text-[#666666]'
+                activeTab === tab.id ? 'bg-[#888888] text-white' : 'bg-[#0f0f0f] text-[#666666]'
               }`}>
                 {tab.count}
               </span>
@@ -659,15 +659,15 @@ export function CollaborationTool() {
           {!showAddForm ? (
             <button
               onClick={() => setShowAddForm(true)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-dashed border-[#2A2A2A] hover:border-[#8B5CF6] text-[#666666] hover:text-[#8B5CF6] transition-all text-xs font-medium group"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.06)] hover:border-[#888888] text-[#666666] hover:text-[#888888] transition-all text-xs font-medium group"
             >
               <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
               Add Team Member
             </button>
           ) : (
-            <Card className="border-[#8B5CF6]/30">
+            <Card className="border-[#888888]/30">
               <SectionHeader>
-                <UserPlus className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                <UserPlus className="w-3.5 h-3.5 text-[#888888]" />
                 Add New Member
               </SectionHeader>
               <div className="mt-3 space-y-3">
@@ -677,14 +677,14 @@ export function CollaborationTool() {
                     value={addName}
                     onChange={(e) => setAddName(e.target.value)}
                     placeholder="Full name"
-                    className="h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
+                    className="h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors"
                   />
                   <input
                     type="email"
                     value={addEmail}
                     onChange={(e) => setAddEmail(e.target.value)}
                     placeholder="Email address"
-                    className="h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
+                    className="h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors"
                   />
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
@@ -692,7 +692,7 @@ export function CollaborationTool() {
                   <div className="relative">
                     <button
                       onClick={() => setAddRoleOpen(!addRoleOpen)}
-                      className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm hover:border-[#2A2A2A] transition-colors"
+                      className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.1)] transition-colors"
                     >
                       {(() => { const ARC = ROLE_CONFIG[addRole]; return <ARC.icon className="w-4 h-4" style={{ color: ARC.color }} />; })()}
                       <span className="text-[#FFFFFF]">{ROLE_CONFIG[addRole].label}</span>
@@ -701,7 +701,7 @@ export function CollaborationTool() {
                     {addRoleOpen && (
                       <>
                         <div className="fixed inset-0 z-40" onClick={() => setAddRoleOpen(false)} />
-                        <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] shadow-xl py-1">
+                        <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
                           {(['admin', 'analyst', 'viewer'] as const).map((role) => {
                             const ARC2 = ROLE_CONFIG[role];
                             const ARCIcon2 = ARC2.icon;
@@ -710,13 +710,13 @@ export function CollaborationTool() {
                               key={role}
                               onClick={() => { setAddRole(role); setAddRoleOpen(false); }}
                               className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs transition-colors ${
-                                addRole === role ? 'text-[#FFFFFF] bg-[#0D0D0D]' : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#0D0D0D]'
+                                addRole === role ? 'text-[#FFFFFF] bg-[#0a0a0a]' : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0a0a0a]'
                               }`}
                             >
                               <ARCIcon2 className="w-4 h-4" style={{ color: ARC2.color }} />
                               <div className="text-left">
                                 <span className="font-semibold block">{ARC2.label}</span>
-                                <span className="text-[9px] text-[#555555]">{ARC2.desc}</span>
+                                <span className="text-[9px] text-[#666666]">{ARC2.desc}</span>
                               </div>
                             </button>
                             );
@@ -727,14 +727,14 @@ export function CollaborationTool() {
                   </div>
                   <button
                     onClick={handleAddMember}
-                    className="h-10 px-5 rounded-md bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors flex items-center gap-2"
+                    className="h-10 px-5 rounded-md bg-[#888888] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors flex items-center gap-2"
                   >
                     <Check className="w-4 h-4" />
                     Add Member
                   </button>
                   <button
                     onClick={() => { setShowAddForm(false); setAddEmail(''); setAddName(''); }}
-                    className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[#1F1F1F] text-[#A3A3A3] text-sm hover:text-[#FFFFFF] transition-colors"
+                    className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-sm hover:text-[#FFFFFF] transition-colors"
                   >
                     Cancel
                   </button>
@@ -752,9 +752,9 @@ export function CollaborationTool() {
             <div className="mt-3 divide-y divide-[#1A1A1A] max-h-[500px] overflow-y-auto">
               {teamMembers.length === 0 ? (
                 <div className="flex flex-col items-center py-10">
-                  <UsersRound className="w-8 h-8 text-[#555555] mb-3" />
-                  <p className="text-sm text-[#555555]">No team members yet</p>
-                  <p className="text-[11px] text-[#444444] mt-1">Add members to start collaborating</p>
+                  <UsersRound className="w-8 h-8 text-[#666666] mb-3" />
+                  <p className="text-sm text-[#666666]">No team members yet</p>
+                  <p className="text-[11px] text-[#666666] mt-1">Add members to start collaborating</p>
                 </div>
               ) : (
                 teamMembers.map((member) => (
@@ -784,16 +784,16 @@ export function CollaborationTool() {
               <ClipboardCheck className="w-3.5 h-3.5 text-[#FDBA2D]" />
               Shared Channel Access
             </SectionHeader>
-            <p className="text-[11px] text-[#555555] mt-1">
+            <p className="text-[11px] text-[#666666] mt-1">
               Toggle channel access for each team member. Changes take effect immediately.
             </p>
           </Card>
           {teamMembers.length === 0 ? (
             <Card>
               <div className="flex flex-col items-center py-10">
-                <ClipboardCheck className="w-8 h-8 text-[#555555] mb-3" />
-                <p className="text-sm text-[#555555]">No members to configure</p>
-                <p className="text-[11px] text-[#444444] mt-1">Add team members first to manage their channel access</p>
+                <ClipboardCheck className="w-8 h-8 text-[#666666] mb-3" />
+                <p className="text-sm text-[#666666]">No members to configure</p>
+                <p className="text-[11px] text-[#666666] mt-1">Add team members first to manage their channel access</p>
               </div>
             </Card>
           ) : (
@@ -818,7 +818,7 @@ export function CollaborationTool() {
               <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" />
               Activity Log
             </SectionHeader>
-            <div className="flex items-center gap-3 text-[10px] text-[#555555]">
+            <div className="flex items-center gap-3 text-[10px] text-[#666666]">
               {Object.entries(ACTION_COLORS).map(([type, color]) => (
                 <span key={type} className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
@@ -830,9 +830,9 @@ export function CollaborationTool() {
           <div className="mt-4 divide-y divide-[#1A1A1A] max-h-[500px] overflow-y-auto">
             {teamActivityLog.length === 0 ? (
               <div className="flex flex-col items-center py-10">
-                <Activity className="w-8 h-8 text-[#555555] mb-3" />
-                <p className="text-sm text-[#555555]">No activity yet</p>
-                <p className="text-[11px] text-[#444444] mt-1">Team actions will appear here</p>
+                <Activity className="w-8 h-8 text-[#666666] mb-3" />
+                <p className="text-sm text-[#666666]">No activity yet</p>
+                <p className="text-[11px] text-[#666666] mt-1">Team actions will appear here</p>
               </div>
             ) : (
               teamActivityLog.map((item) => (
@@ -861,14 +861,14 @@ export function CollaborationTool() {
                     onChange={(e) => setInviteEmail(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleInvite()}
                     placeholder="colleague@example.com"
-                    className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                   />
                 </div>
                 {/* Role dropdown */}
                 <div className="relative">
                   <button
                     onClick={() => setInviteRoleOpen(!inviteRoleOpen)}
-                    className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm hover:border-[#2A2A2A] transition-colors"
+                    className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.1)] transition-colors"
                   >
                     {(() => { const IRC = ROLE_CONFIG[inviteRole]; return <IRC.icon className="w-4 h-4" style={{ color: IRC.color }} />; })()}
                     <span className="text-[#FFFFFF]">{ROLE_CONFIG[inviteRole].label}</span>
@@ -877,7 +877,7 @@ export function CollaborationTool() {
                   {inviteRoleOpen && (
                     <>
                       <div className="fixed inset-0 z-40" onClick={() => setInviteRoleOpen(false)} />
-                      <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] shadow-xl py-1">
+                      <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
                         {(['admin', 'analyst', 'viewer'] as const).map((role) => {
                           const IRC2 = ROLE_CONFIG[role];
                           const IRCIcon2 = IRC2.icon;
@@ -886,13 +886,13 @@ export function CollaborationTool() {
                             key={role}
                             onClick={() => { setInviteRole(role); setInviteRoleOpen(false); }}
                             className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs transition-colors ${
-                              inviteRole === role ? 'text-[#FFFFFF] bg-[#0D0D0D]' : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#0D0D0D]'
+                              inviteRole === role ? 'text-[#FFFFFF] bg-[#0a0a0a]' : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0a0a0a]'
                             }`}
                           >
                             <IRCIcon2 className="w-4 h-4" style={{ color: IRC2.color }} />
                             <div className="text-left">
                               <span className="font-semibold block">{IRC2.label}</span>
-                              <span className="text-[9px] text-[#555555]">{IRC2.desc}</span>
+                              <span className="text-[9px] text-[#666666]">{IRC2.desc}</span>
                             </div>
                           </button>
                           );
@@ -903,7 +903,7 @@ export function CollaborationTool() {
                 </div>
                 <button
                   onClick={handleInvite}
-                  className="h-10 px-5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors flex items-center gap-2"
+                  className="h-10 px-5 rounded-md bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   Send Invite
@@ -923,16 +923,16 @@ export function CollaborationTool() {
                 type="text"
                 readOnly
                 value={`https://app.nychiq.com/invite?team=${encodeURIComponent(userEmail || 'agency')}&ref=team-collab`}
-                className="flex-1 h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-xs text-[#666666] font-mono focus:outline-none truncate"
+                className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-xs text-[#666666] font-mono focus:outline-none truncate"
               />
               <button
                 onClick={handleCopyLink}
-                className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[#1F1F1F] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#2A2A2A] transition-colors flex items-center gap-2 text-xs font-medium flex-shrink-0"
+                className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)] transition-colors flex items-center gap-2 text-xs font-medium flex-shrink-0"
               >
                 {copiedLink ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-[#10B981]" />
-                    <span className="text-[#10B981]">Copied</span>
+                    <Check className="w-3.5 h-3.5 text-[#888888]" />
+                    <span className="text-[#888888]">Copied</span>
                   </>
                 ) : (
                   <>
@@ -949,16 +949,16 @@ export function CollaborationTool() {
             <SectionHeader>
               <AlertCircle className="w-3.5 h-3.5 text-[#FDBA2D]" />
               Pending Invites
-              <span className="ml-auto text-[10px] text-[#555555] font-normal normal-case tracking-normal">
+              <span className="ml-auto text-[10px] text-[#666666] font-normal normal-case tracking-normal">
                 {inviteCount} pending
               </span>
             </SectionHeader>
             <div className="mt-3 space-y-2 max-h-[400px] overflow-y-auto">
               {pendingInvites.length === 0 ? (
                 <div className="flex flex-col items-center py-8">
-                  <Mail className="w-8 h-8 text-[#555555] mb-3" />
-                  <p className="text-sm text-[#555555]">No pending invites</p>
-                  <p className="text-[11px] text-[#444444] mt-1">Invite team members using the form above</p>
+                  <Mail className="w-8 h-8 text-[#666666] mb-3" />
+                  <p className="text-sm text-[#666666]">No pending invites</p>
+                  <p className="text-[11px] text-[#666666] mt-1">Invite team members using the form above</p>
                 </div>
               ) : (
                 pendingInvites.map((invite) => (

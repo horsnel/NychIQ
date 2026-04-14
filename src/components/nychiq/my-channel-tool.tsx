@@ -27,16 +27,16 @@ type ChannelTab = 'overview' | 'videos' | 'shorts' | 'revenue' | 'audience';
    HELPER: health / score color
    ═══════════════════════════════════════════════════════════════ */
 function scoreColor(v: number): string {
-  if (v >= 80) return '#10B981';
+  if (v >= 80) return '#22c55e';
   if (v >= 60) return '#FDBA2D';
-  if (v >= 40) return '#3B82F6';
-  return '#EF4444';
+  if (v >= 40) return '#888888';
+  return '#666666';
 }
 
 function scoreBadgeBg(v: number): string {
-  if (v >= 80) return 'rgba(16,185,129,0.15)';
+  if (v >= 80) return 'rgba(34,197,94,0.1)';
   if (v >= 60) return 'rgba(253,186,45,0.15)';
-  return 'rgba(239,68,68,0.15)';
+  return 'rgba(255,255,255,0.06)';
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -70,17 +70,17 @@ function UnlinkedView() {
         <MonitorPlay size={44} color="#FDBA2D" />
       </div>
       <h2 className="text-2xl font-bold mb-2" style={{ color: '#FFFFFF' }}>No Channel Linked</h2>
-      <p className="text-sm max-w-md text-center leading-relaxed mb-8" style={{ color: '#A3A3A3' }}>
+      <p className="text-sm max-w-md text-center leading-relaxed mb-8" style={{ color: '#a0a0a0' }}>
         Run a free Channel Audit to automatically link your YouTube channel.
         Your channel data, profile picture, and health score will be saved and displayed here.
       </p>
       <button onClick={() => setActiveTool('audit')}
         className="px-8 py-3 rounded-xl text-sm font-bold flex items-center gap-2 transition-all duration-200 hover:scale-105"
-        style={{ background: '#FDBA2D', color: '#0D0D0D', boxShadow: '0 8px 32px rgba(253,186,45,0.25)' }}>
+        style={{ background: '#FDBA2D', color: '#0a0a0a', boxShadow: '0 8px 32px rgba(253,186,45,0.25)' }}>
         <ClipboardCheck size={18} />
         Go to Channel Audit
       </button>
-      <p className="text-xs mt-4" style={{ color: '#555555' }}>Cost: {TOKEN_COSTS.audit} tokens per audit</p>
+      <p className="text-xs mt-4" style={{ color: '#666666' }}>Cost: {TOKEN_COSTS.audit} tokens per audit</p>
     </div>
   );
 }
@@ -145,19 +145,19 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="lite-growth-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#10B981" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+            <stop offset="0%" stopColor="#888888" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#888888" stopOpacity="0" />
           </linearGradient>
         </defs>
         {[0, 0.25, 0.5, 0.75, 1].map(pct => {
           const y = PAD + (1 - pct) * (H - PAD * 2);
           return <line key={pct} x1={PAD} y1={y} x2={W - PAD} y2={y} stroke="rgba(255,255,255,0.05)" />;
         })}
-        <text x={PAD - 6} y={PAD} textAnchor="end" fill="#555555" fontSize="10">{fmtAxis(max)}</text>
-        <text x={PAD - 6} y={H - PAD + 4} textAnchor="end" fill="#555555" fontSize="10">0</text>
+        <text x={PAD - 6} y={PAD} textAnchor="end" fill="#666666" fontSize="10">{fmtAxis(max)}</text>
+        <text x={PAD - 6} y={H - PAD + 4} textAnchor="end" fill="#666666" fontSize="10">0</text>
         <polygon points={areaStr} fill="url(#lite-growth-fill)" />
-        <polyline points={lineStr} fill="none" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3" fill="#10B981" />)}
+        <polyline points={lineStr} fill="none" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3" fill="#888888" />)}
       </svg>
     );
   }
@@ -169,12 +169,12 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
         <div className="flex gap-1 mb-1">
           <div style={{ width: 32 }} />
           {HOURS_LABELS.map(h => (
-            <div key={h} className="flex-1 text-center" style={{ fontSize: 9, color: '#555555' }}>{h}</div>
+            <div key={h} className="flex-1 text-center" style={{ fontSize: 9, color: '#666666' }}>{h}</div>
           ))}
         </div>
         {heatmapData.map((row, di) => (
           <div key={di} className="flex gap-1 mb-0.5">
-            <div className="flex items-center" style={{ width: 32, fontSize: 9, color: '#555555' }}>{DAY_LABELS[di]}</div>
+            <div className="flex items-center" style={{ width: 32, fontSize: 9, color: '#666666' }}>{DAY_LABELS[di]}</div>
             {row.map((val, hi) => {
               const bg = val >= 80 ? 'rgba(16,185,129,0.6)' : val >= 60 ? 'rgba(16,185,129,0.35)' : val >= 40 ? 'rgba(253,186,45,0.35)' : val >= 20 ? 'rgba(59,130,246,0.25)' : '#1A1A1A';
               return <div key={hi} className="flex-1 h-5 rounded-sm transition-colors" style={{ background: bg }} title={`${val}%`} />;
@@ -197,13 +197,13 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
               <Rocket size={16} color="#FDBA2D" />
               <span className="text-sm font-bold" style={{ color: '#FDBA2D' }}>Unlock Full Channel Analytics</span>
             </div>
-            <p className="text-xs leading-relaxed" style={{ color: '#A3A3A3' }}>
+            <p className="text-xs leading-relaxed" style={{ color: '#a0a0a0' }}>
               Your channel &quot;{config.channelName}&quot; is configured. Run a Channel Audit to link your YouTube data, get a real health score, and unlock personalized insights.
             </p>
           </div>
           <button onClick={() => setActiveTool('audit')}
             className="shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all duration-200 hover:scale-105"
-            style={{ background: '#FDBA2D', color: '#0D0D0D', boxShadow: '0 4px 16px rgba(253,186,45,0.2)' }}>
+            style={{ background: '#FDBA2D', color: '#0a0a0a', boxShadow: '0 4px 16px rgba(253,186,45,0.2)' }}>
             <ClipboardCheck size={16} />
             Run Channel Audit
           </button>
@@ -211,8 +211,8 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       </div>
 
       {/* CHANNEL IDENTITY */}
-      <div className="mt-6 overflow-hidden" style={{ background: '#141414', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
-        <div className="relative" style={{ height: 120, background: 'linear-gradient(to right, #0D0D0D, #141414, rgba(253,186,45,0.08))' }}>
+      <div className="mt-6 overflow-hidden" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="relative" style={{ height: 120, background: 'linear-gradient(to right, #0a0a0a, #0f0f0f, rgba(253,186,45,0.08))' }}>
           <div className="absolute inset-0" style={{ opacity: 0.2, backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(253,186,45,0.06) 50px, rgba(253,186,45,0.06) 51px)' }} />
           <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)' }}>
             <Settings2 size={12} color="#FDBA2D" />
@@ -225,7 +225,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
         <div className="px-6 pb-5 -mt-10 relative z-10">
           <div className="flex items-end gap-4">
             <div className="rounded-full flex items-center justify-center text-2xl font-bold"
-              style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0D0D0D', border: '3px solid #141414', boxShadow: '0 4px 16px rgba(0,0,0,0.4)' }}>
+              style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0a0a0a', border: '3px solid #0f0f0f', boxShadow: '0 4px 16px rgba(0,0,0,0.4)' }}>
               {config.channelName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0 pb-1">
@@ -233,7 +233,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
                 Welcome back, {userName || 'Creator'}
               </p>
               <h1 className="text-xl font-bold truncate" style={{ color: '#FFFFFF' }}>{config.channelName}</h1>
-              <p className="text-xs truncate" style={{ color: '#A3A3A3' }}>
+              <p className="text-xs truncate" style={{ color: '#a0a0a0' }}>
                 {config.niche}{config.subNiche ? ` → ${config.subNiche}` : ''}
               </p>
             </div>
@@ -250,34 +250,34 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
         {[
           { icon: Crosshair, label: 'Niche', value: config.niche, sub: config.subNiche, color: '#FDBA2D' },
-          { icon: Video, label: 'Content Types', tags: config.contentTypes, color: '#10B981' },
-          { icon: Target, label: 'Goals', goals: config.goals, color: '#3B82F6' },
-          { icon: UserCircle, label: 'Audience', value: config.audience || 'General', sub: `${config.brandVoice}${config.tone ? ` · ${config.tone}` : ''}`, color: '#8B5CF6' },
+          { icon: Video, label: 'Content Types', tags: config.contentTypes, color: '#888888' },
+          { icon: Target, label: 'Goals', goals: config.goals, color: '#888888' },
+          { icon: UserCircle, label: 'Audience', value: config.audience || 'General', sub: `${config.brandVoice}${config.tone ? ` · ${config.tone}` : ''}`, color: '#888888' },
         ].map((card, idx) => (
-          <div key={idx} className="p-4" style={{ background: '#141414', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
+          <div key={idx} className="p-4" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
             <div className="flex items-center gap-2 mb-2.5">
               <div className="p-1.5 rounded-lg" style={{ background: `${card.color}18`, color: card.color }}>
                 <card.icon size={14} />
               </div>
-              <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 10, color: '#A3A3A3' }}>{card.label}</span>
+              <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 10, color: '#a0a0a0' }}>{card.label}</span>
             </div>
             {card.value && <p className="text-sm font-bold truncate" style={{ color: '#FFFFFF' }}>{card.value}</p>}
-            {card.sub && <p className="truncate mt-0.5" style={{ fontSize: 11, color: '#A3A3A3' }}>{card.sub}</p>}
+            {card.sub && <p className="truncate mt-0.5" style={{ fontSize: 11, color: '#a0a0a0' }}>{card.sub}</p>}
             {card.tags && (
               <div className="flex flex-wrap gap-1.5">
                 {card.tags.map((t: string, i: number) => (
-                  <span key={i} className="px-2 py-0.5 rounded-md" style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.05)', fontSize: 11, color: '#A3A3A3' }}>{t}</span>
+                  <span key={i} className="px-2 py-0.5 rounded-md" style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', fontSize: 11, color: '#a0a0a0' }}>{t}</span>
                 ))}
               </div>
             )}
             {card.goals && (
               <div className="space-y-1">
                 {card.goals.slice(0, 3).map((g: string, i: number) => (
-                  <p key={i} className="flex items-center gap-1.5" style={{ fontSize: 11, color: '#A3A3A3' }}>
-                    <span className="shrink-0 rounded-full" style={{ width: 4, height: 4, background: '#3B82F6' }} />{g}
+                  <p key={i} className="flex items-center gap-1.5" style={{ fontSize: 11, color: '#a0a0a0' }}>
+                    <span className="shrink-0 rounded-full" style={{ width: 4, height: 4, background: '#888888' }} />{g}
                   </p>
                 ))}
-                {card.goals.length > 3 && <p style={{ fontSize: 10, color: '#555555' }}>+{card.goals.length - 3} more</p>}
+                {card.goals.length > 3 && <p style={{ fontSize: 10, color: '#666666' }}>+{card.goals.length - 3} more</p>}
               </div>
             )}
           </div>
@@ -285,10 +285,10 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       </div>
 
       {/* GROWTH TREND (locked) */}
-      <div className="mt-5 p-5 relative" style={{ background: '#141414', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+      <div className="mt-5 p-5 relative" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         <div className="flex items-center gap-2 mb-4">
           <Activity size={14} color="#FDBA2D" />
-          <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>Growth Trend</span>
+          <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Growth Trend</span>
           <span className="px-1.5 py-0.5 rounded font-bold uppercase tracking-wider"
             style={{ fontSize: 9, color: '#FDBA2D', background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
             Simulated
@@ -298,7 +298,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ background: 'rgba(20,20,20,0.3)', backdropFilter: 'blur(1px)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ background: 'rgba(13,13,13,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
             <Lock size={14} color="#FDBA2D" />
-            <span className="text-xs" style={{ color: '#A3A3A3' }}>Run audit to see real data</span>
+            <span className="text-xs" style={{ color: '#a0a0a0' }}>Run audit to see real data</span>
           </div>
         </div>
       </div>
@@ -306,41 +306,41 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       {/* AI INSIGHTS + HEATMAP */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
         {/* AI Insights */}
-        <div className="p-5" style={{ background: '#141414', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="p-5" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <BrainCircuit size={14} color="#FDBA2D" />
-              <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>AI Insights</span>
+              <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>AI Insights</span>
             </div>
             {!aiInsights ? (
               <button onClick={handleAnalyze} disabled={aiLoading}
                 className="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors disabled:opacity-50"
-                style={{ background: '#FDBA2D', color: '#0D0D0D' }}>
+                style={{ background: '#FDBA2D', color: '#0a0a0a' }}>
                 {aiLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
                 Analyze
               </button>
             ) : (
               <button onClick={() => setAiInsights(null)}
                 className="px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors"
-                style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.05)', color: '#A3A3A3' }}>
+                style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', color: '#a0a0a0' }}>
                 <RefreshCw size={12} /> Refresh
               </button>
             )}
           </div>
-          {aiLoading && <div className="space-y-3">{[1, 2, 3].map(i => <div key={i} className="h-16 rounded-lg animate-pulse" style={{ background: '#0D0D0D' }} />)}</div>}
+          {aiLoading && <div className="space-y-3">{[1, 2, 3].map(i => <div key={i} className="h-16 rounded-lg animate-pulse" style={{ background: '#0a0a0a' }} />)}</div>}
           {!aiLoading && aiInsights && (
             <div className="space-y-2.5 max-h-96 overflow-y-auto pr-1">
               {aiInsights.map((ins, i) => {
-                const pc = ins.priority === 'high' ? '#EF4444' : ins.priority === 'medium' ? '#FDBA2D' : '#10B981';
+                const pc = ins.priority === 'high' ? '#888888' : ins.priority === 'medium' ? '#FDBA2D' : '#888888';
                 const PI = ins.priority === 'high' ? XCircle : ins.priority === 'medium' ? AlertTriangle : CheckCircle;
                 return (
-                  <div key={i} className="p-3 rounded-lg" style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div key={i} className="p-3 rounded-lg" style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div className="flex items-center gap-2 mb-1.5">
                       <PI size={14} style={{ color: pc }} />
                       <span className="text-xs font-bold" style={{ color: '#FFFFFF' }}>{ins.title}</span>
                       <span className="font-bold uppercase tracking-wider ml-auto" style={{ fontSize: 9, color: pc }}>{ins.priority}</span>
                     </div>
-                    <p className="leading-relaxed" style={{ fontSize: 11, color: '#A3A3A3' }}>{ins.description}</p>
+                    <p className="leading-relaxed" style={{ fontSize: 11, color: '#a0a0a0' }}>{ins.description}</p>
                   </div>
                 );
               })}
@@ -351,16 +351,16 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3" style={{ background: 'rgba(253,186,45,0.08)' }}>
                 <Lightbulb size={24} color="#FDBA2D" />
               </div>
-              <p className="text-xs text-center max-w-56" style={{ color: '#A3A3A3' }}>Click Analyze to generate personalized AI insights based on your channel configuration.</p>
+              <p className="text-xs text-center max-w-56" style={{ color: '#a0a0a0' }}>Click Analyze to generate personalized AI insights based on your channel configuration.</p>
             </div>
           )}
         </div>
 
         {/* Heatmap (locked) */}
-        <div className="p-5 relative" style={{ background: '#141414', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="p-5 relative" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 mb-3">
             <Clock size={14} color="#FDBA2D" />
-            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>Best Post Times</span>
+            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Best Post Times</span>
             <span className="px-1.5 py-0.5 rounded font-bold uppercase tracking-wider"
               style={{ fontSize: 9, color: '#FDBA2D', background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
               Simulated
@@ -370,7 +370,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ background: 'rgba(20,20,20,0.3)', backdropFilter: 'blur(1px)', borderRadius: 16 }}>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ background: 'rgba(13,13,13,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
               <Lock size={14} color="#FDBA2D" />
-              <span className="text-xs" style={{ color: '#A3A3A3' }}>Run audit to personalize</span>
+              <span className="text-xs" style={{ color: '#a0a0a0' }}>Run audit to personalize</span>
             </div>
           </div>
         </div>
@@ -404,11 +404,11 @@ function ChannelSidebar({
 
   return (
     <aside className="hidden lg:flex flex-col shrink-0 sticky top-0 h-screen overflow-y-auto"
-      style={{ width: 240, background: '#0D0D0D', borderRight: '1px solid rgba(255,255,255,0.05)' }}>
+      style={{ width: 240, background: '#0a0a0a', borderRight: '1px solid rgba(255,255,255,0.05)' }}>
 
       {/* NAV label */}
       <div className="px-4 pt-4 pb-2">
-        <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#555555' }}>Navigation</span>
+        <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#666666' }}>Navigation</span>
       </div>
 
       {navItems.map(item => {
@@ -418,7 +418,7 @@ function ChannelSidebar({
             className="flex items-center gap-3 w-full text-left transition-all duration-150 group"
             style={{
               height: 44, paddingLeft: 16, paddingRight: 16,
-              color: isActive ? '#FDBA2D' : '#A3A3A3',
+              color: isActive ? '#FDBA2D' : '#a0a0a0',
               background: isActive ? 'rgba(253,186,45,0.1)' : 'transparent',
               borderLeft: isActive ? '3px solid #FDBA2D' : '3px solid transparent',
             }}>
@@ -430,13 +430,13 @@ function ChannelSidebar({
 
       {/* CHANNEL label */}
       <div className="px-4 pt-6 pb-2">
-        <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#555555' }}>Channel</span>
+        <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#666666' }}>Channel</span>
       </div>
 
       {channelItems.map(item => (
         <button key={item.id}
           className="flex items-center gap-3 w-full text-left transition-all duration-150 group"
-          style={{ height: 44, paddingLeft: 16, paddingRight: 16, color: '#A3A3A3' }}>
+          style={{ height: 44, paddingLeft: 16, paddingRight: 16, color: '#a0a0a0' }}>
           <item.icon size={18} style={{ opacity: 0.7 }} />
           <span className="text-sm font-medium">{item.label}</span>
         </button>
@@ -448,7 +448,7 @@ function ChannelSidebar({
       {/* Bottom */}
       <div className="mt-auto p-4">
         <button className="flex items-center gap-2 w-full text-left transition-colors"
-          style={{ color: '#555555', fontSize: 12 }}>
+          style={{ color: '#666666', fontSize: 12 }}>
           <HelpCircle size={16} />
           <span>Help &amp; Support</span>
         </button>
@@ -459,7 +459,7 @@ function ChannelSidebar({
           </div>
           <div className="min-w-0">
             <p className="text-xs font-semibold truncate" style={{ color: '#FFFFFF' }}>{channelName}</p>
-            <p className="truncate" style={{ fontSize: 10, color: '#555555' }}>Personal Channel</p>
+            <p className="truncate" style={{ fontSize: 10, color: '#666666' }}>Personal Channel</p>
           </div>
         </div>
       </div>
@@ -479,14 +479,14 @@ function MobileTabBar({ activeTab, onTabChange }: { activeTab: ChannelTab; onTab
     { id: 'audience', label: 'Audience', icon: Users },
   ];
   return (
-    <div className="lg:hidden flex gap-1 p-1 overflow-x-auto" style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
+    <div className="lg:hidden flex gap-1 p-1 overflow-x-auto" style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
       {tabs.map(t => {
         const isActive = activeTab === t.id;
         return (
           <button key={t.id} onClick={() => onTabChange(t.id)}
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all"
             style={{
-              color: isActive ? '#FDBA2D' : '#A3A3A3',
+              color: isActive ? '#FDBA2D' : '#a0a0a0',
               background: isActive ? 'rgba(253,186,45,0.1)' : 'transparent',
             }}>
             <t.icon size={14} />
@@ -546,8 +546,8 @@ function GrowthTrendChart({ data, prevData, period }: {
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="gt-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#10B981" stopOpacity="0.02" />
+          <stop offset="0%" stopColor="#888888" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#888888" stopOpacity="0.02" />
         </linearGradient>
       </defs>
       {/* Grid lines */}
@@ -556,7 +556,7 @@ function GrowthTrendChart({ data, prevData, period }: {
         return (
           <g key={pct}>
             <line x1={PAD_L} y1={y} x2={W - PAD_R} y2={y} stroke="rgba(255,255,255,0.05)" />
-            <text x={PAD_L - 8} y={y + 4} textAnchor="end" fill="#555555" fontSize="10">{fmtAxis(max * pct)}</text>
+            <text x={PAD_L - 8} y={y + 4} textAnchor="end" fill="#666666" fontSize="10">{fmtAxis(max * pct)}</text>
           </g>
         );
       })}
@@ -564,16 +564,16 @@ function GrowthTrendChart({ data, prevData, period }: {
       {data.map((_, i) => {
         if (i % Math.ceil(data.length / 7) !== 0 && i !== data.length - 1) return null;
         const x = PAD_L + (i / (data.length - 1)) * (W - PAD_L - PAD_R);
-        return <text key={i} x={x} y={H - 8} textAnchor="middle" fill="#555555" fontSize="10">{dayLabels[i] || ''}</text>;
+        return <text key={i} x={x} y={H - 8} textAnchor="middle" fill="#666666" fontSize="10">{dayLabels[i] || ''}</text>;
       })}
       {/* Previous period dashed */}
-      {prevPath && <path d={prevPath} fill="none" stroke="#555555" strokeWidth="1.5" strokeDasharray="6 4" />}
+      {prevPath && <path d={prevPath} fill="none" stroke="#666666" strokeWidth="1.5" strokeDasharray="6 4" />}
       {/* Area */}
       <path d={areaPath} fill="url(#gt-fill)" />
       {/* Line */}
-      <path d={linePath} fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" />
+      <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" />
       {/* Data points */}
-      {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3.5" fill="#10B981" stroke="#1F1F1F" strokeWidth="2" />)}
+      {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3.5" fill="#888888" stroke="#0f0f0f" strokeWidth="2" />)}
     </svg>
   );
 }
@@ -669,11 +669,11 @@ function OverviewTab({
   /* Video card skeleton */
   function VideoSkeleton() {
     return (
-      <div className="shrink-0 animate-pulse" style={{ width: 240, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
-        <div style={{ height: 135, background: '#141414', borderRadius: '12px 12px 0 0' }} />
+      <div className="shrink-0 animate-pulse" style={{ width: 240, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
+        <div style={{ height: 135, background: '#0f0f0f', borderRadius: '12px 12px 0 0' }} />
         <div className="p-3 space-y-2">
-          <div className="h-4 rounded" style={{ background: '#141414', width: '80%' }} />
-          <div className="h-3 rounded" style={{ background: '#141414', width: '60%' }} />
+          <div className="h-4 rounded" style={{ background: '#0f0f0f', width: '80%' }} />
+          <div className="h-3 rounded" style={{ background: '#0f0f0f', width: '60%' }} />
         </div>
       </div>
     );
@@ -687,11 +687,11 @@ function OverviewTab({
 
   /* Content mix data */
   const contentMix = useMemo(() => [
-    { name: 'Tutorials', pct: 35, color: '#10B981' },
+    { name: 'Tutorials', pct: 35, color: '#888888' },
     { name: 'Reviews', pct: 25, color: '#FDBA2D' },
-    { name: 'Vlogs', pct: 20, color: '#8B5CF6' },
-    { name: 'Challenges', pct: 15, color: '#3B82F6' },
-    { name: 'Other', pct: 5, color: '#555555' },
+    { name: 'Vlogs', pct: 20, color: '#888888' },
+    { name: 'Challenges', pct: 15, color: '#888888' },
+    { name: 'Other', pct: 5, color: '#666666' },
   ], []);
 
   /* Trending in niche (simulated stable) */
@@ -705,7 +705,7 @@ function OverviewTab({
 
   /* Audience demographics */
   const demographics = useMemo(() => ({
-    gender: [{ label: 'Male', pct: 65, color: '#3B82F6' }, { label: 'Female', pct: 30, color: '#EC4899' }, { label: 'Other', pct: 5, color: '#555555' }],
+    gender: [{ label: 'Male', pct: 65, color: '#888888' }, { label: 'Female', pct: 30, color: '#888888' }, { label: 'Other', pct: 5, color: '#666666' }],
     age: [
       { label: '18-24', pct: 35 },
       { label: '25-34', pct: 40 },
@@ -743,7 +743,7 @@ function OverviewTab({
       <div className="overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         {/* Banner */}
         <div className="relative h-[180px] md:h-[300px]" style={{
-          background: 'linear-gradient(135deg, #0D0D0D 0%, #141414 40%, rgba(253,186,45,0.08) 100%)',
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 40%, rgba(253,186,45,0.08) 100%)',
         }}>
           {/* Pattern overlay */}
           <div className="absolute inset-0" style={{
@@ -753,8 +753,8 @@ function OverviewTab({
           {/* LIVE badge */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
             style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)' }}>
-            <div className="rounded-full animate-pulse" style={{ width: 6, height: 6, background: '#10B981' }} />
-            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#10B981' }}>LIVE</span>
+            <div className="rounded-full animate-pulse" style={{ width: 6, height: 6, background: '#888888' }} />
+            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#888888' }}>LIVE</span>
           </div>
           {/* Plan badge */}
           <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full"
@@ -772,16 +772,16 @@ function OverviewTab({
                 style={{ width: 80, height: 80, border: '3px solid #FDBA2D' }} />
             ) : (
               <div className="rounded-full flex items-center justify-center text-3xl font-bold shadow-2xl"
-                style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0D0D0D', border: '3px solid #FDBA2D' }}>
+                style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0a0a0a', border: '3px solid #FDBA2D' }}>
                 {pc.title.charAt(0).toUpperCase()}
               </div>
             )}
             <div className="flex-1 min-w-0 pb-1">
               <h1 className="font-bold truncate" style={{ fontSize: 24, color: '#FFFFFF' }}>{pc.title}</h1>
-              <p className="truncate" style={{ fontSize: 14, color: '#A3A3A3' }}>@{pc.handle}</p>
-              <p className="mt-1" style={{ fontSize: 12, color: '#A3A3A3' }}>
+              <p className="truncate" style={{ fontSize: 14, color: '#a0a0a0' }}>@{pc.handle}</p>
+              <p className="mt-1" style={{ fontSize: 12, color: '#a0a0a0' }}>
                 <span style={{ color: '#FFFFFF', fontWeight: 600 }}>{fmtV(subscribers)}</span> subscribers
-                <span className="mx-2" style={{ color: '#333333' }}>·</span>
+                <span className="mx-2" style={{ color: '#1a1a1a' }}>·</span>
                 <span>{fmtV(pc.videoCount || 0)} videos</span>
               </p>
             </div>
@@ -807,22 +807,22 @@ function OverviewTab({
       <div className="flex gap-4 overflow-x-auto pb-2">
         {[
           { label: 'Views', value: fmtV(totalViews), sub: null },
-          { label: 'Subs', value: fmtV(subscribers), sub: '+2.4K', subColor: '#10B981' },
+          { label: 'Subs', value: fmtV(subscribers), sub: '+2.4K', subColor: '#888888' },
           { label: 'Engagement', value: `${displayEngagement}%`, sub: null },
           { label: 'Health', value: String(healthScore), sub: null, ring: healthScore },
           { label: 'Viral', value: '94', sub: null },
-          { label: 'Revenue', value: '$4.2K', sub: 'est. this month', subColor: '#555555' },
+          { label: 'Revenue', value: '$4.2K', sub: 'est. this month', subColor: '#666666' },
         ].map((stat, idx) => (
           <div key={idx} className="flex-1 shrink-0 p-5 flex flex-col justify-between"
-            style={{ minWidth: 140, height: 120, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
-            <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>{stat.label}</span>
+            style={{ minWidth: 140, height: 120, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+            <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>{stat.label}</span>
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-bold" style={{ fontSize: 32, color: '#FFFFFF', lineHeight: 1, ...(stat.label === 'Revenue' ? { color: '#10B981' } : {}) }}>
+                <span className="font-bold" style={{ fontSize: 32, color: '#FFFFFF', lineHeight: 1, ...(stat.label === 'Revenue' ? { color: '#888888' } : {}) }}>
                   {stat.value}
                 </span>
                 {stat.sub && (
-                  <p className="mt-1" style={{ fontSize: stat.label === 'Revenue' ? 11 : 12, color: stat.subColor || '#10B981', fontWeight: 600 }}>
+                  <p className="mt-1" style={{ fontSize: stat.label === 'Revenue' ? 11 : 12, color: stat.subColor || '#888888', fontWeight: 600 }}>
                     {stat.sub}
                   </p>
                 )}
@@ -834,15 +834,15 @@ function OverviewTab({
       </div>
 
       {/* ── SUB 3: GROWTH TREND CHART ── */}
-      <div className="p-6" style={{ height: 300, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+      <div className="p-6" style={{ height: 300, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         <div className="flex items-center justify-between mb-4">
           <span className="font-semibold" style={{ fontSize: 16, color: '#FFFFFF' }}>Growth Trend</span>
-          <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)' }}>
             {(['7D', '30D', '90D', '1Y'] as const).map(p => (
               <button key={p} onClick={() => setActivePeriod(p)}
                 className="px-3 py-1 rounded-md text-xs font-medium transition-all"
                 style={{
-                  color: activePeriod === p ? '#FDBA2D' : '#555555',
+                  color: activePeriod === p ? '#FDBA2D' : '#666666',
                   background: activePeriod === p ? 'rgba(253,186,45,0.15)' : 'transparent',
                 }}>
                 {p}
@@ -875,7 +875,7 @@ function OverviewTab({
 
             return (
               <div key={vid} className="shrink-0 relative group"
-                style={{ width: 240, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
+                style={{ width: 240, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 12 }}>
                 {/* Thumbnail */}
                 <div className="relative" style={{ height: 135, borderRadius: '12px 12px 0 0', overflow: 'hidden' }}>
                   <img src={thumbUrl(vid)} alt={title} className="w-full h-full object-cover" loading="lazy" />
@@ -888,7 +888,7 @@ function OverviewTab({
                 {/* Title */}
                 <div className="p-3 pb-2">
                   <p className="font-medium line-clamp-2" style={{ fontSize: 14, color: '#FFFFFF', lineHeight: '20px' }}>{title}</p>
-                  <p className="mt-1" style={{ fontSize: 11, color: '#555555' }}>
+                  <p className="mt-1" style={{ fontSize: 11, color: '#666666' }}>
                     {views ? `${views} views` : ''}{views && published ? ' · ' : ''}{published}
                   </p>
                 </div>
@@ -899,7 +899,7 @@ function OverviewTab({
                     SEO 92
                   </span>
                   <span className="px-2 py-0.5 rounded-md font-bold"
-                    style={{ fontSize: 11, color: '#10B981', background: 'rgba(16,185,129,0.15)' }}>
+                    style={{ fontSize: 11, color: '#888888', background: 'rgba(16,185,129,0.15)' }}>
                     12.1%
                   </span>
                   <button onClick={() => handleCopy(vid, title)}
@@ -912,7 +912,7 @@ function OverviewTab({
             );
           })}
           {!videosLoading && videos.length === 0 && (
-            <div className="flex items-center justify-center w-full py-12" style={{ color: '#555555', fontSize: 13 }}>
+            <div className="flex items-center justify-center w-full py-12" style={{ color: '#666666', fontSize: 13 }}>
               No videos found for this channel.
             </div>
           )}
@@ -922,11 +922,11 @@ function OverviewTab({
       {/* ── SUB 5: UPLOAD CONSISTENCY + AVG VIEW DURATION ── */}
       <div className="flex gap-4 flex-col md:flex-row">
         {/* Upload Consistency */}
-        <div className="flex-1 p-5" style={{ height: 180, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
-          <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>Upload Consistency</span>
+        <div className="flex-1 p-5" style={{ height: 180, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+          <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Upload Consistency</span>
           <div className="mt-2">
             <span className="font-bold" style={{ fontSize: 28, color: '#FFFFFF', lineHeight: 1 }}>4.2x/week</span>
-            <p style={{ fontSize: 11, color: '#555555', marginTop: 2 }}>Last 30 days</p>
+            <p style={{ fontSize: 11, color: '#666666', marginTop: 2 }}>Last 30 days</p>
           </div>
           {/* Bar chart */}
           <div className="flex items-end gap-2 mt-4" style={{ height: 60 }}>
@@ -934,33 +934,33 @@ function OverviewTab({
               <div key={day} className="flex-1 flex flex-col items-center gap-1">
                 <div className="w-full rounded-t-sm transition-all" style={{
                   height: `${uploadBars[i]}%`, minHeight: 4,
-                  background: '#10B981',
+                  background: '#888888',
                   borderRadius: '3px 3px 0 0',
                 }} />
-                <span style={{ fontSize: 9, color: '#555555' }}>{day}</span>
+                <span style={{ fontSize: 9, color: '#666666' }}>{day}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Avg View Duration */}
-        <div className="flex-1 p-5" style={{ height: 180, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
-          <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#A3A3A3' }}>Avg View Duration</span>
+        <div className="flex-1 p-5" style={{ height: 180, background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+          <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Avg View Duration</span>
           <div className="mt-2">
             <span className="font-bold" style={{ fontSize: 28, color: '#FFFFFF', lineHeight: 1 }}>6:42</span>
-            <span className="ml-2 font-semibold" style={{ fontSize: 14, color: retention >= 70 ? '#10B981' : retention >= 50 ? '#FDBA2D' : '#EF4444' }}>
+            <span className="ml-2 font-semibold" style={{ fontSize: 14, color: retention >= 70 ? '#888888' : retention >= 50 ? '#FDBA2D' : '#888888' }}>
               {retention}% retention
             </span>
           </div>
           {/* Progress bar */}
           <div className="mt-6">
-            <div className="w-full rounded-full" style={{ height: 8, background: '#0D0D0D' }}>
+            <div className="w-full rounded-full" style={{ height: 8, background: '#0a0a0a' }}>
               <div className="h-full rounded-full transition-all duration-1000"
-                style={{ width: `${retention}%`, background: retention >= 70 ? '#10B981' : retention >= 50 ? '#FDBA2D' : '#EF4444' }} />
+                style={{ width: `${retention}%`, background: retention >= 70 ? '#888888' : retention >= 50 ? '#FDBA2D' : '#888888' }} />
             </div>
             <div className="flex justify-between mt-1">
-              <span style={{ fontSize: 10, color: '#555555' }}>0:00</span>
-              <span style={{ fontSize: 10, color: '#555555' }}>9:00</span>
+              <span style={{ fontSize: 10, color: '#666666' }}>0:00</span>
+              <span style={{ fontSize: 10, color: '#666666' }}>9:00</span>
             </div>
           </div>
         </div>
@@ -969,7 +969,7 @@ function OverviewTab({
       {/* ── SUB 6: CONTENT MIX + TRENDING ── */}
       <div className="flex gap-4 flex-col lg:flex-row lg:h-[320px] overflow-x-auto lg:overflow-visible">
         {/* Content Mix */}
-        <div className="flex-1 p-5 overflow-hidden" style={{ background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="flex-1 p-5 overflow-hidden" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <span className="font-semibold" style={{ fontSize: 14, color: '#FFFFFF' }}>Content Mix</span>
           {/* Stacked bar */}
           <div className="flex w-full rounded-full overflow-hidden mt-5" style={{ height: 14 }}>
@@ -983,7 +983,7 @@ function OverviewTab({
             {contentMix.map((seg, i) => (
               <div key={i} className="flex items-center gap-1.5">
                 <div className="rounded-full" style={{ width: 8, height: 8, background: seg.color }} />
-                <span style={{ fontSize: 12, color: '#A3A3A3' }}>{seg.name}</span>
+                <span style={{ fontSize: 12, color: '#a0a0a0' }}>{seg.name}</span>
                 <span className="font-semibold" style={{ fontSize: 12, color: '#FFFFFF' }}>{seg.pct}%</span>
               </div>
             ))}
@@ -992,25 +992,25 @@ function OverviewTab({
           {/* Quick tools */}
           <div className="grid grid-cols-2 gap-2 mt-5">
             {[
-              { icon: Zap, label: 'Viral Predictor', id: 'viral', color: '#10B981' },
+              { icon: Zap, label: 'Viral Predictor', id: 'viral', color: '#888888' },
               { icon: Crosshair, label: 'Niche Radar', id: 'niche', color: '#FDBA2D' },
-              { icon: SearchCode, label: 'SEO Optimizer', id: 'seo', color: '#8B5CF6' },
-              { icon: GitCompare, label: 'Competitor Track', id: 'competitor', color: '#3B82F6' },
+              { icon: SearchCode, label: 'SEO Optimizer', id: 'seo', color: '#888888' },
+              { icon: GitCompare, label: 'Competitor Track', id: 'competitor', color: '#888888' },
             ].map(tool => (
               <button key={tool.id} onClick={() => setActiveTool(tool.id)}
                 className="flex items-center gap-2 p-2.5 rounded-lg transition-all group text-left"
-                style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.05)' }}>
+                style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <div className="p-1.5 rounded-md" style={{ background: `${tool.color}15`, color: tool.color }}>
                   <tool.icon size={14} />
                 </div>
-                <span className="text-xs font-medium" style={{ color: '#A3A3A3' }}>{tool.label}</span>
+                <span className="text-xs font-medium" style={{ color: '#a0a0a0' }}>{tool.label}</span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Trending in Your Niche */}
-        <div className="shrink-0 p-5 overflow-hidden w-full lg:w-[320px]" style={{ background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="shrink-0 p-5 overflow-hidden w-full lg:w-[320px]" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 mb-4">
             <Sparkles size={16} color="#FDBA2D" />
             <span className="font-semibold" style={{ fontSize: 14, color: '#FFFFFF' }}>Trending in Your Niche</span>
@@ -1024,7 +1024,7 @@ function OverviewTab({
                 <span className="font-bold shrink-0" style={{ fontSize: 14, color: '#FDBA2D', width: 20 }}>{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <p className="truncate font-medium" style={{ fontSize: 13, color: '#FFFFFF' }}>{topic.title}</p>
-                  <p className="truncate" style={{ fontSize: 11, color: '#555555' }}>
+                  <p className="truncate" style={{ fontSize: 11, color: '#666666' }}>
                     {topic.views} views · by {topic.channel}
                   </p>
                 </div>
@@ -1040,13 +1040,13 @@ function OverviewTab({
       </div>
 
       {/* ── SUB 7: AUDIENCE DEMOGRAPHICS ── */}
-      <div className="p-6" style={{ background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+      <div className="p-6" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         <span className="font-semibold" style={{ fontSize: 16, color: '#FFFFFF' }}>Audience Demographics</span>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-5">
           {/* COL 1: Age & Gender */}
           <div>
-            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#A3A3A3' }}>Age &amp; Gender</p>
+            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#a0a0a0' }}>Age &amp; Gender</p>
             {/* Gender bar */}
             <div className="flex w-full rounded-full overflow-hidden mb-4" style={{ height: 10 }}>
               {demographics.gender.map((g, i) => (
@@ -1058,16 +1058,16 @@ function OverviewTab({
               {demographics.gender.map((g, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <div className="rounded-full" style={{ width: 8, height: 8, background: g.color }} />
-                  <span style={{ fontSize: 11, color: '#A3A3A3' }}>{g.label} {g.pct}%</span>
+                  <span style={{ fontSize: 11, color: '#a0a0a0' }}>{g.label} {g.pct}%</span>
                 </div>
               ))}
             </div>
             {/* Age bars */}
             {demographics.age.map((a, i) => (
               <div key={i} className="flex items-center gap-2 mb-2">
-                <span className="shrink-0" style={{ fontSize: 11, color: '#A3A3A3', width: 36 }}>{a.label}</span>
-                <div className="flex-1 rounded-full" style={{ height: 6, background: '#0D0D0D' }}>
-                  <div className="h-full rounded-full" style={{ width: `${a.pct}%`, background: '#10B981' }} />
+                <span className="shrink-0" style={{ fontSize: 11, color: '#a0a0a0', width: 36 }}>{a.label}</span>
+                <div className="flex-1 rounded-full" style={{ height: 6, background: '#0a0a0a' }}>
+                  <div className="h-full rounded-full" style={{ width: `${a.pct}%`, background: '#888888' }} />
                 </div>
                 <span className="font-semibold" style={{ fontSize: 11, color: '#FFFFFF', width: 28, textAlign: 'right' }}>{a.pct}%</span>
               </div>
@@ -1076,16 +1076,16 @@ function OverviewTab({
 
           {/* COL 2: Top Countries */}
           <div>
-            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#A3A3A3' }}>Top Countries</p>
+            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#a0a0a0' }}>Top Countries</p>
             {demographics.countries.map((c, i) => (
               <div key={i} className="flex items-center gap-3 mb-3">
                 <span className="text-base shrink-0">{c.flag}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <span className="truncate" style={{ fontSize: 12, color: '#FFFFFF' }}>{c.name}</span>
-                    <span className="font-semibold shrink-0 ml-2" style={{ fontSize: 12, color: '#A3A3A3' }}>{c.pct}%</span>
+                    <span className="font-semibold shrink-0 ml-2" style={{ fontSize: 12, color: '#a0a0a0' }}>{c.pct}%</span>
                   </div>
-                  <div className="w-full rounded-full mt-1" style={{ height: 4, background: '#0D0D0D' }}>
+                  <div className="w-full rounded-full mt-1" style={{ height: 4, background: '#0a0a0a' }}>
                     <div className="h-full rounded-full" style={{ width: `${c.pct}%`, background: '#FDBA2D' }} />
                   </div>
                 </div>
@@ -1095,25 +1095,25 @@ function OverviewTab({
 
           {/* COL 3: Active Hours */}
           <div>
-            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#A3A3A3' }}>Active Hours</p>
+            <p className="font-semibold mb-3" style={{ fontSize: 12, color: '#a0a0a0' }}>Active Hours</p>
             {/* Heatmap grid: 7 days x 6 time slots */}
             <div className="flex gap-1 mb-1">
               <div style={{ width: 28 }} />
               {['12a', '4a', '8a', '12p', '4p', '8p'].map(h => (
-                <div key={h} className="flex-1 text-center" style={{ fontSize: 9, color: '#555555' }}>{h}</div>
+                <div key={h} className="flex-1 text-center" style={{ fontSize: 9, color: '#666666' }}>{h}</div>
               ))}
             </div>
             {demographics.activeHours.map((row, di) => (
               <div key={di} className="flex gap-1 mb-0.5">
-                <div className="flex items-center" style={{ width: 28, fontSize: 9, color: '#555555' }}>{DAY_LABELS[di]}</div>
+                <div className="flex items-center" style={{ width: 28, fontSize: 9, color: '#666666' }}>{DAY_LABELS[di]}</div>
                 {row.map((val, hi) => {
-                  const bg = val >= 85 ? '#10B981' : val >= 60 ? '#FDBA2D' : '#1F1F1F';
+                  const bg = val >= 85 ? '#888888' : val >= 60 ? '#FDBA2D' : '#0f0f0f';
                   return <div key={hi} className="flex-1 rounded-sm transition-colors" style={{ height: 20, background: bg }} title={`${val}%`} />;
                 })}
               </div>
             ))}
-            <p className="mt-3" style={{ fontSize: 11, color: '#555555', lineHeight: '16px' }}>
-              Your audience is most active <span style={{ color: '#10B981', fontWeight: 600 }}>Fri-Sun 6-9 PM</span>
+            <p className="mt-3" style={{ fontSize: 11, color: '#666666', lineHeight: '16px' }}>
+              Your audience is most active <span style={{ color: '#888888', fontWeight: 600 }}>Fri-Sun 6-9 PM</span>
             </p>
           </div>
         </div>
@@ -1133,7 +1133,7 @@ function PlaceholderTab({ label, icon: Icon }: { label: string; icon: React.Elem
         <Icon size={28} color="#FDBA2D" />
       </div>
       <h3 className="text-lg font-bold mb-1" style={{ color: '#FFFFFF' }}>{label}</h3>
-      <p className="text-sm text-center max-w-sm" style={{ color: '#555555' }}>
+      <p className="text-sm text-center max-w-sm" style={{ color: '#666666' }}>
         This section is coming soon. Switch to Overview for the full channel analytics dashboard.
       </p>
     </div>

@@ -95,14 +95,14 @@ interface PipelineData {
 
 /* ── Mock Trend Data ── */
 const MOCK_TRENDS: TrendTopic[] = [
-  { id: 'ai-revolution', name: 'AI Revolution 2026', emoji: '🤖', category: 'Technology', momentum: 94, color: '#3B82F6' },
-  { id: 'react-20', name: 'React 20 Features', emoji: '⚛️', category: 'Programming', momentum: 87, color: '#10B981' },
-  { id: 'space-tourism', name: 'Space Tourism 2026', emoji: '🚀', category: 'Science', momentum: 82, color: '#8B5CF6' },
+  { id: 'ai-revolution', name: 'AI Revolution 2026', emoji: '🤖', category: 'Technology', momentum: 94, color: '#888888' },
+  { id: 'react-20', name: 'React 20 Features', emoji: '⚛️', category: 'Programming', momentum: 87, color: '#888888' },
+  { id: 'space-tourism', name: 'Space Tourism 2026', emoji: '🚀', category: 'Science', momentum: 82, color: '#888888' },
   { id: 'crypto-comeback', name: 'Crypto Comeback', emoji: '₿', category: 'Finance', momentum: 79, color: '#FDBA2D' },
-  { id: 'indie-games', name: 'Indie Game Renaissance', emoji: '🎮', category: 'Gaming', momentum: 76, color: '#EF4444' },
-  { id: 'remote-work-2', name: 'Remote Work 2.0', emoji: '🏠', category: 'Business', momentum: 73, color: '#06B6D4' },
+  { id: 'indie-games', name: 'Indie Game Renaissance', emoji: '🎮', category: 'Gaming', momentum: 76, color: '#888888' },
+  { id: 'remote-work-2', name: 'Remote Work 2.0', emoji: '🏠', category: 'Business', momentum: 73, color: '#888888' },
   { id: 'climate-tech', name: 'Climate Tech Boom', emoji: '🌱', category: 'Environment', momentum: 70, color: '#22C55E' },
-  { id: 'creator-economy', name: 'Creator Economy Shift', emoji: '🎨', category: 'Culture', momentum: 68, color: '#EC4899' },
+  { id: 'creator-economy', name: 'Creator Economy Shift', emoji: '🎨', category: 'Culture', momentum: 68, color: '#888888' },
 ];
 
 function getMockPipeline(trend: TrendTopic): PipelineData {
@@ -186,22 +186,22 @@ function TrendingHeader({
   loading: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
       <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
-              <TrendingUp className="w-5 h-5 text-[#10B981]" />
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <TrendingUp className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF] flex items-center gap-2">
                 Live Trending
-                <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#10B981]/10 text-[10px] font-bold text-[#10B981]">
+                <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#888888]/10 text-[10px] font-bold text-[#888888]">
                   <span className="live-dot" />
                   LIVE
                 </span>
               </h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 Top trending videos right now
               </p>
             </div>
@@ -209,9 +209,9 @@ function TrendingHeader({
           <button
             onClick={onRefresh}
             disabled={loading}
-            className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+            className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
           >
-            <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
+            <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
           </button>
         </div>
 
@@ -226,8 +226,8 @@ function TrendingHeader({
                 className={cn(
                   'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   selectedRegion === r.code
-                    ? 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30'
-                    : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#FFFFFF]'
+                    ? 'bg-[#888888]/15 text-[#888888] border border-[#888888]/30'
+                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
                 )}
               >
                 {r.code}
@@ -250,7 +250,7 @@ function TrendingHeader({
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                 sortBy === s.key
                   ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                  : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#FFFFFF]'
+                  : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
               )}
             >
               {s.icon}
@@ -277,15 +277,15 @@ export function TrendingTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card with Tabs */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]">
-              <TrendingUp className="w-5 h-5 text-[#10B981]" />
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <TrendingUp className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Trending</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Live trending videos &amp; AI-powered trend content pipelines</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Live trending videos &amp; AI-powered trend content pipelines</p>
             </div>
           </div>
 
@@ -297,8 +297,8 @@ export function TrendingTool() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981] border border-[rgba(16,185,129,0.3)] shadow-[0_0_12px_rgba(16,185,129,0.1)]'
-                    : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
+                    ? 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)] shadow-[0_0_12px_rgba(16,185,129,0.1)]'
+                    : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                 }`}
               >
                 {tab.icon} {tab.label}
@@ -418,14 +418,14 @@ function LiveTab() {
           label="Videos Tracked"
           value={videos.length}
           change="↑ 12%"
-          color="#10B981"
+          color="#888888"
           dark
           icon={<TrendingUp className="w-4 h-4" />}
         />
         <StatCard
           label="Total Views"
           value={fmtV(totalViews)}
-          color="#3B82F6"
+          color="#888888"
           dark
           icon={<Eye className="w-4 h-4" />}
         />
@@ -440,7 +440,7 @@ function LiveTab() {
         <StatCard
           label="Avg Likes"
           value={fmtV(avgLikes)}
-          color="#8B5CF6"
+          color="#888888"
           dark
           icon={<ThumbsUp className="w-4 h-4" />}
         />
@@ -448,13 +448,13 @@ function LiveTab() {
 
       {/* Video Grid */}
       {error ? (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8 text-center">
-          <AlertCircle className="w-10 h-10 text-[#EF4444] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8 text-center">
+          <AlertCircle className="w-10 h-10 text-[#888888] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Failed to Load</h3>
-          <p className="text-sm text-[#A3A3A3] mb-4">{error}</p>
+          <p className="text-sm text-[#a0a0a0] mb-4">{error}</p>
           <button
             onClick={fetchTrending}
-            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Try Again
@@ -467,10 +467,10 @@ function LiveTab() {
           ))}
         </div>
       ) : sortedVideos.length === 0 ? (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8 text-center">
-          <TrendingUp className="w-10 h-10 text-[#444444] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8 text-center">
+          <TrendingUp className="w-10 h-10 text-[#666666] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Trending Videos</h3>
-          <p className="text-sm text-[#A3A3A3]">No trending data available for {selectedRegion} right now.</p>
+          <p className="text-sm text-[#a0a0a0]">No trending data available for {selectedRegion} right now.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -485,7 +485,7 @@ function LiveTab() {
       )}
 
       {/* Token cost footer */}
-      <div className="text-center text-[11px] text-[#444444]">
+      <div className="text-center text-[11px] text-[#666666]">
         Cost: {TOKEN_COSTS.trending} tokens per load · Region: {selectedRegion}
       </div>
     </>
@@ -558,18 +558,18 @@ function PipelineTab() {
     setTimeout(() => setCopiedStep(null), 2000);
   }, []);
 
-  const scoreColor = pipeline.score >= 85 ? '#10B981' : pipeline.score >= 70 ? '#FDBA2D' : '#EF4444';
+  const scoreColor = pipeline.score >= 85 ? '#888888' : pipeline.score >= 70 ? '#FDBA2D' : '#888888';
   const scoreBg = pipeline.score >= 85 ? 'rgba(16,185,129,0.12)' : pipeline.score >= 70 ? 'rgba(253,186,45,0.12)' : 'rgba(239,68,68,0.12)';
   const scoreLabel = pipeline.score >= 85 ? 'Excellent' : pipeline.score >= 70 ? 'Good' : 'Needs Work';
 
   return (
     <div className="space-y-4">
       {/* Pick a Trend Section */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-4">
           <Flame className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Pick a Trend</h3>
-          <span className="text-[10px] text-[#A3A3A3] ml-1">Select a trending topic to generate a full content pipeline</span>
+          <span className="text-[10px] text-[#a0a0a0] ml-1">Select a trending topic to generate a full content pipeline</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -580,8 +580,8 @@ function PipelineTab() {
               className={cn(
                 'p-4 rounded-lg border text-left transition-all duration-300 group relative overflow-hidden',
                 selectedTrend?.id === trend.id
-                  ? 'bg-[#141414] border-[#10B981]/40 shadow-[0_0_20px_rgba(16,185,129,0.1)]'
-                  : 'bg-[#0D0D0D] border-[#1A1A1A] hover:border-[#2A2A2A]'
+                  ? 'bg-[#0f0f0f] border-[#888888]/40 shadow-[0_0_20px_rgba(16,185,129,0.1)]'
+                  : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)]'
               )}
               onMouseEnter={(e) => {
                 if (selectedTrend?.id !== trend.id) {
@@ -622,7 +622,7 @@ function PipelineTab() {
       {selectedTrend && (
         <div className="space-y-4">
           {/* Pipeline Score + Full Pipeline Button */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center gap-3 flex-1">
                 <div className="p-2 rounded-lg" style={{ backgroundColor: `${selectedTrend.color}15` }}>
@@ -632,7 +632,7 @@ function PipelineTab() {
                   <h3 className="text-sm font-bold text-[#FFFFFF]">
                     {selectedTrend.emoji} {selectedTrend.name} Pipeline
                   </h3>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">4-step AI-powered content generation</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">4-step AI-powered content generation</p>
                 </div>
               </div>
 
@@ -642,7 +642,7 @@ function PipelineTab() {
                   <Star className="w-4 h-4" style={{ color: scoreColor }} />
                   <div>
                     <span className="text-lg font-bold" style={{ color: scoreColor }}>{pipeline.score}</span>
-                    <span className="text-[10px] text-[#A3A3A3] ml-1">/ 100</span>
+                    <span className="text-[10px] text-[#a0a0a0] ml-1">/ 100</span>
                     <span className="text-[10px] font-bold ml-1" style={{ color: scoreColor }}>{scoreLabel}</span>
                   </div>
                 </div>
@@ -671,7 +671,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 1: Title & Hook */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>1</div>
@@ -680,16 +680,16 @@ function PipelineTab() {
                     <FileText className="w-3.5 h-3.5 text-[#FDBA2D]" />
                     Title &amp; Hook
                   </h4>
-                  <p className="text-[10px] text-[#A3A3A3]">Generated title + hook script</p>
+                  <p className="text-[10px] text-[#a0a0a0]">Generated title + hook script</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {pipeline.step1 && (
                   <button
                     onClick={() => handleCopySection(1, `Title: ${pipeline.step1!.title}\n\nHook: ${pipeline.step1!.hook}`)}
-                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
+                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
                   >
-                    {copiedStep === 1 ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                    {copiedStep === 1 ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                     {copiedStep === 1 ? 'Copied' : 'Copy'}
                   </button>
                 )}
@@ -715,42 +715,42 @@ function PipelineTab() {
 
             {pipeline.step1 && generatingStep !== 1 && (
               <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider mb-1 block">Title</span>
                   <p className="text-sm text-[#FFFFFF] font-medium">{pipeline.step1.title}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wider mb-1 block">Hook Script</span>
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider mb-1 block">Hook Script</span>
                   <p className="text-xs text-[#D4D4D4] leading-relaxed">{pipeline.step1.hook}</p>
                 </div>
               </div>
             )}
 
             {!pipeline.step1 && generatingStep !== 1 && (
-              <p className="text-xs text-[#555555] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
+              <p className="text-xs text-[#666666] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
             )}
           </div>
 
           {/* Step 2: Script Outline */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981' }}>2</div>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>2</div>
                 <div>
                   <h4 className="text-sm font-bold text-[#FFFFFF] flex items-center gap-1.5">
-                    <List className="w-3.5 h-3.5 text-[#10B981]" />
+                    <List className="w-3.5 h-3.5 text-[#888888]" />
                     Script Outline
                   </h4>
-                  <p className="text-[10px] text-[#A3A3A3]">Sections with bullet points</p>
+                  <p className="text-[10px] text-[#a0a0a0]">Sections with bullet points</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {pipeline.step2 && (
                   <button
                     onClick={() => handleCopySection(2, pipeline.step2!.sections.map((s) => `${s.heading}\n${s.bullets.map((b) => `• ${b}`).join('\n')}`).join('\n\n'))}
-                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
+                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
                   >
-                    {copiedStep === 2 ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                    {copiedStep === 2 ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                     {copiedStep === 2 ? 'Copied' : 'Copy'}
                   </button>
                 )}
@@ -758,7 +758,7 @@ function PipelineTab() {
                   onClick={() => generateStep(2, selectedTrend)}
                   disabled={generatingStep === 2 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981', border: '1px solid rgba(16,185,129,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(16,185,129,0.3)' }}
                 >
                   {generatingStep === 2 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -779,19 +779,19 @@ function PipelineTab() {
             )}
 
             {pipeline.step2 && generatingStep !== 2 && (
-              <div className="space-y-3 max-h-72 overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#2A2A2A transparent' }}>
+              <div className="space-y-3 max-h-72 overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#1a1a1a transparent' }}>
                 {pipeline.step2.sections.map((section, i) => (
-                  <div key={i} className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                  <div key={i} className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981' }}>
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>
                         {i + 1}
                       </div>
                       <span className="text-xs font-bold text-[#FFFFFF]">{section.heading}</span>
                     </div>
                     <div className="ml-7 space-y-1">
                       {section.bullets.map((bullet, j) => (
-                        <div key={j} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
-                          <ChevronRight className="w-3 h-3 mt-0.5 shrink-0" style={{ color: '#10B981' }} />
+                        <div key={j} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
+                          <ChevronRight className="w-3 h-3 mt-0.5 shrink-0" style={{ color: '#aaa' }} />
                           <span className="leading-relaxed">{bullet}</span>
                         </div>
                       ))}
@@ -802,30 +802,30 @@ function PipelineTab() {
             )}
 
             {!pipeline.step2 && generatingStep !== 2 && (
-              <p className="text-xs text-[#555555] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
+              <p className="text-xs text-[#666666] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
             )}
           </div>
 
           {/* Step 3: Metadata */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3B82F6' }}>3</div>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>3</div>
                 <div>
                   <h4 className="text-sm font-bold text-[#FFFFFF] flex items-center gap-1.5">
-                    <ImageIcon className="w-3.5 h-3.5 text-[#3B82F6]" />
+                    <ImageIcon className="w-3.5 h-3.5 text-[#888888]" />
                     Metadata
                   </h4>
-                  <p className="text-[10px] text-[#A3A3A3]">Thumbnail concept, description, tags &amp; hashtags</p>
+                  <p className="text-[10px] text-[#a0a0a0]">Thumbnail concept, description, tags &amp; hashtags</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {pipeline.step3 && (
                   <button
                     onClick={() => handleCopySection(3, `Thumbnail: ${pipeline.step3!.thumbnailConcept}\n\nDescription:\n${pipeline.step3!.description}\n\nTags: ${pipeline.step3!.tags.join(', ')}\n\nHashtags: ${pipeline.step3!.hashtags.join(' ')}`)}
-                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
+                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
                   >
-                    {copiedStep === 3 ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                    {copiedStep === 3 ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                     {copiedStep === 3 ? 'Copied' : 'Copy'}
                   </button>
                 )}
@@ -833,7 +833,7 @@ function PipelineTab() {
                   onClick={() => generateStep(3, selectedTrend)}
                   disabled={generatingStep === 3 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3B82F6', border: '1px solid rgba(59,130,246,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(59,130,246,0.3)' }}
                 >
                   {generatingStep === 3 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -853,34 +853,34 @@ function PipelineTab() {
             )}
 
             {pipeline.step3 && generatingStep !== 3 && (
-              <div className="space-y-3 max-h-80 overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#2A2A2A transparent' }}>
+              <div className="space-y-3 max-h-80 overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: '#1a1a1a transparent' }}>
                 {/* Thumbnail Concept */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <ImageIcon className="w-3 h-3 text-[#3B82F6]" />
-                    <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider">Thumbnail Concept</span>
+                    <ImageIcon className="w-3 h-3 text-[#888888]" />
+                    <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">Thumbnail Concept</span>
                   </div>
                   <p className="text-xs text-[#D4D4D4] leading-relaxed">{pipeline.step3.thumbnailConcept}</p>
                 </div>
 
                 {/* Description */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <FileText className="w-3 h-3 text-[#A3A3A3]" />
-                    <span className="text-[10px] font-bold text-[#A3A3A3] uppercase tracking-wider">Description</span>
+                    <FileText className="w-3 h-3 text-[#a0a0a0]" />
+                    <span className="text-[10px] font-bold text-[#a0a0a0] uppercase tracking-wider">Description</span>
                   </div>
                   <p className="text-xs text-[#D4D4D4] leading-relaxed whitespace-pre-line">{pipeline.step3.description}</p>
                 </div>
 
                 {/* Tags */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Target className="w-3 h-3 text-[#8B5CF6]" />
-                    <span className="text-[10px] font-bold text-[#8B5CF6] uppercase tracking-wider">Tags</span>
+                    <Target className="w-3 h-3 text-[#888888]" />
+                    <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">Tags</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {pipeline.step3.tags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#8B5CF6] bg-[rgba(139,92,246,0.1)]">
+                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)]">
                         {tag}
                       </span>
                     ))}
@@ -888,14 +888,14 @@ function PipelineTab() {
                 </div>
 
                 {/* Hashtags */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Hash className="w-3 h-3 text-[#3B82F6]" />
-                    <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider">Hashtags</span>
+                    <Hash className="w-3 h-3 text-[#888888]" />
+                    <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">Hashtags</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {pipeline.step3.hashtags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#3B82F6] bg-[rgba(59,130,246,0.1)]">
+                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)]">
                         #{tag}
                       </span>
                     ))}
@@ -905,30 +905,30 @@ function PipelineTab() {
             )}
 
             {!pipeline.step3 && generatingStep !== 3 && (
-              <p className="text-xs text-[#555555] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
+              <p className="text-xs text-[#666666] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
             )}
           </div>
 
           {/* Step 4: Publishing Plan */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' }}>4</div>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>4</div>
                 <div>
                   <h4 className="text-sm font-bold text-[#FFFFFF] flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                    <Calendar className="w-3.5 h-3.5 text-[#888888]" />
                     Publishing Plan
                   </h4>
-                  <p className="text-[10px] text-[#A3A3A3]">Best time, SEO keywords &amp; promo strategy</p>
+                  <p className="text-[10px] text-[#a0a0a0]">Best time, SEO keywords &amp; promo strategy</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {pipeline.step4 && (
                   <button
                     onClick={() => handleCopySection(4, `Best Time: ${pipeline.step4!.bestTime}\n\nSEO Keywords:\n${pipeline.step4!.seoKeywords.map((k) => `• ${k}`).join('\n')}\n\nPromo Strategy:\n${pipeline.step4!.promoStrategy.map((s) => `${s.split('.').length > 0 ? s : s}`).join('\n')}`)}
-                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
+                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-all"
                   >
-                    {copiedStep === 4 ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                    {copiedStep === 4 ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                     {copiedStep === 4 ? 'Copied' : 'Copy'}
                   </button>
                 )}
@@ -936,7 +936,7 @@ function PipelineTab() {
                   onClick={() => generateStep(4, selectedTrend)}
                   disabled={generatingStep === 4 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6', border: '1px solid rgba(139,92,246,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(139,92,246,0.3)' }}
                 >
                   {generatingStep === 4 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -957,7 +957,7 @@ function PipelineTab() {
             {pipeline.step4 && generatingStep !== 4 && (
               <div className="space-y-3">
                 {/* Best Time */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Clock className="w-3 h-3 text-[#FDBA2D]" />
                     <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider">Best Publishing Time</span>
@@ -966,15 +966,15 @@ function PipelineTab() {
                 </div>
 
                 {/* SEO Keywords */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Search className="w-3 h-3 text-[#3B82F6]" />
-                    <span className="text-[10px] font-bold text-[#3B82F6] uppercase tracking-wider">SEO Keywords</span>
+                    <Search className="w-3 h-3 text-[#888888]" />
+                    <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">SEO Keywords</span>
                   </div>
                   <div className="space-y-1">
                     {pipeline.step4.seoKeywords.map((kw, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-[#A3A3A3]">
-                        <div className="w-1 h-1 rounded-full bg-[#3B82F6] shrink-0" />
+                      <div key={i} className="flex items-center gap-2 text-xs text-[#a0a0a0]">
+                        <div className="w-1 h-1 rounded-full bg-[#888888] shrink-0" />
                         {kw}
                       </div>
                     ))}
@@ -982,15 +982,15 @@ function PipelineTab() {
                 </div>
 
                 {/* Promo Strategy */}
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Megaphone className="w-3 h-3 text-[#10B981]" />
-                    <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wider">Promo Strategy</span>
+                    <Megaphone className="w-3 h-3 text-[#888888]" />
+                    <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">Promo Strategy</span>
                   </div>
                   <div className="space-y-2">
                     {pipeline.step4.promoStrategy.map((strategy, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3]">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10B981' }}>
+                      <div key={i} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>
                           {i + 1}
                         </div>
                         <span className="leading-relaxed">{strategy}</span>
@@ -1002,12 +1002,12 @@ function PipelineTab() {
             )}
 
             {!pipeline.step4 && generatingStep !== 4 && (
-              <p className="text-xs text-[#555555] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
+              <p className="text-xs text-[#666666] text-center py-4">Click "Generate" or use "Full Pipeline" to create content</p>
             )}
           </div>
 
           {/* Token cost footer */}
-          <div className="text-center text-[11px] text-[#444444]">
+          <div className="text-center text-[11px] text-[#666666]">
             Cost: {TOKEN_COSTS.trending} tokens per full pipeline generation
           </div>
         </div>
@@ -1016,11 +1016,11 @@ function PipelineTab() {
       {/* No trend selected */}
       {!selectedTrend && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(16,185,129,0.1)', borderColor: 'rgba(16,185,129,0.2)' }}>
-            <Flame className="w-8 h-8" style={{ color: '#10B981' }} />
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' }}>
+            <Flame className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Trend Pipeline</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Select a trending topic above to generate a full 4-step content pipeline with title, script outline, metadata, and publishing plan.
           </p>
         </div>

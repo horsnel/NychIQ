@@ -85,20 +85,20 @@ interface GhostResult {
 
 /* ── Severity colors ── */
 function severityColor(s: string): string {
-  if (s === 'high') return '#EF4444';
+  if (s === 'high') return '#888888';
   if (s === 'medium') return '#FDBA2D';
-  return '#3B82F6';
+  return '#888888';
 }
 
 function impactColor(i: string): string {
-  if (i === 'positive') return '#10B981';
-  if (i === 'negative') return '#EF4444';
-  return '#A3A3A3';
+  if (i === 'positive') return '#888888';
+  if (i === 'negative') return '#888888';
+  return '#a0a0a0';
 }
 
 function trendColor(t: string): string {
-  if (t === 'accelerating') return '#10B981';
-  if (t === 'declining') return '#EF4444';
+  if (t === 'accelerating') return '#888888';
+  if (t === 'declining') return '#888888';
   return '#FDBA2D';
 }
 
@@ -261,23 +261,23 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ background: 'rgba(59,130,246,0.1)' }}>
-              <EyeOff className="w-5 h-5" style={{ color: '#3B82F6' }} />
+              <EyeOff className="w-5 h-5" style={{ color: '#aaa' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Ghost Tracker</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 Track off-platform growth & detect stealth strategy changes
               </p>
             </div>
           </div>
-          <p className="text-xs text-[#A3A3A3] mb-4">
+          <p className="text-xs text-[#a0a0a0] mb-4">
             Enter a competitor channel name. AI tracks their off-platform presence, A/B testing habits, and strategic shifts.
           </p>
-          <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+          <div className="flex items-center rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
             <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
             <input
               type="text"
@@ -285,13 +285,13 @@ Return ONLY the JSON object, no other text.`;
               onChange={(e) => setChannelInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
               placeholder="Enter competitor channel name..."
-              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
             <button
               onClick={handleTrack}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-full text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
-              style={{ backgroundColor: '#3B82F6' }}
+              className="px-5 h-11 rounded-full text-[#0a0a0a] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              style={{ backgroundColor: '#888888' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <EyeOff className="w-4 h-4" />}
               Start Tracking
@@ -302,10 +302,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF] mb-3">{error}</p>
-          <button onClick={handleTrack} className="px-4 py-2 rounded-lg bg-[#EF4444]/15 text-[#EF4444] text-xs font-medium hover:bg-[#EF4444]/25 transition-colors">
+          <button onClick={handleTrack} className="px-4 py-2 rounded-lg bg-[#888888]/15 text-[#888888] text-xs font-medium hover:bg-[#888888]/25 transition-colors">
             Retry
           </button>
         </div>
@@ -314,10 +314,10 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#3B82F6' }} />
-              <span className="text-sm text-[#A3A3A3]">Tracking stealth signals...</span>
+              <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#aaa' }} />
+              <span className="text-sm text-[#a0a0a0]">Tracking stealth signals...</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -332,19 +332,19 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <>
           {/* Channel Overview */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-              <Users className="w-4 h-4" style={{ color: '#3B82F6' }} />
+              <Users className="w-4 h-4" style={{ color: '#aaa' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Channel Overview</h3>
             </div>
             <div className="p-4 sm:p-5">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(59,130,246,0.1)' }}>
-                  <EyeOff className="w-5 h-5" style={{ color: '#3B82F6' }} />
+                  <EyeOff className="w-5 h-5" style={{ color: '#aaa' }} />
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-[#FFFFFF]">{result.overview.name}</h4>
-                  <p className="text-[11px] text-[#A3A3A3]">Joined {result.overview.joinDate} · {result.overview.uploadFrequency}</p>
+                  <p className="text-[11px] text-[#a0a0a0]">Joined {result.overview.joinDate} · {result.overview.uploadFrequency}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -355,9 +355,9 @@ Return ONLY the JSON object, no other text.`;
                   { label: 'Avg Views', value: result.overview.avgViews },
                   { label: 'Frequency', value: result.overview.uploadFrequency },
                 ].map((stat, i) => (
-                  <div key={i} className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                  <div key={i} className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                     <p className="text-sm font-bold text-[#FFFFFF]">{stat.value}</p>
-                    <p className="text-[10px] text-[#A3A3A3] mt-0.5">{stat.label}</p>
+                    <p className="text-[10px] text-[#a0a0a0] mt-0.5">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -366,7 +366,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Velocity Alerts */}
           {result.velocityAlerts.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Velocity Alerts</h3>
@@ -381,7 +381,7 @@ Return ONLY the JSON object, no other text.`;
                         <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: severityColor(alert.severity) }}>{alert.type}</span>
                         <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ backgroundColor: `${severityColor(alert.severity)}15`, color: severityColor(alert.severity) }}>{alert.severity}</span>
                       </div>
-                      <p className="text-xs text-[#A3A3A3] leading-relaxed">{alert.message}</p>
+                      <p className="text-xs text-[#a0a0a0] leading-relaxed">{alert.message}</p>
                     </div>
                   </div>
                 ))}
@@ -391,9 +391,9 @@ Return ONLY the JSON object, no other text.`;
 
           {/* A/B Test Spy */}
           {result.abTests.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <GitCompare className="w-4 h-4" style={{ color: '#8B5CF6' }} />
+                <GitCompare className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">A/B Test Spy</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
@@ -406,7 +406,7 @@ Return ONLY the JSON object, no other text.`;
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ backgroundColor: `${impactColor(test.impact)}15`, color: impactColor(test.impact) }}>{test.impact}</span>
                       </div>
                     </div>
-                    <p className="text-[11px] text-[#A3A3A3]">{test.detectedChange}</p>
+                    <p className="text-[11px] text-[#a0a0a0]">{test.detectedChange}</p>
                   </div>
                 ))}
               </div>
@@ -415,23 +415,23 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Off-Platform Signals */}
           {result.offPlatform.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Globe className="w-4 h-4" style={{ color: '#3B82F6' }} />
+                <Globe className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Off-Platform Signals</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4">
                 {result.offPlatform.map((signal, i) => {
                   const Icon = signal.icon;
                   return (
-                    <div key={i} className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div key={i} className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                       <div className="flex items-center gap-2 mb-2">
-                        <Icon className="w-4 h-4 text-[#A3A3A3]" />
+                        <Icon className="w-4 h-4 text-[#a0a0a0]" />
                         <span className="text-xs font-semibold text-[#FFFFFF]">{signal.platform}</span>
                       </div>
-                      <p className="text-sm font-bold text-[#3B82F6]">{signal.estimatedFollowers}</p>
-                      <p className="text-[10px] text-[#10B981] mt-0.5">{signal.growth}</p>
-                      <p className="text-[10px] text-[#A3A3A3] mt-1">{signal.activity}</p>
+                      <p className="text-sm font-bold text-[#888888]">{signal.estimatedFollowers}</p>
+                      <p className="text-[10px] text-[#888888] mt-0.5">{signal.growth}</p>
+                      <p className="text-[10px] text-[#a0a0a0] mt-1">{signal.activity}</p>
                     </div>
                   );
                 })}
@@ -440,24 +440,24 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* Engagement Velocity */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-              <Activity className="w-4 h-4" style={{ color: '#3B82F6' }} />
+              <Activity className="w-4 h-4" style={{ color: '#aaa' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Engagement Velocity</h3>
             </div>
             <div className="p-4 sm:p-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <p className="text-sm font-bold text-[#FFFFFF]">{result.engagement.first24hViews}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">First 24h</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">First 24h</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <p className="text-sm font-bold text-[#FFFFFF]">{result.engagement.weeklyViews}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">Weekly</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">Weekly</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-sm font-bold text-[#3B82F6]">{result.engagement.ratio}</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-0.5">24h Ratio</p>
+                <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <p className="text-sm font-bold text-[#888888]">{result.engagement.ratio}</p>
+                  <p className="text-[10px] text-[#a0a0a0] mt-0.5">24h Ratio</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ backgroundColor: `${trendColor(result.engagement.trend)}10` }}>
@@ -471,28 +471,28 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Shadow Metrics */}
           {result.shadowMetrics.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <BarChart3 className="w-4 h-4" style={{ color: '#3B82F6' }} />
+                <BarChart3 className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Shadow Metrics</h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-[#1A1A1A]">
-                      <th className="text-left px-4 py-2.5 text-[10px] font-medium text-[#A3A3A3] uppercase tracking-wider">Metric</th>
-                      <th className="text-center px-4 py-2.5 text-[10px] font-medium text-[#3B82F6] uppercase tracking-wider">Them</th>
+                      <th className="text-left px-4 py-2.5 text-[10px] font-medium text-[#a0a0a0] uppercase tracking-wider">Metric</th>
+                      <th className="text-center px-4 py-2.5 text-[10px] font-medium text-[#888888] uppercase tracking-wider">Them</th>
                       <th className="text-center px-4 py-2.5 text-[10px] font-medium text-[#666666] uppercase tracking-wider">You</th>
-                      <th className="text-center px-4 py-2.5 text-[10px] font-medium text-[#A3A3A3] uppercase tracking-wider">Gap</th>
+                      <th className="text-center px-4 py-2.5 text-[10px] font-medium text-[#a0a0a0] uppercase tracking-wider">Gap</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#1A1A1A]">
                     {result.shadowMetrics.map((m, i) => (
                       <tr key={i}>
                         <td className="px-4 py-2.5 text-xs text-[#FFFFFF]">{m.label}</td>
-                        <td className="px-4 py-2.5 text-xs font-semibold text-[#3B82F6] text-center">{m.them}</td>
+                        <td className="px-4 py-2.5 text-xs font-semibold text-[#888888] text-center">{m.them}</td>
                         <td className="px-4 py-2.5 text-xs text-[#666666] text-center">{m.you}</td>
-                        <td className="px-4 py-2.5 text-xs font-semibold text-[#EF4444] text-center">{m.diff}</td>
+                        <td className="px-4 py-2.5 text-xs font-semibold text-[#888888] text-center">{m.diff}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -502,13 +502,13 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* AI Competitive Analysis */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4" style={{ color: '#3B82F6' }} />
+                <Sparkles className="w-4 h-4" style={{ color: '#aaa' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Competitive Analysis</h3>
               </div>
-              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#3B82F6] transition-colors">
+              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#888888] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -516,16 +516,16 @@ Return ONLY the JSON object, no other text.`;
             <div className="p-4">
               <div className="flex items-start gap-3">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(59,130,246,0.1)' }}>
-                  <Bot className="w-3.5 h-3.5" style={{ color: '#3B82F6' }} />
+                  <Bot className="w-3.5 h-3.5" style={{ color: '#aaa' }} />
                 </div>
-                <p className="text-xs text-[#A3A3A3] leading-relaxed">{result.analysis}</p>
+                <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.analysis}</p>
               </div>
             </div>
           </div>
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleTrack} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#A3A3A3] hover:text-[#3B82F6] transition-colors">
+            <button onClick={handleTrack} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#a0a0a0] hover:text-[#888888] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Re-track
             </button>
@@ -537,10 +537,10 @@ Return ONLY the JSON object, no other text.`;
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.2)' }}>
-            <EyeOff className="w-8 h-8" style={{ color: '#3B82F6' }} />
+            <EyeOff className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Ghost Tracker</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Enter a competitor channel to detect their stealth strategy changes, off-platform growth, and A/B testing patterns.
           </p>
         </div>
@@ -548,7 +548,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Token cost footer */}
       {searched && (
-        <div className="text-center text-[11px] text-[#444444]">
+        <div className="text-center text-[11px] text-[#666666]">
           Cost: {TOKEN_COSTS['ghost-tracker']} tokens per analysis
         </div>
       )}

@@ -359,12 +359,12 @@ export function LegalPage({ type }: LegalPageProps) {
   const info = LEGAL_CONTENT[type] || DEFAULT_INFO;
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
+    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b border-[#1E1E1E]">
+      <div className="flex items-center gap-3 px-6 py-4 border-b border-[rgba(255,255,255,0.06)]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
-          className="p-1.5 rounded-md text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+          className="p-1.5 rounded-md text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -383,14 +383,14 @@ export function LegalPage({ type }: LegalPageProps) {
       <div className="max-w-3xl mx-auto px-6 py-12 flex-1">
         <h1 className="text-3xl font-bold text-[#FFFFFF] mb-2">{info.title}</h1>
         {info.lastUpdated && (
-          <p className="text-sm text-[#A3A3A3] mb-8">Last updated: {info.lastUpdated}</p>
+          <p className="text-sm text-[#a0a0a0] mb-8">Last updated: {info.lastUpdated}</p>
         )}
 
         <div className="space-y-8">
           {info.sections.map((section, idx) => (
             <section key={idx} className="nychiq-card p-6">
               <h2 className="text-lg font-semibold text-[#FDBA2D] mb-4">{section.heading}</h2>
-              <div className="space-y-3 text-sm text-[#A3A3A3] leading-relaxed">
+              <div className="space-y-3 text-sm text-[#a0a0a0] leading-relaxed">
                 {section.body.map((paragraph, pIdx) => (
                   <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />
                 ))}
@@ -401,12 +401,12 @@ export function LegalPage({ type }: LegalPageProps) {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-[#1E1E1E] px-6 py-6 mt-auto">
-        <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#444444]">
+      <footer className="border-t border-[rgba(255,255,255,0.06)] px-6 py-6 mt-auto">
+        <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#666666]">
           <span>&copy; {new Date().getFullYear()} NychIQ</span>
-          <button onClick={() => setPage('privacy')} className="hover:text-[#A3A3A3] transition-colors">Privacy</button>
-          <button onClick={() => setPage('terms')} className="hover:text-[#A3A3A3] transition-colors">Terms</button>
-          <button onClick={() => setPage('contact')} className="hover:text-[#A3A3A3] transition-colors">Contact</button>
+          <button onClick={() => setPage('privacy')} className="hover:text-[#a0a0a0] transition-colors">Privacy</button>
+          <button onClick={() => setPage('terms')} className="hover:text-[#a0a0a0] transition-colors">Terms</button>
+          <button onClick={() => setPage('contact')} className="hover:text-[#a0a0a0] transition-colors">Contact</button>
         </div>
       </footer>
     </div>

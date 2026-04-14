@@ -201,7 +201,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -209,14 +209,14 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Track Channels</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
+              <p className="text-xs text-[#a0a0a0] mt-0.5">
                 Analyze competitor channels and discover their strategies
               </p>
             </div>
           </div>
 
           {/* Channel Input */}
-          <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+          <div className="flex items-center rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
             <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
             <input
               type="text"
@@ -224,12 +224,12 @@ Return ONLY the JSON object, no other text.`;
               onChange={(e) => setChannelInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
               placeholder="Enter channel name or URL..."
-              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
             <button
               onClick={handleTrack}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -244,18 +244,18 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF]">{error}</p>
         </div>
       )}
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-8">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8">
           <div className="flex items-center gap-3 mb-6">
             <Loader2 className="w-5 h-5 text-[#FDBA2D] animate-spin" />
-            <span className="text-sm text-[#A3A3A3]">Tracking channel...</span>
+            <span className="text-sm text-[#a0a0a0]">Tracking channel...</span>
           </div>
           <div className="flex items-center gap-4">
             <div className="w-20 h-20 rounded-full bg-[#1A1A1A] animate-pulse" />
@@ -270,11 +270,11 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Channel Profile Card */}
       {!loading && profile && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="p-5">
             <div className="flex items-start gap-4 mb-4">
               {/* Avatar */}
-              <div className="w-16 h-16 rounded-full overflow-hidden bg-[#1A1A1A] shrink-0 ring-2 ring-[#1F1F1F]">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-[#1A1A1A] shrink-0 ring-2 ring-[#0f0f0f]">
                 {profile.avatar ? (
                   <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover" />
                 ) : (
@@ -285,31 +285,31 @@ Return ONLY the JSON object, no other text.`;
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-lg font-bold text-[#FFFFFF] truncate">{profile.name}</h3>
-                <p className="text-xs text-[#A3A3A3] mt-1 line-clamp-2">{profile.description}</p>
+                <p className="text-xs text-[#a0a0a0] mt-1 line-clamp-2">{profile.description}</p>
               </div>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
+              <div className="text-center p-3 rounded-lg bg-[#0a0a0a]">
                 <p className="text-base font-bold text-[#FFFFFF]">{profile.subscribers}</p>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Subscribers</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Subscribers</p>
               </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
+              <div className="text-center p-3 rounded-lg bg-[#0a0a0a]">
                 <p className="text-base font-bold text-[#FFFFFF]">{profile.totalViews}</p>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Total Views</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Total Views</p>
               </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
+              <div className="text-center p-3 rounded-lg bg-[#0a0a0a]">
                 <p className="text-base font-bold text-[#FFFFFF]">{profile.videoCount}</p>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Videos</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Videos</p>
               </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D]">
+              <div className="text-center p-3 rounded-lg bg-[#0a0a0a]">
                 <p className="text-base font-bold text-[#FFFFFF]">{profile.avgViews}</p>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Avg Views</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Avg Views</p>
               </div>
-              <div className="text-center p-3 rounded-lg bg-[#0D0D0D] col-span-2 sm:col-span-1">
-                <p className="text-base font-bold text-[#10B981]">{profile.engagementRate}</p>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Engagement</p>
+              <div className="text-center p-3 rounded-lg bg-[#0a0a0a] col-span-2 sm:col-span-1">
+                <p className="text-base font-bold text-[#888888]">{profile.engagementRate}</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Engagement</p>
               </div>
             </div>
 
@@ -333,7 +333,7 @@ Return ONLY the JSON object, no other text.`;
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-[#3B82F6]" />
+              <BarChart3 className="w-4 h-4 text-[#888888]" />
               Latest Videos
             </h3>
           </div>
@@ -350,14 +350,14 @@ Return ONLY the JSON object, no other text.`;
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+              <Sparkles className="w-4 h-4 text-[#888888]" />
               AI Strategy Analysis
             </h3>
             {!strategy && (
               <button
                 onClick={handleAnalyzeStrategy}
                 disabled={loadingStrategy}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B5CF6]/15 text-[#8B5CF6] text-xs font-medium hover:bg-[#8B5CF6]/25 transition-colors disabled:opacity-50"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#888888]/15 text-[#888888] text-xs font-medium hover:bg-[#888888]/25 transition-colors disabled:opacity-50"
               >
                 {loadingStrategy ? (
                   <Loader2 className="w-3 h-3 animate-spin" />
@@ -371,10 +371,10 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Strategy Loading */}
           {loadingStrategy && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
               <div className="flex items-center gap-3">
-                <Loader2 className="w-5 h-5 text-[#8B5CF6] animate-spin" />
-                <span className="text-sm text-[#A3A3A3]">Analyzing competitor strategy with AI...</span>
+                <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
+                <span className="text-sm text-[#a0a0a0]">Analyzing competitor strategy with AI...</span>
               </div>
             </div>
           )}
@@ -383,37 +383,37 @@ Return ONLY the JSON object, no other text.`;
           {!loadingStrategy && strategy && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Strengths */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                  <TrendingUp className="w-4 h-4 text-[#10B981]" />
-                  <h4 className="text-xs font-semibold text-[#10B981]">Strengths</h4>
+                  <TrendingUp className="w-4 h-4 text-[#888888]" />
+                  <h4 className="text-xs font-semibold text-[#888888]">Strengths</h4>
                 </div>
                 <div className="divide-y divide-[#1A1A1A]">
                   {strategy.strengths.map((s, i) => (
                     <div key={i} className="px-4 py-2.5">
-                      <p className="text-xs text-[#A3A3A3]">{s}</p>
+                      <p className="text-xs text-[#a0a0a0]">{s}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Weaknesses */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                  <AlertCircle className="w-4 h-4 text-[#EF4444]" />
-                  <h4 className="text-xs font-semibold text-[#EF4444]">Weaknesses</h4>
+                  <AlertCircle className="w-4 h-4 text-[#888888]" />
+                  <h4 className="text-xs font-semibold text-[#888888]">Weaknesses</h4>
                 </div>
                 <div className="divide-y divide-[#1A1A1A]">
                   {strategy.weaknesses.map((w, i) => (
                     <div key={i} className="px-4 py-2.5">
-                      <p className="text-xs text-[#A3A3A3]">{w}</p>
+                      <p className="text-xs text-[#a0a0a0]">{w}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Opportunities */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                   <Zap className="w-4 h-4 text-[#FDBA2D]" />
                   <h4 className="text-xs font-semibold text-[#FDBA2D]">Opportunities</h4>
@@ -421,22 +421,22 @@ Return ONLY the JSON object, no other text.`;
                 <div className="divide-y divide-[#1A1A1A]">
                   {strategy.opportunities.map((o, i) => (
                     <div key={i} className="px-4 py-2.5">
-                      <p className="text-xs text-[#A3A3A3]">{o}</p>
+                      <p className="text-xs text-[#a0a0a0]">{o}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Content Gaps */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                  <BarChart3 className="w-4 h-4 text-[#3B82F6]" />
-                  <h4 className="text-xs font-semibold text-[#3B82F6]">Content Gaps</h4>
+                  <BarChart3 className="w-4 h-4 text-[#888888]" />
+                  <h4 className="text-xs font-semibold text-[#888888]">Content Gaps</h4>
                 </div>
                 <div className="divide-y divide-[#1A1A1A]">
                   {strategy.contentGaps.map((g, i) => (
                     <div key={i} className="px-4 py-2.5">
-                      <p className="text-xs text-[#A3A3A3]">{g}</p>
+                      <p className="text-xs text-[#a0a0a0]">{g}</p>
                     </div>
                   ))}
                 </div>
@@ -449,11 +449,11 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial Empty State */}
       {!loading && !profile && !error && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
             <Eye className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Track a Channel</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
             Enter a channel name above to view their profile, latest videos, and AI-powered strategy analysis.
           </p>
         </div>
@@ -461,7 +461,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Token cost footer */}
       {profile && (
-        <div className="text-center text-[11px] text-[#444444]">
+        <div className="text-center text-[11px] text-[#666666]">
           Cost: {TOKEN_COSTS.competitor} tokens per channel track · Region: {region}
         </div>
       )}

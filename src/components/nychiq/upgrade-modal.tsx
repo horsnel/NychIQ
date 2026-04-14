@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: string; features: string[] }> = [
   {
-    id: 'starter', name: 'Starter', icon: Zap, color: '#3B82F6',
+    id: 'starter', name: 'Starter', icon: Zap, color: '#888888',
     features: ['500 tokens/mo', 'Viral Predictor', 'Rankings', 'Shorts', 'Studio', 'Priority support'],
   },
   {
@@ -22,11 +22,11 @@ const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: str
     features: ['3,500 tokens/mo', 'Everything in Starter', 'Niche Spy', 'Algorithm', 'SEO Optimizer', 'Hook Generator', 'AI Script Writer', 'Automation', 'Outlier Scout'],
   },
   {
-    id: 'elite', name: 'Elite', icon: Shield, color: '#8B5CF6',
+    id: 'elite', name: 'Elite', icon: Shield, color: '#888888',
     features: ['Unlimited tokens', 'Everything in Pro', 'CPM Estimator', 'Channel Audit', 'Perf Forensics', 'History Intel', 'Safe Check', 'Social Intelligence'],
   },
   {
-    id: 'agency', name: 'Agency', icon: Building2, color: '#10B981',
+    id: 'agency', name: 'Agency', icon: Building2, color: '#888888',
     features: ['20,000+ tokens/mo', 'Everything in Elite', 'Strategy Copier', 'GoffViral', 'Agency Dashboard', 'Dedicated support', 'API access'],
   },
 ];
@@ -36,10 +36,10 @@ export function UpgradeModal() {
 
   return (
     <Dialog open={upgradeModalOpen} onOpenChange={setUpgradeModalOpen}>
-      <DialogContent className="sm:max-w-2xl bg-[#141414] border-[#1F1F1F] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="text-xl font-bold text-gradient-amber">Upgrade Your Plan</DialogTitle>
-          <p className="text-sm text-[#A3A3A3] mt-1">Unlock powerful features and get more tokens.</p>
+          <p className="text-sm text-[#a0a0a0] mt-1">Unlock powerful features and get more tokens.</p>
         </DialogHeader>
         <div className="p-6 grid gap-4 sm:grid-cols-2">
           {PLANS.map((plan) => {
@@ -52,7 +52,7 @@ export function UpgradeModal() {
                   'rounded-xl border p-4 transition-all cursor-pointer',
                   isCurrent
                     ? 'border-[#FDBA2D] bg-[rgba(253,186,45,0.05)]'
-                    : 'border-[#1F1F1F] bg-[#0D0D0D] hover:border-[#2A2A2A]'
+                    : 'border-[rgba(255,255,255,0.06)] bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.1)]'
                 )}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -66,12 +66,12 @@ export function UpgradeModal() {
                 </div>
                 <div className="mb-3">
                   <span className="text-2xl font-bold text-[#FFFFFF]">₦{PLAN_PRICES[plan.id].monthly.toLocaleString()}</span>
-                  <span className="text-xs text-[#A3A3A3]">/mo</span>
+                  <span className="text-xs text-[#a0a0a0]">/mo</span>
                 </div>
                 <ul className="space-y-1.5">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-xs text-[#A3A3A3]">
-                      <Check className="w-3 h-3 text-[#10B981] shrink-0" />
+                    <li key={f} className="flex items-center gap-2 text-xs text-[#a0a0a0]">
+                      <Check className="w-3 h-3 text-[#888888] shrink-0" />
                       {f}
                     </li>
                   ))}
@@ -81,7 +81,7 @@ export function UpgradeModal() {
                   disabled={isCurrent}
                   style={{
                     backgroundColor: isCurrent ? '#1A1A1A' : plan.color,
-                    color: isCurrent ? '#A3A3A3' : '#0D0D0D',
+                    color: isCurrent ? '#a0a0a0' : '#0a0a0a',
                   }}
                 >
                   {isCurrent ? 'Current Plan' : 'Upgrade'}

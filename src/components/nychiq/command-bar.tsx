@@ -38,10 +38,10 @@ export function CommandBar() {
   return (
     <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
       <div className="fixed inset-0 bg-black/60" onClick={() => setCommandBarOpen(false)} />
-      <div className="relative w-full max-w-lg bg-[#141414] border border-[#1F1F1F] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
         {/* Search input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1E1E1E]">
-          <Search className="w-4 h-4 text-[#444444] shrink-0" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+          <Search className="w-4 h-4 text-[#666666] shrink-0" />
           <input
             type="text"
             value={query}
@@ -52,7 +52,7 @@ export function CommandBar() {
           />
           <button
             onClick={() => setCommandBarOpen(false)}
-            className="p-1 rounded text-[#444444] hover:text-[#FFFFFF]"
+            className="p-1 rounded text-[#666666] hover:text-[#FFFFFF]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -61,13 +61,13 @@ export function CommandBar() {
         {/* Results */}
         <div className="max-h-72 overflow-y-auto p-2">
           {filteredTools.length === 0 ? (
-            <div className="py-6 text-center text-sm text-[#444444]">No results found</div>
+            <div className="py-6 text-center text-sm text-[#666666]">No results found</div>
           ) : (
             filteredTools.map(([id, meta]) => (
               <button
                 key={id}
                 onClick={() => selectTool(id)}
-                className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+                className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
               >
                 <span>{meta.label}</span>
                 <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -76,14 +76,14 @@ export function CommandBar() {
           )}
 
           {/* Sign Out action */}
-          <div className="border-t border-[#1E1E1E] mt-1 pt-1">
+          <div className="border-t border-[rgba(255,255,255,0.06)] mt-1 pt-1">
             <button
               onClick={() => {
                 logout();
                 setCommandBarOpen(false);
                 setQuery('');
               }}
-              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#EF4444] hover:bg-[rgba(239,68,68,0.1)] transition-colors"
+              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
             >
               <span className="flex items-center gap-2">
                 <LogOut className="w-3.5 h-3.5" />

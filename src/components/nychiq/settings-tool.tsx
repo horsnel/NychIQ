@@ -62,7 +62,7 @@ function ToggleSwitch({
         aria-checked={checked}
         onClick={() => onChange(!checked)}
         className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDBA2D]/50 ${
-          checked ? 'bg-[#FDBA2D]' : 'bg-[#333333]'
+          checked ? 'bg-[#FDBA2D]' : 'bg-[#1a1a1a]'
         }`}
       >
         <span
@@ -87,7 +87,7 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">{icon}</div>
         <h3 className="text-sm font-bold text-[#FFFFFF]">{title}</h3>
@@ -217,9 +217,9 @@ export function SettingsTool() {
 
   const socialShares = [
     { name: 'Twitter', color: '#FFFFFF', url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}` },
-    { name: 'WhatsApp', color: '#10B981', url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}` },
-    { name: 'Telegram', color: '#3B82F6', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
-    { name: 'Facebook', color: '#3B82F6', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
+    { name: 'WhatsApp', color: '#888888', url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}` },
+    { name: 'Telegram', color: '#888888', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
+    { name: 'Facebook', color: '#888888', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
     { name: 'Email', color: '#FDBA2D', url: `mailto:?subject=${encodeURIComponent('Join me on NychIQ')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}` },
   ];
 
@@ -259,7 +259,7 @@ export function SettingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -267,7 +267,7 @@ export function SettingsTool() {
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Settings</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Manage your account, preferences, and integrations.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Manage your account, preferences, and integrations.</p>
             </div>
           </div>
         </div>
@@ -279,8 +279,8 @@ export function SettingsTool() {
         icon={<User className="w-4 h-4 text-[#FDBA2D]" />}
       >
         {/* Live preview avatar */}
-        <div className="flex items-center gap-3 mb-5 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-          <div className="w-12 h-12 rounded-full bg-[#FDBA2D] flex items-center justify-center text-[#0D0D0D] text-lg font-bold shrink-0">
+        <div className="flex items-center gap-3 mb-5 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
+          <div className="w-12 h-12 rounded-full bg-[#FDBA2D] flex items-center justify-center text-[#0a0a0a] text-lg font-bold shrink-0">
             {getInitials(displayName)}
           </div>
           <div>
@@ -292,7 +292,7 @@ export function SettingsTool() {
         {/* Display Name */}
         <div className="space-y-4">
           <div>
-            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
               <User className="w-3 h-3" /> Display Name
             </label>
             <input
@@ -300,13 +300,13 @@ export function SettingsTool() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Enter your display name"
-              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
               <Mail className="w-3 h-3" /> Email
             </label>
             <input
@@ -314,21 +314,21 @@ export function SettingsTool() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@email.com"
-              className="w-full h-10 px-4 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
           </div>
 
           {/* Auto-detected location indicator */}
           {(geo.detectedRegion || detectedRegion) && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(16,185,129,0.06)] border border-[#10B981]/20 mb-3">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/20 mb-3">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#888888] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#888888]" />
               </span>
-              <MapPin className="w-3.5 h-3.5 text-[#10B981]" />
+              <MapPin className="w-3.5 h-3.5 text-[#888888]" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-medium text-[#10B981]/70 uppercase tracking-wider">Auto-detected from your browser</span>
-                <span className="text-xs font-semibold text-[#10B981]">
+                <span className="text-[10px] font-medium text-[#888888]/70 uppercase tracking-wider">Auto-detected from your browser</span>
+                <span className="text-xs font-semibold text-[#888888]">
                   {geo.countryName || detectedRegion}
                 </span>
               </div>
@@ -337,13 +337,13 @@ export function SettingsTool() {
 
           {/* Default Region */}
           <div>
-            <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+            <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
               <Globe className="w-3 h-3" /> Default Region
             </label>
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full h-10 px-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -356,7 +356,7 @@ export function SettingsTool() {
           {/* Save */}
           <button
             onClick={handleSave}
-            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
             {saved ? 'Saved!' : 'Save Changes'}
@@ -399,22 +399,22 @@ export function SettingsTool() {
         icon={<Gift className="w-4 h-4 text-[#FDBA2D]" />}
       >
         <div className="space-y-3">
-          <p className="text-sm text-[#A3A3A3]">
+          <p className="text-sm text-[#a0a0a0]">
             Share your referral code and earn bonus tokens for every friend who signs up.
           </p>
 
           {/* Referral Stats */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-              <div className="p-1.5 rounded-md bg-[rgba(59,130,246,0.1)]">
-                <Users className="w-4 h-4 text-[#3B82F6]" />
+            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
+              <div className="p-1.5 rounded-md bg-[rgba(255,255,255,0.06)]">
+                <Users className="w-4 h-4 text-[#888888]" />
               </div>
               <div>
                 <p className="text-xs text-[#666666]">Referrals</p>
                 <p className="text-sm font-bold text-[#FFFFFF]">0</p>
               </div>
             </div>
-            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+            <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
               <div className="p-1.5 rounded-md bg-[rgba(253,186,45,0.1)]">
                 <Coins className="w-4 h-4 text-[#FDBA2D]" />
               </div>
@@ -426,20 +426,20 @@ export function SettingsTool() {
           </div>
 
           {/* Referral Code + Actions */}
-          <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+          <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Your Referral Code</p>
             <p className="text-lg font-bold text-[#FDBA2D] tracking-widest mb-3">{refCode}</p>
             <div className="relative flex items-center gap-2">
               <button
                 onClick={handleCopyRef}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
               >
                 {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 {copiedRef ? 'Copied!' : 'Copy Link'}
               </button>
               <button
                 onClick={handleShareRef}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#1F1F1F] text-[#A3A3A3] text-sm font-medium hover:border-[#333333] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-sm font-medium hover:border-[#1a1a1a] hover:text-[#FFFFFF] transition-colors"
                 title="Share referral link"
               >
                 <Share2 className="w-4 h-4" />
@@ -447,10 +447,10 @@ export function SettingsTool() {
               </button>
               {/* Social share dropdown */}
               {showShareMenu && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
                   <button
                     onClick={() => { handleCopyRef(); setShowShareMenu(false); }}
-                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                   >
                     <Copy className="w-3.5 h-3.5" />
                     <span>Copy Link</span>
@@ -459,7 +459,7 @@ export function SettingsTool() {
                     <button
                       key={social.name}
                       onClick={() => handleSocialShare(social.url)}
-                      className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                     >
                       <span className="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ backgroundColor: `${social.color}20`, color: social.color }}>
                         {social.name[0]}
@@ -472,7 +472,7 @@ export function SettingsTool() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(253,186,45,0.15)]">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.06)]">
             <Gift className="w-4 h-4 text-[#FDBA2D] shrink-0" />
             <p className="text-xs text-[#FDBA2D]">
               You and your friend both get <span className="font-bold">+20 tokens</span> when they sign up!
@@ -480,7 +480,7 @@ export function SettingsTool() {
           </div>
 
           {/* Enter a referral code */}
-          <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+          <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Have a referral code?</p>
             <div className="flex items-center gap-2">
               <input
@@ -489,18 +489,18 @@ export function SettingsTool() {
                 onChange={(e) => setReferralInput(e.target.value.toUpperCase())}
                 placeholder="Enter referral code"
                 disabled={referralApplied}
-                className="flex-1 h-10 px-4 rounded-md bg-[#141414] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
+                className="flex-1 h-10 px-4 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
               />
               <button
                 onClick={handleApplyReferral}
                 disabled={referralApplied || !referralInput.trim()}
-                className="px-4 py-2.5 rounded-md bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B37D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                className="px-4 py-2.5 rounded-md bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#00B37D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
               >
                 {referralApplied ? 'Applied' : 'Apply'}
               </button>
             </div>
             {referralApplied && (
-              <p className="text-[11px] text-[#10B981] mt-2 flex items-center gap-1">
+              <p className="text-[11px] text-[#888888] mt-2 flex items-center gap-1">
                 <Check className="w-3 h-3" />
                 Referral code applied successfully
               </p>
@@ -510,22 +510,22 @@ export function SettingsTool() {
       </SectionCard>
 
       {/* ── Danger Zone Section ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
-          <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
-            <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
+          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <AlertTriangle className="w-4 h-4 text-[#888888]" />
           </div>
-          <h3 className="text-sm font-bold text-[#EF4444]">Danger Zone</h3>
+          <h3 className="text-sm font-bold text-[#888888]">Danger Zone</h3>
         </div>
         <div className="space-y-3">
           {/* Clear Data */}
           {!showClearConfirm ? (
             <button
               onClick={() => setShowClearConfirm(true)}
-              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#EF4444]/40 transition-colors group"
+              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#888888]/40 transition-colors group"
             >
               <div className="flex items-center gap-3">
-                <Trash2 className="w-4 h-4 text-[#EF4444]" />
+                <Trash2 className="w-4 h-4 text-[#888888]" />
                 <div className="text-left">
                   <p className="text-sm text-[#FFFFFF]">Clear All Local Data</p>
                   <p className="text-[10px] text-[#666666]">Remove all cached data from this browser</p>
@@ -533,18 +533,18 @@ export function SettingsTool() {
               </div>
             </button>
           ) : (
-            <div className="p-3 rounded-md bg-[rgba(239,68,68,0.08)] border border-[#EF4444]/30">
+            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/30">
               <p className="text-sm text-[#FFFFFF] mb-3">Are you sure? This will clear all your local settings and data.</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleClearData}
-                  className="px-4 py-2 rounded-md bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
                 >
                   <Trash2 className="w-3.5 h-3.5" /> Yes, Clear
                 </button>
                 <button
                   onClick={() => setShowClearConfirm(false)}
-                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#a0a0a0] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
                 >
                   Cancel
                 </button>
@@ -556,10 +556,10 @@ export function SettingsTool() {
           {!showLogoutConfirm ? (
             <button
               onClick={() => setShowLogoutConfirm(true)}
-              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#EF4444]/40 transition-colors group"
+              className="w-full flex items-center justify-between p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#888888]/40 transition-colors group"
             >
               <div className="flex items-center gap-3">
-                <LogOut className="w-4 h-4 text-[#EF4444]" />
+                <LogOut className="w-4 h-4 text-[#888888]" />
                 <div className="text-left">
                   <p className="text-sm text-[#FFFFFF]">Sign Out</p>
                   <p className="text-[10px] text-[#666666]">Log out of your account</p>
@@ -567,18 +567,18 @@ export function SettingsTool() {
               </div>
             </button>
           ) : (
-            <div className="p-3 rounded-md bg-[rgba(239,68,68,0.08)] border border-[#EF4444]/30">
+            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/30">
               <p className="text-sm text-[#FFFFFF] mb-3">Are you sure you want to sign out?</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 rounded-md bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
                 >
                   <LogOut className="w-3.5 h-3.5" /> Yes, Sign Out
                 </button>
                 <button
                   onClick={() => setShowLogoutConfirm(false)}
-                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#A3A3A3] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
+                  className="px-4 py-2 rounded-md bg-[#1A1A1A] text-[#a0a0a0] text-sm font-medium hover:text-[#FFFFFF] transition-colors"
                 >
                   Cancel
                 </button>

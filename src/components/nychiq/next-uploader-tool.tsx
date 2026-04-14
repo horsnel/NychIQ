@@ -107,7 +107,7 @@ interface ChannelConfig {
    CONSTANTS
    ════════════════════════════════════════════════ */
 
-const TOOL_COLOR = '#8B5CF6';
+const TOOL_COLOR = '#888888';
 const TOOL_BG = 'rgba(139,92,246,0.1)';
 const TOOL_BORDER = 'rgba(139,92,246,0.2)';
 const TOOL_TOKEN_COST = 10;
@@ -120,10 +120,10 @@ const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
 
 /* ── Score color helper ── */
 function scoreColor(score: number): string {
-  if (score >= 80) return '#10B981';
+  if (score >= 80) return '#888888';
   if (score >= 60) return '#FDBA2D';
-  if (score >= 40) return '#3B82F6';
-  return '#EF4444';
+  if (score >= 40) return '#888888';
+  return '#888888';
 }
 
 function scoreLabel(score: number): string {
@@ -136,17 +136,17 @@ function scoreLabel(score: number): string {
 }
 
 function noveltyLevel(score: number): { label: string; color: string } {
-  if (score >= 75) return { label: 'High', color: '#10B981' };
+  if (score >= 75) return { label: 'High', color: '#888888' };
   if (score >= 45) return { label: 'Medium', color: '#FDBA2D' };
-  return { label: 'Low', color: '#EF4444' };
+  return { label: 'Low', color: '#888888' };
 }
 
 /* ── Retention bar color based on value ── */
 function retentionColor(retention: number): string {
-  if (retention >= 70) return '#10B981';
+  if (retention >= 70) return '#888888';
   if (retention >= 50) return '#FDBA2D';
-  if (retention >= 30) return '#3B82F6';
-  return '#EF4444';
+  if (retention >= 30) return '#888888';
+  return '#888888';
 }
 
 /* ════════════════════════════════════════════════
@@ -260,10 +260,10 @@ function getSuggestedIdeas(niche: string): string[] {
 function TacticalCorners({ children, className = '', style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`relative ${className}`} style={style}>
-      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-tl-sm pointer-events-none" />
-      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-tr-sm pointer-events-none" />
-      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#8B5CF6] opacity-40 rounded-bl-sm pointer-events-none" />
-      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#8B5CF6] opacity-40 rounded-br-sm pointer-events-none" />
+      <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#888888] opacity-40 rounded-tl-sm pointer-events-none" />
+      <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#888888] opacity-40 rounded-tr-sm pointer-events-none" />
+      <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#888888] opacity-40 rounded-bl-sm pointer-events-none" />
+      <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#888888] opacity-40 rounded-br-sm pointer-events-none" />
       {children}
     </div>
   );
@@ -276,7 +276,7 @@ function ScanLine() {
       <div
         className="absolute inset-y-0 w-1/3 rounded-full"
         style={{
-          background: 'linear-gradient(90deg, transparent, #8B5CF6, transparent)',
+          background: 'linear-gradient(90deg, transparent, #888888, transparent)',
           animation: 'scanLine 2s ease-in-out infinite',
         }}
       />
@@ -291,7 +291,7 @@ function ScanLine() {
 }
 
 /* ── Glow Pulse Dot ── */
-function GlowDot({ color = '#8B5CF6' }: { color?: string }) {
+function GlowDot({ color = '#888888' }: { color?: string }) {
   return (
     <span className="relative flex h-2 w-2">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-50" style={{ backgroundColor: color }} />
@@ -347,8 +347,8 @@ function ScoreGauge({ score, label, icon: Icon, size = 88, showGlow = false }: {
 /* ── Go / No-Go / Caution Verdict Badge ── */
 function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
   const config = {
-    go: { label: 'GO', color: '#10B981', bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.3)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
-    nogo: { label: 'NO-GO', color: '#EF4444', bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.3)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
+    go: { label: 'GO', color: '#888888', bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.3)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
+    nogo: { label: 'NO-GO', color: '#888888', bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.3)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
     caution: { label: 'CAUTION', color: '#FDBA2D', bg: 'rgba(253,186,45,0.12)', border: 'rgba(253,186,45,0.3)', icon: AlertTriangle, desc: 'Moderate potential — optimize before publishing' },
   }[verdict];
   const Icon = config.icon;
@@ -367,7 +367,7 @@ function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
             <span className="text-base font-bold tracking-wider" style={{ color: config.color }}>{config.label}</span>
             <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: config.color, backgroundColor: config.bg, border: `1px solid ${config.border}` }}>VERDICT</span>
           </div>
-          <p className="text-xs text-[#A3A3A3] mt-0.5">{config.desc}</p>
+          <p className="text-xs text-[#a0a0a0] mt-0.5">{config.desc}</p>
         </div>
       </div>
     </TacticalCorners>
@@ -390,7 +390,7 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
           return (
             <g key={pct}>
               <line x1="10" y1={y} x2={chartW + 10} y2={y} stroke="#1A1A1A" strokeWidth="0.5" />
-              <text x="6" y={y + 3} fill="#444444" fontSize="3.5" textAnchor="end">{pct}%</text>
+              <text x="6" y={y + 3} fill="#666666" fontSize="3.5" textAnchor="end">{pct}%</text>
             </g>
           );
         })}
@@ -403,8 +403,8 @@ function RetentionChart({ data }: { data: RetentionPoint[] }) {
             <g key={point.mark}>
               <rect x={x} y={y} width={barW} height={barHeight} rx={3} ry={3} fill={color} opacity={0.85} style={{ transition: 'all 0.6s ease-out' }} />
               <text x={x + barW / 2} y={y - 3} fill={color} fontSize="4" textAnchor="middle" fontWeight="bold">{point.retention}%</text>
-              <text x={x + barW / 2} y={10 + chartH + 10} fill="#A3A3A3" fontSize="3.5" textAnchor="middle" fontWeight="500">{point.mark}</text>
-              <text x={x + barW / 2} y={10 + chartH + 16} fill="#555555" fontSize="2.5" textAnchor="middle">{point.label}</text>
+              <text x={x + barW / 2} y={10 + chartH + 10} fill="#a0a0a0" fontSize="3.5" textAnchor="middle" fontWeight="500">{point.mark}</text>
+              <text x={x + barW / 2} y={10 + chartH + 16} fill="#666666" fontSize="2.5" textAnchor="middle">{point.label}</text>
             </g>
           );
         })}
@@ -442,8 +442,8 @@ function MiniRetentionGraph({ data }: { data: number[] }) {
 /* ── Metric Pill ── */
 function MetricPill({ label, value, color }: { label: string; value: string; color?: string }) {
   return (
-    <div className="rounded-md bg-[#141414] border border-[#1A1A1A] px-2 py-1.5 text-center">
-      <p className="text-[9px] text-[#555555] uppercase tracking-wider">{label}</p>
+    <div className="rounded-md bg-[#0f0f0f] border border-[#1A1A1A] px-2 py-1.5 text-center">
+      <p className="text-[9px] text-[#666666] uppercase tracking-wider">{label}</p>
       <p className="text-[11px] font-semibold mt-0.5" style={{ color: color || '#FFFFFF' }}>{value}</p>
     </div>
   );
@@ -452,13 +452,13 @@ function MetricPill({ label, value, color }: { label: string; value: string; col
 /* ── Enhanced Video Card ── */
 function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number }) {
   const retColor = retentionColor(video.retentionRate);
-  const sentColor = video.sentimentPositive >= 70 ? '#10B981' : video.sentimentPositive >= 50 ? '#FDBA2D' : '#EF4444';
-  const thumbColor = video.thumbnailScore >= 75 ? '#10B981' : video.thumbnailScore >= 50 ? '#FDBA2D' : '#EF4444';
+  const sentColor = video.sentimentPositive >= 70 ? '#888888' : video.sentimentPositive >= 50 ? '#FDBA2D' : '#888888';
+  const thumbColor = video.thumbnailScore >= 75 ? '#888888' : video.thumbnailScore >= 50 ? '#FDBA2D' : '#888888';
   const engDiff = video.engagement - video.nicheAvgEngagement;
   const engPositive = engDiff >= 0;
 
   return (
-    <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 hover:border-[#2A2A2A] transition-colors">
+    <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div
@@ -469,14 +469,14 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-xs font-semibold text-[#FFFFFF] line-clamp-2 leading-relaxed">{video.title}</p>
-          <p className="text-[10px] text-[#555555] mt-1">{video.published}</p>
+          <p className="text-[10px] text-[#666666] mt-1">{video.published}</p>
         </div>
       </div>
 
       {/* Mini retention graph */}
-      <div className="mb-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2">
+      <div className="mb-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Retention Curve</span>
+          <span className="text-[9px] text-[#666666] uppercase tracking-wider">Retention Curve</span>
           <span className="text-[10px] font-bold" style={{ color: retColor }}>{video.retentionRate}% avg</span>
         </div>
         <MiniRetentionGraph data={video.retentionGraph} />
@@ -486,7 +486,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
         <MetricPill label="Views" value={video.views} />
         <MetricPill label="Avg. Watch" value={video.avgViewDuration} />
-        <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#10B981' : '#FFFFFF'} />
+        <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#888888' : '#FFFFFF'} />
         <MetricPill label="Likes" value={video.likes} />
         <MetricPill label="Thumbnail" value={`${video.thumbnailScore}/100`} color={thumbColor} />
         <MetricPill
@@ -497,12 +497,12 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       </div>
 
       {/* Engagement vs Niche */}
-      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2 mb-2">
+      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-2 mb-2">
         <div className="flex items-center justify-between">
-          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Engagement vs Niche Avg</span>
+          <span className="text-[9px] text-[#666666] uppercase tracking-wider">Engagement vs Niche Avg</span>
           <div className="flex items-center gap-1">
-            {engPositive ? <ArrowUpRight className="w-3 h-3 text-[#10B981]" /> : <ArrowDownRight className="w-3 h-3 text-[#EF4444]" />}
-            <span className="text-[10px] font-bold" style={{ color: engPositive ? '#10B981' : '#EF4444' }}>
+            {engPositive ? <ArrowUpRight className="w-3 h-3 text-[#888888]" /> : <ArrowDownRight className="w-3 h-3 text-[#888888]" />}
+            <span className="text-[10px] font-bold" style={{ color: engPositive ? '#888888' : '#888888' }}>
               {engPositive ? '+' : ''}{engDiff.toFixed(1)}%
             </span>
           </div>
@@ -513,37 +513,37 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       </div>
 
       {/* CTR Analysis */}
-      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2 mb-2">
+      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-2 mb-2">
         <div className="flex items-center gap-1.5 mb-1">
           <Target className="w-3 h-3 text-[#FDBA2D]" />
-          <span className="text-[9px] text-[#555555] uppercase tracking-wider">CTR Analysis</span>
+          <span className="text-[9px] text-[#666666] uppercase tracking-wider">CTR Analysis</span>
         </div>
-        <p className="text-[10px] text-[#A3A3A3] leading-relaxed">{video.ctrAnalysis}</p>
+        <p className="text-[10px] text-[#a0a0a0] leading-relaxed">{video.ctrAnalysis}</p>
       </div>
 
       {/* Sentiment breakdown */}
-      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-2">
+      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-2">
         <div className="flex items-center gap-1.5 mb-2">
           <MessageSquare className="w-3 h-3" style={{ color: TOOL_COLOR }} />
-          <span className="text-[9px] text-[#555555] uppercase tracking-wider">Comment Sentiment</span>
+          <span className="text-[9px] text-[#666666] uppercase tracking-wider">Comment Sentiment</span>
         </div>
         <div className="flex gap-1.5 h-2 rounded-full overflow-hidden">
-          <div className="rounded-l-full" style={{ width: `${video.sentimentPositive}%`, backgroundColor: '#10B981' }} title="Positive" />
+          <div className="rounded-l-full" style={{ width: `${video.sentimentPositive}%`, backgroundColor: '#888888' }} title="Positive" />
           <div style={{ width: `${video.sentimentNeutral}%`, backgroundColor: '#FDBA2D' }} title="Neutral" />
-          <div className="rounded-r-full" style={{ width: `${video.sentimentNegative}%`, backgroundColor: '#EF4444' }} title="Negative" />
+          <div className="rounded-r-full" style={{ width: `${video.sentimentNegative}%`, backgroundColor: '#888888' }} title="Negative" />
         </div>
         <div className="flex items-center justify-between mt-1.5">
           <div className="flex items-center gap-1">
-            <ThumbsUp className="w-2.5 h-2.5 text-[#10B981]" />
-            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentPositive}%</span>
+            <ThumbsUp className="w-2.5 h-2.5 text-[#888888]" />
+            <span className="text-[9px] text-[#a0a0a0]">{video.sentimentPositive}%</span>
           </div>
           <div className="flex items-center gap-1">
             <CircleDot className="w-2.5 h-2.5 text-[#FDBA2D]" />
-            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentNeutral}%</span>
+            <span className="text-[9px] text-[#a0a0a0]">{video.sentimentNeutral}%</span>
           </div>
           <div className="flex items-center gap-1">
-            <ThumbsDown className="w-2.5 h-2.5 text-[#EF4444]" />
-            <span className="text-[9px] text-[#A3A3A3]">{video.sentimentNegative}%</span>
+            <ThumbsDown className="w-2.5 h-2.5 text-[#888888]" />
+            <span className="text-[9px] text-[#a0a0a0]">{video.sentimentNegative}%</span>
           </div>
         </div>
       </div>
@@ -581,17 +581,17 @@ function HeatmapGrid() {
         {/* Header row */}
         <div />
         {hours.map((h) => (
-          <div key={h} className="text-[8px] text-[#555555] text-center">{h}</div>
+          <div key={h} className="text-[8px] text-[#666666] text-center">{h}</div>
         ))}
         {/* Data rows */}
         {days.map((day, di) => (
           <React.Fragment key={day}>
-            <div className="text-[9px] text-[#555555] flex items-center">{day}</div>
+            <div className="text-[9px] text-[#666666] flex items-center">{day}</div>
             {heatData[di].map((val, hi) => (
               <div
                 key={`${di}-${hi}`}
                 className="h-7 rounded-sm flex items-center justify-center text-[8px] font-bold transition-colors"
-                style={{ backgroundColor: getHeatColor(val), color: val >= 60 ? '#FFFFFF' : '#A3A3A3' }}
+                style={{ backgroundColor: getHeatColor(val), color: val >= 60 ? '#FFFFFF' : '#a0a0a0' }}
                 title={`${day} ${hours[hi]}: ${val}% activity`}
               >
                 {val}%
@@ -601,15 +601,15 @@ function HeatmapGrid() {
         ))}
       </div>
       <div className="flex items-center justify-end gap-2 mt-2">
-        <span className="text-[8px] text-[#444444]">Low</span>
+        <span className="text-[8px] text-[#666666]">Low</span>
         <div className="flex gap-0.5">
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.25)' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.5)' }} />
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(16,185,129,0.5)' }} />
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(16,185,129,0.8)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
         </div>
-        <span className="text-[8px] text-[#444444]">High</span>
+        <span className="text-[8px] text-[#666666]">High</span>
       </div>
     </div>
   );
@@ -635,13 +635,13 @@ function CPMAnalysis() {
         return (
           <div key={cat.label}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-[#A3A3A3]">{cat.label}</span>
+              <span className="text-[10px] text-[#a0a0a0]">{cat.label}</span>
               <span className="text-[10px] font-bold text-[#FDBA2D]">${cat.cpm.toFixed(2)}</span>
             </div>
             <div className="relative h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
               {/* Niche average line */}
               <div
-                className="absolute top-0 h-full rounded-full bg-[#333333] opacity-50"
+                className="absolute top-0 h-full rounded-full bg-[#1a1a1a] opacity-50"
                 style={{ width: `${avgWidth}%` }}
               />
               {/* Your CPM bar */}
@@ -656,11 +656,11 @@ function CPMAnalysis() {
       <div className="flex items-center gap-3 pt-1">
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-1.5 rounded-sm bg-[#FDBA2D]" />
-          <span className="text-[8px] text-[#555555]">Your est. CPM</span>
+          <span className="text-[8px] text-[#666666]">Your est. CPM</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-1.5 rounded-sm bg-[#333333]" />
-          <span className="text-[8px] text-[#555555]">Niche avg</span>
+          <div className="w-3 h-1.5 rounded-sm bg-[#1a1a1a]" />
+          <span className="text-[8px] text-[#666666]">Niche avg</span>
         </div>
       </div>
     </div>
@@ -670,16 +670,16 @@ function CPMAnalysis() {
 /* ── Demographics Breakdown ── */
 function DemographicsBreakdown() {
   const ageData = [
-    { label: '18-24', pct: 32, color: '#8B5CF6' },
-    { label: '25-34', pct: 38, color: '#3B82F6' },
+    { label: '18-24', pct: 32, color: '#888888' },
+    { label: '25-34', pct: 38, color: '#888888' },
     { label: '35-44', pct: 17, color: '#FDBA2D' },
-    { label: '45-54', pct: 8, color: '#10B981' },
-    { label: '55+', pct: 5, color: '#EF4444' },
+    { label: '45-54', pct: 8, color: '#888888' },
+    { label: '55+', pct: 5, color: '#888888' },
   ];
 
   const genderData = [
-    { label: 'Male', pct: 62, color: '#3B82F6' },
-    { label: 'Female', pct: 31, color: '#8B5CF6' },
+    { label: 'Male', pct: 62, color: '#888888' },
+    { label: 'Female', pct: 31, color: '#888888' },
     { label: 'Other', pct: 7, color: '#FDBA2D' },
   ];
 
@@ -688,13 +688,13 @@ function DemographicsBreakdown() {
       {/* Age */}
       <div>
         <div className="flex items-center gap-1.5 mb-2">
-          <Users className="w-3.5 h-3.5 text-[#8B5CF6]" />
-          <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Age Distribution</span>
+          <Users className="w-3.5 h-3.5 text-[#888888]" />
+          <span className="text-[10px] text-[#666666] uppercase tracking-wider font-bold">Age Distribution</span>
         </div>
         <div className="space-y-2">
           {ageData.map((d) => (
             <div key={d.label} className="flex items-center gap-2">
-              <span className="text-[10px] text-[#A3A3A3] w-10 shrink-0">{d.label}</span>
+              <span className="text-[10px] text-[#a0a0a0] w-10 shrink-0">{d.label}</span>
               <div className="flex-1 h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-700" style={{ width: `${d.pct}%`, backgroundColor: d.color }} />
               </div>
@@ -707,8 +707,8 @@ function DemographicsBreakdown() {
       {/* Gender */}
       <div>
         <div className="flex items-center gap-1.5 mb-2">
-          <Users className="w-3.5 h-3.5 text-[#3B82F6]" />
-          <span className="text-[10px] text-[#555555] uppercase tracking-wider font-bold">Gender Split</span>
+          <Users className="w-3.5 h-3.5 text-[#888888]" />
+          <span className="text-[10px] text-[#666666] uppercase tracking-wider font-bold">Gender Split</span>
         </div>
         <div className="flex gap-1.5 h-3 rounded-full overflow-hidden">
           {genderData.map((d) => (
@@ -719,7 +719,7 @@ function DemographicsBreakdown() {
           {genderData.map((d) => (
             <div key={d.label} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: d.color }} />
-              <span className="text-[9px] text-[#A3A3A3]">{d.label} {d.pct}%</span>
+              <span className="text-[9px] text-[#a0a0a0]">{d.label} {d.pct}%</span>
             </div>
           ))}
         </div>
@@ -883,13 +883,13 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* ──────── HEADER CARD WITH TABS ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 relative">
           {/* Background grid pattern */}
           <div
             className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{
-              backgroundImage: 'linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(#888888 1px, transparent 1px), linear-gradient(90deg, #888888 1px, transparent 1px)',
               backgroundSize: '24px 24px',
             }}
           />
@@ -904,7 +904,7 @@ Return ONLY the JSON object, no other text.`;
                   <h2 className="text-base font-bold text-[#FFFFFF] tracking-tight">Next Uploader AI</h2>
                   <span className="px-2 py-0.5 rounded text-[9px] font-bold" style={{ color: TOOL_COLOR, backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>AGENT</span>
                 </div>
-                <p className="text-[11px] text-[#A3A3A3] mt-0.5">Pre-Upload Intelligence — Analyze before you publish</p>
+                <p className="text-[11px] text-[#a0a0a0] mt-0.5">Pre-Upload Intelligence — Analyze before you publish</p>
               </div>
               <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
                 <Zap className="w-3 h-3" style={{ color: TOOL_COLOR }} />
@@ -922,10 +922,10 @@ Return ONLY the JSON object, no other text.`;
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                     activeTab === tab.id
-                      ? 'text-[#8B5CF6] border shadow-[0_0_12px_rgba(139,92,246,0.1)]'
-                      : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
+                      ? 'text-[#888888] border shadow-[0_0_12px_rgba(139,92,246,0.1)]'
+                      : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                   }`}
-                  style={activeTab === tab.id ? { backgroundColor: 'rgba(139,92,246,0.15)', borderColor: 'rgba(139,92,246,0.3)' } : undefined}
+                  style={activeTab === tab.id ? { backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' } : undefined}
                 >
                   <tab.icon className="w-3.5 h-3.5" />
                   {tab.label}
@@ -940,8 +940,8 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'analysis' && (
         <div className="space-y-4">
           {/* Input Section */}
-          <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <p className="text-sm text-[#A3A3A3] mb-3">
+          <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <p className="text-sm text-[#a0a0a0] mb-3">
               Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
               including audience retention, brand alignment, and growth potential.
             </p>
@@ -951,7 +951,7 @@ Return ONLY the JSON object, no other text.`;
                 <div
                   className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background: 'conic-gradient(from var(--angle, 0deg), #8B5CF6, #3B82F6, #10B981, #FDBA2D, #EF4444, #8B5CF6)',
+                    background: 'conic-gradient(from var(--angle, 0deg), #888888, #888888, #888888, #FDBA2D, #888888, #888888)',
                     animation: 'rotateBorder 3s linear infinite',
                   }}
                 />
@@ -980,14 +980,14 @@ Return ONLY the JSON object, no other text.`;
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
                         placeholder="Paste YouTube URL or enter video topic/title..."
-                        className="w-full h-12 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all duration-300"
+                        className="w-full h-12 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all duration-300"
                         style={{ caretColor: TOOL_COLOR }}
                       />
                     </div>
                     <button
                       onClick={handleAnalyze}
                       disabled={loading || !input.trim()}
-                      className="px-5 h-12 rounded-full text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+                      className="px-5 h-12 rounded-full text-[#0a0a0a] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
                       style={{ backgroundColor: TOOL_COLOR }}
                     >
                       {loading ? (
@@ -1003,10 +1003,10 @@ Return ONLY the JSON object, no other text.`;
               {/* Channel Config indicator */}
               {channelConfig.channelName && (
                 <div className="flex items-center gap-1.5 px-2">
-                  <Info className="w-3 h-3 text-[#555555]" />
-                  <span className="text-[10px] text-[#555555]">
-                    Analyzing for: <span className="text-[#A3A3A3]">{channelConfig.channelName}</span>
-                    {channelConfig.niche && <> · Niche: <span className="text-[#A3A3A3]">{channelConfig.niche}</span></>}
+                  <Info className="w-3 h-3 text-[#666666]" />
+                  <span className="text-[10px] text-[#666666]">
+                    Analyzing for: <span className="text-[#a0a0a0]">{channelConfig.channelName}</span>
+                    {channelConfig.niche && <> · Niche: <span className="text-[#a0a0a0]">{channelConfig.niche}</span></>}
                   </span>
                 </div>
               )}
@@ -1014,7 +1014,7 @@ Return ONLY the JSON object, no other text.`;
               {searched && !loading && (
                 <button
                   onClick={handleAnalyze}
-                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
                 >
                   <RefreshCw className="w-3 h-3" /> Re-analyze
                 </button>
@@ -1024,14 +1024,14 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Suggested Ideas (only when no input and not loading/searched) */}
           {!input.trim() && !loading && !searched && (
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(253,186,45,0.2) 0%, transparent 70%)' }}>
                   <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
                 </div>
                 <div>
                   <h3 className="text-xs font-bold text-[#FFFFFF]">Suggested Ideas</h3>
-                  <p className="text-[10px] text-[#A3A3A3]">AI-generated based on deep analysis of your niche</p>
+                  <p className="text-[10px] text-[#a0a0a0]">AI-generated based on deep analysis of your niche</p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -1039,13 +1039,13 @@ Return ONLY the JSON object, no other text.`;
                   <button
                     key={i}
                     onClick={() => handleUseIdea(idea)}
-                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[rgba(139,92,246,0.3)] hover:bg-[rgba(139,92,246,0.04)] transition-all group text-left"
+                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.06)] transition-all group text-left"
                   >
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: TOOL_BG }}>
                       <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>{i + 1}</span>
                     </div>
                     <p className="text-xs text-[#FFFFFF] line-clamp-2 flex-1 leading-relaxed">{idea}</p>
-                    <Send className="w-3.5 h-3.5 text-[#444444] group-hover:text-[#8B5CF6] transition-colors shrink-0" />
+                    <Send className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#888888] transition-colors shrink-0" />
                   </button>
                 ))}
               </div>
@@ -1054,20 +1054,20 @@ Return ONLY the JSON object, no other text.`;
 
           {/* ── Loading State (Scanning Animation) ── */}
           {loading && (
-            <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 animate-fade-in-up">
+            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-5">
                 <div className="relative">
-                  <Radar className="w-5 h-5 text-[#8B5CF6] animate-pulse" />
+                  <Radar className="w-5 h-5 text-[#888888] animate-pulse" />
                 </div>
                 <span className="text-sm font-bold text-[#FFFFFF]">Running Deep Analysis...</span>
-                <span className="ml-auto text-[10px] text-[#A3A3A3] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
+                <span className="ml-auto text-[10px] text-[#a0a0a0] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mb-5">
                 <div
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{
                     width: `${((scanStep + 1) / SCANNING_STEPS.length) * 100}%`,
-                    background: 'linear-gradient(90deg, #8B5CF6, #3B82F6)',
+                    background: 'linear-gradient(90deg, #888888, #888888)',
                     boxShadow: '0 0 10px rgba(139,92,246,0.4)',
                   }}
                 />
@@ -1082,22 +1082,22 @@ Return ONLY the JSON object, no other text.`;
                         className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
                         style={{
                           backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
-                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#1F1F1F'}`,
+                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#0f0f0f'}`,
                         }}
                       >
                         {isComplete ? (
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#888888]" />
                         ) : isActive ? (
-                          <span style={{ color: '#8B5CF6' }}>{step.icon}</span>
+                          <span style={{ color: '#aaa' }}>{step.icon}</span>
                         ) : (
-                          <span className="text-[10px] text-[#444444] font-mono">{i + 1}</span>
+                          <span className="text-[10px] text-[#666666] font-mono">{i + 1}</span>
                         )}
                       </div>
-                      <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#A3A3A3]' : isActive ? 'text-[#FFFFFF]' : 'text-[#444444]'}`}>
+                      <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#a0a0a0]' : isActive ? 'text-[#FFFFFF]' : 'text-[#666666]'}`}>
                         {step.label}
                       </span>
-                      {isComplete && <Check className="w-3 h-3 text-[#10B981] ml-auto" />}
-                      {isActive && <Loader2 className="w-3 h-3 text-[#8B5CF6] ml-auto animate-spin" />}
+                      {isComplete && <Check className="w-3 h-3 text-[#888888] ml-auto" />}
+                      {isActive && <Loader2 className="w-3 h-3 text-[#888888] ml-auto animate-spin" />}
                     </div>
                   );
                 })}
@@ -1107,10 +1107,10 @@ Return ONLY the JSON object, no other text.`;
 
           {/* ── Error State ── */}
           {error && (
-            <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-5 text-center">
-              <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+            <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-5 text-center">
+              <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
               <p className="text-sm text-[#FFFFFF]">{error}</p>
-              <button onClick={handleAnalyze} className="mt-3 px-4 py-2 rounded-lg text-sm font-bold" style={{ backgroundColor: TOOL_COLOR, color: '#0D0D0D' }}>Try Again</button>
+              <button onClick={handleAnalyze} className="mt-3 px-4 py-2 rounded-lg text-sm font-bold" style={{ backgroundColor: TOOL_COLOR, color: '#0a0a0a' }}>Try Again</button>
             </div>
           )}
 
@@ -1126,18 +1126,18 @@ Return ONLY the JSON object, no other text.`;
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Analysis Report</h3>
-                    <button onClick={handleCopyVerdict} className="flex items-center gap-1 text-[10px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors shrink-0">
-                      {copiedVerdict ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
+                    <button onClick={handleCopyVerdict} className="flex items-center gap-1 text-[10px] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors shrink-0">
+                      {copiedVerdict ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
                       {copiedVerdict ? 'Copied' : 'Copy Report'}
                     </button>
                   </div>
-                  <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.overallVerdict}</p>
+                  <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{result.overallVerdict}</p>
                 </div>
               </div>
 
               {/* Core Scores with Gauges */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
-                <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-5 flex items-center gap-2">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+                <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-5 flex items-center gap-2">
                   <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                   Core Scores
                 </h3>
@@ -1160,13 +1160,13 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Retention Simulation */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
                     <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                     Audience Retention Simulation
                   </h3>
-                  <span className="text-[10px] text-[#555555]">Predicted drop-off</span>
+                  <span className="text-[10px] text-[#666666]">Predicted drop-off</span>
                 </div>
                 <RetentionChart data={result.retentionData} />
                 <div className="mt-4 space-y-1.5">
@@ -1177,7 +1177,7 @@ Return ONLY the JSON object, no other text.`;
                     return (
                       <div key={point.mark} className="flex items-center gap-2 text-[10px]">
                         {isHighDrop ? <AlertTriangle className="w-3 h-3 text-[#FDBA2D] shrink-0" /> : <div className="w-3 shrink-0" />}
-                        <span className="text-[#A3A3A3]">
+                        <span className="text-[#a0a0a0]">
                           <span className="text-[#FFFFFF] font-medium">{point.mark}</span> &mdash; {point.label}
                         </span>
                         {isHighDrop && <span className="font-bold text-[#FDBA2D]">(-{drop}% drop)</span>}
@@ -1196,7 +1196,7 @@ Return ONLY the JSON object, no other text.`;
                 <Upload className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Pre-Upload Intelligence</h3>
-              <p className="text-sm text-[#A3A3A3] max-w-xs text-center mb-6">
+              <p className="text-sm text-[#a0a0a0] max-w-xs text-center mb-6">
                 Enter a video idea above or click a suggestion to get a full performance prediction.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg w-full">
@@ -1208,10 +1208,10 @@ Return ONLY the JSON object, no other text.`;
                   { icon: BarChart3, label: 'Go/No-Go Verdict', desc: 'AI publish recommendation' },
                   { icon: Activity, label: 'Deep Insights', desc: 'Hidden analytics' },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg bg-[#141414] border border-[#1A1A1A] p-3 text-center hover:border-[#2A2A2A] transition-colors">
+                  <div key={f.label} className="rounded-lg bg-[#0f0f0f] border border-[#1A1A1A] p-3 text-center hover:border-[rgba(255,255,255,0.1)] transition-colors">
                     <f.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: TOOL_COLOR }} />
                     <p className="text-[11px] font-semibold text-[#FFFFFF]">{f.label}</p>
-                    <p className="text-[9px] text-[#555555] mt-0.5">{f.desc}</p>
+                    <p className="text-[9px] text-[#666666] mt-0.5">{f.desc}</p>
                   </div>
                 ))}
               </div>
@@ -1229,12 +1229,12 @@ Return ONLY the JSON object, no other text.`;
                 <Flame className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Recent Video Analytics</h3>
-              <p className="text-sm text-[#A3A3A3] max-w-sm text-center">
+              <p className="text-sm text-[#a0a0a0] max-w-sm text-center">
                 Run a Content Analysis first to unlock deep analytics for your 3 most recent videos — including retention curves, sentiment breakdowns, and thumbnail effectiveness.
               </p>
               <button
                 onClick={() => setActiveTab('analysis')}
-                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0D0D0D] flex items-center gap-2"
+                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0a0a0a] flex items-center gap-2"
                 style={{ backgroundColor: TOOL_COLOR }}
               >
                 <BrainCircuit className="w-3.5 h-3.5" />
@@ -1243,17 +1243,17 @@ Return ONLY the JSON object, no other text.`;
             </div>
           ) : (
             <>
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
-                    <Flame className="w-4 h-4 text-[#8B5CF6]" />
+                    <Flame className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-bold text-[#FFFFFF]">Channel&apos;s Latest 3 Videos</h3>
-                    <p className="text-[11px] text-[#A3A3A3]">Deep analytics including retention curves, sentiment, and thumbnail scores</p>
+                    <p className="text-[11px] text-[#a0a0a0]">Deep analytics including retention curves, sentiment, and thumbnail scores</p>
                   </div>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
-                    <GlowDot color="#8B5CF6" />
+                    <GlowDot color="#888888" />
                     <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>3 VIDEOS</span>
                   </div>
                 </div>
@@ -1278,12 +1278,12 @@ Return ONLY the JSON object, no other text.`;
                 <Radar className="w-8 h-8" style={{ color: TOOL_COLOR }} />
               </div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Deep Insights</h3>
-              <p className="text-sm text-[#A3A3A3] max-w-sm text-center">
+              <p className="text-sm text-[#a0a0a0] max-w-sm text-center">
                 Analytics that YouTube doesn&apos;t show you. Run a Content Analysis first to unlock viewer behavior heatmaps, CPM analysis, demographics, and content gap opportunities.
               </p>
               <button
                 onClick={() => setActiveTab('analysis')}
-                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0D0D0D] flex items-center gap-2"
+                className="mt-4 px-4 h-9 rounded-lg text-xs font-bold text-[#0a0a0a] flex items-center gap-2"
                 style={{ backgroundColor: TOOL_COLOR }}
               >
                 <BrainCircuit className="w-3.5 h-3.5" />
@@ -1293,115 +1293,115 @@ Return ONLY the JSON object, no other text.`;
           ) : (
             <>
               {/* Section header */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
-                    <Activity className="w-4 h-4 text-[#8B5CF6]" />
+                    <Activity className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-bold text-[#FFFFFF]">What YouTube Won&apos;t Show You</h3>
-                    <p className="text-[11px] text-[#A3A3A3]">Hidden growth signals and deeper analytics</p>
+                    <p className="text-[11px] text-[#a0a0a0]">Hidden growth signals and deeper analytics</p>
                   </div>
                   <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: TOOL_BG, border: `1px solid ${TOOL_BORDER}` }}>
-                    <GlowDot color="#10B981" />
-                    <span className="text-[10px] font-bold text-[#10B981]">DEEP ANALYTICS</span>
+                    <GlowDot color="#888888" />
+                    <span className="text-[10px] font-bold text-[#888888]">DEEP ANALYTICS</span>
                   </div>
                 </div>
               </TacticalCorners>
 
               {/* Viewer Behavior Heatmap */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
-                    <Activity className="w-4 h-4 text-[#10B981]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
+                    <Activity className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Viewer Behavior Heatmap</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">When your audience is most active (simulated)</p>
+                    <p className="text-[10px] text-[#a0a0a0]">When your audience is most active (simulated)</p>
                   </div>
                 </div>
                 <HeatmapGrid />
               </TacticalCorners>
 
               {/* Best Publishing Window */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(59,130,246,0.15)' }}>
-                    <Calendar className="w-4 h-4 text-[#3B82F6]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
+                    <Calendar className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Best Publishing Window</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">Calculated from audience engagement patterns</p>
+                    <p className="text-[10px] text-[#a0a0a0]">Calculated from audience engagement patterns</p>
                   </div>
                 </div>
-                <div className="p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.optimalPostingWindow}</p>
+                <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{result.deeperAnalytics.optimalPostingWindow}</p>
                 </div>
               </TacticalCorners>
 
               {/* Revenue per 1000 views (CPM Analysis) */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Revenue per 1000 Views (CPM Analysis)</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">Estimated earnings vs niche averages</p>
+                    <p className="text-[10px] text-[#a0a0a0]">Estimated earnings vs niche averages</p>
                   </div>
                 </div>
                 <CPMAnalysis />
               </TacticalCorners>
 
               {/* Audience Demographics */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }}>
-                    <Users className="w-4 h-4 text-[#8B5CF6]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
+                    <Users className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Audience Demographics</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">Age and gender breakdown (simulated)</p>
+                    <p className="text-[10px] text-[#a0a0a0]">Age and gender breakdown (simulated)</p>
                   </div>
                 </div>
                 <DemographicsBreakdown />
               </TacticalCorners>
 
               {/* Content Gap Opportunities */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <Target className="w-4 h-4 text-[#FDBA2D]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Content Gap Opportunities</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">High-demand, low-competition topics in your niche</p>
+                    <p className="text-[10px] text-[#a0a0a0]">High-demand, low-competition topics in your niche</p>
                   </div>
                 </div>
                 <div className="space-y-2">
                   {result.deeperAnalytics.contentGaps.map((gap, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                       <div className="w-5 h-5 rounded-md bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
                         <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
                       </div>
-                      <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{gap}</p>
+                      <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{gap}</p>
                     </div>
                   ))}
                 </div>
               </TacticalCorners>
 
               {/* Audience Satisfaction */}
-              <TacticalCorners className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(16,185,129,0.15)' }}>
-                    <TrendingUp className="w-4 h-4 text-[#10B981]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
+                    <TrendingUp className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Audience Satisfaction Score</h3>
-                    <p className="text-[10px] text-[#A3A3A3]">Based on return viewer rate, comment sentiment, and watch sessions</p>
+                    <p className="text-[10px] text-[#a0a0a0]">Based on return viewer rate, comment sentiment, and watch sessions</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div className="flex items-center gap-4 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div
                     className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
                     style={{
@@ -1438,7 +1438,7 @@ Return ONLY the JSON object, no other text.`;
                   <TrendingUp className="w-4 h-4" style={{ color: TOOL_COLOR }} />
                   <h3 className="text-xs font-bold text-[#FFFFFF]">Hidden Growth Potential</h3>
                 </div>
-                <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.hiddenGrowth}</p>
+                <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{result.deeperAnalytics.hiddenGrowth}</p>
               </TacticalCorners>
 
               {/* AI Insight */}
@@ -1447,7 +1447,7 @@ Return ONLY the JSON object, no other text.`;
                   <Sparkles className="w-4 h-4" style={{ color: TOOL_COLOR }} />
                   <h3 className="text-xs font-bold text-[#FFFFFF]">AI Insight Summary</h3>
                 </div>
-                <p className="text-[11px] text-[#A3A3A3] leading-relaxed">{result.deeperAnalytics.aiSummary}</p>
+                <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{result.deeperAnalytics.aiSummary}</p>
               </TacticalCorners>
             </>
           )}
@@ -1455,7 +1455,7 @@ Return ONLY the JSON object, no other text.`;
       )}
 
       {/* ──────── TOKEN COST FOOTER ──────── */}
-      <div className="text-center text-[11px] text-[#444444] flex items-center justify-center gap-1.5">
+      <div className="text-center text-[11px] text-[#666666] flex items-center justify-center gap-1.5">
         <Zap className="w-3 h-3" />
         Cost: {TOOL_TOKEN_COST} tokens per analysis
       </div>

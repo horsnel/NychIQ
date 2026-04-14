@@ -40,49 +40,49 @@ import {
 
 /* ── Plan badge config ── */
 const PLAN_STYLES: Record<Plan, { label: string; color: string }> = {
-  trial: { label: 'Free Trial', color: '#A3A3A3' },
-  starter: { label: 'Starter', color: '#3B82F6' },
+  trial: { label: 'Free Trial', color: '#a0a0a0' },
+  starter: { label: 'Starter', color: '#888888' },
   pro: { label: 'Pro', color: '#FDBA2D' },
-  elite: { label: 'Elite', color: '#8B5CF6' },
-  agency: { label: 'Agency', color: '#10B981' },
+  elite: { label: 'Elite', color: '#888888' },
+  agency: { label: 'Agency', color: '#888888' },
 };
 
 /* ── Icon map for tools ── */
 const TOOL_ICONS: Record<string, React.ReactNode> = {
-  'Trending': <TrendingUp className="w-4 h-4 text-[#EF4444]" />,
-  'Search': <Zap className="w-4 h-4 text-[#3B82F6]" />,
-  'Rankings': <BarChart3 className="w-4 h-4 text-[#8B5CF6]" />,
+  'Trending': <TrendingUp className="w-4 h-4 text-[#888888]" />,
+  'Search': <Zap className="w-4 h-4 text-[#888888]" />,
+  'Rankings': <BarChart3 className="w-4 h-4 text-[#888888]" />,
   'Viral Predictor': <Zap className="w-4 h-4 text-[#FDBA2D]" />,
-  'Saku AI': <Bot className="w-4 h-4 text-[#10B981]" />,
+  'Saku AI': <Bot className="w-4 h-4 text-[#888888]" />,
   'Algorithm': <BrainCircuit className="w-4 h-4 text-[#FDBA2D]" />,
-  'CPM Estimator': <DollarSign className="w-4 h-4 text-[#3B82F6]" />,
-  'Track Channels': <Users className="w-4 h-4 text-[#8B5CF6]" />,
-  'Niche Spy': <Crosshair className="w-4 h-4 text-[#EF4444]" />,
-  'SEO Optimizer': <Zap className="w-4 h-4 text-[#10B981]" />,
+  'CPM Estimator': <DollarSign className="w-4 h-4 text-[#888888]" />,
+  'Track Channels': <Users className="w-4 h-4 text-[#888888]" />,
+  'Niche Spy': <Crosshair className="w-4 h-4 text-[#888888]" />,
+  'SEO Optimizer': <Zap className="w-4 h-4 text-[#888888]" />,
   'Hook Generator': <Anchor className="w-4 h-4 text-[#FDBA2D]" />,
-  'Keyword Explorer': <Key className="w-4 h-4 text-[#3B82F6]" />,
-  'Script Writer': <FileText className="w-4 h-4 text-[#8B5CF6]" />,
+  'Keyword Explorer': <Key className="w-4 h-4 text-[#888888]" />,
+  'Script Writer': <FileText className="w-4 h-4 text-[#888888]" />,
   'Video Ideas': <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />,
-  'Best Post Time': <Clock className="w-4 h-4 text-[#10B981]" />,
-  'Channel Audit': <ClipboardCheck className="w-4 h-4 text-[#EF4444]" />,
-  'A/B Tester': <GitCompare className="w-4 h-4 text-[#3B82F6]" />,
-  'VPH Tracker': <Activity className="w-4 h-4 text-[#8B5CF6]" />,
+  'Best Post Time': <Clock className="w-4 h-4 text-[#888888]" />,
+  'Channel Audit': <ClipboardCheck className="w-4 h-4 text-[#888888]" />,
+  'A/B Tester': <GitCompare className="w-4 h-4 text-[#888888]" />,
+  'VPH Tracker': <Activity className="w-4 h-4 text-[#888888]" />,
   'Thumbnail Lab': <ImageIcon className="w-4 h-4 text-[#FDBA2D]" />,
-  'Safe Check': <ShieldCheck className="w-4 h-4 text-[#10B981]" />,
-  'Trend Alerts': <BellRing className="w-4 h-4 text-[#EF4444]" />,
-  'Outlier Scout': <Radar className="w-4 h-4 text-[#3B82F6]" />,
-  'Automation': <Cpu className="w-4 h-4 text-[#8B5CF6]" />,
+  'Safe Check': <ShieldCheck className="w-4 h-4 text-[#888888]" />,
+  'Trend Alerts': <BellRing className="w-4 h-4 text-[#888888]" />,
+  'Outlier Scout': <Radar className="w-4 h-4 text-[#888888]" />,
+  'Automation': <Cpu className="w-4 h-4 text-[#888888]" />,
   'Shorts': <Film className="w-4 h-4 text-[#FDBA2D]" />,
-  'History Intel': <History className="w-4 h-4 text-[#10B981]" />,
-  'Monthly Reset': <RotateCcw className="w-4 h-4 text-[#10B981]" />,
+  'History Intel': <History className="w-4 h-4 text-[#888888]" />,
+  'Monthly Reset': <RotateCcw className="w-4 h-4 text-[#888888]" />,
 };
 
 /* ── Transaction type icon ── */
 function TxnTypeIcon({ type }: { type: TokenTransaction['type'] }) {
   switch (type) {
-    case 'spend': return <ArrowDownRight className="w-3.5 h-3.5 text-[#EF4444]" />;
-    case 'earn': return <ArrowUpRight className="w-3.5 h-3.5 text-[#10B981]" />;
-    case 'reset': return <RotateCcw className="w-3.5 h-3.5 text-[#10B981]" />;
+    case 'spend': return <ArrowDownRight className="w-3.5 h-3.5 text-[#888888]" />;
+    case 'earn': return <ArrowUpRight className="w-3.5 h-3.5 text-[#888888]" />;
+    case 'reset': return <RotateCcw className="w-3.5 h-3.5 text-[#888888]" />;
     case 'bonus': return <Star className="w-3.5 h-3.5 text-[#FDBA2D]" />;
     default: return <Coins className="w-3.5 h-3.5 text-[#FDBA2D]" />;
   }
@@ -153,13 +153,13 @@ export function UsageTool() {
 
     const colors: Record<string, string> = {
       main: '#FDBA2D',
-      studio: '#8B5CF6',
-      intelligence: '#EF4444',
-      competitor: '#3B82F6',
-      'ai-tools': '#10B981',
-      social: '#8B5CF6',
+      studio: '#888888',
+      intelligence: '#888888',
+      competitor: '#888888',
+      'ai-tools': '#888888',
+      social: '#888888',
       'ai-assistants': '#FDBA2D',
-      agency: '#10B981',
+      agency: '#888888',
     };
 
     const labels: Record<string, string> = {
@@ -179,7 +179,7 @@ export function UsageTool() {
         label: labels[cat] || cat,
         tokens,
         total,
-        color: colors[cat] || '#A3A3A3',
+        color: colors[cat] || '#a0a0a0',
       }))
       .sort((a, b) => b.tokens - a.tokens);
   }, [tokenHistory]);
@@ -190,7 +190,7 @@ export function UsageTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* ── Header Card ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -198,7 +198,7 @@ export function UsageTool() {
             </div>
             <div className="flex-1">
               <h2 className="text-base font-bold text-[#FFFFFF]">Token Usage</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Track how you spend tokens across all tools.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Track how you spend tokens across all tools.</p>
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-[#FDBA2D]">
@@ -210,12 +210,12 @@ export function UsageTool() {
           {/* Progress bar */}
           {!isUnlimited && (
             <div className="mt-3">
-              <div className="w-full h-2.5 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+              <div className="w-full h-2.5 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{
                     width: `${usagePct}%`,
-                    backgroundColor: usagePct > 80 ? '#EF4444' : usagePct > 50 ? '#FDBA2D' : '#10B981',
+                    backgroundColor: usagePct > 80 ? '#888888' : usagePct > 50 ? '#FDBA2D' : '#888888',
                   }}
                 />
               </div>
@@ -234,7 +234,7 @@ export function UsageTool() {
       {/* ── Summary Stats (3 columns) ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {/* Total Used */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 rounded-md bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Coins className="w-4 h-4 text-[#FDBA2D]" />
@@ -245,23 +245,23 @@ export function UsageTool() {
         </div>
 
         {/* Remaining */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-md bg-[rgba(16,185,129,0.1)] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-[#10B981]" />
+            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-[#888888]" />
             </div>
           </div>
           <p className="text-xs text-[#666666]">Remaining Balance</p>
-          <p className="text-xl font-bold text-[#10B981] mt-0.5">
+          <p className="text-xl font-bold text-[#888888] mt-0.5">
             {isUnlimited ? 'Unlimited' : tokenBalance.toLocaleString()}
           </p>
         </div>
 
         {/* Current Plan */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-md bg-[rgba(139,92,246,0.1)] flex items-center justify-center">
-              <Crown className="w-4 h-4 text-[#8B5CF6]" />
+            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+              <Crown className="w-4 h-4 text-[#888888]" />
             </div>
           </div>
           <p className="text-xs text-[#666666]">Current Plan</p>
@@ -271,8 +271,8 @@ export function UsageTool() {
 
       {/* ── Usage Breakdown Table ── */}
       {usageBreakdown.length > 0 && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
-          <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Usage Breakdown</h4>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Usage Breakdown</h4>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -287,24 +287,24 @@ export function UsageTool() {
                 {usageBreakdown.map((row) => (
                   <tr
                     key={row.tool}
-                    className="border-b border-[#1A1A1A]/50 last:border-b-0 hover:bg-[#0D0D0D] transition-colors"
+                    className="border-b border-[#1A1A1A]/50 last:border-b-0 hover:bg-[#0a0a0a] transition-colors"
                   >
                     <td className="py-2.5 pr-4">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] flex items-center justify-center shrink-0">
+                        <div className="w-7 h-7 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] flex items-center justify-center shrink-0">
                           {TOOL_ICONS[row.label] || <Coins className="w-3.5 h-3.5 text-[#666666]" />}
                         </div>
                         <span className="text-sm text-[#FFFFFF]">{row.label}</span>
                       </div>
                     </td>
                     <td className="py-2.5 px-4 text-right">
-                      <span className="text-sm text-[#A3A3A3]">{row.uses}</span>
+                      <span className="text-sm text-[#a0a0a0]">{row.uses}</span>
                     </td>
                     <td className="py-2.5 px-4 text-right">
                       <span className="text-sm font-medium text-[#FDBA2D]">{row.tokens}</span>
                     </td>
                     <td className="py-2.5 pl-4 text-right">
-                      <span className="text-sm text-[#A3A3A3]">{row.avgCost.toFixed(1)}</span>
+                      <span className="text-sm text-[#a0a0a0]">{row.avgCost.toFixed(1)}</span>
                     </td>
                   </tr>
                 ))}
@@ -324,8 +324,8 @@ export function UsageTool() {
 
       {/* ── Usage by Category ── */}
       {categoryBreakdown.length > 0 && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
-          <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4">Usage by Category</h4>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4">Usage by Category</h4>
           <div className="space-y-4">
             {categoryBreakdown.map((cat) => {
               const pct = cat.total > 0 ? Math.round((cat.tokens / cat.total) * 100) : 0;
@@ -333,11 +333,11 @@ export function UsageTool() {
                 <div key={cat.label}>
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-sm text-[#FFFFFF]">{cat.label}</span>
-                    <span className="text-xs text-[#A3A3A3]">
+                    <span className="text-xs text-[#a0a0a0]">
                       <span className="font-medium" style={{ color: cat.color }}>{cat.tokens}</span> tokens ({pct}%)
                     </span>
                   </div>
-                  <div className="w-full h-2.5 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+                  <div className="w-full h-2.5 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500 ease-out"
                       style={{ width: `${pct}%`, backgroundColor: cat.color }}
@@ -351,9 +351,9 @@ export function UsageTool() {
       )}
 
       {/* ── Token History (from real data) ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
-          <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Recent Transactions</h4>
+          <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Recent Transactions</h4>
           <span className="text-[10px] text-[#666666]">Last {Math.min(tokenHistory.length, 50)} of {tokenHistory.length}</span>
         </div>
         <div className="space-y-2 max-h-96 overflow-y-auto">
@@ -369,18 +369,18 @@ export function UsageTool() {
               return (
                 <div
                   key={txn.id}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors"
                 >
-                  <div className="w-9 h-9 rounded-md bg-[#141414] border border-[#1A1A1A] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] flex items-center justify-center shrink-0">
                     {TOOL_ICONS[label] || <TxnTypeIcon type={txn.type} />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-medium text-[#FFFFFF] truncate">{label}</p>
                       <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${
-                        txn.type === 'spend' ? 'bg-[rgba(239,68,68,0.1)] text-[#EF4444]' :
-                        txn.type === 'earn' ? 'bg-[rgba(16,185,129,0.1)] text-[#10B981]' :
-                        txn.type === 'reset' ? 'bg-[rgba(16,185,129,0.1)] text-[#10B981]' :
+                        txn.type === 'spend' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
+                        txn.type === 'earn' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
+                        txn.type === 'reset' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
                         'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
                       }`}>
                         {txn.type}
@@ -390,9 +390,9 @@ export function UsageTool() {
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
                     {txn.type === 'spend' ? (
-                      <span className="text-sm font-bold text-[#EF4444]">-{txn.tokens}</span>
+                      <span className="text-sm font-bold text-[#888888]">-{txn.tokens}</span>
                     ) : (
-                      <span className="text-sm font-bold text-[#10B981]">+{txn.tokens}</span>
+                      <span className="text-sm font-bold text-[#888888]">+{txn.tokens}</span>
                     )}
                   </div>
                 </div>
@@ -403,10 +403,10 @@ export function UsageTool() {
       </div>
 
       {/* ── Token Cost Reference ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-3">
-          <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]">
-            <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <Sparkles className="w-4 h-4 text-[#888888]" />
           </div>
           <h4 className="text-sm font-bold text-[#FFFFFF]">Token Cost Reference</h4>
         </div>
@@ -418,7 +418,7 @@ export function UsageTool() {
             { cost: '8-12', tools: ['Hook Gen', 'Script Writer', 'Niche Spy', 'Audit'] },
             { cost: '15-20', tools: ['Strategy', 'Perf Forensics', 'Agency Hub'] },
           ].map((tier) => (
-            <div key={tier.cost} className="p-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+            <div key={tier.cost} className="p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
               <p className="text-xs font-bold text-[#FDBA2D]">{tier.cost} tokens</p>
               <ul className="mt-1 space-y-0.5">
                 {tier.tools.map((t) => (
@@ -431,7 +431,7 @@ export function UsageTool() {
       </div>
 
       {/* ── Buy More Tokens ── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
             <Gift className="w-4 h-4 text-[#FDBA2D]" />
@@ -444,12 +444,12 @@ export function UsageTool() {
               key={plan.price}
               className={`relative rounded-lg p-4 text-center transition-all cursor-pointer hover:border-[#FDBA2D]/50 ${
                 plan.popular
-                  ? 'bg-[#0D0D0D] border-2 border-[#FDBA2D]/50'
-                  : 'bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#333333]'
+                  ? 'bg-[#0a0a0a] border-2 border-[#FDBA2D]/50'
+                  : 'bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#1a1a1a]'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#FDBA2D] text-[10px] font-bold text-[#0D0D0D] uppercase tracking-wider">
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#FDBA2D] text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider">
                   Popular
                 </div>
               )}
@@ -457,20 +457,20 @@ export function UsageTool() {
               <div className="flex items-center justify-center gap-1 mt-1">
                 <Coins className="w-3.5 h-3.5 text-[#FDBA2D]" />
                 <span className="text-base font-bold text-[#FDBA2D]">{plan.tokens.toLocaleString()}</span>
-                <span className="text-xs text-[#A3A3A3]">tokens</span>
+                <span className="text-xs text-[#a0a0a0]">tokens</span>
               </div>
               {plan.bonus > 0 && (
-                <div className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]">
-                  <Check className="w-3 h-3 text-[#10B981]" />
-                  <span className="text-[10px] font-bold text-[#10B981]">+{plan.bonus} bonus</span>
+                <div className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                  <Check className="w-3 h-3 text-[#888888]" />
+                  <span className="text-[10px] font-bold text-[#888888]">+{plan.bonus} bonus</span>
                 </div>
               )}
               <button
                 onClick={() => setTokenModalOpen(true)}
                 className={`w-full mt-3 py-2 rounded-md text-xs font-bold transition-colors ${
                   plan.popular
-                    ? 'bg-[#FDBA2D] text-[#0D0D0D] hover:bg-[#C69320]'
-                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[#1F1F1F] hover:border-[#FDBA2D]/50'
+                    ? 'bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320]'
+                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[rgba(255,255,255,0.06)] hover:border-[#FDBA2D]/50'
                 }`}
               >
                 Get Tokens

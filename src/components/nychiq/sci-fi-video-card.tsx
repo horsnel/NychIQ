@@ -37,8 +37,8 @@ interface SciFiVideoCardProps {
 function LiveDot() {
   return (
     <span className="relative flex h-2 w-2 items-center justify-center shrink-0">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-60" />
-      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#10B981]" />
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#888888] opacity-60" />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#888888]" />
     </span>
   );
 }
@@ -116,7 +116,7 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
 
         {showTip && (
           <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#FDBA2D]/30 text-[11px] text-[#FFFFFF] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
-            Retention Scanned: <span className="text-[#10B981] font-mono font-semibold">87%</span>{' '}
+            Retention Scanned: <span className="text-[#888888] font-mono font-semibold">87%</span>{' '}
             predicted retention
           </div>
         )}
@@ -157,48 +157,48 @@ function ExtractionHubButton({ onNavigate, videoTitle, videoId }: { onNavigate: 
       onMouseLeave={() => setExpanded(false)}
     >
       <button
-        className="flex items-center justify-center w-8 h-8 rounded-md bg-black/60 backdrop-blur-sm border border-[#8B5CF6]/30 hover:border-[#8B5CF6]/70 transition-all duration-300 hover:scale-110"
+        className="flex items-center justify-center w-8 h-8 rounded-md bg-black/60 backdrop-blur-sm border border-[#888888]/30 hover:border-[#888888]/70 transition-all duration-300 hover:scale-110"
         aria-label="Extraction Hub"
       >
-        <Cpu className="w-4 h-4 text-[#8B5CF6]" />
+        <Cpu className="w-4 h-4 text-[#888888]" />
       </button>
 
       {/* Mini-panel on hover */}
       {expanded && (
-        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#141414]/95 backdrop-blur-md border border-[#1F1F1F] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
+        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#0f0f0f]/95 backdrop-blur-md border border-[rgba(255,255,255,0.06)] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('deepchat'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
-            <FileText className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <FileText className="w-3.5 h-3.5 text-[#888888]" />
             Transcript
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
             <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" />
             Tags
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('keywords'); }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
-            <Key className="w-3.5 h-3.5 text-[#10B981]" />
+            <Key className="w-3.5 h-3.5 text-[#888888]" />
             Keywords
           </button>
           <button
             onClick={handleCopyTitle}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
-            <Copy className="w-3.5 h-3.5 text-[#8B5CF6]" />
+            <Copy className="w-3.5 h-3.5 text-[#888888]" />
             Copy Title
           </button>
           <button
             onClick={handleCopyVideoId}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
           >
-            <Copy className="w-3.5 h-3.5 text-[#8B5CF6]" />
+            <Copy className="w-3.5 h-3.5 text-[#888888]" />
             Copy Video ID
           </button>
         </div>
@@ -228,7 +228,7 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
     <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
       {glitch && (
         <span
-          className="text-[9px] font-mono font-bold text-[#10B981] tracking-wider"
+          className="text-[9px] font-mono font-bold text-[#888888] tracking-wider"
           style={{ animation: 'glitchText 0.3s steps(1) forwards' }}
         >
           DATA TRANSFERRED
@@ -236,10 +236,10 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
       )}
       <button
         onClick={handleCopy}
-        className="flex items-center justify-center w-7 h-7 rounded-md bg-black/60 backdrop-blur-sm border border-[#444444]/50 hover:border-[#10B981]/70 transition-all duration-200"
+        className="flex items-center justify-center w-7 h-7 rounded-md bg-black/60 backdrop-blur-sm border border-[#666666]/50 hover:border-[#888888]/70 transition-all duration-200"
         aria-label="Copy video URL"
       >
-        <Target className="w-3.5 h-3.5 text-[#A3A3A3] hover:text-[#10B981]" />
+        <Target className="w-3.5 h-3.5 text-[#a0a0a0] hover:text-[#888888]" />
       </button>
     </div>
   );
@@ -272,8 +272,8 @@ function AnalysisTeaser({ viralPoints, onNavigate }: { viralPoints: number; onNa
   const linkStart = fullText.indexOf('View Tactical Breakdown');
 
   return (
-    <div className="mt-2 pt-2 border-t border-[#1F1F1F]/60">
-      <p className="text-[10px] font-mono text-[#555555] leading-relaxed select-none">
+    <div className="mt-2 pt-2 border-t border-[rgba(255,255,255,0.06)]/60">
+      <p className="text-[10px] font-mono text-[#666666] leading-relaxed select-none">
         {chars <= linkStart ? (
           fullText.slice(0, chars)
         ) : (
@@ -345,12 +345,12 @@ export function SciFiVideoCard({
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#141414] relative',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#0f0f0f] relative',
         'transition-all duration-300',
         'hover:-translate-y-[2px]',
         /* Gradient top accent edge */
         'before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:z-30',
-        'before:bg-gradient-to-r before:from-[#8B5CF6] before:via-[#FDBA2D] before:to-transparent',
+        'before:bg-gradient-to-r before:from-[#888888] before:via-[#FDBA2D] before:to-transparent',
         className
       )}
       style={thumbHover
@@ -441,7 +441,7 @@ export function SciFiVideoCard({
         {video.viralScore != null && video.viralScore >= 70 && (
           <span className="absolute bottom-2 left-2 z-[15] ml-14 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-[10px] font-bold">
             {video.viralScore >= 85 ? (
-              <><span>🔥</span><span className="text-[#10B981]">VIRAL</span></>
+              <><span>🔥</span><span className="text-[#888888]">VIRAL</span></>
             ) : (
               <><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>
             )}
@@ -463,7 +463,7 @@ export function SciFiVideoCard({
         </h3>
 
         {/* Channel */}
-        <p className="text-xs text-[#A3A3A3] mt-1.5">{video.channelTitle}</p>
+        <p className="text-xs text-[#a0a0a0] mt-1.5">{video.channelTitle}</p>
 
         {/* Live metadata row */}
         <div className="flex items-center gap-3 mt-2 flex-wrap">
@@ -471,7 +471,7 @@ export function SciFiVideoCard({
           {video.viewCount != null && (
             <div className="flex items-center gap-1.5">
               <LiveDot />
-              <span className="text-[11px] font-mono text-[#10B981] tabular-nums">
+              <span className="text-[11px] font-mono text-[#888888] tabular-nums">
                 {fmtV(video.viewCount)}
               </span>
             </div>
@@ -488,7 +488,7 @@ export function SciFiVideoCard({
           {/* Retention waveform */}
           <div className="flex items-center gap-1">
             <WaveformIcon className="text-[#FDBA2D]/60" />
-            <span className="text-[11px] font-mono text-[#A3A3A3] tabular-nums">
+            <span className="text-[11px] font-mono text-[#a0a0a0] tabular-nums">
               {retentionProb}%
             </span>
           </div>
@@ -509,8 +509,8 @@ export function SciFiVideoCard({
 
 export function SciFiVideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#141414] border border-[#1F1F1F] animate-pulse">
-      <div className="h-[2px] bg-gradient-to-r from-[#8B5CF6] via-[#FDBA2D] to-transparent opacity-40" />
+    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] animate-pulse">
+      <div className="h-[2px] bg-gradient-to-r from-[#888888] via-[#FDBA2D] to-transparent opacity-40" />
       <div className="aspect-video bg-[#1A1A1A]" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded w-full" />

@@ -59,7 +59,7 @@ function RankBadge({ rank }: { rank: number }) {
     </div>
   );
   return (
-    <div className="w-8 h-8 rounded-full bg-[#1A1A1A] border border-[#2A2A2A] flex items-center justify-center text-xs font-bold text-[#666666]">
+    <div className="w-8 h-8 rounded-full bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-xs font-bold text-[#666666]">
       {rank}
     </div>
   );
@@ -117,7 +117,7 @@ export function RankingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -126,7 +126,7 @@ export function RankingsTool() {
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Rankings</h2>
-                <p className="text-xs text-[#A3A3A3] mt-0.5">
+                <p className="text-xs text-[#a0a0a0] mt-0.5">
                   Top performing content this week
                 </p>
               </div>
@@ -134,9 +134,9 @@ export function RankingsTool() {
             <button
               onClick={fetchRankings}
               disabled={loading}
-              className="p-2 rounded-lg border border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
-              <RefreshCw className={cn('w-4 h-4 text-[#A3A3A3]', loading && 'animate-spin')} />
+              <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
             </button>
           </div>
 
@@ -150,7 +150,7 @@ export function RankingsTool() {
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   tab === t.key
                     ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                    : 'bg-[#0D0D0D] text-[#A3A3A3] border border-[#1A1A1A] hover:border-[#2A2A2A] hover:text-[#FFFFFF]'
+                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
                 )}
               >
                 {t.icon}
@@ -163,12 +163,12 @@ export function RankingsTool() {
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertCircle className="w-8 h-8 text-[#EF4444] mx-auto mb-2" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={fetchRankings}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
           >
             Try Again
           </button>
@@ -177,7 +177,7 @@ export function RankingsTool() {
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="flex items-center gap-4 p-4">
@@ -195,12 +195,12 @@ export function RankingsTool() {
 
       {/* Ranked List */}
       {!loading && !error && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {items.map((item, i) => (
               <div
                 key={item.videoId}
-                className="flex items-center gap-4 p-4 hover:bg-[#0D0D0D]/50 transition-colors cursor-pointer"
+                className="flex items-center gap-4 p-4 hover:bg-[#0a0a0a]/50 transition-colors cursor-pointer"
                 onClick={() => {
                   if (tab !== 'channels') {
                     window.open(`https://youtube.com/watch?v=${item.videoId}`, '_blank', 'noopener');
@@ -234,13 +234,13 @@ export function RankingsTool() {
                   <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#FDBA2D] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-[#A3A3A3] mt-0.5 truncate">{item.channelTitle}</p>
+                  <p className="text-xs text-[#a0a0a0] mt-0.5 truncate">{item.channelTitle}</p>
                 </div>
 
                 {/* Stats */}
                 <div className="hidden sm:flex items-center gap-4 shrink-0">
                   <div className="text-right">
-                    <div className="flex items-center gap-1 text-xs text-[#A3A3A3]">
+                    <div className="flex items-center gap-1 text-xs text-[#a0a0a0]">
                       <Eye className="w-3 h-3" />
                       {fmtV(item.viewCount)}
                     </div>
@@ -248,7 +248,7 @@ export function RankingsTool() {
                   <div className={cn(
                     'w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold',
                     scoreClass(item.viralScore),
-                    'bg-[#0D0D0D] border border-[#1F1F1F]'
+                    'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]'
                   )}>
                     {item.viralScore}
                   </div>
@@ -258,7 +258,7 @@ export function RankingsTool() {
                 <div className={cn(
                   'sm:hidden w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0',
                   scoreClass(item.viralScore),
-                  'bg-[#0D0D0D] border border-[#1F1F1F]'
+                  'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]'
                 )}>
                   {item.viralScore}
                 </div>
@@ -270,30 +270,30 @@ export function RankingsTool() {
                       const ok = await copyToClipboard(item.title);
                       showToast(ok ? 'Title copied!' : 'Failed to copy', ok ? 'success' : 'error');
                     }}
-                    className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy title"
+                    className="p-1.5 rounded-md hover:bg-[#0f0f0f] transition-colors" aria-label="Copy title"
                     title="Copy title"
                   >
-                    <Copy className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                    <Copy className="w-3.5 h-3.5 text-[#a0a0a0]" />
                   </button>
                   <button
                     onClick={async () => {
                       const ok = await copyToClipboard(`https://youtube.com/watch?v=${item.videoId}`);
                       showToast(ok ? 'Link copied!' : 'Failed to copy', ok ? 'success' : 'error');
                     }}
-                    className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy URL"
+                    className="p-1.5 rounded-md hover:bg-[#0f0f0f] transition-colors" aria-label="Copy URL"
                     title="Copy URL"
                   >
-                    <Link2 className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                    <Link2 className="w-3.5 h-3.5 text-[#a0a0a0]" />
                   </button>
                   <button
                     onClick={async () => {
                       const ok = await copyToClipboard(item.videoId);
                       showToast(ok ? 'Video ID copied!' : 'Failed to copy', ok ? 'success' : 'error');
                     }}
-                    className="p-1.5 rounded-md hover:bg-[#1F1F1F] transition-colors" aria-label="Copy video ID"
+                    className="p-1.5 rounded-md hover:bg-[#0f0f0f] transition-colors" aria-label="Copy video ID"
                     title="Copy video ID"
                   >
-                    <Hash className="w-3.5 h-3.5 text-[#A3A3A3]" />
+                    <Hash className="w-3.5 h-3.5 text-[#a0a0a0]" />
                   </button>
                 </div>
               </div>
@@ -303,7 +303,7 @@ export function RankingsTool() {
       )}
 
       {/* Token cost footer */}
-      <div className="text-center text-[11px] text-[#444444]">
+      <div className="text-center text-[11px] text-[#666666]">
         Cost: {TOKEN_COSTS.rankings} tokens per load · Region: {region} · Tab: {tab}
       </div>
     </div>

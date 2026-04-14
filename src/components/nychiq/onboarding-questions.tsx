@@ -19,14 +19,14 @@ import { XIcon } from '@/components/ui/x-icon';
 
 /* ── 8 discovery options ── */
 const DISCOVERY_OPTIONS = [
-  { id: 'youtube', label: 'YouTube', icon: Play, color: '#EF4444' },
-  { id: 'twitter', label: 'X (Twitter)', icon: XIcon, color: '#3B82F6' },
-  { id: 'instagram', label: 'Instagram', icon: Instagram, color: '#EF4444' },
-  { id: 'tiktok', label: 'TikTok', icon: Monitor, color: '#10B981' },
-  { id: 'friend', label: 'Friend', icon: Users, color: '#8B5CF6' },
-  { id: 'google', label: 'Google', icon: Search, color: '#3B82F6' },
+  { id: 'youtube', label: 'YouTube', icon: Play, color: '#888888' },
+  { id: 'twitter', label: 'X (Twitter)', icon: XIcon, color: '#888888' },
+  { id: 'instagram', label: 'Instagram', icon: Instagram, color: '#888888' },
+  { id: 'tiktok', label: 'TikTok', icon: Monitor, color: '#888888' },
+  { id: 'friend', label: 'Friend', icon: Users, color: '#888888' },
+  { id: 'google', label: 'Google', icon: Search, color: '#888888' },
   { id: 'ads', label: 'Ads', icon: Megaphone, color: '#FDBA2D' },
-  { id: 'other', label: 'Other', icon: CircleHelp, color: '#A3A3A3' },
+  { id: 'other', label: 'Other', icon: CircleHelp, color: '#a0a0a0' },
 ];
 
 export function OnboardingQuestions() {
@@ -39,9 +39,9 @@ export function OnboardingQuestions() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
+    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#141414]">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#0f0f0f]">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -58,7 +58,7 @@ export function OnboardingQuestions() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i === 0 ? 'bg-[#FDBA2D]' : 'bg-[#1F1F1F]'
+                  i === 0 ? 'bg-[#FDBA2D]' : 'bg-[#0f0f0f]'
                 }`}
               />
             ))}
@@ -89,8 +89,8 @@ export function OnboardingQuestions() {
                   onClick={() => setSelected(opt.id)}
                   className={`flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl border transition-all duration-200 group cursor-pointer ${
                     isSelected
-                      ? 'bg-[rgba(253,186,45,0.08)] border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.08)]'
-                      : 'bg-[#0D0D0D] border-[#1E1E1E] hover:border-[#333] hover:bg-[#141414]'
+                      ? 'bg-[rgba(253,186,45,0.08)] border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
+                      : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] hover:border-[#333] hover:bg-[#0f0f0f]'
                   }`}
                 >
                   <div
@@ -109,7 +109,7 @@ export function OnboardingQuestions() {
                   </div>
                   <span
                     className={`text-xs font-medium transition-colors ${
-                      isSelected ? 'text-[#FDBA2D]' : 'text-[#A3A3A3] group-hover:text-[#FFFFFF]'
+                      isSelected ? 'text-[#FDBA2D]' : 'text-[#a0a0a0] group-hover:text-[#FFFFFF]'
                     }`}
                   >
                     {opt.label}
@@ -128,7 +128,7 @@ export function OnboardingQuestions() {
           {/* Action */}
           <div className="mt-8 flex flex-col items-center gap-3">
             <Button
-              className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+              className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.12)]"
               onClick={handleContinue}
               disabled={!selected}
             >
@@ -137,7 +137,7 @@ export function OnboardingQuestions() {
             </Button>
             <button
               onClick={() => logout()}
-              className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
+              className="text-xs text-[#444] hover:text-[#a0a0a0] transition-colors"
             >
               ← Sign out
             </button>

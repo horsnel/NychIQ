@@ -34,8 +34,8 @@ function CopyBtn({ text }: { text: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#a0a0a0] hover:text-[#FFFFFF]">
+      {copied ? <Check className="w-3.5 h-3.5 text-[#888888]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
 }
@@ -93,20 +93,20 @@ Return ONLY the JSON object.`;
       setLoading(false);
     }
   };
-  const diffColor = (d: string) => d === 'Easy' ? '#10B981' : d === 'Medium' ? '#FDBA2D' : '#EF4444';
+  const diffColor = (d: string) => d === 'Easy' ? '#888888' : d === 'Medium' ? '#FDBA2D' : '#888888';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]"><Cpu className="w-5 h-5 text-[#8B5CF6]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Cpu className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Automation Master</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Cash cow channel strategy. High-CPM niches + low-competition topics for faceless channels.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Cash cow channel strategy. High-CPM niches + low-competition topics for faceless channels.</p>
             </div>
           </div>
-          <button onClick={handleGenerate} disabled={loading} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
+          <button onClick={handleGenerate} disabled={loading} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
             Generate Strategy
           </button>
@@ -116,7 +116,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2">{Array.from({ length: 3 }).map((_, j) => <div key={j} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
             </div>
@@ -127,24 +127,24 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#8B5CF6]" /> Automation Strategy</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> Automation Strategy</h3>
             <CopyBtn text={JSON.stringify(result, null, 2)} />
           </div>
 
           {/* Top Niches */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><DollarSign className="w-3.5 h-3.5 text-[#10B981]" /> Top 5 Automation Niches</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><DollarSign className="w-3.5 h-3.5 text-[#888888]" /> Top 5 Automation Niches</h4>
             <div className="space-y-2">
               {result.niches.map((n, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                <div key={i} className="flex items-center justify-between p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-3 min-w-0">
                     <span className="text-xs font-bold text-[#666666]">#{i + 1}</span>
                     <span className="text-sm text-[#FFFFFF] truncate">{n.name}</span>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="text-[10px] font-bold text-[#10B981]">CPM {n.cpm}</span>
+                    <span className="text-[10px] font-bold text-[#888888]">CPM {n.cpm}</span>
                     <span className="text-[10px] font-bold" style={{ color: diffColor(n.difficulty) }}>{n.difficulty}</span>
-                    <span className="text-[10px] text-[#A3A3A3]">{n.monthlyRevenue}</span>
+                    <span className="text-[10px] text-[#a0a0a0]">{n.monthlyRevenue}</span>
                   </div>
                 </div>
               ))}
@@ -152,18 +152,18 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Schedule */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Content Schedule Template</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Content Schedule Template</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.schedule}</p>
           </div>
 
           {/* Tools */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Recommended Tools</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Recommended Tools</h4>
             <div className="space-y-2">
               {result.tools.map((tool, i) => (
-                <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <span className="text-[#8B5CF6] text-xs mt-0.5">●</span>
+                <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <span className="text-[#888888] text-xs mt-0.5">●</span>
                   <p className="text-sm text-[#FFFFFF]">{tool}</p>
                 </div>
               ))}
@@ -171,18 +171,18 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Revenue Projections */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-2"><TrendingUp className="w-3.5 h-3.5" /> Revenue Projections</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-2"><TrendingUp className="w-3.5 h-3.5" /> Revenue Projections</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.revenueProjections}</p>
           </div>
 
           {/* Checklist */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-2"><CheckSquare className="w-3.5 h-3.5" /> Setup Checklist</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><CheckSquare className="w-3.5 h-3.5" /> Setup Checklist</h4>
             <div className="space-y-2">
               {result.checklist.map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
-                  <div className="w-4 h-4 rounded border border-[#2A2A2A] shrink-0" />
+                <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
+                  <div className="w-4 h-4 rounded border border-[rgba(255,255,255,0.06)] shrink-0" />
                   <p className="text-sm text-[#FFFFFF]">{item}</p>
                 </div>
               ))}
@@ -193,13 +193,13 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center mb-4"><Cpu className="w-8 h-8 text-[#8B5CF6]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Cpu className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Build Your Cash Cow</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Generate a complete automation strategy for faceless YouTube channels.</p>
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Generate a complete automation strategy for faceless YouTube channels.</p>
         </div>
       )}
 
-      {searched && !loading && <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.automation} tokens per generation</div>}
+      {searched && !loading && <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS.automation} tokens per generation</div>}
     </div>
   );
 }

@@ -72,8 +72,8 @@ function CopyBtn({ text }: { text: string }) {
     }
   };
   return (
-    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#A3A3A3] hover:text-[#FFFFFF]" title="Copy">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
+    <button onClick={handleCopy} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors text-[#a0a0a0] hover:text-[#FFFFFF]" title="Copy">
+      {copied ? <Check className="w-3.5 h-3.5 text-[#888888]" /> : <Copy className="w-3.5 h-3.5" />}
     </button>
   );
 }
@@ -81,23 +81,23 @@ function CopyBtn({ text }: { text: string }) {
 /* ── Verdict helpers ── */
 function verdictBadge(verdict: string): { bg: string; text: string; border: string } {
   switch (verdict) {
-    case 'VIRAL': return { bg: 'bg-[rgba(16,185,129,0.15)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.3)]' };
-    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(59,130,246,0.15)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.3)]' };
-    case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.3)]' };
-    default: return { bg: 'bg-[rgba(239,68,68,0.15)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.3)]' };
+    case 'VIRAL': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+    case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]' };
+    default: return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
   }
 }
 
 function probabilityColor(p: number): string {
-  if (p >= 70) return '#10B981';
+  if (p >= 70) return '#888888';
   if (p >= 40) return '#FDBA2D';
-  return '#EF4444';
+  return '#888888';
 }
 
 function probabilityStroke(p: number): string {
-  if (p >= 70) return '#10B981';
+  if (p >= 70) return '#888888';
   if (p >= 40) return '#FDBA2D';
-  return '#EF4444';
+  return '#888888';
 }
 
 /* ── Format hour to 12h ── */
@@ -265,7 +265,7 @@ function YTCircleGauge({ value, size = 140, strokeWidth = 10 }: { value: number;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (value / 100) * circumference;
-  const color = value > 70 ? '#10B981' : value >= 40 ? '#FDBA2D' : '#EF4444';
+  const color = value > 70 ? '#888888' : value >= 40 ? '#FDBA2D' : '#888888';
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -475,16 +475,16 @@ Return ONLY the JSON object, no other text.`;
     }
   };
 
-  const scoreColor = (s: number) => s > 70 ? '#10B981' : s >= 40 ? '#FDBA2D' : '#EF4444';
+  const scoreColor = (s: number) => s > 70 ? '#888888' : s >= 40 ? '#FDBA2D' : '#888888';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Tab Bar */}
-      <div className="flex gap-1 p-1 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+      <div className="flex gap-1 p-1 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
         <button
           onClick={() => setActiveTab('tiktok')}
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'tiktok' ? 'bg-[#141414] text-[#FDBA2D] shadow-sm' : 'text-[#A3A3A3] hover:text-[#FFFFFF]'
+            activeTab === 'tiktok' ? 'bg-[#0f0f0f] text-[#FDBA2D] shadow-sm' : 'text-[#a0a0a0] hover:text-[#FFFFFF]'
           }`}
         >
           <Flame className="w-4 h-4" /> TikTok Predictor
@@ -492,7 +492,7 @@ Return ONLY the JSON object, no other text.`;
         <button
           onClick={() => setActiveTab('youtube')}
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'youtube' ? 'bg-[#141414] text-[#FDBA2D] shadow-sm' : 'text-[#A3A3A3] hover:text-[#FFFFFF]'
+            activeTab === 'youtube' ? 'bg-[#0f0f0f] text-[#FDBA2D] shadow-sm' : 'text-[#a0a0a0] hover:text-[#FFFFFF]'
           }`}
         >
           <Youtube className="w-4 h-4" /> YouTube Viral Score
@@ -502,7 +502,7 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'tiktok' && (
       <>
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -510,10 +510,10 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-base font-bold text-[#FFFFFF]">GoffViral TikTok Predictor</h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(139,92,246,0.15)] text-[#8B5CF6] border border-[rgba(139,92,246,0.3)]">AI MODEL</span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]">AI MODEL</span>
             </div>
           </div>
-          <p className="text-xs text-[#A3A3A3] mt-1 ml-12">Custom viral prediction model for TikTok content — GoffViral-V1 Pro, trained on 19,084 viral videos. 98.9% accuracy.</p>
+          <p className="text-xs text-[#a0a0a0] mt-1 ml-12">Custom viral prediction model for TikTok content — GoffViral-V1 Pro, trained on 19,084 viral videos. 98.9% accuracy.</p>
         </div>
 
         {/* Input Form */}
@@ -521,65 +521,65 @@ Return ONLY the JSON object, no other text.`;
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Views */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Eye className="w-3 h-3" /> Views
               </label>
               <input
                 type="number" value={views} onChange={(e) => setViews(e.target.value)}
                 placeholder="e.g. 50000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Likes */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Heart className="w-3 h-3" /> Likes
               </label>
               <input
                 type="number" value={likes} onChange={(e) => setLikes(e.target.value)}
                 placeholder="e.g. 8000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Shares */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Share2 className="w-3 h-3" /> Shares
               </label>
               <input
                 type="number" value={shares} onChange={(e) => setShares(e.target.value)}
                 placeholder="e.g. 1200"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Downloads */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Download className="w-3 h-3" /> Downloads
               </label>
               <input
                 type="number" value={downloads} onChange={(e) => setDownloads(e.target.value)}
                 placeholder="e.g. 300"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Followers */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Users className="w-3 h-3" /> Followers
               </label>
               <input
                 type="number" value={followers} onChange={(e) => setFollowers(e.target.value)}
                 placeholder="e.g. 15000"
-                className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
             </div>
             {/* Posting Hour */}
             <div>
-              <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                 <Clock className="w-3 h-3" /> Posting Hour
               </label>
-              <div className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] flex items-center justify-between">
+              <div className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] flex items-center justify-between">
                 <input
                   type="range" min={0} max={23} value={postingHour}
                   onChange={(e) => setPostingHour(parseInt(e.target.value))}
@@ -593,7 +593,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Video Length Slider */}
           <div className="mt-4">
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-medium text-[#A3A3A3] flex items-center gap-1">
+              <label className="text-xs font-medium text-[#a0a0a0] flex items-center gap-1">
                 <Activity className="w-3 h-3" /> Video Length
               </label>
               <span className="text-xs text-[#FDBA2D] font-medium">{videoLength}s</span>
@@ -603,7 +603,7 @@ Return ONLY the JSON object, no other text.`;
               onChange={(e) => setVideoLength(parseInt(e.target.value))}
               className="w-full h-1.5 bg-[#1A1A1A] rounded-full appearance-none cursor-pointer accent-[#FDBA2D]"
             />
-            <div className="flex justify-between text-[10px] text-[#444444] mt-1">
+            <div className="flex justify-between text-[10px] text-[#666666] mt-1">
               <span>5s</span>
               <span>180s</span>
             </div>
@@ -615,30 +615,30 @@ Return ONLY the JSON object, no other text.`;
               <div
                 onClick={() => setTrendingSound(!trendingSound)}
                 className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
-                  trendingSound ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
+                  trendingSound ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
                 }`}
                 style={{ width: 18, height: 18 }}
               >
-                {trendingSound && <Check className="w-3 h-3 text-[#0D0D0D]" />}
+                {trendingSound && <Check className="w-3 h-3 text-[#0a0a0a]" />}
               </div>
               <input type="checkbox" checked={trendingSound} onChange={() => setTrendingSound(!trendingSound)} className="hidden" />
               <span className="text-sm text-[#FFFFFF] flex items-center gap-1.5">
-                <Music className="w-3.5 h-3.5 text-[#8B5CF6]" /> Uses Trending Sound
+                <Music className="w-3.5 h-3.5 text-[#888888]" /> Uses Trending Sound
               </span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer select-none">
               <div
                 onClick={() => setTextOverlay(!textOverlay)}
                 className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-colors ${
-                  textOverlay ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0D0D0D] border-[#1A1A1A]'
+                  textOverlay ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
                 }`}
                 style={{ width: 18, height: 18 }}
               >
-                {textOverlay && <Check className="w-3 h-3 text-[#0D0D0D]" />}
+                {textOverlay && <Check className="w-3 h-3 text-[#0a0a0a]" />}
               </div>
               <input type="checkbox" checked={textOverlay} onChange={() => setTextOverlay(!textOverlay)} className="hidden" />
               <span className="text-sm text-[#FFFFFF] flex items-center gap-1.5">
-                <Type className="w-3.5 h-3.5 text-[#8B5CF6]" /> Has Text Overlay
+                <Type className="w-3.5 h-3.5 text-[#888888]" /> Has Text Overlay
               </span>
             </label>
           </div>
@@ -647,7 +647,7 @@ Return ONLY the JSON object, no other text.`;
           <button
             onClick={handlePredict}
             disabled={loading || (!views.trim() && !likes.trim())}
-            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="mt-5 w-full sm:w-auto px-6 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Predict Viral Potential
@@ -657,10 +657,10 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-          <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
+        <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+          <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -668,7 +668,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Steps */}
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 space-y-3">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 space-y-3">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Flame className="w-4 h-4 text-[#FDBA2D] animate-pulse" />
@@ -678,14 +678,14 @@ Return ONLY the JSON object, no other text.`;
           {loadSteps.map((step, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                step.status === 'done' ? 'bg-[#10B981]' :
+                step.status === 'done' ? 'bg-[#888888]' :
                 step.status === 'active' ? 'bg-[rgba(253,186,45,0.2)] border border-[#FDBA2D]/50' :
-                'bg-[#0D0D0D] border border-[#1A1A1A]'
+                'bg-[#0a0a0a] border border-[#1A1A1A]'
               }`}>
-                {step.status === 'done' && <Check className="w-3 h-3 text-[#0D0D0D]" />}
+                {step.status === 'done' && <Check className="w-3 h-3 text-[#0a0a0a]" />}
                 {step.status === 'active' && <Loader2 className="w-3 h-3 text-[#FDBA2D] animate-spin" />}
               </div>
-              <span className={`text-sm ${step.status === 'active' ? 'text-[#FFFFFF]' : step.status === 'done' ? 'text-[#A3A3A3]' : 'text-[#444444]'}`}>
+              <span className={`text-sm ${step.status === 'active' ? 'text-[#FFFFFF]' : step.status === 'done' ? 'text-[#a0a0a0]' : 'text-[#666666]'}`}>
                 {step.label}
               </span>
             </div>
@@ -702,7 +702,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Probability Card */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Circle */}
               <CircleProgress value={result.probability} size={130} strokeWidth={10} />
@@ -713,7 +713,7 @@ Return ONLY the JSON object, no other text.`;
                     {result.verdict}
                   </span>
                 </div>
-                <p className="text-sm text-[#A3A3A3] mb-3">
+                <p className="text-sm text-[#a0a0a0] mb-3">
                   {result.probability >= 70
                     ? 'This content has a very high probability of going viral on TikTok. The metrics strongly align with viral patterns.'
                     : result.probability >= 50
@@ -734,14 +734,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Strengths */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" /> Strengths
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 text-[#888888]" /> Strengths
             </h4>
             <div className="space-y-2.5">
               {result.strengths.map((s, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#10B981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#888888] mt-0.5 flex-shrink-0" />
                   <span className="text-sm text-[#FFFFFF]">{s}</span>
                 </div>
               ))}
@@ -749,14 +749,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Weaknesses */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <TrendingDown className="w-3.5 h-3.5 text-[#EF4444]" /> Weaknesses
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <TrendingDown className="w-3.5 h-3.5 text-[#888888]" /> Weaknesses
             </h4>
             <div className="space-y-2.5">
               {result.weaknesses.map((w, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <XCircle className="w-4 h-4 text-[#EF4444] mt-0.5 flex-shrink-0" />
+                  <XCircle className="w-4 h-4 text-[#888888] mt-0.5 flex-shrink-0" />
                   <span className="text-sm text-[#FFFFFF]">{w}</span>
                 </div>
               ))}
@@ -764,15 +764,15 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <Target className="w-3.5 h-3.5 text-[#3B82F6]" /> Action Plan
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5 text-[#888888]" /> Action Plan
             </h4>
             <div className="space-y-3">
               {result.actionPlan.map((step, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[rgba(59,130,246,0.15)] border border-[rgba(59,130,246,0.3)] flex items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] font-bold text-[#3B82F6]">{i + 1}</span>
+                  <div className="w-6 h-6 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-[#888888]">{i + 1}</span>
                   </div>
                   <span className="text-sm text-[#FFFFFF]">{step}</span>
                 </div>
@@ -785,16 +785,16 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
             <Flame className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Predict TikTok Virality</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter your TikTok video metrics to get an AI-powered viral potential prediction with actionable insights.</p>
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your TikTok video metrics to get an AI-powered viral potential prediction with actionable insights.</p>
         </div>
       )}
 
       {searched && !loading && (
-        <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.goffviral} tokens per prediction</div>
+        <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS.goffviral} tokens per prediction</div>
       )}
       </>
       )}
@@ -802,73 +802,73 @@ Return ONLY the JSON object, no other text.`;
       {/* YouTube Viral Score Tab */}
       {activeTab === 'youtube' && (
         <div className="space-y-5 animate-fade-in-up">
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-1">
-                <div className="p-2 rounded-lg bg-[rgba(239,68,68,0.1)]">
-                  <Youtube className="w-5 h-5 text-[#EF4444]" />
+                <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+                  <Youtube className="w-5 h-5 text-[#888888]" />
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <h2 className="text-base font-bold text-[#FFFFFF]">YouTube Viral Score</h2>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(139,92,246,0.15)] text-[#8B5CF6] border border-[rgba(139,92,246,0.3)]">AI SCORE</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]">AI SCORE</span>
                 </div>
               </div>
-              <p className="text-xs text-[#A3A3A3] mt-1 ml-12">Score your YouTube video&apos;s viral potential with AI-powered breakdown analysis.</p>
+              <p className="text-xs text-[#a0a0a0] mt-1 ml-12">Score your YouTube video&apos;s viral potential with AI-powered breakdown analysis.</p>
             </div>
 
             {/* YouTube Input Form */}
             <div className="px-4 sm:px-5 py-5 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                     <Type className="w-3 h-3" /> Video Title
                   </label>
                   <input
                     type="text" value={ytTitle} onChange={(e) => setYtTitle(e.target.value)}
                     placeholder="e.g. I Tried Every AI Tool for 30 Days"
-                    className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors"
+                    className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                  <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                     <BarChart3 className="w-3 h-3" /> Niche
                   </label>
                   <select
                     value={ytNiche} onChange={(e) => setYtNiche(e.target.value)}
-                    className="w-full h-10 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#EF4444]/50 transition-colors appearance-none cursor-pointer"
+                    className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#888888]/50 transition-colors appearance-none cursor-pointer"
                   >
                     {YT_NICHES.map((n) => (
-                      <option key={n} value={n} className="bg-[#0D0D0D] text-[#FFFFFF]">{n}</option>
+                      <option key={n} value={n} className="bg-[#0a0a0a] text-[#FFFFFF]">{n}</option>
                     ))}
                   </select>
                 </div>
               </div>
               <div>
-                <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                   <Eye className="w-3 h-3" /> Description
                 </label>
                 <textarea
                   value={ytDescription} onChange={(e) => setYtDescription(e.target.value)}
                   placeholder="Paste your video description here..."
                   rows={3}
-                  className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors resize-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors resize-none"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium text-[#A3A3A3] mb-1.5 flex items-center gap-1">
+                <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
                   <Zap className="w-3 h-3" /> Hook Text (first 5-10 seconds)
                 </label>
                 <textarea
                   value={ytHookText} onChange={(e) => setYtHookText(e.target.value)}
                   placeholder="What do you say in the first 5-10 seconds to hook viewers?"
                   rows={2}
-                  className="w-full px-3 py-2.5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors resize-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors resize-none"
                 />
               </div>
               <button
                 onClick={handleYTScore}
                 disabled={ytLoading || !ytTitle.trim()}
-                className="w-full sm:w-auto px-6 h-11 rounded-lg bg-[#EF4444] text-[#FFFFFF] text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="w-full sm:w-auto px-6 h-11 rounded-lg bg-[#888888] text-[#FFFFFF] text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {ytLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
                 Score My Video
@@ -878,10 +878,10 @@ Return ONLY the JSON object, no other text.`;
 
           {/* YouTube Error */}
           {ytError && (
-            <div className="rounded-lg bg-[#141414] border border-[#EF4444]/30 p-6 text-center">
-              <AlertTriangle className="w-8 h-8 text-[#EF4444] mx-auto mb-3" />
+            <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
+              <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
               <p className="text-sm text-[#FFFFFF] mb-4">{ytError}</p>
-              <button onClick={handleYTScore} className="px-4 py-2 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+              <button onClick={handleYTScore} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
                 <RefreshCw className="w-3.5 h-3.5" /> Retry
               </button>
             </div>
@@ -889,10 +889,10 @@ Return ONLY the JSON object, no other text.`;
 
           {/* YouTube Loading */}
           {ytLoading && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 flex items-center justify-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex items-center justify-center">
               <div className="text-center">
-                <Loader2 className="w-8 h-8 text-[#EF4444] animate-spin mx-auto mb-3" />
-                <p className="text-sm text-[#A3A3A3]">Analyzing viral potential...</p>
+                <Loader2 className="w-8 h-8 text-[#888888] animate-spin mx-auto mb-3" />
+                <p className="text-sm text-[#a0a0a0]">Analyzing viral potential...</p>
               </div>
             </div>
           )}
@@ -901,12 +901,12 @@ Return ONLY the JSON object, no other text.`;
           {!ytLoading && ytResult && (
             <div className="space-y-4">
               {/* Composite Score */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <YTCircleGauge value={ytResult.compositeScore} size={140} strokeWidth={10} />
                   <div className="flex-1 text-center sm:text-left">
                     <h3 className="text-base font-bold text-[#FFFFFF] mb-1">Composite Viral Score</h3>
-                    <p className="text-sm text-[#A3A3A3]">
+                    <p className="text-sm text-[#a0a0a0]">
                       {ytResult.compositeScore > 70
                         ? 'Excellent viral potential! This video has strong signals across all scoring dimensions and is well-positioned for significant reach.'
                         : ytResult.compositeScore >= 40
@@ -918,8 +918,8 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Breakdown Scores */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4 flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Score Breakdown
                 </h4>
                 <div className="space-y-4">
@@ -930,27 +930,27 @@ Return ONLY the JSON object, no other text.`;
                     { label: 'Timing Score', score: ytResult.timingScore, reason: ytResult.timingReason },
                     { label: 'Niche Fit Score', score: ytResult.nicheFitScore, reason: ytResult.nicheFitReason },
                   ].map((item) => (
-                    <div key={item.label} className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                    <div key={item.label} className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="text-sm font-medium text-[#FFFFFF]">{item.label}</span>
                         <span className="text-sm font-bold" style={{ color: scoreColor(item.score) }}>{item.score}/100</span>
                       </div>
                       <MiniProgressBar value={item.score} color={scoreColor(item.score)} />
-                      <p className="text-xs text-[#A3A3A3] mt-2 leading-relaxed">{item.reason}</p>
+                      <p className="text-xs text-[#a0a0a0] mt-2 leading-relaxed">{item.reason}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Suggestions */}
-              <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5 text-[#FDBA2D]" /> Improvement Suggestions
                 </h4>
                 <div className="space-y-2.5">
                   {ytResult.suggestions.map((s, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.15)] border border-[rgba(253,186,45,0.3)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
                       </div>
                       <span className="text-sm text-[#FFFFFF] leading-relaxed">{s}</span>
@@ -964,16 +964,16 @@ Return ONLY the JSON object, no other text.`;
           {/* YouTube Empty State */}
           {!ytLoading && !ytSearched && (
             <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
-                <Youtube className="w-8 h-8 text-[#EF4444]" />
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+                <Youtube className="w-8 h-8 text-[#888888]" />
               </div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Score Your YouTube Video</h3>
-              <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Enter your video details to get an AI-powered viral score with detailed breakdown and improvement suggestions.</p>
+              <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your video details to get an AI-powered viral score with detailed breakdown and improvement suggestions.</p>
             </div>
           )}
 
           {ytSearched && !ytLoading && (
-            <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS.goffviral} tokens per score</div>
+            <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS.goffviral} tokens per score</div>
           )}
         </div>
       )}

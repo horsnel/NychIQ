@@ -137,23 +137,23 @@ function typeBadgeStyle(type: ProductOpportunity['type']) {
   switch (type) {
     case 'PDF':
     case 'eBook':
-      return { bg: 'bg-[rgba(239,68,68,0.1)]', text: 'text-[#EF4444]', border: 'border-[rgba(239,68,68,0.2)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
     case 'Template':
-      return { bg: 'bg-[rgba(59,130,246,0.1)]', text: 'text-[#3B82F6]', border: 'border-[rgba(59,130,246,0.2)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
     case 'Notion':
-      return { bg: 'bg-[rgba(139,92,246,0.1)]', text: 'text-[#8B5CF6]', border: 'border-[rgba(139,92,246,0.2)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
     case 'Video Course':
-      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(253,186,45,0.2)]' };
+      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]' };
     case 'Toolkit':
-      return { bg: 'bg-[rgba(16,185,129,0.1)]', text: 'text-[#10B981]', border: 'border-[rgba(16,185,129,0.2)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
     default:
-      return { bg: 'bg-[rgba(136,136,136,0.1)]', text: 'text-[#A3A3A3]', border: 'border-[rgba(136,136,136,0.2)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.06)]' };
   }
 }
 
 /* ── Priority badge ── */
 function PriorityBadge({ score }: { score: number }) {
-  const color = score >= 90 ? '#10B981' : score >= 80 ? '#FDBA2D' : score >= 70 ? '#3B82F6' : '#A3A3A3';
+  const color = score >= 90 ? '#888888' : score >= 80 ? '#FDBA2D' : score >= 70 ? '#888888' : '#a0a0a0';
   const label = score >= 90 ? 'HIGH' : score >= 80 ? 'MEDIUM' : 'LOW';
   return (
     <div className="flex items-center gap-1.5">
@@ -264,7 +264,7 @@ Return ONLY valid JSON matching this schema:
     return (
       <div className="space-y-5 animate-fade-in-up">
         {/* Header */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -272,27 +272,27 @@ Return ONLY valid JSON matching this schema:
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
-                <p className="text-xs text-[#A3A3A3] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
+                <p className="text-xs text-[#a0a0a0] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Input Section */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 sm:p-6">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 sm:p-6">
           <div className="text-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)] flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-4">
               <Package className="w-8 h-8 text-[#FDBA2D]" />
             </div>
             <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">Find What Audiences Will Pay For</h3>
-            <p className="text-sm text-[#A3A3A3] max-w-lg mx-auto">
+            <p className="text-sm text-[#a0a0a0] max-w-lg mx-auto">
               Enter a YouTube video URL or topic. Our AI analyzes the audience and identifies digital product
               opportunities — templates, courses, tools — they&apos;re already asking for in the comments.
             </p>
           </div>
 
           <div className="max-w-xl mx-auto">
-            <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1F1F1F] overflow-hidden">
+            <div className="flex items-center rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] overflow-hidden">
               <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
               <input
                 type="text"
@@ -300,14 +300,14 @@ Return ONLY valid JSON matching this schema:
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleScout()}
                 placeholder="Paste a YouTube URL or enter a video topic..."
-                className="flex-1 py-3 px-3 bg-transparent text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none transition-all"
+                className="flex-1 py-3 px-3 bg-transparent text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none transition-all"
               />
               <button
                 onClick={handleScout}
                 disabled={!input.trim()}
                 className="px-5 py-3 rounded-full text-white text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg shrink-0"
                 style={{
-                  background: input.trim() ? 'linear-gradient(135deg, #FDBA2D, #E09100)' : '#333333',
+                  background: input.trim() ? 'linear-gradient(135deg, #FDBA2D, #E09100)' : '#1a1a1a',
                 }}
               >
                 <span className="flex items-center gap-2">
@@ -323,7 +323,7 @@ Return ONLY valid JSON matching this schema:
                 <DollarSign className="w-3 h-3" />
                 <span>Cost: {TOKEN_COSTS['digital-scout']} tokens</span>
               </div>
-              <div className="w-1 h-1 rounded-full bg-[#333333]" />
+              <div className="w-1 h-1 rounded-full bg-[#1a1a1a]" />
               <div className="flex items-center gap-1.5 text-[10px] text-[#666666]">
                 <Star className="w-3 h-3" />
                 <span>Balance: {tokenBalance}</span>
@@ -341,7 +341,7 @@ Return ONLY valid JSON matching this schema:
               <button
                 key={ex}
                 onClick={() => setInput(ex)}
-                className="px-3 py-1.5 rounded-full bg-[#0D0D0D] border border-[#1F1F1F] text-[11px] text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                className="px-3 py-1.5 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
               >
                 {ex}
               </button>
@@ -350,7 +350,7 @@ Return ONLY valid JSON matching this schema:
         </div>
 
         {/* Token Cost Footer */}
-        <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['digital-scout']} tokens per analysis</div>
+        <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS['digital-scout']} tokens per analysis</div>
       </div>
     );
   }
@@ -359,7 +359,7 @@ Return ONLY valid JSON matching this schema:
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] animate-pulse">
@@ -373,12 +373,12 @@ Return ONLY valid JSON matching this schema:
           </div>
         </div>
 
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
           <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
           </div>
           <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2">Scouting Product Opportunities...</h3>
-          <p className="text-xs text-[#A3A3A3] mb-4">Analyzing audience demand and comment signals</p>
+          <p className="text-xs text-[#a0a0a0] mb-4">Analyzing audience demand and comment signals</p>
           <div className="space-y-2 max-w-sm mx-auto">
             {['Scanning audience pain points', 'Evaluating product market fit', 'Calculating revenue estimates'].map((step, i) => (
               <div key={step} className="flex items-center gap-2">
@@ -396,7 +396,7 @@ Return ONLY valid JSON matching this schema:
   if (error) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -404,28 +404,28 @@ Return ONLY valid JSON matching this schema:
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
-                <p className="text-xs text-[#A3A3A3] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
+                <p className="text-xs text-[#a0a0a0] mt-0.5">Discover digital product opportunities from YouTube audience demand</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-14 h-14 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mb-4">
-            <AlertCircle className="w-7 h-7 text-[#EF4444]" />
+          <div className="w-14 h-14 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+            <AlertCircle className="w-7 h-7 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analysis Failed</h3>
-          <p className="text-sm text-[#A3A3A3] mb-5 max-w-sm text-center">{error}</p>
+          <p className="text-sm text-[#a0a0a0] mb-5 max-w-sm text-center">{error}</p>
           <div className="flex items-center gap-3">
             <button
               onClick={handleRetry}
-              className="px-5 py-2.5 rounded-lg bg-[#EF4444] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
             >
               <RefreshCw className="w-3.5 h-3.5" /> Retry
             </button>
             <button
               onClick={() => { setError(null); setResults(null); }}
-              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[#1F1F1F] text-[#FFFFFF] text-sm font-medium hover:bg-[#1F1F1F] transition-colors"
+              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm font-medium hover:bg-[#0f0f0f] transition-colors"
             >
               New Search
             </button>
@@ -441,7 +441,7 @@ Return ONLY valid JSON matching this schema:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -450,12 +450,12 @@ Return ONLY valid JSON matching this schema:
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
-                <p className="text-xs text-[#A3A3A3] mt-0.5">{results?.videoTopic || 'Analysis complete'}</p>
+                <p className="text-xs text-[#a0a0a0] mt-0.5">{results?.videoTopic || 'Analysis complete'}</p>
               </div>
             </div>
             <button
               onClick={() => { setResults(null); setError(null); }}
-              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[#1F1F1F] text-[11px] text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
             >
               <Search className="w-3 h-3" /> New Search
             </button>
@@ -465,17 +465,17 @@ Return ONLY valid JSON matching this schema:
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
-          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+          <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
           <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
         </div>
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
-          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Est. Views</p>
-          <p className="text-2xl font-bold text-[#3B82F6]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+          <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Est. Views</p>
+          <p className="text-2xl font-bold text-[#888888]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
         </div>
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
-          <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Top Priority</p>
-          <p className="text-2xl font-bold text-[#10B981]">{sortedOpps[0]?.priorityScore || 0}</p>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+          <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Top Priority</p>
+          <p className="text-2xl font-bold text-[#888888]">{sortedOpps[0]?.priorityScore || 0}</p>
         </div>
       </div>
 
@@ -494,7 +494,7 @@ Return ONLY valid JSON matching this schema:
             return (
               <div
                 key={opp.name}
-                className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden hover:border-[#333333] transition-colors"
+                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden hover:border-[#1a1a1a] transition-colors"
               >
                 {/* Card Header */}
                 <div className="px-4 sm:px-5 py-4">
@@ -505,7 +505,7 @@ Return ONLY valid JSON matching this schema:
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
                         style={{
                           backgroundColor: idx === 0 ? 'rgba(253,186,45,0.15)' : '#1A1A1A',
-                          border: `1px solid ${idx === 0 ? 'rgba(253,186,45,0.3)' : '#1F1F1F'}`,
+                          border: `1px solid ${idx === 0 ? 'rgba(253,186,45,0.3)' : '#0f0f0f'}`,
                           color: idx === 0 ? '#FDBA2D' : '#666666',
                         }}
                       >
@@ -521,11 +521,11 @@ Return ONLY valid JSON matching this schema:
                           </span>
                         </div>
                         <div className="flex items-center gap-4 flex-wrap">
-                          <div className="flex items-center gap-1.5 text-xs text-[#A3A3A3]">
+                          <div className="flex items-center gap-1.5 text-xs text-[#a0a0a0]">
                             <DollarSign className="w-3 h-3" />
                             <span className="font-semibold text-[#FFFFFF]">{opp.priceRange}</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-xs text-[#A3A3A3]">
+                          <div className="flex items-center gap-1.5 text-xs text-[#a0a0a0]">
                             <TrendingUp className="w-3 h-3" />
                             <span>Rev: {opp.estimatedRevenue}</span>
                           </div>
@@ -544,7 +544,7 @@ Return ONLY valid JSON matching this schema:
                   </div>
 
                   {/* Sales Hook Preview (always visible) */}
-                  <p className="text-xs text-[#A3A3A3] mt-3 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-[#a0a0a0] mt-3 leading-relaxed line-clamp-2">
                     {opp.salesHook}
                   </p>
                 </div>
@@ -554,12 +554,12 @@ Return ONLY valid JSON matching this schema:
                   <div className="px-4 sm:px-5 pb-4 space-y-4 border-t border-[#1A1A1A]">
                     {/* Pain Point Evidence */}
                     <div className="pt-4">
-                      <h5 className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                      <h5 className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                         <Quote className="w-3 h-3" /> Audience Pain Point Evidence
                       </h5>
                       <div className="space-y-2">
                         {opp.painPoints.map((point, pi) => (
-                          <div key={pi} className="flex items-start gap-2 px-3 py-2 rounded-md bg-[#0D0D0D] border border-[#1A1A1A]">
+                          <div key={pi} className="flex items-start gap-2 px-3 py-2 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                             <Quote className="w-3 h-3 text-[#666666] flex-shrink-0 mt-0.5" />
                             <p className="text-xs text-[#AAAAAA] italic leading-relaxed">{point}</p>
                           </div>
@@ -569,27 +569,27 @@ Return ONLY valid JSON matching this schema:
 
                     {/* Sales Hook Full */}
                     <div>
-                      <h5 className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                      <h5 className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <TrendingUp className="w-3 h-3" /> Sales Hook
                       </h5>
-                      <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(253,186,45,0.1)]">
+                      <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(255,255,255,0.06)]">
                         <p className="text-sm text-[#FFFFFF] leading-relaxed">{opp.salesHook}</p>
                       </div>
                     </div>
 
                     {/* Revenue Details */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
+                      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Price Range</p>
                         <p className="text-sm font-semibold text-[#FFFFFF] mt-0.5">{opp.priceRange}</p>
                       </div>
-                      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
+                      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Est. Revenue</p>
-                        <p className="text-sm font-semibold text-[#10B981] mt-0.5">{opp.estimatedRevenue}</p>
+                        <p className="text-sm font-semibold text-[#888888] mt-0.5">{opp.estimatedRevenue}</p>
                       </div>
-                      <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
+                      <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Priority</p>
-                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#10B981' : opp.priorityScore >= 80 ? '#FDBA2D' : '#3B82F6' }}>
+                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#888888' : opp.priorityScore >= 80 ? '#FDBA2D' : '#888888' }}>
                           {opp.priorityScore}/100
                         </p>
                       </div>
@@ -598,12 +598,12 @@ Return ONLY valid JSON matching this schema:
                     {/* Copy Sales Hook */}
                     <button
                       onClick={() => handleCopy(opp.salesHook, opp.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[#1F1F1F] text-xs text-[#A3A3A3] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
                     >
                       {isCopied ? (
                         <>
-                          <Check className="w-3 h-3 text-[#10B981]" />
-                          <span className="text-[#10B981]">Copied!</span>
+                          <Check className="w-3 h-3 text-[#888888]" />
+                          <span className="text-[#888888]">Copied!</span>
                         </>
                       ) : (
                         <>
@@ -621,7 +621,7 @@ Return ONLY valid JSON matching this schema:
       </div>
 
       {/* Token Cost Footer */}
-      <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['digital-scout']} tokens per analysis</div>
+      <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS['digital-scout']} tokens per analysis</div>
     </div>
   );
 }

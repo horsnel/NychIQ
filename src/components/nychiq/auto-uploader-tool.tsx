@@ -31,7 +31,7 @@ const FEATURES = [
     icon: Bot,
     title: 'Channel Autopilot',
     description: 'AI manages your upload schedule, descriptions, tags, and thumbnails',
-    color: '#8B5CF6',
+    color: '#888888',
     bg: 'rgba(139,92,246,0.1)',
     border: 'rgba(139,92,246,0.2)',
   },
@@ -39,7 +39,7 @@ const FEATURES = [
     icon: Layers,
     title: 'Batch Processing',
     description: 'Upload multiple videos at once with automatic optimization for each',
-    color: '#3B82F6',
+    color: '#888888',
     bg: 'rgba(59,130,246,0.1)',
     border: 'rgba(59,130,246,0.2)',
   },
@@ -64,10 +64,10 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
   switch (status) {
     case 'completed':
       return {
-        dotColor: '#10B981',
+        dotColor: '#888888',
         ringColor: 'rgba(16,185,129,0.2)',
-        textColor: '#10B981',
-        lineColor: '#10B981',
+        textColor: '#888888',
+        lineColor: '#888888',
         icon: <Check className="w-3 h-3" />,
       };
     case 'in-progress':
@@ -75,15 +75,15 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
         dotColor: '#FDBA2D',
         ringColor: 'rgba(253,186,45,0.2)',
         textColor: '#FDBA2D',
-        lineColor: '#1F1F1F',
+        lineColor: '#0f0f0f',
         icon: <Loader2 className="w-3 h-3 animate-spin" />,
       };
     case 'upcoming':
       return {
-        dotColor: '#555555',
+        dotColor: '#666666',
         ringColor: 'rgba(85,85,85,0.2)',
-        textColor: '#555555',
-        lineColor: '#1F1F1F',
+        textColor: '#666666',
+        lineColor: '#0f0f0f',
         icon: null,
       };
   }
@@ -146,7 +146,7 @@ export function AutoUploaderTool() {
         <div
           className="absolute inset-0 rounded-lg animate-gradient-spin"
           style={{
-            background: 'conic-gradient(from 0deg, #FDBA2D, #8B5CF6, #FDBA2D, #8B5CF6, #FDBA2D)',
+            background: 'conic-gradient(from 0deg, #FDBA2D, #888888, #FDBA2D, #888888, #FDBA2D)',
             padding: '1.5px',
             WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             WebkitMaskComposite: 'xor',
@@ -154,13 +154,13 @@ export function AutoUploaderTool() {
           }}
         />
         {/* Card content */}
-        <div className="relative rounded-lg bg-[#141414] px-6 py-10 sm:px-10 sm:py-14">
+        <div className="relative rounded-lg bg-[#0f0f0f] px-6 py-10 sm:px-10 sm:py-14">
           <div className="flex flex-col items-center text-center max-w-lg mx-auto">
             {/* Icon */}
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
               style={{
-                background: 'linear-gradient(135deg, #8B5CF6, rgba(139,92,246,0.6))',
+                background: 'linear-gradient(135deg, #888888, rgba(139,92,246,0.6))',
                 boxShadow: '0 8px 32px rgba(139,92,246,0.25)',
               }}
             >
@@ -173,7 +173,7 @@ export function AutoUploaderTool() {
                 Auto Uploader &amp; Channel Autopilot
               </h1>
               <span
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-[#0D0D0D] animate-pulse-badge"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-[#0a0a0a] animate-pulse-badge"
                 style={{ backgroundColor: '#FDBA2D' }}
               >
                 <Zap className="w-3 h-3" />
@@ -182,7 +182,7 @@ export function AutoUploaderTool() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-[#A3A3A3] leading-relaxed max-w-md">
+            <p className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed max-w-md">
               AI-powered automatic video uploading, scheduling, and channel management. Let
               NychIQ handle your uploads while you focus on creating content.
             </p>
@@ -195,7 +195,7 @@ export function AutoUploaderTool() {
         {FEATURES.map((feature) => (
           <div
             key={feature.title}
-            className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-5 hover:border-[#333333] transition-colors group"
+            className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 hover:border-[#1a1a1a] transition-colors group"
           >
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-transform group-hover:scale-110"
@@ -204,29 +204,29 @@ export function AutoUploaderTool() {
               <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
             </div>
             <h3 className="text-sm font-bold text-[#FFFFFF] mb-1.5">{feature.title}</h3>
-            <p className="text-xs text-[#A3A3A3] leading-relaxed">{feature.description}</p>
+            <p className="text-xs text-[#a0a0a0] leading-relaxed">{feature.description}</p>
           </div>
         ))}
       </div>
 
       {/* ──────── WAITLIST SECTION ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8">
         <div className="flex flex-col items-center text-center max-w-md mx-auto">
           {/* Confirmation State */}
           {submitted ? (
             <div className="flex flex-col items-center">
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)' }}
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(16,185,129,0.2)' }}
               >
-                <CheckCircle2 className="w-7 h-7" style={{ color: '#10B981' }} />
+                <CheckCircle2 className="w-7 h-7" style={{ color: '#aaa' }} />
               </div>
               <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">You&apos;re on the list!</h3>
-              <p className="text-sm text-[#A3A3A3] mb-4">
+              <p className="text-sm text-[#a0a0a0] mb-4">
                 We&apos;ll notify <span className="text-[#FFFFFF] font-medium">{email}</span> when
                 Auto Uploader is ready.
               </p>
-              <p className="text-xs text-[#555555]">
+              <p className="text-xs text-[#666666]">
                 You&apos;re one of 2,847 creators on the waitlist
               </p>
             </div>
@@ -234,21 +234,21 @@ export function AutoUploaderTool() {
             <>
               {/* Social proof */}
               <div className="flex items-center gap-2 mb-4">
-                <Users className="w-4 h-4 text-[#555555]" />
-                <span className="text-xs text-[#555555]">Join 2,847 creators on the waitlist</span>
+                <Users className="w-4 h-4 text-[#666666]" />
+                <span className="text-xs text-[#666666]">Join 2,847 creators on the waitlist</span>
               </div>
 
               <h3 className="text-base font-bold text-[#FFFFFF] mb-2">
                 Be the first to know when it launches
               </h3>
-              <p className="text-sm text-[#A3A3A3] mb-5">
+              <p className="text-sm text-[#a0a0a0] mb-5">
                 Enter your email to get early access and exclusive launch pricing.
               </p>
 
               {/* Email Input + Button */}
               <div className="w-full flex flex-col sm:flex-row gap-2">
                 <div className="relative flex-1">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555] pointer-events-none" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666] pointer-events-none" />
                   <input
                     type="email"
                     value={email}
@@ -261,8 +261,8 @@ export function AutoUploaderTool() {
                     }}
                     placeholder="you@email.com"
                     className={cn(
-                      'w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border text-sm text-[#FFFFFF] placeholder:text-[#444444] focus:outline-none transition-colors',
-                      emailError ? 'border-[#EF4444]' : 'border-[#1A1A1A]'
+                      'w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors',
+                      emailError ? 'border-[#888888]' : 'border-[#1A1A1A]'
                     )}
                     style={{ caretColor: '#FDBA2D' }}
                     onFocus={(e) => {
@@ -276,7 +276,7 @@ export function AutoUploaderTool() {
                 <button
                   onClick={handleSubmit}
                   disabled={submitting || !email.trim()}
-                  className="h-11 px-6 rounded-lg text-[#0D0D0D] text-sm font-bold flex items-center justify-center gap-2 shrink-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.98]"
+                  className="h-11 px-6 rounded-lg text-[#0a0a0a] text-sm font-bold flex items-center justify-center gap-2 shrink-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.98]"
                   style={{ backgroundColor: '#FDBA2D' }}
                 >
                   {submitting ? (
@@ -292,7 +292,7 @@ export function AutoUploaderTool() {
 
               {/* Error message */}
               {emailError && (
-                <p className="text-xs mt-2" style={{ color: '#EF4444' }}>
+                <p className="text-xs mt-2" style={{ color: '#aaa' }}>
                   {emailError}
                 </p>
               )}
@@ -302,7 +302,7 @@ export function AutoUploaderTool() {
       </div>
 
       {/* ──────── STATUS TIMELINE ──────── */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8">
         <h3 className="text-sm font-bold text-[#FFFFFF] mb-5 flex items-center gap-2">
           <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           Development Progress

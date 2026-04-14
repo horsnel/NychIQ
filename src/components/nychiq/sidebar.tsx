@@ -13,11 +13,11 @@ import { playNav, playClick } from '@/lib/sounds';
 
 /* ── Plan badge colors ── */
 const PLAN_COLORS: Record<Plan, string> = {
-  trial: 'text-[#444444]',
-  starter: 'text-[#A3A3A3]',
-  pro: 'text-blue',
-  elite: 'text-purple',
-  agency: 'text-amber',
+  trial: 'text-[#666666]',
+  starter: 'text-[#a0a0a0]',
+  pro: 'text-[#888888]',
+  elite: 'text-[#888888]',
+  agency: 'text-[#FDBA2D]',
 };
 
 /* ── Plan hierarchy (lowest to highest) ── */
@@ -43,10 +43,10 @@ function getUpsellBadge(toolId: string, userPlan: Plan): BadgeInfo {
   if (userRank >= minRank) return null;
 
   switch (minPlan) {
-    case 'starter': return { text: 'NEW', color: '#3B82F6' };
+    case 'starter': return { text: 'NEW', color: '#888888' };
     case 'pro':     return { text: 'PRO+', color: '#FDBA2D' };
-    case 'elite':   return { text: 'ELITE+', color: '#8B5CF6' };
-    case 'agency':  return { text: 'AGENCY', color: '#10B981' };
+    case 'elite':   return { text: 'ELITE+', color: '#888888' };
+    case 'agency':  return { text: 'AGENCY', color: '#888888' };
     default:        return null;
   }
 }
@@ -70,7 +70,7 @@ export function Sidebar() {
   const navContent = (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1A1A1A]">
+      <div className="flex items-center gap-3 px-4 py-4 border-b border-[rgba(255,255,255,0.06)]">
         <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M10 6L18 12L10 18V6Z" fill="white"/>
@@ -81,7 +81,7 @@ export function Sidebar() {
           <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#FFFFFF' }}>
             NY<span className="text-[#FDBA2D]">CHIQ</span>
           </span>
-          <span className="text-[9px] text-[#A3A3A3] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
+          <span className="text-[9px] text-[#a0a0a0] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
         </div>
         <span className={cn('text-xs font-medium ml-auto', PLAN_COLORS[userPlan])}>
           {userPlan.toUpperCase()}
@@ -95,7 +95,7 @@ export function Sidebar() {
             {/* Section header */}
             <button
               onClick={() => toggleSection(section.id)}
-              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-[#444444] hover:text-[#A3A3A3] transition-colors uppercase"
+              className="flex items-center gap-1 w-full px-2 py-1.5 text-[10px] font-semibold tracking-wider text-[#666666] hover:text-[#a0a0a0] transition-colors uppercase"
             >
               {collapsedSections[section.id] ? (
                 <ChevronRight className="w-3 h-3" />
@@ -130,8 +130,8 @@ export function Sidebar() {
                       className={cn(
                         'flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-all duration-150',
                         isActive
-                          ? 'sidebar-active bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
-                          : 'text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A]'
+                          ? 'sidebar-active bg-[rgba(253,186,45,0.08)] text-[#FDBA2D]'
+                          : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.04)]'
                       )}
                     >
                       <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#FDBA2D]' : '')} />
@@ -151,7 +151,7 @@ export function Sidebar() {
                         ) : null;
                       })()}
                       {!hasAccess && (
-                        <Lock className="w-3 h-3 ml-auto text-[#444444] shrink-0" />
+                        <Lock className="w-3 h-3 ml-auto text-[#666666] shrink-0" />
                       )}
                     </button>
                   );
@@ -163,10 +163,10 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom section */}
-      <div className="border-t border-[#1E1E1E] px-3 py-3">
+      <div className="border-t border-[rgba(255,255,255,0.06)] px-3 py-3">
         <button
           onClick={() => setPage('about')}
-          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#444444] hover:text-[#A3A3A3] transition-colors"
+          className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#666666] hover:text-[#a0a0a0] transition-colors"
         >
           <span>About</span>
         </button>
@@ -177,7 +177,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0D0D0D] border-r border-[#1E1E1E] shrink-0 sticky top-0">
+      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.06)] shrink-0 sticky top-0">
         {navContent}
       </aside>
 
@@ -188,10 +188,10 @@ export function Sidebar() {
             className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
-          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0D0D0D] border-r border-[#1E1E1E] z-50 lg:hidden animate-fade-in-up">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E]">
-              <span className="text-sm font-semibold text-[#A3A3A3]">Navigation</span>
-              <button onClick={() => setSidebarOpen(false)} className="text-[#444444] hover:text-[#FFFFFF]">
+          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.06)] z-50 lg:hidden animate-fade-in-up">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+              <span className="text-sm font-semibold text-[#a0a0a0]">Navigation</span>
+              <button onClick={() => setSidebarOpen(false)} className="text-[#666666] hover:text-[#FFFFFF]">
                 <X className="w-5 h-5" />
               </button>
             </div>

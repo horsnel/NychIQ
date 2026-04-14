@@ -122,30 +122,30 @@ Rules:
   };
 
   const velocityConfig = {
-    explosive: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' },
+    explosive: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' },
     rising: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' },
-    steady: { color: '#3B82F6', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.2)' },
+    steady: { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.2)' },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><BellRing className="w-5 h-5 text-[#FDBA2D]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Trend Alerts</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
             </div>
           </div>
-          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+          <div className="flex rounded-full bg-[#0a0a0a] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
               placeholder="Enter keyword to monitor..."
-              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-full bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
               Add Alert
             </button>
@@ -154,14 +154,14 @@ Rules:
       </div>
 
       {/* Active Alerts */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-        <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+        <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
         {alerts.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-4">No active alerts. Add keywords above to start monitoring.</p>
         ) : (
           <div className="space-y-2 max-h-48 overflow-y-auto">
             {alerts.map((alert) => (
-              <div key={alert.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
+              <div key={alert.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-2 h-2 rounded-full bg-[#FDBA2D] shrink-0 animate-pulse-live" />
                   <div className="min-w-0">
@@ -169,7 +169,7 @@ Rules:
                     <p className="text-[10px] text-[#666666]">Added {alert.createdAt}</p>
                   </div>
                 </div>
-                <button onClick={() => handleRemove(alert.id)} className="p-1 rounded hover:bg-[#1A1A1A] text-[#666666] hover:text-[#EF4444] transition-colors shrink-0">
+                <button onClick={() => handleRemove(alert.id)} className="p-1 rounded hover:bg-[#1A1A1A] text-[#666666] hover:text-[#888888] transition-colors shrink-0">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -179,16 +179,16 @@ Rules:
       </div>
 
       {/* Trend Feed — AI-powered */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
         <div className="flex items-center justify-between mb-3">
-          <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider flex items-center gap-2">
-            <Zap className="w-3.5 h-3.5 text-[#EF4444]" />
+          <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
+            <Zap className="w-3.5 h-3.5 text-[#888888]" />
             Live Trend Spikes
           </h4>
           <button
             onClick={fetchTrendSpikes}
             disabled={loading}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
           >
             <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -196,16 +196,16 @@ Rules:
         </div>
 
         {error && (
-          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(239,68,68,0.08)] border border-[rgba(239,68,68,0.2)]">
-            <AlertTriangle className="w-4 h-4 text-[#EF4444] shrink-0" />
-            <p className="text-xs text-[#EF4444]">{error}</p>
+          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+            <AlertTriangle className="w-4 h-4 text-[#888888] shrink-0" />
+            <p className="text-xs text-[#888888]">{error}</p>
           </div>
         )}
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-12">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin mb-2" />
-            <p className="text-sm text-[#A3A3A3]">Scanning trends...</p>
+            <p className="text-sm text-[#a0a0a0]">Scanning trends...</p>
           </div>
         ) : feed.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-8">No trend data available. Click Refresh to scan.</p>
@@ -214,7 +214,7 @@ Rules:
             {feed.map((item, i) => {
               const vel = velocityConfig[item.velocity] || velocityConfig.steady;
               return (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] hover:border-[#2A2A2A] transition-colors">
+                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: vel.bg, border: `1px solid ${vel.border}` }}>
                     <TrendingUp className="w-5 h-5" style={{ color: vel.color }} />
                   </div>
@@ -237,7 +237,7 @@ Rules:
         )}
       </div>
 
-      <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['trend-alerts']} tokens per scan · Region: {region}</div>
+      <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS['trend-alerts']} tokens per scan · Region: {region}</div>
     </div>
   );
 }

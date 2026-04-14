@@ -23,7 +23,7 @@ const STEPS = [
     title: 'Add to Chrome',
     desc: 'Click the install button below to add NychIQ to your Chrome browser from the Chrome Web Store.',
     icon: Download,
-    color: '#3B82F6',
+    color: '#888888',
   },
   {
     num: '2',
@@ -37,7 +37,7 @@ const STEPS = [
     title: 'Browse YouTube',
     desc: 'Visit any YouTube video or channel page and NychIQ will automatically show real-time insights.',
     icon: Globe,
-    color: '#10B981',
+    color: '#888888',
   },
 ];
 
@@ -55,14 +55,14 @@ const SETUP_STEPS = [
     title: 'Saku AI Welcome',
     desc: 'Get your first personalized intelligence briefing',
     icon: Sparkles,
-    color: '#8B5CF6',
+    color: '#888888',
   },
   {
     num: '3',
     title: 'Channel Intelligence',
     desc: 'View real audit data & activate your assistant',
     icon: BarChart3,
-    color: '#10B981',
+    color: '#888888',
   },
 ];
 
@@ -106,8 +106,8 @@ export function OnboardingExtension() {
   /* Post-install roadmap section */
   const postInstallRoadmap = extensionClicked && (
     <div className="animate-fade-in-up space-y-3">
-      <div className="rounded-xl bg-[#141414] border border-[#1F1F1F] p-4">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-[#A3A3A3] mb-3">What comes next</p>
+      <div className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-[#a0a0a0] mb-3">What comes next</p>
         <div className="space-y-2.5">
           {SETUP_STEPS.map((step, idx) => {
             const StepIcon = step.icon;
@@ -124,7 +124,7 @@ export function OnboardingExtension() {
                   <p className="text-[10px] text-[#666666]">{step.desc}</p>
                 </div>
                 {idx < SETUP_STEPS.length - 1 && (
-                  <ArrowRight className="w-3 h-3 text-[#555555] shrink-0" />
+                  <ArrowRight className="w-3 h-3 text-[#666666] shrink-0" />
                 )}
               </div>
             );
@@ -133,7 +133,7 @@ export function OnboardingExtension() {
       </div>
 
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
         onClick={handleContinueToSetup}
       >
         Continue to Setup
@@ -146,7 +146,7 @@ export function OnboardingExtension() {
   const preInstallActions = !extensionClicked && (
     <>
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
         onClick={handleGoToDashboard}
       >
         Go to Dashboard
@@ -155,7 +155,7 @@ export function OnboardingExtension() {
 
       <button
         onClick={handleSkipExtension}
-        className="block text-xs text-[#555555] hover:text-[#A3A3A3] transition-colors mx-auto"
+        className="block text-xs text-[#666666] hover:text-[#a0a0a0] transition-colors mx-auto"
       >
         Skip extension, start using NychIQ &#x2192;
       </button>
@@ -163,9 +163,9 @@ export function OnboardingExtension() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
+    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#141414]">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#0f0f0f]">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -181,12 +181,12 @@ export function OnboardingExtension() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#1F1F1F]'
+                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#0f0f0f]'
                 }`}
               />
             ))}
           </div>
-          <span className="text-[10px] text-[#555555] font-mono">3 of 3</span>
+          <span className="text-[10px] text-[#666666] font-mono">3 of 3</span>
         </div>
       </div>
 
@@ -194,8 +194,8 @@ export function OnboardingExtension() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8">
         <div className="max-w-lg w-full">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.2)] flex items-center justify-center mx-auto mb-6">
-              <Download className="w-8 h-8 text-[#3B82F6]" />
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-6">
+              <Download className="w-8 h-8 text-[#888888]" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">
               Install NychIQ Extension
@@ -212,7 +212,7 @@ export function OnboardingExtension() {
               return (
                 <div
                   key={step.num}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] hover:border-[#2A2A2A] transition-colors"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors"
                 >
                   <div className="flex items-center gap-3 shrink-0">
                     <div
@@ -239,7 +239,7 @@ export function OnboardingExtension() {
 
           {/* Bonus pill */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(253,186,45,0.15)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)]">
               <Coins className="w-4 h-4 text-[#FDBA2D]" />
               <span className="text-xs font-semibold text-[#FDBA2D]">+10 daily tokens with extension installed</span>
             </div>
@@ -251,8 +251,8 @@ export function OnboardingExtension() {
               className={[
                 'w-full h-11 font-semibold shadow-lg transition-all',
                 extensionClicked
-                  ? 'bg-[#10B981] text-white shadow-[rgba(16,185,129,0.15)]'
-                  : 'bg-[#3B82F6] text-white hover:bg-[#3A8AEF] shadow-[rgba(59,130,246,0.15)]',
+                  ? 'bg-[#888888] text-white shadow-[rgba(0,0,0,0.3)]'
+                  : 'bg-[#888888] text-white hover:bg-[#3A8AEF] shadow-[rgba(0,0,0,0.3)]',
               ].join(' ')}
               onClick={handleInstallExtension}
             >
@@ -279,10 +279,10 @@ export function OnboardingExtension() {
       {showChannelPopup && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          <div className="relative w-full max-w-md bg-[#141414] border border-[rgba(253,186,45,0.2)] rounded-2xl p-6 sm:p-8 animate-fade-in-up shadow-2xl">
+          <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 sm:p-8 animate-fade-in-up shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.25)] flex items-center justify-center">
+                <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center">
                   <PartyPopper className="w-8 h-8 text-[#FDBA2D]" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#FDBA2D] flex items-center justify-center">
@@ -293,14 +293,14 @@ export function OnboardingExtension() {
             <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-2 text-center">
               Personalize Your AI Assistant
             </h2>
-            <p className="text-sm text-[#A3A3A3] text-center mb-8 leading-relaxed">
+            <p className="text-sm text-[#a0a0a0] text-center mb-8 leading-relaxed">
               Customize your Channel Assistant with your brand voice, audience goals, and content strategy. It&apos;s free for all plans!
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-8">
               {['Brand Voice', 'Audience Goals', 'Content Strategy', 'Niche Targeting'].map((feature) => (
                 <span
                   key={feature}
-                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(253,186,45,0.15)]"
+                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]"
                 >
                   {feature}
                 </span>
@@ -308,7 +308,7 @@ export function OnboardingExtension() {
             </div>
             <div className="space-y-3">
               <Button
-                className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
                 onClick={handleCustomizeNow}
               >
                 Customize Now
@@ -316,7 +316,7 @@ export function OnboardingExtension() {
               </Button>
               <button
                 onClick={handleSkipPopup}
-                className="block w-full text-center text-xs text-[#555] hover:text-[#A3A3A3] transition-colors py-2"
+                className="block w-full text-center text-xs text-[#555] hover:text-[#a0a0a0] transition-colors py-2"
               >
                 Skip, Go to Dashboard &#x2192;
               </button>

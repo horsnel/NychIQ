@@ -96,10 +96,10 @@ export function LoginPage() {
   if (isLoggedIn) return null;
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(253,186,45,0.03)] blur-[100px]" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(139,92,246,0.02)] blur-[80px]" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.06)] blur-[80px]" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
@@ -107,7 +107,7 @@ export function LoginPage() {
           onClick={() => setPage('welcome')}
           className="flex items-center justify-center gap-2.5 mb-8 mx-auto group"
         >
-          <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.2)] group-hover:shadow-[rgba(253,186,45,0.35)] transition-shadow">
+          <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.12)] group-hover:shadow-[rgba(253,186,45,0.12)] transition-shadow">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
@@ -117,15 +117,15 @@ export function LoginPage() {
         </button>
 
         {/* Card */}
-        <div className="bg-[#141414] border border-[#1F1F1F] rounded-xl p-6 sm:p-8">
+        <div className="bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl p-6 sm:p-8">
           {/* Tab toggle */}
-          <div className="flex items-center bg-[#0D0D0D] rounded-lg p-1 mb-6">
+          <div className="flex items-center bg-[#0a0a0a] rounded-lg p-1 mb-6">
             <button
               onClick={() => setMode('signup')}
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'signup'
-                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
-                  : 'text-[#666] hover:text-[#A3A3A3]'
+                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.12)]'
+                  : 'text-[#666] hover:text-[#a0a0a0]'
               }`}
             >
               Sign Up
@@ -134,8 +134,8 @@ export function LoginPage() {
               onClick={() => setMode('login')}
               className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${
                 mode === 'login'
-                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.2)]'
-                  : 'text-[#666] hover:text-[#A3A3A3]'
+                  ? 'bg-[#FDBA2D] text-black shadow-md shadow-[rgba(253,186,45,0.12)]'
+                  : 'text-[#666] hover:text-[#a0a0a0]'
               }`}
             >
               Log In
@@ -169,9 +169,9 @@ export function LoginPage() {
 
               {/* Divider */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
+                <div className="flex-1 h-px bg-[#0f0f0f]" />
                 <span className="text-[10px] text-[#444] font-medium tracking-wider uppercase">OR</span>
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
+                <div className="flex-1 h-px bg-[#0f0f0f]" />
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -185,7 +185,7 @@ export function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -217,12 +217,12 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Min. 6 characters"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#A3A3A3] transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#a0a0a0] transition-colors"
                     >
                       {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -233,7 +233,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignUp || loading}
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.12)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -290,9 +290,9 @@ export function LoginPage() {
 
               {/* Divider */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
+                <div className="flex-1 h-px bg-[#0f0f0f]" />
                 <span className="text-[10px] text-[#444] font-medium tracking-wider uppercase">OR</span>
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
+                <div className="flex-1 h-px bg-[#0f0f0f]" />
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -307,7 +307,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -316,7 +316,7 @@ export function LoginPage() {
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="login-password" className="text-xs text-[#666] font-medium">Password</Label>
-                    <button type="button" className="text-[11px] text-[#FDBA2D] hover:text-[#FDE68A] transition-colors">
+                    <button type="button" className="text-[11px] text-[#FDBA2D] hover:text-[#FDBA2D] transition-colors">
                       Forgot password?
                     </button>
                   </div>
@@ -328,12 +328,12 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="pl-9 pr-9 bg-[#0D0D0D] border-[#1F1F1F] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#A3A3A3] transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#444] hover:text-[#a0a0a0] transition-colors"
                     >
                       {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -344,7 +344,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={!canSignIn || loading}
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.12)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -365,7 +365,7 @@ export function LoginPage() {
                 Don&apos;t have an account?{' '}
                 <button
                   onClick={() => setMode('signup')}
-                  className="text-[#FDBA2D] hover:text-[#FDE68A] font-medium transition-colors"
+                  className="text-[#FDBA2D] hover:text-[#FDBA2D] font-medium transition-colors"
                 >
                   Sign up free
                 </button>
@@ -377,7 +377,7 @@ export function LoginPage() {
         {/* Back link */}
         <button
           onClick={() => setPage('welcome')}
-          className="mt-6 text-xs text-[#444] hover:text-[#A3A3A3] transition-colors mx-auto block flex items-center gap-1"
+          className="mt-6 text-xs text-[#444] hover:text-[#a0a0a0] transition-colors mx-auto block flex items-center gap-1"
         >
           <ArrowRight className="w-3 h-3 rotate-180" />
           Back to home

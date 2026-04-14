@@ -89,9 +89,9 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'fault-1',
     icon: <AlertTriangle className="w-4 h-4" />,
-    iconColor: '#EF4444',
+    iconColor: '#888888',
     iconBg: 'rgba(239,68,68,0.1)',
-    borderColor: 'rgba(239,68,68,0.25)',
+    borderColor: 'rgba(255,255,255,0.06)',
     title: urgentItem.title,
     description: urgentItem.description,
     tool: urgentItem.tool,
@@ -104,9 +104,9 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'comp-1',
     icon: <Eye className="w-4 h-4" />,
-    iconColor: '#3B82F6',
+    iconColor: '#888888',
     iconBg: 'rgba(59,130,246,0.1)',
-    borderColor: 'rgba(59,130,246,0.25)',
+    borderColor: 'rgba(255,255,255,0.06)',
     title: compItem.title,
     description: compItem.description,
     tool: compItem.tool,
@@ -119,9 +119,9 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'niche-1',
     icon: <Target className="w-4 h-4" />,
-    iconColor: '#8B5CF6',
+    iconColor: '#888888',
     iconBg: 'rgba(139,92,246,0.1)',
-    borderColor: 'rgba(139,92,246,0.25)',
+    borderColor: 'rgba(255,255,255,0.06)',
     title: nicheItem.title,
     description: nicheItem.description,
     tool: nicheItem.tool,
@@ -136,7 +136,7 @@ function generateDailyInsights(): DailyInsightItem[] {
     icon: <Lightbulb className="w-4 h-4" />,
     iconColor: '#FDBA2D',
     iconBg: 'rgba(253,186,45,0.1)',
-    borderColor: 'rgba(253,186,45,0.25)',
+    borderColor: 'rgba(255,255,255,0.06)',
     title: growthItem.title,
     description: growthItem.description,
     tool: growthItem.tool,
@@ -206,7 +206,7 @@ export function SakuDailyPopup() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        className="sm:max-w-lg bg-[#141414] border-[#1F1F1F] p-0 overflow-hidden"
+        className="sm:max-w-lg bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] p-0 overflow-hidden"
         showCloseButton={true}
       >
         {/* ── Header ── */}
@@ -215,17 +215,17 @@ export function SakuDailyPopup() {
             <div className="flex items-center gap-3">
               {/* Saku AI avatar */}
               <div className="relative">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#6B3FA0] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(139,92,246,0.3)]">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#888888] to-[#6B3FA0] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(0,0,0,0.3)]">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 {/* Online indicator */}
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#10B981] border-2 border-[#141414]" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#888888] border-2 border-[#0f0f0f]" />
               </div>
               <div>
                 <DialogTitle className="text-base font-bold text-[#FFFFFF]">
                   Saku Daily Intelligence
                 </DialogTitle>
-                <DialogDescription className="text-xs text-[#A3A3A3] mt-0.5">
+                <DialogDescription className="text-xs text-[#a0a0a0] mt-0.5">
                   {insights.length} insights for today &middot; {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
                 </DialogDescription>
               </div>
@@ -235,10 +235,10 @@ export function SakuDailyPopup() {
             <span
               className={cn(
                 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider',
-                currentInsight.priority === 'urgent' && 'bg-[rgba(239,68,68,0.15)] text-[#EF4444] border border-[rgba(239,68,68,0.3)]',
-                currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(253,186,45,0.3)]',
-                currentInsight.priority === 'medium' && 'bg-[rgba(59,130,246,0.15)] text-[#3B82F6] border border-[rgba(59,130,246,0.3)]',
-                currentInsight.priority === 'info' && 'bg-[rgba(16,185,129,0.15)] text-[#10B981] border border-[rgba(16,185,129,0.3)]',
+                currentInsight.priority === 'urgent' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
+                currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]',
+                currentInsight.priority === 'medium' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
+                currentInsight.priority === 'info' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
               )}
             >
               {currentInsight.priority === 'urgent' ? 'Urgent' : currentInsight.priority === 'high' ? 'High' : currentInsight.priority === 'medium' ? 'Medium' : 'Tip'}
@@ -258,7 +258,7 @@ export function SakuDailyPopup() {
             />
           </div>
           <div className="flex items-center justify-between mt-1.5">
-            <span className="text-[10px] text-[#555555]">
+            <span className="text-[10px] text-[#666666]">
               {currentIndex + 1} of {insights.length}
             </span>
             <div className="flex items-center gap-1">
@@ -267,7 +267,7 @@ export function SakuDailyPopup() {
                   key={i}
                   className={cn(
                     'w-1.5 h-1.5 rounded-full transition-colors',
-                    i === currentIndex ? currentInsight.iconColor : i < currentIndex ? '#555555' : '#2A2A2A'
+                    i === currentIndex ? currentInsight.iconColor : i < currentIndex ? '#666666' : '#1a1a1a'
                   )}
                 />
               ))}
@@ -316,7 +316,7 @@ export function SakuDailyPopup() {
               }}
               className="flex items-center gap-2 mt-3 px-3 py-2 rounded-md bg-black/20 border border-white/5 hover:bg-black/30 transition-colors w-full group"
             >
-              <span className="text-xs text-[#A3A3A3] group-hover:text-[#FFFFFF] transition-colors">
+              <span className="text-xs text-[#a0a0a0] group-hover:text-[#FFFFFF] transition-colors">
                 Open {currentInsight.toolLabel} to fix
               </span>
               <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#FDBA2D] transition-colors ml-auto" />
@@ -329,7 +329,7 @@ export function SakuDailyPopup() {
           <Button
             variant="ghost"
             onClick={handleDismiss}
-            className="w-full sm:w-auto border border-[#2A2A2A] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] rounded-lg"
+            className="w-full sm:w-auto border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] rounded-lg"
           >
             <X className="w-4 h-4 mr-2" />
             Dismiss All
@@ -338,7 +338,7 @@ export function SakuDailyPopup() {
           {!isLast ? (
             <Button
               onClick={handleNext}
-              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#333333] text-[#FFFFFF] hover:bg-[#1F1F1F] hover:border-[#444444] rounded-lg transition-all"
+              className="w-full sm:w-auto bg-[#1A1A1A] border border-[#1a1a1a] text-[#FFFFFF] hover:bg-[#0f0f0f] hover:border-[#666666] rounded-lg transition-all"
             >
               Next Insight
               <ChevronRight className="w-4 h-4 ml-2" />
@@ -346,7 +346,7 @@ export function SakuDailyPopup() {
           ) : (
             <Button
               onClick={handleFixNow}
-              className="w-full sm:w-auto bg-[#FDBA2D] hover:bg-[#C69320] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.3)]"
+              className="w-full sm:w-auto bg-[#FDBA2D] hover:bg-[#C69320] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.12)]"
             >
               <Zap className="w-4 h-4 mr-2" />
               Fix Now — {currentInsight.toolLabel}

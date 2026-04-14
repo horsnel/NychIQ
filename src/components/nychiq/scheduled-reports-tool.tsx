@@ -59,8 +59,8 @@ const REPORT_TYPE_LABELS: Record<ReportType, string> = {
 };
 
 const REPORT_TYPE_COLORS: Record<ReportType, string> = {
-  weekly: '#10B981',
-  monthly: '#8B5CF6',
+  weekly: '#888888',
+  monthly: '#888888',
   custom: '#FDBA2D',
 };
 
@@ -110,8 +110,8 @@ const INITIAL_HISTORY: DeliveryRecord[] = [
 /* ── Status badge ── */
 function StatusBadge({ status }: { status: DeliveryStatus }) {
   const config = {
-    sent: { color: '#10B981', icon: CheckCircle2, label: 'Sent' },
-    failed: { color: '#EF4444', icon: XCircle, label: 'Failed' },
+    sent: { color: '#888888', icon: CheckCircle2, label: 'Sent' },
+    failed: { color: '#888888', icon: XCircle, label: 'Failed' },
     pending: { color: '#FDBA2D', icon: Clock, label: 'Pending' },
   }[status];
   const Icon = config.icon;
@@ -235,15 +235,15 @@ export function ScheduledReportsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg bg-[rgba(139,92,246,0.1)]">
-              <CalendarClock className="w-5 h-5 text-[#8B5CF6]" />
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <CalendarClock className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Scheduled Reports</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Automate recurring analytics reports delivered on your schedule.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Automate recurring analytics reports delivered on your schedule.</p>
             </div>
           </div>
         </div>
@@ -251,21 +251,21 @@ export function ScheduledReportsTool() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatCard label="Active Schedules" value={activeCount} color="#8B5CF6" icon={<CalendarClock className="w-4 h-4" />} />
-        <StatCard label="Reports Delivered" value={sentCount} color="#10B981" icon={<CheckCircle2 className="w-4 h-4" />} />
+        <StatCard label="Active Schedules" value={activeCount} color="#888888" icon={<CalendarClock className="w-4 h-4" />} />
+        <StatCard label="Reports Delivered" value={sentCount} color="#888888" icon={<CheckCircle2 className="w-4 h-4" />} />
         <StatCard label="Total Schedules" value={schedules.length} color="#FDBA2D" icon={<FileText className="w-4 h-4" />} />
-        <StatCard label="Delivery Rate" value="92%" change="+2.4%" changeType="up" color="#3B82F6" icon={<TrendingUp className="w-4 h-4" />} />
+        <StatCard label="Delivery Rate" value="92%" change="+2.4%" changeType="up" color="#888888" icon={<TrendingUp className="w-4 h-4" />} />
       </div>
 
       {/* Schedule Configuration + Preview side by side on desktop */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Schedule Configuration */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Schedule Configuration</h3>
+            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Schedule Configuration</h3>
             <button
               onClick={() => setShowNewForm(!showNewForm)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] text-xs font-semibold text-[#8B5CF6] hover:bg-[rgba(139,92,246,0.2)] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-xs font-semibold text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               New Schedule
@@ -274,10 +274,10 @@ export function ScheduledReportsTool() {
 
           {/* New schedule form */}
           {showNewForm && (
-            <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4 mb-4 space-y-4">
+            <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4 mb-4 space-y-4">
               {/* Report Type */}
               <div>
-                <label className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider block mb-2">Report Type</label>
+                <label className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider block mb-2">Report Type</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {(['weekly', 'monthly', 'custom'] as ReportType[]).map((type) => (
                     <button
@@ -285,8 +285,8 @@ export function ScheduledReportsTool() {
                       onClick={() => setNewSchedule((p) => ({ ...p, type }))}
                       className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                         newSchedule.type === type
-                          ? 'border-[rgba(139,92,246,0.4)] bg-[rgba(139,92,246,0.1)] text-[#8B5CF6]'
-                          : 'border-[#1A1A1A] bg-[#0D0D0D] text-[#A3A3A3] hover:border-[#2A2A2A]'
+                          ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
+                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#a0a0a0] hover:border-[rgba(255,255,255,0.1)]'
                       }`}
                     >
                       {REPORT_TYPE_LABELS[type]}
@@ -297,7 +297,7 @@ export function ScheduledReportsTool() {
 
               {/* Day Picker */}
               <div>
-                <label className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider block mb-2">Delivery Days</label>
+                <label className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider block mb-2">Delivery Days</label>
                 <div className="flex flex-wrap gap-2">
                   {DAYS.map((day) => (
                     <button
@@ -305,8 +305,8 @@ export function ScheduledReportsTool() {
                       onClick={() => toggleDay(day)}
                       className={`w-10 h-9 rounded-lg text-xs font-semibold transition-all border ${
                         newSchedule.days.includes(day)
-                          ? 'border-[rgba(139,92,246,0.4)] bg-[rgba(139,92,246,0.15)] text-[#8B5CF6]'
-                          : 'border-[#1A1A1A] bg-[#0D0D0D] text-[#555555] hover:border-[#2A2A2A] hover:text-[#A3A3A3]'
+                          ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
+                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)] hover:text-[#a0a0a0]'
                       }`}
                     >
                       {day}
@@ -317,31 +317,31 @@ export function ScheduledReportsTool() {
 
               {/* Time Picker */}
               <div>
-                <label className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider block mb-2">Delivery Time</label>
+                <label className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider block mb-2">Delivery Time</label>
                 <div className="relative">
                   <select
                     value={newSchedule.time}
                     onChange={(e) => setNewSchedule((p) => ({ ...p, time: e.target.value }))}
-                    className="w-full h-10 px-3 pr-10 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors appearance-none cursor-pointer"
+                    className="w-full h-10 px-3 pr-10 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#888888]/50 transition-colors appearance-none cursor-pointer"
                   >
                     {TIMES.map((t) => (
                       <option key={t} value={t}>{t}</option>
                     ))}
                   </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555] pointer-events-none" />
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666] pointer-events-none" />
                 </div>
               </div>
 
               {/* Delivery Method */}
               <div>
-                <label className="text-[11px] font-bold text-[#A3A3A3] uppercase tracking-wider block mb-2">Delivery Method</label>
+                <label className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider block mb-2">Delivery Method</label>
                 <div className="flex gap-3">
                   <button
                     onClick={() => setNewSchedule((p) => ({ ...p, email: !p.email }))}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                       newSchedule.email
-                        ? 'border-[rgba(16,185,129,0.4)] bg-[rgba(16,185,129,0.1)] text-[#10B981]'
-                        : 'border-[#1A1A1A] bg-[#0D0D0D] text-[#555555] hover:border-[#2A2A2A]'
+                        ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
+                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)]'
                     }`}
                   >
                     <Mail className="w-3.5 h-3.5" />
@@ -351,8 +351,8 @@ export function ScheduledReportsTool() {
                     onClick={() => setNewSchedule((p) => ({ ...p, inApp: !p.inApp }))}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                       newSchedule.inApp
-                        ? 'border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.1)] text-[#3B82F6]'
-                        : 'border-[#1A1A1A] bg-[#0D0D0D] text-[#555555] hover:border-[#2A2A2A]'
+                        ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
+                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)]'
                     }`}
                   >
                     <Bell className="w-3.5 h-3.5" />
@@ -365,13 +365,13 @@ export function ScheduledReportsTool() {
               <div className="flex gap-2 pt-1">
                 <button
                   onClick={createSchedule}
-                  className="flex-1 h-10 rounded-lg bg-[#8B5CF6] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors"
+                  className="flex-1 h-10 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors"
                 >
                   Create Schedule
                 </button>
                 <button
                   onClick={() => setShowNewForm(false)}
-                  className="px-4 h-10 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#A3A3A3] hover:border-[#2A2A2A] transition-colors"
+                  className="px-4 h-10 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#a0a0a0] hover:border-[rgba(255,255,255,0.1)] transition-colors"
                 >
                   Cancel
                 </button>
@@ -386,8 +386,8 @@ export function ScheduledReportsTool() {
                 key={schedule.id}
                 className={`rounded-lg border p-4 transition-all ${
                   schedule.enabled
-                    ? 'bg-[#0D0D0D] border-[#1A1A1A]'
-                    : 'bg-[#0D0D0D] border-[#1A1A1A] opacity-50'
+                    ? 'bg-[#0a0a0a] border-[#1A1A1A]'
+                    : 'bg-[#0a0a0a] border-[#1A1A1A] opacity-50'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -398,17 +398,17 @@ export function ScheduledReportsTool() {
                     />
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-[#FFFFFF] truncate">{schedule.label}</p>
-                      <p className="text-xs text-[#A3A3A3] mt-0.5">
+                      <p className="text-xs text-[#a0a0a0] mt-0.5">
                         {schedule.days.join(', ')} · {schedule.time}
                       </p>
                       <div className="flex items-center gap-2 mt-1.5">
                         {schedule.deliveryMethods.includes('email') && (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-[#10B981]">
+                          <span className="inline-flex items-center gap-1 text-[10px] text-[#888888]">
                             <Mail className="w-3 h-3" /> Email
                           </span>
                         )}
                         {schedule.deliveryMethods.includes('in-app') && (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-[#3B82F6]">
+                          <span className="inline-flex items-center gap-1 text-[10px] text-[#888888]">
                             <Bell className="w-3 h-3" /> In-App
                           </span>
                         )}
@@ -418,14 +418,14 @@ export function ScheduledReportsTool() {
                   <div className="flex items-center gap-1.5 shrink-0">
                     <button onClick={() => toggleSchedule(schedule.id)} className="p-1.5 rounded-md hover:bg-[#1A1A1A] transition-colors">
                       {schedule.enabled ? (
-                        <ToggleRight className="w-5 h-5 text-[#8B5CF6]" />
+                        <ToggleRight className="w-5 h-5 text-[#888888]" />
                       ) : (
-                        <ToggleLeft className="w-5 h-5 text-[#555555]" />
+                        <ToggleLeft className="w-5 h-5 text-[#666666]" />
                       )}
                     </button>
                     <button
                       onClick={() => deleteSchedule(schedule.id)}
-                      className="p-1.5 rounded-md hover:bg-[rgba(239,68,68,0.1)] transition-colors text-[#555555] hover:text-[#EF4444]"
+                      className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] transition-colors text-[#666666] hover:text-[#888888]"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -433,8 +433,8 @@ export function ScheduledReportsTool() {
                 </div>
                 {schedule.enabled && (
                   <div className="mt-3 pt-3 border-t border-[#1A1A1A]">
-                    <p className="text-[11px] text-[#555555]">
-                      Next delivery: <span className="text-[#A3A3A3]">{schedule.nextDelivery}</span>
+                    <p className="text-[11px] text-[#666666]">
+                      Next delivery: <span className="text-[#a0a0a0]">{schedule.nextDelivery}</span>
                     </p>
                   </div>
                 )}
@@ -444,13 +444,13 @@ export function ScheduledReportsTool() {
         </div>
 
         {/* Report Preview */}
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider">Report Preview</h3>
+            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Report Preview</h3>
             <button
               onClick={handlePreview}
               disabled={previewLoading}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(253,186,45,0.2)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors disabled:opacity-50"
             >
               {previewLoading ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -477,27 +477,27 @@ export function ScheduledReportsTool() {
 
           {!previewLoading && !showPreview && (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="w-12 h-12 rounded-xl bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center mb-3">
-                <Eye className="w-6 h-6 text-[#8B5CF6]" />
+              <div className="w-12 h-12 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-3">
+                <Eye className="w-6 h-6 text-[#888888]" />
               </div>
-              <p className="text-sm text-[#A3A3A3] text-center">Click &quot;Preview Report&quot; to generate a sample report.</p>
+              <p className="text-sm text-[#a0a0a0] text-center">Click &quot;Preview Report&quot; to generate a sample report.</p>
             </div>
           )}
 
           {!previewLoading && showPreview && (
             <div className="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar">
               {/* Report header */}
-              <div className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-4">
+              <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <BarChart3 className="w-4 h-4 text-[#8B5CF6]" />
+                  <BarChart3 className="w-4 h-4 text-[#888888]" />
                   <h4 className="text-sm font-bold text-[#FFFFFF]">Weekly Performance Summary</h4>
                 </div>
-                <p className="text-[11px] text-[#555555]">Generated: Apr 12, 2026 · Channel: NychIQ Official</p>
+                <p className="text-[11px] text-[#666666]">Generated: Apr 12, 2026 · Channel: NychIQ Official</p>
               </div>
 
               {/* Channel Overview */}
               <div>
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5" /> Channel Overview
                 </h4>
                 <div className="grid grid-cols-2 gap-2">
@@ -507,8 +507,8 @@ export function ScheduledReportsTool() {
                     { label: 'Videos', value: PREVIEW_DATA.channelOverview.videos },
                     { label: 'Avg Watch Time', value: PREVIEW_DATA.channelOverview.avgWatchTime },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-3">
-                      <p className="text-[10px] text-[#555555] uppercase tracking-wider">{item.label}</p>
+                    <div key={item.label} className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-3">
+                      <p className="text-[10px] text-[#666666] uppercase tracking-wider">{item.label}</p>
                       <p className="text-base font-bold text-[#FFFFFF] mt-0.5">{item.value}</p>
                     </div>
                   ))}
@@ -517,16 +517,16 @@ export function ScheduledReportsTool() {
 
               {/* Growth Metrics */}
               <div>
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5" /> Growth Metrics
                 </h4>
                 <div className="space-y-2">
                   {PREVIEW_DATA.growthMetrics.map((m) => (
-                    <div key={m.label} className="flex items-center justify-between rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-3">
-                      <span className="text-xs text-[#A3A3A3]">{m.label}</span>
+                    <div key={m.label} className="flex items-center justify-between rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-3">
+                      <span className="text-xs text-[#a0a0a0]">{m.label}</span>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-bold text-[#FFFFFF]">{m.value}</span>
-                        <span className="text-[10px] font-semibold text-[#10B981]">{m.change}</span>
+                        <span className="text-[10px] font-semibold text-[#888888]">{m.change}</span>
                       </div>
                     </div>
                   ))}
@@ -535,22 +535,22 @@ export function ScheduledReportsTool() {
 
               {/* Top Content */}
               <div>
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5" /> Top Performing Content
                 </h4>
                 <div className="space-y-2">
                   {PREVIEW_DATA.topContent.map((c, i) => (
-                    <div key={i} className="flex items-center gap-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] p-3">
-                      <span className="text-[10px] font-bold text-[#555555] w-4">#{i + 1}</span>
+                    <div key={i} className="flex items-center gap-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-3">
+                      <span className="text-[10px] font-bold text-[#666666] w-4">#{i + 1}</span>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs text-[#FFFFFF] truncate">{c.title}</p>
-                        <p className="text-[10px] text-[#555555]">{c.views} views</p>
+                        <p className="text-[10px] text-[#666666]">{c.views} views</p>
                       </div>
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold text-white"
                         style={{
                           backgroundColor: c.score >= 80 ? 'rgba(16,185,129,0.2)' : c.score >= 60 ? 'rgba(253,186,45,0.2)' : 'rgba(59,130,246,0.2)',
-                          color: c.score >= 80 ? '#10B981' : c.score >= 60 ? '#FDBA2D' : '#3B82F6',
+                          color: c.score >= 80 ? '#888888' : c.score >= 60 ? '#FDBA2D' : '#888888',
                         }}
                       >
                         {c.score}
@@ -562,14 +562,14 @@ export function ScheduledReportsTool() {
 
               {/* Recommendations */}
               <div>
-                <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5" /> Recommendations
                 </h4>
                 <div className="space-y-2">
                   {PREVIEW_DATA.recommendations.map((r, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(139,92,246,0.05)] border border-[rgba(139,92,246,0.1)]">
-                      <span className="w-5 h-5 rounded-full bg-[rgba(139,92,246,0.15)] border border-[rgba(139,92,246,0.3)] flex items-center justify-center text-[10px] font-bold text-[#8B5CF6] shrink-0">{i + 1}</span>
-                      <p className="text-xs text-[#A3A3A3] leading-relaxed">{r}</p>
+                    <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                      <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] font-bold text-[#888888] shrink-0">{i + 1}</span>
+                      <p className="text-xs text-[#a0a0a0] leading-relaxed">{r}</p>
                     </div>
                   ))}
                 </div>
@@ -580,8 +580,8 @@ export function ScheduledReportsTool() {
       </div>
 
       {/* Delivery History */}
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 sm:p-5">
-        <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-4 flex items-center gap-1.5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4 flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5" /> Delivery History
         </h3>
         <div className="overflow-x-auto">
@@ -589,16 +589,16 @@ export function ScheduledReportsTool() {
           <table className="hidden sm:table w-full text-sm">
             <thead>
               <tr className="border-b border-[#1A1A1A]">
-                <th className="text-left text-[11px] font-bold text-[#555555] uppercase tracking-wider pb-3 pr-4">Date</th>
-                <th className="text-left text-[11px] font-bold text-[#555555] uppercase tracking-wider pb-3 pr-4">Report</th>
-                <th className="text-left text-[11px] font-bold text-[#555555] uppercase tracking-wider pb-3 pr-4">Status</th>
-                <th className="text-right text-[11px] font-bold text-[#555555] uppercase tracking-wider pb-3">Action</th>
+                <th className="text-left text-[11px] font-bold text-[#666666] uppercase tracking-wider pb-3 pr-4">Date</th>
+                <th className="text-left text-[11px] font-bold text-[#666666] uppercase tracking-wider pb-3 pr-4">Report</th>
+                <th className="text-left text-[11px] font-bold text-[#666666] uppercase tracking-wider pb-3 pr-4">Status</th>
+                <th className="text-right text-[11px] font-bold text-[#666666] uppercase tracking-wider pb-3">Action</th>
               </tr>
             </thead>
             <tbody>
               {history.map((record) => (
                 <tr key={record.id} className="border-b border-[#1A1A1A] last:border-0">
-                  <td className="py-3 pr-4 text-xs text-[#A3A3A3] whitespace-nowrap">{record.date}</td>
+                  <td className="py-3 pr-4 text-xs text-[#a0a0a0] whitespace-nowrap">{record.date}</td>
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: REPORT_TYPE_COLORS[record.type] }} />
@@ -610,7 +610,7 @@ export function ScheduledReportsTool() {
                     {record.status === 'sent' && (
                       <button
                         onClick={() => handleDownload(record)}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                       >
                         <Download className="w-3 h-3" />
                         Download
@@ -624,9 +624,9 @@ export function ScheduledReportsTool() {
           {/* Mobile cards */}
           <div className="sm:hidden space-y-2">
             {history.map((record) => (
-              <div key={record.id} className="rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] p-3">
+              <div key={record.id} className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-3">
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs text-[#555555]">{record.date}</span>
+                  <span className="text-xs text-[#666666]">{record.date}</span>
                   <StatusBadge status={record.status} />
                 </div>
                 <div className="flex items-center gap-2 mb-2">
@@ -636,7 +636,7 @@ export function ScheduledReportsTool() {
                 {record.status === 'sent' && (
                   <button
                     onClick={() => handleDownload(record)}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-[#A3A3A3] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
+                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
                   >
                     <Download className="w-3 h-3" />
                     Download
@@ -649,7 +649,7 @@ export function ScheduledReportsTool() {
       </div>
 
       {/* Footer note */}
-      <div className="text-center text-[11px] text-[#444444]">
+      <div className="text-center text-[11px] text-[#666666]">
         Scheduled Reports — Free for Agency plan members
       </div>
     </div>

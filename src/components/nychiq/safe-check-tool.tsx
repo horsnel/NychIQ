@@ -90,32 +90,32 @@ Return ONLY the JSON object.`;
     }
   };
   const statusConfig: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
-    Safe: { color: '#10B981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', icon: <CheckCircle className="w-5 h-5" /> },
+    Safe: { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', icon: <CheckCircle className="w-5 h-5" /> },
     Caution: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <AlertTriangle className="w-5 h-5" /> },
-    Risky: { color: '#EF4444', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', icon: <XCircle className="w-5 h-5" /> },
-    Dangerous: { color: '#EF4444', bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.5)', icon: <Shield className="w-5 h-5" /> },
+    Risky: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', icon: <XCircle className="w-5 h-5" /> },
+    Dangerous: { color: '#888888', bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.5)', icon: <Shield className="w-5 h-5" /> },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(16,185,129,0.1)]"><ShieldCheck className="w-5 h-5 text-[#10B981]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><ShieldCheck className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Safe Content Checker</h2>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">Scans scripts/titles for demonetization-risk keywords.</p>
+              <p className="text-xs text-[#a0a0a0] mt-0.5">Scans scripts/titles for demonetization-risk keywords.</p>
             </div>
           </div>
           <div className="space-y-3">
             <textarea value={text} onChange={(e) => setText(e.target.value.slice(0, 3000))}
               placeholder="Paste your video script, title, or description here..."
               rows={5}
-              className="w-full px-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors resize-none"
             />
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-[#666666]">{text.length}/3000 characters</span>
-              <button onClick={handleScan} disabled={loading || !text.trim()} className="px-5 h-10 rounded-lg bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+              <button onClick={handleScan} disabled={loading || !text.trim()} className="px-5 h-10 rounded-lg bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4" />}
                 Scan for Risks
               </button>
@@ -125,15 +125,15 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-6 text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-[#10B981] mx-auto mb-3" />
-          <p className="text-sm text-[#A3A3A3]">Scanning content for risk keywords...</p>
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-[#888888] mx-auto mb-3" />
+          <p className="text-sm text-[#a0a0a0]">Scanning content for risk keywords...</p>
         </div>
       )}
 
       {!loading && result && (
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#10B981]" /> Scan Results</h3>
+          <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> Scan Results</h3>
 
           {/* Status Banner */}
           {(() => {
@@ -144,30 +144,30 @@ Return ONLY the JSON object.`;
                   {cfg.icon}
                   <span className="text-lg font-bold">{result.overallStatus}</span>
                 </div>
-                <p className="text-xs text-[#A3A3A3]">Safety Score: {result.safetyScore}/100 · Advertiser-Friendly: {result.advertiserFriendly}/100</p>
+                <p className="text-xs text-[#a0a0a0]">Safety Score: {result.safetyScore}/100 · Advertiser-Friendly: {result.advertiserFriendly}/100</p>
               </div>
             );
           })()}
 
           {/* Scores */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Safety Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#10B981' : result.safetyScore >= 50 ? '#FDBA2D' : '#EF4444' }}>{result.safetyScore}</p>
+              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#888888' : result.safetyScore >= 50 ? '#FDBA2D' : '#888888' }}>{result.safetyScore}</p>
             </div>
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Advertiser Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#10B981' : result.advertiserFriendly >= 50 ? '#FDBA2D' : '#EF4444' }}>{result.advertiserFriendly}</p>
+              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#888888' : result.advertiserFriendly >= 50 ? '#FDBA2D' : '#888888' }}>{result.advertiserFriendly}</p>
             </div>
           </div>
 
           {/* Risk Keywords */}
           {result.riskKeywords.length > 0 && (
-            <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-              <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {result.riskKeywords.map((kw, i) => {
-                  const sevColor = kw.severity === 'high' ? '#EF4444' : kw.severity === 'medium' ? '#FDBA2D' : '#3B82F6';
+                  const sevColor = kw.severity === 'high' ? '#888888' : kw.severity === 'medium' ? '#FDBA2D' : '#888888';
                   const sevBg = kw.severity === 'high' ? 'rgba(239,68,68,0.1)' : kw.severity === 'medium' ? 'rgba(253,186,45,0.1)' : 'rgba(59,130,246,0.1)';
                   return (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-md border" style={{ backgroundColor: sevBg, borderColor: `${sevColor}20` }}>
@@ -175,8 +175,8 @@ Return ONLY the JSON object.`;
                         {kw.severity.toUpperCase()}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#EF4444]">&quot;{kw.keyword}&quot;</p>
-                        <p className="text-xs text-[#A3A3A3] mt-0.5">Replace with: <span className="text-[#10B981]">&quot;{kw.replacement}&quot;</span></p>
+                        <p className="text-sm font-medium text-[#888888]">&quot;{kw.keyword}&quot;</p>
+                        <p className="text-xs text-[#a0a0a0] mt-0.5">Replace with: <span className="text-[#888888]">&quot;{kw.replacement}&quot;</span></p>
                       </div>
                     </div>
                   );
@@ -186,8 +186,8 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Summary */}
-          <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4">
-            <h4 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-2">Summary</h4>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Summary</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.summary}</p>
           </div>
         </div>
@@ -195,13 +195,13 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-4"><ShieldCheck className="w-8 h-8 text-[#10B981]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><ShieldCheck className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Check Your Content</h3>
-          <p className="text-sm text-[#A3A3A3] max-w-xs text-center">Paste your script or title to scan for demonetization-risk keywords.</p>
+          <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Paste your script or title to scan for demonetization-risk keywords.</p>
         </div>
       )}
 
-      {searched && !loading && <div className="text-center text-[11px] text-[#444444]">Cost: {TOKEN_COSTS['safe-check']} tokens per scan</div>}
+      {searched && !loading && <div className="text-center text-[11px] text-[#666666]">Cost: {TOKEN_COSTS['safe-check']} tokens per scan</div>}
     </div>
   );
 }
