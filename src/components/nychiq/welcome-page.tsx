@@ -116,10 +116,10 @@ function DashboardTerminal() {
         {/* Title bar */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.05]">
           <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#F6A828]/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
+            <div className="flex gap-[6px]">
+              <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F56]" />
+              <div className="w-[10px] h-[10px] rounded-full bg-[#FFBD2E]" />
+              <div className="w-[10px] h-[10px] rounded-full bg-[#27C93F]" />
             </div>
           </div>
           <div className="flex items-center gap-2 bg-[#0D0D0D] rounded-md px-3 py-1">
@@ -127,7 +127,10 @@ function DashboardTerminal() {
             <span className="text-[10px] text-[#666] font-terminal">nychiq.com/dashboard</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="live-dot" style={{ width: 6, height: 6 }} />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#27C93F] opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#27C93F]" />
+            </span>
             <span className="text-[10px] text-[#F6A828] font-terminal font-semibold tracking-wide">LIVE</span>
           </div>
         </div>
@@ -323,16 +326,16 @@ export function WelcomePage() {
                 Predict viral videos before they blow up. Discover trending niches, optimize your content with AI, and outsmart the algorithm.
               </p>
 
-              {/* Stats row */}
+              {/* Stats row — gold values with glow, muted labels */}
               <div className="flex flex-wrap gap-x-8 gap-y-3 mb-10">
                 {[
                   { value: '2.4M+', label: 'Videos Indexed' },
                   { value: '94%', label: 'Viral Accuracy' },
                   { value: '3,200+', label: 'Active Creators' },
                 ].map((stat) => (
-                  <div key={stat.label} className="flex items-baseline gap-1.5">
-                    <span className="stat-number text-lg font-bold text-[#FFFFFF]">{stat.value}</span>
-                    <span className="text-[11px] text-[#555555]">{stat.label}</span>
+                  <div key={stat.label} className="flex items-baseline gap-2">
+                    <span className="text-lg font-black text-[#F6A828]" style={{ textShadow: '0 0 12px rgba(246, 168, 40, 0.4)' }}>{stat.value}</span>
+                    <span className="text-[9px] text-white/40 font-medium tracking-widest uppercase">{stat.label}</span>
                   </div>
                 ))}
               </div>
