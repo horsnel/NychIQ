@@ -245,8 +245,10 @@
 
 /* Sidebar active item indicator */
 .sidebar-active {
-  background: rgba(246,168,40, 0.08);
-  border-right: 2px solid #F6A828;
+  background: rgba(246,168,40, 0.1);
+  border-left: 3px solid #F6A828;
+  box-shadow: inset 4px 0 14px -4px rgba(246,168,40, 0.12);
+  border-radius: 0 6px 6px 0;
 }
 
 /* Token counter animation */

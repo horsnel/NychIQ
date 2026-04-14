@@ -128,14 +128,14 @@ export function Sidebar() {
                         setPage('app');
                       }}
                       className={cn(
-                        'flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-all duration-150',
+                        'flex items-center gap-4 w-full px-3 py-3.5 rounded-md text-sm font-semibold transition-all duration-150',
                         isActive
-                          ? 'sidebar-active bg-[rgba(246,168,40,0.08)] text-[#F6A828]'
+                          ? 'sidebar-active text-[#F6A828]'
                           : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.04)]'
                       )}
                     >
-                      <div className={cn('w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-all duration-200', isActive ? 'bg-[rgba(246,168,40,0.12)]' : '')}>
-                        <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F6A828]' : '')} />
+                      <div className={cn('w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200', isActive ? 'bg-[rgba(246,168,40,0.12)]' : 'bg-[rgba(255,255,255,0.02)]')}>
+                        <Icon className={cn('w-[22px] h-[22px] shrink-0', isActive ? 'text-[#F6A828]' : 'text-[#888888]')} />
                       </div>
                       <span className="truncate">{tool.label}</span>
                       {!hasAccess && (() => {
@@ -179,7 +179,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.03)] shrink-0 sticky top-0">
+      <aside className="hidden lg:flex flex-col w-[270px] h-screen bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.03)] shrink-0 sticky top-0">
         {navContent}
       </aside>
 
