@@ -10,25 +10,34 @@ import {
 import { Button } from '@/components/ui/button';
 import { useNychIQStore } from '@/lib/store';
 
+/* ── Category colors for semantic visual scanning ── */
+type CatColor = 'gold' | 'emerald' | 'coral' | 'indigo';
+const CAT: Record<CatColor, { hex: string; rgba: (a: number) => string }> = {
+  gold:    { hex: '#F6A828', rgba: (a) => `rgba(246,168,40,${a})` },
+  emerald: { hex: '#10B981', rgba: (a) => `rgba(16,185,129,${a})` },
+  coral:   { hex: '#F87171', rgba: (a) => `rgba(248,113,113,${a})` },
+  indigo:  { hex: '#818CF8', rgba: (a) => `rgba(129,140,248,${a})` },
+};
+
 /* ── Feature definitions (17 total) ── */
 const FEATURES = [
-  { num: '01', label: 'DASHBOARD', icon: BarChart3, name: 'Command Center', desc: 'Your complete YouTube analytics hub with real-time stats, activity feed, and quick actions.', tag: 'ALL PLANS' },
-  { num: '02', label: 'TRENDING', icon: TrendingUp, name: 'Live Trend Radar', desc: 'Real-time trending videos across 9 regions with viral scoring and category filtering.', tag: 'LIVE DATA' },
-  { num: '03', label: 'SEARCH', icon: Search, name: 'Universal Search', desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.', tag: 'ALL PLANS' },
-  { num: '04', label: 'VIRAL PREDICTOR', icon: Zap, name: 'Viral Score Engine', desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.', tag: 'AI POWERED' },
-  { num: '05', label: 'NICHE SPY', icon: Eye, name: 'Niche Discovery', desc: 'Uncover untapped niches with high growth potential and low competition scores.', tag: 'AI POWERED' },
-  { num: '06', label: 'ALGORITHM', icon: BrainCircuit, name: 'Algorithm Intel', desc: 'Understand how the YouTube algorithm ranks content in your specific niche.', tag: 'AI POWERED' },
-  { num: '07', label: 'SEO OPTIMIZER', icon: Key, name: 'SEO Toolkit', desc: 'Optimize titles, descriptions, tags, and metadata for maximum discoverability.', tag: 'AI POWERED' },
-  { num: '08', label: 'HOOK GENERATOR', icon: Anchor, name: 'Hook Creator', desc: 'Generate attention-grabbing video hooks and intros using AI trained on viral content.', tag: 'AI POWERED' },
-  { num: '09', label: 'KEYWORD EXPLORER', icon: Search, name: 'Keyword Research', desc: 'Find high-volume, low-competition keywords specific to YouTube search.', tag: 'AI POWERED' },
-  { num: '10', label: 'SCRIPT WRITER', icon: FileText, name: 'AI Script Studio', desc: 'Generate complete video scripts with structure, hooks, CTAs, and timing markers.', tag: 'AI POWERED' },
-  { num: '11', label: 'VIDEO IDEAS', icon: Lightbulb, name: 'Idea Generator', desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.', tag: 'AI POWERED' },
-  { num: '12', label: 'CPM ESTIMATOR', icon: DollarSign, name: 'Revenue Forecaster', desc: 'Estimate CPM rates and projected earnings across niches and regions.', tag: 'LIVE DATA' },
-  { num: '13', label: 'CHANNEL AUDIT', icon: ClipboardCheck, name: 'Health Check', desc: 'Comprehensive channel audit with SEO, branding, content, and engagement scoring.', tag: 'AI POWERED' },
-  { num: '14', label: 'COMPETITOR', icon: Users, name: 'Track & Analyze', desc: 'Monitor competitor channels, content strategies, and growth trajectories.', tag: 'LIVE DATA' },
-  { num: '15', label: 'OUTLIER SCOUT', icon: Radar, name: 'Outlier Detection', desc: 'Find channels that are about to break out based on abnormal growth signals.', tag: 'AI POWERED' },
-  { num: '16', label: 'SAKU AI', icon: Bot, name: 'AI Assistant', desc: 'Your personal YouTube expert — ask anything about strategy, trends, or growth.', tag: 'AI POWERED' },
-  { num: '17', label: 'AUTOMATION', icon: Cpu, name: 'Auto Tasks', desc: 'Set up automated monitoring, alerts, and reporting for your channels.', tag: 'PRO+' },
+  { num: '01', label: 'DASHBOARD', icon: BarChart3, name: 'Command Center', desc: 'Your complete YouTube analytics hub with real-time stats, activity feed, and quick actions.', tag: 'CORE', cat: 'gold' as CatColor },
+  { num: '02', label: 'TRENDING', icon: TrendingUp, name: 'Live Trend Radar', desc: 'Real-time trending videos across 9 regions with viral scoring and category filtering.', tag: 'LIVE DATA', cat: 'emerald' as CatColor },
+  { num: '03', label: 'SEARCH', icon: Search, name: 'Universal Search', desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.', tag: 'CORE', cat: 'gold' as CatColor },
+  { num: '04', label: 'VIRAL PREDICTOR', icon: Zap, name: 'Viral Score Engine', desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.', tag: 'AI POWERED', cat: 'gold' as CatColor },
+  { num: '05', label: 'NICHE SPY', icon: Eye, name: 'Niche Discovery', desc: 'Uncover untapped niches with high growth potential and low competition scores.', tag: 'AI POWERED', cat: 'gold' as CatColor },
+  { num: '06', label: 'ALGORITHM', icon: BrainCircuit, name: 'Algorithm Intel', desc: 'Understand how the YouTube algorithm ranks content in your specific niche.', tag: 'AI POWERED', cat: 'indigo' as CatColor },
+  { num: '07', label: 'SEO OPTIMIZER', icon: Key, name: 'SEO Toolkit', desc: 'Optimize titles, descriptions, tags, and metadata for maximum discoverability.', tag: 'AI POWERED', cat: 'indigo' as CatColor },
+  { num: '08', label: 'HOOK GENERATOR', icon: Anchor, name: 'Hook Creator', desc: 'Generate attention-grabbing video hooks and intros using AI trained on viral content.', tag: 'STRATEGY', cat: 'coral' as CatColor },
+  { num: '09', label: 'KEYWORD EXPLORER', icon: Search, name: 'Keyword Research', desc: 'Find high-volume, low-competition keywords specific to YouTube search.', tag: 'AI POWERED', cat: 'indigo' as CatColor },
+  { num: '10', label: 'SCRIPT WRITER', icon: FileText, name: 'AI Script Studio', desc: 'Generate complete video scripts with structure, hooks, CTAs, and timing markers.', tag: 'STRATEGY', cat: 'coral' as CatColor },
+  { num: '11', label: 'VIDEO IDEAS', icon: Lightbulb, name: 'Idea Generator', desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.', tag: 'STRATEGY', cat: 'coral' as CatColor },
+  { num: '12', label: 'CPM ESTIMATOR', icon: DollarSign, name: 'Revenue Forecaster', desc: 'Estimate CPM rates and projected earnings across niches and regions.', tag: 'LIVE DATA', cat: 'emerald' as CatColor },
+  { num: '13', label: 'CHANNEL AUDIT', icon: ClipboardCheck, name: 'Health Check', desc: 'Comprehensive channel audit with SEO, branding, content, and engagement scoring.', tag: 'STRATEGY', cat: 'coral' as CatColor },
+  { num: '14', label: 'COMPETITOR', icon: Users, name: 'Track & Analyze', desc: 'Monitor competitor channels, content strategies, and growth trajectories.', tag: 'LIVE DATA', cat: 'emerald' as CatColor },
+  { num: '15', label: 'OUTLIER SCOUT', icon: Radar, name: 'Outlier Detection', desc: 'Find channels that are about to break out based on abnormal growth signals.', tag: 'LIVE DATA', cat: 'emerald' as CatColor },
+  { num: '16', label: 'SAKU AI', icon: Bot, name: 'AI Assistant', desc: 'Your personal YouTube expert — ask anything about strategy, trends, or growth.', tag: 'AI POWERED', cat: 'indigo' as CatColor },
+  { num: '17', label: 'AUTOMATION', icon: Cpu, name: 'Auto Tasks', desc: 'Set up automated monitoring, alerts, and reporting for your channels.', tag: 'GROWTH', cat: 'emerald' as CatColor },
 ];
 
 /* ── Pricing plans ── */
@@ -365,37 +374,47 @@ export function WelcomePage() {
             <p className="text-sm text-[#888888] mt-3 max-w-lg leading-relaxed">Every tool you need to research, create, optimize, and grow your YouTube channel — powered by AI.</p>
           </div>
 
-          {/* Grid — glassmorphism cards */}
+          {/* Grid — glassmorphism cards with semantic color system */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {FEATURES.map((feat) => {
               const Icon = feat.icon;
+              const c = CAT[feat.cat];
               return (
                 <button
                   key={feat.num}
                   onClick={() => setPage('login')}
-                  className="group relative text-left p-5 rounded-xl bg-[#141414]/80 backdrop-blur-md border border-white/[0.05] hover:border-[rgba(246,168,40,0.2)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                  className="group relative text-left p-5 rounded-xl bg-[#141414]/80 backdrop-blur-md border border-white/[0.05] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                  style={{ ['--card-color' as string]: c.hex }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = c.rgba(0.35); }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'; }}
                 >
                   {/* Number + badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[9px] font-terminal text-[#444] tracking-widest">{feat.num} / {feat.label}</span>
-                    <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-[rgba(246,168,40,0.08)] text-[#F6A828] border border-[rgba(246,168,40,0.15)] tracking-widest uppercase">
+                    <span
+                      className="text-[9px] font-semibold px-2 py-0.5 rounded-full tracking-widest uppercase"
+                      style={{ color: c.hex, backgroundColor: c.rgba(0.08), border: `1px solid ${c.rgba(0.15)}` }}
+                    >
                       {feat.tag}
                     </span>
                   </div>
 
                   {/* Icon + name */}
                   <div className="flex items-start gap-3 mb-2.5">
-                    <div className="w-9 h-9 rounded-lg bg-[rgba(246,168,40,0.08)] border border-[rgba(246,168,40,0.1)] flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-[#F6A828]" strokeWidth={1.5} />
+                    <div
+                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: c.rgba(0.1), border: `1px solid ${c.rgba(0.12)}` }}
+                    >
+                      <Icon className="w-4 h-4" style={{ color: c.hex }} strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors leading-snug">{feat.name}</h3>
+                    <h3 className="text-sm font-semibold text-[#FFFFFF] leading-snug" style={{ transition: 'color 0.2s' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#FFFFFF'; }}>{feat.name}</h3>
                   </div>
 
                   {/* Description */}
-                  <p className="text-[12px] text-[#666666] leading-relaxed">{feat.desc}</p>
+                  <p className="text-[12px] text-[#888888] leading-relaxed">{feat.desc}</p>
 
                   {/* Hover link */}
-                  <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] group-hover:text-[#F6A828] transition-colors">
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] transition-colors" style={{}} onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#444'; }}>
                     <span>Learn more</span> <ChevronRight className="w-3 h-3" />
                   </div>
                 </button>
