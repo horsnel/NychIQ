@@ -330,7 +330,7 @@ function CalendarTab() {
               onChange={(e) => setNiche(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
               placeholder="Enter your niche or topic..."
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-11 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex flex-wrap gap-2 flex-1">
@@ -364,7 +364,7 @@ function CalendarTab() {
       {/* Loading */}
       {loading && (
         <div className="space-y-4">
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[0, 1, 2].map((i) => (
               <div key={i} className="h-20 rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 animate-pulse" />
             ))}
@@ -641,7 +641,7 @@ Return ONLY the JSON array.`;
                 <input type="text" value={niche} onChange={(e) => setNiche(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                   placeholder="Enter your niche or topic..."
-                  className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                  className="w-full h-11 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
                 />
                 <div className="flex flex-col sm:flex-row gap-2">
                   <div className="flex flex-wrap gap-2 flex-1">

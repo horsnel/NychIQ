@@ -134,7 +134,7 @@ Return ONLY the JSON object.`;
             <input type="text" value={topic} onChange={(e) => setTopic(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
               placeholder="Enter your video topic..."
-              className="w-full h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-11 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
             />
             <div className="flex flex-col sm:flex-row gap-2">
               <div className="flex-1">

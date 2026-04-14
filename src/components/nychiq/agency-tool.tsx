@@ -848,7 +848,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <StatCard icon={Users} label="Total Channels" value={String(agencyChannels.length)} color="#8B5CF6" sub="In agency" />
         <StatCard icon={Bot} label="Configured Agents" value={String(configured)} color="#10B981" sub="Ready to work" />
         <StatCard icon={AlertTriangle} label="Unconfigured" value={String(agencyChannels.length - configured)} color="#FDBA2D" sub="Need setup" />
@@ -1206,7 +1206,7 @@ export function AgencyDashboardTool() {
                     </div>
                     <HealthCircle score={ch.healthScore} size={42} strokeWidth={3} />
                   </div>
-                  <div className="grid grid-cols-3 gap-2 mb-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Views/mo</p><p className="text-xs font-semibold text-[#FFFFFF]">{fmtV(chMonthlyViews)}</p></div>
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Revenue</p><p className="text-xs font-semibold text-[#10B981]">${chMonthlyRevenue.toLocaleString()}</p></div>
                     <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#FDBA2D]">${chCpm > 0 ? chCpm.toFixed(2) : 'N/A'}</p></div>
@@ -1272,7 +1272,7 @@ export function AgencyDashboardTool() {
                         </div>
                         <HealthCircle score={ch.healthScore} size={42} strokeWidth={3} />
                       </div>
-                      <div className="grid grid-cols-3 gap-2 mb-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
                         <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Views/mo</p><p className="text-xs font-semibold text-[#FFFFFF]">{fmtV(ch.monthlyViews)}</p></div>
                         <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Revenue</p><p className="text-xs font-semibold text-[#10B981]">${ch.monthlyRevenue.toLocaleString()}</p></div>
                         <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#FDBA2D]">${ch.cpm.toFixed(2)}</p></div>
@@ -1391,7 +1391,7 @@ export function AgencyDashboardTool() {
                 <span className="text-sm font-bold text-[#FDBA2D]">{whatIfPercent}%</span>
               </div>
               <input type="range" min={0} max={100} value={whatIfPercent} onChange={(e) => setWhatIfPercent(Number(e.target.value))} className="w-full accent-[#FDBA2D]" />
-              <div className="grid grid-cols-3 gap-3 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-3">
                 <div className="p-3 rounded-md bg-[#0D0D0D] border border-[#1A1A1A] text-center">
                   <p className="text-[9px] text-[#666666]">Projected Views</p>
                   <p className="text-sm font-bold text-[#3B82F6]">+{Math.round(whatIfPercent * 2.4)}K</p>
@@ -1465,7 +1465,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Quick Actions */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <button onClick={() => showToast('Client added', 'success')} className="p-4 rounded-lg bg-[#141414] border border-[#1F1F1F] hover:border-[#2A2A2A] transition-colors flex flex-col items-center gap-2">
               <UserPlus className="w-5 h-5 text-[#10B981]" /><span className="text-[11px] font-medium text-[#A3A3A3]">Add Client</span>
             </button>

@@ -138,7 +138,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1"><BarChart3 className="w-3.5 h-3.5 text-[#3B82F6]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{(result.totalViews / 1000).toFixed(1)}K</p>

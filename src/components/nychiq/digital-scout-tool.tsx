@@ -464,7 +464,7 @@ Return ONLY valid JSON matching this schema:
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
           <p className="text-[10px] text-[#A3A3A3] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
           <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
@@ -578,7 +578,7 @@ Return ONLY valid JSON matching this schema:
                     </div>
 
                     {/* Revenue Details */}
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                       <div className="rounded-md bg-[#0D0D0D] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Price Range</p>
                         <p className="text-sm font-semibold text-[#FFFFFF] mt-0.5">{opp.priceRange}</p>

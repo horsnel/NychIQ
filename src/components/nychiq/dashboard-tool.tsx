@@ -122,7 +122,7 @@ function GrowthChart() {
 
   if (!data) {
     return (
-      <div className="w-full h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6 flex items-center justify-center">
+      <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6 flex items-center justify-center">
         <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
       </div>
     );
@@ -157,7 +157,7 @@ function GrowthChart() {
   const labelStep = Math.max(1, Math.floor(data.labels.length / 7));
 
   return (
-    <div className="w-full h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6">
+    <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#1F1F1F] border border-[rgba(255,255,255,0.05)] p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-base font-semibold text-[#FFFFFF]">Growth Trend</h3>
         <div className="flex gap-1 p-0.5 rounded-lg bg-[#0D0D0D] border border-[rgba(255,255,255,0.05)]">
@@ -225,7 +225,7 @@ function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
 function ActivityCard({ item }: { item: typeof ACTIVITY_ITEMS[0] }) {
   const Icon = item.icon;
   return (
-    <div className="flex-1 min-w-0 rounded-xl bg-[#141414] p-4 flex flex-col gap-3">
+    <div className="flex-1 min-w-0 shrink-0 w-[260px] sm:w-auto sm:flex-1 rounded-xl bg-[#141414] p-4 flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${item.color}20`, color: item.color }}>
           <Icon className="w-[18px] h-[18px]" />
@@ -343,7 +343,7 @@ export function DashboardTool() {
           <h3 className="text-base font-semibold text-[#FFFFFF]">Recent Activity</h3>
           <button className="text-xs font-medium text-[#FDBA2D] hover:text-[#FDE68A] transition-colors">View All</button>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
           {ACTIVITY_ITEMS.map((item, i) => (
             <ActivityCard key={i} item={item} />
           ))}

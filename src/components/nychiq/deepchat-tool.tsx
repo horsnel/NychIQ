@@ -368,7 +368,7 @@ You can ask me about:
               type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleLoadVideo(); }}
               placeholder="https://youtube.com/watch?v=..."
-              className="flex-1 h-12 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
+              className="flex-1 h-12 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 transition-colors"
             />
             <button
               onClick={handleLoadVideo}

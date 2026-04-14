@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useNychIQStore, TOOL_META } from '@/lib/store';
+import { cn } from '@/lib/utils';
 import { Sidebar } from '@/components/nychiq/sidebar';
 import { Topbar } from '@/components/nychiq/topbar';
 import { MobileNav } from '@/components/nychiq/mobile-nav';
@@ -270,12 +271,16 @@ function ToolRouter() {
 
 /* ── App shell (sidebar + topbar + content) ── */
 function AppShell() {
-  const { sakuOpen, sakuFullOpen, setSakuOpen, isLoggedIn } = useNychIQStore();
+  const { sakuOpen, sakuFullOpen, setSakuOpen, isLoggedIn, activeTool } = useNychIQStore();
+
+  // Full-width pages: no sidebar, no padding
+  const FULL_WIDTH_TOOLS = ['search', 'channel-pa', 'saku', 'deepchat'];
+  const isFullWidth = FULL_WIDTH_TOOLS.includes(activeTool);
 
   return (
     <div className="flex min-h-screen bg-[#0D0D0D]">
-      {/* Sidebar */}
-      <Sidebar />
+      {/* Sidebar — hidden on full-width pages */}
+      {!isFullWidth && <Sidebar />}
 
       {/* Main area */}
       <div className="flex-1 flex flex-col min-w-0">
@@ -283,7 +288,10 @@ function AppShell() {
         <Topbar />
 
         {/* Content */}
-        <main className="flex-1 p-4 sm:p-6 pb-20 lg:pb-6 overflow-y-auto">
+        <main className={cn(
+          'flex-1 overflow-y-auto',
+          isFullWidth ? 'p-0' : 'p-4 sm:p-6 pb-20 lg:pb-6',
+        )}>
           <ToolRouter />
         </main>
       </div>

@@ -483,7 +483,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       </div>
 
       {/* Metrics grid */}
-      <div className="grid grid-cols-3 gap-2 mb-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
         <MetricPill label="Views" value={video.views} />
         <MetricPill label="Avg. Watch" value={video.avgViewDuration} />
         <MetricPill label="CTR" value={video.ctr} color={parseFloat(video.ctr) >= 7 ? '#10B981' : '#FFFFFF'} />
@@ -980,14 +980,14 @@ Return ONLY the JSON object, no other text.`;
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
                         placeholder="Paste YouTube URL or enter video topic/title..."
-                        className="w-full h-12 pl-10 pr-4 rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all duration-300"
+                        className="w-full h-12 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/40 transition-all duration-300"
                         style={{ caretColor: TOOL_COLOR }}
                       />
                     </div>
                     <button
                       onClick={handleAnalyze}
                       disabled={loading || !input.trim()}
-                      className="px-5 h-12 rounded-xl text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+                      className="px-5 h-12 rounded-full text-[#0D0D0D] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
                       style={{ backgroundColor: TOOL_COLOR }}
                     >
                       {loading ? (

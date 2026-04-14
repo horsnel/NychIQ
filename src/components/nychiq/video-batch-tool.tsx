@@ -498,7 +498,7 @@ export function VideoBatchTool() {
             <h3 className="text-xs font-bold text-[#A3A3A3] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" /> Playlist Breakdown
             </h3>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               <div className="rounded-lg bg-[rgba(16,185,129,0.05)] border border-[rgba(16,185,129,0.15)] p-3 text-center">
                 <p className="text-2xl font-black text-[#10B981]">{summaryStats.keepCount}</p>
                 <p className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mt-0.5">Keep</p>

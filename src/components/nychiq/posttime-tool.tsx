@@ -108,7 +108,7 @@ Return ONLY the JSON object.`;
             <input type="text" value={niche} onChange={(e) => setNiche(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
               placeholder="Enter your niche..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 transition-colors"
+              className="flex-1 h-11 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 transition-colors"
             />
             <select value={region} onChange={(e) => setRegion(e.target.value)}
               className="h-11 px-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none appearance-none cursor-pointer">

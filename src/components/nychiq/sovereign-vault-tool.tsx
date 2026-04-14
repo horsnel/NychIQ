@@ -365,7 +365,7 @@ export function SovereignVaultTool() {
       {activeTab === 'overview' && (
         <div className="space-y-4">
           {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] p-4 text-center">
               <div className="w-8 h-8 rounded-lg bg-[rgba(139,92,246,0.1)] flex items-center justify-center mx-auto mb-2">
                 <Hash className="w-4 h-4 text-[#8B5CF6]" />

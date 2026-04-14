@@ -742,8 +742,7 @@ function OverviewTab({
       {/* ── SUB 1: CHANNEL BANNER + IDENTITY ── */}
       <div className="overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         {/* Banner */}
-        <div className="relative" style={{
-          height: 300,
+        <div className="relative h-[180px] md:h-[300px]" style={{
           background: 'linear-gradient(135deg, #0D0D0D 0%, #141414 40%, rgba(253,186,45,0.08) 100%)',
         }}>
           {/* Pattern overlay */}
@@ -968,7 +967,7 @@ function OverviewTab({
       </div>
 
       {/* ── SUB 6: CONTENT MIX + TRENDING ── */}
-      <div className="flex gap-4 flex-col md:flex-row" style={{ height: 320 }}>
+      <div className="flex gap-4 flex-col lg:flex-row lg:h-[320px] overflow-x-auto lg:overflow-visible">
         {/* Content Mix */}
         <div className="flex-1 p-5 overflow-hidden" style={{ background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <span className="font-semibold" style={{ fontSize: 14, color: '#FFFFFF' }}>Content Mix</span>
@@ -1011,7 +1010,7 @@ function OverviewTab({
         </div>
 
         {/* Trending in Your Niche */}
-        <div className="shrink-0 p-5 overflow-hidden" style={{ width: 320, background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
+        <div className="shrink-0 p-5 overflow-hidden w-full lg:w-[320px]" style={{ background: '#1F1F1F', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 mb-4">
             <Sparkles size={16} color="#FDBA2D" />
             <span className="font-semibold" style={{ fontSize: 14, color: '#FFFFFF' }}>Trending in Your Niche</span>

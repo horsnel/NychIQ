@@ -238,7 +238,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheA(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche A (e.g., Finance)"
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 focus:ring-1 focus:ring-[#8B5CF6]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#8B5CF6]/50 focus:ring-1 focus:ring-[#8B5CF6]/20 transition-colors"
               />
             </div>
             <div className="hidden sm:block text-lg font-bold text-[#444444] px-1">VS</div>
@@ -250,7 +250,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheB(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche B (e.g., Gaming)"
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
               />
             </div>
             <button
@@ -310,7 +310,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Comparison Table */}
           <div className="rounded-lg bg-[#141414] border border-[#1F1F1F] overflow-hidden">
-            <div className="grid grid-cols-3 text-center border-b border-[#1A1A1A]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 text-center border-b border-[#1A1A1A]">
               <div className="px-4 py-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8B5CF6' }}>A</span>
                 <p className="text-sm font-bold text-[#FFFFFF] mt-1">{result.nicheA}</p>

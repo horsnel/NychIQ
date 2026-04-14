@@ -446,7 +446,7 @@ Return ONLY the JSON object, no other text.`;
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Engagement Velocity</h3>
             </div>
             <div className="p-4 sm:p-5">
-              <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                 <div className="text-center p-3 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A]">
                   <p className="text-sm font-bold text-[#FFFFFF]">{result.engagement.first24hViews}</p>
                   <p className="text-[10px] text-[#A3A3A3] mt-0.5">First 24h</p>

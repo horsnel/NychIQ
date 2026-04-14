@@ -745,7 +745,7 @@ Return ONLY the JSON array, no other text.`;
             value={niche}
             onChange={(e) => setNiche(e.target.value)}
             placeholder="e.g., Fitness, Tech Reviews, Personal Finance..."
-            className="w-full h-10 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+            className="w-full h-10 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             style={{ caretColor: '#FDBA2D' }}
             onFocus={(e) => { e.target.style.borderColor = 'rgba(253,186,45,0.5)'; }}
             onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}

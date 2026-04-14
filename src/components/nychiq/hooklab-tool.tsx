@@ -308,7 +308,7 @@ Return ONLY the JSON object, no other text.`;
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
               placeholder="Video URL (optional — paste transcript below instead)"
-              className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
+              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 focus:ring-1 focus:ring-[#EF4444]/20 transition-colors"
             />
           </div>
 

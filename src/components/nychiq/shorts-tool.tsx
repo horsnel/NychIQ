@@ -284,7 +284,7 @@ export function ShortsTool() {
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         <StatCard label="Shorts Found" value={videos.length} change="↑ 8%" color="#10B981" dark icon={<Flame className="w-4 h-4" />} />
         <StatCard label="Total Views" value={fmtV(totalViews)} color="#3B82F6" dark icon={<Eye className="w-4 h-4" />} />
         <StatCard label="Top Viral Score" value={topViral || '—'} color="#FDBA2D" dark icon={<Zap className="w-4 h-4" />} />

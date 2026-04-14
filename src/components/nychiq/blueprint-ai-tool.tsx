@@ -222,7 +222,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setTopic(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Enter video topic or keyword..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
                 style={{ caretColor: '#10B981' }}
                 onFocus={(e) => { e.target.style.borderColor = 'rgba(16,185,129,0.5)'; }}
                 onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}

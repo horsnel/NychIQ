@@ -516,7 +516,7 @@ export function WelcomePage() {
                 </div>
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-4 border-t border-[#1E1E1E]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-[#1E1E1E]">
                   {[
                     { label: 'Trending', value: '142' },
                     { label: 'Top Score', value: '94' },

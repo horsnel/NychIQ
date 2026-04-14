@@ -153,7 +153,7 @@ Return ONLY the JSON array, no other text.`;
                 onChange={(e) => setChannelInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') searchMentions(); }}
                 placeholder="e.g. MrBeast, @mkbhd, Mark Rober"
-                className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
               />
               <button
                 onClick={searchMentions}

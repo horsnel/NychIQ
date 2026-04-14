@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNiche(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Your niche..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
               />
             </div>
             <input
