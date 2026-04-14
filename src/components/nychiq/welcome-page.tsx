@@ -374,7 +374,7 @@ export function WelcomePage() {
             <p className="text-sm text-[#888888] mt-3 max-w-lg leading-relaxed">Every tool you need to research, create, optimize, and grow your YouTube channel — powered by AI.</p>
           </div>
 
-          {/* Grid — glassmorphism cards with semantic color system */}
+          {/* Grid — glassmorphism cards with Color Wash semantic system */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {FEATURES.map((feat) => {
               const Icon = feat.icon;
@@ -383,10 +383,32 @@ export function WelcomePage() {
                 <button
                   key={feat.num}
                   onClick={() => setPage('login')}
-                  className="group relative text-left p-5 rounded-xl bg-[#141414]/80 backdrop-blur-md border border-white/[0.05] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
-                  style={{ ['--card-color' as string]: c.hex }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = c.rgba(0.35); }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'; }}
+                  className="group relative text-left p-5 rounded-xl bg-[#141414]/80 backdrop-blur-md border border-white/[0.05] cursor-pointer"
+                  style={{ transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)' }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget;
+                    el.style.borderColor = c.rgba(0.3);
+                    el.style.boxShadow = `0 0 30px ${c.rgba(0.06)}, 0 8px 32px rgba(0,0,0,0.3)`;
+                    el.style.transform = 'translateY(-2px)';
+                    const ic = el.querySelector('[data-icon-box]') as HTMLElement | null;
+                    if (ic) {
+                      ic.style.backgroundColor = c.rgba(0.2);
+                      ic.style.borderColor = c.rgba(0.3);
+                      ic.style.boxShadow = `0 0 15px ${c.rgba(0.1)}, inset 0 0 8px ${c.rgba(0.05)}`;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget;
+                    el.style.borderColor = 'rgba(255,255,255,0.05)';
+                    el.style.boxShadow = 'none';
+                    el.style.transform = 'translateY(0)';
+                    const ic = el.querySelector('[data-icon-box]') as HTMLElement | null;
+                    if (ic) {
+                      ic.style.backgroundColor = c.rgba(0.1);
+                      ic.style.borderColor = c.rgba(0.12);
+                      ic.style.boxShadow = 'none';
+                    }
+                  }}
                 >
                   {/* Number + badge */}
                   <div className="flex items-center justify-between mb-4">
@@ -399,22 +421,27 @@ export function WelcomePage() {
                     </span>
                   </div>
 
-                  {/* Icon + name */}
+                  {/* Icon + name — Color Wash container */}
                   <div className="flex items-start gap-3 mb-2.5">
                     <div
+                      data-icon-box
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: c.rgba(0.1), border: `1px solid ${c.rgba(0.12)}` }}
+                      style={{
+                        backgroundColor: c.rgba(0.1),
+                        border: `1px solid ${c.rgba(0.12)}`,
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
                     >
-                      <Icon className="w-4 h-4" style={{ color: c.hex }} strokeWidth={1.5} />
+                      <Icon className="w-4 h-4" style={{ color: c.hex, filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.4))' }} strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-sm font-semibold text-[#FFFFFF] leading-snug" style={{ transition: 'color 0.2s' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#FFFFFF'; }}>{feat.name}</h3>
+                    <h3 className="text-sm font-semibold text-[#FFFFFF] leading-snug" style={{ transition: 'color 0.5s' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#FFFFFF'; }}>{feat.name}</h3>
                   </div>
 
                   {/* Description */}
                   <p className="text-[12px] text-[#888888] leading-relaxed">{feat.desc}</p>
 
                   {/* Hover link */}
-                  <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] transition-colors" style={{}} onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#444'; }}>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444]" style={{ transition: 'color 0.5s' }} onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = c.hex; }} onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#444'; }}>
                     <span>Learn more</span> <ChevronRight className="w-3 h-3" />
                   </div>
                 </button>
