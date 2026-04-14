@@ -117,10 +117,10 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Handshake className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><Handshake className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Sponsorship ROI Calculator</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Calculate exact what to charge for brand deals.</p>
@@ -153,7 +153,7 @@ Return ONLY the JSON object.`;
               />
             </div>
           </div>
-          <button onClick={handleCalculate} disabled={loading || !subs || !views} className="w-full sm:w-auto mt-3 px-5 h-11 rounded-lg bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
+          <button onClick={handleCalculate} disabled={loading || !subs || !views} className="w-full sm:w-auto mt-3 px-5 h-11 rounded-lg bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 flex items-center gap-2 justify-center">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <DollarSign className="w-4 h-4" />}
             Calculate Rates
           </button>
@@ -161,7 +161,7 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#a0a0a0]">Calculating sponsorship rates...</p>
         </div>
@@ -176,17 +176,17 @@ Return ONLY the JSON object.`;
 
           {/* Rate Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Minimum Rate</p>
               <p className="text-2xl font-bold text-[#888888]">{fmtDollar(result.minRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Mid-Range Rate</p>
               <p className="text-2xl font-bold text-[#888888]">{fmtDollar(result.midRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Premium Rate</p>
               <p className="text-2xl font-bold text-[#FDBA2D]">{fmtDollar(result.premiumRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
@@ -195,18 +195,18 @@ Return ONLY the JSON object.`;
 
           {/* Per-metric rates */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Views</p>
               <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKViews)}</p>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3 text-center">
               <p className="text-[10px] text-[#666666] uppercase">Per 1K Subs</p>
               <p className="text-lg font-bold text-[#FFFFFF]">{fmtDollar(result.ratePerKSubs)}</p>
             </div>
           </div>
 
           {/* Market Comparison */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Market Comparison</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.marketComparison}</p>
           </div>
@@ -215,7 +215,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Handshake className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Handshake className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Calculate Your Worth</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your channel stats to get a detailed sponsorship rate card.</p>
         </div>

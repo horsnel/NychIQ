@@ -106,7 +106,7 @@ export function OnboardingExtension() {
   /* Post-install roadmap section */
   const postInstallRoadmap = extensionClicked && (
     <div className="animate-fade-in-up space-y-3">
-      <div className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+      <div className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
         <p className="text-[10px] font-bold uppercase tracking-wider text-[#a0a0a0] mb-3">What comes next</p>
         <div className="space-y-2.5">
           {SETUP_STEPS.map((step, idx) => {
@@ -194,7 +194,7 @@ export function OnboardingExtension() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8">
         <div className="max-w-lg w-full">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
               <Download className="w-8 h-8 text-[#888888]" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">
@@ -212,7 +212,7 @@ export function OnboardingExtension() {
               return (
                 <div
                   key={step.num}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors"
                 >
                   <div className="flex items-center gap-3 shrink-0">
                     <div
@@ -239,7 +239,7 @@ export function OnboardingExtension() {
 
           {/* Bonus pill */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
               <Coins className="w-4 h-4 text-[#FDBA2D]" />
               <span className="text-xs font-semibold text-[#FDBA2D]">+10 daily tokens with extension installed</span>
             </div>
@@ -252,7 +252,7 @@ export function OnboardingExtension() {
                 'w-full h-11 font-semibold shadow-lg transition-all',
                 extensionClicked
                   ? 'bg-[#888888] text-white shadow-[rgba(0,0,0,0.3)]'
-                  : 'bg-[#888888] text-white hover:bg-[#3A8AEF] shadow-[rgba(0,0,0,0.3)]',
+                  : 'bg-[#888888] text-white hover:bg-[#555555] shadow-[rgba(0,0,0,0.3)]',
               ].join(' ')}
               onClick={handleInstallExtension}
             >
@@ -279,10 +279,10 @@ export function OnboardingExtension() {
       {showChannelPopup && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 sm:p-8 animate-fade-in-up shadow-2xl">
+          <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-2xl p-6 sm:p-8 animate-fade-in-up shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center">
+                <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center">
                   <PartyPopper className="w-8 h-8 text-[#FDBA2D]" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#FDBA2D] flex items-center justify-center">
@@ -300,7 +300,7 @@ export function OnboardingExtension() {
               {['Brand Voice', 'Audience Goals', 'Content Strategy', 'Niche Targeting'].map((feature) => (
                 <span
                   key={feature}
-                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]"
+                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]"
                 >
                   {feature}
                 </span>

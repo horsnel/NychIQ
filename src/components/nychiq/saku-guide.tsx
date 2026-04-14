@@ -349,7 +349,7 @@ export function SakuGuide() {
       >
         <div
           key={animKey}
-          className={`pointer-events-auto w-full max-w-[420px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] shadow-2xl shadow-black/50 transition-all duration-300 ${
+          className={`pointer-events-auto w-full max-w-[420px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] shadow-2xl shadow-black/50 transition-all duration-300 ${
             isExiting
               ? 'opacity-0 scale-95 translate-y-4'
               : 'opacity-100 scale-100 translate-y-0'

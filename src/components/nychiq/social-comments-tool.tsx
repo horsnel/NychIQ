@@ -87,9 +87,9 @@ const LOADING_STEPS = [
 
 /* ── Sentiment bar colors ── */
 const SENTIMENT_COLOR = {
-  positive: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', border: 'border-[rgba(255,255,255,0.06)]' },
-  neutral: { bar: 'bg-[#FDBA2D]', text: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', border: 'border-[rgba(255,255,255,0.06)]' },
-  negative: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', border: 'border-[rgba(255,255,255,0.06)]' },
+  positive: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', border: 'border-[rgba(255,255,255,0.03)]' },
+  neutral: { bar: 'bg-[#FDBA2D]', text: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', border: 'border-[rgba(255,255,255,0.03)]' },
+  negative: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', border: 'border-[rgba(255,255,255,0.03)]' },
 };
 
 
@@ -157,7 +157,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -203,7 +203,7 @@ Return ONLY the JSON object, no other text.`;
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={analyzeComments}
-            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -214,7 +214,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* Animated Steps */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="space-y-4">
               {LOADING_STEPS.map((step, i) => (
                 <div
@@ -227,7 +227,7 @@ Return ONLY the JSON object, no other text.`;
                     i === loadingStep
                       ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]'
                       : i < loadingStep
-                        ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]'
+                        ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]'
                         : 'bg-[#1A1A1A] text-[#666666]'
                   }`}>
                     {i < loadingStep ? <ThumbsUp className="w-4 h-4" /> : i === loadingStep ? step.icon : <Minus className="w-4 h-4" />}
@@ -245,7 +245,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Skeleton Results */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 space-y-2">
+              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-16" />
                 <div className="h-8 bg-[#1A1A1A] rounded animate-pulse w-20" />
                 <div className="h-2 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -284,7 +284,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Overall Sentiment Bar */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Overall Sentiment Distribution</h4>
             <div className="flex h-3 rounded-full overflow-hidden bg-[#1A1A1A]">
               <div className="bg-[#888888] transition-all duration-1000" style={{ width: `${result.sentiment.positive}%` }} />
@@ -299,7 +299,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Top Themes */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Top Themes & Requests</h4>
             <div className="space-y-2.5">
               {result.themes.map((theme, i) => {
@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Sample Comments */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Sample Comments</h4>
             <div className="space-y-3">
               {result.comments.map((comment, i) => {
@@ -331,10 +331,10 @@ Return ONLY the JSON object, no other text.`;
                     key={i}
                     className={`p-3 rounded-md border ${
                       comment.sentiment === 'positive'
-                        ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]'
+                        ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]'
                         : comment.sentiment === 'negative'
-                          ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]'
-                          : 'bg-[rgba(253,186,45,0.03)] border-[rgba(255,255,255,0.06)]'
+                          ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]'
+                          : 'bg-[rgba(253,186,45,0.15)] border-[rgba(255,255,255,0.03)]'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1.5">
@@ -361,7 +361,7 @@ Return ONLY the JSON object, no other text.`;
             </h4>
             <div className="space-y-3">
               {result.insights.map((insight, i) => (
-                <div key={i} className="p-3 rounded-md bg-[rgba(253,186,45,0.03)] border border-[rgba(255,255,255,0.06)]">
+                <div key={i} className="p-3 rounded-md bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)]">
                   <h5 className="text-sm font-semibold text-[#FFFFFF] mb-1">{insight.title}</h5>
                   <p className="text-xs text-[#a0a0a0] leading-relaxed">{insight.detail}</p>
                 </div>
@@ -374,7 +374,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Heart className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Comment Sentiment</h3>

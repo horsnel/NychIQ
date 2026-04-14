@@ -98,8 +98,8 @@ export function LoginPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(253,186,45,0.03)] blur-[100px]" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.06)] blur-[80px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[rgba(253,186,45,0.15)] blur-[100px]" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.03)] blur-[80px]" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
@@ -117,7 +117,7 @@ export function LoginPage() {
         </button>
 
         {/* Card */}
-        <div className="bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl p-6 sm:p-8">
+        <div className="bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-xl p-6 sm:p-8">
           {/* Tab toggle */}
           <div className="flex items-center bg-[#0a0a0a] rounded-lg p-1 mb-6">
             <button
@@ -185,7 +185,7 @@ export function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Min. 6 characters"
-                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"
@@ -307,7 +307,7 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                   </div>
                 </div>
@@ -328,7 +328,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
+                      className="pl-9 pr-9 bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-11 focus:border-[#FDBA2D55]"
                     />
                     <button
                       type="button"

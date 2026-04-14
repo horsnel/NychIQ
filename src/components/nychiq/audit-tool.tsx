@@ -123,7 +123,7 @@ export function AuditTool() {
     <div style="font-size:12px;color:#a0a0a0">${now}</div>
   </div>
 
-  <div style="text-align:center;padding:30px 0;margin-bottom:30px;background:#0f0f0f;border-radius:12px;border: 1px solid rgba(255,255,255,0.06)>
+  <div style="text-align:center;padding:30px 0;margin-bottom:30px;background:#0f0f0f;border-radius:12px;border: 1px solid rgba(255,255,255,0.03)>
     <div style="font-size:48px;font-weight:800;color:${scoreColor}">${result.healthScore}</div>
     <div style="font-size:11px;color:#a0a0a0;margin-bottom:8px">Health Score / 100</div>
     <div style="display:inline-block;padding:4px 16px;border-radius:20px;font-size:14px;font-weight:700;color:${scoreColor};background:${scoreColor}15;border:1px solid ${scoreColor}40">Grade: ${grade}</div>
@@ -139,7 +139,7 @@ export function AuditTool() {
     ${actionItemsHtml}
   </div>
 
-  <div style="padding:20px;background:#0f0f0f;border-radius:12px;border: 1px solid rgba(255,255,255,0.06)>
+  <div style="padding:20px;background:#0f0f0f;border-radius:12px;border: 1px solid rgba(255,255,255,0.03)>
     <h2 style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#a0a0a0;text-transform:uppercase;margin-bottom:10px">Improvement Potential</h2>
     <p style="font-size:13px;color:#FFFFFF;line-height:1.7">${result.improvementPotential}</p>
   </div>
@@ -300,7 +300,7 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -325,10 +325,10 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex items-center justify-center">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 flex items-center justify-center">
             <div className="w-36 h-36 rounded-full bg-[#1A1A1A] animate-pulse" />
           </div>
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 space-y-3">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 space-y-3">
             {Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-4 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${50 + Math.random() * 50}%` }} />)}
           </div>
         </div>
@@ -340,7 +340,7 @@ Return ONLY the JSON object.`;
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
             <button
               onClick={handleExportReport}
-              className="px-3.5 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.06)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" /> Export Report
             </button>
@@ -348,13 +348,13 @@ Return ONLY the JSON object.`;
 
           {/* Channel Profile Card */}
           {channelData && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
               <div className="flex items-center gap-4">
                 {channelData.thumbnail ? (
                   <img
                     src={channelData.thumbnail}
                     alt={channelData.title}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-[rgba(255,255,255,0.06)]"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]"
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-[#FDBA2D]/20 border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
@@ -383,12 +383,12 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Health Score */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex flex-col items-center">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 flex flex-col items-center">
             <HealthGauge score={result.healthScore} />
           </div>
 
           {/* Category Scores */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Category Scores</h4>
             <div className="space-y-3">
               {result.categories.map((cat) => {
@@ -409,7 +409,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Items */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Action Items</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.actionItems.map((item, i) => {
@@ -426,7 +426,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Improvement Potential */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Improvement Potential</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.improvementPotential}</p>
           </div>
@@ -435,7 +435,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#FDBA2D]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#FDBA2D]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Audit Your Channel</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a YouTube channel name to get a comprehensive health check with actionable insights.</p>
         </div>

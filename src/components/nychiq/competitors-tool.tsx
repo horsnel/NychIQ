@@ -201,7 +201,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -252,7 +252,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-8">
           <div className="flex items-center gap-3 mb-6">
             <Loader2 className="w-5 h-5 text-[#FDBA2D] animate-spin" />
             <span className="text-sm text-[#a0a0a0]">Tracking channel...</span>
@@ -270,7 +270,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Channel Profile Card */}
       {!loading && profile && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="p-5">
             <div className="flex items-start gap-4 mb-4">
               {/* Avatar */}
@@ -371,7 +371,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Strategy Loading */}
           {loadingStrategy && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
               <div className="flex items-center gap-3">
                 <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
                 <span className="text-sm text-[#a0a0a0]">Analyzing competitor strategy with AI...</span>
@@ -383,7 +383,7 @@ Return ONLY the JSON object, no other text.`;
           {!loadingStrategy && strategy && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Strengths */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                   <TrendingUp className="w-4 h-4 text-[#888888]" />
                   <h4 className="text-xs font-semibold text-[#888888]">Strengths</h4>
@@ -398,7 +398,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Weaknesses */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                   <AlertCircle className="w-4 h-4 text-[#888888]" />
                   <h4 className="text-xs font-semibold text-[#888888]">Weaknesses</h4>
@@ -413,7 +413,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Opportunities */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                   <Zap className="w-4 h-4 text-[#FDBA2D]" />
                   <h4 className="text-xs font-semibold text-[#FDBA2D]">Opportunities</h4>
@@ -428,7 +428,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Content Gaps */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                   <BarChart3 className="w-4 h-4 text-[#888888]" />
                   <h4 className="text-xs font-semibold text-[#888888]">Content Gaps</h4>
@@ -449,7 +449,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial Empty State */}
       {!loading && !profile && !error && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Eye className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Track a Channel</h3>

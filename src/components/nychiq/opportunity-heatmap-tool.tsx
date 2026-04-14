@@ -84,7 +84,7 @@ function HeatmapCell({ topic, index }: { topic: HeatmapTopic; index: number }) {
 
       {/* Tooltip */}
       {showTip && (
-        <div className="absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl pointer-events-none">
+        <div className="absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] shadow-xl pointer-events-none">
           <p className="text-xs font-bold text-[#FFFFFF] mb-2">{topic.name}</p>
           <div className="space-y-1 mb-2">
             <div className="flex justify-between">
@@ -96,10 +96,10 @@ function HeatmapCell({ topic, index }: { topic: HeatmapTopic; index: number }) {
               <span className="text-[10px] font-bold" style={{ color: '#aaa' }}>{topic.frustration}/100</span>
             </div>
           </div>
-          <div className="border-t border-[rgba(255,255,255,0.06)] pt-2">
+          <div className="border-t border-[rgba(255,255,255,0.03)] pt-2">
             <p className="text-[10px] text-[#a0a0a0] leading-relaxed">{topic.topQuestion}</p>
           </div>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rotate-45 bg-[#1A1A1A] border-r border-b border-[rgba(255,255,255,0.06)]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rotate-45 bg-[#1A1A1A] border-r border-b border-[rgba(255,255,255,0.03)]" />
         </div>
       )}
     </div>
@@ -202,10 +202,10 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ background: 'rgba(239,68,68,0.1)' }}>
+            <div className="p-2 rounded-lg" style={{ background: 'rgba(0,0,0,0)' }}>
               <Grid3x3 className="w-5 h-5" style={{ color: '#aaa' }} />
             </div>
             <div>
@@ -227,7 +227,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Enter a broad niche (e.g., Personal Finance)..."
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
               />
             </div>
             <button
@@ -256,7 +256,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Skeleton */}
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {Array.from({ length: 16 }).map((_, i) => (
               <div key={i} className="rounded-lg h-[72px] bg-[#1A1A1A] animate-pulse" />
@@ -288,7 +288,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Heatmap Grid */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             {/* Axis labels */}
             <div className="flex items-end gap-2 mb-3">
               <div className="flex-1">
@@ -311,7 +311,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Tactical Advice */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#aaa' }} />
@@ -324,7 +324,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(239,68,68,0.1)' }}>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(0,0,0,0)' }}>
                   <Bot className="w-3.5 h-3.5" style={{ color: '#aaa' }} />
                 </div>
                 <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.advice}</p>
@@ -345,7 +345,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(0,0,0,0)', border: '1px solid rgba(136,136,136,0.2)' }}>
             <Grid3x3 className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Opportunities</h3>

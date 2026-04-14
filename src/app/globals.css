@@ -49,14 +49,14 @@
   --color-green-muted: rgba(34,197,94, 0.1);
   --color-blue: #888888;
   --color-purple: #888888;
-  --color-purple-muted: rgba(255,255,255, 0.06);
+  --color-purple-muted: rgba(255,255,255, 0.03);
   --color-red: #888888;
-  --color-red-muted: rgba(255,255,255, 0.06);
+  --color-red-muted: rgba(255,255,255, 0.03);
   --color-surface: #0a0a0a;
   --color-surface-card: #0f0f0f;
   --color-surface-tertiary: #141414;
   --color-surface-sidebar: #0a0a0a;
-  --color-border-primary: rgba(255,255,255,0.06);
+  --color-border-primary: rgba(255,255,255,0.03);
   --color-border-secondary: rgba(255,255,255,0.04);
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #a0a0a0;
@@ -81,8 +81,8 @@
   --accent: #141414;
   --accent-foreground: #FFFFFF;
   --destructive: #888888;
-  --border: rgba(255,255,255,0.06);
-  --input: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.03);
+  --input: rgba(255,255,255,0.03);
   --ring: #FDBA2D;
   --chart-1: #FDBA2D;
   --chart-2: #a0a0a0;
@@ -95,7 +95,7 @@
   --sidebar-primary-foreground: #0a0a0a;
   --sidebar-accent: #141414;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: rgba(255,255,255,0.06);
+  --sidebar-border: rgba(255,255,255,0.03);
   --sidebar-ring: #FDBA2D;
 }
 
@@ -143,13 +143,13 @@
 }
 
 @keyframes glow-green {
-  0%, 100% { box-shadow: 0 0 5px rgba(16,185,129, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(16,185,129, 0.4); }
+  0%, 100% { box-shadow: 0 0 5px rgba(34,197,94, 0.15); }
+  50% { box-shadow: 0 0 20px rgba(34,197,94, 0.3); }
 }
 
 @keyframes glow-purple {
-  0%, 100% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+  0%, 100% { box-shadow: 0 0 5px rgba(253,186,45, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(253,186,45, 0.2); }
 }
 
 @keyframes pulse-live {
@@ -224,7 +224,7 @@
 /* NychIQ-specific card hover */
 .nychiq-card {
   background: #0f0f0f;
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: 0.625rem;
   transition: all 0.2s ease;
 }
@@ -236,7 +236,7 @@
 
 /* Amber gradient text */
 .text-gradient-amber {
-  background: linear-gradient(135deg, #FDBA2D, #FDE68A);
+  background: linear-gradient(135deg, #FDBA2D, #C69320);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -304,7 +304,7 @@
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #8B5CF6, #FDBA2D);
+  background: linear-gradient(135deg, rgba(253,186,45,0.3), rgba(253,186,45,0.05));
   z-index: -1;
   opacity: 0.5;
 }
@@ -388,8 +388,8 @@
 }
 
 @keyframes sciFiHoloGlow {
-  0%, 100% { box-shadow: 0 0 6px rgba(139, 92, 246, 0.2); }
-  50%      { box-shadow: 0 0 14px rgba(139, 92, 246, 0.45); }
+  0%, 100% { box-shadow: 0 0 6px rgba(253,186,45, 0.1); }
+  50%      { box-shadow: 0 0 14px rgba(253,186,45, 0.2); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -400,12 +400,12 @@
 @keyframes flickerDigit { 0% { opacity: 0.5; } 20% { opacity: 1; } 40% { opacity: 0.7; } 60% { opacity: 1; } 80% { opacity: 0.3; } 100% { opacity: 1; } }
 @keyframes glitchText { 0% { opacity: 0; transform: translateX(-2px); } 25% { opacity: 1; transform: translateX(1px); } 50% { opacity: 0.8; transform: translateX(-1px); } 100% { opacity: 1; transform: translateX(0); } }
 @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 4px var(--glow-color); } 50% { box-shadow: 0 0 12px var(--glow-color); } }
-@keyframes breathe { 0%,100% { border-color: rgba(255,255,255,0.06); } 50% { border-color: rgba(255,255,255,0.1); } }
+@keyframes breathe { 0%,100% { border-color: rgba(255,255,255,0.03); } 50% { border-color: rgba(255,255,255,0.06); } }
 
 /* Saku floating button glow animation */
 @keyframes sakuGlow {
-  0%, 100% { box-shadow: 0 0 8px rgba(139,92,246,0.3), 0 0 16px rgba(253,186,45,0.15); }
-  50%      { box-shadow: 0 0 16px rgba(139,92,246,0.5), 0 0 32px rgba(253,186,45,0.3); }
+  0%, 100% { box-shadow: 0 0 8px rgba(253,186,45,0.15), 0 0 16px rgba(253,186,45,0.08); }
+  50%      { box-shadow: 0 0 16px rgba(253,186,45,0.25), 0 0 32px rgba(253,186,45,0.15); }
 }
 
 .animate-saku-glow {
@@ -419,23 +419,23 @@
 }
 
 @keyframes channelRingPurple {
-  0%, 100% { box-shadow: 0 0 4px rgba(139,92,246,0.3), 0 0 0 0 rgba(139,92,246,0.3); }
-  50%      { box-shadow: 0 0 8px rgba(139,92,246,0.6), 0 0 0 4px rgba(139,92,246,0); }
+  0%, 100% { box-shadow: 0 0 4px rgba(255,255,255,0.05), 0 0 0 0 rgba(255,255,255,0.05); }
+  50%      { box-shadow: 0 0 8px rgba(255,255,255,0.1), 0 0 0 4px rgba(255,255,255,0); }
 }
 
 @keyframes channelRingGreen {
-  0%, 100% { box-shadow: 0 0 4px rgba(16,185,129,0.3), 0 0 0 0 rgba(16,185,129,0.3); }
-  50%      { box-shadow: 0 0 8px rgba(16,185,129,0.6), 0 0 0 4px rgba(16,185,129,0); }
+  0%, 100% { box-shadow: 0 0 4px rgba(34,197,94,0.15), 0 0 0 0 rgba(34,197,94,0.15); }
+  50%      { box-shadow: 0 0 8px rgba(34,197,94,0.3), 0 0 0 4px rgba(34,197,94,0); }
 }
 
 @keyframes channelRingBlue {
-  0%, 100% { box-shadow: 0 0 4px rgba(59,130,246,0.3), 0 0 0 0 rgba(59,130,246,0.3); }
-  50%      { box-shadow: 0 0 8px rgba(59,130,246,0.6), 0 0 0 4px rgba(59,130,246,0); }
+  0%, 100% { box-shadow: 0 0 4px rgba(255,255,255,0.05), 0 0 0 0 rgba(255,255,255,0.05); }
+  50%      { box-shadow: 0 0 8px rgba(255,255,255,0.1), 0 0 0 4px rgba(255,255,255,0); }
 }
 
 @keyframes channelRingRed {
-  0%, 100% { box-shadow: 0 0 4px rgba(239,68,68,0.3), 0 0 0 0 rgba(239,68,68,0.3); }
-  50%      { box-shadow: 0 0 10px rgba(239,68,68,0.7), 0 0 0 5px rgba(239,68,68,0); }
+  0%, 100% { box-shadow: 0 0 4px rgba(255,255,255,0.05), 0 0 0 0 rgba(255,255,255,0.05); }
+  50%      { box-shadow: 0 0 10px rgba(255,255,255,0.1), 0 0 0 5px rgba(255,255,255,0); }
 }
 
 @keyframes channelRingWhite {

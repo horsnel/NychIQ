@@ -186,11 +186,11 @@ function TrendingHeader({
   loading: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
       <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <TrendingUp className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -209,7 +209,7 @@ function TrendingHeader({
           <button
             onClick={onRefresh}
             disabled={loading}
-            className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+            className="p-2 rounded-lg border border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
           >
             <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
           </button>
@@ -227,7 +227,7 @@ function TrendingHeader({
                   'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   selectedRegion === r.code
                     ? 'bg-[#888888]/15 text-[#888888] border border-[#888888]/30'
-                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
+                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                 )}
               >
                 {r.code}
@@ -250,7 +250,7 @@ function TrendingHeader({
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                 sortBy === s.key
                   ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                  : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
+                  : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
               )}
             >
               {s.icon}
@@ -277,10 +277,10 @@ export function TrendingTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card with Tabs */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <TrendingUp className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -297,7 +297,7 @@ export function TrendingTool() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)] shadow-[0_0_12px_rgba(16,185,129,0.1)]'
+                    ? 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)] shadow-[rgba(0,0,0,0.3)]'
                     : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                 }`}
               >
@@ -448,7 +448,7 @@ function LiveTab() {
 
       {/* Video Grid */}
       {error ? (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-8 text-center">
           <AlertCircle className="w-10 h-10 text-[#888888] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Failed to Load</h3>
           <p className="text-sm text-[#a0a0a0] mb-4">{error}</p>
@@ -467,7 +467,7 @@ function LiveTab() {
           ))}
         </div>
       ) : sortedVideos.length === 0 ? (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-8 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-8 text-center">
           <TrendingUp className="w-10 h-10 text-[#666666] mx-auto mb-3" />
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Trending Videos</h3>
           <p className="text-sm text-[#a0a0a0]">No trending data available for {selectedRegion} right now.</p>
@@ -559,13 +559,13 @@ function PipelineTab() {
   }, []);
 
   const scoreColor = pipeline.score >= 85 ? '#888888' : pipeline.score >= 70 ? '#FDBA2D' : '#888888';
-  const scoreBg = pipeline.score >= 85 ? 'rgba(16,185,129,0.12)' : pipeline.score >= 70 ? 'rgba(253,186,45,0.12)' : 'rgba(239,68,68,0.12)';
+  const scoreBg = pipeline.score >= 85 ? 'rgba(34,197,94,0.1)' : pipeline.score >= 70 ? 'rgba(253,186,45,0.12)' : 'rgba(136,136,136,0.2)';
   const scoreLabel = pipeline.score >= 85 ? 'Excellent' : pipeline.score >= 70 ? 'Good' : 'Needs Work';
 
   return (
     <div className="space-y-4">
       {/* Pick a Trend Section */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-4">
           <Flame className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Pick a Trend</h3>
@@ -580,8 +580,8 @@ function PipelineTab() {
               className={cn(
                 'p-4 rounded-lg border text-left transition-all duration-300 group relative overflow-hidden',
                 selectedTrend?.id === trend.id
-                  ? 'bg-[#0f0f0f] border-[#888888]/40 shadow-[0_0_20px_rgba(16,185,129,0.1)]'
-                  : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)]'
+                  ? 'bg-[#0f0f0f] border-[#888888]/40 shadow-[rgba(0,0,0,0.3)]'
+                  : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)]'
               )}
               onMouseEnter={(e) => {
                 if (selectedTrend?.id !== trend.id) {
@@ -622,7 +622,7 @@ function PipelineTab() {
       {selectedTrend && (
         <div className="space-y-4">
           {/* Pipeline Score + Full Pipeline Button */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center gap-3 flex-1">
                 <div className="p-2 rounded-lg" style={{ backgroundColor: `${selectedTrend.color}15` }}>
@@ -671,7 +671,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 1: Title & Hook */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>1</div>
@@ -732,7 +732,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 2: Script Outline */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>2</div>
@@ -758,7 +758,7 @@ function PipelineTab() {
                   onClick={() => generateStep(2, selectedTrend)}
                   disabled={generatingStep === 2 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(16,185,129,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(34,197,94,0.1)' }}
                 >
                   {generatingStep === 2 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -807,7 +807,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 3: Metadata */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>3</div>
@@ -833,7 +833,7 @@ function PipelineTab() {
                   onClick={() => generateStep(3, selectedTrend)}
                   disabled={generatingStep === 3 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(59,130,246,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(255,255,255,0.03)' }}
                 >
                   {generatingStep === 3 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -880,7 +880,7 @@ function PipelineTab() {
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {pipeline.step3.tags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)]">
+                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.03)]">
                         {tag}
                       </span>
                     ))}
@@ -895,7 +895,7 @@ function PipelineTab() {
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {pipeline.step3.hashtags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)]">
+                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.03)]">
                         #{tag}
                       </span>
                     ))}
@@ -910,7 +910,7 @@ function PipelineTab() {
           </div>
 
           {/* Step 4: Publishing Plan */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>4</div>
@@ -936,7 +936,7 @@ function PipelineTab() {
                   onClick={() => generateStep(4, selectedTrend)}
                   disabled={generatingStep === 4 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(139,92,246,0.3)' }}
+                  style={{ backgroundColor: '#1a1a1a', color: '#888888', border: '1px solid rgba(255,255,255,0.03)' }}
                 >
                   {generatingStep === 4 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -1016,7 +1016,7 @@ function PipelineTab() {
       {/* No trend selected */}
       {!selectedTrend && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.03)' }}>
             <Flame className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Trend Pipeline</h3>

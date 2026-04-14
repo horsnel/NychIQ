@@ -55,7 +55,7 @@ function VideoIndexCard({ video }: { video: any }) {
   const url = `https://youtube.com/watch?v=${videoId}`;
 
   return (
-    <div className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden group hover:border-[rgba(255,255,255,0.1)] transition-all duration-200">
+    <div className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden group hover:border-[rgba(255,255,255,0.03)] transition-all duration-200">
       <div className="relative h-[135px] bg-[#0f0f0f] overflow-hidden">
         <img src={thumb} alt={title} className="w-full h-full object-cover" loading="lazy" />
       </div>
@@ -122,7 +122,7 @@ function GrowthChart() {
 
   if (!data) {
     return (
-      <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex items-center justify-center">
+      <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 flex items-center justify-center">
         <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
       </div>
     );
@@ -157,10 +157,10 @@ function GrowthChart() {
   const labelStep = Math.max(1, Math.floor(data.labels.length / 7));
 
   return (
-    <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+    <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-base font-semibold text-[#FFFFFF]">Growth Trend</h3>
-        <div className="flex gap-1 p-0.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+        <div className="flex gap-1 p-0.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           {rangeBtns.map((b) => (
             <button key={b.key} onClick={() => setRange(b.key)}
               className={cn('px-3 py-1 rounded-md text-xs font-medium transition-all', range === b.key ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]' : 'text-[#666666] hover:text-[#a0a0a0]')}>
@@ -207,9 +207,9 @@ function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
   const Icon = tool.icon;
   return (
     <button onClick={() => setActiveTool(tool.id)}
-      className="flex items-center justify-between w-[160px] h-[80px] p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:bg-[#111111] transition-colors group">
+      className="flex items-center justify-between w-[160px] h-[80px] p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:bg-[#111111] transition-colors group">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]" style={{ color: '#aaa' }}>
+        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.03)]" style={{ color: '#aaa' }}>
           <Icon className="w-4 h-4" />
         </div>
         <span className="text-[13px] font-medium text-[#FFFFFF] text-left leading-tight">{tool.label}</span>
@@ -227,7 +227,7 @@ function ActivityCard({ item }: { item: typeof ACTIVITY_ITEMS[0] }) {
   return (
     <div className="flex-1 min-w-0 shrink-0 w-[260px] sm:w-auto sm:flex-1 rounded-xl bg-[#0f0f0f] p-4 flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]" style={{ color: '#aaa' }}>
+        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.03)]" style={{ color: '#aaa' }}>
           <Icon className="w-[18px] h-[18px]" />
         </div>
         <div className="flex-1 min-w-0">
@@ -289,7 +289,7 @@ export function DashboardTool() {
         {videosLoading ? (
           <div className="flex gap-4 overflow-hidden">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="shrink-0 w-[240px] h-[210px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] animate-pulse" />
+              <div key={i} className="shrink-0 w-[240px] h-[210px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] animate-pulse" />
             ))}
           </div>
         ) : videos.length > 0 ? (
@@ -301,7 +301,7 @@ export function DashboardTool() {
         ) : (
           <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 flex flex-col items-center justify-center h-[210px]">
+              <div key={i} className="shrink-0 w-[240px] rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col items-center justify-center h-[210px]">
                 <Eye className="w-8 h-8 text-[#1a1a1a] mb-2" />
                 <p className="text-xs text-[#666666]">No videos yet</p>
               </div>
@@ -338,7 +338,7 @@ export function DashboardTool() {
       </div>
 
       {/* ═══ RECENT ACTIVITY ═══ */}
-      <div className="mt-6 rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+      <div className="mt-6 rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base font-semibold text-[#FFFFFF]">Recent Activity</h3>
           <button className="text-xs font-medium text-[#FDBA2D] hover:text-[#FDBA2D] transition-colors">View All</button>

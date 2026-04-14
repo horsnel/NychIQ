@@ -137,17 +137,17 @@ function typeBadgeStyle(type: ProductOpportunity['type']) {
   switch (type) {
     case 'PDF':
     case 'eBook':
-      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Template':
-      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Notion':
-      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Video Course':
-      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Toolkit':
-      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     default:
-      return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.06)]' };
+      return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.03)]' };
   }
 }
 
@@ -264,7 +264,7 @@ Return ONLY valid JSON matching this schema:
     return (
       <div className="space-y-5 animate-fade-in-up">
         {/* Header */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -279,9 +279,9 @@ Return ONLY valid JSON matching this schema:
         </div>
 
         {/* Input Section */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 sm:p-6">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 sm:p-6">
           <div className="text-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-4">
               <Package className="w-8 h-8 text-[#FDBA2D]" />
             </div>
             <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">Find What Audiences Will Pay For</h3>
@@ -292,7 +292,7 @@ Return ONLY valid JSON matching this schema:
           </div>
 
           <div className="max-w-xl mx-auto">
-            <div className="flex items-center rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+            <div className="flex items-center rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
               <input
                 type="text"
@@ -341,7 +341,7 @@ Return ONLY valid JSON matching this schema:
               <button
                 key={ex}
                 onClick={() => setInput(ex)}
-                className="px-3 py-1.5 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                className="px-3 py-1.5 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
               >
                 {ex}
               </button>
@@ -359,7 +359,7 @@ Return ONLY valid JSON matching this schema:
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] animate-pulse">
@@ -373,7 +373,7 @@ Return ONLY valid JSON matching this schema:
           </div>
         </div>
 
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
           <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
             <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
           </div>
@@ -396,7 +396,7 @@ Return ONLY valid JSON matching this schema:
   if (error) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -411,7 +411,7 @@ Return ONLY valid JSON matching this schema:
         </div>
 
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-14 h-14 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <AlertCircle className="w-7 h-7 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analysis Failed</h3>
@@ -419,13 +419,13 @@ Return ONLY valid JSON matching this schema:
           <div className="flex items-center gap-3">
             <button
               onClick={handleRetry}
-              className="px-5 py-2.5 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
             >
               <RefreshCw className="w-3.5 h-3.5" /> Retry
             </button>
             <button
               onClick={() => { setError(null); setResults(null); }}
-              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm font-medium hover:bg-[#0f0f0f] transition-colors"
+              className="px-5 py-2.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm font-medium hover:bg-[#0f0f0f] transition-colors"
             >
               New Search
             </button>
@@ -441,7 +441,7 @@ Return ONLY valid JSON matching this schema:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -455,7 +455,7 @@ Return ONLY valid JSON matching this schema:
             </div>
             <button
               onClick={() => { setResults(null); setError(null); }}
-              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5"
             >
               <Search className="w-3 h-3" /> New Search
             </button>
@@ -465,15 +465,15 @@ Return ONLY valid JSON matching this schema:
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
           <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
           <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
         </div>
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
           <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Est. Views</p>
           <p className="text-2xl font-bold text-[#888888]">{results?.estimatedViews?.toLocaleString() || '0'}</p>
         </div>
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
           <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Top Priority</p>
           <p className="text-2xl font-bold text-[#888888]">{sortedOpps[0]?.priorityScore || 0}</p>
         </div>
@@ -494,7 +494,7 @@ Return ONLY valid JSON matching this schema:
             return (
               <div
                 key={opp.name}
-                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden hover:border-[#1a1a1a] transition-colors"
+                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden hover:border-[#1a1a1a] transition-colors"
               >
                 {/* Card Header */}
                 <div className="px-4 sm:px-5 py-4">
@@ -572,7 +572,7 @@ Return ONLY valid JSON matching this schema:
                       <h5 className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <TrendingUp className="w-3 h-3" /> Sales Hook
                       </h5>
-                      <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(255,255,255,0.06)]">
+                      <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(255,255,255,0.03)]">
                         <p className="text-sm text-[#FFFFFF] leading-relaxed">{opp.salesHook}</p>
                       </div>
                     </div>
@@ -598,7 +598,7 @@ Return ONLY valid JSON matching this schema:
                     {/* Copy Sales Hook */}
                     <button
                       onClick={() => handleCopy(opp.salesHook, opp.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
                     >
                       {isCopied ? (
                         <>

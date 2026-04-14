@@ -70,7 +70,7 @@ export function Sidebar() {
   const navContent = (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-4 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 px-4 py-4 border-b border-[rgba(255,255,255,0.03)]">
         <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M10 6L18 12L10 18V6Z" fill="white"/>
@@ -163,7 +163,7 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom section */}
-      <div className="border-t border-[rgba(255,255,255,0.06)] px-3 py-3">
+      <div className="border-t border-[rgba(255,255,255,0.03)] px-3 py-3">
         <button
           onClick={() => setPage('about')}
           className="flex items-center gap-3 w-full px-2 py-1.5 text-xs text-[#666666] hover:text-[#a0a0a0] transition-colors"
@@ -177,7 +177,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.06)] shrink-0 sticky top-0">
+      <aside className="hidden lg:flex flex-col w-[260px] h-screen bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.03)] shrink-0 sticky top-0">
         {navContent}
       </aside>
 
@@ -188,8 +188,8 @@ export function Sidebar() {
             className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
-          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.06)] z-50 lg:hidden animate-fade-in-up">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+          <aside className="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] border-r border-[rgba(255,255,255,0.03)] z-50 lg:hidden animate-fade-in-up">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
               <span className="text-sm font-semibold text-[#a0a0a0]">Navigation</span>
               <button onClick={() => setSidebarOpen(false)} className="text-[#666666] hover:text-[#FFFFFF]">
                 <X className="w-5 h-5" />

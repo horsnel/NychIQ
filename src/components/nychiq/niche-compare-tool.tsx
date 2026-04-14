@@ -214,10 +214,10 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ background: 'rgba(139,92,246,0.1)' }}>
+            <div className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)' }}>
               <Columns2 className="w-5 h-5" style={{ color: '#aaa' }} />
             </div>
             <div>
@@ -238,7 +238,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheA(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche A (e.g., Finance)"
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
               />
             </div>
             <div className="hidden sm:block text-lg font-bold text-[#666666] px-1">VS</div>
@@ -250,7 +250,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNicheB(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCompare(); }}
                 placeholder="Niche B (e.g., Gaming)"
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
               />
             </div>
             <button
@@ -279,7 +279,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Skeleton */}
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 space-y-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 space-y-4">
           <div className="flex items-center justify-center gap-4 py-6">
             <div className="w-16 h-16 rounded-xl bg-[#1A1A1A] animate-pulse" />
             <div className="text-2xl font-black text-[#666666] animate-pulse">VS</div>
@@ -299,7 +299,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && mA && mB && (
         <>
           {/* Winner Declaration */}
-          <div className="rounded-lg p-5 border" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.02) 100%)', borderColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="rounded-lg p-5 border" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 100%)', borderColor: 'rgba(255,255,255,0.03)' }}>
             <div className="flex items-center gap-3 mb-2">
               <Trophy className="w-5 h-5" style={{ color: '#aaa' }} />
               <span className="text-sm font-bold" style={{ color: '#aaa' }}>WINNER</span>
@@ -309,7 +309,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Comparison Table */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-3 text-center border-b border-[#1A1A1A]">
               <div className="px-4 py-3">
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#1a1a1a', color: '#888888' }}>A</span>
@@ -352,7 +352,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Automation Potential Bars */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
               <TrendingUp className="w-4 h-4" style={{ color: '#aaa' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Automation Potential</h3>
@@ -380,7 +380,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Strategic Advice */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" style={{ color: '#aaa' }} />
@@ -393,7 +393,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(139,92,246,0.1)' }}>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(255,255,255,0.03)' }}>
                   <Bot className="w-3.5 h-3.5" style={{ color: '#aaa' }} />
                 </div>
                 <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.advice}</p>
@@ -414,7 +414,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)' }}>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.03)' }}>
             <Columns2 className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Compare Two Niches</h3>

@@ -39,7 +39,7 @@ interface ABResult {
   overallAnalysis: string;
 }
 
-const HEATMAP_COLORS = ['#FF4444', '#FF8C00', '#FDE68A', '#32CD32', '#888888'];
+const HEATMAP_COLORS = ['#666666', '#888888', '#FDE68A', '#22c55e', '#888888'];
 
 /* ── Heatmap overlay for a thumbnail ── */
 function HeatmapOverlay({ zones }: { zones: string[] }) {
@@ -118,8 +118,8 @@ function ThumbnailCard({
     <div
       className={`rounded-lg border p-4 transition-all duration-300 ${
         isWinner
-          ? 'bg-[rgba(255,255,255,0.06)] border-[#888888]/40 shadow-lg shadow-[#888888]/5'
-          : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
+          ? 'bg-[rgba(255,255,255,0.03)] border-[#888888]/40 shadow-lg shadow-[#888888]/5'
+          : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
       }`}
     >
       {/* Header */}
@@ -138,7 +138,7 @@ function ThumbnailCard({
           style={{
             color: '#888888',
             backgroundColor: '#1a1a1a',
-            borderColor: 'rgba(255,255,255,0.06)',
+            borderColor: 'rgba(255,255,255,0.03)',
           }}
         >
           {result.ctr}%
@@ -229,7 +229,7 @@ function ThumbnailCard({
       {/* Copy button */}
       <button
         onClick={handleCopy}
-        className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+        className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
       >
         {copied ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
         {copied ? 'Copied!' : 'Copy Analysis'}
@@ -374,10 +374,10 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <Layers className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -406,7 +406,7 @@ Return ONLY the JSON object, no other text.`;
                     setUrls(next);
                   }}
                   placeholder={`Thumbnail ${i + 1} URL${i === 0 ? ' (required)' : ' (optional)'}`}
-                  className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+                  className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
                 />
               </div>
             ))}
@@ -429,7 +429,7 @@ Return ONLY the JSON object, no other text.`;
             {searched && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
                 Reset
@@ -460,7 +460,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
               <span className="text-sm text-[#a0a0a0]">Analyzing thumbnails with AI...</span>
@@ -490,7 +490,7 @@ Return ONLY the JSON object, no other text.`;
             className="rounded-lg p-4 border flex items-center gap-3"
             style={{
               backgroundColor: '#1a1a1a',
-              borderColor: 'rgba(255,255,255,0.06)',
+              borderColor: 'rgba(255,255,255,0.03)',
             }}
           >
             <Trophy className="w-6 h-6 text-[#888888] shrink-0" />
@@ -521,7 +521,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial idle state */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Layers className="w-8 h-8 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Thumbnail A/B Simulator</h3>

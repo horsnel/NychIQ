@@ -89,10 +89,10 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><GitCompare className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><GitCompare className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">A/B Title &amp; Thumbnail Tester</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Test 2 concepts head-to-head. AI predicts CTR winner.</p>
@@ -121,7 +121,7 @@ Return ONLY the JSON object.`;
                 className="w-full h-10 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 transition-colors"
               />
             </div>
-            <button onClick={handleTest} disabled={loading || !titleA.trim() || !titleB.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
+            <button onClick={handleTest} disabled={loading || !titleA.trim() || !titleB.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Run A/B Test
             </button>
@@ -132,8 +132,8 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 animate-pulse"><div className="h-4 bg-[#1A1A1A] rounded w-3/4 mb-4" /><div className="h-12 bg-[#1A1A1A] rounded" /></div>
           </div>
         </div>
       )}
@@ -143,7 +143,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> A/B Test Results</h3>
 
           {/* Winner Banner */}
-          <div className="rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] p-4 text-center">
+          <div className="rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] p-4 text-center">
             <Trophy className="w-6 h-6 text-[#FDBA2D] mx-auto mb-2" />
             <p className="text-base font-bold text-[#FDBA2D]">Winner: Title {result.winner}</p>
             <p className="text-xs text-[#a0a0a0] mt-1 flex items-center justify-center gap-1"><TrendingUp className="w-3 h-3" /> +{result.improvementPct}% predicted improvement</p>
@@ -151,7 +151,7 @@ Return ONLY the JSON object.`;
 
           {/* Side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className={`rounded-lg border p-4 ${result.winner === 'A' ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.06)]'}`}>
+            <div className={`rounded-lg border p-4 ${result.winner === 'A' ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.03)]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-[#a0a0a0]">TITLE A</span>
                 {result.winner === 'A' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#888888] text-[#0a0a0a]">WINNER</span>}
@@ -165,7 +165,7 @@ Return ONLY the JSON object.`;
                 <div className="h-full rounded-full bg-[#888888]" style={{ width: `${Math.min(100, result.ctrA * 8)}%` }} />
               </div>
             </div>
-            <div className={`rounded-lg border p-4 ${result.winner === 'B' ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.06)]'}`}>
+            <div className={`rounded-lg border p-4 ${result.winner === 'B' ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0f0f0f] border-[rgba(255,255,255,0.03)]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-[#a0a0a0]">TITLE B</span>
                 {result.winner === 'B' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#888888] text-[#0a0a0a]">WINNER</span>}
@@ -182,7 +182,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Reasoning */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">AI Reasoning</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.reasoning}</p>
           </div>
@@ -191,7 +191,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><GitCompare className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><GitCompare className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Test Your Titles</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter two title concepts and let AI predict which will get more clicks.</p>
         </div>

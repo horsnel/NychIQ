@@ -90,8 +90,8 @@ function generateDailyInsights(): DailyInsightItem[] {
     id: 'fault-1',
     icon: <AlertTriangle className="w-4 h-4" />,
     iconColor: '#888888',
-    iconBg: 'rgba(239,68,68,0.1)',
-    borderColor: 'rgba(255,255,255,0.06)',
+    iconBg: 'rgba(0,0,0,0)',
+    borderColor: 'rgba(255,255,255,0.03)',
     title: urgentItem.title,
     description: urgentItem.description,
     tool: urgentItem.tool,
@@ -105,8 +105,8 @@ function generateDailyInsights(): DailyInsightItem[] {
     id: 'comp-1',
     icon: <Eye className="w-4 h-4" />,
     iconColor: '#888888',
-    iconBg: 'rgba(59,130,246,0.1)',
-    borderColor: 'rgba(255,255,255,0.06)',
+    iconBg: 'rgba(255,255,255,0.03)',
+    borderColor: 'rgba(255,255,255,0.03)',
     title: compItem.title,
     description: compItem.description,
     tool: compItem.tool,
@@ -120,8 +120,8 @@ function generateDailyInsights(): DailyInsightItem[] {
     id: 'niche-1',
     icon: <Target className="w-4 h-4" />,
     iconColor: '#888888',
-    iconBg: 'rgba(139,92,246,0.1)',
-    borderColor: 'rgba(255,255,255,0.06)',
+    iconBg: 'rgba(255,255,255,0.03)',
+    borderColor: 'rgba(255,255,255,0.03)',
     title: nicheItem.title,
     description: nicheItem.description,
     tool: nicheItem.tool,
@@ -136,7 +136,7 @@ function generateDailyInsights(): DailyInsightItem[] {
     icon: <Lightbulb className="w-4 h-4" />,
     iconColor: '#FDBA2D',
     iconBg: 'rgba(253,186,45,0.1)',
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: 'rgba(255,255,255,0.03)',
     title: growthItem.title,
     description: growthItem.description,
     tool: growthItem.tool,
@@ -206,7 +206,7 @@ export function SakuDailyPopup() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        className="sm:max-w-lg bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] p-0 overflow-hidden"
+        className="sm:max-w-lg bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] p-0 overflow-hidden"
         showCloseButton={true}
       >
         {/* ── Header ── */}
@@ -215,7 +215,7 @@ export function SakuDailyPopup() {
             <div className="flex items-center gap-3">
               {/* Saku AI avatar */}
               <div className="relative">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#888888] to-[#6B3FA0] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(0,0,0,0.3)]">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1a1a1a] to-[#111111] flex items-center justify-center shrink-0 shadow-lg shadow-[rgba(0,0,0,0.3)]">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 {/* Online indicator */}
@@ -235,10 +235,10 @@ export function SakuDailyPopup() {
             <span
               className={cn(
                 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider',
-                currentInsight.priority === 'urgent' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
-                currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]',
-                currentInsight.priority === 'medium' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
-                currentInsight.priority === 'info' && 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]',
+                currentInsight.priority === 'urgent' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
+                currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]',
+                currentInsight.priority === 'medium' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
+                currentInsight.priority === 'info' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
               )}
             >
               {currentInsight.priority === 'urgent' ? 'Urgent' : currentInsight.priority === 'high' ? 'High' : currentInsight.priority === 'medium' ? 'Medium' : 'Tip'}
@@ -329,7 +329,7 @@ export function SakuDailyPopup() {
           <Button
             variant="ghost"
             onClick={handleDismiss}
-            className="w-full sm:w-auto border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] rounded-lg"
+            className="w-full sm:w-auto border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] rounded-lg"
           >
             <X className="w-4 h-4 mr-2" />
             Dismiss All

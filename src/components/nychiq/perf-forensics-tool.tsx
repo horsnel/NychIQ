@@ -84,18 +84,18 @@ Return ONLY the JSON object.`;
     }
   };
   const sevConfig: Record<string, { color: string; bg: string; border: string }> = {
-    Low: { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)' },
+    Low: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
     Medium: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' },
-    High: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)' },
-    Critical: { color: '#888888', bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.5)' },
+    High: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
+    Critical: { color: '#888888', bg: 'rgba(136,136,136,0.2)', border: 'rgba(136,136,136,0.2)' },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Stethoscope className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><Stethoscope className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Performance Forensics</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Diagnose why any video underperformed.</p>
@@ -107,7 +107,7 @@ Return ONLY the JSON object.`;
               placeholder="Paste video URL to diagnose..."
               className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
               Diagnose
             </button>
@@ -116,7 +116,7 @@ Return ONLY the JSON object.`;
       </div>
 
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#a0a0a0]">Running forensic analysis...</p>
         </div>
@@ -141,12 +141,12 @@ Return ONLY the JSON object.`;
           })()}
 
           {/* Root Causes */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Root Cause Analysis</h4>
             <div className="space-y-2">
               {result.rootCauses.map((cause, i) => (
                 <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
-                  <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] font-bold text-[#888888] shrink-0">{i + 1}</span>
+                  <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-[10px] font-bold text-[#888888] shrink-0">{i + 1}</span>
                   <p className="text-sm text-[#FFFFFF]">{cause}</p>
                 </div>
               ))}
@@ -154,7 +154,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Fix Recommendations */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Fix Recommendations</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.fixRecommendations.map((rec, i) => {
@@ -173,7 +173,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Priority Action Plan</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.actionPlan}</p>
           </div>
@@ -182,7 +182,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Stethoscope className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Stethoscope className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Diagnose Performance</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Paste a video URL to get a forensic analysis of why it underperformed.</p>
         </div>

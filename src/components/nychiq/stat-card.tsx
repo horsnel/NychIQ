@@ -34,8 +34,8 @@ export function StatCard({
         'rounded-lg p-4 transition-all duration-200',
         dark
           ? 'bg-[#0a0a0a] border border-[#1A1A1A]'
-          : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]',
-        'hover:border-[rgba(255,255,255,0.1)] hover:shadow-lg hover:shadow-black/20',
+          : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]',
+        'hover:border-[rgba(255,255,255,0.03)] hover:shadow-lg hover:shadow-black/20',
         className
       )}
       style={{ borderTop: `2px solid ${color}` }}

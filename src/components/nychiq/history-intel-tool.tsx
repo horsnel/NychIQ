@@ -85,10 +85,10 @@ Return ONLY the JSON object.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><History className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><History className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">History Intel</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Track thumbnail evolution, title A/B testing patterns, upload time optimization.</p>
@@ -100,7 +100,7 @@ Return ONLY the JSON object.`;
               placeholder="Enter channel name..."
               className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <History className="w-4 h-4" />}
               Analyze
             </button>
@@ -111,7 +111,7 @@ Return ONLY the JSON object.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-3/4" /></div>
             </div>
@@ -124,13 +124,13 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> Historical Analysis for &quot;{channel.trim()}&quot;</h3>
 
           {/* Thumbnail Evolution Timeline */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><ImageIcon className="w-3.5 h-3.5" /> Thumbnail Evolution</h4>
             <div className="space-y-3">
               {result.thumbnailEvolution.map((phase, i) => (
                 <div key={i} className="flex gap-3">
                   <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] font-bold text-[#888888]">{i + 1}</div>
+                    <div className="w-8 h-8 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-[10px] font-bold text-[#888888]">{i + 1}</div>
                     {i < result.thumbnailEvolution.length - 1 && <div className="w-px h-full bg-[#0f0f0f] mt-1" />}
                   </div>
                   <div className="flex-1 pb-4">
@@ -144,7 +144,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Title Patterns */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Title Pattern Analysis</h4>
             <div className="space-y-2">
               {result.titlePatterns.map((tp, i) => (
@@ -162,11 +162,11 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Upload Timing */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Upload Timing Trends</h4>
             <div className="space-y-2">
               {result.uploadTrends.map((ut, i) => (
-                <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                   <TrendingUp className="w-4 h-4 text-[#888888] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm text-[#FFFFFF]">{ut.finding}</p>
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Correlations */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2">Performance Correlations</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.correlations}</p>
           </div>
@@ -187,7 +187,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><History className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><History className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Channel History</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a channel name to track their content evolution and strategy patterns.</p>
         </div>

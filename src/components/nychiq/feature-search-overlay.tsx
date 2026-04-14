@@ -122,9 +122,9 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
 
       {/* Overlay */}
-      <div className="relative w-full max-w-3xl max-h-[75vh] bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] rounded-2xl shadow-2xl animate-fade-in-up overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-3xl max-h-[75vh] bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] rounded-2xl shadow-2xl animate-fade-in-up overflow-hidden flex flex-col">
         {/* Search header */}
-        <div className="flex items-center gap-3 px-5 py-4 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-[rgba(255,255,255,0.03)]">
           <Search className="w-5 h-5 text-[#FDBA2D] shrink-0" />
           <input
             ref={inputRef}
@@ -166,9 +166,9 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
                       <button
                         key={tool.id}
                         onClick={() => handleSelect(tool.id)}
-                        className="flex items-start gap-3 p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] transition-all group text-left"
+                        className="flex items-start gap-3 p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-all group text-left"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(253,186,45,0.12)] transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(253,186,45,0.12)] transition-colors">
                           <Icon className="w-4 h-4 text-[#FDBA2D]" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -192,11 +192,11 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
         </div>
 
         {/* Footer hint */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-[rgba(255,255,255,0.03)]">
           <span className="text-[10px] text-[#666666]">
             {TOOL_META && Object.keys(TOOL_META).length} tools available
           </span>
-          <kbd className="px-2 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#666666]">
+          <kbd className="px-2 py-0.5 text-[10px] rounded bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#666666]">
             ESC to close
           </kbd>
         </div>

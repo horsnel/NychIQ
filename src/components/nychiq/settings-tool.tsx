@@ -87,7 +87,7 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">{icon}</div>
         <h3 className="text-sm font-bold text-[#FFFFFF]">{title}</h3>
@@ -259,7 +259,7 @@ export function SettingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -320,7 +320,7 @@ export function SettingsTool() {
 
           {/* Auto-detected location indicator */}
           {(geo.detectedRegion || detectedRegion) && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/20 mb-3">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] mb-3">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#888888] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#888888]" />
@@ -406,7 +406,7 @@ export function SettingsTool() {
           {/* Referral Stats */}
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
-              <div className="p-1.5 rounded-md bg-[rgba(255,255,255,0.06)]">
+              <div className="p-1.5 rounded-md bg-[rgba(255,255,255,0.03)]">
                 <Users className="w-4 h-4 text-[#888888]" />
               </div>
               <div>
@@ -439,7 +439,7 @@ export function SettingsTool() {
               </button>
               <button
                 onClick={handleShareRef}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-sm font-medium hover:border-[#1a1a1a] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-sm font-medium hover:border-[#1a1a1a] hover:text-[#FFFFFF] transition-colors"
                 title="Share referral link"
               >
                 <Share2 className="w-4 h-4" />
@@ -447,7 +447,7 @@ export function SettingsTool() {
               </button>
               {/* Social share dropdown */}
               {showShareMenu && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-lg shadow-xl z-50 py-1 animate-fade-in-up">
                   <button
                     onClick={() => { handleCopyRef(); setShowShareMenu(false); }}
                     className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
@@ -472,7 +472,7 @@ export function SettingsTool() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.06)]">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.03)]">
             <Gift className="w-4 h-4 text-[#FDBA2D] shrink-0" />
             <p className="text-xs text-[#FDBA2D]">
               You and your friend both get <span className="font-bold">+20 tokens</span> when they sign up!
@@ -494,7 +494,7 @@ export function SettingsTool() {
               <button
                 onClick={handleApplyReferral}
                 disabled={referralApplied || !referralInput.trim()}
-                className="px-4 py-2.5 rounded-md bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#00B37D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                className="px-4 py-2.5 rounded-md bg-[#888888] text-[#0a0a0a] text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
               >
                 {referralApplied ? 'Applied' : 'Apply'}
               </button>
@@ -512,7 +512,7 @@ export function SettingsTool() {
       {/* ── Danger Zone Section ── */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
-          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
             <AlertTriangle className="w-4 h-4 text-[#888888]" />
           </div>
           <h3 className="text-sm font-bold text-[#888888]">Danger Zone</h3>
@@ -533,12 +533,12 @@ export function SettingsTool() {
               </div>
             </button>
           ) : (
-            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/30">
+            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.03)] border border-[#888888]/30">
               <p className="text-sm text-[#FFFFFF] mb-3">Are you sure? This will clear all your local settings and data.</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleClearData}
-                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
                 >
                   <Trash2 className="w-3.5 h-3.5" /> Yes, Clear
                 </button>
@@ -567,12 +567,12 @@ export function SettingsTool() {
               </div>
             </button>
           ) : (
-            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[#888888]/30">
+            <div className="p-3 rounded-md bg-[rgba(255,255,255,0.03)] border border-[#888888]/30">
               <p className="text-sm text-[#FFFFFF] mb-3">Are you sure you want to sign out?</p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
                 >
                   <LogOut className="w-3.5 h-3.5" /> Yes, Sign Out
                 </button>

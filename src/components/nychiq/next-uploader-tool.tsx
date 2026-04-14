@@ -108,8 +108,8 @@ interface ChannelConfig {
    ════════════════════════════════════════════════ */
 
 const TOOL_COLOR = '#888888';
-const TOOL_BG = 'rgba(139,92,246,0.1)';
-const TOOL_BORDER = 'rgba(139,92,246,0.2)';
+const TOOL_BG = 'rgba(255,255,255,0.03)';
+const TOOL_BORDER = 'rgba(255,255,255,0.03)';
 const TOOL_TOKEN_COST = 10;
 
 const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
@@ -347,8 +347,8 @@ function ScoreGauge({ score, label, icon: Icon, size = 88, showGlow = false }: {
 /* ── Go / No-Go / Caution Verdict Badge ── */
 function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
   const config = {
-    go: { label: 'GO', color: '#888888', bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.3)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
-    nogo: { label: 'NO-GO', color: '#888888', bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.3)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
+    go: { label: 'GO', color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
+    nogo: { label: 'NO-GO', color: '#888888', bg: 'rgba(136,136,136,0.2)', border: 'rgba(136,136,136,0.2)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
     caution: { label: 'CAUTION', color: '#FDBA2D', bg: 'rgba(253,186,45,0.12)', border: 'rgba(253,186,45,0.3)', icon: AlertTriangle, desc: 'Moderate potential — optimize before publishing' },
   }[verdict];
   const Icon = config.icon;
@@ -458,7 +458,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
   const engPositive = engDiff >= 0;
 
   return (
-    <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
+    <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors">
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div
@@ -568,11 +568,11 @@ function HeatmapGrid() {
   ];
 
   const getHeatColor = (val: number): string => {
-    if (val >= 80) return 'rgba(16,185,129,0.8)';
-    if (val >= 65) return 'rgba(16,185,129,0.5)';
+    if (val >= 80) return 'rgba(34,197,94,0.1)';
+    if (val >= 65) return 'rgba(34,197,94,0.1)';
     if (val >= 50) return 'rgba(253,186,45,0.5)';
     if (val >= 35) return 'rgba(253,186,45,0.25)';
-    return 'rgba(139,92,246,0.15)';
+    return 'rgba(255,255,255,0.03)';
   };
 
   return (
@@ -883,7 +883,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* ──────── HEADER CARD WITH TABS ──────── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 relative">
           {/* Background grid pattern */}
           <div
@@ -896,7 +896,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="relative z-10">
             {/* Title row */}
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 rounded-lg border" style={{ borderColor: `${TOOL_BORDER}`, background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+              <div className="p-2 rounded-lg border" style={{ borderColor: `${TOOL_BORDER}`, background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}>
                 <Upload className="w-5 h-5" style={{ color: TOOL_COLOR }} />
               </div>
               <div className="flex-1 min-w-0">
@@ -922,10 +922,10 @@ Return ONLY the JSON object, no other text.`;
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                     activeTab === tab.id
-                      ? 'text-[#888888] border shadow-[0_0_12px_rgba(139,92,246,0.1)]'
+                      ? 'text-[#888888] border shadow-[rgba(0,0,0,0.3)]'
                       : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                   }`}
-                  style={activeTab === tab.id ? { backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' } : undefined}
+                  style={activeTab === tab.id ? { backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.03)' } : undefined}
                 >
                   <tab.icon className="w-3.5 h-3.5" />
                   {tab.label}
@@ -940,7 +940,7 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'analysis' && (
         <div className="space-y-4">
           {/* Input Section */}
-          <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <p className="text-sm text-[#a0a0a0] mb-3">
               Paste a YouTube URL or enter a video topic/title. AI predicts performance metrics
               including audience retention, brand alignment, and growth potential.
@@ -987,7 +987,7 @@ Return ONLY the JSON object, no other text.`;
                     <button
                       onClick={handleAnalyze}
                       disabled={loading || !input.trim()}
-                      className="px-5 h-12 rounded-full text-[#0a0a0a] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+                      className="px-5 h-12 rounded-full text-[#0a0a0a] text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 shadow-[rgba(0,0,0,0.3)] hover:shadow-[rgba(0,0,0,0.3)]"
                       style={{ backgroundColor: TOOL_COLOR }}
                     >
                       {loading ? (
@@ -1014,7 +1014,7 @@ Return ONLY the JSON object, no other text.`;
               {searched && !loading && (
                 <button
                   onClick={handleAnalyze}
-                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                  className="flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
                 >
                   <RefreshCw className="w-3 h-3" /> Re-analyze
                 </button>
@@ -1024,7 +1024,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Suggested Ideas (only when no input and not loading/searched) */}
           {!input.trim() && !loading && !searched && (
-            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(253,186,45,0.2) 0%, transparent 70%)' }}>
                   <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
@@ -1039,7 +1039,7 @@ Return ONLY the JSON object, no other text.`;
                   <button
                     key={i}
                     onClick={() => handleUseIdea(idea)}
-                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.06)] transition-all group text-left"
+                    className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.03)] transition-all group text-left"
                   >
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: TOOL_BG }}>
                       <span className="text-[10px] font-bold" style={{ color: TOOL_COLOR }}>{i + 1}</span>
@@ -1054,7 +1054,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* ── Loading State (Scanning Animation) ── */}
           {loading && (
-            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 animate-fade-in-up">
+            <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-5">
                 <div className="relative">
                   <Radar className="w-5 h-5 text-[#888888] animate-pulse" />
@@ -1068,7 +1068,7 @@ Return ONLY the JSON object, no other text.`;
                   style={{
                     width: `${((scanStep + 1) / SCANNING_STEPS.length) * 100}%`,
                     background: 'linear-gradient(90deg, #888888, #888888)',
-                    boxShadow: '0 0 10px rgba(139,92,246,0.4)',
+                    boxShadow: '0 0 10px rgba(255,255,255,0.03)',
                   }}
                 />
               </div>
@@ -1081,8 +1081,8 @@ Return ONLY the JSON object, no other text.`;
                       <div
                         className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
                         style={{
-                          backgroundColor: isComplete ? 'rgba(16,185,129,0.15)' : isActive ? 'rgba(139,92,246,0.2)' : '#1A1A1A',
-                          border: `1px solid ${isComplete ? 'rgba(16,185,129,0.3)' : isActive ? 'rgba(139,92,246,0.4)' : '#0f0f0f'}`,
+                          backgroundColor: isComplete ? 'rgba(34,197,94,0.1)' : isActive ? 'rgba(255,255,255,0.03)' : '#1A1A1A',
+                          border: `1px solid ${isComplete ? 'rgba(34,197,94,0.1)' : isActive ? 'rgba(255,255,255,0.03)' : '#0f0f0f'}`,
                         }}
                       >
                         {isComplete ? (
@@ -1136,7 +1136,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Core Scores with Gauges */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
                 <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-5 flex items-center gap-2">
                   <BarChart3 className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
                   Core Scores
@@ -1160,7 +1160,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Retention Simulation */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
                     <Eye className="w-3.5 h-3.5" style={{ color: TOOL_COLOR }} />
@@ -1208,7 +1208,7 @@ Return ONLY the JSON object, no other text.`;
                   { icon: BarChart3, label: 'Go/No-Go Verdict', desc: 'AI publish recommendation' },
                   { icon: Activity, label: 'Deep Insights', desc: 'Hidden analytics' },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg bg-[#0f0f0f] border border-[#1A1A1A] p-3 text-center hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                  <div key={f.label} className="rounded-lg bg-[#0f0f0f] border border-[#1A1A1A] p-3 text-center hover:border-[rgba(255,255,255,0.03)] transition-colors">
                     <f.icon className="w-4 h-4 mx-auto mb-1.5" style={{ color: TOOL_COLOR }} />
                     <p className="text-[11px] font-semibold text-[#FFFFFF]">{f.label}</p>
                     <p className="text-[9px] text-[#666666] mt-0.5">{f.desc}</p>
@@ -1243,9 +1243,9 @@ Return ONLY the JSON object, no other text.`;
             </div>
           ) : (
             <>
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}>
                     <Flame className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div className="flex-1">
@@ -1293,9 +1293,9 @@ Return ONLY the JSON object, no other text.`;
           ) : (
             <>
               {/* Section header */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)' }}>
+                  <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}>
                     <Activity className="w-4 h-4 text-[#888888]" />
                   </div>
                   <div className="flex-1">
@@ -1310,7 +1310,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Viewer Behavior Heatmap */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
                     <Activity className="w-4 h-4 text-[#888888]" />
@@ -1324,7 +1324,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Best Publishing Window */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
                     <Calendar className="w-4 h-4 text-[#888888]" />
@@ -1340,7 +1340,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Revenue per 1000 views (CPM Analysis) */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
@@ -1354,7 +1354,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Demographics */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
                     <Users className="w-4 h-4 text-[#888888]" />
@@ -1368,7 +1368,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Content Gap Opportunities */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
                     <Target className="w-4 h-4 text-[#FDBA2D]" />
@@ -1391,7 +1391,7 @@ Return ONLY the JSON object, no other text.`;
               </TacticalCorners>
 
               {/* Audience Satisfaction */}
-              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
                     <TrendingUp className="w-4 h-4 text-[#888888]" />

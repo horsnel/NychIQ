@@ -75,7 +75,7 @@ function ShortsCard({ video }: { video: VideoData }) {
   };
 
   return (
-    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[rgba(255,255,255,0.1)]"
+    <div className="group cursor-pointer rounded-xl overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[rgba(255,255,255,0.03)]"
       onClick={() => window.open(youtubeUrl, '_blank', 'noopener')} role="button" tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') window.open(youtubeUrl, '_blank', 'noopener'); }}>
       <div className="relative aspect-[9/16] bg-[#1A1A1A] overflow-hidden">
@@ -100,7 +100,7 @@ function ShortsCard({ video }: { video: VideoData }) {
           <DropdownMenuTrigger asChild>
             <button className="absolute bottom-2 right-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" onClick={(e) => e.stopPropagation()} aria-label="Shorts options"><MoreVertical className="w-4 h-4 text-white" /></button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side="bottom" align="end" className="bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] min-w-[200px]">
+          <DropdownMenuContent side="bottom" align="end" className="bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] min-w-[200px]">
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); window.open(youtubeUrl, '_blank', 'noopener'); }} className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><ExternalLink className="w-4 h-4" />Open on YouTube</DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#0f0f0f]" />
             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); handleCopyTitle(); }} className="text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] cursor-pointer"><Copy className="w-4 h-4" />Copy Title</DropdownMenuItem>
@@ -131,7 +131,7 @@ function ShortsCard({ video }: { video: VideoData }) {
 
 function ShortsSkeleton() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]">
+    <div className="rounded-xl overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]">
       <div className="aspect-[9/16] bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -242,7 +242,7 @@ export function ShortsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -257,7 +257,7 @@ export function ShortsTool() {
                 <p className="text-xs text-[#a0a0a0] mt-0.5">Top performing YouTube Shorts right now</p>
               </div>
             </div>
-            <button onClick={() => { setHasSpent(false); fetchShorts(); }} disabled={loading} className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50">
+            <button onClick={() => { setHasSpent(false); fetchShorts(); }} disabled={loading} className="p-2 rounded-lg border border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50">
               <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
             </button>
           </div>
@@ -272,7 +272,7 @@ export function ShortsTool() {
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   sortBy === s.key
                     ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
+                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                 )}
               >
                 {s.icon}
@@ -320,7 +320,7 @@ export function ShortsTool() {
       {/* Empty State */}
       {!loading && !error && sortedVideos.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Zap className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Shorts Found</h3>

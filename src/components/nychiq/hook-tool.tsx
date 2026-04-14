@@ -60,9 +60,9 @@ function CopyBtn({ text }: { text: string }) {
 /* ── Hook style colors ── */
 function styleColor(index: number): { color: string; bg: string; border: string } {
   const styles = [
-    { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)' },
+    { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
     { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' },
-    { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.3)' },
+    { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   ];
   return styles[index % 3];
 }
@@ -87,9 +87,9 @@ function generateMockHookScore(): { score: number; metrics: HookScoreMetrics } {
 }
 
 function scorePillColor(score: number): { bg: string; text: string; border: string } {
-  if (score >= 80) return { bg: 'rgba(16,185,129,0.15)', text: '#888888', border: 'rgba(16,185,129,0.4)' };
+  if (score >= 80) return { bg: 'rgba(34,197,94,0.1)', text: '#888888', border: 'rgba(34,197,94,0.1)' };
   if (score >= 60) return { bg: 'rgba(253,186,45,0.15)', text: '#FDBA2D', border: 'rgba(253,186,45,0.4)' };
-  return { bg: 'rgba(239,68,68,0.15)', text: '#888888', border: 'rgba(239,68,68,0.4)' };
+  return { bg: 'rgba(136,136,136,0.2)', text: '#888888', border: 'rgba(136,136,136,0.2)' };
 }
 
 function TinyProgressBar({ value, label }: { value: number; label: string }) {
@@ -187,7 +187,7 @@ Return ONLY the JSON array.`;
   };
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Anchor className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -226,7 +226,7 @@ Return ONLY the JSON array.`;
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -235,7 +235,7 @@ Return ONLY the JSON array.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/4 mb-3" />
               <div className="space-y-2"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-5/6" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-4/6" /></div>
             </div>
@@ -263,7 +263,7 @@ Return ONLY the JSON array.`;
             <button
               onClick={handleScoreAll}
               disabled={scoringAnim}
-              className="px-4 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.06)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
             >
               {scoringAnim ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Gauge className="w-3.5 h-3.5" />}
               Score All Hooks
@@ -273,7 +273,7 @@ Return ONLY the JSON array.`;
             const sc = styleColor(i);
             const pill = hook.scrollStopScore != null ? scorePillColor(hook.scrollStopScore) : null;
             return (
-              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 rounded-md text-[10px] font-bold" style={{ color: sc.color, backgroundColor: sc.bg, border: `1px solid ${sc.border}` }}>
@@ -312,7 +312,7 @@ Return ONLY the JSON array.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Anchor className="w-8 h-8 text-[#FDBA2D]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Anchor className="w-8 h-8 text-[#FDBA2D]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Create Viral Hooks</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a video topic to generate 3 different hook styles with scripts and timing.</p>
         </div>

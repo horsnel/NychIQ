@@ -99,20 +99,20 @@ The channel has shown consistent month-over-month growth, adding approximately 6
 /* ── Category colors for pie chart bars ── */
 const CAT_COLORS = [
   { bar: 'bg-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]' },
-  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]' },
-  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]' },
-  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]' },
-  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]' },
+  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
+  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
+  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
+  { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
 ];
 
 /* ── Stat card definitions ── */
 const STAT_CARDS = [
   { key: 'subscribers', label: 'Subscribers', icon: Users, color: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]' },
-  { key: 'totalViews', label: 'Total Views', icon: Eye, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]' },
-  { key: 'videos', label: 'Videos', icon: Video, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]' },
-  { key: 'avgViews', label: 'Avg Views', icon: Play, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]' },
-  { key: 'engagementRate', label: 'Engagement Rate', icon: Activity, color: 'text-[#E1306C]', bg: 'bg-[rgba(255,255,255,0.06)]' },
-  { key: 'estMonthlyRevenue', label: 'Est. Monthly Revenue', icon: DollarSign, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.06)]' },
+  { key: 'totalViews', label: 'Total Views', icon: Eye, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
+  { key: 'videos', label: 'Videos', icon: Video, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
+  { key: 'avgViews', label: 'Avg Views', icon: Play, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
+  { key: 'engagementRate', label: 'Engagement Rate', icon: Activity, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
+  { key: 'estMonthlyRevenue', label: 'Est. Monthly Revenue', icon: DollarSign, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
 ] as const;
 
 
@@ -177,7 +177,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -218,7 +218,7 @@ Return ONLY the JSON object, no other text.`;
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={analyzeChannel}
-            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -229,7 +229,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* Profile skeleton */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 flex items-center gap-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 flex items-center gap-4">
             <div className="w-16 h-16 rounded-full bg-[#1A1A1A] animate-pulse" />
             <div className="flex-1 space-y-2">
               <div className="h-5 bg-[#1A1A1A] rounded animate-pulse w-48" />
@@ -240,14 +240,14 @@ Return ONLY the JSON object, no other text.`;
           {/* Stats grid skeleton */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 space-y-2">
+              <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-16" />
                 <div className="h-6 bg-[#1A1A1A] rounded animate-pulse w-24" />
               </div>
             ))}
           </div>
           {/* Bar chart skeleton */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 space-y-3">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 space-y-3">
             <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-32" />
             <div className="flex items-end gap-3 h-32">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -262,9 +262,9 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-5">
           {/* Channel Profile Card */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.1)] border-2 border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.1)] border-2 border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
                 <span className="text-lg font-bold text-[#FDBA2D]">{result.profile.avatarInitial}</span>
               </div>
               <div className="flex-1 min-w-0">
@@ -281,7 +281,7 @@ Return ONLY the JSON object, no other text.`;
               const val = result.stats[stat.key as keyof ChannelStats];
               const Icon = stat.icon;
               return (
-                <div key={stat.key} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+                <div key={stat.key} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`p-1.5 rounded-md ${stat.bg}`}>
                       <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
@@ -295,7 +295,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Subscriber Growth - Bar Chart */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-4 h-4 text-[#888888]" />
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Subscriber Growth (6 Months)</h4>
@@ -326,7 +326,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Content Category Breakdown */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4 flex items-center gap-2">
               <Video className="w-3.5 h-3.5" /> Content Breakdown
             </h4>
@@ -380,7 +380,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <BarChart2 className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Deep Channel Analytics</h3>

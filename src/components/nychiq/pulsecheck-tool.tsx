@@ -65,15 +65,15 @@ const NICHES = [
 ];
 
 const VELOCITY_CONFIG = {
-  rising: { color: '#888888', bg: 'rgba(16,185,129,0.1)', label: 'Rising' },
+  rising: { color: '#888888', bg: 'rgba(34,197,94,0.1)', label: 'Rising' },
   stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', label: 'Stable' },
-  new: { color: '#888888', bg: 'rgba(59,130,246,0.1)', label: 'New' },
+  new: { color: '#888888', bg: 'rgba(255,255,255,0.03)', label: 'New' },
 };
 
 const SIGNAL_CONFIG = {
-  strong: { color: '#888888', bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.3)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
+  strong: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
   moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.08)', border: 'rgba(253,186,45,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
-  weak: { color: '#888888', bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
+  weak: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
   none: { color: '#666666', bg: 'rgba(68,68,68,0.08)', border: 'rgba(68,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'No Signal' },
 };
 
@@ -81,7 +81,7 @@ const SIGNAL_CONFIG = {
 function SubScoreCard({ sub }: { sub: SubScore }) {
   const color = sub.score >= 75 ? '#888888' : sub.score >= 50 ? '#FDBA2D' : sub.score >= 30 ? '#888888' : '#888888';
   return (
-    <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
+    <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span style={{ color }}>{sub.icon}</span>
@@ -246,10 +246,10 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <Scan className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -272,7 +272,7 @@ Return ONLY the JSON object, no other text.`;
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Video title..."
-              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
             />
           </div>
 
@@ -282,7 +282,7 @@ Return ONLY the JSON object, no other text.`;
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Video description (at least 10 characters)..."
             rows={3}
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors resize-none mb-2"
+            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors resize-none mb-2"
           />
 
           {/* Niche Selector */}
@@ -316,7 +316,7 @@ Return ONLY the JSON object, no other text.`;
             {searched && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
                 Reset
@@ -344,7 +344,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
               <span className="text-sm text-[#a0a0a0]">Analyzing algorithm alignment...</span>
@@ -435,7 +435,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Trending Topics */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Flame className="w-4 h-4 text-[#FDBA2D]" />
@@ -469,8 +469,8 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Recommendations */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
@@ -515,7 +515,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial idle state */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Scan className="w-8 h-8 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Algorithm Alignment Checker</h3>

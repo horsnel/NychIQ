@@ -59,7 +59,7 @@ function RankBadge({ rank }: { rank: number }) {
     </div>
   );
   return (
-    <div className="w-8 h-8 rounded-full bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-xs font-bold text-[#666666]">
+    <div className="w-8 h-8 rounded-full bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-xs font-bold text-[#666666]">
       {rank}
     </div>
   );
@@ -117,7 +117,7 @@ export function RankingsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -134,7 +134,7 @@ export function RankingsTool() {
             <button
               onClick={fetchRankings}
               disabled={loading}
-              className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg border border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
               <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
             </button>
@@ -150,7 +150,7 @@ export function RankingsTool() {
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   tab === t.key
                     ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
+                    : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                 )}
               >
                 {t.icon}
@@ -177,7 +177,7 @@ export function RankingsTool() {
 
       {/* Loading State */}
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="flex items-center gap-4 p-4">
@@ -195,7 +195,7 @@ export function RankingsTool() {
 
       {/* Ranked List */}
       {!loading && !error && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="divide-y divide-[#1A1A1A]">
             {items.map((item, i) => (
               <div
@@ -248,7 +248,7 @@ export function RankingsTool() {
                   <div className={cn(
                     'w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold',
                     scoreClass(item.viralScore),
-                    'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]'
+                    'bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]'
                   )}>
                     {item.viralScore}
                   </div>
@@ -258,7 +258,7 @@ export function RankingsTool() {
                 <div className={cn(
                   'sm:hidden w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0',
                   scoreClass(item.viralScore),
-                  'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]'
+                  'bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]'
                 )}>
                   {item.viralScore}
                 </div>

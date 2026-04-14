@@ -32,16 +32,16 @@ const FEATURES = [
     title: 'Channel Autopilot',
     description: 'AI manages your upload schedule, descriptions, tags, and thumbnails',
     color: '#888888',
-    bg: 'rgba(139,92,246,0.1)',
-    border: 'rgba(139,92,246,0.2)',
+    bg: 'rgba(255,255,255,0.03)',
+    border: 'rgba(255,255,255,0.03)',
   },
   {
     icon: Layers,
     title: 'Batch Processing',
     description: 'Upload multiple videos at once with automatic optimization for each',
     color: '#888888',
-    bg: 'rgba(59,130,246,0.1)',
-    border: 'rgba(59,130,246,0.2)',
+    bg: 'rgba(255,255,255,0.03)',
+    border: 'rgba(255,255,255,0.03)',
   },
 ] as const;
 
@@ -65,7 +65,7 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
     case 'completed':
       return {
         dotColor: '#888888',
-        ringColor: 'rgba(16,185,129,0.2)',
+        ringColor: 'rgba(34,197,94,0.1)',
         textColor: '#888888',
         lineColor: '#888888',
         icon: <Check className="w-3 h-3" />,
@@ -160,8 +160,8 @@ export function AutoUploaderTool() {
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
               style={{
-                background: 'linear-gradient(135deg, #888888, rgba(139,92,246,0.6))',
-                boxShadow: '0 8px 32px rgba(139,92,246,0.25)',
+                background: 'linear-gradient(135deg, #888888, rgba(255,255,255,0.03))',
+                boxShadow: '0 8px 32px rgba(255,255,255,0.03)',
               }}
             >
               <Upload className="w-8 h-8 text-white" />
@@ -195,7 +195,7 @@ export function AutoUploaderTool() {
         {FEATURES.map((feature) => (
           <div
             key={feature.title}
-            className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 hover:border-[#1a1a1a] transition-colors group"
+            className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 hover:border-[#1a1a1a] transition-colors group"
           >
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-transform group-hover:scale-110"
@@ -210,14 +210,14 @@ export function AutoUploaderTool() {
       </div>
 
       {/* ──────── WAITLIST SECTION ──────── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 sm:p-8">
         <div className="flex flex-col items-center text-center max-w-md mx-auto">
           {/* Confirmation State */}
           {submitted ? (
             <div className="flex flex-col items-center">
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(16,185,129,0.2)' }}
+                style={{ backgroundColor: '#1a1a1a', border: '1px solid rgba(34,197,94,0.1)' }}
               >
                 <CheckCircle2 className="w-7 h-7" style={{ color: '#aaa' }} />
               </div>
@@ -302,7 +302,7 @@ export function AutoUploaderTool() {
       </div>
 
       {/* ──────── STATUS TIMELINE ──────── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 sm:p-8">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 sm:p-8">
         <h3 className="text-sm font-bold text-[#FFFFFF] mb-5 flex items-center gap-2">
           <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           Development Progress

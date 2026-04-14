@@ -44,7 +44,7 @@ function CopyBtn({ text }: { text: string }) {
 
 function CompBadge({ level }: { level: string }) {
   const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
-  const bg = level === 'Low' ? 'rgba(16,185,129,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(239,68,68,0.1)';
+  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)';
   return <span className="px-2 py-0.5 rounded-full text-[10px] font-bold" style={{ color, backgroundColor: bg }}>{level}</span>;
 }
 
@@ -106,10 +106,10 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Key className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><Key className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Keyword Explorer</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Discover high-volume, low-competition keywords for your YouTube content.</p>
@@ -122,7 +122,7 @@ Return ONLY the JSON object.`;
               placeholder="Enter a keyword to explore..."
               className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
               Explore
             </button>
@@ -135,7 +135,7 @@ Return ONLY the JSON object.`;
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handleExplore} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handleExplore} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -143,12 +143,12 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="h-6 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-3" />
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3" />
           </div>
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 flex items-center justify-between">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3 flex items-center justify-between">
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-1/2" />
               <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-20" />
             </div>
@@ -172,7 +172,7 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Main keyword */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Main Keyword</h4>
@@ -186,7 +186,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Related keywords table */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Related Keywords</h4>
               <CopyBtn text={allText} />
@@ -209,11 +209,11 @@ Return ONLY the JSON object.`;
 
           {/* Opportunities */}
           {result.opportunities.length > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Keyword Opportunities</h4>
               <div className="space-y-2">
                 {result.opportunities.map((opp, i) => (
-                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                     <span className="text-[#888888] text-xs mt-0.5">●</span>
                     <p className="text-sm text-[#FFFFFF]">{opp}</p>
                   </div>
@@ -226,7 +226,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Key className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Key className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Explore Keywords</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a keyword to discover search volume, competition, and related terms.</p>
         </div>

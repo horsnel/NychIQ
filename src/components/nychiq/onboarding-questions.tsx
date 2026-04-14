@@ -90,7 +90,7 @@ export function OnboardingQuestions() {
                   className={`flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl border transition-all duration-200 group cursor-pointer ${
                     isSelected
                       ? 'bg-[rgba(253,186,45,0.08)] border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
-                      : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] hover:border-[#333] hover:bg-[#0f0f0f]'
+                      : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] hover:border-[#333] hover:bg-[#0f0f0f]'
                   }`}
                 >
                   <div

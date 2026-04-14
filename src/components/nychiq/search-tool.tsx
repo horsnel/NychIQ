@@ -147,7 +147,7 @@ export function SearchTool() {
 
       {/* ── Search Input (pill) ── */}
       <div className="mb-8">
-        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] focus-within:border-[#FDBA2D]/40">
+        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(253,186,45,0.3)]">
           <div className="pl-4 sm:pl-5 flex items-center">
             <Search className="w-5 h-5 text-[#666666]" />
           </div>
@@ -185,7 +185,7 @@ export function SearchTool() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3 sm:p-4 text-center"
+              className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3 sm:p-4 text-center"
             >
               <div className="text-xl sm:text-2xl font-bold" style={{ color: stat.color }}>
                 {stat.value}
@@ -211,7 +211,7 @@ export function SearchTool() {
             </p>
             <button
               onClick={() => { setQuery(''); inputRef.current?.focus(); }}
-              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#FDBA2D] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(253,186,45,0.08)] transition-colors"
+              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#FDBA2D] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(253,186,45,0.08)] transition-colors"
             >
               Clear search
             </button>
@@ -230,7 +230,7 @@ export function SearchTool() {
                   <h3 className="text-xs font-semibold tracking-widest uppercase" style={{ color: accentColor }}>
                     {section.label}
                   </h3>
-                  <div className="flex-1 h-px bg-[rgba(255,255,255,0.06)]" />
+                  <div className="flex-1 h-px bg-[rgba(255,255,255,0.03)]" />
                   <span className="text-[10px] text-[#666666]">
                     {section.tools.length} tool{section.tools.length !== 1 ? 's' : ''}
                   </span>
@@ -244,11 +244,11 @@ export function SearchTool() {
                       <button
                         key={tool.id}
                         onClick={() => handleSelect(tool.id)}
-                        className="group flex items-start gap-3 p-4 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] transition-all duration-200 text-left active:scale-[0.98]"
+                        className="group flex items-start gap-3 p-4 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-all duration-200 text-left active:scale-[0.98]"
                       >
                         {/* Icon */}
                         <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.06)]"
+                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.03)]"
                         >
                           <Icon
                             className="w-5 h-5 text-[#aaa]"
@@ -268,7 +268,7 @@ export function SearchTool() {
                           </p>
                           {/* Token cost badge */}
                           {tool.tokenCost > 0 && (
-                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]">
+                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]">
                               {tool.tokenCost} token{tool.tokenCost > 1 ? 's' : ''}
                             </span>
                           )}

@@ -286,7 +286,7 @@ export function WelcomePage() {
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(253,186,45,0.02)] blur-[100px]" />
-      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.06)] blur-[80px]" />
+      <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.03)] blur-[80px]" />
 
       <div className="relative z-10">
         {/* ═══ NAVIGATION BAR ═══ */}
@@ -317,25 +317,25 @@ export function WelcomePage() {
               <div className="hidden md:flex items-center gap-1">
                 <button
                   onClick={() => featuresRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => setPage('privacy')}
-                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => setPage('login')}
-                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.06)]"
+                  className="px-4 py-2 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors rounded-lg hover:bg-[rgba(255,255,255,0.03)]"
                 >
                   Live Demo
                 </button>
@@ -372,33 +372,33 @@ export function WelcomePage() {
 
           {/* Mobile dropdown menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-[#0f0f0f] border-t border-[rgba(255,255,255,0.06)] animate-fade-in-up">
+            <div className="md:hidden bg-[#0f0f0f] border-t border-[rgba(255,255,255,0.03)] animate-fade-in-up">
               <div className="px-4 py-4 space-y-1">
                 <button
                   onClick={() => { featuresRef.current?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => { document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => { setPage('privacy'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Legal
                 </button>
                 <button
                   onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-3 text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] rounded-lg transition-colors"
                 >
                   Live Demo
                 </button>
-                <div className="pt-3 border-t border-[rgba(255,255,255,0.06)] flex flex-col gap-2">
+                <div className="pt-3 border-t border-[rgba(255,255,255,0.03)] flex flex-col gap-2">
                   <Button
                     variant="outline"
                     className="w-full border-[#333] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-transparent"
@@ -424,7 +424,7 @@ export function WelcomePage() {
             {/* Left column */}
             <div className="animate-fade-in-up">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-xs text-[#888888] font-semibold tracking-wide uppercase mb-6">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-xs text-[#888888] font-semibold tracking-wide uppercase mb-6">
                 <span className="live-dot" />
                 LIVE YOUTUBE INTELLIGENCE
               </div>
@@ -479,10 +479,10 @@ export function WelcomePage() {
 
             {/* Right column — Dashboard mockup */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(16,185,129,0.06)] rounded-2xl blur-2xl" />
-              <div className="relative bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] rounded-xl overflow-hidden shadow-2xl">
+              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(34,197,94,0.1)] rounded-2xl blur-2xl" />
+              <div className="relative bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] rounded-xl overflow-hidden shadow-2xl">
                 {/* Browser bar */}
-                <div className="flex items-center gap-3 px-4 py-3 bg-[#0f0f0f] border-b border-[rgba(255,255,255,0.06)]">
+                <div className="flex items-center gap-3 px-4 py-3 bg-[#0f0f0f] border-b border-[rgba(255,255,255,0.03)]">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-[#888888]" />
                     <div className="w-3 h-3 rounded-full bg-[#FDBA2D]" />
@@ -492,7 +492,7 @@ export function WelcomePage() {
                     <Globe className="w-3 h-3 text-[#444]" />
                     <span className="text-xs text-[#666] font-mono">nychiq.com/dashboard</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                     <span className="live-dot" style={{ width: 6, height: 6 }} />
                     <span className="text-[10px] text-[#888888] font-semibold">LIVE</span>
                   </div>
@@ -516,7 +516,7 @@ export function WelcomePage() {
                 </div>
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-[rgba(255,255,255,0.06)]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-[rgba(255,255,255,0.03)]">
                   {[
                     { label: 'Trending', value: '142' },
                     { label: 'Top Score', value: '94' },
@@ -525,7 +525,7 @@ export function WelcomePage() {
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="px-3 py-3 border-r border-[rgba(255,255,255,0.06)] last:border-r-0 text-center"
+                      className="px-3 py-3 border-r border-[rgba(255,255,255,0.03)] last:border-r-0 text-center"
                     >
                       <div className="text-xs font-bold text-[#FFFFFF]">{stat.value}</div>
                       <div className="text-[10px] text-[#555] mt-0.5">{stat.label}</div>
@@ -618,7 +618,7 @@ export function WelcomePage() {
                 className={`relative rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 ${
                   plan.highlight
                     ? 'bg-[#0a0a0a] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
-                    : 'bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
+                    : 'bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
                 }`}
               >
                 {/* Badge */}
@@ -654,7 +654,7 @@ export function WelcomePage() {
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
                       ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.12)]'
-                      : 'bg-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]'
+                      : 'bg-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]'
                   }`}
                   onClick={() => setPage('login')}
                 >
@@ -667,7 +667,7 @@ export function WelcomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer className="border-t border-[rgba(255,255,255,0.06)]">
+        <footer className="border-t border-[rgba(255,255,255,0.03)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
               {/* Brand */}

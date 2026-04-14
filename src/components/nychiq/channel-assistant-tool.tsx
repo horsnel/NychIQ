@@ -128,7 +128,7 @@ function SectionCard({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
       <button
         type="button"
         onClick={() => collapsible && setOpen(!open)}
@@ -396,7 +396,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
         >
           {/* Bubble body – webtoon shape: rounded-tl-sm, rounded-br-2xl */}
           <div
-            className="relative bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] p-4 shadow-2xl shadow-black/40"
+            className="relative bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] p-4 shadow-2xl shadow-black/40"
             style={{
               borderRadius: '4px 16px 16px 16px',
             }}
@@ -463,7 +463,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
 
           {/* Bubble tail */}
           <div
-            className="absolute -bottom-[6px] right-5 w-3 h-3 bg-[#1A1A1A] border-r border-b border-[rgba(255,255,255,0.06)] rotate-45"
+            className="absolute -bottom-[6px] right-5 w-3 h-3 bg-[#1A1A1A] border-r border-b border-[rgba(255,255,255,0.03)] rotate-45"
           />
         </div>
       )}
@@ -473,7 +473,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
         <button
           onClick={handleRestore}
           className={cn(
-            'flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-lg transition-all duration-300',
+            'flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] shadow-lg transition-all duration-300',
             isExiting ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0',
           )}
         >
@@ -677,7 +677,7 @@ export function ChannelAssistantTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -707,7 +707,7 @@ export function ChannelAssistantTool() {
               </div>
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#666666] transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#666666] transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 Reset
@@ -729,7 +729,7 @@ export function ChannelAssistantTool() {
       </div>
 
       {/* Greeting */}
-      <div className="rounded-lg bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.06)] p-4">
+      <div className="rounded-lg bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.03)] p-4">
         <div className="flex items-start gap-3">
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] shrink-0 mt-0.5">
             <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
@@ -754,7 +754,7 @@ export function ChannelAssistantTool() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
-                ? 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]'
+                ? 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]'
                 : 'text-[#a0a0a0] hover:text-[#FFFFFF] border border-transparent'
             }`}
           >
@@ -786,7 +786,7 @@ export function ChannelAssistantTool() {
                     <p className="text-[10px] text-[#666666] mt-0.5">{config.contentTypes.length} content types &middot; {config.keywords.length} keywords configured</p>
                   </div>
                   {config.channelName && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] shrink-0">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] shrink-0">
                       <ShieldCheck className="w-3.5 h-3.5 text-[#888888]" />
                       <span className="text-[10px] font-bold text-[#888888]">Active</span>
                     </div>
@@ -843,7 +843,7 @@ export function ChannelAssistantTool() {
                           className="w-full rounded-sm transition-all"
                           style={{
                             height: `${bar.height}%`,
-                            backgroundColor: bar.isUp ? 'rgba(16,185,129,0.6)' : 'rgba(239,68,68,0.6)',
+                            backgroundColor: bar.isUp ? 'rgba(34,197,94,0.1)' : 'rgba(136,136,136,0.2)',
                             minHeight: 4,
                           }}
                         />
@@ -877,7 +877,7 @@ export function ChannelAssistantTool() {
                       key={comp.name}
                       className={cn(
                         'flex items-center gap-3 p-3 rounded-md border transition-colors',
-                        comp.isYou ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
+                        comp.isYou ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
                       )}
                     >
                       <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
@@ -927,8 +927,8 @@ export function ChannelAssistantTool() {
 
               {/* Health Summary */}
               <div className="mt-4 p-3 rounded-md border" style={{
-                backgroundColor: score.percent >= 80 ? 'rgba(16,185,129,0.06)' : score.percent >= 50 ? 'rgba(253,186,45,0.06)' : 'rgba(239,68,68,0.06)',
-                borderColor: score.percent >= 80 ? 'rgba(16,185,129,0.15)' : score.percent >= 50 ? 'rgba(253,186,45,0.15)' : 'rgba(239,68,68,0.15)',
+                backgroundColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(253,186,45,0.06)' : 'rgba(0,0,0,0)',
+                borderColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(253,186,45,0.15)' : 'rgba(136,136,136,0.2)',
               }}>
                 <div className="flex items-center gap-2">
                   {score.percent >= 80 ? (
@@ -1037,7 +1037,7 @@ export function ChannelAssistantTool() {
                           onClick={() => toggleContentType(ct)}
                           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                             selected
-                              ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]'
+                              ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]'
                               : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[#1a1a1a] hover:text-[#FFFFFF]'
                           }`}
                         >
@@ -1118,7 +1118,7 @@ export function ChannelAssistantTool() {
                       onClick={() => update('tone', tone.value)}
                       className={`p-3 rounded-lg border text-left transition-all ${
                         selected
-                          ? 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.06)]'
+                          ? 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.03)]'
                           : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[#1a1a1a]'
                       }`}
                     >
@@ -1184,7 +1184,7 @@ export function ChannelAssistantTool() {
                       onClick={() => toggleGoal(goal)}
                       className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                         selected
-                          ? 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]'
+                          ? 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]'
                           : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[#1a1a1a] hover:text-[#FFFFFF]'
                       }`}
                     >
@@ -1277,7 +1277,7 @@ export function ChannelAssistantTool() {
       </div>
 
       {/* Bottom save bar (mobile friendly) */}
-      <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]">
+      <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]">
         <div className="flex items-center gap-2">
           <Bot className="w-4 h-4 text-[#FDBA2D]" />
           <span className="text-xs text-[#a0a0a0]">

@@ -297,11 +297,11 @@ export function SovereignVaultTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
                 <Archive className="w-5 h-5 text-[#888888]" />
               </div>
               <div>
@@ -309,7 +309,7 @@ export function SovereignVaultTool() {
                 <p className="text-xs text-[#a0a0a0] mt-0.5">Your personal data vault — everything stays on your device</p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-[10px] font-bold text-[#888888] flex items-center gap-1">
+            <span className="px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[10px] font-bold text-[#888888] flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-[#888888]" />
               LOCAL ONLY
             </span>
@@ -326,18 +326,18 @@ export function SovereignVaultTool() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search across all vault items..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-all"
           />
         </div>
         {(searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className="p-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors"
+            className="p-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         )) || (
-          <div className="p-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]">
+          <div className="p-2.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]">
             <Filter className="w-4 h-4 text-[#666666]" />
           </div>
         )}
@@ -351,8 +351,8 @@ export function SovereignVaultTool() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
-                ? 'bg-[#888888]/10 text-[#888888] border border-[#888888]/20'
-                : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#1a1a1a]'
+                ? 'bg-[#888888]/10 text-[#888888] border border-[rgba(255,255,255,0.03)]'
+                : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[#1a1a1a]'
             }`}
           >
             <tab.icon className="w-3.5 h-3.5" />
@@ -366,22 +366,22 @@ export function SovereignVaultTool() {
         <div className="space-y-4">
           {/* Stats Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-2">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
+              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-2">
                 <Hash className="w-4 h-4 text-[#888888]" />
               </div>
               <p className="text-xl font-bold text-[#FFFFFF]">{totalItems}</p>
               <p className="text-[10px] text-[#a0a0a0] mt-1">Total Saved Items</p>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-2">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
+              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-2">
                 <FolderOpen className="w-4 h-4 text-[#888888]" />
               </div>
               <p className="text-xl font-bold text-[#FFFFFF]">{categories}</p>
               <p className="text-[10px] text-[#a0a0a0] mt-1">Categories</p>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 text-center">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-2">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
+              <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-2">
                 <Clock className="w-4 h-4 text-[#888888]" />
               </div>
               <p className="text-sm font-bold text-[#FFFFFF] mt-1">{lastBackup}</p>
@@ -393,9 +393,9 @@ export function SovereignVaultTool() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <button
               onClick={() => setActiveTab('video-meta')}
-              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[#888888]/30 transition-all text-left group"
+              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[#888888]/30 transition-all text-left group"
             >
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                 <FileText className="w-4 h-4 text-[#888888]" />
               </div>
               <div className="flex-1">
@@ -405,9 +405,9 @@ export function SovereignVaultTool() {
             </button>
             <button
               onClick={() => setActiveTab('ab-archive')}
-              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[#888888]/30 transition-all text-left group"
+              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[#888888]/30 transition-all text-left group"
             >
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                 <GitCompare className="w-4 h-4 text-[#888888]" />
               </div>
               <div className="flex-1">
@@ -417,9 +417,9 @@ export function SovereignVaultTool() {
             </button>
             <button
               onClick={() => setActiveTab('growth-data')}
-              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[#888888]/30 transition-all text-left group"
+              className="flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[#888888]/30 transition-all text-left group"
             >
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                 <BarChart3 className="w-4 h-4 text-[#888888]" />
               </div>
               <div className="flex-1">
@@ -430,7 +430,7 @@ export function SovereignVaultTool() {
           </div>
 
           {/* Privacy Notice */}
-          <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] px-4 py-3">
+          <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] px-4 py-3">
             <p className="text-xs text-[#a0a0a0] flex items-center gap-2">
               <Archive className="w-3.5 h-3.5 text-[#888888] flex-shrink-0" />
               All data is stored locally in your browser using localStorage. No data is sent to any server. Your vault is entirely under your control.
@@ -451,8 +451,8 @@ export function SovereignVaultTool() {
               onClick={() => setShowAddForm(!showAddForm)}
               className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5"
               style={{
-                background: showAddForm ? '#1A1A1A' : 'rgba(139,92,246,0.1)',
-                border: showAddForm ? '1px solid #0f0f0f' : '1px solid rgba(139,92,246,0.2)',
+                background: showAddForm ? '#1A1A1A' : 'rgba(255,255,255,0.03)',
+                border: showAddForm ? '1px solid #0f0f0f' : '1px solid rgba(255,255,255,0.03)',
                 color: showAddForm ? '#a0a0a0' : '#888888',
               }}
             >
@@ -463,7 +463,7 @@ export function SovereignVaultTool() {
 
           {/* Add Form */}
           {showAddForm && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/20 p-5 space-y-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 space-y-4">
               <div>
                 <label className="text-[11px] text-[#a0a0a0] font-medium uppercase tracking-wider block mb-1.5">Video Title *</label>
                 <input
@@ -471,7 +471,7 @@ export function SovereignVaultTool() {
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
                   placeholder="Enter video title..."
-                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all"
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all"
                 />
               </div>
               <div>
@@ -483,7 +483,7 @@ export function SovereignVaultTool() {
                     value={formTags}
                     onChange={(e) => setFormTags(e.target.value)}
                     placeholder="youtube, seo, tutorial..."
-                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all"
                   />
                 </div>
               </div>
@@ -494,7 +494,7 @@ export function SovereignVaultTool() {
                   onChange={(e) => setFormDesc(e.target.value)}
                   placeholder="Video description..."
                   rows={3}
-                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all resize-none"
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/40 transition-all resize-none"
                 />
               </div>
               <div>
@@ -503,7 +503,7 @@ export function SovereignVaultTool() {
                   type="date"
                   value={formDate}
                   onChange={(e) => setFormDate(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[#FFFFFF] text-sm focus:outline-none focus:border-[#888888]/40 transition-all"
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[#FFFFFF] text-sm focus:outline-none focus:border-[#888888]/40 transition-all"
                 />
               </div>
               <button
@@ -527,7 +527,7 @@ export function SovereignVaultTool() {
           ) : (
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {filteredMeta.map((entry) => (
-                <div key={entry.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 group hover:border-[#1a1a1a] transition-colors">
+                <div key={entry.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 group hover:border-[#1a1a1a] transition-colors">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-semibold text-[#FFFFFF] mb-1.5 truncate">{entry.title}</h4>
@@ -546,7 +546,7 @@ export function SovereignVaultTool() {
                     </div>
                     <button
                       onClick={() => deleteEntry('videoMeta', entry.id)}
-                      className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
+                      className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.03)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
                       title="Delete"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -576,12 +576,12 @@ export function SovereignVaultTool() {
           ) : (
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {filteredAB.map((entry) => (
-                <div key={entry.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 group hover:border-[#1a1a1a] transition-colors">
+                <div key={entry.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 group hover:border-[#1a1a1a] transition-colors">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
                       <h4 className="text-sm font-semibold text-[#FFFFFF]">{entry.videoTitle}</h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-[10px] font-medium text-[#888888]">
+                        <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[10px] font-medium text-[#888888]">
                           {entry.testType}
                         </span>
                         <span className="text-[10px] text-[#666666] flex items-center gap-1">
@@ -593,17 +593,17 @@ export function SovereignVaultTool() {
                       <span
                         className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
                           entry.winner === 'A'
-                            ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)] text-[#888888]'
+                            ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
                             : entry.winner === 'B'
-                            ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)] text-[#888888]'
-                            : 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.06)] text-[#FDBA2D]'
+                            ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
+                            : 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.03)] text-[#FDBA2D]'
                         }`}
                       >
                         {entry.winner === 'pending' ? '⏳ Pending' : `Winner: ${entry.winner}`}
                       </span>
                       <button
                         onClick={() => deleteEntry('abArchive', entry.id)}
-                        className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
+                        className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.03)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
                         title="Delete"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -613,7 +613,7 @@ export function SovereignVaultTool() {
 
                   {/* Variant Comparison */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className={`rounded-md p-3 border ${entry.winner === 'A' ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'}`}>
+                    <div className={`rounded-md p-3 border ${entry.winner === 'A' ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'}`}>
                       <p className="text-[10px] text-[#666666] font-medium mb-1.5">VARIANT A</p>
                       <p className="text-xs text-[#FFFFFF] mb-2">{entry.variantA}</p>
                       <div className="flex items-center justify-between text-[10px]">
@@ -621,7 +621,7 @@ export function SovereignVaultTool() {
                         <span className="text-[#a0a0a0]">CTR: <span className="text-[#FFFFFF] font-semibold">{entry.ctrA}%</span></span>
                       </div>
                     </div>
-                    <div className={`rounded-md p-3 border ${entry.winner === 'B' ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'}`}>
+                    <div className={`rounded-md p-3 border ${entry.winner === 'B' ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'}`}>
                       <p className="text-[10px] text-[#666666] font-medium mb-1.5">VARIANT B</p>
                       <p className="text-xs text-[#FFFFFF] mb-2">{entry.variantB}</p>
                       <div className="flex items-center justify-between text-[10px]">
@@ -654,7 +654,7 @@ export function SovereignVaultTool() {
           ) : (
             <>
               {/* Visual Growth Chart (CSS bars) */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
                 <p className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider mb-4">Subscriber Growth</p>
                 <div className="flex items-end gap-2 h-32">
                   {filteredGrowth.map((entry) => {
@@ -675,7 +675,7 @@ export function SovereignVaultTool() {
               </div>
 
               {/* Data Table */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
@@ -690,7 +690,7 @@ export function SovereignVaultTool() {
                     </thead>
                     <tbody className="divide-y divide-[#1A1A1A]">
                       {filteredGrowth.map((entry) => (
-                        <tr key={entry.id} className="group hover:bg-[rgba(255,255,255,0.06)] transition-colors">
+                        <tr key={entry.id} className="group hover:bg-[rgba(255,255,255,0.03)] transition-colors">
                           <td className="px-4 py-3 text-xs text-[#FFFFFF] font-medium">{entry.month}</td>
                           <td className="px-4 py-3 text-xs text-[#FFFFFF] text-right font-semibold">{entry.subscribers.toLocaleString()}</td>
                           <td className="px-4 py-3 text-xs text-[#FFFFFF] text-right">{entry.totalViews.toLocaleString()}</td>
@@ -699,7 +699,7 @@ export function SovereignVaultTool() {
                           <td className="px-4 py-3">
                             <button
                               onClick={() => deleteEntry('growthData', entry.id)}
-                              className="p-1 rounded-md hover:bg-[rgba(255,255,255,0.06)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
+                              className="p-1 rounded-md hover:bg-[rgba(255,255,255,0.03)] text-[#666666] hover:text-[#888888] transition-all opacity-0 group-hover:opacity-100"
                               title="Delete"
                             >
                               <Trash2 className="w-3 h-3" />
@@ -723,7 +723,7 @@ export function SovereignVaultTool() {
             <Download className="w-4 h-4 text-[#888888]" /> Export Vault Data
           </h3>
 
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 space-y-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 space-y-4">
             <p className="text-sm text-[#a0a0a0]">
               Export all your vault data as JSON. You can use this for backups, migration, or data analysis.
             </p>
@@ -766,7 +766,7 @@ export function SovereignVaultTool() {
               <button
                 onClick={handleDownloadJSON}
                 className="flex-1 px-4 py-3 rounded-lg text-white text-sm font-medium transition-all flex items-center justify-center gap-2"
-                style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.06)', color: '#FFFFFF' }}
+                style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.03)', color: '#FFFFFF' }}
               >
                 <Download className="w-4 h-4" /> Download .json
               </button>
@@ -783,7 +783,7 @@ export function SovereignVaultTool() {
           </div>
 
           {/* Danger Zone */}
-          <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-5">
             <h4 className="text-sm font-semibold text-[#888888] mb-2 flex items-center gap-1.5">
               <AlertCircle className="w-4 h-4" /> Danger Zone
             </h4>
@@ -795,7 +795,7 @@ export function SovereignVaultTool() {
                   setVault(DEFAULT_VAULT);
                 }
               }}
-              className="px-4 py-2 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-xs font-medium text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+              className="px-4 py-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-xs font-medium text-[#888888] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
             >
               Delete All Vault Data
             </button>

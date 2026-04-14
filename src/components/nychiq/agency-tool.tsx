@@ -129,9 +129,9 @@ function healthLabel(score: number): string {
 }
 function reportBadge(type: Report['type']) {
   switch (type) {
-    case 'Audit': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]', icon: <Shield className="w-3 h-3" /> };
-    case 'Strategy': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]', icon: <TrendingUp className="w-3 h-3" /> };
-    case 'SEO': return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]', icon: <SearchCode className="w-3 h-3" /> };
+    case 'Audit': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', icon: <Shield className="w-3 h-3" /> };
+    case 'Strategy': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', icon: <TrendingUp className="w-3 h-3" /> };
+    case 'SEO': return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]', icon: <SearchCode className="w-3 h-3" /> };
   }
 }
 function signalTypeInfo(type: SignalQueueItem['type']): { icon: LucideIcon; color: string; label: string } {
@@ -197,7 +197,7 @@ function HealthRing({ score, size = 100 }: { score: number; size?: number }) {
 
 function StatCard({ icon: Icon, label, value, color, sub }: { icon: LucideIcon; label: string; value: string; color: string; sub?: string }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
       <div className="flex items-center gap-2 mb-2">
         <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15`, border: `1px solid ${color}30` }}>
           <Icon className="w-4 h-4" style={{ color }} />
@@ -214,7 +214,7 @@ function KPICard({ icon: Icon, label, value, change, positive, color }: {
   icon: React.ElementType; label: string; value: string; change: string; positive: boolean; color: string;
 }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 flex flex-col gap-2">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <div className="p-1.5 rounded-md" style={{ backgroundColor: `${color}15`, color }}>
           <Icon className="w-3.5 h-3.5" />
@@ -280,7 +280,7 @@ function ToolCard({ icon: Icon, label, desc, cost, toolId, color }: {
   const setActiveTool = useNychIQStore((s) => s.setActiveTool);
   return (
     <button onClick={() => setActiveTool(toolId)}
-      className="group flex items-center gap-3 p-3.5 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[#0f0f0f] hover:bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.1)] transition-all duration-200 hover:-translate-y-0.5 text-left w-full">
+      className="group flex items-center gap-3 p-3.5 rounded-lg border border-[rgba(255,255,255,0.03)] bg-[#0f0f0f] hover:bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 text-left w-full">
       <div className="p-2 rounded-lg shrink-0 transition-transform group-hover:scale-110" style={{ backgroundColor: `${color}15`, color }}>
         <Icon className="w-4 h-4" />
       </div>
@@ -442,14 +442,14 @@ function ChannelDetailView({ channel, onBack }: {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* 1. CHANNEL HEADER */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="h-24 sm:h-28 bg-gradient-to-r from-[#0a0a0a] via-[#0f0f0f] to-[rgba(253,186,45,0.08)] relative">
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(253,186,45,0.06) 50px, rgba(253,186,45,0.06) 51px)' }} />
           <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full border" style={{ backgroundColor: `${si.color}10`, borderColor: `${si.color}30` }}>
             <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: si.color }} />
             <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: si.color }}>{channel.status}</span>
           </div>
-          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
             <span className="text-[10px] font-bold text-[#888888] uppercase tracking-wider">{channel.niche}</span>
           </div>
         </div>
@@ -468,15 +468,15 @@ function ChannelDetailView({ channel, onBack }: {
             </div>
             <div className="flex gap-2 pb-1">
               <button onClick={onBack}
-                className="px-3 py-1.5 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-[#888888] text-xs font-bold hover:bg-[rgba(255,255,255,0.06)] transition-colors flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[#888888] text-xs font-bold hover:bg-[rgba(255,255,255,0.03)] transition-colors flex items-center gap-1.5">
                 <ChevronRight className="w-3 h-3 rotate-180" /> Back
               </button>
               <button onClick={() => setActiveTool('audit')}
-                className="px-3 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors flex items-center gap-1.5">
                 <RefreshCw className="w-3 h-3" /> Re-audit
               </button>
               <button onClick={() => { removeAgencyChannel(channel.id); onBack(); }}
-                className="px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-xs font-medium hover:text-[#888888] hover:border-[#888888]/30 transition-colors flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-xs font-medium hover:text-[#888888] hover:border-[#888888]/30 transition-colors flex items-center gap-1.5">
                 <Trash2 className="w-3 h-3" /> Remove
               </button>
             </div>
@@ -486,7 +486,7 @@ function ChannelDetailView({ channel, onBack }: {
 
       {/* 2. KPI OVERVIEW */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
-        <div className="col-span-2 lg:col-span-1 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 flex flex-col items-center justify-center">
+        <div className="col-span-2 lg:col-span-1 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col items-center justify-center">
           <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-semibold mb-2">Health Score</span>
           <HealthRing score={channel.healthScore} size={80} />
         </div>
@@ -497,7 +497,7 @@ function ChannelDetailView({ channel, onBack }: {
       </div>
 
       {/* 3. GROWTH TRENDS */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
           <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
             <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Growth Trends
@@ -522,7 +522,7 @@ function ChannelDetailView({ channel, onBack }: {
       {/* TWO-COLUMN: AI Insights + Categories */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* 4. AI PERFORMANCE ANALYSIS */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
               <BrainCircuit className="w-3.5 h-3.5 text-[#FDBA2D]" /> AI Insights
@@ -534,7 +534,7 @@ function ChannelDetailView({ channel, onBack }: {
               </button>
             ) : (
               <button onClick={() => setAiInsights(null)}
-                className="px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-[11px] font-medium hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-[11px] font-medium hover:text-[#FFFFFF] transition-colors flex items-center gap-1.5">
                 <RefreshCw className="w-3 h-3" /> Refresh
               </button>
             )}
@@ -570,7 +570,7 @@ function ChannelDetailView({ channel, onBack }: {
 
         {/* Categories + Heatmap */}
         <div className="space-y-5">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
               <ClipboardCheck className="w-3.5 h-3.5 text-[#FDBA2D]" /> Audit Categories
             </h3>
@@ -594,7 +594,7 @@ function ChannelDetailView({ channel, onBack }: {
           </div>
 
           {/* 5. HEATMAP */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-3">
               <Clock className="w-3.5 h-3.5 text-[#FDBA2D]" /> Best Post Times
             </h3>
@@ -619,7 +619,7 @@ function ChannelDetailView({ channel, onBack }: {
       </div>
 
       {/* 6. COMMAND CENTER */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
           <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Command Center
         </h3>
@@ -629,7 +629,7 @@ function ChannelDetailView({ channel, onBack }: {
       </div>
 
       {/* 7. ACTIVITY FEED */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-3">
           <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Recent Activity
         </h3>
@@ -685,7 +685,7 @@ function BulkCustomizeTab() {
   if (agencyChannels.length === 0) {
     return (
       <div className="flex flex-col items-center py-20 animate-fade-in-up">
-        <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-6">
+        <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
           <SlidersHorizontal className="w-10 h-10 text-[#888888]" />
         </div>
         <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">No Channels to Customize</h2>
@@ -697,11 +697,11 @@ function BulkCustomizeTab() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Channel selector */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
             <Users className="w-3.5 h-3.5 text-[#888888]" /> Select Channels
-            <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] text-[10px] font-bold text-[#888888]">{selectedIds.size}/{agencyChannels.length}</span>
+            <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] text-[10px] font-bold text-[#888888]">{selectedIds.size}/{agencyChannels.length}</span>
           </h3>
           <div className="flex gap-2">
             <button onClick={selectAll} className="px-2.5 py-1 rounded-md text-[10px] font-medium bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors">Select All</button>
@@ -711,7 +711,7 @@ function BulkCustomizeTab() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
           {agencyChannels.map((ch) => (
             <button key={ch.id} onClick={() => toggleChannel(ch.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all text-left ${selectedIds.has(ch.id) ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)]'}`}>
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all text-left ${selectedIds.has(ch.id) ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)]'}`}>
               {selectedIds.has(ch.id) ? <CheckCircle className="w-4 h-4 text-[#888888] shrink-0" /> : <CircleDot className="w-4 h-4 text-[#666666] shrink-0" />}
               <div className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0" style={{ backgroundColor: ch.avatar ? 'transparent' : '#FDBA2D20', color: '#FDBA2D' }}>
                 {ch.avatar ? <img src={ch.avatar} alt="" className="w-6 h-6 rounded-full object-cover" /> : ch.title.charAt(0)}
@@ -725,7 +725,7 @@ function BulkCustomizeTab() {
       {/* Configuration */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Brand Voice */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
             <Mic className="w-3.5 h-3.5 text-[#FDBA2D]" /> Voice & Tone
           </h3>
@@ -759,27 +759,27 @@ function BulkCustomizeTab() {
 
         {/* Goals & Content */}
         <div className="space-y-5">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
               <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Goals
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {GOALS.map((g) => (
                 <button key={g} onClick={() => toggleGoal(g)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${goals.includes(g) ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${goals.includes(g) ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
                   {g}
                 </button>
               ))}
             </div>
           </div>
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
               <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" /> Content Types
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {CONTENT_TYPES.map((ct) => (
                 <button key={ct} onClick={() => toggleContentType(ct)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${contentTypes.includes(ct) ? 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${contentTypes.includes(ct) ? 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
                   {ct}
                 </button>
               ))}
@@ -789,7 +789,7 @@ function BulkCustomizeTab() {
       </div>
 
       {/* Keywords & Instructions */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
           <Wand2 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Keywords & Custom Instructions
         </h3>
@@ -810,7 +810,7 @@ function BulkCustomizeTab() {
       <div className="flex items-center justify-between">
         <p className="text-xs text-[#666666]">{selectedIds.size} channel(s) selected</p>
         <button onClick={handleApply}
-          className={`px-6 py-3 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${saved ? 'bg-[#888888] text-[#0a0a0a]' : 'bg-[#888888] text-[#FFFFFF] hover:bg-[#7C3AED]'} disabled:opacity-40`}
+          className={`px-6 py-3 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${saved ? 'bg-[#888888] text-[#0a0a0a]' : 'bg-[#888888] text-[#FFFFFF] hover:bg-[#555555]'} disabled:opacity-40`}
           disabled={selectedIds.size === 0}>
           {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
           {saved ? `Applied to ${selectedIds.size} Channels!` : `Apply to ${selectedIds.size} Channel(s)`}
@@ -836,7 +836,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
   if (agencyChannels.length === 0) {
     return (
       <div className="flex flex-col items-center py-20 animate-fade-in-up">
-        <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-6">
+        <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
           <Bot className="w-10 h-10 text-[#888888]" />
         </div>
         <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">No AI Agents Configured</h2>
@@ -857,11 +857,11 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
       {/* Bulk actions */}
       <div className="flex gap-2">
         <button onClick={handleConfigureAll}
-          className="px-4 py-2 rounded-lg bg-[#888888] text-[#FFFFFF] text-xs font-bold hover:bg-[#7C3AED] transition-colors flex items-center gap-2">
+          className="px-4 py-2 rounded-lg bg-[#888888] text-[#FFFFFF] text-xs font-bold hover:bg-[#555555] transition-colors flex items-center gap-2">
           <SlidersHorizontal className="w-3.5 h-3.5" /> Configure All
         </button>
         <button onClick={() => setActiveTool('audit')}
-          className="px-4 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-xs font-medium hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)] transition-colors flex items-center gap-2">
+          className="px-4 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-xs font-medium hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)] transition-colors flex items-center gap-2">
           <ClipboardCheck className="w-3.5 h-3.5" /> Run Bulk Audit
         </button>
       </div>
@@ -871,10 +871,10 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
         {agencyChannels.map((ch) => {
           const isConfigured = ch.assistantConfig.brandVoice || ch.assistantConfig.goals.length > 0 || ch.assistantConfig.keywords.length > 0;
           return (
-            <div key={ch.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
+            <div key={ch.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors">
               <div className="flex items-center gap-3 mb-3">
                 {ch.avatar ? (
-                  <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.06)]" />
+                  <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]" />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">
                     {ch.title.charAt(0)}
@@ -916,11 +916,11 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
               {/* Quick actions */}
               <div className="flex gap-1.5">
                 <button onClick={() => onSwitchToCustomize([ch.id])}
-                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-[#888888] text-[10px] font-bold hover:bg-[rgba(255,255,255,0.06)] transition-colors text-center">
+                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[#888888] text-[10px] font-bold hover:bg-[rgba(255,255,255,0.03)] transition-colors text-center">
                   <Settings2 className="w-3 h-3 inline mr-1" />Configure
                 </button>
                 <button onClick={() => setActiveTool('audit')}
-                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-[#FDBA2D] text-[10px] font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors text-center">
+                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-[10px] font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors text-center">
                   <ClipboardCheck className="w-3 h-3 inline mr-1" />Audit
                 </button>
                 <button onClick={() => onViewChannel(ch.id)}
@@ -1038,7 +1038,7 @@ export function AgencyDashboardTool() {
   if (loading) {
     return (
       <div className="space-y-5 animate-fade-in-up">
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 animate-pulse">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 animate-pulse">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-lg bg-[#1A1A1A]" />
             <div className="space-y-2 flex-1"><div className="h-4 bg-[#1A1A1A] rounded w-40" /><div className="h-3 bg-[#1A1A1A] rounded w-64" /></div>
@@ -1046,7 +1046,7 @@ export function AgencyDashboardTool() {
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">{Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-20 rounded-lg bg-[#1A1A1A]" />)}</div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 animate-pulse">
+          <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 animate-pulse">
             <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 rounded-full bg-[#1A1A1A]" /><div className="space-y-2 flex-1"><div className="h-4 bg-[#1A1A1A] rounded w-2/3" /></div></div>
           </div>
         ))}</div>
@@ -1059,12 +1059,12 @@ export function AgencyDashboardTool() {
     return (
       <div className="animate-fade-in-up">
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-14 h-14 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Lock className="w-7 h-7 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Failed to Load Dashboard</h3>
           <p className="text-sm text-[#a0a0a0] mb-4">{error}</p>
-          <button onClick={() => window.location.reload()} className="px-5 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={() => window.location.reload()} className="px-5 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <Loader2 className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -1076,11 +1076,11 @@ export function AgencyDashboardTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Building2 className="w-5 h-5 text-[#888888]" /></div>
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><Building2 className="w-5 h-5 text-[#888888]" /></div>
               <div>
                 <div className="flex items-center gap-2">
                   <h2 className="text-base font-bold text-[#FFFFFF]">Agency Hub</h2>
@@ -1133,10 +1133,10 @@ export function AgencyDashboardTool() {
       <div className="flex gap-1.5 overflow-x-auto pb-1">
         {tabs.map((tab) => (
           <button key={tab.id} onClick={() => { setActiveTab(tab.id); if (tab.id !== 'channels') setSelectedChannelId(null); }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${activeTab === tab.id ? 'bg-[#888888]/10 text-[#888888] border border-[#888888]/20' : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)]'}`}>
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${activeTab === tab.id ? 'bg-[#888888]/10 text-[#888888] border border-[rgba(255,255,255,0.03)]' : 'bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)]'}`}>
             <tab.icon className="w-3.5 h-3.5" />
             {tab.label}
-            {tab.id === 'signals' && <span className="px-1.5 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] text-[9px] font-bold text-[#888888]">{MOCK_SIGNALS.filter((s) => s.priority === 'high').length}</span>}
+            {tab.id === 'signals' && <span className="px-1.5 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#888888]">{MOCK_SIGNALS.filter((s) => s.priority === 'high').length}</span>}
           </button>
         ))}
       </div>
@@ -1145,7 +1145,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'fleet' && (
         <div className="space-y-4">
           {/* ROI Chart */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A] flex items-center justify-between">
               <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5"><BarChart3 className="w-3.5 h-3.5 text-[#888888]" /> Portfolio ROI</h3>
               <span className="text-[10px] text-[#666666]">Last 6 months</span>
@@ -1195,7 +1195,7 @@ export function AgencyDashboardTool() {
               const chStatus = 'status' in ch ? ch.status : 'performing';
               const si = statusRing(chStatus);
               return (
-                <div key={chId} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors group">
+                <div key={chId} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors group">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ backgroundColor: `${chColor}25`, border: `2px solid ${chColor}50`, color: chColor }}>{chInitials}</div>
@@ -1243,7 +1243,7 @@ export function AgencyDashboardTool() {
 
             {agencyChannels.length === 0 ? (
               <div className="flex flex-col items-center py-16 animate-fade-in-up">
-                <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-6">
+                <div className="w-20 h-20 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
                   <MonitorPlay className="w-10 h-10 text-[#888888]" />
                 </div>
                 <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">No Channels Added Yet</h2>
@@ -1257,11 +1257,11 @@ export function AgencyDashboardTool() {
                 {agencyChannels.map((ch) => {
                   const si = statusRing(ch.status);
                   return (
-                    <div key={ch.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors group">
+                    <div key={ch.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors group">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
                           {ch.avatar ? (
-                            <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.06)]" />
+                            <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]" />
                           ) : (
                             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">{ch.title.charAt(0)}</div>
                           )}
@@ -1308,8 +1308,8 @@ export function AgencyDashboardTool() {
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-1.5"><Signal className="w-4 h-4 text-[#888888]" /> Intelligence Signals <span className="text-[10px] text-[#666666] font-normal ml-1">{MOCK_SIGNALS.length} active</span></h3>
             <div className="flex items-center gap-1.5">
-              <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-[9px] font-bold text-[#888888]">{MOCK_SIGNALS.filter((s) => s.priority === 'high').length} HIGH</span>
-              <span className="px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-[9px] font-bold text-[#FDBA2D]">{MOCK_SIGNALS.filter((s) => s.priority === 'medium').length} MED</span>
+              <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#888888]">{MOCK_SIGNALS.filter((s) => s.priority === 'high').length} HIGH</span>
+              <span className="px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#FDBA2D]">{MOCK_SIGNALS.filter((s) => s.priority === 'medium').length} MED</span>
             </div>
           </div>
           <div ref={signalQueueRef} className="space-y-2 max-h-[500px] overflow-y-auto">
@@ -1317,7 +1317,7 @@ export function AgencyDashboardTool() {
               const typeInfo = signalTypeInfo(signal.type);
               const TypeIcon = typeInfo.icon;
               return (
-                <div key={signal.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={signal.id} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 mt-0.5"><div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: `${typeInfo.color}15`, border: `1px solid ${typeInfo.color}25` }}><TypeIcon className="w-4 h-4" style={{ color: typeInfo.color }} /></div></div>
                     <div className="flex-1 min-w-0">
@@ -1325,7 +1325,7 @@ export function AgencyDashboardTool() {
                         <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold flex-shrink-0" style={{ backgroundColor: `${signal.clientColor}20`, color: signal.clientColor }}>{signal.clientInitials}</div>
                         <span className="text-[11px] font-semibold text-[#FFFFFF]">{signal.client}</span>
                         <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: `${typeInfo.color}15`, color: typeInfo.color }}>{typeInfo.label}</span>
-                        <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: signal.priority === 'high' ? 'rgba(239,68,68,0.1)' : 'rgba(253,186,45,0.1)', color: signal.priority === 'high' ? '#888888' : '#FDBA2D' }}>{signal.priority.toUpperCase()}</span>
+                        <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: signal.priority === 'high' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.1)', color: signal.priority === 'high' ? '#888888' : '#FDBA2D' }}>{signal.priority.toUpperCase()}</span>
                       </div>
                       <p className="text-xs text-[#AAAAAA] leading-relaxed mb-1.5">{signal.message}</p>
                       <span className="text-[10px] text-[#666666] flex items-center gap-1"><Clock className="w-2.5 h-2.5" /> {timeAgo(signal.time)}</span>
@@ -1345,7 +1345,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'war-room' && (
         <div className="space-y-4">
           {/* Tactical Briefing */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
               <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5"><Radar className="w-3.5 h-3.5 text-[#FDBA2D]" /> Tactical Briefing</h3>
             </div>
@@ -1374,7 +1374,7 @@ export function AgencyDashboardTool() {
                 <div className="p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-2 mb-2"><CheckCircle className="w-4 h-4 text-[#888888]" /><span className="text-sm font-bold text-[#FFFFFF]">Tactical Briefing Complete</span></div>
                   <p className="text-xs text-[#a0a0a0] leading-relaxed">Fleet-wide analysis complete. Key findings: 3 channels showing viral trajectory, 2 channels need content refresh, 1 high-arbitrage opportunity identified in Art & Design niche. Total portfolio health: {avgHealth}/100.</p>
-                  <button onClick={() => { setBriefingComplete(false); }} className="mt-3 px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-[11px] font-medium hover:text-[#FFFFFF] transition-colors">
+                  <button onClick={() => { setBriefingComplete(false); }} className="mt-3 px-3 py-1.5 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-[11px] font-medium hover:text-[#FFFFFF] transition-colors">
                     <RefreshCw className="w-3 h-3 inline mr-1" /> Regenerate
                   </button>
                 </div>
@@ -1383,7 +1383,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* What-If Projection */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><TrendingUp className="w-3.5 h-3.5 text-[#FDBA2D]" /> What-If Projection</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
@@ -1409,7 +1409,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* White-Label */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><Palette className="w-3.5 h-3.5 text-[#888888]" /> White-Label Branding</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -1432,7 +1432,7 @@ export function AgencyDashboardTool() {
       {activeTab === 'reports' && (
         <div className="space-y-4">
           {/* Recent Reports */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><FileText className="w-3.5 h-3.5 text-[#888888]" /> Recent Reports</h3>
             <div className="space-y-2">
               {MOCK_REPORTS.map((report) => {
@@ -1449,7 +1449,7 @@ export function AgencyDashboardTool() {
           </div>
 
           {/* Team Activity */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Team Activity</h3>
             <div className="space-y-2">
               {MOCK_ACTIVITY.map((activity) => (
@@ -1466,13 +1466,13 @@ export function AgencyDashboardTool() {
 
           {/* Quick Actions */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <button onClick={() => showToast('Client added', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors flex flex-col items-center gap-2">
+            <button onClick={() => showToast('Client added', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors flex flex-col items-center gap-2">
               <UserPlus className="w-5 h-5 text-[#888888]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Add Client</span>
             </button>
-            <button onClick={() => showToast('Bulk report generated', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors flex flex-col items-center gap-2">
+            <button onClick={() => showToast('Bulk report generated', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors flex flex-col items-center gap-2">
               <FolderOutput className="w-5 h-5 text-[#FDBA2D]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Bulk Report</span>
             </button>
-            <button onClick={() => showToast('Data exported', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors flex flex-col items-center gap-2">
+            <button onClick={() => showToast('Data exported', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors flex flex-col items-center gap-2">
               <Download className="w-5 h-5 text-[#888888]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Export Data</span>
             </button>
           </div>

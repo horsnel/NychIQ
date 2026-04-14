@@ -13,10 +13,10 @@ export function TokenPill() {
   const pct = maxTokens > 0 && !isUnlimited ? Math.round((tokenBalance / maxTokens) * 100) : 100;
 
   const getStyling = () => {
-    if (tokenBalance <= 0) return 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)] animate-pulse-live';
-    if (pct <= 20) return 'bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]';
-    if (pct <= 40) return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]';
-    return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)]';
+    if (tokenBalance <= 0) return 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)] animate-pulse-live';
+    if (pct <= 20) return 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]';
+    if (pct <= 40) return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]';
+    return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]';
   };
 
   return (

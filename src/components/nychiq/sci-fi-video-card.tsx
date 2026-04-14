@@ -165,7 +165,7 @@ function ExtractionHubButton({ onNavigate, videoTitle, videoId }: { onNavigate: 
 
       {/* Mini-panel on hover */}
       {expanded && (
-        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#0f0f0f]/95 backdrop-blur-md border border-[rgba(255,255,255,0.06)] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
+        <div className="absolute right-0 top-full mt-1.5 p-1.5 rounded-lg bg-[#0f0f0f]/95 backdrop-blur-md border border-[rgba(255,255,255,0.03)] shadow-xl shadow-black/50 flex flex-col gap-1 z-30 animate-fade-in-up">
           <button
             onClick={(e) => { e.stopPropagation(); onNavigate('deepchat'); }}
             className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
@@ -272,7 +272,7 @@ function AnalysisTeaser({ viralPoints, onNavigate }: { viralPoints: number; onNa
   const linkStart = fullText.indexOf('View Tactical Breakdown');
 
   return (
-    <div className="mt-2 pt-2 border-t border-[rgba(255,255,255,0.06)]/60">
+    <div className="mt-2 pt-2 border-t border-[rgba(255,255,255,0.03)]/60">
       <p className="text-[10px] font-mono text-[#666666] leading-relaxed select-none">
         {chars <= linkStart ? (
           fullText.slice(0, chars)
@@ -509,7 +509,7 @@ export function SciFiVideoCard({
 
 export function SciFiVideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] animate-pulse">
+    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] animate-pulse">
       <div className="h-[2px] bg-gradient-to-r from-[#888888] via-[#FDBA2D] to-transparent opacity-40" />
       <div className="aspect-video bg-[#1A1A1A]" />
       <div className="p-3 space-y-2">

@@ -102,10 +102,10 @@ Rules:
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <DollarSign className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -122,7 +122,7 @@ Rules:
         <button
           onClick={loadCPMData}
           disabled={loading}
-          className="w-full p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] hover:border-[#888888]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#FFFFFF]"
+          className="w-full p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[#888888]/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium text-[#FFFFFF]"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#888888]" />}
           {loading ? 'Loading CPM rates...' : `Load CPM Rates for ${region}`}
@@ -132,8 +132,8 @@ Rules:
 
       {/* CPM Rates Table */}
       {hasLoaded && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">CPM Rates by Niche — {region}</h3>
@@ -190,7 +190,7 @@ Rules:
                       <td className="text-right px-4 py-3">
                         <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{
                           color: entry.competition === 'Low' ? '#888888' : entry.competition === 'Medium' ? '#FDBA2D' : '#888888',
-                          backgroundColor: entry.competition === 'Low' ? 'rgba(16,185,129,0.1)' : entry.competition === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(239,68,68,0.1)',
+                          backgroundColor: entry.competition === 'Low' ? 'rgba(34,197,94,0.1)' : entry.competition === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)',
                         }}>{entry.competition}</span>
                       </td>
                     </tr>
@@ -203,8 +203,8 @@ Rules:
       )}
 
       {/* Revenue Calculator */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
           <Calculator className="w-4 h-4 text-[#888888]" />
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Revenue Calculator</h3>
         </div>
@@ -232,7 +232,7 @@ Rules:
                     'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                     monthlyViews === preset
                       ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
-                      : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF]'
+                      : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                   )}
                 >
                   {preset}
@@ -274,7 +274,7 @@ Rules:
         </div>
       </div>
 
-      <div className="flex items-start gap-2 p-3 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-start gap-2 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
         <Info className="w-4 h-4 text-[#888888] shrink-0 mt-0.5" />
         <p className="text-xs text-[#a0a0a0] leading-relaxed">
           CPM rates are AI-estimated for the {region} market based on current trends. RPM (Revenue Per Mille) is typically 40-55% of CPM after YouTube&apos;s 45% revenue share. Actual rates vary by seasonality, audience demographics, and video length.

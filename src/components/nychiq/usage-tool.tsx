@@ -190,7 +190,7 @@ export function UsageTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* ── Header Card ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -234,7 +234,7 @@ export function UsageTool() {
       {/* ── Summary Stats (3 columns) ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {/* Total Used */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 rounded-md bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Coins className="w-4 h-4 text-[#FDBA2D]" />
@@ -245,9 +245,9 @@ export function UsageTool() {
         </div>
 
         {/* Remaining */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.03)] flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-[#888888]" />
             </div>
           </div>
@@ -258,9 +258,9 @@ export function UsageTool() {
         </div>
 
         {/* Current Plan */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-md bg-[rgba(255,255,255,0.03)] flex items-center justify-center">
               <Crown className="w-4 h-4 text-[#888888]" />
             </div>
           </div>
@@ -271,7 +271,7 @@ export function UsageTool() {
 
       {/* ── Usage Breakdown Table ── */}
       {usageBreakdown.length > 0 && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Usage Breakdown</h4>
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -324,7 +324,7 @@ export function UsageTool() {
 
       {/* ── Usage by Category ── */}
       {categoryBreakdown.length > 0 && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4">Usage by Category</h4>
           <div className="space-y-4">
             {categoryBreakdown.map((cat) => {
@@ -351,7 +351,7 @@ export function UsageTool() {
       )}
 
       {/* ── Token History (from real data) ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Recent Transactions</h4>
           <span className="text-[10px] text-[#666666]">Last {Math.min(tokenHistory.length, 50)} of {tokenHistory.length}</span>
@@ -369,7 +369,7 @@ export function UsageTool() {
               return (
                 <div
                   key={txn.id}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors"
                 >
                   <div className="w-9 h-9 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] flex items-center justify-center shrink-0">
                     {TOOL_ICONS[label] || <TxnTypeIcon type={txn.type} />}
@@ -378,9 +378,9 @@ export function UsageTool() {
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-medium text-[#FFFFFF] truncate">{label}</p>
                       <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${
-                        txn.type === 'spend' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
-                        txn.type === 'earn' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
-                        txn.type === 'reset' ? 'bg-[rgba(255,255,255,0.06)] text-[#888888]' :
+                        txn.type === 'spend' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
+                        txn.type === 'earn' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
+                        txn.type === 'reset' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
                         'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
                       }`}>
                         {txn.type}
@@ -403,9 +403,9 @@ export function UsageTool() {
       </div>
 
       {/* ── Token Cost Reference ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-3">
-          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
             <Sparkles className="w-4 h-4 text-[#888888]" />
           </div>
           <h4 className="text-sm font-bold text-[#FFFFFF]">Token Cost Reference</h4>
@@ -431,7 +431,7 @@ export function UsageTool() {
       </div>
 
       {/* ── Buy More Tokens ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
             <Gift className="w-4 h-4 text-[#FDBA2D]" />
@@ -460,7 +460,7 @@ export function UsageTool() {
                 <span className="text-xs text-[#a0a0a0]">tokens</span>
               </div>
               {plan.bonus > 0 && (
-                <div className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                <div className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                   <Check className="w-3 h-3 text-[#888888]" />
                   <span className="text-[10px] font-bold text-[#888888]">+{plan.bonus} bonus</span>
                 </div>
@@ -470,7 +470,7 @@ export function UsageTool() {
                 className={`w-full mt-3 py-2 rounded-md text-xs font-bold transition-colors ${
                   plan.popular
                     ? 'bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320]'
-                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[rgba(255,255,255,0.06)] hover:border-[#FDBA2D]/50'
+                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[rgba(255,255,255,0.03)] hover:border-[#FDBA2D]/50'
                 }`}
               >
                 Get Tokens

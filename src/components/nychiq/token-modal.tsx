@@ -26,7 +26,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
   return (
     <div className="space-y-4 mt-2">
       {/* Warning indicator */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
         <div className="relative w-12 h-12 flex items-center justify-center">
           <svg className="w-12 h-12 -rotate-90" viewBox="0 0 36 36">
             <path
@@ -62,21 +62,21 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
       {/* Quick earn options */}
       <div className="space-y-2">
         <h4 className="text-xs font-semibold text-[#666666] uppercase tracking-wide">Options</h4>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           <Gift className="w-4 h-4 text-[#888888]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Refer a Friend</p>
             <p className="text-[11px] text-[#a0a0a0]">Earn 20 tokens per referral</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           <CalendarDays className="w-4 h-4 text-[#888888]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Monthly Reset</p>
             <p className="text-[11px] text-[#a0a0a0]">Free tokens reset on the 31st of every month</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           <Zap className="w-4 h-4 text-[#FDBA2D]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Upgrade Plan</p>
@@ -117,8 +117,8 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
   return (
     <div className="space-y-4 mt-2">
       {/* Exhausted indicator */}
-      <div className="flex items-center gap-3 p-4 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
-        <div className="w-12 h-12 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center animate-pulse-live">
+      <div className="flex items-center gap-3 p-4 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
+        <div className="w-12 h-12 rounded-full bg-[rgba(255,255,255,0.03)] flex items-center justify-center animate-pulse-live">
           <AlertTriangle className="w-6 h-6 text-[#888888]" />
         </div>
         <div>
@@ -134,7 +134,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
       </p>
 
       {/* Countdown to reset */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
         <Clock className="w-5 h-5 text-[#888888]" />
         <div>
           <p className="text-xs font-medium text-[#FFFFFF]">Next Free Reset</p>
@@ -145,7 +145,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
       </div>
 
       {/* Current plan info */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
         <Coins className="w-4 h-4 text-[#FDBA2D]" />
         <div className="flex-1">
           <p className="text-xs font-medium text-[#FFFFFF]">Current Plan: {userPlan.charAt(0).toUpperCase() + userPlan.slice(1)}</p>
@@ -159,7 +159,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={onUpgrade}
-            className="p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(253,186,45,0.15)] transition-colors text-left"
+            className="p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(253,186,45,0.15)] transition-colors text-left"
           >
             <p className="text-sm font-bold text-[#FDBA2D]">Elite</p>
             <p className="text-[11px] text-[#a0a0a0]">Unlimited tokens</p>
@@ -167,7 +167,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
           </button>
           <button
             onClick={onUpgrade}
-            className="p-3 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.06)] transition-colors text-left"
+            className="p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.03)] transition-colors text-left"
           >
             <p className="text-sm font-bold text-[#888888]">Agency</p>
             <p className="text-[11px] text-[#a0a0a0]">50,000 tokens/mo</p>
@@ -257,7 +257,7 @@ export function TokenModal() {
         if (!open) handleSkip();
       }}
     >
-      <DialogContent className="sm:max-w-md bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] p-6">
+      <DialogContent className="sm:max-w-md bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] p-6">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
             <Coins className="w-5 h-5 text-[#FDBA2D]" />
@@ -293,10 +293,10 @@ export function TokenExhaustedOverlay() {
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
       {/* Content card */}
-      <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl p-6 animate-fade-in-up shadow-2xl">
+      <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-xl p-6 animate-fade-in-up shadow-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center animate-pulse-live">
+          <div className="w-10 h-10 rounded-full bg-[rgba(255,255,255,0.03)] flex items-center justify-center animate-pulse-live">
             <AlertTriangle className="w-5 h-5 text-[#888888]" />
           </div>
           <div>

@@ -95,10 +95,10 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><Clock className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><Clock className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Best Post Time</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Optimal upload schedule based on niche + region (heatmap included).</p>
@@ -114,7 +114,7 @@ Return ONLY the JSON object.`;
               className="h-11 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none appearance-none cursor-pointer">
               {REGIONS.map((r) => <option key={r} value={r}>{r}</option>)}
             </select>
-            <button onClick={handleAnalyze} disabled={loading || !niche.trim()} className="px-5 h-11 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !niche.trim()} className="px-5 h-11 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Analyze
             </button>
@@ -127,7 +127,7 @@ Return ONLY the JSON object.`;
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handleAnalyze} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handleAnalyze} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -135,8 +135,8 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 h-48 animate-pulse" />
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 h-48 animate-pulse" />
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-3 bg-[#1A1A1A] rounded animate-pulse" style={{ width: `${60 + Math.random() * 40}%` }} />)}</div>
           </div>
         </div>
@@ -160,7 +160,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> Schedule Analysis for &quot;{niche.trim()}&quot;</h3>
 
           {/* Best Days */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Best Days of the Week (Ranked)</h4>
             <div className="space-y-2">
               {[...result.bestDays].sort((a, b) => b.score - a.score).map((d, i) => (
@@ -178,7 +178,7 @@ Return ONLY the JSON object.`;
 
           {/* Heatmap */}
           {heatmapData.length > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 overflow-x-auto">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 overflow-x-auto">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Weekly Heatmap</h4>
               <div className="min-w-[500px]">
                 <div className="flex gap-1 mb-1 pl-16">
@@ -207,11 +207,11 @@ Return ONLY the JSON object.`;
           )}
 
           {/* Best Time Slots */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Best Time Slots</h4>
             <div className="flex flex-wrap gap-2">
               {result.bestTimes.map((time, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                   <Clock className="w-3.5 h-3.5 text-[#888888]" />
                   <span className="text-sm font-medium text-[#888888]">{time}</span>
                   {i === 0 && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#888888] text-[#0a0a0a]">BEST</span>}
@@ -222,11 +222,11 @@ Return ONLY the JSON object.`;
 
           {/* Pro Tips */}
           {result.proTips.length > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Pro Tips</h4>
               <div className="space-y-2">
                 {result.proTips.map((tip, i) => (
-                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                  <div key={i} className="flex items-start gap-2 p-2.5 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                     <span className="text-[#888888] text-xs mt-0.5">💡</span>
                     <p className="text-sm text-[#FFFFFF]">{tip}</p>
                   </div>
@@ -239,7 +239,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Clock className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Clock className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Find Your Best Post Time</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your niche and region to get an optimal posting schedule with heatmap.</p>
         </div>

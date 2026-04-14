@@ -253,7 +253,7 @@ export function ScriptFlowTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.1)' }}>
@@ -273,7 +273,7 @@ export function ScriptFlowTool() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.06)] shadow-[0_0_12px_rgba(253,186,45,0.1)]'
+                    ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)] shadow-[rgba(0,0,0,0.3)]'
                     : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                 }`}
               >
@@ -385,7 +385,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <>
       {/* Textarea */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4">
           <p className="text-sm text-[#a0a0a0] mb-4">
             Paste your video transcript and get a complete audit: power word replacements, weak phrase detection, hook scoring, pacing analysis, and CTA strength evaluation.
@@ -429,7 +429,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading Skeleton */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-center gap-4">
               <div className="w-[72px] h-[72px] rounded-full bg-[#1A1A1A] animate-pulse" />
               <div className="flex-1 space-y-2">
@@ -440,7 +440,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/4 mb-3" />
               <div className="space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -471,7 +471,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Overall Score + Summary */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <ScoreRing score={result.overallScore} size={88} label="/ 100" />
               <div className="flex-1 text-center sm:text-left">
@@ -482,13 +482,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Power Words */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <Zap className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Power Word Replacements
             </h4>
             <div className="space-y-2">
               {result.powerWords.map((w, i) => (
-                <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex items-center gap-2 flex-1 min-w-0">
                     <span className="text-sm text-[#888888] line-through shrink-0">{w.original}</span>
                     <ArrowRight className="w-3 h-3 text-[#666666] shrink-0" />
@@ -501,13 +501,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Weak Phrases */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <AlertTriangle className="w-3.5 h-3.5 text-[#888888]" /> Weak Phrases
             </h4>
             <div className="space-y-2">
               {result.weakPhrases.map((w, i) => (
-                <div key={i} className="p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={i} className="p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                     <span className="text-sm text-[#888888] line-through">&ldquo;{w.phrase}&rdquo;</span>
                     <ArrowRight className="w-3 h-3 text-[#666666] hidden sm:block" />
@@ -520,7 +520,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Hook Analysis */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <Target className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Hook Analysis (First 10 Seconds)
             </h4>
@@ -543,14 +543,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Pacing Analysis */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <Gauge className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Pacing Analysis
             </h4>
             <div className="space-y-2">
               {result.pacingAnalysis.map((p, i) => {
                 const issueColor = p.issue === 'good' ? '#888888' : p.issue === 'too_fast' ? '#888888' : '#FDBA2D';
-                const issueBg = p.issue === 'good' ? 'rgba(16,185,129,0.08)' : p.issue === 'too_fast' ? 'rgba(239,68,68,0.08)' : 'rgba(253,186,45,0.08)';
+                const issueBg = p.issue === 'good' ? 'rgba(34,197,94,0.1)' : p.issue === 'too_fast' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.08)';
                 const issueLabel = p.issue === 'good' ? 'Good' : p.issue === 'too_fast' ? 'Too Fast' : 'Too Slow';
                 return (
                   <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
@@ -564,7 +564,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* CTA Evaluation */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <Megaphone className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> CTA Strength
             </h4>
@@ -592,7 +592,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
             <ScrollText className="w-8 h-8" style={{ color: '#FDBA2D' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Audit Your Script</h3>
@@ -709,7 +709,7 @@ Return ONLY the JSON array, no other text.`;
   const viralColor = (level: ShortClip['viralPotential']) =>
     level === 'High' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
   const viralBg = (level: ShortClip['viralPotential']) =>
-    level === 'High' ? 'rgba(16,185,129,0.12)' : level === 'Medium' ? 'rgba(253,186,45,0.12)' : 'rgba(239,68,68,0.12)';
+    level === 'High' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.12)' : 'rgba(136,136,136,0.2)';
 
   // Timeline: compute total seconds and cut point positions
   const totalDurationSec = shorts.length > 0
@@ -728,7 +728,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-4">
       {/* Input Area */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scissors className="w-4 h-4" style={{ color: '#FDBA2D' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Convert Long Script → Viral Shorts</h3>
@@ -783,7 +783,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Loading */}
       {loading && (
         <div className="space-y-3">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#FDBA2D' }} />
               <span className="text-sm font-medium text-[#FFFFFF]">Analyzing script &amp; generating shorts...</span>
@@ -793,7 +793,7 @@ Return ONLY the JSON array, no other text.`;
             </div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 animate-pulse">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 animate-pulse">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-8 h-8 rounded-lg bg-[#1A1A1A]" />
                 <div className="h-3 bg-[#1A1A1A] rounded w-1/3" />
@@ -831,7 +831,7 @@ Return ONLY the JSON array, no other text.`;
 
           {/* Timeline Visual */}
           {totalDurationSec > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Clock className="w-3.5 h-3.5 text-[#a0a0a0]" />
                 <span className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Script Timeline</span>
@@ -901,7 +901,7 @@ Return ONLY the JSON array, no other text.`;
             {shorts.map((s) => (
               <div
                 key={s.number}
-                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[#1a1a1a] transition-colors group"
+                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[#1a1a1a] transition-colors group"
               >
                 {/* Card Header */}
                 <div className="flex items-center justify-between mb-3">
@@ -965,7 +965,7 @@ Return ONLY the JSON array, no other text.`;
                   <p className="text-xs text-[#D4D4D4] mb-1.5">{s.caption}</p>
                   <div className="flex flex-wrap gap-1">
                     {s.hashtags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)]">
+                      <span key={i} className="px-2 py-0.5 rounded text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.03)]">
                         #{tag}
                       </span>
                     ))}
@@ -984,7 +984,7 @@ Return ONLY the JSON array, no other text.`;
                       style={{
                         width: `${s.retention}%`,
                         backgroundColor: s.retention >= 80 ? '#888888' : s.retention >= 60 ? '#FDBA2D' : '#888888',
-                        boxShadow: `0 0 8px ${s.retention >= 80 ? 'rgba(16,185,129,0.4)' : s.retention >= 60 ? 'rgba(253,186,45,0.4)' : 'rgba(239,68,68,0.4)'}`,
+                        boxShadow: `0 0 8px ${s.retention >= 80 ? 'rgba(34,197,94,0.1)' : s.retention >= 60 ? 'rgba(253,186,45,0.4)' : 'rgba(136,136,136,0.2)'}`,
                       }}
                     />
                   </div>
@@ -1009,7 +1009,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Initial State */}
       {!loading && !generated && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
             <Scissors className="w-8 h-8" style={{ color: '#FDBA2D' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Script → Shorts Converter</h3>

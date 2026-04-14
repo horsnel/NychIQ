@@ -82,10 +82,10 @@ Return ONLY the JSON object.`;
 
   return (
     <div className="space-y-5 animate-fade-in-up">
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]"><ImageIcon className="w-5 h-5 text-[#888888]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]"><ImageIcon className="w-5 h-5 text-[#888888]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Thumbnail Lab</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">CTR score 0-100, color psychology, text readability, improvements.</p>
@@ -97,7 +97,7 @@ Return ONLY the JSON object.`;
               placeholder="Paste thumbnail image URL..."
               className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#8B62BF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Analyze
             </button>
@@ -107,11 +107,11 @@ Return ONLY the JSON object.`;
 
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
             <div className="w-20 h-20 mx-auto rounded-full bg-[#1A1A1A] animate-pulse mb-3" />
             <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mx-auto" />
           </div>
-          <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full mb-2" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3" /></div>)}</div>
+          <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full mb-2" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3" /></div>)}</div>
         </div>
       )}
 
@@ -120,7 +120,7 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> Thumbnail Analysis</h3>
 
           {/* CTR Score */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 text-center">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">CTR Score</h4>
             <div className="text-5xl font-bold mb-2" style={{ color: ctrColor }}>{result.ctrScore}</div>
             <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden max-w-xs mx-auto">
@@ -132,7 +132,7 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Text Readability */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Text Readability</h4>
               <span className="text-sm font-bold" style={{ color: result.textReadability >= 75 ? '#888888' : result.textReadability >= 50 ? '#FDBA2D' : '#888888' }}>{result.textReadability}/100</span>
@@ -143,23 +143,23 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Color Psychology */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-2"><Palette className="w-3.5 h-3.5" /> Color Psychology</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.colorPsychology}</p>
           </div>
 
           {/* Composition */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-2"><Layout className="w-3.5 h-3.5" /> Composition Critique</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.composition}</p>
           </div>
 
           {/* Improvements */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">3 Improvement Suggestions</h4>
             <div className="space-y-2">
               {result.improvements.map((imp, i) => (
-                <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+                <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                   <CheckCircle className="w-4 h-4 text-[#888888] mt-0.5 shrink-0" />
                   <p className="text-sm text-[#FFFFFF]">{imp}</p>
                 </div>
@@ -171,7 +171,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><ImageIcon className="w-8 h-8 text-[#888888]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><ImageIcon className="w-8 h-8 text-[#888888]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Thumbnails</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Paste a thumbnail URL to get a comprehensive CTR and design analysis.</p>
         </div>

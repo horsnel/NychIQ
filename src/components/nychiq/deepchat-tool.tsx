@@ -73,7 +73,7 @@ const QUICK_ACTIONS: QuickAction[] = [
     prompt: 'Run an underground comparison: How does this video stack up against the top 5 videos in the same niche? Compare CTR, average view duration, engagement rate, and subscriber conversion. What did competitors do differently?',
     accent: 'text-[#FDBA2D]',
     accentBg: 'bg-[rgba(253,186,45,0.08)]',
-    accentBorder: 'border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]',
+    accentBorder: 'border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]',
   },
   {
     id: 'retention',
@@ -82,8 +82,8 @@ const QUICK_ACTIONS: QuickAction[] = [
     description: 'Simulate audience retention curve',
     prompt: 'Simulate a minute-by-minute audience retention curve for this video. Based on its title, duration, topic, and niche benchmarks, identify expected retention drop-off points. Suggest exactly where to add hooks, visual changes, or pattern interrupts to maximize retention.',
     accent: 'text-[#888888]',
-    accentBg: 'bg-[rgba(255,255,255,0.06)]',
-    accentBorder: 'border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]',
+    accentBg: 'bg-[rgba(255,255,255,0.03)]',
+    accentBorder: 'border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]',
   },
   {
     id: 'greenflag',
@@ -92,8 +92,8 @@ const QUICK_ACTIONS: QuickAction[] = [
     description: 'Find positive signals for revenue',
     prompt: 'Run a comprehensive green flag analysis on this video. Identify all positive signals (strong title, good timing, trending topic, high engagement rate, etc.) that boost ad revenue. Rate each green flag on a 1-10 scale and suggest how to amplify each strength.',
     accent: 'text-[#888888]',
-    accentBg: 'bg-[rgba(255,255,255,0.06)]',
-    accentBorder: 'border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]',
+    accentBg: 'bg-[rgba(255,255,255,0.03)]',
+    accentBorder: 'border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]',
   },
   {
     id: 'revenue',
@@ -102,8 +102,8 @@ const QUICK_ACTIONS: QuickAction[] = [
     description: 'Maximize earnings from ads',
     prompt: 'Analyze the ad revenue potential of this video. Estimate the CPM for this niche, calculate projected earnings, and provide a specific strategy to increase ad revenue — including mid-roll placement, video length optimization, and audience demographics targeting. Give me exact numbers.',
     accent: 'text-[#F472B6]',
-    accentBg: 'bg-[rgba(255,255,255,0.06)]',
-    accentBorder: 'border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]',
+    accentBg: 'bg-[rgba(255,255,255,0.03)]',
+    accentBorder: 'border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]',
   },
 ];
 
@@ -167,10 +167,10 @@ function generateMockVideo(url: string): VideoContext {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in-up">
-      <div className="w-8 h-8 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+      <div className="w-8 h-8 rounded-full bg-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
         <MessageSquare className="w-4 h-4 text-[#888888]" />
       </div>
-      <div className="rounded-2xl rounded-tl-sm bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] px-4 py-3">
+      <div className="rounded-2xl rounded-tl-sm bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] px-4 py-3">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#888888] animate-bounce" style={{ animationDelay: '0ms' }} />
           <span className="w-2 h-2 rounded-full bg-[#888888] animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -329,24 +329,24 @@ You can ask me about:
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] px-4 sm:px-5 py-4">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] px-4 sm:px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+          <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
             <MessageSquare className="w-5 h-5 text-[#888888]" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h2 className="text-base font-bold text-[#FFFFFF]">Deep Chat AI</h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#888888] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#888888] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                 AI
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#888888] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-[#888888] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                 FREE
               </span>
             </div>
             <p className="text-xs text-[#a0a0a0] mt-0.5">Load any YouTube video for deep analysis</p>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)]">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)]">
             <Coins className="w-3 h-3 text-[#FDBA2D]" />
             <span className="text-[11px] font-bold text-[#FDBA2D]">{tokenBalance}</span>
           </div>
@@ -355,9 +355,9 @@ You can ask me about:
 
       {/* Video URL Input (shown when no video loaded) */}
       {!videoCtx && !loadingSteps && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
           <div className="text-center mb-5">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-3">
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-3">
               <Play className="w-8 h-8 text-[#888888]" />
             </div>
             <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Any YouTube Video</h3>
@@ -373,7 +373,7 @@ You can ask me about:
             <button
               onClick={handleLoadVideo}
               disabled={!url.trim()}
-              className="px-6 h-12 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#8A62BE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-6 h-12 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               <Sparkles className="w-4 h-4" /> Analyze Video
             </button>
@@ -384,7 +384,7 @@ You can ask me about:
 
       {/* Loading Steps */}
       {loadingSteps && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
           <div className="flex items-center gap-3 mb-5">
             <Loader2 className="w-5 h-5 animate-spin text-[#888888]" />
             <span className="text-sm font-medium text-[#FFFFFF]">Analyzing video...</span>
@@ -398,7 +398,7 @@ You can ask me about:
                   <div
                     className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                     style={{
-                      backgroundColor: isDone ? 'rgba(16,185,129,0.15)' : isCurrent ? 'rgba(139,92,246,0.15)' : '#1A1A1A',
+                      backgroundColor: isDone ? 'rgba(34,197,94,0.1)' : isCurrent ? 'rgba(255,255,255,0.03)' : '#1A1A1A',
                     }}
                   >
                     {isDone ? (
@@ -428,7 +428,7 @@ You can ask me about:
       {videoCtx && !loadingSteps && (
         <div className="space-y-4">
           {/* Video Context Card */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Thumbnail placeholder */}
               <div className="w-full sm:w-48 h-28 rounded-lg bg-gradient-to-br from-[#1A1A1A] to-[#0f0f0f] flex items-center justify-center flex-shrink-0">
@@ -481,12 +481,12 @@ You can ask me about:
 
           {/* Quick Action Buttons (shown only on first load, no user messages yet) */}
           {messages.length <= 1 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs text-[#a0a0a0] font-medium flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 text-[#888888]" /> Quick Actions
                 </p>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)]">
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
                   <Coins className="w-3 h-3 text-[#FDBA2D]" />
                   <span className="text-[10px] font-bold text-[#FDBA2D]">{TOKEN_COSTS.deepchat} tokens per message</span>
                 </div>
@@ -529,11 +529,11 @@ You can ask me about:
               <div key={msg.id} className="flex items-start gap-3 animate-fade-in-up">
                 {msg.role === 'bot' ? (
                   <>
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(139,92,246,0.25)] to-[rgba(139,92,246,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(255,255,255,0.04)] to-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
                       <MessageSquare className="w-4 h-4 text-[#888888]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="rounded-2xl rounded-tl-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                      <div className="rounded-2xl rounded-tl-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
                         <div className="w-8 h-[2px] bg-[#888888]/40 rounded-full mb-2.5" />
                         <p className="text-sm text-[#FFFFFF] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
@@ -545,12 +545,12 @@ You can ask me about:
                 ) : (
                   <>
                     <div className="flex-1 min-w-0 flex flex-col items-end">
-                      <div className="rounded-2xl rounded-tr-md bg-[rgba(253,186,45,0.12)] border border-[rgba(255,255,255,0.06)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                      <div className="rounded-2xl rounded-tr-md bg-[rgba(253,186,45,0.12)] border border-[rgba(255,255,255,0.03)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
                         <p className="text-sm text-[#F5F0E1] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
                       <span className="text-[10px] text-[#666666] mt-1 text-right block">You</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(253,186,45,0.25)] to-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(253,186,45,0.25)] to-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
                       <span className="text-xs font-bold text-[#FDBA2D]">You</span>
                     </div>
                   </>
@@ -572,7 +572,7 @@ You can ask me about:
           )}
 
           {/* Input Area */}
-          <div className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-3">
+          <div className="rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3">
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}
@@ -587,7 +587,7 @@ You can ask me about:
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isTyping}
-                className="p-2.5 rounded-lg bg-[#888888] text-white hover:bg-[#8A62BE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+                className="p-2.5 rounded-lg bg-[#888888] text-white hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>

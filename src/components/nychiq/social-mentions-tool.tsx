@@ -27,30 +27,30 @@ const MENTION_PLATFORMS = ['All', 'X', 'Reddit', 'TikTok', 'Instagram', 'News'] 
 type MentionPlatform = (typeof MENTION_PLATFORMS)[number];
 
 const PLATFORM_STYLES: Record<string, { bg: string; text: string; border: string }> = {
-  'X': { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' },
-  Reddit: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#FF4500]', border: 'border-[rgba(255,255,255,0.06)]' },
-  TikTok: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#FF0050]', border: 'border-[rgba(255,255,255,0.06)]' },
-  Instagram: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#E1306C]', border: 'border-[rgba(255,255,255,0.06)]' },
-  News: { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]' },
+  'X': { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
+  Reddit: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
+  TikTok: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
+  Instagram: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
+  News: { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]' },
 };
 
 const SENTIMENT_STYLES: Record<string, { bg: string; text: string; border: string; icon: React.ReactNode }> = {
   positive: {
-    bg: 'bg-[rgba(255,255,255,0.06)]',
+    bg: 'bg-[rgba(255,255,255,0.03)]',
     text: 'text-[#888888]',
-    border: 'border-[rgba(255,255,255,0.06)]',
+    border: 'border-[rgba(255,255,255,0.03)]',
     icon: <ThumbsUp className="w-3 h-3" />,
   },
   neutral: {
     bg: 'bg-[rgba(253,186,45,0.1)]',
     text: 'text-[#FDBA2D]',
-    border: 'border-[rgba(255,255,255,0.06)]',
+    border: 'border-[rgba(255,255,255,0.03)]',
     icon: <Minus className="w-3 h-3" />,
   },
   negative: {
-    bg: 'bg-[rgba(255,255,255,0.06)]',
+    bg: 'bg-[rgba(255,255,255,0.03)]',
     text: 'text-[#888888]',
-    border: 'border-[rgba(255,255,255,0.06)]',
+    border: 'border-[rgba(255,255,255,0.03)]',
     icon: <ThumbsDown className="w-3 h-3" />,
   },
 };
@@ -129,7 +129,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -179,7 +179,7 @@ Return ONLY the JSON array, no other text.`;
                     isActive
                       ? styles
                         ? `${styles.bg} ${styles.text} ${styles.border}`
-                        : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.06)]'
+                        : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.03)]'
                       : 'bg-[#0a0a0a] text-[#a0a0a0] border-[#1A1A1A] hover:border-[#1a1a1a]'
                   }`}
                 >
@@ -198,7 +198,7 @@ Return ONLY the JSON array, no other text.`;
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
           <button
             onClick={searchMentions}
-            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
@@ -209,7 +209,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 space-y-3">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-14 h-5 bg-[#1A1A1A] rounded-full animate-pulse" />
                 <div className="w-12 h-5 bg-[#1A1A1A] rounded-full animate-pulse" />
@@ -236,7 +236,7 @@ Return ONLY the JSON array, no other text.`;
             return (
               <div
                 key={i}
-                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[#1a1a1a] transition-all group"
+                className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[#1a1a1a] transition-all group"
               >
                 {/* Top row */}
                 <div className="flex items-center gap-2 mb-2.5 flex-wrap">
@@ -288,7 +288,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <AtSign className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Find Channel Mentions</h3>

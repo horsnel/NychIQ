@@ -283,7 +283,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
           {/* ── Input state ── */}
           {!loading && !report && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="w-8 h-8 text-[#FDBA2D]" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">Free Channel Audit</h2>
@@ -298,7 +298,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                     value={channelUrl}
                     onChange={(e) => setChannelUrl(e.target.value)}
                     placeholder="https://youtube.com/@yourchannel"
-                    className="pl-9 bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
+                    className="pl-9 bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
                     onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
                   />
                 </div>
@@ -331,7 +331,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
           {/* ── Loading state ── */}
           {loading && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="w-8 h-8 text-[#FDBA2D] animate-pulse" />
               </div>
               <h2 className="text-xl font-bold text-[#FFFFFF] mb-6">Analyzing Channel...</h2>
@@ -346,10 +346,10 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                       key={i}
                       className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border transition-all duration-300 ${
                         isActive
-                          ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.06)] text-[#FDBA2D]'
+                          ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.03)] text-[#FDBA2D]'
                           : isDone
-                            ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.06)] text-[#888888]'
-                            : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] text-[#444]'
+                            ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
+                            : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#444]'
                       }`}
                     >
                       {isDone ? (
@@ -371,7 +371,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
               {/* ── API Error state ── */}
               {apiError && !channelData && (
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mx-auto mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
                     <AlertTriangle className="w-8 h-8 text-[#888888]" />
                   </div>
                   <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Could Not Analyze Channel</h2>
@@ -412,7 +412,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
 
                   {/* AI Insights */}
                   {aiInsights.length > 0 && (
-                    <div className="bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] rounded-xl p-5 mb-6">
+                    <div className="bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] rounded-xl p-5 mb-6">
                       <div className="flex items-center gap-2 mb-3">
                         <Sparkles className="w-4 h-4 text-[#888888]" />
                         <span className="text-xs font-semibold text-[#888888]">AI INSIGHTS</span>
@@ -429,7 +429,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                   )}
 
                   {/* Channel Profile Card with avatar */}
-                  <div className="rounded-xl bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] p-5 mb-6">
+                  <div className="rounded-xl bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] p-5 mb-6">
                     <div className="flex items-center gap-4">
                       {channelData.avatarUrl ? (
                         <img
@@ -471,7 +471,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                     ].map((stat) => (
                       <div
                         key={stat.label}
-                        className="px-3 py-2 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]"
+                        className="px-3 py-2 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]"
                       >
                         <div className="text-sm font-bold" style={{ color: stat.color }}>{stat.value}</div>
                         <div className="text-[10px] text-[#555]">{stat.label}</div>

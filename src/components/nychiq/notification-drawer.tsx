@@ -114,32 +114,32 @@ function healthGlowConfig(status: HealthStatus) {
   switch (status) {
     case 'danger':
       return {
-        glowColor: 'rgba(239,68,68,0.4)',
-        borderColor: 'rgba(255,255,255,0.06)',
-        bgColor: 'rgba(239,68,68,0.06)',
+        glowColor: 'rgba(136,136,136,0.2)',
+        borderColor: 'rgba(255,255,255,0.03)',
+        bgColor: 'rgba(0,0,0,0)',
         textColor: '#888888',
         icon: <ShieldAlert className="w-4 h-4" />,
         badge: 'DANGER',
         badgeColor: '#888888',
-        badgeBg: 'rgba(239,68,68,0.15)',
+        badgeBg: 'rgba(136,136,136,0.2)',
         ringClass: 'health-glow-red',
       };
     case 'viral':
       return {
-        glowColor: 'rgba(16,185,129,0.4)',
-        borderColor: 'rgba(255,255,255,0.06)',
-        bgColor: 'rgba(16,185,129,0.06)',
+        glowColor: 'rgba(34,197,94,0.1)',
+        borderColor: 'rgba(255,255,255,0.03)',
+        bgColor: 'rgba(34,197,94,0.1)',
         textColor: '#888888',
         icon: <Zap className="w-4 h-4" />,
         badge: 'VIRAL',
         badgeColor: '#888888',
-        badgeBg: 'rgba(16,185,129,0.15)',
+        badgeBg: 'rgba(34,197,94,0.1)',
         ringClass: 'health-glow-green',
       };
     case 'info':
       return {
         glowColor: 'rgba(255,255,255,0.15)',
-        borderColor: 'rgba(255,255,255,0.06)',
+        borderColor: 'rgba(255,255,255,0.03)',
         bgColor: 'rgba(255,255,255,0.03)',
         textColor: '#FFFFFF',
         icon: <Eye className="w-4 h-4" />,
@@ -150,14 +150,14 @@ function healthGlowConfig(status: HealthStatus) {
       };
     case 'healthy':
       return {
-        glowColor: 'rgba(59,130,246,0.3)',
-        borderColor: 'rgba(255,255,255,0.06)',
-        bgColor: 'rgba(59,130,246,0.05)',
+        glowColor: 'rgba(255,255,255,0.03)',
+        borderColor: 'rgba(255,255,255,0.03)',
+        bgColor: 'rgba(0,0,0,0)',
         textColor: '#888888',
         icon: <ShieldCheck className="w-4 h-4" />,
         badge: 'OK',
         badgeColor: '#888888',
-        badgeBg: 'rgba(59,130,246,0.12)',
+        badgeBg: 'rgba(255,255,255,0.03)',
         ringClass: 'health-glow-blue',
       };
   }
@@ -180,7 +180,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
         title: 'Tokens Exhausted',
         message: 'You have no tokens remaining. Upgrade your plan or wait for the monthly reset on the 31st.',
         color: '#888888',
-        bgColor: 'rgba(239,68,68,0.08)',
+        bgColor: 'rgba(0,0,0,0)',
       });
     } else if (tokenBalance < threshold) {
       items.push({
@@ -189,7 +189,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
         title: 'Low Token Balance',
         message: `You only have ${tokenBalance} token${tokenBalance !== 1 ? 's' : ''} left (${Math.round((tokenBalance / maxTokens) * 100)}%). Consider upgrading.`,
         color: '#888888',
-        bgColor: 'rgba(239,68,68,0.08)',
+        bgColor: 'rgba(0,0,0,0)',
       });
     } else if (tokenBalance < Math.floor(maxTokens * 0.4)) {
       items.push({
@@ -222,7 +222,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
         title: 'Usage Insight',
         message: `You've spent ${totalTokensSpent} tokens this cycle. Check Token Usage for a breakdown.`,
         color: '#888888',
-        bgColor: 'rgba(59,130,246,0.08)',
+        bgColor: 'rgba(255,255,255,0.03)',
       });
     }
 
@@ -239,7 +239,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
       title: `${regionName} Trending`,
       message: `Trending content is surging in ${regionName}. Check the Trending tool for the latest viral videos.`,
       color: '#888888',
-      bgColor: 'rgba(16,185,129,0.08)',
+      bgColor: 'rgba(34,197,94,0.1)',
     });
 
     // Time-based greeting/tip
@@ -262,7 +262,7 @@ function useIntelligenceFeed(): IntelligenceItem[] {
       title: greeting,
       message: tip,
       color: '#888888',
-      bgColor: 'rgba(139,92,246,0.08)',
+      bgColor: 'rgba(255,255,255,0.03)',
     });
 
     return items;
@@ -352,12 +352,12 @@ export function NotificationDrawer() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.06)] z-50 transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.03)] z-50 transition-transform duration-300 ${
           notifDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center justify-between p-4 border-b border-[rgba(255,255,255,0.03)]">
           <div className="flex items-center gap-2">
             <Bell className="w-5 h-5 text-[#FDBA2D]" />
             <h2 className="text-base font-semibold">Notifications</h2>
@@ -381,7 +381,7 @@ export function NotificationDrawer() {
                 </button>
                 <button
                   onClick={handleClearAll}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#888888] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
                   title="Clear all"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -400,19 +400,19 @@ export function NotificationDrawer() {
         {/* Notification list */}
         <div className="overflow-y-auto h-[calc(100%-57px)] p-3 space-y-2">
           {/* Channel Health Score Banner */}
-          <div className="mb-3 p-3 rounded-lg border border-[rgba(255,255,255,0.06)]"
+          <div className="mb-3 p-3 rounded-lg border border-[rgba(255,255,255,0.03)]"
             style={{
-              backgroundColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.06)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.06)' : 'rgba(255,255,255,0.03)',
-              borderColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.2)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.2)' : '#0f0f0f',
+              backgroundColor: channelHealthStatus === 'danger' ? 'rgba(0,0,0,0)' : channelHealthStatus === 'good' ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.03)',
+              borderColor: channelHealthStatus === 'danger' ? 'rgba(136,136,136,0.2)' : channelHealthStatus === 'good' ? 'rgba(34,197,94,0.1)' : '#0f0f0f',
             }}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center"
                   style={{
-                    backgroundColor: channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.15)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.06)',
-                    border: `1.5px solid ${channelHealthStatus === 'danger' ? 'rgba(239,68,68,0.3)' : channelHealthStatus === 'good' ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)'}`,
-                    boxShadow: channelHealthStatus === 'danger' ? '0 0 8px rgba(239,68,68,0.4)' : channelHealthStatus === 'good' ? '0 0 8px rgba(16,185,129,0.4)' : 'none',
+                    backgroundColor: channelHealthStatus === 'danger' ? 'rgba(136,136,136,0.2)' : channelHealthStatus === 'good' ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.03)',
+                    border: `1.5px solid ${channelHealthStatus === 'danger' ? 'rgba(136,136,136,0.2)' : channelHealthStatus === 'good' ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.1)'}`,
+                    boxShadow: channelHealthStatus === 'danger' ? '0 0 8px rgba(136,136,136,0.2)' : channelHealthStatus === 'good' ? '0 0 8px rgba(34,197,94,0.1)' : 'none',
                   }}
                 >
                   <span style={{ color: healthIconConfig.color }}>{healthIconConfig.icon}</span>
@@ -479,9 +479,9 @@ export function NotificationDrawer() {
                           backgroundColor: cfg.bgColor,
                           border: `1.5px solid ${cfg.borderColor}`,
                           boxShadow: alert.status === 'danger'
-                            ? '0 0 8px rgba(239,68,68,0.5)'
+                            ? '0 0 8px rgba(136,136,136,0.2)'
                             : alert.status === 'viral'
-                            ? '0 0 8px rgba(16,185,129,0.5)'
+                            ? '0 0 8px rgba(34,197,94,0.1)'
                             : 'none',
                         }}
                       >
@@ -527,7 +527,7 @@ export function NotificationDrawer() {
           {/* Store Notifications — channel health, viral, saku, system */}
           {storeNotifications.length > 0 && (
             <>
-              <div className="border-t border-[rgba(255,255,255,0.06)] my-2" />
+              <div className="border-t border-[rgba(255,255,255,0.03)] my-2" />
               <div className="mb-4">
                 <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
                   <Bell className="w-3 h-3 text-[#FDBA2D]" />
@@ -547,7 +547,7 @@ export function NotificationDrawer() {
                         className={cn(
                           'w-full text-left p-3 rounded-lg border transition-all cursor-pointer relative overflow-hidden',
                           notif.read
-                            ? 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
+                            ? 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
                             : 'hover:border-[#1a1a1a]',
                         )}
                         style={{
@@ -591,7 +591,7 @@ export function NotificationDrawer() {
           )}
 
           {/* Separator */}
-          <div className="border-t border-[rgba(255,255,255,0.06)] my-2" />
+          <div className="border-t border-[rgba(255,255,255,0.03)] my-2" />
 
           {/* Intelligence Feed Section */}
           <div className="mb-4">
@@ -626,7 +626,7 @@ export function NotificationDrawer() {
           </div>
 
           {/* Separator */}
-          <div className="border-t border-[rgba(255,255,255,0.06)] my-2" />
+          <div className="border-t border-[rgba(255,255,255,0.03)] my-2" />
 
           {/* Notifications Section */}
           <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2">
@@ -640,8 +640,8 @@ export function NotificationDrawer() {
               className={cn(
                 'w-full text-left p-3 rounded-lg border transition-colors cursor-pointer',
                 notif.read
-                  ? 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
-                  : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)]'
+                  ? 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
+                  : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
               )}
             >
               <div className="flex items-start gap-2">

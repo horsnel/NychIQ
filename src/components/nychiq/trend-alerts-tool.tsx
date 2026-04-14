@@ -122,15 +122,15 @@ Rules:
   };
 
   const velocityConfig = {
-    explosive: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' },
+    explosive: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
     rising: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' },
-    steady: { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.2)' },
+    steady: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   };
 
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><BellRing className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -154,7 +154,7 @@ Rules:
       </div>
 
       {/* Active Alerts */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
         <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Active Alerts ({alerts.length})</h4>
         {alerts.length === 0 ? (
           <p className="text-sm text-[#666666] text-center py-4">No active alerts. Add keywords above to start monitoring.</p>
@@ -179,7 +179,7 @@ Rules:
       </div>
 
       {/* Trend Feed — AI-powered */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
             <Zap className="w-3.5 h-3.5 text-[#888888]" />
@@ -196,7 +196,7 @@ Rules:
         </div>
 
         {error && (
-          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+          <div className="flex items-center gap-2 p-3 mb-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
             <AlertTriangle className="w-4 h-4 text-[#888888] shrink-0" />
             <p className="text-xs text-[#888888]">{error}</p>
           </div>
@@ -214,7 +214,7 @@ Rules:
             {feed.map((item, i) => {
               const vel = velocityConfig[item.velocity] || velocityConfig.steady;
               return (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: vel.bg, border: `1px solid ${vel.border}` }}>
                     <TrendingUp className="w-5 h-5" style={{ color: vel.color }} />
                   </div>

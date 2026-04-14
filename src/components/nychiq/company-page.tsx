@@ -297,7 +297,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 px-6 py-4 border-b border-[rgba(255,255,255,0.03)]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
           className="p-1.5 rounded-md text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
@@ -338,7 +338,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-[rgba(255,255,255,0.06)] px-6 py-6 mt-auto">
+      <footer className="border-t border-[rgba(255,255,255,0.03)] px-6 py-6 mt-auto">
         <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#666666]">
           <span>© {new Date().getFullYear()} NychIQ</span>
           <button onClick={() => setPage('privacy')} className="hover:text-[#a0a0a0] transition-colors">Privacy</button>
@@ -412,7 +412,7 @@ function AboutSection() {
         </div>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center shrink-0">
             <Zap className="w-5 h-5 text-[#888888]" />
           </div>
           <div>
@@ -428,7 +428,7 @@ function AboutSection() {
         </div>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center shrink-0">
             <Rocket className="w-5 h-5 text-[#888888]" />
           </div>
           <div>
@@ -696,7 +696,7 @@ function ContactSection() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
               />
             </div>
             <div className="space-y-1.5">
@@ -707,7 +707,7 @@ function ContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
               />
             </div>
           </div>
@@ -717,7 +717,7 @@ function ContactSection() {
               required
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D] transition-colors appearance-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D] transition-colors appearance-none"
             >
               <option value="" disabled>
                 Select a subject
@@ -738,7 +738,7 @@ function ContactSection() {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Tell us how we can help..."
-              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors resize-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors resize-none"
             />
           </div>
           <button

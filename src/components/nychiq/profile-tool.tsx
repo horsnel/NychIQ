@@ -20,11 +20,11 @@ import {
 
 /* ── Plan badge config ── */
 const PLAN_STYLES: Record<Plan, { bg: string; text: string; border: string; label: string }> = {
-  trial: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.06)]', label: 'Free Trial' },
-  starter: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]', label: 'Starter' },
-  pro: { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]', label: 'Pro' },
-  elite: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]', label: 'Elite' },
-  agency: { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]', label: 'Agency' },
+  trial: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Free Trial' },
+  starter: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Starter' },
+  pro: { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Pro' },
+  elite: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Elite' },
+  agency: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Agency' },
 };
 
 /* ── Stat mini card ── */
@@ -71,7 +71,7 @@ export function ProfileTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -86,7 +86,7 @@ export function ProfileTool() {
       </div>
 
       {/* ── Profile Card ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 sm:p-6">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           {/* Avatar */}
           <div className="w-20 h-20 rounded-2xl bg-[#FDBA2D] flex items-center justify-center text-[#0a0a0a] text-2xl font-bold shrink-0">
@@ -105,7 +105,7 @@ export function ProfileTool() {
           </div>
           <button
             onClick={handleEditProfile}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
           >
             Edit Profile
             <ChevronRight className="w-4 h-4 text-[#666666]" />
@@ -119,7 +119,7 @@ export function ProfileTool() {
           icon={<Activity className="w-3.5 h-3.5 text-[#888888]" />}
           label="Status"
           value="Active"
-          color="bg-[rgba(255,255,255,0.06)]"
+          color="bg-[rgba(255,255,255,0.03)]"
         />
         <StatCard
           icon={<Crown className="w-3.5 h-3.5 text-[#FDBA2D]" />}
@@ -131,18 +131,18 @@ export function ProfileTool() {
           icon={<Coins className="w-3.5 h-3.5 text-[#888888]" />}
           label="Tokens Earned"
           value={tokensEarned.toLocaleString()}
-          color="bg-[rgba(255,255,255,0.06)]"
+          color="bg-[rgba(255,255,255,0.03)]"
         />
         <StatCard
           icon={<Zap className="w-3.5 h-3.5 text-[#888888]" />}
           label="Balance"
           value={tokenBalance.toLocaleString()}
-          color="bg-[rgba(255,255,255,0.06)]"
+          color="bg-[rgba(255,255,255,0.03)]"
         />
       </div>
 
       {/* ── Token Progress ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Coins className="w-4 h-4 text-[#FDBA2D]" />
@@ -183,7 +183,7 @@ export function ProfileTool() {
         </button>
         <button
           onClick={handleSignOut}
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-sm font-medium hover:text-[#FFFFFF] hover:border-[#666666] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-sm font-medium hover:text-[#FFFFFF] hover:border-[#666666] transition-colors"
         >
           <LogOut className="w-4 h-4" />
           SIGN OUT
@@ -191,7 +191,7 @@ export function ProfileTool() {
       </div>
 
       {/* ── Preferences / Links ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
             <Globe className="w-4 h-4 text-[#FDBA2D]" />

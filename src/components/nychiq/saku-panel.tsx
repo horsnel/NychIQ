@@ -102,11 +102,11 @@ export function SakuPanel() {
       />
 
       {/* Panel */}
-      <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl shadow-2xl flex flex-col animate-fade-in-up lg:bottom-5 lg:right-5"
+      <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-xl shadow-2xl flex flex-col animate-fade-in-up lg:bottom-5 lg:right-5"
         style={{ height: '580px', maxHeight: '80vh' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)] shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)] shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center">
               <Bot className="w-4.5 h-4.5 text-black" />
@@ -181,7 +181,7 @@ export function SakuPanel() {
         </div>
 
         {/* Suggestion bubbles + Input area — stacked at bottom */}
-        <div className="shrink-0 border-t border-[rgba(255,255,255,0.06)]">
+        <div className="shrink-0 border-t border-[rgba(255,255,255,0.03)]">
           {/* Suggestion bubbles — stacked semi-rounded above chat bar */}
           {messages.length === 0 && !isTyping && (
             <div className="px-4 pt-3 pb-1">
@@ -190,7 +190,7 @@ export function SakuPanel() {
                   <button
                     key={sug.text}
                     onClick={() => handleSuggestionClick(sug.text)}
-                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)] hover:bg-[#1A1A1A] hover:shadow-[0_0_8px_rgba(253,186,45,0.06)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
+                    className="rounded-xl px-4 py-2.5 bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] hover:shadow-[rgba(0,0,0,0.3)] transition-all inline-flex items-center gap-2 cursor-pointer w-full text-left"
                     style={{ animationDelay: `${idx * 80}ms` }}
                   >
                     <sug.icon className="w-3.5 h-3.5 text-[#666] shrink-0" />
@@ -209,7 +209,7 @@ export function SakuPanel() {
 
           {/* Chat input bar */}
           <div className="p-4 pt-2">
-            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[rgba(255,255,255,0.06)] focus-within:border-[rgba(255,255,255,0.06)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
+            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(255,255,255,0.03)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
               <input
                 ref={inputRef}
                 type="text"

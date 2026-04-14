@@ -68,26 +68,26 @@ const FREQUENCY_OPTIONS: { value: Frequency; label: string; days: number[] }[] =
 ];
 
 const CONTENT_TYPE_COLORS: Record<CalendarContentType, { color: string; bg: string; border: string }> = {
-  Tutorial: { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.25)' },
+  Tutorial: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   Reaction: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.25)' },
-  List: { color: '#888888', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.25)' },
-  Story: { color: '#888888', bg: 'rgba(236,72,153,0.1)', border: 'rgba(236,72,153,0.25)' },
-  Challenge: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.25)' },
-  'How-To': { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)' },
-  Comparison: { color: '#888888', bg: 'rgba(6,182,212,0.1)', border: 'rgba(6,182,212,0.25)' },
+  List: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
+  Story: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
+  Challenge: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
+  'How-To': { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
+  Comparison: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
 };
 
 const VIRAL_COLORS: Record<ViralPotential, { color: string; bg: string; border: string }> = {
-  Low: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.25)' },
+  Low: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
   Medium: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.25)' },
-  High: { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)' },
+  High: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
 };
 
 const STATUS_CONFIG: Record<ContentStatus, { color: string; bg: string; border: string }> = {
   Idea: { color: '#a0a0a0', bg: 'rgba(163,163,163,0.1)', border: 'rgba(163,163,163,0.25)' },
-  Planned: { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.25)' },
-  Filmed: { color: '#888888', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.25)' },
-  Uploaded: { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)' },
+  Planned: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
+  Filmed: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
+  Uploaded: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
 };
 
 const POSTING_TIMES = ['2:00 PM WAT', '4:00 PM WAT', '6:00 PM WAT', '12:00 PM WAT', '8:00 PM WAT', '10:00 AM WAT', '3:00 PM WAT'];
@@ -168,9 +168,9 @@ function CopyBtn({ text }: { text: string }) {
 }
 
 function viralColor(score: number) {
-  if (score >= 80) return { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)' };
+  if (score >= 80) return { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' };
   if (score >= 60) return { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' };
-  if (score >= 40) return { color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.3)' };
+  if (score >= 40) return { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' };
   return { color: '#a0a0a0', bg: 'rgba(136,136,136,0.1)', border: 'rgba(136,136,136,0.3)' };
 }
 
@@ -312,7 +312,7 @@ function CalendarTab() {
   return (
     <div className="space-y-5">
       {/* Input bar */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -366,12 +366,12 @@ function CalendarTab() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="h-20 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 animate-pulse" />
+              <div key={i} className="h-20 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 animate-pulse" />
             ))}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-36 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 animate-pulse" />
+              <div key={i} className="h-36 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 animate-pulse" />
             ))}
           </div>
         </div>
@@ -383,7 +383,7 @@ function CalendarTab() {
           {/* Summary bar */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Total ideas */}
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <BarChart3 className="w-4 h-4 text-[#FDBA2D]" />
                 <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-medium">Total Ideas</span>
@@ -392,7 +392,7 @@ function CalendarTab() {
             </div>
 
             {/* High potential */}
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <Flame className="w-4 h-4 text-[#888888]" />
                 <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-medium">High Potential</span>
@@ -401,7 +401,7 @@ function CalendarTab() {
             </div>
 
             {/* Content type distribution */}
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Tag className="w-4 h-4 text-[#888888]" />
                 <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-medium">Content Types</span>
@@ -461,7 +461,7 @@ function CalendarTab() {
                       key={entry.day}
                       className={`rounded-lg border p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 ${
                         isActiveDay
-                          ? 'bg-[#0f0f0f] border-[rgba(255,255,255,0.06)]'
+                          ? 'bg-[#0f0f0f] border-[rgba(255,255,255,0.03)]'
                           : 'bg-[#0a0a0a] border-[#1A1A1A] opacity-60'
                       }`}
                     >
@@ -536,7 +536,7 @@ function CalendarTab() {
       {/* Empty state */}
       {!loading && !generated && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <CalendarDays className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Plan Your Month</h3>
@@ -628,7 +628,7 @@ Return ONLY the JSON array.`;
       {/* Tab 1: Video Ideas (original content) */}
       {activeTab === 'ideas' && (
         <>
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Lightbulb className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -666,7 +666,7 @@ Return ONLY the JSON array.`;
             <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
               <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
               <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-              <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+              <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
                 <RefreshCw className="w-3.5 h-3.5" /> Retry
               </button>
             </div>
@@ -675,7 +675,7 @@ Return ONLY the JSON array.`;
           {loading && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+                <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                   <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-3/4 mb-2" />
                   <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full mb-1" />
                   <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-2/3 mb-3" />
@@ -709,7 +709,7 @@ Return ONLY the JSON array.`;
                 {ideas.map((idea, i) => {
                   const vc = viralColor(idea.viralScore);
                   return (
-                    <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
+                    <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <span className="text-[10px] font-bold text-[#666666]">#{i + 1}</span>
                         <div className="flex items-center gap-2">
@@ -722,7 +722,7 @@ Return ONLY the JSON array.`;
                       <h4 className="text-sm font-bold text-[#FFFFFF] mb-1.5 line-clamp-2">{idea.title}</h4>
                       <p className="text-xs text-[#a0a0a0] line-clamp-2 mb-3">{idea.description}</p>
                       <div className="flex items-center justify-between">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center gap-1">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-medium text-[#888888] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center gap-1">
                           <Tag className="w-2.5 h-2.5" /> {idea.contentType}
                         </span>
                         <CopyBtn text={idea.title} />
@@ -736,7 +736,7 @@ Return ONLY the JSON array.`;
 
           {!loading && !searched && (
             <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4"><Lightbulb className="w-8 h-8 text-[#FDBA2D]" /></div>
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Lightbulb className="w-8 h-8 text-[#FDBA2D]" /></div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Get Video Ideas</h3>
               <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your niche to get 10 video ideas with viral score predictions.</p>
             </div>

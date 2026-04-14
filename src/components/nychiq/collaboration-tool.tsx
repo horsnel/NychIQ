@@ -20,9 +20,9 @@ type Status = TeamMember['status'];
 
 const ROLE_CONFIG: Record<Role, { label: string; color: string; bg: string; border: string; icon: LucideIcon; desc: string }> = {
   owner:   { label: 'Owner',   color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)',  border: 'rgba(253,186,45,0.25)', icon: Crown,          desc: 'Full access + team management + billing' },
-  admin:   { label: 'Admin',   color: '#888888', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.25)', icon: UserCog,        desc: 'All tools + channel management' },
-  analyst: { label: 'Analyst', color: '#888888', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.25)', icon: BarChart3,       desc: 'Read-only analytics + reports' },
-  viewer:  { label: 'Viewer',  color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.25)', icon: Eye,             desc: 'Dashboard only' },
+  admin:   { label: 'Admin',   color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)', icon: UserCog,        desc: 'All tools + channel management' },
+  analyst: { label: 'Analyst', color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)', icon: BarChart3,       desc: 'Read-only analytics + reports' },
+  viewer:  { label: 'Viewer',  color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: Eye,             desc: 'Dashboard only' },
 };
 
 const STATUS_CONFIG: Record<Status, { label: string; color: string; dot: string }> = {
@@ -123,7 +123,7 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5 ${className}`}>
+    <div className={`rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5 ${className}`}>
       {children}
     </div>
   );
@@ -155,7 +155,7 @@ function PermissionsTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-[rgba(255,255,255,0.06)]">
+            <tr className="border-b border-[rgba(255,255,255,0.03)]">
               <th className="text-left py-2.5 pr-4 text-[#a0a0a0] font-semibold">Feature</th>
               {(['owner', 'admin', 'analyst', 'viewer'] as const).map((role) => {
                 const cfg = ROLE_CONFIG[role];
@@ -250,7 +250,7 @@ function MemberRow({
         {menuOpen && (
           <>
             <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-            <div className="absolute right-0 top-full mt-1 w-48 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
+            <div className="absolute right-0 top-full mt-1 w-48 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] shadow-xl py-1">
               {!isOwner && (
                 <>
                   <div className="px-3 py-1.5 text-[9px] text-[#666666] uppercase tracking-wider font-bold">Change Role</div>
@@ -269,10 +269,10 @@ function MemberRow({
                     </button>
                     );
                   })}
-                  <div className="border-t border-[rgba(255,255,255,0.06)] my-1" />
+                  <div className="border-t border-[rgba(255,255,255,0.03)] my-1" />
                   <button
                     onClick={() => { onRemove(); setMenuOpen(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#888888] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
                   >
                     <UserMinus className="w-3.5 h-3.5" />
                     Remove Member
@@ -301,7 +301,7 @@ function ChannelAccessCard({
   onToggle: (channelId: string) => void;
 }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
       <div className="flex items-center gap-3 mb-3">
         <Avatar name={member.name} color={member.color} size={28} />
         <div className="min-w-0">
@@ -394,7 +394,7 @@ function PendingInviteRow({
   const isExpired = expiresDays <= 0;
 
   return (
-    <div className="flex items-center gap-3 px-3 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors group">
+    <div className="flex items-center gap-3 px-3 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors group">
       <div className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0">
         <Mail className="w-4 h-4 text-[#FDBA2D]" />
       </div>
@@ -419,7 +419,7 @@ function PendingInviteRow({
         )}
         <button
           onClick={onRevoke}
-          className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] text-[#666666] hover:text-[#888888] transition-colors"
+          className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.03)] text-[#666666] hover:text-[#888888] transition-colors"
           title="Revoke invite"
         >
           <Trash2 className="w-3.5 h-3.5" />
@@ -596,9 +596,9 @@ export function CollaborationTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* ── HEADER ── */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-6">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-6">
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2.5 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
+          <div className="p-2.5 rounded-xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
             <UsersRound className="w-5 h-5 text-[#888888]" />
           </div>
           <div>
@@ -608,7 +608,7 @@ export function CollaborationTool() {
         </div>
 
         {/* Stats Row */}
-        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[rgba(255,255,255,0.06)] flex-wrap">
+        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[rgba(255,255,255,0.03)] flex-wrap">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#888888]" />
             <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{activeCount}</span> Active</span>
@@ -625,7 +625,7 @@ export function CollaborationTool() {
       </div>
 
       {/* ── TABS ── */}
-      <div className="flex gap-1 p-1 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-x-auto">
+      <div className="flex gap-1 p-1 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -659,7 +659,7 @@ export function CollaborationTool() {
           {!showAddForm ? (
             <button
               onClick={() => setShowAddForm(true)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.06)] hover:border-[#888888] text-[#666666] hover:text-[#888888] transition-all text-xs font-medium group"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.03)] hover:border-[#888888] text-[#666666] hover:text-[#888888] transition-all text-xs font-medium group"
             >
               <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
               Add Team Member
@@ -692,7 +692,7 @@ export function CollaborationTool() {
                   <div className="relative">
                     <button
                       onClick={() => setAddRoleOpen(!addRoleOpen)}
-                      className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                      className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.03)] transition-colors"
                     >
                       {(() => { const ARC = ROLE_CONFIG[addRole]; return <ARC.icon className="w-4 h-4" style={{ color: ARC.color }} />; })()}
                       <span className="text-[#FFFFFF]">{ROLE_CONFIG[addRole].label}</span>
@@ -701,7 +701,7 @@ export function CollaborationTool() {
                     {addRoleOpen && (
                       <>
                         <div className="fixed inset-0 z-40" onClick={() => setAddRoleOpen(false)} />
-                        <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
+                        <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] shadow-xl py-1">
                           {(['admin', 'analyst', 'viewer'] as const).map((role) => {
                             const ARC2 = ROLE_CONFIG[role];
                             const ARCIcon2 = ARC2.icon;
@@ -727,14 +727,14 @@ export function CollaborationTool() {
                   </div>
                   <button
                     onClick={handleAddMember}
-                    className="h-10 px-5 rounded-md bg-[#888888] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors flex items-center gap-2"
+                    className="h-10 px-5 rounded-md bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors flex items-center gap-2"
                   >
                     <Check className="w-4 h-4" />
                     Add Member
                   </button>
                   <button
                     onClick={() => { setShowAddForm(false); setAddEmail(''); setAddName(''); }}
-                    className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] text-sm hover:text-[#FFFFFF] transition-colors"
+                    className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-sm hover:text-[#FFFFFF] transition-colors"
                   >
                     Cancel
                   </button>
@@ -868,7 +868,7 @@ export function CollaborationTool() {
                 <div className="relative">
                   <button
                     onClick={() => setInviteRoleOpen(!inviteRoleOpen)}
-                    className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                    className="flex items-center gap-2 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm hover:border-[rgba(255,255,255,0.03)] transition-colors"
                   >
                     {(() => { const IRC = ROLE_CONFIG[inviteRole]; return <IRC.icon className="w-4 h-4" style={{ color: IRC.color }} />; })()}
                     <span className="text-[#FFFFFF]">{ROLE_CONFIG[inviteRole].label}</span>
@@ -877,7 +877,7 @@ export function CollaborationTool() {
                   {inviteRoleOpen && (
                     <>
                       <div className="fixed inset-0 z-40" onClick={() => setInviteRoleOpen(false)} />
-                      <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] shadow-xl py-1">
+                      <div className="absolute top-full mt-1 left-0 w-52 z-50 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] shadow-xl py-1">
                         {(['admin', 'analyst', 'viewer'] as const).map((role) => {
                           const IRC2 = ROLE_CONFIG[role];
                           const IRCIcon2 = IRC2.icon;
@@ -927,7 +927,7 @@ export function CollaborationTool() {
               />
               <button
                 onClick={handleCopyLink}
-                className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)] transition-colors flex items-center gap-2 text-xs font-medium flex-shrink-0"
+                className="h-10 px-4 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)] transition-colors flex items-center gap-2 text-xs font-medium flex-shrink-0"
               >
                 {copiedLink ? (
                   <>

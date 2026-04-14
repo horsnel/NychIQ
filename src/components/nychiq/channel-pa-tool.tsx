@@ -84,7 +84,7 @@ function TypingIndicator() {
       <div className="w-7 h-7 rounded-full bg-[rgba(253,186,45,0.12)] flex items-center justify-center shrink-0">
         <Bot className="w-3.5 h-3.5 text-[#FDBA2D]" />
       </div>
-      <div className="rounded-2xl rounded-tl-sm bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] px-4 py-3">
+      <div className="rounded-2xl rounded-tl-sm bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] px-4 py-3">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-bounce" style={{ animationDelay: '0ms' }} />
           <span className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -99,7 +99,7 @@ function TypingIndicator() {
 function NoConfigState({ onConfigure }: { onConfigure: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center h-full min-h-[400px] px-4">
-      <div className="w-20 h-20 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-6">
+      <div className="w-20 h-20 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
         <Bot className="w-10 h-10 text-[#FDBA2D]" />
       </div>
       <h2 className="text-lg font-bold text-[#FFFFFF] mb-2">Channel Assistant Not Configured</h2>
@@ -131,11 +131,11 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
   return (
     <div className="h-full flex flex-col">
       {/* Sidebar header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
         <h3 className="text-sm font-bold text-[#FFFFFF]">Channel Context</h3>
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] transition-colors lg:hidden"
+          className="p-1.5 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] transition-colors lg:hidden"
         >
           <X className="w-4 h-4" />
         </button>
@@ -162,7 +162,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
               {config.contentTypes.map((ct) => (
                 <span
                   key={ct}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] text-[11px] font-medium text-[#FDBA2D]"
+                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] text-[11px] font-medium text-[#FDBA2D]"
                 >
                   {ct}
                 </span>
@@ -223,7 +223,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
               {config.keywords.map((kw) => (
                 <span
                   key={kw}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0]"
+                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0]"
                 >
                   {kw}
                 </span>
@@ -240,7 +240,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
               {config.competitors.map((comp) => (
                 <span
                   key={comp}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-[11px] text-[#a0a0a0]"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#888888]" />
                   {comp}
@@ -260,10 +260,10 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
       </div>
 
       {/* Configure button */}
-      <div className="px-4 py-3 border-t border-[rgba(255,255,255,0.06)]">
+      <div className="px-4 py-3 border-t border-[rgba(255,255,255,0.03)]">
         <button
           onClick={onConfigure}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] text-xs font-bold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.15)] transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] text-xs font-bold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.15)] transition-colors"
         >
           <Sparkles className="w-3.5 h-3.5" />
           Edit Configuration
@@ -304,8 +304,8 @@ function MessageBubble({ message }: { message: ChatMessage }) {
       <div className={cn(
         'group relative max-w-[70%] px-4 py-3',
         isUser
-          ? 'bg-[#0f0f0f] rounded-2xl rounded-tr-sm border border-[rgba(255,255,255,0.06)]'
-          : 'bg-[#0f0f0f] rounded-2xl rounded-tl-sm border border-[rgba(255,255,255,0.06)]'
+          ? 'bg-[#0f0f0f] rounded-2xl rounded-tr-sm border border-[rgba(255,255,255,0.03)]'
+          : 'bg-[#0f0f0f] rounded-2xl rounded-tl-sm border border-[rgba(255,255,255,0.03)]'
       )}>
         {/* Content — render markdown-like formatting */}
         <div className="text-sm text-[#FFFFFF] leading-relaxed whitespace-pre-wrap break-words channel-pa-content">
@@ -315,7 +315,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
             }
             if (segment.startsWith('```') && segment.endsWith('```')) {
               return (
-                <pre key={i} className="mt-1.5 mb-1.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] overflow-x-auto font-mono">
+                <pre key={i} className="mt-1.5 mb-1.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] overflow-x-auto font-mono">
                   {segment.slice(3, -3).replace(/^\n/, '')}
                 </pre>
               );
@@ -331,7 +331,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
         {!isUser && message.content.length > 0 && (
           <button
             onClick={handleCopy}
-            className="absolute -bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-[#a0a0a0] hover:text-[#FFFFFF] shadow-sm"
+            className="absolute -bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] hover:text-[#FFFFFF] shadow-sm"
           >
             {copied ? <Check className="w-3 h-3 text-[#888888]" /> : <Copy className="w-3 h-3" />}
           </button>
@@ -469,10 +469,10 @@ export function ChannelPATool() {
     return (
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center gap-3 px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[rgba(255,255,255,0.06)]">
+        <div className="sticky top-0 z-10 flex items-center gap-3 px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[rgba(255,255,255,0.03)]">
           <button
             onClick={() => setActiveTool('my-channel')}
-            className="p-2 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+            className="p-2 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -486,12 +486,12 @@ export function ChannelPATool() {
   return (
     <div className="flex flex-col h-full animate-fade-in-up">
       {/* ── Header Bar ── */}
-      <div className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[rgba(255,255,255,0.06)]">
+      <div className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[rgba(255,255,255,0.03)]">
         {/* Left: Back */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => setActiveTool('my-channel')}
-            className="p-2 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+            className="p-2 rounded-lg text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
             title="Back to My Channel"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -513,7 +513,7 @@ export function ChannelPATool() {
             'p-2 rounded-lg transition-colors',
             contextOpen
               ? 'text-[#FDBA2D] bg-[rgba(253,186,45,0.1)]'
-              : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.06)]'
+              : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)]'
           )}
           title={contextOpen ? 'Hide channel context' : 'Show channel context'}
         >
@@ -530,7 +530,7 @@ export function ChannelPATool() {
             {/* Empty state: suggested prompts */}
             {messages.length === 0 && !isStreaming && (
               <div className="flex flex-col items-center justify-center min-h-[300px]">
-                <div className="w-14 h-14 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
                   <Sparkles className="w-7 h-7 text-[#FDBA2D]" />
                 </div>
                 <h2 className="text-base font-bold text-[#FFFFFF] mb-1">
@@ -547,7 +547,7 @@ export function ChannelPATool() {
                       key={prompt}
                       onClick={() => handleSend(prompt)}
                       disabled={isStreaming}
-                      className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] text-left text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.06)] transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-left text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.03)] transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-[#FDBA2D] opacity-50 group-hover:opacity-100 transition-opacity shrink-0" />
                       <span>{prompt}</span>
@@ -571,9 +571,9 @@ export function ChannelPATool() {
           </div>
 
           {/* ── Input Bar ── */}
-          <div className="sticky bottom-0 px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-t border-[rgba(255,255,255,0.06)]">
+          <div className="sticky bottom-0 px-4 py-3 bg-[#0a0a0a]/95 backdrop-blur-sm border-t border-[rgba(255,255,255,0.03)]">
             <div className="flex items-center gap-2 max-w-3xl mx-auto">
-              <div className="flex-1 flex items-center bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-full px-4 h-12 focus-within:border-[rgba(255,255,255,0.06)] transition-colors">
+              <div className="flex-1 flex items-center bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-full px-4 h-12 focus-within:border-[rgba(255,255,255,0.03)] transition-colors">
                 <input
                   ref={inputRef}
                   type="text"
@@ -606,7 +606,7 @@ export function ChannelPATool() {
             {/* Desktop sidebar */}
             <aside
               className={cn(
-                'hidden lg:flex flex-col w-[300px] shrink-0 bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.06)] transition-all duration-300 overflow-hidden',
+                'hidden lg:flex flex-col w-[300px] shrink-0 bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.03)] transition-all duration-300 overflow-hidden',
                 contextOpen ? 'opacity-100 ml-0' : 'opacity-0 ml-[-300px] w-0'
               )}
             >
@@ -628,7 +628,7 @@ export function ChannelPATool() {
                   onClick={() => setContextOpen(false)}
                 />
                 {/* Slide-in panel */}
-                <aside className="lg:hidden fixed right-0 top-0 bottom-0 w-[300px] max-w-[85vw] bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.06)] z-40 shadow-2xl shadow-black/40 animate-slide-in-right">
+                <aside className="lg:hidden fixed right-0 top-0 bottom-0 w-[300px] max-w-[85vw] bg-[#0f0f0f] border-l border-[rgba(255,255,255,0.03)] z-40 shadow-2xl shadow-black/40 animate-slide-in-right">
                   <ContextSidebarContent
                     config={channelConfig}
                     onConfigure={handleConfigure}

@@ -58,7 +58,7 @@ function ViralBadge({ score }: { score: number }) {
 
 function VideoCardSkeleton() {
   return (
-    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]">
+    <div className="rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]">
       <div className="aspect-video bg-[#1A1A1A] animate-shimmer" />
       <div className="p-3 space-y-2">
         <div className="h-4 bg-[#1A1A1A] rounded animate-shimmer w-full" />
@@ -182,7 +182,7 @@ function VideoContextMenu({ video }: { video: VideoData }) {
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] min-w-[200px]"
+        className="bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] min-w-[200px]"
       >
         <DropdownMenuItem
           onClick={handleOpenYouTube}
@@ -336,9 +336,9 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
   return (
     <div
       className={cn(
-        'group cursor-pointer rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)]',
+        'group cursor-pointer rounded-lg overflow-hidden bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]',
         'transition-all duration-200',
-        'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[rgba(255,255,255,0.1)]',
+        'hover:-translate-y-[3px] hover:shadow-lg hover:shadow-black/30 hover:border-[rgba(255,255,255,0.03)]',
         className
       )}
       onClick={handleClick}

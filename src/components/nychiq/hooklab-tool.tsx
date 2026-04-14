@@ -63,10 +63,10 @@ interface RetentionResult {
 }
 
 const RETENTION_LABEL_COLORS: Record<string, { color: string; bg: string }> = {
-  'high-skip': { color: '#888888', bg: 'rgba(239,68,68,0.15)' },
+  'high-skip': { color: '#888888', bg: 'rgba(136,136,136,0.2)' },
   moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.15)' },
-  engaged: { color: '#888888', bg: 'rgba(59,130,246,0.15)' },
-  peak: { color: '#888888', bg: 'rgba(16,185,129,0.15)' },
+  engaged: { color: '#888888', bg: 'rgba(255,255,255,0.03)' },
+  peak: { color: '#888888', bg: 'rgba(34,197,94,0.1)' },
 };
 
 /* ── Retention bar component ── */
@@ -282,10 +282,10 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <Activity className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -308,7 +308,7 @@ Return ONLY the JSON object, no other text.`;
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
               placeholder="Video URL (optional — paste transcript below instead)"
-              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors"
+              className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors"
             />
           </div>
 
@@ -318,7 +318,7 @@ Return ONLY the JSON object, no other text.`;
             onChange={(e) => setTranscript(e.target.value)}
             placeholder="Paste transcript here (at least 20 characters for analysis)..."
             rows={5}
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.06)]/20 transition-colors resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#888888]/50 focus:ring-1 focus:ring-[rgba(255,255,255,0.03)]/20 transition-colors resize-none"
           />
 
           {/* Actions */}
@@ -338,7 +338,7 @@ Return ONLY the JSON object, no other text.`;
             {searched && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.06)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+                className="flex items-center gap-1.5 px-3 h-11 rounded-lg border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
                 Reset
@@ -366,7 +366,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-4">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
               <span className="text-sm text-[#a0a0a0]">Scanning retention patterns...</span>
@@ -391,14 +391,14 @@ Return ONLY the JSON object, no other text.`;
         <>
           {/* Stats Row */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingDown className="w-4 h-4 text-[#888888]" />
                 <span className="text-xs text-[#a0a0a0]">Predicted Retention</span>
               </div>
               <div className="text-2xl font-bold text-[#FFFFFF]">{result.overallRetention}%</div>
             </div>
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
                 <Zap className="w-4 h-4 text-[#FDBA2D]" />
                 <span className="text-xs text-[#a0a0a0]">Hook Score</span>
@@ -413,7 +413,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Retention Graph */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="w-4 h-4 text-[#888888]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Retention Curve (First 30 Seconds)</h3>
@@ -438,7 +438,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Lull Zones & Fatigue Alerts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Lull Detector */}
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Timer className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Lull Detector</h3>
@@ -449,7 +449,7 @@ Return ONLY the JSON object, no other text.`;
                     <div
                       key={i}
                       className="flex items-center gap-2 p-2 rounded-lg"
-                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(239,68,68,0.08)' : 'rgba(253,186,45,0.08)' }}
+                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.08)' }}
                     >
                       <AlertTriangle
                         className="w-4 h-4 shrink-0"
@@ -465,7 +465,7 @@ Return ONLY the JSON object, no other text.`;
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded"
                         style={{
                           color: lull.severity === 'critical' ? '#888888' : '#FDBA2D',
-                          backgroundColor: lull.severity === 'critical' ? 'rgba(239,68,68,0.15)' : 'rgba(253,186,45,0.15)',
+                          backgroundColor: lull.severity === 'critical' ? 'rgba(136,136,136,0.2)' : 'rgba(253,186,45,0.15)',
                         }}
                       >
                         {lull.severity.toUpperCase()}
@@ -479,7 +479,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
 
             {/* Visual Fatigue */}
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
                 <Eye className="w-4 h-4 text-[#888888]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Visual Fatigue Alerts</h3>
@@ -487,7 +487,7 @@ Return ONLY the JSON object, no other text.`;
               <div className="p-4 space-y-2">
                 {result.fatigueAlerts.length > 0 ? (
                   result.fatigueAlerts.map((alert, i) => (
-                    <div key={i} className="flex items-start gap-2 p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+                    <div key={i} className="flex items-start gap-2 p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
                       <TrendingDown className="w-4 h-4 text-[#888888] mt-0.5 shrink-0" />
                       <div>
                         <span className="text-xs font-medium text-[#FFFFFF]">{alert.section}</span>
@@ -505,7 +505,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Hook Mismatch */}
           {result.hookMismatch.length > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-3">
                 <SkipForward className="w-4 h-4 text-[#888888]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Hook Mismatch Detection</h3>
@@ -520,7 +520,7 @@ Return ONLY the JSON object, no other text.`;
           )}
 
           {/* Competitor Benchmark */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp className="w-4 h-4 text-[#888888]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">Competitor Benchmark</h3>
@@ -533,7 +533,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Auto-Trim Suggestions */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
                 <Scissors className="w-4 h-4 text-[#888888]" />
@@ -553,7 +553,7 @@ Return ONLY the JSON object, no other text.`;
                   <div
                     className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                     style={{
-                      backgroundColor: trim.type === 'cut' ? 'rgba(239,68,68,0.1)' : 'rgba(253,186,45,0.1)',
+                      backgroundColor: trim.type === 'cut' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.1)',
                     }}
                   >
                     {trim.type === 'cut' ? (
@@ -569,7 +569,7 @@ Return ONLY the JSON object, no other text.`;
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded uppercase"
                         style={{
                           color: trim.type === 'cut' ? '#888888' : '#FDBA2D',
-                          backgroundColor: trim.type === 'cut' ? 'rgba(239,68,68,0.15)' : 'rgba(253,186,45,0.15)',
+                          backgroundColor: trim.type === 'cut' ? 'rgba(136,136,136,0.2)' : 'rgba(253,186,45,0.15)',
                         }}
                       >
                         {trim.type}
@@ -584,7 +584,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Summary */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Summary</h3>
@@ -597,7 +597,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial idle state */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Activity className="w-8 h-8 text-[#888888]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Retention Predictor</h3>

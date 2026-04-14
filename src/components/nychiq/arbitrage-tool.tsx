@@ -212,7 +212,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg" style={{ backgroundColor: '#1a1a1a' }}>
@@ -239,7 +239,7 @@ Return ONLY the JSON object, no other text.`;
                 placeholder="Enter video topic or niche..."
                 className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
                 style={{ caretColor: '#888888' }}
-                onFocus={(e) => { e.target.style.borderColor = 'rgba(16,185,129,0.5)'; }}
+                onFocus={(e) => { e.target.style.borderColor = 'rgba(34,197,94,0.1)'; }}
                 onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
               />
             </div>
@@ -254,7 +254,7 @@ Return ONLY the JSON object, no other text.`;
                 <ChevronDown className="w-3.5 h-3.5 text-[#666666]" />
               </button>
               {countryOpen && (
-                <div className="absolute z-20 top-full mt-1 w-full max-h-48 overflow-y-auto rounded-lg bg-[#151515] border border-[rgba(255,255,255,0.06)] shadow-xl">
+                <div className="absolute z-20 top-full mt-1 w-full max-h-48 overflow-y-auto rounded-lg bg-[#151515] border border-[rgba(255,255,255,0.03)] shadow-xl">
                   {COUNTRIES.map((c) => (
                     <button
                       key={c.code}
@@ -300,7 +300,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {/* CPM Range skeleton */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-center gap-6">
               <div className="w-[72px] h-[72px] rounded-full bg-[#1A1A1A] animate-pulse" />
               <div className="flex-1 space-y-3">
@@ -310,7 +310,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/4 mb-3" />
               <div className="space-y-2">
                 <div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" />
@@ -337,7 +337,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* CPM Range + Revenue Score */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <RevenueScoreRing score={result.revenueScore} />
               <div className="flex-1 text-center sm:text-left">
@@ -354,7 +354,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* High-Value Tags */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5">
                 <Tag className="w-3.5 h-3.5" style={{ color: '#aaa' }} /> High-Value Tags
@@ -365,7 +365,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {result.highValueTags.map((t, i) => (
-                <div key={i} className="flex items-center justify-between gap-2 p-2.5 rounded-lg border transition-colors hover:border-[rgba(255,255,255,0.1)]" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' }}>
+                <div key={i} className="flex items-center justify-between gap-2 p-2.5 rounded-lg border transition-colors hover:border-[rgba(255,255,255,0.03)]" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.03)' }}>
                   <div className="flex items-center gap-2 min-w-0">
                     <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: '#aaa' }} />
                     <span className="text-sm text-[#FFFFFF] truncate">{t.tag}</span>
@@ -377,7 +377,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Revenue Keywords */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5" style={{ color: '#aaa' }} /> Revenue Keywords
@@ -388,7 +388,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="space-y-2">
               {result.revenueKeywords.map((k, i) => (
-                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
                     <ArrowUpRight className="w-3.5 h-3.5 shrink-0" style={{ color: '#FDBA2D' }} />
                     <span className="text-sm text-[#FFFFFF]">{k.phrase}</span>
@@ -402,13 +402,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* CPM Multipliers */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <Sparkles className="w-3.5 h-3.5" style={{ color: '#aaa' }} /> CPM Multiplier Words
             </h4>
             <div className="flex flex-wrap gap-2">
               {result.cpmMultipliers.map((m, i) => (
-                <div key={i} className="flex flex-col items-center gap-1 px-4 py-3 rounded-lg border" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' }}>
+                <div key={i} className="flex flex-col items-center gap-1 px-4 py-3 rounded-lg border" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.03)' }}>
                   <span className="text-sm font-bold text-[#FFFFFF]">{m.word}</span>
                   <span className="text-[10px] font-medium" style={{ color: '#aaa' }}>{m.effect}</span>
                 </div>
@@ -417,13 +417,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Avoid Tags */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <AlertTriangle className="w-3.5 h-3.5 text-[#888888]" /> Avoid Tags (Low-CPM)
             </h4>
             <div className="space-y-2">
               {result.avoidTags.map((t, i) => (
-                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+                <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
                     <XCircle className="w-3.5 h-3.5 shrink-0 text-[#888888]" />
                     <span className="text-sm text-[#888888]">{t.tag}</span>
@@ -435,7 +435,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Revenue Tips */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
               <DollarSign className="w-3.5 h-3.5" style={{ color: '#aaa' }} /> Revenue Optimization Tips
             </h4>
@@ -456,7 +456,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.06)' }}>
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.03)' }}>
             <Scale className="w-8 h-8" style={{ color: '#aaa' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Find Revenue Tags</h3>

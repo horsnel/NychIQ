@@ -36,7 +36,7 @@ function scoreColor(v: number): string {
 function scoreBadgeBg(v: number): string {
   if (v >= 80) return 'rgba(34,197,94,0.1)';
   if (v >= 60) return 'rgba(253,186,45,0.15)';
-  return 'rgba(255,255,255,0.06)';
+  return 'rgba(255,255,255,0.03)';
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -176,7 +176,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           <div key={di} className="flex gap-1 mb-0.5">
             <div className="flex items-center" style={{ width: 32, fontSize: 9, color: '#666666' }}>{DAY_LABELS[di]}</div>
             {row.map((val, hi) => {
-              const bg = val >= 80 ? 'rgba(16,185,129,0.6)' : val >= 60 ? 'rgba(16,185,129,0.35)' : val >= 40 ? 'rgba(253,186,45,0.35)' : val >= 20 ? 'rgba(59,130,246,0.25)' : '#1A1A1A';
+              const bg = val >= 80 ? 'rgba(34,197,94,0.1)' : val >= 60 ? 'rgba(34,197,94,0.1)' : val >= 40 ? 'rgba(253,186,45,0.35)' : val >= 20 ? 'rgba(255,255,255,0.03)' : '#1A1A1A';
               return <div key={hi} className="flex-1 h-5 rounded-sm transition-colors" style={{ background: bg }} title={`${val}%`} />;
             })}
           </div>
@@ -752,7 +752,7 @@ function OverviewTab({
           }} />
           {/* LIVE badge */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-            style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)' }}>
+            style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.1)' }}>
             <div className="rounded-full animate-pulse" style={{ width: 6, height: 6, background: '#888888' }} />
             <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#888888' }}>LIVE</span>
           </div>
@@ -899,7 +899,7 @@ function OverviewTab({
                     SEO 92
                   </span>
                   <span className="px-2 py-0.5 rounded-md font-bold"
-                    style={{ fontSize: 11, color: '#888888', background: 'rgba(16,185,129,0.15)' }}>
+                    style={{ fontSize: 11, color: '#888888', background: 'rgba(34,197,94,0.1)' }}>
                     12.1%
                   </span>
                   <button onClick={() => handleCopy(vid, title)}

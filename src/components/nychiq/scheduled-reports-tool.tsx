@@ -235,10 +235,10 @@ export function ScheduledReportsTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+            <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
               <CalendarClock className="w-5 h-5 text-[#888888]" />
             </div>
             <div>
@@ -260,12 +260,12 @@ export function ScheduledReportsTool() {
       {/* Schedule Configuration + Preview side by side on desktop */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Schedule Configuration */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Schedule Configuration</h3>
             <button
               onClick={() => setShowNewForm(!showNewForm)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] text-xs font-semibold text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#888888] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               New Schedule
@@ -285,8 +285,8 @@ export function ScheduledReportsTool() {
                       onClick={() => setNewSchedule((p) => ({ ...p, type }))}
                       className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                         newSchedule.type === type
-                          ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
-                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#a0a0a0] hover:border-[rgba(255,255,255,0.1)]'
+                          ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(255,255,255,0.03)] text-[#888888]'
+                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#a0a0a0] hover:border-[rgba(255,255,255,0.03)]'
                       }`}
                     >
                       {REPORT_TYPE_LABELS[type]}
@@ -305,8 +305,8 @@ export function ScheduledReportsTool() {
                       onClick={() => toggleDay(day)}
                       className={`w-10 h-9 rounded-lg text-xs font-semibold transition-all border ${
                         newSchedule.days.includes(day)
-                          ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
-                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)] hover:text-[#a0a0a0]'
+                          ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(255,255,255,0.03)] text-[#888888]'
+                          : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.03)] hover:text-[#a0a0a0]'
                       }`}
                     >
                       {day}
@@ -340,8 +340,8 @@ export function ScheduledReportsTool() {
                     onClick={() => setNewSchedule((p) => ({ ...p, email: !p.email }))}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                       newSchedule.email
-                        ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
-                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)]'
+                        ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(255,255,255,0.03)] text-[#888888]'
+                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.03)]'
                     }`}
                   >
                     <Mail className="w-3.5 h-3.5" />
@@ -351,8 +351,8 @@ export function ScheduledReportsTool() {
                     onClick={() => setNewSchedule((p) => ({ ...p, inApp: !p.inApp }))}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all border ${
                       newSchedule.inApp
-                        ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.06)] text-[#888888]'
-                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)]'
+                        ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(255,255,255,0.03)] text-[#888888]'
+                        : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.03)]'
                     }`}
                   >
                     <Bell className="w-3.5 h-3.5" />
@@ -365,13 +365,13 @@ export function ScheduledReportsTool() {
               <div className="flex gap-2 pt-1">
                 <button
                   onClick={createSchedule}
-                  className="flex-1 h-10 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#7C3AED] transition-colors"
+                  className="flex-1 h-10 rounded-lg bg-[#888888] text-white text-sm font-bold hover:bg-[#555555] transition-colors"
                 >
                   Create Schedule
                 </button>
                 <button
                   onClick={() => setShowNewForm(false)}
-                  className="px-4 h-10 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#a0a0a0] hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                  className="px-4 h-10 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#a0a0a0] hover:border-[rgba(255,255,255,0.03)] transition-colors"
                 >
                   Cancel
                 </button>
@@ -425,7 +425,7 @@ export function ScheduledReportsTool() {
                     </button>
                     <button
                       onClick={() => deleteSchedule(schedule.id)}
-                      className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.06)] transition-colors text-[#666666] hover:text-[#888888]"
+                      className="p-1.5 rounded-md hover:bg-[rgba(255,255,255,0.03)] transition-colors text-[#666666] hover:text-[#888888]"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -444,13 +444,13 @@ export function ScheduledReportsTool() {
         </div>
 
         {/* Report Preview */}
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Report Preview</h3>
             <button
               onClick={handlePreview}
               disabled={previewLoading}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors disabled:opacity-50"
             >
               {previewLoading ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -477,7 +477,7 @@ export function ScheduledReportsTool() {
 
           {!previewLoading && !showPreview && (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="w-12 h-12 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-3">
+              <div className="w-12 h-12 rounded-xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-3">
                 <Eye className="w-6 h-6 text-[#888888]" />
               </div>
               <p className="text-sm text-[#a0a0a0] text-center">Click &quot;Preview Report&quot; to generate a sample report.</p>
@@ -549,7 +549,7 @@ export function ScheduledReportsTool() {
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold text-white"
                         style={{
-                          backgroundColor: c.score >= 80 ? 'rgba(16,185,129,0.2)' : c.score >= 60 ? 'rgba(253,186,45,0.2)' : 'rgba(59,130,246,0.2)',
+                          backgroundColor: c.score >= 80 ? 'rgba(34,197,94,0.1)' : c.score >= 60 ? 'rgba(253,186,45,0.2)' : 'rgba(255,255,255,0.03)',
                           color: c.score >= 80 ? '#888888' : c.score >= 60 ? '#FDBA2D' : '#888888',
                         }}
                       >
@@ -567,8 +567,8 @@ export function ScheduledReportsTool() {
                 </h4>
                 <div className="space-y-2">
                   {PREVIEW_DATA.recommendations.map((r, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)]">
-                      <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] font-bold text-[#888888] shrink-0">{i + 1}</span>
+                    <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
+                      <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-[10px] font-bold text-[#888888] shrink-0">{i + 1}</span>
                       <p className="text-xs text-[#a0a0a0] leading-relaxed">{r}</p>
                     </div>
                   ))}
@@ -580,7 +580,7 @@ export function ScheduledReportsTool() {
       </div>
 
       {/* Delivery History */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4 flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5" /> Delivery History
         </h3>

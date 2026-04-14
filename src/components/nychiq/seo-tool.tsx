@@ -120,7 +120,7 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><SearchCode className="w-5 h-5 text-[#FDBA2D]" /></div>
@@ -170,7 +170,7 @@ Return ONLY the JSON object, no other text.`;
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handleGenerate} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -180,7 +180,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="space-y-4">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-1/3 mb-3" />
               <div className="space-y-2"><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-full" /><div className="h-3 bg-[#1A1A1A] rounded animate-pulse w-3/4" /></div>
             </div>
@@ -209,7 +209,7 @@ Return ONLY the JSON object, no other text.`;
           </h3>
 
           {/* Titles */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Title Variations</h4>
             <div className="space-y-2">
               {result.titles.map((title, i) => (
@@ -226,7 +226,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Description */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Description</h4>
               <CopyBtn text={result.description} />
@@ -236,7 +236,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Tags */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Tags</h4>
               <CopyBtn text={result.tags.join(', ')} />
@@ -249,20 +249,20 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Hashtags */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Hashtags</h4>
               <CopyBtn text={result.hashtags.join(' ')} />
             </div>
             <div className="flex flex-wrap gap-2">
               {result.hashtags.map((tag, i) => (
-                <span key={i} className="px-2.5 py-1 rounded-full text-xs font-medium text-[#FDBA2D] bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)]">{tag}</span>
+                <span key={i} className="px-2.5 py-1 rounded-full text-xs font-medium text-[#FDBA2D] bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)]">{tag}</span>
               ))}
             </div>
           </div>
 
           {/* Thumbnail Concept */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Thumbnail Concept</h4>
               <CopyBtn text={result.thumbnailConcept} />
@@ -271,7 +271,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Best Time */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#888888]" />
@@ -287,7 +287,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <SearchCode className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Optimize Your Videos</h3>

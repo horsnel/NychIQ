@@ -36,9 +36,9 @@ interface AlgorithmReport {
 }
 
 const STATUS_CONFIG = {
-  rising: { color: '#888888', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', icon: <TrendingUp className="w-4 h-4" />, label: 'Rising' },
+  rising: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: <TrendingUp className="w-4 h-4" />, label: 'Rising' },
   stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <Minus className="w-4 h-4" />, label: 'Stable' },
-  declining: { color: '#888888', bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', icon: <TrendingDown className="w-4 h-4" />, label: 'Declining' },
+  declining: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)', icon: <TrendingDown className="w-4 h-4" />, label: 'Declining' },
 };
 
 /* ── Signal Bar ── */
@@ -47,7 +47,7 @@ function SignalBar({ signal }: { signal: AlgorithmSignal }) {
   const barColor = signal.status === 'rising' ? '#888888' : signal.status === 'stable' ? '#FDBA2D' : '#888888';
 
   return (
-    <div className="p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.1)] transition-colors">
+    <div className="p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-[#FFFFFF]">{signal.name}</span>
@@ -153,11 +153,11 @@ Return ONLY the JSON object, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+              <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
                 <BrainCircuit className="w-5 h-5 text-[#888888]" />
               </div>
               <div>
@@ -176,7 +176,7 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={() => fetchReport()}
               disabled={loading}
-              className="p-2 rounded-lg border border-[rgba(255,255,255,0.06)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg border border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-colors disabled:opacity-50"
             >
               <RefreshCw className={cn('w-4 h-4 text-[#a0a0a0]', loading && 'animate-spin')} />
             </button>
@@ -187,7 +187,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Loading State */}
       {loading && (
         <div className="space-y-5">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="flex items-center gap-3 mb-4">
               <Loader2 className="w-5 h-5 text-[#888888] animate-spin" />
               <span className="text-sm text-[#a0a0a0]">Analyzing YouTube algorithm signals...</span>
@@ -236,8 +236,8 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Recommendations */}
           {report.recommendations.length > 0 && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
                 <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>

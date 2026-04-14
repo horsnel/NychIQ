@@ -38,9 +38,9 @@ export function CommandBar() {
   return (
     <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
       <div className="fixed inset-0 bg-black/60" onClick={() => setCommandBarOpen(false)} />
-      <div className="relative w-full max-w-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-xl shadow-2xl animate-fade-in-up overflow-hidden">
         {/* Search input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
           <Search className="w-4 h-4 text-[#666666] shrink-0" />
           <input
             type="text"
@@ -76,14 +76,14 @@ export function CommandBar() {
           )}
 
           {/* Sign Out action */}
-          <div className="border-t border-[rgba(255,255,255,0.06)] mt-1 pt-1">
+          <div className="border-t border-[rgba(255,255,255,0.03)] mt-1 pt-1">
             <button
               onClick={() => {
                 logout();
                 setCommandBarOpen(false);
                 setQuery('');
               }}
-              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#888888] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+              className="group flex items-center justify-between w-full px-3 py-2 rounded-md text-sm text-[#888888] hover:bg-[rgba(255,255,255,0.03)] transition-colors"
             >
               <span className="flex items-center gap-2">
                 <LogOut className="w-3.5 h-3.5" />

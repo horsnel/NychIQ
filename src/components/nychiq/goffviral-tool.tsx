@@ -81,10 +81,10 @@ function CopyBtn({ text }: { text: string }) {
 /* ── Verdict helpers ── */
 function verdictBadge(verdict: string): { bg: string; text: string; border: string } {
   switch (verdict) {
-    case 'VIRAL': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
-    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
-    case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.06)]' };
-    default: return { bg: 'bg-[rgba(255,255,255,0.06)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.06)]' };
+    case 'VIRAL': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
+    case 'LIKELY VIRAL': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
+    case 'MODERATE': return { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]' };
+    default: return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
   }
 }
 
@@ -502,7 +502,7 @@ Return ONLY the JSON object, no other text.`;
       {activeTab === 'tiktok' && (
       <>
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -510,7 +510,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-base font-bold text-[#FFFFFF]">GoffViral TikTok Predictor</h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]">AI MODEL</span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]">AI MODEL</span>
             </div>
           </div>
           <p className="text-xs text-[#a0a0a0] mt-1 ml-12">Custom viral prediction model for TikTok content — GoffViral-V1 Pro, trained on 19,084 viral videos. 98.9% accuracy.</p>
@@ -660,7 +660,7 @@ Return ONLY the JSON object, no other text.`;
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
           <p className="text-sm text-[#FFFFFF] mb-4">{error}</p>
-          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+          <button onClick={handlePredict} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
             <RefreshCw className="w-3.5 h-3.5" /> Retry
           </button>
         </div>
@@ -668,7 +668,7 @@ Return ONLY the JSON object, no other text.`;
 
       {/* Loading Steps */}
       {loading && (
-        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-5 space-y-3">
+        <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 space-y-3">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
               <Flame className="w-4 h-4 text-[#FDBA2D] animate-pulse" />
@@ -702,7 +702,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-4">
           {/* Probability Card */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Circle */}
               <CircleProgress value={result.probability} size={130} strokeWidth={10} />
@@ -734,7 +734,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Strengths */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#888888]" /> Strengths
             </h4>
@@ -749,7 +749,7 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Weaknesses */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <TrendingDown className="w-3.5 h-3.5 text-[#888888]" /> Weaknesses
             </h4>
@@ -764,14 +764,14 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* Action Plan */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-[#888888]" /> Action Plan
             </h4>
             <div className="space-y-3">
               {result.actionPlan.map((step, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
                     <span className="text-[10px] font-bold text-[#888888]">{i + 1}</span>
                   </div>
                   <span className="text-sm text-[#FFFFFF]">{step}</span>
@@ -785,7 +785,7 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Flame className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Predict TikTok Virality</h3>
@@ -802,15 +802,15 @@ Return ONLY the JSON object, no other text.`;
       {/* YouTube Viral Score Tab */}
       {activeTab === 'youtube' && (
         <div className="space-y-5 animate-fade-in-up">
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-1">
-                <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.06)]">
+                <div className="p-2 rounded-lg bg-[rgba(255,255,255,0.03)]">
                   <Youtube className="w-5 h-5 text-[#888888]" />
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <h2 className="text-base font-bold text-[#FFFFFF]">YouTube Viral Score</h2>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.06)] text-[#888888] border border-[rgba(255,255,255,0.06)]">AI SCORE</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]">AI SCORE</span>
                 </div>
               </div>
               <p className="text-xs text-[#a0a0a0] mt-1 ml-12">Score your YouTube video&apos;s viral potential with AI-powered breakdown analysis.</p>
@@ -868,7 +868,7 @@ Return ONLY the JSON object, no other text.`;
               <button
                 onClick={handleYTScore}
                 disabled={ytLoading || !ytTitle.trim()}
-                className="w-full sm:w-auto px-6 h-11 rounded-lg bg-[#888888] text-[#FFFFFF] text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="w-full sm:w-auto px-6 h-11 rounded-lg bg-[#888888] text-[#FFFFFF] text-sm font-bold hover:bg-[#555555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {ytLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
                 Score My Video
@@ -881,7 +881,7 @@ Return ONLY the JSON object, no other text.`;
             <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
               <AlertTriangle className="w-8 h-8 text-[#888888] mx-auto mb-3" />
               <p className="text-sm text-[#FFFFFF] mb-4">{ytError}</p>
-              <button onClick={handleYTScore} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#D04242] transition-colors inline-flex items-center gap-2">
+              <button onClick={handleYTScore} className="px-4 py-2 rounded-lg bg-[#888888] text-white text-sm font-medium hover:bg-[#555555] transition-colors inline-flex items-center gap-2">
                 <RefreshCw className="w-3.5 h-3.5" /> Retry
               </button>
             </div>
@@ -889,7 +889,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* YouTube Loading */}
           {ytLoading && (
-            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6 flex items-center justify-center">
+            <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 flex items-center justify-center">
               <div className="text-center">
                 <Loader2 className="w-8 h-8 text-[#888888] animate-spin mx-auto mb-3" />
                 <p className="text-sm text-[#a0a0a0]">Analyzing viral potential...</p>
@@ -901,7 +901,7 @@ Return ONLY the JSON object, no other text.`;
           {!ytLoading && ytResult && (
             <div className="space-y-4">
               {/* Composite Score */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-6">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <YTCircleGauge value={ytResult.compositeScore} size={140} strokeWidth={10} />
                   <div className="flex-1 text-center sm:text-left">
@@ -918,7 +918,7 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Breakdown Scores */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-4 flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Score Breakdown
                 </h4>
@@ -943,14 +943,14 @@ Return ONLY the JSON object, no other text.`;
               </div>
 
               {/* Suggestions */}
-              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+              <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5 text-[#FDBA2D]" /> Improvement Suggestions
                 </h4>
                 <div className="space-y-2.5">
                   {ytResult.suggestions.map((s, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
                       </div>
                       <span className="text-sm text-[#FFFFFF] leading-relaxed">{s}</span>
@@ -964,7 +964,7 @@ Return ONLY the JSON object, no other text.`;
           {/* YouTube Empty State */}
           {!ytLoading && !ytSearched && (
             <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
                 <Youtube className="w-8 h-8 text-[#888888]" />
               </div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Score Your YouTube Video</h3>

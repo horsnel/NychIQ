@@ -93,9 +93,9 @@ function viralScoreColor(score: number): string {
 
 function recConfig(rec: string) {
   switch (rec) {
-    case 'Keep': return { color: '#888888', icon: CheckCircle2, bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.2)' };
+    case 'Keep': return { color: '#888888', icon: CheckCircle2, bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' };
     case 'Improve': return { color: '#FDBA2D', icon: AlertTriangle, bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' };
-    case 'Remove': return { color: '#888888', icon: XCircle, bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.2)' };
+    case 'Remove': return { color: '#888888', icon: XCircle, bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' };
     default: return { color: '#a0a0a0', icon: CheckCircle2, bg: 'rgba(163,163,163,0.1)', border: 'rgba(163,163,163,0.2)' };
   }
 }
@@ -212,7 +212,7 @@ export function VideoBatchTool() {
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -249,12 +249,12 @@ export function VideoBatchTool() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-24 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-lg animate-pulse" />
+              <div key={i} className="h-24 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-lg animate-pulse" />
             ))}
           </div>
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-20 bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] rounded-lg animate-pulse" />
+              <div key={i} className="h-20 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-lg animate-pulse" />
             ))}
           </div>
         </div>
@@ -264,7 +264,7 @@ export function VideoBatchTool() {
       {!loading && analyzed && playlist && summaryStats && (
         <>
           {/* Playlist info bar */}
-          <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.06)] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
                 <ListVideo className="w-5 h-5 text-[#FDBA2D]" />
@@ -318,7 +318,7 @@ export function VideoBatchTool() {
           {/* Top / Weakest highlight */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* Top performing */}
-            <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-1.5 mb-2">
                 <TrendingUp className="w-3.5 h-3.5 text-[#888888]" />
                 <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Top Performing</h4>
@@ -336,7 +336,7 @@ export function VideoBatchTool() {
               </div>
             </div>
             {/* Weakest */}
-            <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] p-4">
+            <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-1.5 mb-2">
                 <TrendingDown className="w-3.5 h-3.5 text-[#888888]" />
                 <h4 className="text-xs font-bold text-[#888888] uppercase tracking-wider">Needs Attention</h4>
@@ -365,8 +365,8 @@ export function VideoBatchTool() {
                   onClick={() => toggleSort(opt.key)}
                   className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition-all border ${
                     sortBy === opt.key
-                      ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
-                      : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.1)] hover:text-[#a0a0a0]'
+                      ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
+                      : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.03)] hover:text-[#a0a0a0]'
                   }`}
                 >
                   <ArrowDownUp className="w-3 h-3" />
@@ -380,14 +380,14 @@ export function VideoBatchTool() {
             <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={handleExportCSV}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-xs font-semibold text-[#a0a0a0] hover:border-[rgba(255,255,255,0.1)] hover:text-[#FFFFFF] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-xs font-semibold text-[#a0a0a0] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF] transition-colors"
               >
                 <FileSpreadsheet className="w-3.5 h-3.5" />
                 Export CSV
               </button>
               <button
                 onClick={handleApplyBestPractices}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 Apply Best Practices
@@ -404,7 +404,7 @@ export function VideoBatchTool() {
               return (
                 <div
                   key={video.id}
-                  className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-colors"
+                  className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
                     {/* Left: rank + thumbnail placeholder */}
@@ -494,20 +494,20 @@ export function VideoBatchTool() {
           </div>
 
           {/* Recommendation summary */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 sm:p-5">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" /> Playlist Breakdown
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+              <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
                 <p className="text-2xl font-black text-[#888888]">{summaryStats.keepCount}</p>
                 <p className="text-[10px] text-[#a0a0a0] uppercase tracking-wider mt-0.5">Keep</p>
               </div>
-              <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+              <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
                 <p className="text-2xl font-black text-[#FDBA2D]">{summaryStats.improveCount}</p>
                 <p className="text-[10px] text-[#a0a0a0] uppercase tracking-wider mt-0.5">Improve</p>
               </div>
-              <div className="rounded-lg bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] p-3 text-center">
+              <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
                 <p className="text-2xl font-black text-[#888888]">{summaryStats.removeCount}</p>
                 <p className="text-[10px] text-[#a0a0a0] uppercase tracking-wider mt-0.5">Remove</p>
               </div>
@@ -519,7 +519,7 @@ export function VideoBatchTool() {
       {/* Empty state */}
       {!loading && !analyzed && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <ListVideo className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Entire Playlists</h3>

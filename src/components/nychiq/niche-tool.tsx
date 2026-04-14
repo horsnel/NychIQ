@@ -39,7 +39,7 @@ const REGIONS = [
 /* ── Competition badge ── */
 function CompBadge({ level }: { level: string }) {
   const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
-  const bg = level === 'Low' ? 'rgba(16,185,129,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(239,68,68,0.1)';
+  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)';
   return (
     <span
       className="px-2 py-0.5 rounded-full text-[10px] font-bold"
@@ -53,7 +53,7 @@ function CompBadge({ level }: { level: string }) {
 /* ── Niche Card ── */
 function NicheCard({ niche, index }: { niche: NicheResult; index: number }) {
   return (
-    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4 hover:border-[rgba(255,255,255,0.1)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
+    <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 hover:border-[rgba(255,255,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-[#666666]">#{index + 1}</span>
@@ -63,8 +63,8 @@ function NicheCard({ niche, index }: { niche: NicheResult; index: number }) {
           className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold border"
           style={{
             color: niche.score >= 80 ? '#888888' : niche.score >= 60 ? '#FDBA2D' : '#888888',
-            backgroundColor: niche.score >= 80 ? 'rgba(16,185,129,0.1)' : niche.score >= 60 ? 'rgba(253,186,45,0.1)' : 'rgba(59,130,246,0.1)',
-            borderColor: niche.score >= 80 ? 'rgba(16,185,129,0.3)' : niche.score >= 60 ? 'rgba(253,186,45,0.3)' : 'rgba(59,130,246,0.3)',
+            backgroundColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(253,186,45,0.1)' : 'rgba(255,255,255,0.03)',
+            borderColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(253,186,45,0.3)' : 'rgba(255,255,255,0.03)',
           }}
         >
           {niche.score}
@@ -154,7 +154,7 @@ Return ONLY the JSON array, no other text.`;
   return (
     <div className="space-y-5 animate-fade-in-up">
       {/* Header Card */}
-      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] overflow-hidden">
+      <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
@@ -220,7 +220,7 @@ Return ONLY the JSON array, no other text.`;
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.06)] p-4">
+            <div key={i} className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-start justify-between mb-3">
                 <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-2/3" />
                 <div className="w-10 h-10 rounded-full bg-[#1A1A1A] animate-pulse" />
@@ -261,7 +261,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && searched && results.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Crosshair className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Niches Found</h3>
@@ -272,7 +272,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
             <Crosshair className="w-8 h-8 text-[#FDBA2D]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Hidden Niches</h3>

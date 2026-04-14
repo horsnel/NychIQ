@@ -36,7 +36,7 @@ export function UpgradeModal() {
 
   return (
     <Dialog open={upgradeModalOpen} onOpenChange={setUpgradeModalOpen}>
-      <DialogContent className="sm:max-w-2xl bg-[#0f0f0f] border-[rgba(255,255,255,0.06)] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] p-0 max-h-[85vh] overflow-y-auto">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="text-xl font-bold text-gradient-amber">Upgrade Your Plan</DialogTitle>
           <p className="text-sm text-[#a0a0a0] mt-1">Unlock powerful features and get more tokens.</p>
@@ -52,7 +52,7 @@ export function UpgradeModal() {
                   'rounded-xl border p-4 transition-all cursor-pointer',
                   isCurrent
                     ? 'border-[#FDBA2D] bg-[rgba(253,186,45,0.05)]'
-                    : 'border-[rgba(255,255,255,0.06)] bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.1)]'
+                    : 'border-[rgba(255,255,255,0.03)] bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.03)]'
                 )}
               >
                 <div className="flex items-center gap-2 mb-3">

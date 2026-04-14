@@ -361,7 +361,7 @@ export function LegalPage({ type }: LegalPageProps) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
       {/* Top bar */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-3 px-6 py-4 border-b border-[rgba(255,255,255,0.03)]">
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('welcome')}
           className="p-1.5 rounded-md text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] transition-colors"
@@ -401,7 +401,7 @@ export function LegalPage({ type }: LegalPageProps) {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-[rgba(255,255,255,0.06)] px-6 py-6 mt-auto">
+      <footer className="border-t border-[rgba(255,255,255,0.03)] px-6 py-6 mt-auto">
         <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-[#666666]">
           <span>&copy; {new Date().getFullYear()} NychIQ</span>
           <button onClick={() => setPage('privacy')} className="hover:text-[#a0a0a0] transition-colors">Privacy</button>
