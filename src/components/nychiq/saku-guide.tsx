@@ -327,7 +327,7 @@ export function SakuGuide() {
 
       {/* Step counter (top-right) */}
       <div className="absolute top-4 right-4 z-[9999]">
-        <span className="text-[10px] font-mono text-[#666666]">
+        <span className="text-[10px] font-terminal text-[#666666]">
           Step {currentStep + 1} of {totalSteps}
         </span>
       </div>

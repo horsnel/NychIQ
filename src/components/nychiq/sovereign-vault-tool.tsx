@@ -775,7 +775,7 @@ export function SovereignVaultTool() {
             {/* Preview */}
             <div>
               <p className="text-[11px] text-[#666666] font-medium mb-2">Preview (first 500 chars)</p>
-              <pre className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-3 text-[10px] text-[#a0a0a0] overflow-x-auto max-h-48 overflow-y-auto font-mono leading-relaxed">
+              <pre className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-3 text-[10px] text-[#a0a0a0] overflow-x-auto max-h-48 overflow-y-auto font-terminal leading-relaxed">
                 {JSON.stringify(vault, null, 2).slice(0, 500)}
                 {JSON.stringify(vault).length > 500 ? '\n...' : ''}
               </pre>

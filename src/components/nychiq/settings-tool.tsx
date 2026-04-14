@@ -489,7 +489,7 @@ export function SettingsTool() {
                 onChange={(e) => setReferralInput(e.target.value.toUpperCase())}
                 placeholder="Enter referral code"
                 disabled={referralApplied}
-                className="flex-1 h-10 px-4 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
+                className="flex-1 h-10 px-4 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-terminal"
               />
               <button
                 onClick={handleApplyReferral}

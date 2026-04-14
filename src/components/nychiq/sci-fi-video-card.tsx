@@ -68,7 +68,7 @@ function SignalScore({ score }: { score: number }) {
 
   return (
     <span
-      className="font-mono text-xs tabular-nums"
+      className="font-terminal text-xs tabular-nums"
       style={!settled ? { animation: 'flickerDigit 0.4s steps(1) infinite' } : undefined}
     >
       {score}
@@ -116,7 +116,7 @@ function HookLabButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) 
 
         {showTip && (
           <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded bg-[#1A1A1A] border border-[#F6A828]/30 text-[11px] text-[#FFFFFF] whitespace-nowrap pointer-events-none shadow-lg shadow-black/40 z-30">
-            Retention Scanned: <span className="text-[#888888] font-mono font-semibold">87%</span>{' '}
+            Retention Scanned: <span className="text-[#888888] font-terminal font-semibold">87%</span>{' '}
             predicted retention
           </div>
         )}
@@ -228,7 +228,7 @@ function SmartCopyButton({ videoUrl }: { videoUrl: string }) {
     <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
       {glitch && (
         <span
-          className="text-[9px] font-mono font-bold text-[#888888] tracking-wider"
+          className="text-[9px] font-terminal font-bold text-[#888888] tracking-wider"
           style={{ animation: 'glitchText 0.3s steps(1) forwards' }}
         >
           DATA TRANSFERRED
@@ -273,7 +273,7 @@ function AnalysisTeaser({ viralPoints, onNavigate }: { viralPoints: number; onNa
 
   return (
     <div className="mt-2 pt-2 border-t border-[rgba(255,255,255,0.03)]/60">
-      <p className="text-[10px] font-mono text-[#666666] leading-relaxed select-none">
+      <p className="text-[10px] font-terminal text-[#666666] leading-relaxed select-none">
         {chars <= linkStart ? (
           fullText.slice(0, chars)
         ) : (
@@ -417,7 +417,7 @@ export function SciFiVideoCard({
 
         {/* Corner coordinates — top-right */}
         <span
-          className="absolute top-2 right-2 z-[15] font-mono text-[9px] text-[#F6A828]/50 tracking-wider pointer-events-none select-none"
+          className="absolute top-2 right-2 z-[15] font-terminal text-[9px] text-[#F6A828]/50 tracking-wider pointer-events-none select-none"
           style={{ textShadow: '0 0 4px rgba(246,168,40,0.3)' }}
         >
           {cornerCoords}
@@ -425,7 +425,7 @@ export function SciFiVideoCard({
 
         {/* Duration badge — bottom-left */}
         {video.duration && (
-          <span className="absolute bottom-2 left-2 z-[15] px-1.5 py-0.5 text-[10px] font-mono font-medium bg-black/80 rounded text-white/90 backdrop-blur-sm">
+          <span className="absolute bottom-2 left-2 z-[15] px-1.5 py-0.5 text-[10px] font-terminal font-medium bg-black/80 rounded text-white/90 backdrop-blur-sm">
             {vidDuration(video.duration)}
           </span>
         )}
@@ -445,7 +445,7 @@ export function SciFiVideoCard({
             ) : (
               <><span>⚡</span><span className="text-[#F6A828]">HOT</span></>
             )}
-            <span className="font-mono text-white/80 ml-0.5">{video.viralScore}</span>
+            <span className="font-terminal text-white/80 ml-0.5">{video.viralScore}</span>
           </span>
         )}
 
@@ -471,7 +471,7 @@ export function SciFiVideoCard({
           {video.viewCount != null && (
             <div className="flex items-center gap-1.5">
               <LiveDot />
-              <span className="text-[11px] font-mono text-[#888888] tabular-nums">
+              <span className="text-[11px] font-terminal text-[#888888] tabular-nums">
                 {fmtV(video.viewCount)}
               </span>
             </div>
@@ -488,7 +488,7 @@ export function SciFiVideoCard({
           {/* Retention waveform */}
           <div className="flex items-center gap-1">
             <WaveformIcon className="text-[#F6A828]/60" />
-            <span className="text-[11px] font-mono text-[#a0a0a0] tabular-nums">
+            <span className="text-[11px] font-terminal text-[#a0a0a0] tabular-nums">
               {retentionProb}%
             </span>
           </div>

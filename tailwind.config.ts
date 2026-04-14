@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
         extend: {
+                fontFamily: {
+                        'display': ['var(--font-inter-tight)', '"Inter Tight"', 'sans-serif'],
+                        'sans': ['var(--font-inter)', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        'mono': ['var(--font-jetbrains-mono)', '"JetBrains Mono"', 'ui-monospace', 'monospace'],
+                },
                 colors: {
                         background: 'hsl(var(--background))',
                         foreground: 'hsl(var(--foreground))',

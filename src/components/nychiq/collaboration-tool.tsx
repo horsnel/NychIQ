@@ -923,7 +923,7 @@ export function CollaborationTool() {
                 type="text"
                 readOnly
                 value={`https://app.nychiq.com/invite?team=${encodeURIComponent(userEmail || 'agency')}&ref=team-collab`}
-                className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-xs text-[#666666] font-mono focus:outline-none truncate"
+                className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-xs text-[#666666] font-terminal focus:outline-none truncate"
               />
               <button
                 onClick={handleCopyLink}

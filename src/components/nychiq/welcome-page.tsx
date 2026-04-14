@@ -249,7 +249,7 @@ function TerminalLine({ text, color, delay }: { text: string; color: string; del
 
   if (!visible) return null;
   return (
-    <div className="font-mono text-xs" style={{ color }}>
+    <div className="font-terminal text-xs" style={{ color }}>
       <span className="text-[#F6A828]">▸ </span>
       {textVisible}
       {textVisible.length < text.length && (
@@ -310,7 +310,7 @@ export function WelcomePage() {
                     <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                   </svg>
                 </div>
-                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+                <span className="font-display-tight text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
               </button>
 
               {/* Center links - desktop */}
@@ -430,7 +430,7 @@ export function WelcomePage() {
               </div>
 
               {/* H1 */}
-              <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold leading-[1.1] mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold leading-[1.1] mb-6">
                 <span className="text-[#FFFFFF] block">YouTube</span>
                 <span className="text-gradient-amber block">Intelligence</span>
                 <span className="text-[#666666] block">Platform.</span>
@@ -449,7 +449,7 @@ export function WelcomePage() {
                   { value: '3,200+', label: 'Active Creators' },
                 ].map((stat) => (
                   <div key={stat.label} className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-[#FFFFFF]">{stat.value}</span>
+                    <span className="stat-number text-sm font-bold text-[#FFFFFF]">{stat.value}</span>
                     <span className="text-xs text-[#666666]">{stat.label}</span>
                   </div>
                 ))}
@@ -490,7 +490,7 @@ export function WelcomePage() {
                   </div>
                   <div className="flex-1 flex items-center gap-2 bg-[#0a0a0a] rounded-md px-3 py-1.5">
                     <Globe className="w-3 h-3 text-[#444]" />
-                    <span className="text-xs text-[#666] font-mono">nychiq.com/dashboard</span>
+                    <span className="text-xs text-[#666] font-terminal">nychiq.com/dashboard</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)]">
                     <span className="live-dot" style={{ width: 6, height: 6 }} />
@@ -541,7 +541,7 @@ export function WelcomePage() {
         <section ref={featuresRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
           {/* Section header */}
           <div className="mb-10">
-            <span className="text-xs text-[#444] font-mono tracking-wider">{'//'} CORE ENGINES</span>
+            <span className="text-xs text-[#444] font-terminal tracking-wider">{'//'} CORE ENGINES</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mt-2">17 Intelligence Modules</h2>
             <p className="text-sm text-[#666] mt-2 max-w-lg">Every tool you need to research, create, optimize, and grow your YouTube channel — powered by AI.</p>
           </div>
@@ -556,7 +556,7 @@ export function WelcomePage() {
               >
                 {/* Number + tag */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono text-[#444] tracking-wider">
+                  <span className="text-[10px] font-terminal text-[#444] tracking-wider">
                     {feat.num} / {feat.label}
                   </span>
                   <span
@@ -605,7 +605,7 @@ export function WelcomePage() {
         <section id="pricing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
           {/* Section header */}
           <div className="text-center mb-12">
-            <span className="text-xs text-[#444] font-mono tracking-wider">{'//'} PRICING</span>
+            <span className="text-xs text-[#444] font-terminal tracking-wider">{'//'} PRICING</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mt-2">Choose Your Plan</h2>
             <p className="text-sm text-[#666] mt-2">Start free with 50 tokens. Upgrade when you need more power.</p>
           </div>
@@ -679,7 +679,7 @@ export function WelcomePage() {
                       <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                     </svg>
                   </div>
-                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+                  <span className="font-display-tight text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
                 </button>
                 <p className="text-xs text-[#555] leading-relaxed max-w-[200px]">
                   AI-powered YouTube intelligence platform for creators who want to grow faster and smarter.

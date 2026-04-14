@@ -1060,7 +1060,7 @@ Return ONLY the JSON object, no other text.`;
                   <Radar className="w-5 h-5 text-[#888888] animate-pulse" />
                 </div>
                 <span className="text-sm font-bold text-[#FFFFFF]">Running Deep Analysis...</span>
-                <span className="ml-auto text-[10px] text-[#a0a0a0] font-mono">{scanStep + 1}/{SCANNING_STEPS.length}</span>
+                <span className="ml-auto text-[10px] text-[#a0a0a0] font-terminal">{scanStep + 1}/{SCANNING_STEPS.length}</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden mb-5">
                 <div
@@ -1090,7 +1090,7 @@ Return ONLY the JSON object, no other text.`;
                         ) : isActive ? (
                           <span style={{ color: '#aaa' }}>{step.icon}</span>
                         ) : (
-                          <span className="text-[10px] text-[#666666] font-mono">{i + 1}</span>
+                          <span className="text-[10px] text-[#666666] font-terminal">{i + 1}</span>
                         )}
                       </div>
                       <span className={`text-xs transition-all duration-300 ${isComplete ? 'text-[#a0a0a0]' : isActive ? 'text-[#FFFFFF]' : 'text-[#666666]'}`}>

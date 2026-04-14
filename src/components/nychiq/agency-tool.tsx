@@ -289,7 +289,7 @@ function ToolCard({ icon: Icon, label, desc, cost, toolId, color }: {
         <span className="text-[11px] text-[#a0a0a0] line-clamp-1 block">{desc}</span>
       </div>
       <div className="flex items-center gap-2 shrink-0">
-        {cost > 0 && <span className="text-[10px] text-[#666666] font-mono">{cost}t</span>}
+        {cost > 0 && <span className="text-[10px] text-[#666666] font-terminal">{cost}t</span>}
         <ChevronRight className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#F6A828] transition-colors opacity-0 group-hover:opacity-100" />
       </div>
     </button>
@@ -1420,7 +1420,7 @@ export function AgencyDashboardTool() {
                 <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Accent Color</label>
                 <div className="flex items-center gap-3">
                   <input type="color" value={wlAccentColor} onChange={(e) => setWlAccentColor(e.target.value)} className="w-10 h-10 rounded-md border border-[#1A1A1A] cursor-pointer" />
-                  <span className="text-xs text-[#666666] font-mono">{wlAccentColor}</span>
+                  <span className="text-xs text-[#666666] font-terminal">{wlAccentColor}</span>
                 </div>
               </div>
             </div>

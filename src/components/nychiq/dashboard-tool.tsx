@@ -280,7 +280,7 @@ export function DashboardTool() {
   return (
     <div className="space-y-0 animate-fade-in-up">
       {/* ═══ WELCOME + VIDEO INDEX ═══ */}
-      <h2 className="text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #F6A828, #D4921F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <h2 className="font-display text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #F6A828, #D4921F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
         Welcome back, {displayName}!
       </h2>
 

@@ -315,7 +315,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
             }
             if (segment.startsWith('```') && segment.endsWith('```')) {
               return (
-                <pre key={i} className="mt-1.5 mb-1.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] overflow-x-auto font-mono">
+                <pre key={i} className="mt-1.5 mb-1.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] overflow-x-auto font-terminal">
                   {segment.slice(3, -3).replace(/^\n/, '')}
                 </pre>
               );

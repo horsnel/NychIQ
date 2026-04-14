@@ -311,7 +311,7 @@ export function CompanyPage({ type }: CompanyPageProps) {
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+          <span className="font-display-tight text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
       </div>
 
@@ -362,7 +362,7 @@ function AboutSection() {
         <p className="text-xs font-semibold uppercase tracking-widest text-[#F6A828] mb-3">
           YouTube Intelligence Platform
         </p>
-        <h2 className="text-2xl md:text-3xl font-bold text-[#FFFFFF] mb-4 leading-tight">
+        <h2 className="font-display text-2xl md:text-3xl font-bold text-[#FFFFFF] mb-4 leading-tight">
           YouTube Intelligence for the<br />Next Generation of Creators
         </h2>
         <p className="text-sm text-[#a0a0a0] leading-relaxed max-w-xl mx-auto">

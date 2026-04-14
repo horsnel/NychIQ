@@ -260,7 +260,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+          <span className="font-display-tight text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -273,7 +273,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
               />
             ))}
           </div>
-          <span className="text-[10px] text-[#444] font-mono">2 of 3</span>
+          <span className="text-[10px] text-[#444] font-terminal">2 of 3</span>
         </div>
       </div>
 
@@ -402,7 +402,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                 <>
                   <div className="text-center mb-8">
                     <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Audit Report</h2>
-                    <p className="text-xs text-[#555] font-mono">{channelUrl} &mdash; {channelData.name}</p>
+                    <p className="text-xs text-[#555] font-terminal">{channelUrl} &mdash; {channelData.name}</p>
                   </div>
 
                   {/* Health Score Gauge */}

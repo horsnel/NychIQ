@@ -113,7 +113,7 @@ export function LoginPage() {
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+          <span className="font-display-tight text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </button>
 
         {/* Card */}

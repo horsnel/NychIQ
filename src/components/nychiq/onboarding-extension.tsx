@@ -173,7 +173,7 @@ export function OnboardingExtension() {
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white" />
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
+          <span className="font-display-tight text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -186,7 +186,7 @@ export function OnboardingExtension() {
               />
             ))}
           </div>
-          <span className="text-[10px] text-[#666666] font-mono">3 of 3</span>
+          <span className="text-[10px] text-[#666666] font-terminal">3 of 3</span>
         </div>
       </div>
 

@@ -912,7 +912,7 @@ function PreUploadTab() {
               <Radar className="w-5 h-5 text-[#888888] animate-pulse" />
             </div>
             <span className="text-sm font-bold text-[#FFFFFF]">Running Pre-Flight Scan...</span>
-            <span className="ml-auto text-[10px] text-[#a0a0a0] font-mono">
+            <span className="ml-auto text-[10px] text-[#a0a0a0] font-terminal">
               {scanStep + 1}/{SCANNING_STEPS.length}
             </span>
           </div>
@@ -952,7 +952,7 @@ function PreUploadTab() {
                     ) : isActive ? (
                       <span style={{ color: '#aaa' }}>{step.icon}</span>
                     ) : (
-                      <span className="text-[10px] text-[#666666] font-mono">{i + 1}</span>
+                      <span className="text-[10px] text-[#666666] font-terminal">{i + 1}</span>
                     )}
                   </div>
                   <span className={`text-xs transition-all duration-300 ${

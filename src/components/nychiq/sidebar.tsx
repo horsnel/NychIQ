@@ -78,7 +78,7 @@ export function Sidebar() {
           </svg>
         </div>
         <div className="flex flex-col">
-          <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#FFFFFF' }}>
+          <span className="font-display-tight text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#FFFFFF' }}>
             NY<span className="text-[#F6A828]">CHIQ</span>
           </span>
           <span className="text-[9px] text-[#a0a0a0] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
