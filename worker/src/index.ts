@@ -270,15 +270,18 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const url = new URL(request.url);
 
-    // API routes go through Hono
-    // Static assets are served automatically by [assets] config
-    if (url.pathname.startsWith('/api/')) {
+    // API and webhook routes go through Hono
+    if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/webhook/')) {
       return app.fetch(request, env, ctx);
     }
 
-    // Non-API: let the [assets] config serve static files
-    // If no static file matches, fall through to Hono (which returns 404)
-    return app.fetch(request, env, ctx);
+    // SPA fallback: serve index.html for all non-API routes
+    // Static files (/_next/*, /logo.svg, etc.) are served by [assets] before this runs.
+    // Only non-matching paths (e.g. /dashboard, /search, /trending) reach here.
+    const indexRequest = new Request(new URL('/index.html', request.url), {
+      headers: { 'Accept': 'text/html', 'Cache-Control': 'no-cache' },
+    });
+    return env.ASSETS.fetch(indexRequest);
   },
 
   async queue(batch: MessageBatch<unknown>, env: Env): Promise<void> {

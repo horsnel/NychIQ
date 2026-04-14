@@ -8,3 +8,4 @@
 /*.jpg            /*.jpg               200
 /*.webp           /*.webp              200
 /extension/*      /extension/:splat    200
+/*                /index.html         200
