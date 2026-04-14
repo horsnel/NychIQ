@@ -274,7 +274,7 @@ function AppShell() {
   const { sakuOpen, sakuFullOpen, setSakuOpen, isLoggedIn, activeTool } = useNychIQStore();
 
   // Full-width pages: no sidebar, no padding
-  const FULL_WIDTH_TOOLS = ['search', 'channel-pa', 'saku', 'deepchat'];
+  const FULL_WIDTH_TOOLS = ['channel-pa', 'saku', 'deepchat'];
   const isFullWidth = FULL_WIDTH_TOOLS.includes(activeTool);
 
   return (

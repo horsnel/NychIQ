@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, Command, Search, ChevronDown, RefreshCw, User, Settings, Coins, LogOut, MapPin, Sliders, X } from 'lucide-react';
 import { useNychIQStore, TOOL_META, TOKEN_COSTS, SIDEBAR_SECTIONS } from '@/lib/store';
 import { TokenPill } from './token-pill';
-import { FeatureSearchOverlay } from './feature-search-overlay';
 import { cn } from '@/lib/utils';
 import { useGeolocation } from '@/hooks/use-geolocation';
 import { playClick, playNotification } from '@/lib/sounds';
@@ -27,9 +26,6 @@ const REGIONS = [
   { code: 'JP', label: 'Japan' },
 ];
 
-const FILTER_OPTIONS = ['All', 'Videos', 'Shorts', 'Channels'] as const;
-type FilterOption = (typeof FILTER_OPTIONS)[number];
-
 // Pages where the refresh button should be visible
 const REFRESH_PAGES = ['dashboard', 'trending', 'shorts', 'rankings', 'viral'];
 
@@ -45,12 +41,12 @@ export function Topbar() {
     logout,
     region,
     setRegion,
-    searchFilter,
-    setSearchFilter,
     setDetectedRegion,
     channelHealthStatus,
     notifications,
   } = useNychIQStore();
+
+  const router = useRouter();
 
   // Geolocation hook
   const geo = useGeolocation();
@@ -71,11 +67,6 @@ export function Topbar() {
     }
   }, [geo.detectedRegion, geo.countryName, setDetectedRegion, setRegion]);
 
-  // Search state
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showSearchFilter, setShowSearchFilter] = useState(false);
-  const searchFilterRef = useRef<HTMLDivElement>(null);
-
   // Country selector state
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const countryRef = useRef<HTMLDivElement>(null);
@@ -83,9 +74,6 @@ export function Topbar() {
   // Avatar dropdown state
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
   const avatarRef = useRef<HTMLDivElement>(null);
-
-  // Feature search state
-  const [featureSearchOpen, setFeatureSearchOpen] = useState(false);
 
   // Channel profile from localStorage (set during onboarding audit)
   const [channelProfile] = useState(() => {
@@ -102,9 +90,6 @@ export function Topbar() {
   // Close dropdowns on click outside
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (searchFilterRef.current && !searchFilterRef.current.contains(e.target as Node)) {
-        setShowSearchFilter(false);
-      }
       if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
         setShowCountryDropdown(false);
       }
@@ -116,15 +101,10 @@ export function Topbar() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      setActiveTool('search');
-      setPage('app');
-    }
-  };
-
-  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') handleSearch();
+  // Tapping the header search bar navigates to the feature search page
+  const handleSearchBarClick = () => {
+    setActiveTool('search');
+    setPage('app');
   };
 
   const handleAvatarAction = (action: string) => {
@@ -176,51 +156,16 @@ export function Topbar() {
         </span>
       )}
 
-      {/* Pill Search Bar */}
-      <div className="hidden md:flex items-center ml-3">
-        <div className="relative flex items-center">
-          <div className="flex items-center h-10 bg-[#141414] border border-[#1F1F1F] rounded-full pl-4 pr-2 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors w-[320px]">
-            <Search className="w-4 h-4 text-[#444444] shrink-0" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              placeholder="Search tools, videos, or features..."
-              className="flex-1 bg-transparent text-sm text-[#FFFFFF] placeholder-[#555555] outline-none"
-            />
-            {/* Inline filter dropdown */}
-            <div ref={searchFilterRef} className="relative">
-              <button
-                onClick={() => setShowSearchFilter(!showSearchFilter)}
-                className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
-              >
-                {searchFilter}
-                <ChevronDown className="w-2.5 h-2.5" />
-              </button>
-              {showSearchFilter && (
-                <div className="absolute top-full right-0 mt-1 w-32 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1">
-                  {FILTER_OPTIONS.map((opt) => (
-                    <button
-                      key={opt}
-                      onClick={() => {
-                        setSearchFilter(opt);
-                        setShowSearchFilter(false);
-                      }}
-                      className={cn(
-                        'w-full text-left px-3 py-1.5 text-xs hover:bg-[#1A1A1A] transition-colors',
-                        searchFilter === opt ? 'text-[#FDBA2D]' : 'text-[#A3A3A3]'
-                      )}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Pill Search Bar — feature search only, tap to navigate to search page */}
+      <button
+        onClick={handleSearchBarClick}
+        className="hidden md:flex items-center ml-3 h-10 bg-[#141414] border border-[#1F1F1F] rounded-full pl-4 pr-4 gap-2 hover:border-[#2A2A2A] transition-colors w-[320px] cursor-pointer group"
+      >
+        <Search className="w-4 h-4 text-[#444444] shrink-0 group-hover:text-[#666666] transition-colors" />
+        <span className="flex-1 text-sm text-[#555555] text-left group-hover:text-[#666666] transition-colors">
+          Search tools &amp; features...
+        </span>
+      </button>
 
       {/* Detected location indicator — hidden on mobile */}
       {geo.detectedRegion && (
@@ -285,6 +230,16 @@ export function Topbar() {
           )}
         </div>
 
+        {/* Mobile search icon — navigates to search page */}
+        <button
+          onClick={handleSearchBarClick}
+          className="md:hidden p-2 rounded-full hover:bg-[#1A1A1A] transition-colors"
+          aria-label="Search tools"
+          title="Search tools"
+        >
+          <Search className="w-4 h-4 text-[#A3A3A3]" />
+        </button>
+
         {/* Command bar trigger */}
         <button
           onClick={() => setCommandBarOpen(true)}
@@ -322,17 +277,6 @@ export function Topbar() {
 
         {/* Token pill */}
         <TokenPill />
-
-        {/* Search icon with glow */}
-        <button
-          onClick={() => setFeatureSearchOpen(true)}
-          className="relative p-2 rounded-full hover:bg-[#1A1A1A] transition-colors group"
-          aria-label="Feature Search"
-          title="Search tools"
-        >
-          <span className="absolute inset-0 rounded-full channel-ring-amber" />
-          <Search className="w-4 h-4 text-[#FDBA2D] relative z-10" />
-        </button>
 
         {/* Channel avatar with multicolor glowing rings */}
         {channelProfile ? (
@@ -421,10 +365,6 @@ export function Topbar() {
         </div>
       </div>
     </header>
-    {/* Feature Search Overlay */}
-    {featureSearchOpen && (
-      <FeatureSearchOverlay onClose={() => setFeatureSearchOpen(false)} />
-    )}
     </>
   );
 }
