@@ -210,11 +210,13 @@ export function WelcomePage() {
   return (
     <div className="min-h-screen bg-[#0D0D0D] relative overflow-hidden">
       {/* Background ambient effects */}
-      <div className="absolute inset-0 bg-[#0D0D0D]" />
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[rgba(246,168,40,0.025)] blur-[120px] pointer-events-none" />
-      <div className="absolute top-[60%] right-[-200px] w-[500px] h-[500px] rounded-full bg-[rgba(246,168,40,0.015)] blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[#0D0D0D]" aria-hidden="true" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[rgba(246,168,40,0.025)] blur-[120px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-[60%] right-[-200px] w-[500px] h-[500px] rounded-full bg-[rgba(246,168,40,0.015)] blur-[100px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10">
+        {/* ═══ SKIP-TO TARGET ═══ */}
+        <span id="main-content" tabIndex={-1} className="sr-only" />
         {/* ═══ NAVIGATION BAR ═══ */}
         <nav
           className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -296,7 +298,7 @@ export function WelcomePage() {
         </nav>
 
         {/* ═══ HERO SECTION — Split 65/35 ═══ */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-20 sm:pb-32">
+        <section aria-labelledby="hero-heading" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-20 sm:pb-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left column — 65% */}
             <div className="lg:col-span-7 animate-fade-in-up">
@@ -306,8 +308,7 @@ export function WelcomePage() {
                 <span className="text-[10px] text-[#888888] font-terminal font-semibold tracking-widest uppercase">Live YouTube Intelligence</span>
               </div>
 
-              {/* H1 — Inter Tight, ultra-tight leading & negative tracking */}
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] xl:text-7xl font-black leading-[0.9] mb-7" style={{ letterSpacing: '-0.05em' }}>
+              <h1 id="hero-heading" className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] xl:text-7xl font-black leading-[0.9] mb-7" style={{ letterSpacing: '-0.05em' }}>
                 <span className="text-[#FFFFFF] block">YouTube</span>
                 <span
                   className="block mt-1 font-black"
@@ -369,11 +370,11 @@ export function WelcomePage() {
         </section>
 
         {/* ═══ FEATURES GRID — 17 Modules ═══ */}
-        <section id="features" ref={featuresRef} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
+        <section id="features" ref={featuresRef} aria-labelledby="features-heading" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
           {/* Section header */}
           <div className="mb-12">
             <span className="text-[10px] text-[#444] font-terminal tracking-widest uppercase">{'//'} CORE ENGINES</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFFFFF] mt-3" style={{ letterSpacing: '-0.03em' }}>17 Intelligence Modules</h2>
+            <h2 id="features-heading" className="font-display text-3xl sm:text-4xl font-bold text-[#FFFFFF] mt-3" style={{ letterSpacing: '-0.03em' }}>17 Intelligence Modules</h2>
             <p className="text-sm text-[#888888] mt-3 max-w-lg leading-relaxed">Every tool you need to research, create, optimize, and grow your YouTube channel — powered by AI.</p>
           </div>
 
@@ -454,11 +455,11 @@ export function WelcomePage() {
         </section>
 
         {/* ═══ PRICING SECTION — Glassmorphism ═══ */}
-        <section id="pricing" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
+        <section id="pricing" aria-labelledby="pricing-heading" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
           {/* Section header */}
           <div className="text-center mb-12">
             <span className="text-[10px] text-[#444] font-terminal tracking-widest uppercase">{'//'} PRICING</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FFFFFF] mt-3" style={{ letterSpacing: '-0.03em' }}>Choose Your Plan</h2>
+            <h2 id="pricing-heading" className="font-display text-3xl sm:text-4xl font-bold text-[#FFFFFF] mt-3" style={{ letterSpacing: '-0.03em' }}>Choose Your Plan</h2>
             <p className="text-sm text-[#888888] mt-3">Start free with 50 tokens. Upgrade when you need more power.</p>
           </div>
 
@@ -520,7 +521,7 @@ export function WelcomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer className="border-t border-white/[0.04]">
+        <footer role="contentinfo" className="border-t border-white/[0.04]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
               {/* Brand */}
