@@ -139,13 +139,13 @@ Rules:
               <p className="text-xs text-[#A3A3A3] mt-0.5">Monitor trending keywords and get notified when topics spike in your region.</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
               placeholder="Enter keyword to monitor..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             />
-            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAdd} disabled={adding || !keyword.trim()} className="px-4 h-11 rounded-full bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
               Add Alert
             </button>

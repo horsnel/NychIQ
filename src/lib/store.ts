@@ -238,13 +238,24 @@ export const TOKEN_COSTS: Record<string, number> = {
   audit: 20, strategy: 15, goffviral: 15, 'perf-forensics': 15, 'agency-dashboard': 20, 'team-collab': 0, 'video-batch': 15, 'scheduled-reports': 0,
 };
 
-/* ── Plan access levels ── */
+/* ── Plan access levels — all tools unlocked for all plans ── */
+const ALL_TOOLS = [
+  'dashboard', 'my-channel', 'trending', 'search', 'rankings', 'shorts',
+  'studio', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'next-uploader', 'auto-uploader', 'scriptflow', 'video-batch', 'arbitrage',
+  'viral', 'niche', 'algorithm', 'cpm', 'niche-compare', 'opportunity-heatmap', 'monetization-roadmap',
+  'competitor', 'strategy', 'ghost-tracker', 'digital-scout',
+  'seo', 'hook', 'keywords', 'script', 'ideas', 'posttime', 'audit', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'safe-check', 'trend-alerts', 'outlier-scout', 'perf-forensics', 'automation', 'sponsorship-roi', 'history-intel',
+  'goffviral', 'social-trends', 'social-mentions', 'social-comments', 'social-channels',
+  'saku', 'deepchat', 'channel-assistant', 'channel-pa',
+  'agency-dashboard', 'team-collab', 'scheduled-reports',
+  'settings', 'usage', 'profile', 'sovereign-vault',
+];
 export const PLAN_ACCESS: Record<Plan, string[]> = {
-  trial: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'channel-assistant', 'auto-uploader'],
-  starter: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'channel-assistant', 'auto-uploader'],
-  pro: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'channel-assistant', 'auto-uploader', 'video-batch'],
-  elite: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'channel-assistant', 'auto-uploader', 'video-batch'],
-  agency: ['dashboard', 'my-channel', 'trending', 'search', 'posttime', 'trend-alerts', 'saku', 'deepchat', 'sponsorship-roi', 'profile', 'settings', 'usage', 'sovereign-vault', 'viral', 'rankings', 'shorts', 'studio', 'niche', 'algorithm', 'seo', 'hook', 'ideas', 'keywords', 'script', 'ab-test', 'vph-tracker', 'thumbnail-lab', 'outlier-scout', 'automation', 'lume', 'hooklab', 'pulsecheck', 'blueprint-ai', 'scriptflow', 'arbitrage', 'monetization-roadmap', 'cpm', 'competitor', 'audit', 'perf-forensics', 'history-intel', 'safe-check', 'social-trends', 'social-mentions', 'social-comments', 'social-channels', 'niche-compare', 'ghost-tracker', 'digital-scout', 'strategy', 'goffviral', 'agency-dashboard', 'opportunity-heatmap', 'channel-assistant', 'auto-uploader', 'team-collab', 'scheduled-reports'],
+  trial: ALL_TOOLS,
+  starter: ALL_TOOLS,
+  pro: ALL_TOOLS,
+  elite: ALL_TOOLS,
+  agency: ALL_TOOLS,
 };
 
 /* ── Free tools (no token cost regardless of plan) ── */
@@ -351,6 +362,7 @@ export const TOOL_META: Record<string, { label: string; icon: string; category: 
   saku:            { label: 'Saku AI',          icon: 'Bot',              category: 'ai-assistants' },
   deepchat:        { label: 'Deep Chat AI',     icon: 'MessageSquare',    category: 'ai-assistants' },
   'channel-assistant': { label: 'Channel Assistant', icon: 'Sliders',     category: 'ai-assistants' },
+  'channel-pa':        { label: 'Channel AI Chat',    icon: 'MessageSquare', category: 'ai-assistants' },
 
   /* ── AGENCY ── */
   'agency-dashboard': { label: 'Agency Hub',     icon: 'Building2',        category: 'agency' },

@@ -101,13 +101,13 @@ Return ONLY the JSON object.`;
               <p className="text-xs text-[#A3A3A3] mt-0.5">Diagnose why any video underperformed.</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleDiagnose(); }}
               placeholder="Paste video URL to diagnose..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#EF4444]/50 transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             />
-            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#EF4444] text-white text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleDiagnose} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#EF4444] text-white text-sm font-bold hover:bg-[#D04242] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
               Diagnose
             </button>

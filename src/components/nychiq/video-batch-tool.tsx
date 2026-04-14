@@ -223,19 +223,19 @@ export function VideoBatchTool() {
               <p className="text-xs text-[#A3A3A3] mt-0.5">Analyze entire playlists with viral scoring, engagement metrics, and actionable recommendations.</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
             <input
               type="text"
               value={playlistUrl}
               onChange={(e) => setPlaylistUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
               placeholder="Paste YouTube playlist URL..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             />
             <button
               onClick={handleAnalyze}
               disabled={loading || !playlistUrl.trim()}
-              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
               Analyze Playlist

@@ -101,13 +101,13 @@ Return ONLY the JSON object.`;
               <p className="text-xs text-[#A3A3A3] mt-0.5">Hour-by-hour velocity charts. Spot viral content in the first 6 hours.</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
               placeholder="Paste video URL..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#10B981]/50 transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             />
-            <button onClick={handleTrack} disabled={loading || !url.trim()} className="px-5 h-11 rounded-lg bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleTrack} disabled={loading || !url.trim()} className="px-5 h-11 rounded-full bg-[#10B981] text-[#0D0D0D] text-sm font-bold hover:bg-[#00B07C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <TrendingUp className="w-4 h-4" />}
               Track
             </button>

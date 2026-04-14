@@ -292,22 +292,20 @@ Return ONLY valid JSON matching this schema:
           </div>
 
           <div className="max-w-xl mx-auto">
-            <div className="flex gap-2">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleScout()}
-                  placeholder="Paste a YouTube URL or enter a video topic..."
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0D0D0D] border border-[#1F1F1F] text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/40 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-all"
-                />
-              </div>
+            <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1F1F1F] overflow-hidden">
+              <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleScout()}
+                placeholder="Paste a YouTube URL or enter a video topic..."
+                className="flex-1 py-3 px-3 bg-transparent text-[#FFFFFF] text-sm placeholder:text-[#555555] focus:outline-none transition-all"
+              />
               <button
                 onClick={handleScout}
                 disabled={!input.trim()}
-                className="px-5 py-3 rounded-lg text-white text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg"
+                className="px-5 py-3 rounded-full text-white text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg shrink-0"
                 style={{
                   background: input.trim() ? 'linear-gradient(135deg, #FDBA2D, #E09100)' : '#333333',
                 }}

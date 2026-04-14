@@ -176,31 +176,30 @@ export function Topbar() {
         </span>
       )}
 
-      {/* Search Bar — hidden on mobile */}
+      {/* Pill Search Bar */}
       <div className="hidden md:flex items-center ml-3">
         <div className="relative flex items-center">
-          {/* Search input */}
-          <div className="flex items-center h-8 bg-[#141414] border border-[#1F1F1F] rounded-l-lg px-3 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors">
-            <Search className="w-3.5 h-3.5 text-[#444444] shrink-0" />
+          <div className="flex items-center h-10 bg-[#141414] border border-[#1F1F1F] rounded-full pl-4 pr-2 gap-2 focus-within:border-[#FDBA2D]/50 transition-colors w-[320px]">
+            <Search className="w-4 h-4 text-[#444444] shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}
-              placeholder="Search videos, channels..."
-              className="w-48 bg-transparent text-xs text-[#FFFFFF] placeholder-text-muted outline-none"
+              placeholder="Search tools, videos, or features..."
+              className="flex-1 bg-transparent text-sm text-[#FFFFFF] placeholder-[#555555] outline-none"
             />
-            {/* Filter dropdown toggle */}
+            {/* Inline filter dropdown */}
             <div ref={searchFilterRef} className="relative">
               <button
                 onClick={() => setShowSearchFilter(!showSearchFilter)}
-                className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
+                className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
               >
                 {searchFilter}
                 <ChevronDown className="w-2.5 h-2.5" />
               </button>
               {showSearchFilter && (
-                <div className="absolute top-full left-0 mt-1 w-32 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1">
+                <div className="absolute top-full right-0 mt-1 w-32 bg-[#141414] border border-[#1F1F1F] rounded-lg shadow-xl z-50 py-1">
                   {FILTER_OPTIONS.map((opt) => (
                     <button
                       key={opt}
@@ -220,32 +219,7 @@ export function Topbar() {
               )}
             </div>
           </div>
-          {/* GO button */}
-          <button
-            onClick={handleSearch}
-            className="h-8 px-3 bg-[#FDBA2D] hover:bg-[#C69320] text-black text-xs font-semibold rounded-r-lg transition-colors"
-          >
-            GO
-          </button>
         </div>
-      </div>
-
-      {/* Filter Chips — hidden on mobile */}
-      <div className="hidden lg:flex items-center gap-1.5 ml-2">
-        {FILTER_OPTIONS.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => setSearchFilter(opt)}
-            className={cn(
-              'px-3 py-1 text-[11px] font-medium rounded-full border transition-colors',
-              searchFilter === opt
-                ? 'bg-[#FDBA2D] text-black border-[#FDBA2D]'
-                : 'bg-transparent text-[#A3A3A3] border-[#1F1F1F] hover:border-[#333333] hover:text-[#FFFFFF]'
-            )}
-          >
-            {opt}
-          </button>
-        ))}
       </div>
 
       {/* Detected location indicator — hidden on mobile */}

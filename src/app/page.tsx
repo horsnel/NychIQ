@@ -74,6 +74,7 @@ import { LumeTool } from '@/components/nychiq/lume-tool';
 import { HookLabTool } from '@/components/nychiq/hooklab-tool';
 import { PulseCheckTool } from '@/components/nychiq/pulsecheck-tool';
 import { ChannelAssistantTool } from '@/components/nychiq/channel-assistant-tool';
+import { ChannelPATool } from '@/components/nychiq/channel-pa-tool';
 import { MyChannelTool } from '@/components/nychiq/my-channel-tool';
 import { AutoUploaderTool } from '@/components/nychiq/auto-uploader-tool';
 import { CollaborationTool } from '@/components/nychiq/collaboration-tool';
@@ -252,6 +253,8 @@ function ToolRouter() {
       return <SakuFullPage />;
     case 'channel-assistant':
       return <ChannelAssistantTool />;
+    case 'channel-pa':
+      return <ChannelPATool />;
     case 'auto-uploader':
       return <AutoUploaderTool />;
     case 'team-collab':

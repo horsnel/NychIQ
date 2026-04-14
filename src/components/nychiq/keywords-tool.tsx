@@ -115,16 +115,14 @@ Return ONLY the JSON object.`;
               <p className="text-xs text-[#A3A3A3] mt-0.5">Discover high-volume, low-competition keywords for your YouTube content.</p>
             </div>
           </div>
-          <div className="flex gap-2">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
-              <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') handleExplore(); }}
-                placeholder="Enter a keyword to explore..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 transition-colors"
-              />
-            </div>
-            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-lg bg-[#3B82F6] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+          <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+            <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
+            <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') handleExplore(); }}
+              placeholder="Enter a keyword to explore..."
+              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+            />
+            <button onClick={handleExplore} disabled={loading || !keyword.trim()} className="px-5 h-11 rounded-full bg-[#3B82F6] text-white text-sm font-bold hover:bg-[#3A8EEF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
               Explore
             </button>

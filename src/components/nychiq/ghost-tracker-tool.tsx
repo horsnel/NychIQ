@@ -277,22 +277,20 @@ Return ONLY the JSON object, no other text.`;
           <p className="text-xs text-[#A3A3A3] mb-4">
             Enter a competitor channel name. AI tracks their off-platform presence, A/B testing habits, and strategic shifts.
           </p>
-          <div className="flex gap-2">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#666666]" />
-              <input
-                type="text"
-                value={channelInput}
-                onChange={(e) => setChannelInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
-                placeholder="Enter competitor channel name..."
-                className="w-full h-11 pl-10 pr-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#3B82F6]/50 focus:ring-1 focus:ring-[#3B82F6]/20 transition-colors"
-              />
-            </div>
+          <div className="flex items-center rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
+            <Search className="ml-4 w-4 h-4 text-[#666666] shrink-0" />
+            <input
+              type="text"
+              value={channelInput}
+              onChange={(e) => setChannelInput(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') handleTrack(); }}
+              placeholder="Enter competitor channel name..."
+              className="flex-1 h-11 px-3 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
+            />
             <button
               onClick={handleTrack}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-lg text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-full text-[#0D0D0D] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               style={{ backgroundColor: '#3B82F6' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <EyeOff className="w-4 h-4" />}

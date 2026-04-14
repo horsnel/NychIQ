@@ -108,13 +108,13 @@ Return ONLY the JSON object.`;
               <p className="text-xs text-[#A3A3A3] mt-0.5">Extract the exact title formula, thumbnail style, and posting strategy from any channel.</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex rounded-full bg-[#0D0D0D] border border-[#1A1A1A] overflow-hidden">
             <input type="text" value={channel} onChange={(e) => setChannel(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleAnalyze(); }}
               placeholder="Enter channel name to analyze strategy..."
-              className="flex-1 h-11 px-4 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#555555] focus:outline-none transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0D0D0D] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Copy className="w-4 h-4" />}
               Analyze Strategy
             </button>
