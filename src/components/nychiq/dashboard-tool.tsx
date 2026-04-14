@@ -187,20 +187,28 @@ function GrowthChart() {
       <div className="w-full overflow-hidden">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#F6A828" stopOpacity="0.2" />
-              <stop offset="60%" stopColor="#F6A828" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="#F6A828" stopOpacity="0" />
+            {/* Area fill — Gold at base, Green at peaks */}
+            <linearGradient id="dashGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stopColor="#F6A828" stopOpacity="0" />
+              <stop offset="35%" stopColor="#F6A828" stopOpacity="0.06" />
+              <stop offset="70%" stopColor="#10B981" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#10B981" stopOpacity="0.22" />
             </linearGradient>
-            <linearGradient id="goldLineGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#FFB340" />
-              <stop offset="50%" stopColor="#F6A828" />
-              <stop offset="100%" stopColor="#D4921F" />
+            {/* Line stroke — vertical gradient: Gold baseline → Green peaks */}
+            <linearGradient id="growthLineGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stopColor="#D4921F" />
+              <stop offset="30%" stopColor="#F6A828" />
+              <stop offset="65%" stopColor="#78D4A0" />
+              <stop offset="100%" stopColor="#10B981" />
             </linearGradient>
-            <filter id="goldGlow">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            {/* Dual-color glow — gold shadow at base, green shadow at top */}
+            <filter id="growthGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+              <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.96  0 0 0 0 0.66  0 0 0 0 0.16  0 0 0 0.35 0" result="goldBlur" />
+              <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.06  0 0 0 0 0.73  0 0 0 0 0.51  0 0 0 0.25 0" result="greenTint" />
               <feMerge>
-                <feMergeNode in="blur" />
+                <feMergeNode in="goldBlur" />
+                <feMergeNode in="greenTint" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
@@ -216,14 +224,14 @@ function GrowthChart() {
           })}
           <path d={areaPath} fill="url(#dashGrad)" />
           <path d={prevLinePath} fill="none" stroke="#444444" strokeWidth="1" strokeDasharray="4 4" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Main line — Sunset Gold gradient stroke with glow */}
-          <path d={linePath} fill="none" stroke="url(#goldLineGrad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#goldGlow)" />
+          {/* Main line — Gold→Green vertical gradient with dual-color neon glow */}
+          <path d={linePath} fill="none" stroke="url(#growthLineGrad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#growthGlow)" />
           {pts.map((p, i) => (
             <g key={i}>
-              {/* Outer glow ring */}
-              <circle cx={p.x} cy={p.y} r="6" fill="rgba(246,168,40,0.1)" />
-              {/* Data point — dark core + gold ring */}
-              <circle cx={p.x} cy={p.y} r="3" fill="#141414" stroke="#F6A828" strokeWidth="2" />
+              {/* Outer glow ring — color shifts gold→green by height */}
+              <circle cx={p.x} cy={p.y} r="7" fill={`rgba(${Math.round(16 + (1 - (p.y - pad.top) / chartH) * (246 - 16))},${Math.round(185 + (1 - (p.y - pad.top) / chartH) * (168 - 185))},${Math.round(129 + (1 - (p.y - pad.top) / chartH) * (40 - 129))},0.12)`} />
+              {/* Data point — dark core + dynamic stroke */}
+              <circle cx={p.x} cy={p.y} r="3" fill="#141414" stroke={`rgb(${Math.round(16 + (1 - (p.y - pad.top) / chartH) * (246 - 16))},${Math.round(185 + (1 - (p.y - pad.top) / chartH) * (168 - 185))},${Math.round(129 + (1 - (p.y - pad.top) / chartH) * (40 - 129))})`} strokeWidth="2" />
               {i % labelStep === 0 && <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#555555">{data.labels[i]}</text>}
             </g>
           ))}
@@ -249,14 +257,14 @@ function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
       }}
       onMouseEnter={(e) => {
         const el = e.currentTarget;
-        el.style.backgroundColor = wash(c, 0.12);
-        el.style.borderColor = wash(c, 0.35);
-        el.style.boxShadow = `0 0 20px ${wash(c, 0.06)}, 0 4px 16px rgba(0,0,0,0.2)`;
+        el.style.background = `radial-gradient(circle at 28px 40px, ${wash(c, 0.22)}, ${wash(c, 0.08)} 50%, transparent 80%)`;
+        el.style.borderColor = wash(c, 0.4);
+        el.style.boxShadow = `0 0 24px ${wash(c, 0.08)}, 0 4px 20px rgba(0,0,0,0.25)`;
         el.style.transform = 'translateY(-1px)';
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget;
-        el.style.backgroundColor = wash(c, 0.05);
+        el.style.background = wash(c, 0.05);
         el.style.borderColor = wash(c, 0.1);
         el.style.boxShadow = 'none';
         el.style.transform = 'translateY(0)';
