@@ -173,9 +173,22 @@ function GrowthChart() {
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#888888" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#888888" stopOpacity="0" />
+              <stop offset="0%" stopColor="#F6A828" stopOpacity="0.2" />
+              <stop offset="60%" stopColor="#F6A828" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="#F6A828" stopOpacity="0" />
             </linearGradient>
+            <linearGradient id="goldLineGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#FFB340" />
+              <stop offset="50%" stopColor="#F6A828" />
+              <stop offset="100%" stopColor="#D4921F" />
+            </linearGradient>
+            <filter id="goldGlow">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
           {[0, 0.25, 0.5, 0.75, 1].map((frac) => {
             const y = pad.top + chartH * (1 - frac);
@@ -187,12 +200,16 @@ function GrowthChart() {
             );
           })}
           <path d={areaPath} fill="url(#dashGrad)" />
-          <path d={prevLinePath} fill="none" stroke="#666666" strokeWidth="1.5" strokeDasharray="6 4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d={linePath} fill="none" stroke="#F6A828" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={prevLinePath} fill="none" stroke="#444444" strokeWidth="1" strokeDasharray="4 4" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Main line — Sunset Gold gradient stroke with glow */}
+          <path d={linePath} fill="none" stroke="url(#goldLineGrad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#goldGlow)" />
           {pts.map((p, i) => (
             <g key={i}>
-              <circle cx={p.x} cy={p.y} r="3" fill="#0a0a0a" stroke="#888888" strokeWidth="2" />
-              {i % labelStep === 0 && <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#666666">{data.labels[i]}</text>}
+              {/* Outer glow ring */}
+              <circle cx={p.x} cy={p.y} r="6" fill="rgba(246,168,40,0.1)" />
+              {/* Data point — dark core + gold ring */}
+              <circle cx={p.x} cy={p.y} r="3" fill="#141414" stroke="#F6A828" strokeWidth="2" />
+              {i % labelStep === 0 && <text x={p.x} y={height - 6} textAnchor="middle" className="text-[10px]" fill="#555555">{data.labels[i]}</text>}
             </g>
           ))}
         </svg>

@@ -303,11 +303,11 @@ export function WelcomePage() {
                 <span className="text-[10px] text-[#888888] font-terminal font-semibold tracking-widest uppercase">Live YouTube Intelligence</span>
               </div>
 
-              {/* H1 — Inter Tight, text-6xl/7xl, tracking-tight */}
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] xl:text-7xl font-black leading-[0.92] mb-7" style={{ letterSpacing: '-0.05em' }}>
+              {/* H1 — Inter Tight, ultra-tight leading & negative tracking */}
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] xl:text-7xl font-black leading-[0.9] mb-7" style={{ letterSpacing: '-0.05em' }}>
                 <span className="text-[#FFFFFF] block">YouTube</span>
                 <span
-                  className="block mt-1"
+                  className="block mt-1 font-black"
                   style={{
                     color: '#F6A828',
                     textShadow: '0 0 40px rgba(246, 168, 40, 0.3), 0 0 80px rgba(246, 168, 40, 0.1)',
@@ -464,19 +464,19 @@ export function WelcomePage() {
             {PLANS.map((plan) => (
               <div
                 key={plan.tier}
-                className={`relative rounded-xl p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 ${
+                className={`relative rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 ${
                   plan.highlight
-                    ? 'bg-[#141414]/90 border border-[#F6A828]/40 shadow-lg'
+                    ? 'bg-[#141414]/70 backdrop-blur-2xl border border-[#F6A828]/50 shadow-lg'
                     : 'bg-[#141414]/60 border border-white/[0.05] hover:border-white/[0.08]'
                 }`}
                 style={plan.highlight ? {
-                  boxShadow: '0 0 40px rgba(246, 168, 40, 0.1), 0 20px 60px rgba(0, 0, 0, 0.4)',
-                  borderImage: 'linear-gradient(180deg, rgba(246, 168, 40, 0.4) 0%, rgba(246, 168, 40, 0.05) 100%) 1',
+                  boxShadow: '0 0 50px rgba(246, 168, 40, 0.15), 0 0 100px rgba(246, 168, 40, 0.05), 0 20px 60px rgba(0, 0, 0, 0.4)',
+                  borderImage: 'linear-gradient(180deg, rgba(246, 168, 40, 0.5) 0%, rgba(246, 168, 40, 0.1) 100%) 1',
                 } : {}}
               >
-                {/* Badge */}
+                {/* Badge — compact pill */}
                 {plan.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#F6A828] text-black text-[9px] font-bold rounded-full tracking-widest shadow-md shadow-[rgba(246,168,40,0.2)]">
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-[3px] bg-[#F6A828]/90 backdrop-blur-sm text-black text-[8px] font-bold rounded-full tracking-[0.15em] shadow-md shadow-[rgba(246,168,40,0.2)]">
                     {plan.badge}
                   </div>
                 )}
