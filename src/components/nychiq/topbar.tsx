@@ -46,8 +46,6 @@ export function Topbar() {
     notifications,
   } = useNychIQStore();
 
-  const router = useRouter();
-
   // Geolocation hook
   const geo = useGeolocation();
 
