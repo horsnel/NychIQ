@@ -275,11 +275,20 @@ const worker = {
       return app.fetch(request, env, ctx);
     }
 
-    // SPA fallback: serve index.html for all non-API routes
-    // Static files (/_next/*, /logo.svg, etc.) are served by [assets] before this runs.
-    // Only non-matching paths (e.g. /dashboard, /search, /trending) reach here.
+    // Static files and SPA fallback (run_worker_first = true means we handle assets here)
+    // Try serving the matching static file first
+    try {
+      const assetResponse = await env.ASSETS.fetch(request);
+      if (assetResponse && assetResponse.status !== 404) {
+        return assetResponse;
+      }
+    } catch {
+      // ASSETS.fetch failed, fall through to SPA fallback
+    }
+
+    // SPA fallback: serve index.html for all non-API routes (client-side routing)
     const indexRequest = new Request(new URL('/index.html', request.url), {
-      headers: { 'Accept': 'text/html', 'Cache-Control': 'no-cache' },
+      headers: { 'Accept': 'text/html' },
     });
     return env.ASSETS.fetch(indexRequest);
   },
