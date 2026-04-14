@@ -21,7 +21,7 @@ export function StatCard({
   change,
   changeType,
   icon,
-  color = '#FDBA2D',
+  color = '#F6A828',
   className,
   dark = false,
 }: StatCardProps) {

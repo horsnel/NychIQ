@@ -134,7 +134,7 @@ function SectionCard({
         onClick={() => collapsible && setOpen(!open)}
         className={`flex items-center gap-2.5 w-full text-left ${collapsible ? 'cursor-pointer' : 'cursor-default'}`}
       >
-        <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] shrink-0">{icon}</div>
+        <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)] shrink-0">{icon}</div>
         <h3 className="text-sm font-bold text-[#FFFFFF] flex-1">{title}</h3>
         {collapsible && (
           <ChevronDown
@@ -196,13 +196,13 @@ function TagInput({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           maxLength={maxLength}
-          className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+          className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
         />
         <button
           type="button"
           onClick={handleAddClick}
           disabled={!input.trim()}
-          className="px-3 h-10 rounded-md bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320] transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+          className="px-3 h-10 rounded-md bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
         >
           <Plus className="w-4 h-4" />
         </button>
@@ -236,7 +236,7 @@ const ASSISTANT_TIPS = [
     icon: 'activity' as const,
     text: "Your latest video's retention drops at 0:45. Consider adding a pattern interrupt.",
     label: 'Retention Alert',
-    color: '#FDBA2D',
+    color: '#F6A828',
   },
   {
     icon: 'users' as const,
@@ -440,7 +440,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
               <p className="text-[13px] leading-relaxed text-[#FFFFFF]">
                 {displayText}
                 {isTyping && (
-                  <span className="inline-block w-[2px] h-[14px] bg-[#FDBA2D] ml-0.5 align-middle animate-pulse" />
+                  <span className="inline-block w-[2px] h-[14px] bg-[#F6A828] ml-0.5 align-middle animate-pulse" />
                 )}
               </p>
             </div>
@@ -453,7 +453,7 @@ function WebtoonTipBubble({ visible }: { visible: boolean }) {
               )}
             >
               <button
-                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#FDBA2D] hover:text-[#FBBF24] transition-colors group"
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#F6A828] hover:text-[#FFB340] transition-colors group"
               >
                 View Details
                 <ExternalLink className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
@@ -539,7 +539,7 @@ export function ChannelAssistantTool() {
     })),
     healthMetrics: [
       { label: 'Upload Consistency', value: 0, color: '#888888' },
-      { label: 'SEO Optimization', value: 0, color: '#FDBA2D' },
+      { label: 'SEO Optimization', value: 0, color: '#F6A828' },
       { label: 'Engagement Rate', value: 0, color: '#888888' },
       { label: 'Thumbnail Quality', value: 0, color: '#888888' },
       { label: 'Content Freshness', value: 0, color: '#888888' },
@@ -594,7 +594,7 @@ export function ChannelAssistantTool() {
           growthBars,
           healthMetrics: [
             { label: 'Upload Consistency', value: Math.min(100, Math.round(videoCount / 2)), color: '#888888' },
-            { label: 'SEO Optimization', value: Math.min(100, 40 + Math.round(Math.random() * 20)), color: '#FDBA2D' },
+            { label: 'SEO Optimization', value: Math.min(100, 40 + Math.round(Math.random() * 20)), color: '#F6A828' },
             { label: 'Engagement Rate', value: engagementEstimate, color: '#888888' },
             { label: 'Thumbnail Quality', value: Math.min(100, 45 + Math.round(Math.random() * 20)), color: '#888888' },
             { label: 'Content Freshness', value: Math.min(100, Math.round(videoCount / 1.5)), color: '#888888' },
@@ -681,8 +681,8 @@ export function ChannelAssistantTool() {
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-                <Bot className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+                <Bot className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Channel Assistant</h2>
@@ -699,7 +699,7 @@ export function ChannelAssistantTool() {
                     className="h-full rounded-full transition-all duration-500"
                     style={{
                       width: `${score.percent}%`,
-                      background: score.percent === 100 ? '#888888' : score.percent >= 50 ? '#FDBA2D' : '#888888',
+                      background: score.percent === 100 ? '#888888' : score.percent >= 50 ? '#F6A828' : '#888888',
                     }}
                   />
                 </div>
@@ -717,7 +717,7 @@ export function ChannelAssistantTool() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
                   saved
                     ? 'bg-[#888888] text-[#0a0a0a]'
-                    : 'bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320]'
+                    : 'bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340]'
                 }`}
               >
                 {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
@@ -729,13 +729,13 @@ export function ChannelAssistantTool() {
       </div>
 
       {/* Greeting */}
-      <div className="rounded-lg bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.03)] p-4">
+      <div className="rounded-lg bg-[rgba(246,168,40,0.06)] border border-[rgba(255,255,255,0.03)] p-4">
         <div className="flex items-start gap-3">
-          <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] shrink-0 mt-0.5">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+          <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)] shrink-0 mt-0.5">
+            <Sparkles className="w-4 h-4 text-[#F6A828]" />
           </div>
           <div>
-            <p className="text-sm text-[#FDBA2D] font-medium">
+            <p className="text-sm text-[#F6A828] font-medium">
               Hey {userName || 'Creator'}! Customize your personal AI assistant.
             </p>
             <p className="text-xs text-[#a0a0a0] mt-1">
@@ -754,7 +754,7 @@ export function ChannelAssistantTool() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
               activeTab === tab.id
-                ? 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]'
+                ? 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]'
                 : 'text-[#a0a0a0] hover:text-[#FFFFFF] border border-transparent'
             }`}
           >
@@ -772,12 +772,12 @@ export function ChannelAssistantTool() {
             {/* Channel Overview Card */}
             <SectionCard
               title="Channel Overview"
-              icon={<BarChart3 className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<BarChart3 className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 {/* Channel identity summary */}
                 <div className="flex items-center gap-3 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0" style={{ backgroundColor: config.channelName ? '#FDBA2D' : '#333', color: '#0a0a0a' }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0" style={{ backgroundColor: config.channelName ? '#F6A828' : '#333', color: '#0a0a0a' }}>
                     {config.channelName ? config.channelName.charAt(0).toUpperCase() : '?'}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -811,10 +811,10 @@ export function ChannelAssistantTool() {
                   </div>
                   <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
-                      <Zap className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                      <Zap className="w-3.5 h-3.5 text-[#F6A828]" />
                       <span className="text-[10px] text-[#666666]">Viral Score</span>
                     </div>
-                    <p className="text-base font-bold text-[#FDBA2D]">{dashboardStats.viralScore}</p>
+                    <p className="text-base font-bold text-[#F6A828]">{dashboardStats.viralScore}</p>
                   </div>
                   <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 mb-1">
@@ -830,7 +830,7 @@ export function ChannelAssistantTool() {
             {/* Growth Graph (Simulated) */}
             <SectionCard
               title="Growth Trend"
-              icon={<TrendingUp className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<TrendingUp className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-3">
                 <p className="text-xs text-[#a0a0a0]">Simulated growth trend based on your niche and content strategy.</p>
@@ -862,7 +862,7 @@ export function ChannelAssistantTool() {
             {/* Competitor Comparison */}
             <SectionCard
               title="Competitor Landscape"
-              icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Target className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-3">
                 <p className="text-xs text-[#a0a0a0]">Your channel vs. top competitors in your niche.</p>
@@ -877,22 +877,22 @@ export function ChannelAssistantTool() {
                       key={comp.name}
                       className={cn(
                         'flex items-center gap-3 p-3 rounded-md border transition-colors',
-                        comp.isYou ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
+                        comp.isYou ? 'bg-[rgba(246,168,40,0.06)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A]'
                       )}
                     >
                       <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-                        style={{ backgroundColor: comp.isYou ? '#FDBA2D' : '#333', color: '#0a0a0a' }}>
+                        style={{ backgroundColor: comp.isYou ? '#F6A828' : '#333', color: '#0a0a0a' }}>
                         {comp.name.charAt(0)}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-[#FFFFFF] truncate">
                           {comp.name}
-                          {comp.isYou && <span className="ml-1.5 text-[10px] text-[#FDBA2D] font-bold">(YOU)</span>}
+                          {comp.isYou && <span className="ml-1.5 text-[10px] text-[#F6A828] font-bold">(YOU)</span>}
                         </p>
                         <p className="text-[10px] text-[#666666]">{comp.subs} subscribers</p>
                       </div>
                       <div className="text-right shrink-0">
-                        <p className="text-xs font-bold" style={{ color: comp.score >= 80 ? '#888888' : comp.score >= 60 ? '#FDBA2D' : '#888888' }}>
+                        <p className="text-xs font-bold" style={{ color: comp.score >= 80 ? '#888888' : comp.score >= 60 ? '#F6A828' : '#888888' }}>
                           {comp.score}
                         </p>
                         <p className="text-[9px] text-[#666666]">score</p>
@@ -906,7 +906,7 @@ export function ChannelAssistantTool() {
             {/* Channel Health Indicators */}
             <SectionCard
               title="Channel Health"
-              icon={<Activity className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Activity className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-3">
                 {dashboardStats.healthMetrics.map((metric) => (
@@ -927,18 +927,18 @@ export function ChannelAssistantTool() {
 
               {/* Health Summary */}
               <div className="mt-4 p-3 rounded-md border" style={{
-                backgroundColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(253,186,45,0.06)' : 'rgba(0,0,0,0)',
-                borderColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(253,186,45,0.15)' : 'rgba(136,136,136,0.2)',
+                backgroundColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(246,168,40,0.06)' : 'rgba(0,0,0,0)',
+                borderColor: score.percent >= 80 ? 'rgba(34,197,94,0.1)' : score.percent >= 50 ? 'rgba(246,168,40,0.15)' : 'rgba(136,136,136,0.2)',
               }}>
                 <div className="flex items-center gap-2">
                   {score.percent >= 80 ? (
                     <ShieldCheck className="w-4 h-4 text-[#888888]" />
                   ) : score.percent >= 50 ? (
-                    <AlertTriangle className="w-4 h-4 text-[#FDBA2D]" />
+                    <AlertTriangle className="w-4 h-4 text-[#F6A828]" />
                   ) : (
                     <AlertTriangle className="w-4 h-4 text-[#888888]" />
                   )}
-                  <p className="text-xs font-medium" style={{ color: score.percent >= 80 ? '#888888' : score.percent >= 50 ? '#FDBA2D' : '#888888' }}>
+                  <p className="text-xs font-medium" style={{ color: score.percent >= 80 ? '#888888' : score.percent >= 50 ? '#F6A828' : '#888888' }}>
                     {score.percent >= 80 ? 'Channel health is excellent! Keep up the great work.' : score.percent >= 50 ? 'Good start! Complete more sections to improve your AI assistant accuracy.' : 'Configure your channel to unlock full AI assistant capabilities.'}
                   </p>
                 </div>
@@ -955,7 +955,7 @@ export function ChannelAssistantTool() {
           <>
             <SectionCard
               title="Channel Info"
-              icon={<Youtube className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Youtube className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 <div>
@@ -967,7 +967,7 @@ export function ChannelAssistantTool() {
                     value={config.channelName}
                     onChange={(e) => update('channelName', e.target.value)}
                     placeholder="e.g. TechWithTim"
-                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                   />
                 </div>
                 <div>
@@ -979,7 +979,7 @@ export function ChannelAssistantTool() {
                     value={config.channelUrl}
                     onChange={(e) => update('channelUrl', e.target.value)}
                     placeholder="e.g. @TechWithTim or full URL"
-                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                   />
                   <div className="flex items-start gap-1.5 mt-1.5">
                     <Info className="w-3 h-3 text-[#666666] mt-0.5 shrink-0" />
@@ -993,7 +993,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Niche & Content Focus"
-              icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Target className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 <div>
@@ -1003,7 +1003,7 @@ export function ChannelAssistantTool() {
                   <select
                     value={config.niche}
                     onChange={(e) => update('niche', e.target.value)}
-                    className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+                    className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer"
                   >
                     <option value="">Select your niche...</option>
                     {NICHES.map((n) => (
@@ -1020,7 +1020,7 @@ export function ChannelAssistantTool() {
                     value={config.subNiche}
                     onChange={(e) => update('subNiche', e.target.value)}
                     placeholder="e.g. AI & Machine Learning, Budget Travel, Indie Gaming"
-                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                   />
                 </div>
                 <div>
@@ -1037,7 +1037,7 @@ export function ChannelAssistantTool() {
                           onClick={() => toggleContentType(ct)}
                           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                             selected
-                              ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]'
+                              ? 'bg-[rgba(246,168,40,0.15)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]'
                               : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[#1a1a1a] hover:text-[#FFFFFF]'
                           }`}
                         >
@@ -1052,7 +1052,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Language"
-              icon={<Globe className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Globe className="w-4 h-4 text-[#F6A828]" />}
             >
               <div>
                 <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1">
@@ -1061,7 +1061,7 @@ export function ChannelAssistantTool() {
                 <select
                   value={config.language}
                   onChange={(e) => update('language', e.target.value)}
-                  className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+                  className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer"
                 >
                   {LANGUAGES.map((l) => (
                     <option key={l} value={l}>{l}</option>
@@ -1080,7 +1080,7 @@ export function ChannelAssistantTool() {
           <>
             <SectionCard
               title="Brand Voice"
-              icon={<Palette className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Palette className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 <div>
@@ -1092,7 +1092,7 @@ export function ChannelAssistantTool() {
                     onChange={(e) => update('brandVoice', e.target.value)}
                     placeholder="e.g. I'm a tech educator who breaks down complex topics into simple, actionable steps. My style is fun but factual, with a focus on hands-on tutorials. I use clean editing and fast-paced delivery."
                     rows={4}
-                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors resize-none"
                   />
                   <div className="flex items-start gap-1.5 mt-1.5">
                     <Info className="w-3 h-3 text-[#666666] mt-0.5 shrink-0" />
@@ -1106,7 +1106,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Tone Selection"
-              icon={<Sliders className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Sliders className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {TONES.map((tone) => {
@@ -1118,17 +1118,17 @@ export function ChannelAssistantTool() {
                       onClick={() => update('tone', tone.value)}
                       className={`p-3 rounded-lg border text-left transition-all ${
                         selected
-                          ? 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.03)]'
+                          ? 'bg-[rgba(246,168,40,0.1)] border-[rgba(255,255,255,0.03)]'
                           : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[#1a1a1a]'
                       }`}
                     >
                       <div className="flex items-center gap-2 mb-1">
                         <div
                           className={`w-2.5 h-2.5 rounded-full border-2 ${
-                            selected ? 'bg-[#FDBA2D] border-[#FDBA2D]' : 'bg-transparent border-[#666666]'
+                            selected ? 'bg-[#F6A828] border-[#F6A828]' : 'bg-transparent border-[#666666]'
                           }`}
                         />
-                        <span className={`text-sm font-medium ${selected ? 'text-[#FDBA2D]' : 'text-[#FFFFFF]'}`}>
+                        <span className={`text-sm font-medium ${selected ? 'text-[#F6A828]' : 'text-[#FFFFFF]'}`}>
                           {tone.label}
                         </span>
                       </div>
@@ -1146,7 +1146,7 @@ export function ChannelAssistantTool() {
           <>
             <SectionCard
               title="Target Audience"
-              icon={<Users className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Users className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 <div>
@@ -1158,7 +1158,7 @@ export function ChannelAssistantTool() {
                     onChange={(e) => update('audience', e.target.value)}
                     placeholder="e.g. Beginners learning programming aged 18-35, college students, career switchers who want practical tech skills without jargon"
                     rows={3}
-                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors resize-none"
                   />
                   <p className="text-[10px] text-[#666666] mt-1.5">
                     Include demographics like age range, skill level, interests, and pain points. This helps generate content that resonates.
@@ -1169,7 +1169,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Channel Goals"
-              icon={<Target className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Target className="w-4 h-4 text-[#F6A828]" />}
             >
               <p className="text-xs text-[#a0a0a0] mb-3">
                 Select what matters most to you. The assistant will prioritize these when generating strategies.
@@ -1198,7 +1198,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Competitor Channels"
-              icon={<Users className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Users className="w-4 h-4 text-[#F6A828]" />}
               collapsible
               defaultOpen={false}
             >
@@ -1220,7 +1220,7 @@ export function ChannelAssistantTool() {
           <>
             <SectionCard
               title="Custom Instructions"
-              icon={<Wand2 className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Wand2 className="w-4 h-4 text-[#F6A828]" />}
             >
               <div className="space-y-4">
                 <div>
@@ -1241,7 +1241,7 @@ export function ChannelAssistantTool() {
 • Use specific data points and statistics when available
 • End every script with a clear call-to-action`}
                     rows={10}
-                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none leading-relaxed"
+                    className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors resize-none leading-relaxed"
                   />
                   <div className="flex items-center justify-between mt-1.5">
                     <div className="flex items-start gap-1.5">
@@ -1260,7 +1260,7 @@ export function ChannelAssistantTool() {
 
             <SectionCard
               title="Focus Keywords"
-              icon={<Lightbulb className="w-4 h-4 text-[#FDBA2D]" />}
+              icon={<Lightbulb className="w-4 h-4 text-[#F6A828]" />}
             >
               <p className="text-xs text-[#a0a0a0] mb-3">
                 Add keywords your channel focuses on. The assistant will use these for SEO, tags, and content suggestions.
@@ -1279,7 +1279,7 @@ export function ChannelAssistantTool() {
       {/* Bottom save bar (mobile friendly) */}
       <div className="sticky bottom-0 sm:static flex items-center justify-between p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]">
         <div className="flex items-center gap-2">
-          <Bot className="w-4 h-4 text-[#FDBA2D]" />
+          <Bot className="w-4 h-4 text-[#F6A828]" />
           <span className="text-xs text-[#a0a0a0]">
             {score.percent === 100 ? (
               <span className="text-[#888888] font-medium">Fully configured</span>
@@ -1293,7 +1293,7 @@ export function ChannelAssistantTool() {
           className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-colors ${
             saved
               ? 'bg-[#888888] text-[#0a0a0a]'
-              : 'bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320]'
+              : 'bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340]'
           }`}
         >
           {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}

@@ -88,7 +88,7 @@ const LOADING_STEPS = [
 /* ── Sentiment bar colors ── */
 const SENTIMENT_COLOR = {
   positive: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', border: 'border-[rgba(255,255,255,0.03)]' },
-  neutral: { bar: 'bg-[#FDBA2D]', text: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', border: 'border-[rgba(255,255,255,0.03)]' },
+  neutral: { bar: 'bg-[#F6A828]', text: 'text-[#F6A828]', bg: 'bg-[rgba(246,168,40,0.1)]', border: 'border-[rgba(255,255,255,0.03)]' },
   negative: { bar: 'bg-[#888888]', text: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', border: 'border-[rgba(255,255,255,0.03)]' },
 };
 
@@ -160,8 +160,8 @@ Return ONLY the JSON object, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Heart className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Heart className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Comment Sentiment</h2>
@@ -181,12 +181,12 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setVideoUrl(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') analyzeComments(); }}
                 placeholder="https://youtube.com/watch?v=..."
-                className="flex-1 h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
               />
               <button
                 onClick={analyzeComments}
                 disabled={loading || !videoUrl.trim()}
-                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="px-5 h-11 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Analyze Comments
@@ -225,7 +225,7 @@ Return ONLY the JSON object, no other text.`;
                 >
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                     i === loadingStep
-                      ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]'
+                      ? 'bg-[rgba(246,168,40,0.15)] text-[#F6A828]'
                       : i < loadingStep
                         ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]'
                         : 'bg-[#1A1A1A] text-[#666666]'
@@ -235,7 +235,7 @@ Return ONLY the JSON object, no other text.`;
                   <span className={`text-sm font-medium ${i === loadingStep ? 'text-[#FFFFFF]' : 'text-[#666666]'}`}>
                     {step.label}
                   </span>
-                  {i === loadingStep && <Loader2 className="w-4 h-4 text-[#FDBA2D] animate-spin ml-auto" />}
+                  {i === loadingStep && <Loader2 className="w-4 h-4 text-[#F6A828] animate-spin ml-auto" />}
                   {i < loadingStep && <span className="ml-auto text-[10px] text-[#888888]">Done</span>}
                 </div>
               ))}
@@ -259,7 +259,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-5">
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Sentiment Analysis Complete
+            <Sparkles className="w-4 h-4 text-[#F6A828]" /> Sentiment Analysis Complete
           </h3>
 
           {/* Sentiment Breakdown */}
@@ -288,12 +288,12 @@ Return ONLY the JSON object, no other text.`;
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Overall Sentiment Distribution</h4>
             <div className="flex h-3 rounded-full overflow-hidden bg-[#1A1A1A]">
               <div className="bg-[#888888] transition-all duration-1000" style={{ width: `${result.sentiment.positive}%` }} />
-              <div className="bg-[#FDBA2D] transition-all duration-1000" style={{ width: `${result.sentiment.neutral}%` }} />
+              <div className="bg-[#F6A828] transition-all duration-1000" style={{ width: `${result.sentiment.neutral}%` }} />
               <div className="bg-[#888888] transition-all duration-1000" style={{ width: `${result.sentiment.negative}%` }} />
             </div>
             <div className="flex justify-between mt-2 text-[10px] text-[#a0a0a0]">
               <span className="text-[#888888]">Positive {result.sentiment.positive}%</span>
-              <span className="text-[#FDBA2D]">Neutral {result.sentiment.neutral}%</span>
+              <span className="text-[#F6A828]">Neutral {result.sentiment.neutral}%</span>
               <span className="text-[#888888]">Negative {result.sentiment.negative}%</span>
             </div>
           </div>
@@ -334,12 +334,12 @@ Return ONLY the JSON object, no other text.`;
                         ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]'
                         : comment.sentiment === 'negative'
                           ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]'
-                          : 'bg-[rgba(253,186,45,0.15)] border-[rgba(255,255,255,0.03)]'
+                          : 'bg-[rgba(246,168,40,0.15)] border-[rgba(255,255,255,0.03)]'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-1.5">
                       <User className="w-3.5 h-3.5 text-[#666666]" />
-                      <span className="text-xs font-medium text-[#FDBA2D]">{comment.author}</span>
+                      <span className="text-xs font-medium text-[#F6A828]">{comment.author}</span>
                       <span className="flex items-center gap-0.5 text-[10px] text-[#a0a0a0]">
                         <Heart className="w-2.5 h-2.5" /> {comment.likes.toLocaleString()}
                       </span>
@@ -355,13 +355,13 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Insights */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[#FDBA2D]/20 p-4">
-            <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-3 flex items-center gap-2">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[#F6A828]/20 p-4">
+            <h4 className="text-xs font-bold text-[#F6A828] uppercase tracking-wider mb-3 flex items-center gap-2">
               <Lightbulb className="w-3.5 h-3.5" /> AI Insights
             </h4>
             <div className="space-y-3">
               {result.insights.map((insight, i) => (
-                <div key={i} className="p-3 rounded-md bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)]">
+                <div key={i} className="p-3 rounded-md bg-[rgba(246,168,40,0.15)] border border-[rgba(255,255,255,0.03)]">
                   <h5 className="text-sm font-semibold text-[#FFFFFF] mb-1">{insight.title}</h5>
                   <p className="text-xs text-[#a0a0a0] leading-relaxed">{insight.detail}</p>
                 </div>
@@ -374,8 +374,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Heart className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Heart className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Comment Sentiment</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Paste a YouTube video URL to get a complete sentiment breakdown with AI-powered insights.</p>

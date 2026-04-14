@@ -87,8 +87,8 @@ Return ONLY the JSON object.`;
   function heatColor(val: number): string {
     if (val >= 85) return 'bg-[#888888]';
     if (val >= 70) return 'bg-[#888888]/60';
-    if (val >= 55) return 'bg-[#FDBA2D]/60';
-    if (val >= 40) return 'bg-[#FDBA2D]/30';
+    if (val >= 55) return 'bg-[#F6A828]/60';
+    if (val >= 40) return 'bg-[#F6A828]/30';
     if (val >= 25) return 'bg-[#888888]/30';
     return 'bg-[#1A1A1A]';
   }
@@ -168,9 +168,9 @@ Return ONLY the JSON object.`;
                   <span className="text-[10px] font-bold text-[#666666] w-4">#{i + 1}</span>
                   <span className="text-xs text-[#FFFFFF] w-20 shrink-0">{d.day.slice(0, 3)}</span>
                   <div className="flex-1 h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
-                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${d.score}%`, backgroundColor: d.score >= 80 ? '#888888' : d.score >= 60 ? '#FDBA2D' : '#a0a0a0' }} />
+                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${d.score}%`, backgroundColor: d.score >= 80 ? '#888888' : d.score >= 60 ? '#F6A828' : '#a0a0a0' }} />
                   </div>
-                  <span className="text-xs font-bold w-8 text-right" style={{ color: d.score >= 80 ? '#888888' : d.score >= 60 ? '#FDBA2D' : '#a0a0a0' }}>{d.score}</span>
+                  <span className="text-xs font-bold w-8 text-right" style={{ color: d.score >= 80 ? '#888888' : d.score >= 60 ? '#F6A828' : '#a0a0a0' }}>{d.score}</span>
                 </div>
               ))}
             </div>
@@ -196,8 +196,8 @@ Return ONLY the JSON object.`;
                   <span>Low</span>
                   <div className="w-3 h-3 rounded-sm bg-[#1A1A1A]" />
                   <div className="w-3 h-3 rounded-sm bg-[#888888]/30" />
-                  <div className="w-3 h-3 rounded-sm bg-[#FDBA2D]/30" />
-                  <div className="w-3 h-3 rounded-sm bg-[#FDBA2D]/60" />
+                  <div className="w-3 h-3 rounded-sm bg-[#F6A828]/30" />
+                  <div className="w-3 h-3 rounded-sm bg-[#F6A828]/60" />
                   <div className="w-3 h-3 rounded-sm bg-[#888888]/60" />
                   <div className="w-3 h-3 rounded-sm bg-[#888888]" />
                   <span>High</span>

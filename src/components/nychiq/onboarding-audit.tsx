@@ -54,7 +54,7 @@ function HealthGauge({ score }: { score: number }) {
 
   const getColor = () => {
     if (score >= 80) return '#888888';
-    if (score >= 60) return '#FDBA2D';
+    if (score >= 60) return '#F6A828';
     if (score >= 40) return '#888888';
     return '#888888';
   };
@@ -145,7 +145,7 @@ export function OnboardingAudit() {
         name: normalizedChannel.name,
         url: channelUrl,
         avatarUrl,
-        avatarColor: avatarUrl ? '#FDBA2D' : '#FDBA2D',
+        avatarColor: avatarUrl ? '#F6A828' : '#F6A828',
       }));
 
       // Generate AI insights from real channel data
@@ -203,7 +203,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
       localStorage.setItem('nychiq_channel_profile', JSON.stringify({
         name: channelName,
         url: channelUrl,
-        avatarColor: '#FDBA2D',
+        avatarColor: '#F6A828',
       }));
     }
 
@@ -254,13 +254,13 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-[#0f0f0f]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-[3px] bg-[#F6A828] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -268,7 +268,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 1 ? 'bg-[#FDBA2D]' : 'bg-[#0f0f0f]'
+                  i <= 1 ? 'bg-[#F6A828]' : 'bg-[#0f0f0f]'
                 }`}
               />
             ))}
@@ -283,8 +283,8 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
           {/* ── Input state ── */}
           {!loading && !report && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="w-8 h-8 text-[#FDBA2D]" />
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#F6A828]" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-2">Free Channel Audit</h2>
               <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
@@ -298,19 +298,19 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                     value={channelUrl}
                     onChange={(e) => setChannelUrl(e.target.value)}
                     placeholder="https://youtube.com/@yourchannel"
-                    className="pl-9 bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#FDBA2D55]"
+                    className="pl-9 bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] placeholder-[#444] h-12 text-center focus:border-[#F6A82855]"
                     onKeyDown={(e) => e.key === 'Enter' && handleAudit()}
                   />
                 </div>
 
                 <div className="flex items-center justify-center gap-4 text-xs text-[#555]">
-                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#FDBA2D]" /> Viral Score</span>
+                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-[#F6A828]" /> Viral Score</span>
                   <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3 text-[#888888]" /> Growth Tips</span>
                   <span className="flex items-center gap-1"><Search className="w-3 h-3 text-[#888888]" /> SEO</span>
                 </div>
 
                 <Button
-                  className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                  className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] h-12 font-semibold disabled:opacity-40 shadow-lg shadow-[rgba(246,168,40,0.12)]"
                   onClick={handleAudit}
                   disabled={!channelUrl.trim()}
                 >
@@ -331,8 +331,8 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
           {/* ── Loading state ── */}
           {loading && (
             <div className="text-center animate-fade-in-up">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="w-8 h-8 text-[#FDBA2D] animate-pulse" />
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-[#F6A828] animate-pulse" />
               </div>
               <h2 className="text-xl font-bold text-[#FFFFFF] mb-6">Analyzing Channel...</h2>
 
@@ -346,7 +346,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                       key={i}
                       className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border transition-all duration-300 ${
                         isActive
-                          ? 'bg-[rgba(253,186,45,0.06)] border-[rgba(255,255,255,0.03)] text-[#FDBA2D]'
+                          ? 'bg-[rgba(246,168,40,0.06)] border-[rgba(255,255,255,0.03)] text-[#F6A828]'
                           : isDone
                             ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
                             : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] text-[#444]'
@@ -381,7 +381,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
 
                   <div className="flex flex-col items-center gap-3">
                     <Button
-                      className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                      className="w-full max-w-xs bg-[#F6A828] text-black hover:bg-[#FFB340] h-11 font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
                       onClick={() => { setReport(false); setCurrentStep(-1); setApiError(false); }}
                     >
                       <RefreshCw className="w-4 h-4 mr-2" />
@@ -420,7 +420,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                       <ul className="space-y-2.5">
                         {aiInsights.map((insight, i) => (
                           <li key={i} className="flex items-start gap-2 text-xs text-[#a0a0a0] leading-relaxed">
-                            <span className="w-1 h-1 rounded-full bg-[#FDBA2D] shrink-0 mt-1.5" />
+                            <span className="w-1 h-1 rounded-full bg-[#F6A828] shrink-0 mt-1.5" />
                             {insight}
                           </li>
                         ))}
@@ -435,10 +435,10 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                         <img
                           src={channelData.avatarUrl}
                           alt={channelData.name}
-                          className="w-16 h-16 rounded-full object-cover border-2 border-[#FDBA2D]/40"
+                          className="w-16 h-16 rounded-full object-cover border-2 border-[#F6A828]/40"
                         />
                       ) : (
-                        <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.15)] border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
+                        <div className="w-16 h-16 rounded-full bg-[rgba(246,168,40,0.15)] border-2 border-[#F6A828]/40 flex items-center justify-center text-xl font-bold text-[#F6A828]">
                           {(channelData.name || 'M').charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -462,7 +462,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                   {/* Stats pills — all from real data */}
                   <div className="flex flex-wrap gap-2 mb-8 justify-center">
                     {[
-                      { label: 'Videos', value: fmtV(channelData.videoCount), color: '#FDBA2D' },
+                      { label: 'Videos', value: fmtV(channelData.videoCount), color: '#F6A828' },
                       { label: 'Subscribers', value: fmtV(channelData.subscribers), color: '#888888' },
                       { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#888888' },
                       ...(engagement !== null
@@ -482,7 +482,7 @@ Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the ar
                   {/* Action */}
                   <div className="flex flex-col items-center gap-3">
                     <Button
-                      className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                      className="w-full max-w-xs bg-[#F6A828] text-black hover:bg-[#FFB340] h-11 font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
                       onClick={() => setPage('ob-extension')}
                     >
                       Continue

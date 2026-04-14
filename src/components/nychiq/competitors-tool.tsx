@@ -204,8 +204,8 @@ Return ONLY the JSON object, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Eye className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Eye className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Track Channels</h2>
@@ -229,7 +229,7 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={handleTrack}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-full bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -254,7 +254,7 @@ Return ONLY the JSON object, no other text.`;
       {loading && (
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-8">
           <div className="flex items-center gap-3 mb-6">
-            <Loader2 className="w-5 h-5 text-[#FDBA2D] animate-spin" />
+            <Loader2 className="w-5 h-5 text-[#F6A828] animate-spin" />
             <span className="text-sm text-[#a0a0a0]">Tracking channel...</span>
           </div>
           <div className="flex items-center gap-4">
@@ -278,8 +278,8 @@ Return ONLY the JSON object, no other text.`;
                 {profile.avatar ? (
                   <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full bg-[#FDBA2D]/10 flex items-center justify-center">
-                    <Eye className="w-6 h-6 text-[#FDBA2D]" />
+                  <div className="w-full h-full bg-[#F6A828]/10 flex items-center justify-center">
+                    <Eye className="w-6 h-6 text-[#F6A828]" />
                   </div>
                 )}
               </div>
@@ -318,7 +318,7 @@ Return ONLY the JSON object, no other text.`;
               {profile.topTags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FDBA2D]/10 text-[#FDBA2D] border border-[#FDBA2D]/20"
+                  className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#F6A828]/10 text-[#F6A828] border border-[#F6A828]/20"
                 >
                   {tag}
                 </span>
@@ -415,8 +415,8 @@ Return ONLY the JSON object, no other text.`;
               {/* Opportunities */}
               <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                  <Zap className="w-4 h-4 text-[#FDBA2D]" />
-                  <h4 className="text-xs font-semibold text-[#FDBA2D]">Opportunities</h4>
+                  <Zap className="w-4 h-4 text-[#F6A828]" />
+                  <h4 className="text-xs font-semibold text-[#F6A828]">Opportunities</h4>
                 </div>
                 <div className="divide-y divide-[#1A1A1A]">
                   {strategy.opportunities.map((o, i) => (
@@ -449,8 +449,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial Empty State */}
       {!loading && !profile && !error && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Eye className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Eye className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Track a Channel</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">

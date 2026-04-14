@@ -79,14 +79,14 @@ const SORT_OPTIONS: { key: SortKey; label: string }[] = [
 function getGrade(avgScore: number): { grade: string; color: string } {
   if (avgScore >= 85) return { grade: 'A', color: '#888888' };
   if (avgScore >= 70) return { grade: 'B', color: '#888888' };
-  if (avgScore >= 55) return { grade: 'C', color: '#FDBA2D' };
+  if (avgScore >= 55) return { grade: 'C', color: '#F6A828' };
   if (avgScore >= 40) return { grade: 'D', color: '#888888' };
   return { grade: 'F', color: '#888888' };
 }
 
 function viralScoreColor(score: number): string {
   if (score >= 80) return '#888888';
-  if (score >= 60) return '#FDBA2D';
+  if (score >= 60) return '#F6A828';
   if (score >= 40) return '#888888';
   return '#888888';
 }
@@ -94,7 +94,7 @@ function viralScoreColor(score: number): string {
 function recConfig(rec: string) {
   switch (rec) {
     case 'Keep': return { color: '#888888', icon: CheckCircle2, bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' };
-    case 'Improve': return { color: '#FDBA2D', icon: AlertTriangle, bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.2)' };
+    case 'Improve': return { color: '#F6A828', icon: AlertTriangle, bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.2)' };
     case 'Remove': return { color: '#888888', icon: XCircle, bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' };
     default: return { color: '#a0a0a0', icon: CheckCircle2, bg: 'rgba(163,163,163,0.1)', border: 'rgba(163,163,163,0.2)' };
   }
@@ -215,8 +215,8 @@ export function VideoBatchTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <ListVideo className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <ListVideo className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Video Batch Analyzer</h2>
@@ -235,7 +235,7 @@ export function VideoBatchTool() {
             <button
               onClick={handleAnalyze}
               disabled={loading || !playlistUrl.trim()}
-              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-full bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 flex items-center gap-2 shrink-0"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
               Analyze Playlist
@@ -264,10 +264,10 @@ export function VideoBatchTool() {
       {!loading && analyzed && playlist && summaryStats && (
         <>
           {/* Playlist info bar */}
-          <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="rounded-lg bg-[rgba(246,168,40,0.05)] border border-[rgba(255,255,255,0.03)] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
-                <ListVideo className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="w-10 h-10 rounded-lg bg-[rgba(246,168,40,0.1)] flex items-center justify-center">
+                <ListVideo className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <p className="text-sm font-bold text-[#FFFFFF]">{playlist.title}</p>
@@ -290,7 +290,7 @@ export function VideoBatchTool() {
             <StatCard
               label="Videos Analyzed"
               value={playlist.totalVideos}
-              color="#FDBA2D"
+              color="#F6A828"
               icon={<ListVideo className="w-4 h-4" />}
             />
             <StatCard
@@ -365,7 +365,7 @@ export function VideoBatchTool() {
                   onClick={() => toggleSort(opt.key)}
                   className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition-all border ${
                     sortBy === opt.key
-                      ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
+                      ? 'border-[rgba(255,255,255,0.03)] bg-[rgba(246,168,40,0.1)] text-[#F6A828]'
                       : 'border-[#1A1A1A] bg-[#0a0a0a] text-[#666666] hover:border-[rgba(255,255,255,0.03)] hover:text-[#a0a0a0]'
                   }`}
                 >
@@ -387,7 +387,7 @@ export function VideoBatchTool() {
               </button>
               <button
                 onClick={handleApplyBestPractices}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#F6A828] hover:bg-[rgba(246,168,40,0.2)] transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 Apply Best Practices
@@ -503,8 +503,8 @@ export function VideoBatchTool() {
                 <p className="text-2xl font-black text-[#888888]">{summaryStats.keepCount}</p>
                 <p className="text-[10px] text-[#a0a0a0] uppercase tracking-wider mt-0.5">Keep</p>
               </div>
-              <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
-                <p className="text-2xl font-black text-[#FDBA2D]">{summaryStats.improveCount}</p>
+              <div className="rounded-lg bg-[rgba(246,168,40,0.05)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
+                <p className="text-2xl font-black text-[#F6A828]">{summaryStats.improveCount}</p>
                 <p className="text-[10px] text-[#a0a0a0] uppercase tracking-wider mt-0.5">Improve</p>
               </div>
               <div className="rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] p-3 text-center">
@@ -519,15 +519,15 @@ export function VideoBatchTool() {
       {/* Empty state */}
       {!loading && !analyzed && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <ListVideo className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <ListVideo className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Analyze Entire Playlists</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center mb-4">
             Paste a YouTube playlist URL to get viral scores, engagement metrics, and recommendations for every video.
           </p>
           <div className="flex items-center gap-1 text-[11px] text-[#666666]">
-            <Crown className="w-3 h-3 text-[#FDBA2D]" />
+            <Crown className="w-3 h-3 text-[#F6A828]" />
             <span>Requires Pro plan or above · {TOKEN_COSTS['video-batch']} tokens per analysis</span>
           </div>
         </div>

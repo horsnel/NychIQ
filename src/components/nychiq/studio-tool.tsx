@@ -89,8 +89,8 @@ const FORENSICS_TOOLS: ForensicsTool[] = [
     description: 'AI heatmaps predict which thumbnail gets highest CTR. Compare up to 4 designs and get instant performance projections.',
     tokens: TOKEN_COSTS['lume'] ?? 8,
     icon: <Layers className="w-6 h-6" />,
-    color: '#FDBA2D',
-    glowColor: 'rgba(253,186,45,0.15)',
+    color: '#F6A828',
+    glowColor: 'rgba(246,168,40,0.15)',
   },
   {
     id: 'hooklab',
@@ -237,7 +237,7 @@ function HealthGauge({ score, size = 'md' }: { score: number; size?: 'sm' | 'md'
   const stroke = size === 'lg' ? 8 : size === 'md' ? 7 : 5;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 80 ? '#888888' : score >= 60 ? '#FDBA2D' : score >= 40 ? '#888888' : '#888888';
+  const color = score >= 80 ? '#888888' : score >= 60 ? '#F6A828' : score >= 40 ? '#888888' : '#888888';
   const label = score >= 80 ? 'Optimal' : score >= 60 ? 'Healthy' : score >= 40 ? 'Needs Work' : 'At Risk';
   const dim = (radius + stroke) * 2 + 4;
 
@@ -268,8 +268,8 @@ function HealthGauge({ score, size = 'md' }: { score: number; size?: 'sm' | 'md'
 
 /* ── Score Badge ── */
 function ScoreBadge({ score }: { score: number }) {
-  const color = score >= 80 ? '#888888' : score >= 50 ? '#FDBA2D' : '#888888';
-  const bg = score >= 80 ? 'rgba(34,197,94,0.1)' : score >= 50 ? 'rgba(253,186,45,0.12)' : 'rgba(136,136,136,0.2)';
+  const color = score >= 80 ? '#888888' : score >= 50 ? '#F6A828' : '#888888';
+  const bg = score >= 80 ? 'rgba(34,197,94,0.1)' : score >= 50 ? 'rgba(246,168,40,0.12)' : 'rgba(136,136,136,0.2)';
   return (
     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold" style={{ color, backgroundColor: bg }}>
       {score}
@@ -421,7 +421,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
   const stats = [
     { label: 'Subscribers', value: fmtV(ch.subscribers), icon: <Users className="w-4 h-4" />, color: '#888888' },
     { label: 'Total Views', value: fmtV(ch.totalViews), icon: <Eye className="w-4 h-4" />, color: '#888888' },
-    { label: 'Videos', value: ch.videoCount.toLocaleString(), icon: <Play className="w-4 h-4" />, color: '#FDBA2D' },
+    { label: 'Videos', value: ch.videoCount.toLocaleString(), icon: <Play className="w-4 h-4" />, color: '#F6A828' },
     { label: 'Avg Views', value: fmtV(ch.avgViews), icon: <BarChart3 className="w-4 h-4" />, color: '#888888' },
     { label: 'Engagement', value: `${ch.engagementRate}%`, icon: <TrendingUp className="w-4 h-4" />, color: '#888888' },
   ];
@@ -433,7 +433,7 @@ function OverviewTab({ onLaunch }: { onLaunch: (id: string) => void }) {
         <div className="flex flex-col md:flex-row items-start gap-6">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center">
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center">
               <span className="text-2xl font-bold text-white">NA</span>
             </div>
             <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#888888] border-2 border-[#0f0f0f] flex items-center justify-center">
@@ -652,7 +652,7 @@ function ChecklistTab() {
   const totalItems = categories.reduce((acc, cat) => acc + cat.items.length, 0);
   const checkedItems = categories.reduce((acc, cat) => acc + cat.items.filter((i) => i.checked).length, 0);
   const progressPct = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
-  const progressColor = progressPct >= 80 ? '#888888' : progressPct >= 40 ? '#FDBA2D' : '#888888';
+  const progressColor = progressPct >= 80 ? '#888888' : progressPct >= 40 ? '#F6A828' : '#888888';
 
   return (
     <div className="space-y-4">
@@ -837,7 +837,7 @@ function PreUploadTab() {
 
   const riskConfig = {
     low: { color: '#888888', label: 'LOW RISK', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
-    medium: { color: '#FDBA2D', label: 'MEDIUM RISK', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.25)' },
+    medium: { color: '#F6A828', label: 'MEDIUM RISK', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.25)' },
     high: { color: '#888888', label: 'HIGH RISK', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
   };
 
@@ -857,7 +857,7 @@ function PreUploadTab() {
           {/* Conic gradient rotating border on hover */}
           <div className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: 'conic-gradient(from var(--angle, 0deg), #888888, #888888, #888888, #FDBA2D, #888888, #888888)',
+              background: 'conic-gradient(from var(--angle, 0deg), #888888, #888888, #888888, #F6A828, #888888, #888888)',
               animation: 'rotateBorder 3s linear infinite',
             }}
           />
@@ -1044,8 +1044,8 @@ function PreUploadTab() {
           {/* Tactical Preview — SciFiVideoCard */}
           <div className="animate-fade-in-up">
             <div className="flex items-center gap-2 mb-3">
-              <Crosshair className="w-4 h-4 text-[#FDBA2D]" />
-              <h3 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-widest">Tactical Preview</h3>
+              <Crosshair className="w-4 h-4 text-[#F6A828]" />
+              <h3 className="text-xs font-bold text-[#F6A828] uppercase tracking-widest">Tactical Preview</h3>
               <ScanLine />
             </div>
             <div className="max-w-sm">

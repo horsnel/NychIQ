@@ -50,7 +50,7 @@ interface RoadmapResult {
 /* ── Phase Icon Map ── */
 const PHASE_CONFIG = [
   { name: 'Foundation', icon: Zap, color: '#888888', subsRange: '0 → 1K' },
-  { name: 'Acceleration', icon: Rocket, color: '#FDBA2D', subsRange: '1K → 10K' },
+  { name: 'Acceleration', icon: Rocket, color: '#F6A828', subsRange: '1K → 10K' },
   { name: 'Diversification', icon: DollarSign, color: '#888888', subsRange: '$1K/mo+' },
 ];
 
@@ -148,7 +148,7 @@ function mockRoadmap(niche: string, subs: number, views: number): RoadmapResult 
       {
         name: 'Acceleration',
         icon: Rocket,
-        color: '#FDBA2D',
+        color: '#F6A828',
         subsRange: '1K → 10K subscribers',
         timeline: '6-12 months',
         goals: [
@@ -300,8 +300,8 @@ Return ONLY the JSON object, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ background: 'rgba(253,186,45,0.1)' }}>
-              <Target className="w-5 h-5" style={{ color: '#FDBA2D' }} />
+            <div className="p-2 rounded-lg" style={{ background: 'rgba(246,168,40,0.1)' }}>
+              <Target className="w-5 h-5" style={{ color: '#F6A828' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Revenue Roadmap</h2>
@@ -321,7 +321,7 @@ Return ONLY the JSON object, no other text.`;
                 onChange={(e) => setNiche(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Your niche..."
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 focus:ring-1 focus:ring-[#F6A828]/20 transition-colors"
               />
             </div>
             <input
@@ -329,21 +329,21 @@ Return ONLY the JSON object, no other text.`;
               value={subs}
               onChange={(e) => setSubs(e.target.value)}
               placeholder="Current subscribers"
-              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 focus:ring-1 focus:ring-[#F6A828]/20 transition-colors"
             />
             <input
               type="number"
               value={views}
               onChange={(e) => setViews(e.target.value)}
               placeholder="Monthly views"
-              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+              className="w-full h-11 px-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 focus:ring-1 focus:ring-[#F6A828]/20 transition-colors"
             />
           </div>
           <button
             onClick={handleGenerate}
             disabled={loading || !niche.trim()}
             className="w-full mt-3 px-5 h-11 rounded-lg text-[#0a0a0a] text-sm font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            style={{ backgroundColor: '#FDBA2D' }}
+            style={{ backgroundColor: '#F6A828' }}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />}
             Generate Roadmap
@@ -386,12 +386,12 @@ Return ONLY the JSON object, no other text.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+                <Zap className="w-4 h-4" style={{ color: '#F6A828' }} />
                 <h3 className="text-sm font-bold text-[#FFFFFF]">Power Level</h3>
-                <span className="ml-auto text-xs font-bold" style={{ color: '#FDBA2D' }}>{powerLevel}%</span>
+                <span className="ml-auto text-xs font-bold" style={{ color: '#F6A828' }}>{powerLevel}%</span>
               </div>
               <div className="h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
-                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #888888, #FDBA2D, #888888)` }} />
+                <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${powerLevel}%`, background: `linear-gradient(90deg, #888888, #F6A828, #888888)` }} />
               </div>
               <div className="flex items-center justify-between text-[10px] text-[#666666]">
                 <span>0 subs</span>
@@ -406,7 +406,7 @@ Return ONLY the JSON object, no other text.`;
                   <p className="text-[10px] text-[#a0a0a0] mt-0.5">Views for $1K/mo</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
-                  <p className="text-base font-bold text-[#FDBA2D]">${result.rpmBenchmark}</p>
+                  <p className="text-base font-bold text-[#F6A828]">${result.rpmBenchmark}</p>
                   <p className="text-[10px] text-[#a0a0a0] mt-0.5">RPM Benchmark</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] col-span-2 sm:col-span-1">
@@ -420,7 +420,7 @@ Return ONLY the JSON object, no other text.`;
           {/* 3-Phase Timeline */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 px-1">
-              <BarChart3 className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+              <BarChart3 className="w-4 h-4" style={{ color: '#F6A828' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">3-Phase Roadmap</h3>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -468,18 +468,18 @@ Return ONLY the JSON object, no other text.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+                <Sparkles className="w-4 h-4" style={{ color: '#F6A828' }} />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Strategic Advice</h3>
               </div>
-              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#FDBA2D] transition-colors">
+              <button onClick={handleCopy} className="flex items-center gap-1 text-[11px] text-[#666666] hover:text-[#F6A828] transition-colors">
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Copied' : 'Copy'}
               </button>
             </div>
             <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(253,186,45,0.1)' }}>
-                  <Bot className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} />
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(246,168,40,0.1)' }}>
+                  <Bot className="w-3.5 h-3.5" style={{ color: '#F6A828' }} />
                 </div>
                 <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.advice}</p>
               </div>
@@ -488,7 +488,7 @@ Return ONLY the JSON object, no other text.`;
 
           {/* Refresh */}
           <div className="flex justify-center">
-            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#a0a0a0] hover:text-[#FDBA2D] transition-colors">
+            <button onClick={handleGenerate} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#a0a0a0] hover:text-[#F6A828] transition-colors">
               <RefreshCw className="w-3 h-3" />
               Regenerate
             </button>
@@ -499,8 +499,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
-            <Target className="w-8 h-8" style={{ color: '#FDBA2D' }} />
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.2)' }}>
+            <Target className="w-8 h-8" style={{ color: '#F6A828' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Your Revenue Roadmap</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">

@@ -37,7 +37,7 @@ function heatColor(demand: number, frustration: number): string {
   const score = (demand * 0.5 + frustration * 0.5);
   if (score >= 75) return '#888888';
   if (score >= 60) return '#E87D3E';
-  if (score >= 45) return '#FDBA2D';
+  if (score >= 45) return '#F6A828';
   if (score >= 30) return '#888888';
   return '#3B7DD8';
 }
@@ -67,7 +67,7 @@ function HeatmapCell({ topic, index }: { topic: HeatmapTopic; index: number }) {
         onMouseLeave={() => setShowTip(false)}
       >
         {gold && (
-          <span className="absolute -top-2 -right-2 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#FDBA2D] text-[#0a0a0a] z-10 shadow-lg">
+          <span className="absolute -top-2 -right-2 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#F6A828] text-[#0a0a0a] z-10 shadow-lg">
             GOLD MINE
           </span>
         )}
@@ -271,14 +271,14 @@ Return ONLY the JSON object, no other text.`;
           {/* Legend + Stats */}
           <div className="flex flex-wrap items-center gap-4 px-1">
             <div className="flex items-center gap-2">
-              <Flame className="w-4 h-4 text-[#FDBA2D]" />
+              <Flame className="w-4 h-4 text-[#F6A828]" />
               <span className="text-xs text-[#a0a0a0]">
-                <span className="font-bold text-[#FDBA2D]">{goldMines.length}</span> Gold Mines found
+                <span className="font-bold text-[#F6A828]">{goldMines.length}</span> Gold Mines found
               </span>
             </div>
             <div className="flex items-center gap-3 text-[10px] text-[#666666]">
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#ffffff06' }} /> Low</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#FDBA2D40' }} /> Medium</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#F6A82840' }} /> Medium</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#ffffff06' }} /> High</span>
             </div>
             <div className="ml-auto flex items-center gap-1 text-[10px] text-[#666666]">

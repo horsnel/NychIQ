@@ -52,7 +52,7 @@ function CopyBtn({ text }: { text: string }) {
 /* ── Title color coding ── */
 function titleColorClass(len: number): string {
   if (len < 55) return 'text-[#888888]';
-  if (len <= 70) return 'text-[#FDBA2D]';
+  if (len <= 70) return 'text-[#F6A828]';
   return 'text-[#888888]';
 }
 
@@ -123,7 +123,7 @@ Return ONLY the JSON object, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><SearchCode className="w-5 h-5 text-[#FDBA2D]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><SearchCode className="w-5 h-5 text-[#F6A828]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">SEO Optimizer</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Generate fully optimized YouTube metadata — titles, description, tags, hashtags and thumbnail concept.</p>
@@ -140,24 +140,24 @@ Return ONLY the JSON object, no other text.`;
                 type="text" value={topic} onChange={(e) => setTopic(e.target.value.slice(0, 120))}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                 placeholder="Enter your video topic..."
-                className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <div className="flex-1">
                 <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1"><Globe className="w-3 h-3" /> Language</label>
-                <select value={language} onChange={(e) => setLanguage(e.target.value)} className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer">
+                <select value={language} onChange={(e) => setLanguage(e.target.value)} className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer">
                   {LANGUAGES.map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
               <div className="flex-1">
                 <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 flex items-center gap-1"><Users className="w-3 h-3" /> Audience</label>
-                <select value={audience} onChange={(e) => setAudience(e.target.value)} className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer">
+                <select value={audience} onChange={(e) => setAudience(e.target.value)} className="w-full h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer">
                   {AUDIENCES.map((a) => <option key={a} value={a}>{a}</option>)}
                 </select>
               </div>
             </div>
-            <button onClick={handleGenerate} disabled={loading || !topic.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
+            <button onClick={handleGenerate} disabled={loading || !topic.trim()} className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Generate SEO Pack
             </button>
@@ -192,10 +192,10 @@ Return ONLY the JSON object, no other text.`;
       {!loading && rawText && (
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> SEO Results (Raw)
+            <Sparkles className="w-4 h-4 text-[#F6A828]" /> SEO Results (Raw)
           </h3>
-          <div className="rounded-lg bg-[#0f0f0f] border border-[#FDBA2D]/30 p-4">
-            <p className="text-[10px] text-[#FDBA2D] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[#F6A828]/30 p-4">
+            <p className="text-[10px] text-[#F6A828] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
             <pre className="text-sm text-[#FFFFFF] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
           </div>
         </div>
@@ -205,7 +205,7 @@ Return ONLY the JSON object, no other text.`;
       {!loading && result && (
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> SEO Pack Generated
+            <Sparkles className="w-4 h-4 text-[#F6A828]" /> SEO Pack Generated
           </h3>
 
           {/* Titles */}
@@ -256,7 +256,7 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="flex flex-wrap gap-2">
               {result.hashtags.map((tag, i) => (
-                <span key={i} className="px-2.5 py-1 rounded-full text-xs font-medium text-[#FDBA2D] bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)]">{tag}</span>
+                <span key={i} className="px-2.5 py-1 rounded-full text-xs font-medium text-[#F6A828] bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)]">{tag}</span>
               ))}
             </div>
           </div>
@@ -287,8 +287,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <SearchCode className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <SearchCode className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Optimize Your Videos</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a video topic to generate a complete SEO pack with titles, description, tags, and more.</p>

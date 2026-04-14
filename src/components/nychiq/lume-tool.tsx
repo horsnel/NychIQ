@@ -75,7 +75,7 @@ function HeatmapOverlay({ zones }: { zones: string[] }) {
 /* ── Score pill ── */
 function ScorePill({ label, value, max }: { label: string; value: number; max: number }) {
   const pct = (value / max) * 100;
-  const color = pct >= 80 ? '#888888' : pct >= 60 ? '#FDBA2D' : pct >= 40 ? '#888888' : '#888888';
+  const color = pct >= 80 ? '#888888' : pct >= 60 ? '#F6A828' : pct >= 40 ? '#888888' : '#888888';
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
@@ -210,7 +210,7 @@ function ThumbnailCard({
       {result.improvements.length > 0 && (
         <div className="mb-3">
           <div className="flex items-center gap-1.5 mb-1.5">
-            <Palette className="w-3 h-3 text-[#FDBA2D]" />
+            <Palette className="w-3 h-3 text-[#F6A828]" />
             <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-medium">
               Improvement Suggestions
             </span>

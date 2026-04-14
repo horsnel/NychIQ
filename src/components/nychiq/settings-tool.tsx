@@ -61,8 +61,8 @@ function ToggleSwitch({
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDBA2D]/50 ${
-          checked ? 'bg-[#FDBA2D]' : 'bg-[#1a1a1a]'
+        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6A828]/50 ${
+          checked ? 'bg-[#F6A828]' : 'bg-[#1a1a1a]'
         }`}
       >
         <span
@@ -89,7 +89,7 @@ function SectionCard({
   return (
     <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
       <div className="flex items-center gap-2.5 mb-4">
-        <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">{icon}</div>
+        <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">{icon}</div>
         <h3 className="text-sm font-bold text-[#FFFFFF]">{title}</h3>
       </div>
       {children}
@@ -220,7 +220,7 @@ export function SettingsTool() {
     { name: 'WhatsApp', color: '#888888', url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}` },
     { name: 'Telegram', color: '#888888', url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}` },
     { name: 'Facebook', color: '#888888', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}` },
-    { name: 'Email', color: '#FDBA2D', url: `mailto:?subject=${encodeURIComponent('Join me on NychIQ')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}` },
+    { name: 'Email', color: '#F6A828', url: `mailto:?subject=${encodeURIComponent('Join me on NychIQ')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}` },
   ];
 
   const handleSocialShare = (url: string) => {
@@ -262,8 +262,8 @@ export function SettingsTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Settings className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Settings className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Settings</h2>
@@ -276,11 +276,11 @@ export function SettingsTool() {
       {/* ── Account Section ── */}
       <SectionCard
         title="Account"
-        icon={<User className="w-4 h-4 text-[#FDBA2D]" />}
+        icon={<User className="w-4 h-4 text-[#F6A828]" />}
       >
         {/* Live preview avatar */}
         <div className="flex items-center gap-3 mb-5 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
-          <div className="w-12 h-12 rounded-full bg-[#FDBA2D] flex items-center justify-center text-[#0a0a0a] text-lg font-bold shrink-0">
+          <div className="w-12 h-12 rounded-full bg-[#F6A828] flex items-center justify-center text-[#0a0a0a] text-lg font-bold shrink-0">
             {getInitials(displayName)}
           </div>
           <div>
@@ -300,7 +300,7 @@ export function SettingsTool() {
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Enter your display name"
-              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
             />
           </div>
 
@@ -314,7 +314,7 @@ export function SettingsTool() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@email.com"
-              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
             />
           </div>
 
@@ -343,7 +343,7 @@ export function SettingsTool() {
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -356,7 +356,7 @@ export function SettingsTool() {
           {/* Save */}
           <button
             onClick={handleSave}
-            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="flex items-center gap-2 px-5 h-10 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
           >
             {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
             {saved ? 'Saved!' : 'Save Changes'}
@@ -367,7 +367,7 @@ export function SettingsTool() {
       {/* ── Notifications Section ── */}
       <SectionCard
         title="Notifications"
-        icon={<Bell className="w-4 h-4 text-[#FDBA2D]" />}
+        icon={<Bell className="w-4 h-4 text-[#F6A828]" />}
       >
         <div className="divide-y divide-[#1A1A1A]">
           <ToggleSwitch
@@ -396,7 +396,7 @@ export function SettingsTool() {
       {/* ── Referral Program Section ── */}
       <SectionCard
         title="Referral Program"
-        icon={<Gift className="w-4 h-4 text-[#FDBA2D]" />}
+        icon={<Gift className="w-4 h-4 text-[#F6A828]" />}
       >
         <div className="space-y-3">
           <p className="text-sm text-[#a0a0a0]">
@@ -415,8 +415,8 @@ export function SettingsTool() {
               </div>
             </div>
             <div className="flex items-center gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
-              <div className="p-1.5 rounded-md bg-[rgba(253,186,45,0.1)]">
-                <Coins className="w-4 h-4 text-[#FDBA2D]" />
+              <div className="p-1.5 rounded-md bg-[rgba(246,168,40,0.1)]">
+                <Coins className="w-4 h-4 text-[#F6A828]" />
               </div>
               <div>
                 <p className="text-xs text-[#666666]">Tokens Earned</p>
@@ -428,11 +428,11 @@ export function SettingsTool() {
           {/* Referral Code + Actions */}
           <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
             <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Your Referral Code</p>
-            <p className="text-lg font-bold text-[#FDBA2D] tracking-widest mb-3">{refCode}</p>
+            <p className="text-lg font-bold text-[#F6A828] tracking-widest mb-3">{refCode}</p>
             <div className="relative flex items-center gap-2">
               <button
                 onClick={handleCopyRef}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
               >
                 {copiedRef ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 {copiedRef ? 'Copied!' : 'Copy Link'}
@@ -472,9 +472,9 @@ export function SettingsTool() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(253,186,45,0.06)] border border-[rgba(255,255,255,0.03)]">
-            <Gift className="w-4 h-4 text-[#FDBA2D] shrink-0" />
-            <p className="text-xs text-[#FDBA2D]">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-[rgba(246,168,40,0.06)] border border-[rgba(255,255,255,0.03)]">
+            <Gift className="w-4 h-4 text-[#F6A828] shrink-0" />
+            <p className="text-xs text-[#F6A828]">
               You and your friend both get <span className="font-bold">+20 tokens</span> when they sign up!
             </p>
           </div>
@@ -489,7 +489,7 @@ export function SettingsTool() {
                 onChange={(e) => setReferralInput(e.target.value.toUpperCase())}
                 placeholder="Enter referral code"
                 disabled={referralApplied}
-                className="flex-1 h-10 px-4 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
+                className="flex-1 h-10 px-4 rounded-md bg-[#0f0f0f] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider font-mono"
               />
               <button
                 onClick={handleApplyReferral}

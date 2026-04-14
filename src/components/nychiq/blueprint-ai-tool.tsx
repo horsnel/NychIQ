@@ -76,7 +76,7 @@ function CopyBtn({ text }: { text: string }) {
 
 /* ── Char Count Color ── */
 function CharBadge({ count }: { count: number }) {
-  const color = count <= 60 ? '#888888' : count <= 70 ? '#FDBA2D' : '#888888';
+  const color = count <= 60 ? '#888888' : count <= 70 ? '#F6A828' : '#888888';
   return (
     <span className="text-[10px] font-medium px-1.5 py-0.5 rounded" style={{ color, backgroundColor: `${color}15` }}>
       {count} chars

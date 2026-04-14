@@ -64,7 +64,7 @@ Rules:
             cpm: typeof entry.cpm === 'number' ? entry.cpm : 10,
             rpm: typeof entry.cpm === 'number' ? +(entry.cpm * 0.45).toFixed(2) : 4.50,
             change: typeof entry.change === 'number' ? entry.change : 0,
-            color: (entry.competition === 'Low' ? '#888888' : entry.competition === 'High' ? '#888888' : '#FDBA2D'),
+            color: (entry.competition === 'Low' ? '#888888' : entry.competition === 'High' ? '#888888' : '#F6A828'),
             competition: ['Low', 'Medium', 'High'].includes(entry.competition) ? entry.competition : 'Medium',
           }));
           setCpmData(data);
@@ -126,7 +126,7 @@ Rules:
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-[#888888]" />}
           {loading ? 'Loading CPM rates...' : `Load CPM Rates for ${region}`}
-          <span className="text-[10px] text-[#FDBA2D] ml-2">({TOKEN_COSTS.cpm} tokens)</span>
+          <span className="text-[10px] text-[#F6A828] ml-2">({TOKEN_COSTS.cpm} tokens)</span>
         </button>
       )}
 
@@ -135,7 +135,7 @@ Rules:
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-[#FDBA2D]" />
+              <TrendingUp className="w-4 h-4 text-[#F6A828]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">CPM Rates by Niche — {region}</h3>
             </div>
             <button onClick={loadCPMData} disabled={loading} className="text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors" title="Refresh">
@@ -145,7 +145,7 @@ Rules:
           {error ? (
             <div className="p-8 text-center">
               <p className="text-sm text-[#888888]">{error}</p>
-              <button onClick={loadCPMData} className="mt-2 text-xs text-[#FDBA2D] underline">Try Again</button>
+              <button onClick={loadCPMData} className="mt-2 text-xs text-[#F6A828] underline">Try Again</button>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -165,7 +165,7 @@ Rules:
                       key={i}
                       className={cn(
                         'transition-colors cursor-pointer',
-                        selectedNiche === i ? 'bg-[#FDBA2D]/5' : 'hover:bg-[#0a0a0a]/50'
+                        selectedNiche === i ? 'bg-[#F6A828]/5' : 'hover:bg-[#0a0a0a]/50'
                       )}
                       onClick={() => handleNicheChange(i)}
                     >
@@ -189,8 +189,8 @@ Rules:
                       </td>
                       <td className="text-right px-4 py-3">
                         <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{
-                          color: entry.competition === 'Low' ? '#888888' : entry.competition === 'Medium' ? '#FDBA2D' : '#888888',
-                          backgroundColor: entry.competition === 'Low' ? 'rgba(34,197,94,0.1)' : entry.competition === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)',
+                          color: entry.competition === 'Low' ? '#888888' : entry.competition === 'Medium' ? '#F6A828' : '#888888',
+                          backgroundColor: entry.competition === 'Low' ? 'rgba(34,197,94,0.1)' : entry.competition === 'Medium' ? 'rgba(246,168,40,0.1)' : 'rgba(0,0,0,0)',
                         }}>{entry.competition}</span>
                       </td>
                     </tr>
@@ -218,7 +218,7 @@ Rules:
                   value={monthlyViews}
                   onChange={(e) => handleViewsChange(e.target.value)}
                   placeholder="Enter monthly views..."
-                  className="w-full h-11 pl-4 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                  className="w-full h-11 pl-4 pr-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                 />
               </div>
             </div>
@@ -231,7 +231,7 @@ Rules:
                   className={cn(
                     'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                     monthlyViews === preset
-                      ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
+                      ? 'bg-[#F6A828]/15 text-[#F6A828] border border-[#F6A828]/30'
                       : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                   )}
                 >
@@ -265,7 +265,7 @@ Rules:
             </div>
             <div className="rounded-lg p-4 bg-[#0a0a0a] border border-[#1A1A1A] text-center">
               <p className="text-[11px] font-medium text-[#a0a0a0] uppercase tracking-wider mb-2">RPM</p>
-              <p className="text-2xl font-bold text-[#FDBA2D]">
+              <p className="text-2xl font-bold text-[#F6A828]">
                 ${hasLoaded ? rpm.toFixed(2) : '—'}
               </p>
               <p className="text-[10px] text-[#666666] mt-1">~45% of CPM</p>

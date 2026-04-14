@@ -18,7 +18,7 @@ const PLANS: Array<{ id: Plan; name: string; icon: React.ElementType; color: str
     features: ['500 tokens/mo', 'Viral Predictor', 'Rankings', 'Shorts', 'Studio', 'Priority support'],
   },
   {
-    id: 'pro', name: 'Pro', icon: Rocket, color: '#FDBA2D',
+    id: 'pro', name: 'Pro', icon: Rocket, color: '#F6A828',
     features: ['3,500 tokens/mo', 'Everything in Starter', 'Niche Spy', 'Algorithm', 'SEO Optimizer', 'Hook Generator', 'AI Script Writer', 'Automation', 'Outlier Scout'],
   },
   {
@@ -51,7 +51,7 @@ export function UpgradeModal() {
                 className={cn(
                   'rounded-xl border p-4 transition-all cursor-pointer',
                   isCurrent
-                    ? 'border-[#FDBA2D] bg-[rgba(253,186,45,0.05)]'
+                    ? 'border-[#F6A828] bg-[rgba(246,168,40,0.05)]'
                     : 'border-[rgba(255,255,255,0.03)] bg-[#0a0a0a] hover:border-[rgba(255,255,255,0.03)]'
                 )}
               >
@@ -59,7 +59,7 @@ export function UpgradeModal() {
                   <Icon className="w-5 h-5" style={{ color: plan.color }} />
                   <span className="font-semibold" style={{ color: plan.color }}>{plan.name}</span>
                   {isCurrent && (
-                    <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]">
+                    <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-[rgba(246,168,40,0.15)] text-[#F6A828]">
                       CURRENT
                     </span>
                   )}

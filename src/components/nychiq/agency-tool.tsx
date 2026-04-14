@@ -87,7 +87,7 @@ interface TeamActivity {
 const MOCK_CHANNELS_FOR_FALLBACK = [
   { id: 'ch-1', name: 'TechVision Pro', handle: '@techvisionpro', initials: 'TV', color: '#888888', subscribers: 485000, videoCount: 312, healthScore: 92, status: 'performing' as const, monthlyViews: 5820000, monthlyRevenue: 3240, cpm: 18.40, niche: 'Technology', avatar: '' },
   { id: 'ch-2', name: 'FitLife Academy', handle: '@fitlifeacademy', initials: 'FA', color: '#888888', subscribers: 1280000, videoCount: 578, healthScore: 87, status: 'performing' as const, monthlyViews: 12400000, monthlyRevenue: 8920, cpm: 22.10, niche: 'Fitness', avatar: '' },
-  { id: 'ch-3', name: 'Crypto Daily', handle: '@cryptodaily', initials: 'CD', color: '#FDBA2D', subscribers: 320000, videoCount: 189, healthScore: 74, status: 'stale' as const, monthlyViews: 1840000, monthlyRevenue: 1680, cpm: 32.50, niche: 'Finance', avatar: '' },
+  { id: 'ch-3', name: 'Crypto Daily', handle: '@cryptodaily', initials: 'CD', color: '#F6A828', subscribers: 320000, videoCount: 189, healthScore: 74, status: 'stale' as const, monthlyViews: 1840000, monthlyRevenue: 1680, cpm: 32.50, niche: 'Finance', avatar: '' },
   { id: 'ch-4', name: 'Art Studio NG', handle: '@artstudiong', initials: 'AS', color: '#888888', subscribers: 890000, videoCount: 421, healthScore: 91, status: 'growth' as const, monthlyViews: 7600000, monthlyRevenue: 4120, cpm: 14.80, niche: 'Art & Design', avatar: '' },
   { id: 'ch-5', name: 'EduTech Masters', handle: '@edutechmasters', initials: 'EM', color: '#888888', subscribers: 620000, videoCount: 267, healthScore: 68, status: 'stale' as const, monthlyViews: 3200000, monthlyRevenue: 2100, cpm: 18.40, niche: 'Education', avatar: '' },
 ];
@@ -95,7 +95,7 @@ const MOCK_CHANNELS_FOR_FALLBACK = [
 const MOCK_SIGNALS: SignalQueueItem[] = [
   { id: 's-1', client: 'TechVision Pro', clientColor: '#888888', clientInitials: 'TV', type: 'viral', message: 'AI phone review hit 500K views in 18 hours — viral score 94.', time: new Date(Date.now() - 15 * 60 * 1000).toISOString(), priority: 'high' },
   { id: 's-2', client: 'FitLife Academy', clientColor: '#888888', clientInitials: 'FA', type: 'trend', message: '"Zone 2 cardio" search volume up 340% this week.', time: new Date(Date.now() - 45 * 60 * 1000).toISOString(), priority: 'high' },
-  { id: 's-3', client: 'Crypto Daily', clientColor: '#FDBA2D', clientInitials: 'CD', type: 'gap', message: 'No upload in 4 days. Audience engagement dropping 12%.', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
+  { id: 's-3', client: 'Crypto Daily', clientColor: '#F6A828', clientInitials: 'CD', type: 'gap', message: 'No upload in 4 days. Audience engagement dropping 12%.', time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
   { id: 's-4', client: 'Art Studio NG', clientColor: '#888888', clientInitials: 'AS', type: 'arbitrage', message: 'Art supply CPM at $14.80 but affiliate offers $28/sale. 4.2x opportunity.', time: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(), priority: 'high' },
   { id: 's-5', client: 'EduTech Masters', clientColor: '#888888', clientInitials: 'EM', type: 'threat', message: 'New competitor "LearnCode Pro" gained 50K subs this month.', time: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), priority: 'medium' },
 ];
@@ -117,7 +117,7 @@ const MOCK_ACTIVITY: TeamActivity[] = [
    ═══════════════════════════════════════════ */
 function hc(score: number): string {
   if (score >= 80) return '#888888';
-  if (score >= 60) return '#FDBA2D';
+  if (score >= 60) return '#F6A828';
   if (score >= 40) return '#888888';
   return '#888888';
 }
@@ -131,12 +131,12 @@ function reportBadge(type: Report['type']) {
   switch (type) {
     case 'Audit': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', icon: <Shield className="w-3 h-3" /> };
     case 'Strategy': return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', icon: <TrendingUp className="w-3 h-3" /> };
-    case 'SEO': return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]', icon: <SearchCode className="w-3 h-3" /> };
+    case 'SEO': return { bg: 'bg-[rgba(246,168,40,0.1)]', text: 'text-[#F6A828]', border: 'border-[rgba(255,255,255,0.03)]', icon: <SearchCode className="w-3 h-3" /> };
   }
 }
 function signalTypeInfo(type: SignalQueueItem['type']): { icon: LucideIcon; color: string; label: string } {
   switch (type) {
-    case 'viral': return { icon: Zap, color: '#FDBA2D', label: 'VIRAL' };
+    case 'viral': return { icon: Zap, color: '#F6A828', label: 'VIRAL' };
     case 'trend': return { icon: TrendingUp, color: '#888888', label: 'TREND' };
     case 'gap': return { icon: Target, color: '#888888', label: 'GAP' };
     case 'threat': return { icon: AlertTriangle, color: '#888888', label: 'THREAT' };
@@ -146,7 +146,7 @@ function signalTypeInfo(type: SignalQueueItem['type']): { icon: LucideIcon; colo
 function statusRing(status: string): { color: string; label: string; pulse: boolean } {
   switch (status) {
     case 'performing': return { color: '#888888', label: 'Performing Well', pulse: true };
-    case 'stale': return { color: '#FDBA2D', label: 'No Uploads (3+ days)', pulse: false };
+    case 'stale': return { color: '#F6A828', label: 'No Uploads (3+ days)', pulse: false };
     case 'arbitrage': return { color: '#888888', label: 'High Arbitrage', pulse: false };
     case 'growth': return { color: '#888888', label: 'Rapid Growth', pulse: true };
     default: return { color: '#666666', label: 'Unknown', pulse: false };
@@ -244,7 +244,7 @@ function StatusRingDot({ status }: { status: string }) {
   );
 }
 
-function GrowthChart({ data, color = '#FDBA2D' }: { data: number[]; color?: string }) {
+function GrowthChart({ data, color = '#F6A828' }: { data: number[]; color?: string }) {
   const w = 280, h = 80, pad = 4;
   const max = Math.max(...data, 1);
   const min = Math.min(...data, 0);
@@ -270,7 +270,7 @@ function GrowthChart({ data, color = '#FDBA2D' }: { data: number[]; color?: stri
 }
 
 function HeatmapBlock({ value }: { value: number }) {
-  const bg = value >= 80 ? 'bg-[#888888]/70' : value >= 60 ? 'bg-[#888888]/40' : value >= 40 ? 'bg-[#FDBA2D]/40' : value >= 20 ? 'bg-[#888888]/30' : 'bg-[#1A1A1A]';
+  const bg = value >= 80 ? 'bg-[#888888]/70' : value >= 60 ? 'bg-[#888888]/40' : value >= 40 ? 'bg-[#F6A828]/40' : value >= 20 ? 'bg-[#888888]/30' : 'bg-[#1A1A1A]';
   return <div className={`h-5 rounded-sm ${bg} transition-colors`} title={`${value}%`} />;
 }
 
@@ -285,12 +285,12 @@ function ToolCard({ icon: Icon, label, desc, cost, toolId, color }: {
         <Icon className="w-4 h-4" />
       </div>
       <div className="flex-1 min-w-0">
-        <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors block truncate">{label}</span>
+        <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors block truncate">{label}</span>
         <span className="text-[11px] text-[#a0a0a0] line-clamp-1 block">{desc}</span>
       </div>
       <div className="flex items-center gap-2 shrink-0">
         {cost > 0 && <span className="text-[10px] text-[#666666] font-mono">{cost}t</span>}
-        <ChevronRight className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#FDBA2D] transition-colors opacity-0 group-hover:opacity-100" />
+        <ChevronRight className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#F6A828] transition-colors opacity-0 group-hover:opacity-100" />
       </div>
     </button>
   );
@@ -299,7 +299,7 @@ function ToolCard({ icon: Icon, label, desc, cost, toolId, color }: {
 function ActivityItem({ icon: Icon, title, time, status, color }: {
   icon: React.ElementType; title: string; time: string; status: 'done' | 'new' | 'pending'; color: string;
 }) {
-  const statusDot = status === 'done' ? 'bg-[#888888]' : status === 'new' ? 'bg-[#FDBA2D]' : 'bg-[#666666]';
+  const statusDot = status === 'done' ? 'bg-[#888888]' : status === 'new' ? 'bg-[#F6A828]' : 'bg-[#666666]';
   return (
     <div className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-[#0a0a0a] transition-colors group cursor-pointer">
       <div className="relative">
@@ -309,7 +309,7 @@ function ActivityItem({ icon: Icon, title, time, status, color }: {
         <div className={`absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full border-2 border-[#0f0f0f] ${statusDot}`} />
       </div>
       <div className="flex-1 min-w-0">
-        <span className="text-xs text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors block truncate">{title}</span>
+        <span className="text-xs text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors block truncate">{title}</span>
         <span className="text-[10px] text-[#666666] block">{time}</span>
       </div>
       <ChevronRight className="w-3.5 h-3.5 text-[#1a1a1a] group-hover:text-[#a0a0a0] transition-colors shrink-0" />
@@ -333,10 +333,10 @@ function TagInput({ tags, onAdd, onRemove, placeholder }: {
       <div className="flex items-center gap-2">
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown} placeholder={placeholder}
-          className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors" />
+          className="flex-1 h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors" />
         <button type="button" onClick={() => { if (input.trim() && !tags.includes(input.trim())) { onAdd(input.trim()); setInput(''); } }}
           disabled={!input.trim()}
-          className="px-3 h-10 rounded-md bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320] transition-colors disabled:opacity-40 shrink-0">
+          className="px-3 h-10 rounded-md bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-40 shrink-0">
           <Plus className="w-4 h-4" />
         </button>
       </div>
@@ -398,16 +398,16 @@ function ChannelDetailView({ channel, onBack }: {
   ];
 
   const activityFeed = useMemo(() => [
-    { icon: ClipboardCheck, title: `Channel Audit — Score: ${channel.healthScore}/100`, time: channel.auditDate > 0 ? new Date(channel.auditDate).toLocaleDateString() : 'Pending', status: 'done' as const, color: '#FDBA2D' },
+    { icon: ClipboardCheck, title: `Channel Audit — Score: ${channel.healthScore}/100`, time: channel.auditDate > 0 ? new Date(channel.auditDate).toLocaleDateString() : 'Pending', status: 'done' as const, color: '#F6A828' },
     { icon: Zap, title: 'Viral Score Analysis — Latest Upload', time: '2 hours ago', status: 'done' as const, color: '#888888' },
     { icon: SearchCode, title: 'SEO Description Check — 3 videos optimized', time: '5 hours ago', status: 'done' as const, color: '#888888' },
-    { icon: Clock, title: 'New Post Time Recommendation Available', time: '1 day ago', status: 'new' as const, color: '#FDBA2D' },
+    { icon: Clock, title: 'New Post Time Recommendation Available', time: '1 day ago', status: 'new' as const, color: '#F6A828' },
     { icon: Target, title: 'HookLab Analysis — 5 scripts scored', time: '2 days ago', status: 'done' as const, color: '#888888' },
     { icon: BarChart3, title: 'Monthly Performance Report — Ready', time: '3 days ago', status: 'done' as const, color: '#888888' },
   ], [channel.healthScore, channel.auditDate]);
 
   const metricOptions = [
-    { key: 'views' as const, label: 'Views', color: '#FDBA2D', data: growthData.views },
+    { key: 'views' as const, label: 'Views', color: '#F6A828', data: growthData.views },
     { key: 'engagement' as const, label: 'Engagement %', color: '#888888', data: growthData.engagement },
     { key: 'watchtime' as const, label: 'Watch Time', color: '#888888', data: growthData.watchtime },
     { key: 'subs' as const, label: 'New Subs/wk', color: '#888888', data: growthData.subs },
@@ -416,7 +416,7 @@ function ChannelDetailView({ channel, onBack }: {
 
   const quickTools = [
     { icon: Zap, label: 'Viral Predictor', desc: 'Forecast next video potential', cost: TOKEN_COSTS.viral, toolId: 'viral', color: '#888888' },
-    { icon: Crosshair, label: 'Niche Radar', desc: 'Trends for your niche', cost: TOKEN_COSTS.niche, toolId: 'niche', color: '#FDBA2D' },
+    { icon: Crosshair, label: 'Niche Radar', desc: 'Trends for your niche', cost: TOKEN_COSTS.niche, toolId: 'niche', color: '#F6A828' },
     { icon: Clock, label: 'Best Post Time', desc: 'Personalized upload windows', cost: TOKEN_COSTS.posttime, toolId: 'posttime', color: '#888888' },
     { icon: Anchor, label: 'My HookLab', desc: 'Generate video intros', cost: TOKEN_COSTS.hooklab, toolId: 'hooklab', color: '#888888' },
     { icon: SearchCode, label: 'SEO Optimizer', desc: 'Refine video descriptions', cost: TOKEN_COSTS.seo, toolId: 'seo', color: '#888888' },
@@ -443,8 +443,8 @@ function ChannelDetailView({ channel, onBack }: {
     <div className="space-y-5 animate-fade-in-up">
       {/* 1. CHANNEL HEADER */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
-        <div className="h-24 sm:h-28 bg-gradient-to-r from-[#0a0a0a] via-[#0f0f0f] to-[rgba(253,186,45,0.08)] relative">
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(253,186,45,0.06) 50px, rgba(253,186,45,0.06) 51px)' }} />
+        <div className="h-24 sm:h-28 bg-gradient-to-r from-[#0a0a0a] via-[#0f0f0f] to-[rgba(246,168,40,0.08)] relative">
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(246,168,40,0.06) 50px, rgba(246,168,40,0.06) 51px)' }} />
           <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full border" style={{ backgroundColor: `${si.color}10`, borderColor: `${si.color}30` }}>
             <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: si.color }} />
             <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: si.color }}>{channel.status}</span>
@@ -458,7 +458,7 @@ function ChannelDetailView({ channel, onBack }: {
             {channel.avatar ? (
               <img src={channel.avatar} alt={channel.title} className="w-20 h-20 rounded-2xl object-cover border-4 border-[#0f0f0f] shadow-lg" />
             ) : (
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-2xl font-bold text-[#0a0a0a] border-4 border-[#0f0f0f] shadow-lg">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center text-2xl font-bold text-[#0a0a0a] border-4 border-[#0f0f0f] shadow-lg">
                 {channel.title.charAt(0).toUpperCase()}
               </div>
             )}
@@ -472,7 +472,7 @@ function ChannelDetailView({ channel, onBack }: {
                 <ChevronRight className="w-3 h-3 rotate-180" /> Back
               </button>
               <button onClick={() => setActiveTool('audit')}
-                className="px-3 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] text-[#F6A828] text-xs font-bold hover:bg-[rgba(246,168,40,0.2)] transition-colors flex items-center gap-1.5">
                 <RefreshCw className="w-3 h-3" /> Re-audit
               </button>
               <button onClick={() => { removeAgencyChannel(channel.id); onBack(); }}
@@ -490,7 +490,7 @@ function ChannelDetailView({ channel, onBack }: {
           <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-semibold mb-2">Health Score</span>
           <HealthRing score={channel.healthScore} size={80} />
         </div>
-        <KPICard icon={Eye} label="Total Views" value={fmtV(channel.viewCount)} change="+12.4%" positive color="#FDBA2D" />
+        <KPICard icon={Eye} label="Total Views" value={fmtV(channel.viewCount)} change="+12.4%" positive color="#F6A828" />
         <KPICard icon={Users} label="Subscribers" value={fmtV(channel.subscriberCount)} change="+8.2%" positive color="#888888" />
         <KPICard icon={Video} label="Total Videos" value={fmtV(channel.videoCount)} change="+3" positive color="#888888" />
         <KPICard icon={DollarSign} label="Revenue/mo" value={channel.monthlyRevenue > 0 ? `$${channel.monthlyRevenue.toLocaleString()}` : 'N/A'} change={channel.monthlyRevenue > 2000 ? 'Strong' : 'Growing'} positive={channel.monthlyRevenue > 2000} color="#888888" />
@@ -500,7 +500,7 @@ function ChannelDetailView({ channel, onBack }: {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
           <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
-            <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Growth Trends
+            <Activity className="w-3.5 h-3.5 text-[#F6A828]" /> Growth Trends
           </h3>
           <div className="flex gap-1 p-0.5 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
             {metricOptions.map((m) => (
@@ -525,11 +525,11 @@ function ChannelDetailView({ channel, onBack }: {
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2">
-              <BrainCircuit className="w-3.5 h-3.5 text-[#FDBA2D]" /> AI Insights
+              <BrainCircuit className="w-3.5 h-3.5 text-[#F6A828]" /> AI Insights
             </h3>
             {!aiInsights ? (
               <button onClick={handleGenerateInsights} disabled={aiLoading}
-                className="px-3 py-1.5 rounded-md bg-[#FDBA2D] text-[#0a0a0a] text-[11px] font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-1.5">
+                className="px-3 py-1.5 rounded-md bg-[#F6A828] text-[#0a0a0a] text-[11px] font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 flex items-center gap-1.5">
                 {aiLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />} Analyze
               </button>
             ) : (
@@ -543,7 +543,7 @@ function ChannelDetailView({ channel, onBack }: {
           {!aiLoading && aiInsights && (
             <div className="space-y-2.5 max-h-[400px] overflow-y-auto pr-1">
               {aiInsights.map((insight, i) => {
-                const pColor = insight.priority === 'high' ? '#888888' : insight.priority === 'medium' ? '#FDBA2D' : '#888888';
+                const pColor = insight.priority === 'high' ? '#888888' : insight.priority === 'medium' ? '#F6A828' : '#888888';
                 const PIcon = insight.priority === 'high' ? XCircle : insight.priority === 'medium' ? AlertTriangle : CheckCircle;
                 return (
                   <div key={i} className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
@@ -560,8 +560,8 @@ function ChannelDetailView({ channel, onBack }: {
           )}
           {!aiLoading && !aiInsights && (
             <div className="flex flex-col items-center py-8">
-              <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.08)] flex items-center justify-center mb-3">
-                <Lightbulb className="w-6 h-6 text-[#FDBA2D]" />
+              <div className="w-12 h-12 rounded-xl bg-[rgba(246,168,40,0.08)] flex items-center justify-center mb-3">
+                <Lightbulb className="w-6 h-6 text-[#F6A828]" />
               </div>
               <p className="text-xs text-[#a0a0a0] text-center max-w-[220px]">Click Analyze to generate AI insights for {channel.title}.</p>
             </div>
@@ -572,7 +572,7 @@ function ChannelDetailView({ channel, onBack }: {
         <div className="space-y-5">
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-              <ClipboardCheck className="w-3.5 h-3.5 text-[#FDBA2D]" /> Audit Categories
+              <ClipboardCheck className="w-3.5 h-3.5 text-[#F6A828]" /> Audit Categories
             </h3>
             <div className="space-y-3">
               {auditCategories.map((cat) => {
@@ -596,7 +596,7 @@ function ChannelDetailView({ channel, onBack }: {
           {/* 5. HEATMAP */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-3">
-              <Clock className="w-3.5 h-3.5 text-[#FDBA2D]" /> Best Post Times
+              <Clock className="w-3.5 h-3.5 text-[#F6A828]" /> Best Post Times
             </h3>
             <div className="flex gap-1 mb-1">
               <div className="w-8" />
@@ -611,7 +611,7 @@ function ChannelDetailView({ channel, onBack }: {
             <div className="flex items-center gap-3 mt-3 justify-end">
               <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#1A1A1A]" /><span className="text-[9px] text-[#666666]">Low</span></div>
               <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#888888]/30" /><span className="text-[9px] text-[#666666]">Fair</span></div>
-              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#FDBA2D]/40" /><span className="text-[9px] text-[#666666]">Good</span></div>
+              <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#F6A828]/40" /><span className="text-[9px] text-[#666666]">Good</span></div>
               <div className="flex items-center gap-1"><div className="w-2.5 h-2.5 rounded-sm bg-[#888888]/70" /><span className="text-[9px] text-[#666666]">Best</span></div>
             </div>
           </div>
@@ -621,7 +621,7 @@ function ChannelDetailView({ channel, onBack }: {
       {/* 6. COMMAND CENTER */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-          <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Command Center
+          <Target className="w-3.5 h-3.5 text-[#F6A828]" /> Command Center
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {quickTools.map((tool) => <ToolCard key={tool.toolId} {...tool} />)}
@@ -631,7 +631,7 @@ function ChannelDetailView({ channel, onBack }: {
       {/* 7. ACTIVITY FEED */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-3">
-          <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Recent Activity
+          <Activity className="w-3.5 h-3.5 text-[#F6A828]" /> Recent Activity
         </h3>
         <div className="divide-y divide-[#1A1A1A]">
           {activityFeed.map((item, i) => <ActivityItem key={i} {...item} />)}
@@ -713,7 +713,7 @@ function BulkCustomizeTab() {
             <button key={ch.id} onClick={() => toggleChannel(ch.id)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all text-left ${selectedIds.has(ch.id) ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)]'}`}>
               {selectedIds.has(ch.id) ? <CheckCircle className="w-4 h-4 text-[#888888] shrink-0" /> : <CircleDot className="w-4 h-4 text-[#666666] shrink-0" />}
-              <div className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0" style={{ backgroundColor: ch.avatar ? 'transparent' : '#FDBA2D20', color: '#FDBA2D' }}>
+              <div className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0" style={{ backgroundColor: ch.avatar ? 'transparent' : '#F6A82820', color: '#F6A828' }}>
                 {ch.avatar ? <img src={ch.avatar} alt="" className="w-6 h-6 rounded-full object-cover" /> : ch.title.charAt(0)}
               </div>
               <span className={`text-[11px] font-medium truncate ${selectedIds.has(ch.id) ? 'text-[#FFFFFF]' : 'text-[#a0a0a0]'}`}>{ch.title}</span>
@@ -727,32 +727,32 @@ function BulkCustomizeTab() {
         {/* Brand Voice */}
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
           <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-            <Mic className="w-3.5 h-3.5 text-[#FDBA2D]" /> Voice & Tone
+            <Mic className="w-3.5 h-3.5 text-[#F6A828]" /> Voice & Tone
           </h3>
           <div className="space-y-4">
             <div>
               <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Brand Voice</label>
               <input type="text" value={brandVoice} onChange={(e) => setBrandVoice(e.target.value)} placeholder="e.g. Witty, data-driven, approachable"
-                className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors" />
+                className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors" />
             </div>
             <div>
               <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Tone</label>
               <select value={tone} onChange={(e) => setTone(e.target.value)}
-                className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer">
+                className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer">
                 {TONES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
               </select>
             </div>
             <div>
               <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Language</label>
               <select value={language} onChange={(e) => setLanguage(e.target.value)}
-                className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer">
+                className="w-full h-10 px-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer">
                 {LANGUAGES.map((l) => <option key={l} value={l}>{l}</option>)}
               </select>
             </div>
             <div>
               <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Target Audience</label>
               <input type="text" value={audience} onChange={(e) => setAudience(e.target.value)} placeholder="e.g. 18-35 tech enthusiasts"
-                className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors" />
+                className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors" />
             </div>
           </div>
         </div>
@@ -761,12 +761,12 @@ function BulkCustomizeTab() {
         <div className="space-y-5">
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-              <Target className="w-3.5 h-3.5 text-[#FDBA2D]" /> Goals
+              <Target className="w-3.5 h-3.5 text-[#F6A828]" /> Goals
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {GOALS.map((g) => (
                 <button key={g} onClick={() => toggleGoal(g)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${goals.includes(g) ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${goals.includes(g) ? 'bg-[rgba(246,168,40,0.15)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
                   {g}
                 </button>
               ))}
@@ -774,7 +774,7 @@ function BulkCustomizeTab() {
           </div>
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-              <Tag className="w-3.5 h-3.5 text-[#FDBA2D]" /> Content Types
+              <Tag className="w-3.5 h-3.5 text-[#F6A828]" /> Content Types
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {CONTENT_TYPES.map((ct) => (
@@ -791,7 +791,7 @@ function BulkCustomizeTab() {
       {/* Keywords & Instructions */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2 mb-4">
-          <Wand2 className="w-3.5 h-3.5 text-[#FDBA2D]" /> Keywords & Custom Instructions
+          <Wand2 className="w-3.5 h-3.5 text-[#F6A828]" /> Keywords & Custom Instructions
         </h3>
         <div className="space-y-4">
           <div>
@@ -801,7 +801,7 @@ function BulkCustomizeTab() {
           <div>
             <label className="text-xs font-medium text-[#a0a0a0] mb-1.5 block">Custom Instructions</label>
             <textarea value={customInstructions} onChange={(e) => setCustomInstructions(e.target.value)} rows={4} placeholder="Additional instructions for the AI assistant specific to these channels..."
-              className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors resize-none" />
+              className="w-full px-4 py-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors resize-none" />
           </div>
         </div>
       </div>
@@ -851,7 +851,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <StatCard icon={Users} label="Total Channels" value={String(agencyChannels.length)} color="#888888" sub="In agency" />
         <StatCard icon={Bot} label="Configured Agents" value={String(configured)} color="#888888" sub="Ready to work" />
-        <StatCard icon={AlertTriangle} label="Unconfigured" value={String(agencyChannels.length - configured)} color="#FDBA2D" sub="Need setup" />
+        <StatCard icon={AlertTriangle} label="Unconfigured" value={String(agencyChannels.length - configured)} color="#F6A828" sub="Need setup" />
       </div>
 
       {/* Bulk actions */}
@@ -876,7 +876,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
                 {ch.avatar ? (
                   <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]" />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">
                     {ch.title.charAt(0)}
                   </div>
                 )}
@@ -888,7 +888,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
                         <CheckCircle2 className="w-3 h-3" /> Configured
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 text-[10px] font-bold text-[#FDBA2D]">
+                      <span className="flex items-center gap-1 text-[10px] font-bold text-[#F6A828]">
                         <AlertTriangle className="w-3 h-3" /> Not Configured
                       </span>
                     )}
@@ -920,7 +920,7 @@ function AIAgentsTab({ onSwitchToCustomize, onViewChannel }: { onSwitchToCustomi
                   <Settings2 className="w-3 h-3 inline mr-1" />Configure
                 </button>
                 <button onClick={() => setActiveTool('audit')}
-                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-[10px] font-bold hover:bg-[rgba(253,186,45,0.2)] transition-colors text-center">
+                  className="flex-1 px-2.5 py-1.5 rounded-md bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] text-[#F6A828] text-[10px] font-bold hover:bg-[rgba(246,168,40,0.2)] transition-colors text-center">
                   <ClipboardCheck className="w-3 h-3 inline mr-1" />Audit
                 </button>
                 <button onClick={() => onViewChannel(ch.id)}
@@ -1090,7 +1090,7 @@ export function AgencyDashboardTool() {
               </div>
             </div>
             <button onClick={() => setActiveTool('audit')}
-              className="px-3.5 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-xs font-bold hover:bg-[#C69320] transition-colors flex items-center gap-1.5">
+              className="px-3.5 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-xs font-bold hover:bg-[#FFB340] transition-colors flex items-center gap-1.5">
               <Plus className="w-3.5 h-3.5" /> Add Channel
             </button>
           </div>
@@ -1124,7 +1124,7 @@ export function AgencyDashboardTool() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <StatCard icon={Users} label="Fleet Size" value={String(channelCount)} color="#888888" sub="Active clients" />
         <StatCard icon={Eye} label="Total Views/mo" value={fmtV(totalViews)} color="#888888" sub="Across fleet" />
-        <StatCard icon={DollarSign} label="Fleet Revenue" value={`$${totalRevenue.toLocaleString()}`} color="#FDBA2D" sub="Monthly total" />
+        <StatCard icon={DollarSign} label="Fleet Revenue" value={`$${totalRevenue.toLocaleString()}`} color="#F6A828" sub="Monthly total" />
         <StatCard icon={BarChart3} label="Avg Health" value={`${avgHealth}`} color="#888888" sub={avgHealth >= 85 ? 'Excellent' : 'Good'} />
         <StatCard icon={Signal} label="Active Signals" value={String(MOCK_SIGNALS.filter((s) => s.priority === 'high').length)} color="#888888" sub="High priority" />
       </div>
@@ -1164,17 +1164,17 @@ export function AgencyDashboardTool() {
                 const areaPath = `${linePath} L ${pts[pts.length - 1].x} ${h - pb} L ${pts[0].x} ${h - pb} Z`;
                 return (
                   <svg viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxHeight: 160 }}>
-                    <defs><linearGradient id="roi-area-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#FDBA2D" stopOpacity="0.4" /><stop offset="100%" stopColor="#FDBA2D" stopOpacity="0" /></linearGradient></defs>
+                    <defs><linearGradient id="roi-area-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#F6A828" stopOpacity="0.4" /><stop offset="100%" stopColor="#F6A828" stopOpacity="0" /></linearGradient></defs>
                     {data.map((v) => <line key={v} x1={px} y1={getY(v)} x2={w - 10} y2={getY(v)} stroke="#0f0f0f" strokeWidth="1" />)}
                     <path d={areaPath} fill="url(#roi-area-gradient)" />
-                    <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    {pts.map((pt, i) => <circle key={i} cx={pt.x} cy={pt.y} r="4" fill="#FDBA2D" style={{ filter: 'drop-shadow(0 0 4px rgba(253,186,45,0.6))' }} />)}
+                    <path d={linePath} fill="none" stroke="#F6A828" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    {pts.map((pt, i) => <circle key={i} cx={pt.x} cy={pt.y} r="4" fill="#F6A828" style={{ filter: 'drop-shadow(0 0 4px rgba(246,168,40,0.6))' }} />)}
                     {months.map((m, i) => <text key={m} x={getX(i)} y={h - 4} textAnchor="middle" fill="#666666" fontSize="9" fontFamily="sans-serif">{m}</text>)}
                   </svg>
                 );
               })()}
               <div className="flex items-center gap-4 mt-4 pt-3 border-t border-[#1A1A1A]">
-                <div className="flex items-center gap-1.5 text-[10px] text-[#666666]"><div className="w-2 h-2 rounded-full bg-[#FDBA2D]" /><span>Current: $96K</span></div>
+                <div className="flex items-center gap-1.5 text-[10px] text-[#666666]"><div className="w-2 h-2 rounded-full bg-[#F6A828]" /><span>Current: $96K</span></div>
                 <div className="flex items-center gap-1.5 text-[10px] text-[#888888]"><ArrowUpRight className="w-3 h-3" /><span className="font-semibold">+17.1% MoM</span></div>
               </div>
             </div>
@@ -1209,7 +1209,7 @@ export function AgencyDashboardTool() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
                     <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Views/mo</p><p className="text-xs font-semibold text-[#FFFFFF]">{fmtV(chMonthlyViews)}</p></div>
                     <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Revenue</p><p className="text-xs font-semibold text-[#888888]">${chMonthlyRevenue.toLocaleString()}</p></div>
-                    <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#FDBA2D]">${chCpm > 0 ? chCpm.toFixed(2) : 'N/A'}</p></div>
+                    <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#F6A828]">${chCpm > 0 ? chCpm.toFixed(2) : 'N/A'}</p></div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="px-2 py-0.5 rounded-full text-[9px] font-medium border" style={{ backgroundColor: `${si.color}10`, color: si.color, borderColor: `${si.color}25` }}>{si.label}</span>
@@ -1236,7 +1236,7 @@ export function AgencyDashboardTool() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-1.5"><MonitorPlay className="w-4 h-4 text-[#888888]" /> Managed Channels <span className="text-[10px] text-[#666666] font-normal ml-1">{channelCount} total</span></h3>
-              <button onClick={() => setActiveTool('audit')} className="px-3.5 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-xs font-bold hover:bg-[#C69320] transition-colors flex items-center gap-1.5">
+              <button onClick={() => setActiveTool('audit')} className="px-3.5 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-xs font-bold hover:bg-[#FFB340] transition-colors flex items-center gap-1.5">
                 <Plus className="w-3.5 h-3.5" /> Add from Audit
               </button>
             </div>
@@ -1248,7 +1248,7 @@ export function AgencyDashboardTool() {
                 </div>
                 <h2 className="text-xl font-bold text-[#FFFFFF] mb-2">No Channels Added Yet</h2>
                 <p className="text-sm text-[#a0a0a0] max-w-md text-center leading-relaxed mb-6">Run a Channel Audit to add client channels. Each channel gets a full analytics dashboard with AI insights, growth tracking, and personalized recommendations.</p>
-                <button onClick={() => setActiveTool('audit')} className="px-6 py-3 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors flex items-center gap-2 shadow-lg shadow-[rgba(253,186,45,0.12)]">
+                <button onClick={() => setActiveTool('audit')} className="px-6 py-3 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors flex items-center gap-2 shadow-lg shadow-[rgba(246,168,40,0.12)]">
                   <ClipboardCheck className="w-4 h-4" /> Go to Channel Audit
                 </button>
               </div>
@@ -1263,7 +1263,7 @@ export function AgencyDashboardTool() {
                           {ch.avatar ? (
                             <img src={ch.avatar} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]" />
                           ) : (
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">{ch.title.charAt(0)}</div>
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center text-sm font-bold text-[#0a0a0a]">{ch.title.charAt(0)}</div>
                           )}
                           <div>
                             <div className="flex items-center gap-2"><p className="text-sm font-semibold text-[#FFFFFF]">{ch.title}</p><StatusRingDot status={ch.status} /></div>
@@ -1275,7 +1275,7 @@ export function AgencyDashboardTool() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-3">
                         <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Views/mo</p><p className="text-xs font-semibold text-[#FFFFFF]">{fmtV(ch.monthlyViews)}</p></div>
                         <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">Revenue</p><p className="text-xs font-semibold text-[#888888]">${ch.monthlyRevenue.toLocaleString()}</p></div>
-                        <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#FDBA2D]">${ch.cpm.toFixed(2)}</p></div>
+                        <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-2 py-1.5 text-center"><p className="text-[9px] text-[#666666]">CPM</p><p className="text-xs font-semibold text-[#F6A828]">${ch.cpm.toFixed(2)}</p></div>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="px-2 py-0.5 rounded-full text-[9px] font-medium border" style={{ backgroundColor: `${si.color}10`, color: si.color, borderColor: `${si.color}25` }}>{si.label}</span>
@@ -1309,7 +1309,7 @@ export function AgencyDashboardTool() {
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-1.5"><Signal className="w-4 h-4 text-[#888888]" /> Intelligence Signals <span className="text-[10px] text-[#666666] font-normal ml-1">{MOCK_SIGNALS.length} active</span></h3>
             <div className="flex items-center gap-1.5">
               <span className="px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#888888]">{MOCK_SIGNALS.filter((s) => s.priority === 'high').length} HIGH</span>
-              <span className="px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#FDBA2D]">{MOCK_SIGNALS.filter((s) => s.priority === 'medium').length} MED</span>
+              <span className="px-2 py-0.5 rounded-full bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] text-[9px] font-bold text-[#F6A828]">{MOCK_SIGNALS.filter((s) => s.priority === 'medium').length} MED</span>
             </div>
           </div>
           <div ref={signalQueueRef} className="space-y-2 max-h-[500px] overflow-y-auto">
@@ -1325,7 +1325,7 @@ export function AgencyDashboardTool() {
                         <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold flex-shrink-0" style={{ backgroundColor: `${signal.clientColor}20`, color: signal.clientColor }}>{signal.clientInitials}</div>
                         <span className="text-[11px] font-semibold text-[#FFFFFF]">{signal.client}</span>
                         <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: `${typeInfo.color}15`, color: typeInfo.color }}>{typeInfo.label}</span>
-                        <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: signal.priority === 'high' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.1)', color: signal.priority === 'high' ? '#888888' : '#FDBA2D' }}>{signal.priority.toUpperCase()}</span>
+                        <span className="px-1.5 py-0.5 rounded text-[8px] font-bold" style={{ backgroundColor: signal.priority === 'high' ? 'rgba(0,0,0,0)' : 'rgba(246,168,40,0.1)', color: signal.priority === 'high' ? '#888888' : '#F6A828' }}>{signal.priority.toUpperCase()}</span>
                       </div>
                       <p className="text-xs text-[#AAAAAA] leading-relaxed mb-1.5">{signal.message}</p>
                       <span className="text-[10px] text-[#666666] flex items-center gap-1"><Clock className="w-2.5 h-2.5" /> {timeAgo(signal.time)}</span>
@@ -1347,14 +1347,14 @@ export function AgencyDashboardTool() {
           {/* Tactical Briefing */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 py-3 border-b border-[#1A1A1A]">
-              <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5"><Radar className="w-3.5 h-3.5 text-[#FDBA2D]" /> Tactical Briefing</h3>
+              <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5"><Radar className="w-3.5 h-3.5 text-[#F6A828]" /> Tactical Briefing</h3>
             </div>
             <div className="p-5">
               <p className="text-xs text-[#a0a0a0] mb-4">Generate a comprehensive tactical intelligence briefing for your entire fleet. Includes competitor analysis, signal arbitrage mapping, and content funnel optimization.</p>
               {!briefingLoading && !briefingComplete && (
                 <button onClick={() => { setBriefingComplete(false); setBriefingLoading(true); setBriefingStep(0); setBriefingProgress(0); }}
                   className="px-5 py-3 rounded-lg text-sm font-bold transition-all flex items-center gap-2 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
-                  style={{ background: 'linear-gradient(135deg, #FDBA2D, #E09100)', color: '#1A1A1A' }}>
+                  style={{ background: 'linear-gradient(135deg, #F6A828, #E09100)', color: '#1A1A1A' }}>
                   <Radar className="w-4 h-4" /> Generate Tactical Briefing
                 </button>
               )}
@@ -1363,9 +1363,9 @@ export function AgencyDashboardTool() {
                   <div className="relative mb-6" style={{ width: 80, height: 80 }}>
                     <svg width="80" height="80" viewBox="0 0 80 80" className="animate-spin" style={{ animationDuration: '2s' }}>
                       <circle cx="40" cy="40" r="35" fill="none" stroke="#1A1A1A" strokeWidth="4" />
-                      <circle cx="40" cy="40" r="35" fill="none" stroke="#FDBA2D" strokeWidth="4" strokeDasharray={`${briefingProgress * 2.2} 220`} strokeLinecap="round" />
+                      <circle cx="40" cy="40" r="35" fill="none" stroke="#F6A828" strokeWidth="4" strokeDasharray={`${briefingProgress * 2.2} 220`} strokeLinecap="round" />
                     </svg>
-                    <div className="absolute inset-0 flex items-center justify-center"><span className="text-sm font-bold text-[#FDBA2D]">{briefingProgress}%</span></div>
+                    <div className="absolute inset-0 flex items-center justify-center"><span className="text-sm font-bold text-[#F6A828]">{briefingProgress}%</span></div>
                   </div>
                   <p className="text-xs text-[#a0a0a0]">{['Analyzing Competitor DNA...', 'Mapping Signal Arbitrage...', 'Scanning Content Funnels...', 'Compiling Intelligence Matrix...', 'Generating Tactical Brief...'][briefingStep]}</p>
                 </div>
@@ -1384,13 +1384,13 @@ export function AgencyDashboardTool() {
 
           {/* What-If Projection */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
-            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><TrendingUp className="w-3.5 h-3.5 text-[#FDBA2D]" /> What-If Projection</h3>
+            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><TrendingUp className="w-3.5 h-3.5 text-[#F6A828]" /> What-If Projection</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-[#a0a0a0]">Increase upload frequency by</span>
-                <span className="text-sm font-bold text-[#FDBA2D]">{whatIfPercent}%</span>
+                <span className="text-sm font-bold text-[#F6A828]">{whatIfPercent}%</span>
               </div>
-              <input type="range" min={0} max={100} value={whatIfPercent} onChange={(e) => setWhatIfPercent(Number(e.target.value))} className="w-full accent-[#FDBA2D]" />
+              <input type="range" min={0} max={100} value={whatIfPercent} onChange={(e) => setWhatIfPercent(Number(e.target.value))} className="w-full accent-[#F6A828]" />
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-3">
                 <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-center">
                   <p className="text-[9px] text-[#666666]">Projected Views</p>
@@ -1402,7 +1402,7 @@ export function AgencyDashboardTool() {
                 </div>
                 <div className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-center">
                   <p className="text-[9px] text-[#666666]">Health Impact</p>
-                  <p className="text-sm font-bold text-[#FDBA2D]">+{Math.round(whatIfPercent * 0.12)}</p>
+                  <p className="text-sm font-bold text-[#F6A828]">+{Math.round(whatIfPercent * 0.12)}</p>
                 </div>
               </div>
             </div>
@@ -1441,7 +1441,7 @@ export function AgencyDashboardTool() {
                   <div key={report.id} className="flex items-center gap-3 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                     <div className={`p-2 rounded-md ${badge.bg}`}><span className={badge.text}>{badge.icon}</span></div>
                     <div className="flex-1 min-w-0"><p className="text-xs font-semibold text-[#FFFFFF]">{report.name}</p><p className="text-[10px] text-[#666666]">{report.client} · {new Date(report.date).toLocaleDateString()}</p></div>
-                    <button onClick={() => showToast('Report downloaded', 'success')} className="p-1.5 rounded-md text-[#666666] hover:text-[#FDBA2D] transition-colors"><Download className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => showToast('Report downloaded', 'success')} className="p-1.5 rounded-md text-[#666666] hover:text-[#F6A828] transition-colors"><Download className="w-3.5 h-3.5" /></button>
                   </div>
                 );
               })}
@@ -1450,7 +1450,7 @@ export function AgencyDashboardTool() {
 
           {/* Team Activity */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
-            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /> Team Activity</h3>
+            <h3 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-4"><Activity className="w-3.5 h-3.5 text-[#F6A828]" /> Team Activity</h3>
             <div className="space-y-2">
               {MOCK_ACTIVITY.map((activity) => (
                 <div key={activity.id} className="flex items-center gap-3 p-2.5 rounded-md hover:bg-[#0a0a0a] transition-colors">
@@ -1470,7 +1470,7 @@ export function AgencyDashboardTool() {
               <UserPlus className="w-5 h-5 text-[#888888]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Add Client</span>
             </button>
             <button onClick={() => showToast('Bulk report generated', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors flex flex-col items-center gap-2">
-              <FolderOutput className="w-5 h-5 text-[#FDBA2D]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Bulk Report</span>
+              <FolderOutput className="w-5 h-5 text-[#F6A828]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Bulk Report</span>
             </button>
             <button onClick={() => showToast('Data exported', 'success')} className="p-4 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors flex flex-col items-center gap-2">
               <Download className="w-5 h-5 text-[#888888]" /><span className="text-[11px] font-medium text-[#a0a0a0]">Export Data</span>

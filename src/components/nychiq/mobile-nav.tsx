@@ -32,13 +32,13 @@ export function MobileNav() {
               }}
               className={cn(
                 'relative flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-lg transition-colors',
-                isActive ? 'text-[#FDBA2D]' : 'text-[#666666]'
+                isActive ? 'text-[#F6A828]' : 'text-[#666666]'
               )}
             >
               <Icon className={cn('w-5 h-5', isActive && 'drop-shadow-[rgba(0,0,0,0.3)]')} />
               <span className="text-[10px] font-medium">{tab.label}</span>
               {isActive && (
-                <span className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-[#FDBA2D]" />
+                <span className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-[#F6A828]" />
               )}
             </button>
           );

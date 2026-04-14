@@ -85,13 +85,13 @@ function ShortsCard({ video }: { video: VideoData }) {
           <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center"><Play className="w-8 h-8 text-[#444]" /></div>
         )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full bg-[#FDBA2D]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-75 group-hover:scale-100">
+          <div className="w-12 h-12 rounded-full bg-[#F6A828]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-75 group-hover:scale-100">
             <Play className="w-5 h-5 text-white fill-white ml-0.5" />
           </div>
         </div>
         {video.viralScore && video.viralScore >= 70 && (
           <span className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
-            {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#888888]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#FDBA2D]">HOT</span></>)}
+            {video.viralScore >= 85 ? (<><span>🔥</span><span className="text-[#888888]">VIRAL</span></>) : (<><span>⚡</span><span className="text-[#F6A828]">HOT</span></>)}
           </span>
         )}
         <button onClick={(e) => { e.stopPropagation(); handleCopyUrl(); }} className="absolute top-2 left-2 z-20 p-1 rounded-md bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/80 focus:outline-none" aria-label="Copy video link"><Link2 className="w-3.5 h-3.5 text-white" /></button>
@@ -118,7 +118,7 @@ function ShortsCard({ video }: { video: VideoData }) {
         </DropdownMenu>
       </div>
       <div className="p-3">
-        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">{video.title}</h3>
+        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#F6A828] transition-colors leading-snug">{video.title}</h3>
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-center gap-2 text-[11px] text-[#666666]"><Eye className="w-3 h-3" />{fmtV(video.viewCount || 0)}</div>
           {vs && (<span className={cn('text-[10px] font-bold px-1.5 py-0.5 rounded-full', scoreClass(video.viralScore ?? 0))}>{video.viralScore ?? 0}</span>)}
@@ -246,7 +246,7 @@ export function ShortsTool() {
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Zap className="w-5 h-5 text-[#FDBA2D]" /></div>
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><Zap className="w-5 h-5 text-[#F6A828]" /></div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF] flex items-center gap-2">
                   Trending Shorts
@@ -271,7 +271,7 @@ export function ShortsTool() {
                 className={cn(
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   sortBy === s.key
-                    ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
+                    ? 'bg-[#F6A828]/15 text-[#F6A828] border border-[#F6A828]/30'
                     : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                 )}
               >
@@ -287,7 +287,7 @@ export function ShortsTool() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         <StatCard label="Shorts Found" value={videos.length} change="↑ 8%" color="#888888" dark icon={<Flame className="w-4 h-4" />} />
         <StatCard label="Total Views" value={fmtV(totalViews)} color="#888888" dark icon={<Eye className="w-4 h-4" />} />
-        <StatCard label="Top Viral Score" value={topViral || '—'} color="#FDBA2D" dark icon={<Zap className="w-4 h-4" />} />
+        <StatCard label="Top Viral Score" value={topViral || '—'} color="#F6A828" dark icon={<Zap className="w-4 h-4" />} />
       </div>
 
       {/* Error State */}
@@ -295,7 +295,7 @@ export function ShortsTool() {
         <div className="rounded-lg bg-[#0f0f0f] border border-[#888888]/30 p-6 text-center">
           <AlertCircle className="w-8 h-8 text-[#888888] mx-auto mb-2" />
           <p className="text-sm text-[#FFFFFF]">{error}</p>
-          <button onClick={fetchShorts} className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors">Try Again</button>
+          <button onClick={fetchShorts} className="mt-3 px-4 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors">Try Again</button>
         </div>
       )}
 
@@ -320,8 +320,8 @@ export function ShortsTool() {
       {/* Empty State */}
       {!loading && !error && sortedVideos.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Zap className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Zap className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Shorts Found</h3>
           <p className="text-sm text-[#a0a0a0]">No trending shorts data available right now.</p>

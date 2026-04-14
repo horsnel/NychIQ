@@ -17,7 +17,7 @@ const PLAN_COLORS: Record<Plan, string> = {
   starter: 'text-[#a0a0a0]',
   pro: 'text-[#888888]',
   elite: 'text-[#888888]',
-  agency: 'text-[#FDBA2D]',
+  agency: 'text-[#F6A828]',
 };
 
 /* ── Plan hierarchy (lowest to highest) ── */
@@ -44,7 +44,7 @@ function getUpsellBadge(toolId: string, userPlan: Plan): BadgeInfo {
 
   switch (minPlan) {
     case 'starter': return { text: 'NEW', color: '#888888' };
-    case 'pro':     return { text: 'PRO+', color: '#FDBA2D' };
+    case 'pro':     return { text: 'PRO+', color: '#F6A828' };
     case 'elite':   return { text: 'ELITE+', color: '#888888' };
     case 'agency':  return { text: 'AGENCY', color: '#888888' };
     default:        return null;
@@ -71,7 +71,7 @@ export function Sidebar() {
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b border-[rgba(255,255,255,0.03)]">
-        <div className="w-10 h-10 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-[5px] bg-[#F6A828] flex items-center justify-center shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <path d="M10 6L18 12L10 18V6Z" fill="white"/>
             <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
@@ -79,7 +79,7 @@ export function Sidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-base font-black tracking-[2.5px] uppercase leading-none" style={{ color: '#FFFFFF' }}>
-            NY<span className="text-[#FDBA2D]">CHIQ</span>
+            NY<span className="text-[#F6A828]">CHIQ</span>
           </span>
           <span className="text-[9px] text-[#a0a0a0] tracking-[1.5px] uppercase mt-1 leading-none">YouTube Intelligence</span>
         </div>
@@ -130,11 +130,11 @@ export function Sidebar() {
                       className={cn(
                         'flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-all duration-150',
                         isActive
-                          ? 'sidebar-active bg-[rgba(253,186,45,0.08)] text-[#FDBA2D]'
+                          ? 'sidebar-active bg-[rgba(246,168,40,0.08)] text-[#F6A828]'
                           : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.04)]'
                       )}
                     >
-                      <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#FDBA2D]' : '')} />
+                      <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F6A828]' : '')} />
                       <span className="truncate">{tool.label}</span>
                       {!hasAccess && (() => {
                         const badge = getUpsellBadge(toolId, userPlan);

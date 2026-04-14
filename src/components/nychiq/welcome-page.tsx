@@ -19,8 +19,8 @@ const FEATURES = [
     name: 'Command Center',
     desc: 'Your complete YouTube analytics hub with real-time stats, activity feed, and quick actions.',
     tag: 'ALL PLANS',
-    tagColor: '#FDBA2D',
-    iconBg: '#FDBA2D',
+    tagColor: '#F6A828',
+    iconBg: '#F6A828',
   },
   {
     num: '02',
@@ -39,7 +39,7 @@ const FEATURES = [
     name: 'Universal Search',
     desc: 'Search millions of videos, shorts, and channels with AI-enhanced result ranking.',
     tag: 'ALL PLANS',
-    tagColor: '#FDBA2D',
+    tagColor: '#F6A828',
     iconBg: '#888888',
   },
   {
@@ -50,7 +50,7 @@ const FEATURES = [
     desc: 'AI-powered viral prediction that analyzes titles, thumbnails, timing, and engagement patterns.',
     tag: 'AI POWERED',
     tagColor: '#888888',
-    iconBg: '#FDBA2D',
+    iconBg: '#F6A828',
   },
   {
     num: '05',
@@ -100,7 +100,7 @@ const FEATURES = [
     desc: 'Find high-volume, low-competition keywords specific to YouTube search.',
     tag: 'AI POWERED',
     tagColor: '#888888',
-    iconBg: '#FDBA2D',
+    iconBg: '#F6A828',
   },
   {
     num: '10',
@@ -120,7 +120,7 @@ const FEATURES = [
     desc: 'Get unlimited content ideas based on trending topics, your niche, and audience data.',
     tag: 'AI POWERED',
     tagColor: '#888888',
-    iconBg: '#FDBA2D',
+    iconBg: '#F6A828',
   },
   {
     num: '12',
@@ -180,7 +180,7 @@ const FEATURES = [
     desc: 'Set up automated monitoring, alerts, and reporting for your channels.',
     tag: 'PRO+',
     tagColor: '#888888',
-    iconBg: '#FDBA2D',
+    iconBg: '#F6A828',
   },
 ];
 
@@ -250,10 +250,10 @@ function TerminalLine({ text, color, delay }: { text: string; color: string; del
   if (!visible) return null;
   return (
     <div className="font-mono text-xs" style={{ color }}>
-      <span className="text-[#FDBA2D]">▸ </span>
+      <span className="text-[#F6A828]">▸ </span>
       {textVisible}
       {textVisible.length < text.length && (
-        <span className="inline-block w-1.5 h-3.5 bg-[#FDBA2D] ml-0.5 animate-pulse" />
+        <span className="inline-block w-1.5 h-3.5 bg-[#F6A828] ml-0.5 animate-pulse" />
       )}
     </div>
   );
@@ -285,7 +285,7 @@ export function WelcomePage() {
     <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(253,186,45,0.02)] blur-[100px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(246,168,40,0.02)] blur-[100px]" />
       <div className="absolute top-[40%] right-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.03)] blur-[80px]" />
 
       <div className="relative z-10">
@@ -304,13 +304,13 @@ export function WelcomePage() {
                 onClick={() => setPage('welcome')}
                 className="flex items-center gap-2.5 group"
               >
-                <div className="w-9 h-9 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.12)] group-hover:shadow-[rgba(253,186,45,0.12)] transition-shadow">
+                <div className="w-9 h-9 rounded-[5px] bg-[#F6A828] flex items-center justify-center shadow-lg shadow-[rgba(246,168,40,0.12)] group-hover:shadow-[rgba(246,168,40,0.12)] transition-shadow">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M10 6L18 12L10 18V6Z" fill="white"/>
                     <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                   </svg>
                 </div>
-                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+                <span className="text-xl font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
               </button>
 
               {/* Center links - desktop */}
@@ -351,7 +351,7 @@ export function WelcomePage() {
                   Sign In
                 </Button>
                 <Button
-                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] text-sm font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                  className="bg-[#F6A828] text-black hover:bg-[#FFB340] text-sm font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
                   onClick={() => setPage('login')}
                 >
                   Get Started
@@ -407,7 +407,7 @@ export function WelcomePage() {
                     Sign In
                   </Button>
                   <Button
-                    className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold"
+                    className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] font-semibold"
                     onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
                   >
                     Get Started <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -459,7 +459,7 @@ export function WelcomePage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
-                  className="bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold px-8 h-12 shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                  className="bg-[#F6A828] text-black hover:bg-[#FFB340] font-semibold px-8 h-12 shadow-lg shadow-[rgba(246,168,40,0.12)] hover:shadow-[rgba(246,168,40,0.3)] transition-all"
                   onClick={() => setPage('login')}
                 >
                   Start free trial
@@ -479,13 +479,13 @@ export function WelcomePage() {
 
             {/* Right column — Dashboard mockup */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(253,186,45,0.06)] to-[rgba(34,197,94,0.1)] rounded-2xl blur-2xl" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(246,168,40,0.06)] to-[rgba(34,197,94,0.1)] rounded-2xl blur-2xl" />
               <div className="relative bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] rounded-xl overflow-hidden shadow-2xl">
                 {/* Browser bar */}
                 <div className="flex items-center gap-3 px-4 py-3 bg-[#0f0f0f] border-b border-[rgba(255,255,255,0.03)]">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-[#888888]" />
-                    <div className="w-3 h-3 rounded-full bg-[#FDBA2D]" />
+                    <div className="w-3 h-3 rounded-full bg-[#F6A828]" />
                     <div className="w-3 h-3 rounded-full bg-[#888888]" />
                   </div>
                   <div className="flex-1 flex items-center gap-2 bg-[#0a0a0a] rounded-md px-3 py-1.5">
@@ -508,7 +508,7 @@ export function WelcomePage() {
                 {/* Play button overlay */}
                 <div className="relative -mt-2 flex justify-center pb-4">
                   <button
-                    className="w-14 h-14 rounded-full bg-[#FDBA2D] flex items-center justify-center shadow-lg shadow-[rgba(253,186,45,0.12)] hover:scale-105 transition-transform animate-glow-amber"
+                    className="w-14 h-14 rounded-full bg-[#F6A828] flex items-center justify-center shadow-lg shadow-[rgba(246,168,40,0.12)] hover:scale-105 transition-transform animate-glow-amber"
                     onClick={() => setPage('login')}
                   >
                     <Play className="w-6 h-6 text-black fill-black ml-1" />
@@ -527,7 +527,7 @@ export function WelcomePage() {
                       key={stat.label}
                       className="px-3 py-3 border-r border-[rgba(255,255,255,0.03)] last:border-r-0 text-center"
                     >
-                      <div className="text-xs font-bold text-[#FFFFFF]">{stat.value}</div>
+                      <div className="text-xs font-bold text-[#F6A828]" style={{ textShadow: '0 0 10px rgba(246, 168, 40, 0.4)' }}>{stat.value}</div>
                       <div className="text-[10px] text-[#555] mt-0.5">{stat.label}</div>
                     </div>
                   ))}
@@ -580,7 +580,7 @@ export function WelcomePage() {
                     <feat.icon className="w-4.5 h-4.5" style={{ color: feat.iconBg }} />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors">
+                    <h3 className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors">
                       {feat.name}
                     </h3>
                   </div>
@@ -592,7 +592,7 @@ export function WelcomePage() {
                 </p>
 
                 {/* Hover arrow */}
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] group-hover:text-[#FDBA2D] transition-colors">
+                <div className="mt-3 flex items-center gap-1 text-[10px] text-[#444] group-hover:text-[#F6A828] transition-colors">
                   <span>Learn more</span>
                   <ChevronRight className="w-3 h-3" />
                 </div>
@@ -617,13 +617,13 @@ export function WelcomePage() {
                 key={plan.tier}
                 className={`relative rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 ${
                   plan.highlight
-                    ? 'bg-[#0a0a0a] border-2 border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
+                    ? 'bg-[#0a0a0a] border-2 border-[#F6A828] shadow-lg shadow-[rgba(246,168,40,0.12)]'
                     : 'bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]'
                 }`}
               >
                 {/* Badge */}
                 {plan.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#FDBA2D] text-black text-[10px] font-bold rounded-full tracking-wide shadow-md">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#F6A828] text-black text-[10px] font-bold rounded-full tracking-wide shadow-md">
                     {plan.badge}
                   </div>
                 )}
@@ -653,7 +653,7 @@ export function WelcomePage() {
                 <Button
                   className={`w-full font-semibold text-sm ${
                     plan.highlight
-                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] shadow-md shadow-[rgba(253,186,45,0.12)]'
+                      ? 'bg-[#F6A828] text-black hover:bg-[#FFB340] shadow-md shadow-[rgba(246,168,40,0.12)]'
                       : 'bg-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)]'
                   }`}
                   onClick={() => setPage('login')}
@@ -673,13 +673,13 @@ export function WelcomePage() {
               {/* Brand */}
               <div className="col-span-2 sm:col-span-1">
                 <button onClick={() => setPage('welcome')} className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-[5px] bg-[#FDBA2D] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-[5px] bg-[#F6A828] flex items-center justify-center">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                       <path d="M10 6L18 12L10 18V6Z" fill="white"/>
                       <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
                     </svg>
                   </div>
-                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+                  <span className="text-lg font-black tracking-[2px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
                 </button>
                 <p className="text-xs text-[#555] leading-relaxed max-w-[200px]">
                   AI-powered YouTube intelligence platform for creators who want to grow faster and smarter.

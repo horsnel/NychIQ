@@ -134,8 +134,8 @@ function generateDailyInsights(): DailyInsightItem[] {
   insights.push({
     id: 'growth-1',
     icon: <Lightbulb className="w-4 h-4" />,
-    iconColor: '#FDBA2D',
-    iconBg: 'rgba(253,186,45,0.1)',
+    iconColor: '#F6A828',
+    iconBg: 'rgba(246,168,40,0.1)',
     borderColor: 'rgba(255,255,255,0.03)',
     title: growthItem.title,
     description: growthItem.description,
@@ -236,7 +236,7 @@ export function SakuDailyPopup() {
               className={cn(
                 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider',
                 currentInsight.priority === 'urgent' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
-                currentInsight.priority === 'high' && 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]',
+                currentInsight.priority === 'high' && 'bg-[rgba(246,168,40,0.15)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]',
                 currentInsight.priority === 'medium' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
                 currentInsight.priority === 'info' && 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]',
               )}
@@ -319,7 +319,7 @@ export function SakuDailyPopup() {
               <span className="text-xs text-[#a0a0a0] group-hover:text-[#FFFFFF] transition-colors">
                 Open {currentInsight.toolLabel} to fix
               </span>
-              <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#FDBA2D] transition-colors ml-auto" />
+              <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#F6A828] transition-colors ml-auto" />
             </button>
           </div>
         </div>
@@ -346,7 +346,7 @@ export function SakuDailyPopup() {
           ) : (
             <Button
               onClick={handleFixNow}
-              className="w-full sm:w-auto bg-[#FDBA2D] hover:bg-[#C69320] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(253,186,45,0.12)]"
+              className="w-full sm:w-auto bg-[#F6A828] hover:bg-[#FFB340] text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[rgba(246,168,40,0.12)]"
             >
               <Zap className="w-4 h-4 mr-2" />
               Fix Now — {currentInsight.toolLabel}

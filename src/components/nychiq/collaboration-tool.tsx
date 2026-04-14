@@ -19,7 +19,7 @@ type Role = TeamMember['role'];
 type Status = TeamMember['status'];
 
 const ROLE_CONFIG: Record<Role, { label: string; color: string; bg: string; border: string; icon: LucideIcon; desc: string }> = {
-  owner:   { label: 'Owner',   color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)',  border: 'rgba(253,186,45,0.25)', icon: Crown,          desc: 'Full access + team management + billing' },
+  owner:   { label: 'Owner',   color: '#F6A828', bg: 'rgba(246,168,40,0.1)',  border: 'rgba(246,168,40,0.25)', icon: Crown,          desc: 'Full access + team management + billing' },
   admin:   { label: 'Admin',   color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)', icon: UserCog,        desc: 'All tools + channel management' },
   analyst: { label: 'Analyst', color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)', icon: BarChart3,       desc: 'Read-only analytics + reports' },
   viewer:  { label: 'Viewer',  color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: Eye,             desc: 'Dashboard only' },
@@ -28,25 +28,25 @@ const ROLE_CONFIG: Record<Role, { label: string; color: string; bg: string; bord
 const STATUS_CONFIG: Record<Status, { label: string; color: string; dot: string }> = {
   active:   { label: 'Active',   color: '#888888', dot: 'bg-[#888888]' },
   inactive: { label: 'Inactive', color: '#666666', dot: 'bg-[#666666]' },
-  invited:  { label: 'Invited',  color: '#FDBA2D', dot: 'bg-[#FDBA2D]' },
+  invited:  { label: 'Invited',  color: '#F6A828', dot: 'bg-[#F6A828]' },
 };
 
 const ACTION_COLORS: Record<string, string> = {
   add: '#888888',
   remove: '#888888',
   update: '#888888',
-  invite: '#FDBA2D',
+  invite: '#F6A828',
 };
 
 const MOCK_CHANNELS = [
   { id: 'ch-1', name: 'TechVision Pro', color: '#888888' },
   { id: 'ch-2', name: 'FitLife Academy', color: '#888888' },
-  { id: 'ch-3', name: 'Crypto Daily', color: '#FDBA2D' },
+  { id: 'ch-3', name: 'Crypto Daily', color: '#F6A828' },
   { id: 'ch-4', name: 'Art Studio NG', color: '#888888' },
   { id: 'ch-5', name: 'EduTech Masters', color: '#888888' },
 ];
 
-const AVATAR_COLORS = ['#888888', '#888888', '#888888', '#FDBA2D', '#888888', '#888888', '#888888', '#888888'];
+const AVATAR_COLORS = ['#888888', '#888888', '#888888', '#F6A828', '#888888', '#888888', '#888888', '#888888'];
 
 /* ═══════════════════════════════════════════
    Helpers
@@ -146,7 +146,7 @@ function PermissionsTable() {
   return (
     <Card>
       <SectionHeader>
-        <Shield className="w-3.5 h-3.5 text-[#FDBA2D]" />
+        <Shield className="w-3.5 h-3.5 text-[#F6A828]" />
         Role-Based Permissions
       </SectionHeader>
       <p className="text-[11px] text-[#666666] mt-1 mb-4">
@@ -172,7 +172,7 @@ function PermissionsTable() {
           </thead>
           <tbody>
             {PERMISSION_ROWS.map((row, i) => (
-              <tr key={i} className="border-b border-[#1A1A1A] last:border-0 hover:bg-[rgba(253,186,45,0.02)] transition-colors">
+              <tr key={i} className="border-b border-[#1A1A1A] last:border-0 hover:bg-[rgba(246,168,40,0.02)] transition-colors">
                 <td className="py-2.5 pr-4 text-[#FFFFFF]">{row.feature}</td>
                 {(['owner', 'admin', 'analyst', 'viewer'] as const).map((role) => (
                   <td key={role} className="text-center py-2.5 px-2">
@@ -396,7 +396,7 @@ function PendingInviteRow({
   return (
     <div className="flex items-center gap-3 px-3 py-3 rounded-lg border border-dashed border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] transition-colors group">
       <div className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0">
-        <Mail className="w-4 h-4 text-[#FDBA2D]" />
+        <Mail className="w-4 h-4 text-[#F6A828]" />
       </div>
       <div className="flex-1 min-w-0">
         <span className="text-xs font-medium text-[#FFFFFF] block truncate">{invite.email}</span>
@@ -411,7 +411,7 @@ function PendingInviteRow({
         {!isExpired && (
           <button
             onClick={onResend}
-            className="p-1.5 rounded-md hover:bg-[#0f0f0f] text-[#666666] hover:text-[#FDBA2D] transition-colors"
+            className="p-1.5 rounded-md hover:bg-[#0f0f0f] text-[#666666] hover:text-[#F6A828] transition-colors"
             title="Resend invite"
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -472,7 +472,7 @@ export function CollaborationTool() {
       });
       addTeamMember({
         name: 'Alex Thompson', email: 'alex@agency.com', role: 'viewer', status: 'inactive',
-        color: '#FDBA2D', channels: ['ch-2'], joinedAt: Date.now() - 60 * 24 * 60 * 60 * 1000,
+        color: '#F6A828', channels: ['ch-2'], joinedAt: Date.now() - 60 * 24 * 60 * 60 * 1000,
       });
       // Add mock pending invite
       inviteTeamMember('newmember@agency.com', 'analyst');
@@ -618,7 +618,7 @@ export function CollaborationTool() {
             <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{memberCount - activeCount}</span> Inactive</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#FDBA2D]" />
+            <div className="w-2 h-2 rounded-full bg-[#F6A828]" />
             <span className="text-xs text-[#a0a0a0]"><span className="text-[#FFFFFF] font-bold">{inviteCount}</span> Pending Invites</span>
           </div>
         </div>
@@ -746,7 +746,7 @@ export function CollaborationTool() {
           {/* Members List */}
           <Card>
             <SectionHeader>
-              <UsersRound className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <UsersRound className="w-3.5 h-3.5 text-[#F6A828]" />
               Team Members
             </SectionHeader>
             <div className="mt-3 divide-y divide-[#1A1A1A] max-h-[500px] overflow-y-auto">
@@ -781,7 +781,7 @@ export function CollaborationTool() {
         <div className="space-y-4">
           <Card>
             <SectionHeader>
-              <ClipboardCheck className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <ClipboardCheck className="w-3.5 h-3.5 text-[#F6A828]" />
               Shared Channel Access
             </SectionHeader>
             <p className="text-[11px] text-[#666666] mt-1">
@@ -815,7 +815,7 @@ export function CollaborationTool() {
         <Card>
           <div className="flex items-center justify-between">
             <SectionHeader>
-              <Activity className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <Activity className="w-3.5 h-3.5 text-[#F6A828]" />
               Activity Log
             </SectionHeader>
             <div className="flex items-center gap-3 text-[10px] text-[#666666]">
@@ -849,7 +849,7 @@ export function CollaborationTool() {
           {/* Invite Form */}
           <Card>
             <SectionHeader>
-              <Mail className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <Mail className="w-3.5 h-3.5 text-[#F6A828]" />
               Send Invite
             </SectionHeader>
             <div className="mt-3 space-y-3">
@@ -861,7 +861,7 @@ export function CollaborationTool() {
                     onChange={(e) => setInviteEmail(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleInvite()}
                     placeholder="colleague@example.com"
-                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                    className="w-full h-10 px-4 rounded-md bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                   />
                 </div>
                 {/* Role dropdown */}
@@ -903,7 +903,7 @@ export function CollaborationTool() {
                 </div>
                 <button
                   onClick={handleInvite}
-                  className="h-10 px-5 rounded-md bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors flex items-center gap-2"
+                  className="h-10 px-5 rounded-md bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   Send Invite
@@ -915,7 +915,7 @@ export function CollaborationTool() {
           {/* Copy Invite Link */}
           <Card>
             <SectionHeader>
-              <Link2 className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <Link2 className="w-3.5 h-3.5 text-[#F6A828]" />
               Share Invite Link
             </SectionHeader>
             <div className="mt-3 flex items-center gap-3">
@@ -947,7 +947,7 @@ export function CollaborationTool() {
           {/* Pending Invites */}
           <Card>
             <SectionHeader>
-              <AlertCircle className="w-3.5 h-3.5 text-[#FDBA2D]" />
+              <AlertCircle className="w-3.5 h-3.5 text-[#F6A828]" />
               Pending Invites
               <span className="ml-auto text-[10px] text-[#666666] font-normal normal-case tracking-normal">
                 {inviteCount} pending

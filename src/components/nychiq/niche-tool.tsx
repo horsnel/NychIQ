@@ -38,8 +38,8 @@ const REGIONS = [
 
 /* ── Competition badge ── */
 function CompBadge({ level }: { level: string }) {
-  const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
-  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)';
+  const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#F6A828' : '#888888';
+  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(246,168,40,0.1)' : 'rgba(0,0,0,0)';
   return (
     <span
       className="px-2 py-0.5 rounded-full text-[10px] font-bold"
@@ -62,9 +62,9 @@ function NicheCard({ niche, index }: { niche: NicheResult; index: number }) {
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold border"
           style={{
-            color: niche.score >= 80 ? '#888888' : niche.score >= 60 ? '#FDBA2D' : '#888888',
-            backgroundColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(253,186,45,0.1)' : 'rgba(255,255,255,0.03)',
-            borderColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(253,186,45,0.3)' : 'rgba(255,255,255,0.03)',
+            color: niche.score >= 80 ? '#888888' : niche.score >= 60 ? '#F6A828' : '#888888',
+            backgroundColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(246,168,40,0.1)' : 'rgba(255,255,255,0.03)',
+            borderColor: niche.score >= 80 ? 'rgba(34,197,94,0.1)' : niche.score >= 60 ? 'rgba(246,168,40,0.3)' : 'rgba(255,255,255,0.03)',
           }}
         >
           {niche.score}
@@ -157,8 +157,8 @@ Return ONLY the JSON array, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Crosshair className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Crosshair className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Niche Spy</h2>
@@ -181,13 +181,13 @@ Return ONLY the JSON array, no other text.`;
                 onChange={(e) => setTopic(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
                 placeholder="Enter a topic (e.g., Tech, Cooking, Gaming)..."
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 focus:ring-1 focus:ring-[#FDBA2D]/20 transition-colors"
+                className="w-full h-11 pl-10 pr-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 focus:ring-1 focus:ring-[#F6A828]/20 transition-colors"
               />
             </div>
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="h-11 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="h-11 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>{r.label}</option>
@@ -196,7 +196,7 @@ Return ONLY the JSON array, no other text.`;
             <button
               onClick={handleSearch}
               disabled={loading || !topic.trim()}
-              className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+              className="px-5 h-11 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -239,12 +239,12 @@ Return ONLY the JSON array, no other text.`;
         <>
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+              <Sparkles className="w-4 h-4 text-[#F6A828]" />
               AI-Generated Niche Opportunities
             </h3>
             <button
               onClick={handleSearch}
-              className="flex items-center gap-1 text-xs text-[#a0a0a0] hover:text-[#FDBA2D] transition-colors"
+              className="flex items-center gap-1 text-xs text-[#a0a0a0] hover:text-[#F6A828] transition-colors"
             >
               <RefreshCw className="w-3 h-3" />
               Refresh
@@ -261,8 +261,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && searched && results.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Crosshair className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Crosshair className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">No Niches Found</h3>
           <p className="text-sm text-[#a0a0a0]">Try a different topic or region.</p>
@@ -272,8 +272,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Crosshair className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Crosshair className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Hidden Niches</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">

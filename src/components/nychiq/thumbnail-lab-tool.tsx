@@ -78,7 +78,7 @@ Return ONLY the JSON object.`;
       setLoading(false);
     }
   };
-  const ctrColor = result ? (result.ctrScore >= 75 ? '#888888' : result.ctrScore >= 50 ? '#FDBA2D' : '#888888') : '#a0a0a0';
+  const ctrColor = result ? (result.ctrScore >= 75 ? '#888888' : result.ctrScore >= 50 ? '#F6A828' : '#888888') : '#a0a0a0';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
@@ -135,10 +135,10 @@ Return ONLY the JSON object.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-2"><Type className="w-3.5 h-3.5" /> Text Readability</h4>
-              <span className="text-sm font-bold" style={{ color: result.textReadability >= 75 ? '#888888' : result.textReadability >= 50 ? '#FDBA2D' : '#888888' }}>{result.textReadability}/100</span>
+              <span className="text-sm font-bold" style={{ color: result.textReadability >= 75 ? '#888888' : result.textReadability >= 50 ? '#F6A828' : '#888888' }}>{result.textReadability}/100</span>
             </div>
             <div className="h-2 rounded-full bg-[#1A1A1A] overflow-hidden">
-              <div className="h-full rounded-full" style={{ width: `${result.textReadability}%`, backgroundColor: result.textReadability >= 75 ? '#888888' : result.textReadability >= 50 ? '#FDBA2D' : '#888888' }} />
+              <div className="h-full rounded-full" style={{ width: `${result.textReadability}%`, backgroundColor: result.textReadability >= 75 ? '#888888' : result.textReadability >= 50 ? '#F6A828' : '#888888' }} />
             </div>
           </div>
 

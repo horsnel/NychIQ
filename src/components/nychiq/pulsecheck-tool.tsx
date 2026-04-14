@@ -66,20 +66,20 @@ const NICHES = [
 
 const VELOCITY_CONFIG = {
   rising: { color: '#888888', bg: 'rgba(34,197,94,0.1)', label: 'Rising' },
-  stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', label: 'Stable' },
+  stable: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', label: 'Stable' },
   new: { color: '#888888', bg: 'rgba(255,255,255,0.03)', label: 'New' },
 };
 
 const SIGNAL_CONFIG = {
   strong: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: <Wifi className="w-5 h-5" />, label: 'Strong Signal' },
-  moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.08)', border: 'rgba(253,186,45,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
+  moderate: { color: '#F6A828', bg: 'rgba(246,168,40,0.08)', border: 'rgba(246,168,40,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'Moderate Signal' },
   weak: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)', icon: <WifiOff className="w-5 h-5" />, label: 'Weak Signal' },
   none: { color: '#666666', bg: 'rgba(68,68,68,0.08)', border: 'rgba(68,68,68,0.3)', icon: <WifiOff className="w-5 h-5" />, label: 'No Signal' },
 };
 
 /* ── Sub-score card ── */
 function SubScoreCard({ sub }: { sub: SubScore }) {
-  const color = sub.score >= 75 ? '#888888' : sub.score >= 50 ? '#FDBA2D' : sub.score >= 30 ? '#888888' : '#888888';
+  const color = sub.score >= 75 ? '#888888' : sub.score >= 50 ? '#F6A828' : sub.score >= 30 ? '#888888' : '#888888';
   return (
     <div className="rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] p-4 hover:border-[rgba(255,255,255,0.03)] transition-colors">
       <div className="flex items-center justify-between mb-2">
@@ -438,7 +438,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-2">
-                <Flame className="w-4 h-4 text-[#FDBA2D]" />
+                <Flame className="w-4 h-4 text-[#F6A828]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Trending in {niche}</h3>
               </div>
               <span className="text-[10px] text-[#666666]">Mock data</span>
@@ -472,7 +472,7 @@ Return ONLY the JSON object, no other text.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+                <Sparkles className="w-4 h-4 text-[#F6A828]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>
               <button

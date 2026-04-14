@@ -13,7 +13,7 @@ interface PlanGateProps {
 const PLAN_HIERARCHY: Plan[] = ['starter', 'pro', 'elite', 'agency'];
 const PLAN_CONFIG: Record<string, { icon: React.ElementType; color: string; name: string }> = {
   starter: { icon: Zap, color: '#888888', name: 'Starter' },
-  pro: { icon: Crown, color: '#FDBA2D', name: 'Pro' },
+  pro: { icon: Crown, color: '#F6A828', name: 'Pro' },
   elite: { icon: Shield, color: '#888888', name: 'Elite' },
   agency: { icon: Building2, color: '#888888', name: 'Agency' },
 };

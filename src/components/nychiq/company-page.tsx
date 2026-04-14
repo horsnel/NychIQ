@@ -53,7 +53,7 @@ const BLOG_POSTS = [
     date: 'Dec 15, 2025',
     excerpt: 'NychIQ Studio is here! A complete creative suite with AI-powered tools for thumbnails, scripts, hooks, and content optimization — all in one place.',
     category: 'Product News',
-    categoryColor: '#FDBA2D',
+    categoryColor: '#F6A828',
     readTime: '3 min read',
   },
   {
@@ -77,7 +77,7 @@ const BLOG_POSTS = [
 /* ────────────────────────────── Data ────────────────────────────── */
 
 const STATS = [
-  { value: '40+', label: 'AI Tools', icon: Zap, color: '#FDBA2D' },
+  { value: '40+', label: 'AI Tools', icon: Zap, color: '#F6A828' },
   { value: '10M+', label: 'Videos Analyzed', icon: BarChart3, color: '#888888' },
   { value: '50K+', label: 'Creators', icon: Users, color: '#888888' },
   { value: '15+', label: 'African Markets', icon: Globe, color: '#34D399' },
@@ -88,7 +88,7 @@ const TEAM = [
     name: 'Adewale A.',
     role: 'CEO & Founder',
     bio: 'Former YouTube strategist turned entrepreneur. Founded NychIQ after seeing firsthand how African creators were underserved by existing analytics tools. Passionate about building technology that levels the playing field for content creators across the continent.',
-    color: '#FDBA2D',
+    color: '#F6A828',
   },
   {
     name: 'Chioma N.',
@@ -111,7 +111,7 @@ const TEAM = [
 ];
 
 const CONTACT_EMAILS = [
-  { email: 'hello@nychiq.com', label: 'General Inquiries', icon: Mail, color: '#FDBA2D' },
+  { email: 'hello@nychiq.com', label: 'General Inquiries', icon: Mail, color: '#F6A828' },
   { email: 'billing@nychiq.com', label: 'Billing & Subscriptions', icon: DollarSign, color: '#888888' },
   { email: 'partnerships@nychiq.com', label: 'Partnerships', icon: Heart, color: '#888888' },
   { email: 'support@nychiq.com', label: 'Technical Support', icon: Shield, color: '#34D399' },
@@ -147,7 +147,7 @@ const JOBS = [
     title: 'Senior ML Engineer',
     location: 'Remote',
     type: 'Full-time',
-    color: '#FDBA2D',
+    color: '#F6A828',
     description:
       'Join our AI team to build and scale the machine learning models that power NychIQ\'s intelligence engine. You\'ll work on viral prediction algorithms, NLP pipelines for content analysis, and real-time recommendation systems that serve tens of thousands of creators daily.',
     requirements: [
@@ -191,11 +191,11 @@ const JOBS = [
 ];
 
 const BENEFITS = [
-  { label: 'Competitive Salary', icon: DollarSign, color: '#FDBA2D' },
+  { label: 'Competitive Salary', icon: DollarSign, color: '#F6A828' },
   { label: 'Remote-First', icon: Globe, color: '#888888' },
   { label: 'Learning Budget', icon: BookOpen, color: '#888888' },
   { label: 'Health Insurance', icon: Heart, color: '#34D399' },
-  { label: 'Token Bonuses', icon: Coins, color: '#FDBA2D' },
+  { label: 'Token Bonuses', icon: Coins, color: '#F6A828' },
 ];
 
 const CHANGELOG: {
@@ -305,13 +305,13 @@ export function CompanyPage({ type }: CompanyPageProps) {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+          <div className="w-5 h-5 rounded-[3px] bg-[#F6A828] flex items-center justify-center">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
       </div>
 
@@ -359,7 +359,7 @@ function AboutSection() {
     <div className="space-y-12">
       {/* Hero */}
       <div className="nychiq-card p-8 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#FDBA2D] mb-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#F6A828] mb-3">
           YouTube Intelligence Platform
         </p>
         <h2 className="text-2xl md:text-3xl font-bold text-[#FFFFFF] mb-4 leading-tight">
@@ -396,8 +396,8 @@ function AboutSection() {
         <h3 className="text-xl font-bold text-[#FFFFFF]">Why NychIQ</h3>
 
         <div className="nychiq-card p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[rgba(253,186,45,0.1)] flex items-center justify-center shrink-0">
-            <Target className="w-5 h-5 text-[#FDBA2D]" />
+          <div className="w-10 h-10 rounded-lg bg-[rgba(246,168,40,0.1)] flex items-center justify-center shrink-0">
+            <Target className="w-5 h-5 text-[#F6A828]" />
           </div>
           <div>
             <h4 className="text-sm font-semibold text-[#FFFFFF] mb-1">The Problem</h4>
@@ -480,7 +480,7 @@ function AboutSection() {
         </p>
         <button
           onClick={() => isLoggedIn ? setPage('app') : setPage('login')}
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#e6961a] transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#F6A828] text-[#0a0a0a] hover:bg-[#e6961a] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
           {isLoggedIn ? 'Go to Dashboard' : 'Start Free Trial'}
@@ -520,7 +520,7 @@ function BlogSection() {
             </span>
             <span className="text-[11px] text-[#555]">{BLOG_POSTS[0].date}</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-3 group-hover:text-[#F6A828] transition-colors leading-tight">
             {BLOG_POSTS[0].title}
           </h2>
           <p className="text-sm text-[#a0a0a0] leading-relaxed mb-4 max-w-2xl">
@@ -530,7 +530,7 @@ function BlogSection() {
             <span className="flex items-center gap-1.5 text-xs text-[#666]">
               <Clock className="w-3 h-3" /> {BLOG_POSTS[0].readTime}
             </span>
-            <span className="flex items-center gap-1 text-xs text-[#FDBA2D] group-hover:gap-2 transition-all">
+            <span className="flex items-center gap-1 text-xs text-[#F6A828] group-hover:gap-2 transition-all">
               Read article <ArrowRight className="w-3 h-3" />
             </span>
           </div>
@@ -558,7 +558,7 @@ function BlogSection() {
               </span>
               <span className="text-[10px] text-[#555]">{post.date}</span>
             </div>
-            <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+            <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2 group-hover:text-[#F6A828] transition-colors leading-snug">
               {post.title}
             </h3>
             <p className="text-xs text-[#a0a0a0] leading-relaxed mb-3 line-clamp-2">
@@ -568,7 +568,7 @@ function BlogSection() {
               <span className="flex items-center gap-1 text-[10px] text-[#555]">
                 <Clock className="w-2.5 h-2.5" /> {post.readTime}
               </span>
-              <span className="flex items-center gap-1 text-[10px] text-[#FDBA2D] group-hover:gap-1.5 transition-all">
+              <span className="flex items-center gap-1 text-[10px] text-[#F6A828] group-hover:gap-1.5 transition-all">
                 Read <ArrowRight className="w-2.5 h-2.5" />
               </span>
             </div>
@@ -584,7 +584,7 @@ function BlogSection() {
         </p>
         <button
           onClick={() => toast.success('Subscribed!', { description: 'You\'ll receive our weekly newsletter.' })}
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320] transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
           Subscribe to Newsletter
@@ -696,7 +696,7 @@ function ContactSection() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#F6A828] transition-colors"
               />
             </div>
             <div className="space-y-1.5">
@@ -707,7 +707,7 @@ function ContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#F6A828] transition-colors"
               />
             </div>
           </div>
@@ -717,7 +717,7 @@ function ContactSection() {
               required
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D] transition-colors appearance-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828] transition-colors appearance-none"
             >
               <option value="" disabled>
                 Select a subject
@@ -738,12 +738,12 @@ function ContactSection() {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Tell us how we can help..."
-              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#FDBA2D] transition-colors resize-none"
+              className="w-full px-3 py-2 rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] placeholder:text-[#555] focus:outline-none focus:border-[#F6A828] transition-colors resize-none"
             />
           </div>
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#e6961a] transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#F6A828] text-[#0a0a0a] hover:bg-[#e6961a] transition-colors"
           >
             <Send className="w-4 h-4" />
             Send Message
@@ -884,27 +884,27 @@ function ChangelogSection() {
               <div
                 className="absolute left-[11px] top-5 w-[9px] h-[9px] rounded-full border-2"
                 style={{
-                  borderColor: entry.highlight ? '#FDBA2D' : '#333',
-                  backgroundColor: entry.highlight ? '#FDBA2D' : '#0a0a0a',
+                  borderColor: entry.highlight ? '#F6A828' : '#333',
+                  backgroundColor: entry.highlight ? '#F6A828' : '#0a0a0a',
                 }}
               />
 
               <div
-                className={`nychiq-card p-5 ${entry.highlight ? 'border-[#FDBA2D33]' : ''}`}
+                className={`nychiq-card p-5 ${entry.highlight ? 'border-[#F6A82833]' : ''}`}
               >
                 <div className="flex items-center gap-3 mb-2 flex-wrap">
                   <span
                     className={`text-xs font-bold px-2 py-1 rounded ${
                       entry.highlight
-                        ? 'text-[#0a0a0a] bg-[#FDBA2D]'
-                        : 'text-[#FDBA2D] bg-[rgba(253,186,45,0.1)]'
+                        ? 'text-[#0a0a0a] bg-[#F6A828]'
+                        : 'text-[#F6A828] bg-[rgba(246,168,40,0.1)]'
                     }`}
                   >
                     {entry.ver}
                   </span>
                   <span className="text-[11px] text-[#666666]">{entry.date}</span>
                   {entry.highlight && (
-                    <span className="text-[10px] font-semibold text-[#FDBA2D] bg-[rgba(253,186,45,0.1)] px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-semibold text-[#F6A828] bg-[rgba(246,168,40,0.1)] px-2 py-0.5 rounded">
                       Latest
                     </span>
                   )}

@@ -16,7 +16,7 @@ const QUICK_TOOLS = [
   { id: 'hooklab', label: 'HookLab', icon: Flame, color: '#888888' },
   { id: 'thumbnail-lab', label: 'Thumbnail Lab', icon: Image, color: '#888888' },
   { id: 'viral', label: 'Viral Predictor', icon: Zap, color: '#888888' },
-  { id: 'posttime', label: 'Best Post Time', icon: Clock, color: '#FDBA2D' },
+  { id: 'posttime', label: 'Best Post Time', icon: Clock, color: '#F6A828' },
   { id: 'audit', label: 'Channel Audit', icon: ShieldCheck, color: '#888888' },
   { id: 'ideas', label: 'Video Ideas', icon: Sparkles, color: '#888888' },
   { id: 'seo', label: 'SEO Optimizer', icon: SearchCode, color: '#888888' },
@@ -27,7 +27,7 @@ const QUICK_TOOLS = [
 
 const ACTIVITY_ITEMS = [
   { icon: ShieldCheck, label: 'Recent Channel Audits', time: '2m ago', category: 'CHANNEL AUDITS', progress: 60, color: '#888888' },
-  { icon: TrendingUp, label: 'Viral Analysis', time: '2:02 am', category: 'VIRAL ANALYSIS', progress: 80, color: '#FDBA2D' },
+  { icon: TrendingUp, label: 'Viral Analysis', time: '2:02 am', category: 'VIRAL ANALYSIS', progress: 80, color: '#F6A828' },
   { icon: Anchor, label: 'Hook Generation', time: '0:27 am', category: 'HOOK GENERATION', progress: 40, color: '#888888' },
 ];
 
@@ -39,8 +39,8 @@ function CopyButton({ text, label }: { text: string; label?: string }) {
     if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
   }, [text]);
   return (
-    <button onClick={handleCopy} title={label || 'Copy'} className="p-1.5 rounded-full bg-[rgba(253,186,45,0.1)] hover:bg-[rgba(253,186,45,0.2)] transition-colors">
-      {copied ? <Check className="w-3.5 h-3.5 text-[#888888]" /> : <Copy className="w-3.5 h-3.5 text-[#FDBA2D]" />}
+    <button onClick={handleCopy} title={label || 'Copy'} className="p-1.5 rounded-full bg-[rgba(246,168,40,0.1)] hover:bg-[rgba(246,168,40,0.2)] transition-colors">
+      {copied ? <Check className="w-3.5 h-3.5 text-[#888888]" /> : <Copy className="w-3.5 h-3.5 text-[#F6A828]" />}
     </button>
   );
 }
@@ -123,7 +123,7 @@ function GrowthChart() {
   if (!data) {
     return (
       <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 flex items-center justify-center">
-        <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
+        <Loader2 className="w-6 h-6 text-[#F6A828] animate-spin" />
       </div>
     );
   }
@@ -163,7 +163,7 @@ function GrowthChart() {
         <div className="flex gap-1 p-0.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           {rangeBtns.map((b) => (
             <button key={b.key} onClick={() => setRange(b.key)}
-              className={cn('px-3 py-1 rounded-md text-xs font-medium transition-all', range === b.key ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D]' : 'text-[#666666] hover:text-[#a0a0a0]')}>
+              className={cn('px-3 py-1 rounded-md text-xs font-medium transition-all', range === b.key ? 'bg-[rgba(246,168,40,0.15)] text-[#F6A828]' : 'text-[#666666] hover:text-[#a0a0a0]')}>
               {b.label}
             </button>
           ))}
@@ -188,7 +188,7 @@ function GrowthChart() {
           })}
           <path d={areaPath} fill="url(#dashGrad)" />
           <path d={prevLinePath} fill="none" stroke="#666666" strokeWidth="1.5" strokeDasharray="6 4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={linePath} fill="none" stroke="#F6A828" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           {pts.map((p, i) => (
             <g key={i}>
               <circle cx={p.x} cy={p.y} r="3" fill="#0a0a0a" stroke="#888888" strokeWidth="2" />
@@ -235,9 +235,9 @@ function ActivityCard({ item }: { item: typeof ACTIVITY_ITEMS[0] }) {
           <p className="text-[11px] text-[#666666]">{item.time}</p>
         </div>
       </div>
-      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#FDBA2D]">{item.category}</span>
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#F6A828]">{item.category}</span>
       <div className="w-full h-1 rounded-full bg-[#0a0a0a] overflow-hidden">
-        <div className="h-full rounded-full bg-[#FDBA2D]" style={{ width: `${item.progress}%` }} />
+        <div className="h-full rounded-full bg-[#F6A828]" style={{ width: `${item.progress}%` }} />
       </div>
     </div>
   );
@@ -280,7 +280,7 @@ export function DashboardTool() {
   return (
     <div className="space-y-0 animate-fade-in-up">
       {/* ═══ WELCOME + VIDEO INDEX ═══ */}
-      <h2 className="text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #FDBA2D, #C69320)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <h2 className="text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #F6A828, #D4921F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
         Welcome back, {displayName}!
       </h2>
 
@@ -341,7 +341,7 @@ export function DashboardTool() {
       <div className="mt-6 rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base font-semibold text-[#FFFFFF]">Recent Activity</h3>
-          <button className="text-xs font-medium text-[#FDBA2D] hover:text-[#FDBA2D] transition-colors">View All</button>
+          <button className="text-xs font-medium text-[#F6A828] hover:text-[#F6A828] transition-colors">View All</button>
         </div>
         <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
           {ACTIVITY_ITEMS.map((item, i) => (

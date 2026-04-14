@@ -45,12 +45,12 @@ const PLATFORM_COLORS: Record<string, { bg: string; text: string; border: string
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Comedy: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.03)]',
+  Comedy: 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border-[rgba(255,255,255,0.03)]',
   Music: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
   Tech: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
   Gaming: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
   Fashion: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
-  Food: 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.03)]',
+  Food: 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border-[rgba(255,255,255,0.03)]',
   Sports: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
   News: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
   Lifestyle: 'bg-[rgba(255,255,255,0.03)] text-[#888888] border-[rgba(255,255,255,0.03)]',
@@ -131,8 +131,8 @@ Return ONLY the JSON array, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Share2 className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Share2 className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Cross-Platform Trends</h2>
@@ -157,7 +157,7 @@ Return ONLY the JSON array, no other text.`;
                       isActive
                         ? colors
                           ? `${colors.bg} ${colors.text} ${colors.border}`
-                          : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.03)]'
+                          : 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border-[rgba(255,255,255,0.03)]'
                         : 'bg-[#0a0a0a] text-[#a0a0a0] border-[#1A1A1A] hover:border-[#1a1a1a]'
                     }`}
                   >
@@ -176,7 +176,7 @@ Return ONLY the JSON array, no other text.`;
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors appearance-none cursor-pointer"
+              className="w-full sm:w-56 h-10 px-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] focus:outline-none focus:border-[#F6A828]/50 transition-colors appearance-none cursor-pointer"
             >
               {REGIONS.map((r) => (
                 <option key={r.code} value={r.code}>
@@ -190,7 +190,7 @@ Return ONLY the JSON array, no other text.`;
           <button
             onClick={fetchTrends}
             disabled={loading}
-            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+            className="w-full sm:w-auto px-5 h-11 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             Fetch Trends
@@ -235,7 +235,7 @@ Return ONLY the JSON array, no other text.`;
       {!loading && filteredTrends.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+            <Sparkles className="w-4 h-4 text-[#F6A828]" />
             {filteredTrends.length} Trend{filteredTrends.length !== 1 ? 's' : ''} Found
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -265,7 +265,7 @@ Return ONLY the JSON array, no other text.`;
                   </div>
 
                   {/* Trend Title */}
-                  <h4 className="text-sm font-semibold text-[#FFFFFF] mb-3 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+                  <h4 className="text-sm font-semibold text-[#FFFFFF] mb-3 group-hover:text-[#F6A828] transition-colors leading-snug">
                     {trend.title}
                   </h4>
 
@@ -314,8 +314,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <Share2 className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <Share2 className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Discover Cross-Platform Trends</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Select a region and fetch the hottest trends before they blow up on YouTube.</p>

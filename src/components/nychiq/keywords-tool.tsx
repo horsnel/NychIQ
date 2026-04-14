@@ -43,8 +43,8 @@ function CopyBtn({ text }: { text: string }) {
 }
 
 function CompBadge({ level }: { level: string }) {
-  const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
-  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)';
+  const color = level === 'Low' ? '#888888' : level === 'Medium' ? '#F6A828' : '#888888';
+  const bg = level === 'Low' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(246,168,40,0.1)' : 'rgba(0,0,0,0)';
   return <span className="px-2 py-0.5 rounded-full text-[10px] font-bold" style={{ color, backgroundColor: bg }}>{level}</span>;
 }
 

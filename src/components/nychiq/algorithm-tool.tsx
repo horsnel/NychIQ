@@ -37,14 +37,14 @@ interface AlgorithmReport {
 
 const STATUS_CONFIG = {
   rising: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: <TrendingUp className="w-4 h-4" />, label: 'Rising' },
-  stable: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <Minus className="w-4 h-4" />, label: 'Stable' },
+  stable: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.3)', icon: <Minus className="w-4 h-4" />, label: 'Stable' },
   declining: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)', icon: <TrendingDown className="w-4 h-4" />, label: 'Declining' },
 };
 
 /* ── Signal Bar ── */
 function SignalBar({ signal }: { signal: AlgorithmSignal }) {
   const config = STATUS_CONFIG[signal.status];
-  const barColor = signal.status === 'rising' ? '#888888' : signal.status === 'stable' ? '#FDBA2D' : '#888888';
+  const barColor = signal.status === 'rising' ? '#888888' : signal.status === 'stable' ? '#F6A828' : '#888888';
 
   return (
     <div className="p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
@@ -148,7 +148,7 @@ Return ONLY the JSON object, no other text.`;
   }, [fetchReport]);
   const healthColor = report?.overallHealth === 'Excellent' ? '#888888'
     : report?.overallHealth === 'Good' ? '#888888'
-    : report?.overallHealth === 'Moderate' ? '#FDBA2D' : '#888888';
+    : report?.overallHealth === 'Moderate' ? '#F6A828' : '#888888';
 
   return (
     <div className="space-y-5 animate-fade-in-up">
@@ -238,14 +238,14 @@ Return ONLY the JSON object, no other text.`;
           {report.recommendations.length > 0 && (
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[rgba(255,255,255,0.03)]">
-                <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+                <Sparkles className="w-4 h-4 text-[#F6A828]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Recommendations</h3>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {report.recommendations.map((rec, i) => (
                   <div key={i} className="flex items-start gap-3 px-4 py-3">
-                    <div className="w-6 h-6 rounded-full bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[10px] font-bold text-[#FDBA2D]">{i + 1}</span>
+                    <div className="w-6 h-6 rounded-full bg-[#F6A828]/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-[10px] font-bold text-[#F6A828]">{i + 1}</span>
                     </div>
                     <p className="text-sm text-[#a0a0a0] leading-relaxed">{rec}</p>
                   </div>
@@ -263,7 +263,7 @@ Return ONLY the JSON object, no other text.`;
           <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={fetchReport}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
           >
             Try Again
           </button>

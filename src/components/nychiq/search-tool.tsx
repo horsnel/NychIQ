@@ -72,7 +72,7 @@ const TOOL_DESCRIPTIONS: Record<string, string> = {
 
 /* ── Section accent colors ── */
 const SECTION_COLORS: Record<string, string> = {
-  main: '#FDBA2D',
+  main: '#F6A828',
   studio: '#888888',
   intelligence: '#888888',
   competitor: '#888888',
@@ -133,7 +133,7 @@ export function SearchTool() {
         <h2
           className="text-2xl font-bold mb-1"
           style={{
-            background: 'linear-gradient(135deg, #FDBA2D, #C69320)',
+            background: 'linear-gradient(135deg, #F6A828, #D4921F)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -147,7 +147,7 @@ export function SearchTool() {
 
       {/* ── Search Input (pill) ── */}
       <div className="mb-8">
-        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(253,186,45,0.3)]">
+        <div className="relative flex items-center h-12 sm:h-14 rounded-full transition-colors duration-200 bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(246,168,40,0.3)]">
           <div className="pl-4 sm:pl-5 flex items-center">
             <Search className="w-5 h-5 text-[#666666]" />
           </div>
@@ -179,7 +179,7 @@ export function SearchTool() {
       {!query && (
         <div className="grid grid-cols-3 gap-3 mb-8">
           {[
-            { label: 'Total Tools', value: Object.keys(TOOL_META).length, color: '#FDBA2D' },
+            { label: 'Total Tools', value: Object.keys(TOOL_META).length, color: '#F6A828' },
             { label: 'Free Tools', value: Object.keys(TOOL_META).filter(id => (TOKEN_COSTS[id] ?? 0) === 0).length, color: '#888888' },
             { label: 'AI-Powered', value: Object.keys(TOOL_META).filter(id => ['ai-tools', 'ai-assistants'].includes(TOOL_META[id]?.category)).length, color: '#888888' },
           ].map((stat) => (
@@ -211,7 +211,7 @@ export function SearchTool() {
             </p>
             <button
               onClick={() => { setQuery(''); inputRef.current?.focus(); }}
-              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#FDBA2D] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(253,186,45,0.08)] transition-colors"
+              className="mt-4 px-5 py-2 rounded-full text-xs font-medium text-[#F6A828] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(246,168,40,0.08)] transition-colors"
             >
               Clear search
             </button>
@@ -258,17 +258,17 @@ export function SearchTool() {
                         {/* Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors truncate">
+                            <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors truncate">
                               {tool.label}
                             </span>
-                            <ArrowRight className="w-3 h-3 text-[#1a1a1a] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all ml-auto" />
+                            <ArrowRight className="w-3 h-3 text-[#1a1a1a] group-hover:text-[#F6A828] shrink-0 opacity-0 group-hover:opacity-100 transition-all ml-auto" />
                           </div>
                           <p className="text-xs text-[#666666] mt-1 line-clamp-2 leading-relaxed">
                             {tool.description}
                           </p>
                           {/* Token cost badge */}
                           {tool.tokenCost > 0 && (
-                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]">
+                            <span className="inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-[rgba(246,168,40,0.08)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]">
                               {tool.tokenCost} token{tool.tokenCost > 1 ? 's' : ''}
                             </span>
                           )}

@@ -194,11 +194,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     } else if (tokenBalance < Math.floor(maxTokens * 0.4)) {
       items.push({
         id: 'intel-tokens',
-        icon: <AlertTriangle className="w-4 h-4 text-[#FDBA2D]" />,
+        icon: <AlertTriangle className="w-4 h-4 text-[#F6A828]" />,
         title: 'Token Balance Warning',
         message: `You have ${tokenBalance} tokens remaining. Consider upgrading for unlimited access.`,
-        color: '#FDBA2D',
-        bgColor: 'rgba(253,186,45,0.08)',
+        color: '#F6A828',
+        bgColor: 'rgba(246,168,40,0.08)',
       });
     }
 
@@ -206,11 +206,11 @@ function useIntelligenceFeed(): IntelligenceItem[] {
     if (userPlan === 'trial') {
       items.push({
         id: 'intel-plan',
-        icon: <Crown className="w-4 h-4 text-[#FDBA2D]" />,
+        icon: <Crown className="w-4 h-4 text-[#F6A828]" />,
         title: 'Upgrade Your Plan',
         message: 'Unlock 40+ tools, higher limits, and priority AI with a Pro plan.',
-        color: '#FDBA2D',
-        bgColor: 'rgba(253,186,45,0.08)',
+        color: '#F6A828',
+        bgColor: 'rgba(246,168,40,0.08)',
       });
     }
 
@@ -359,10 +359,10 @@ export function NotificationDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[rgba(255,255,255,0.03)]">
           <div className="flex items-center gap-2">
-            <Bell className="w-5 h-5 text-[#FDBA2D]" />
+            <Bell className="w-5 h-5 text-[#F6A828]" />
             <h2 className="text-base font-semibold">Notifications</h2>
             {unreadCount > 0 && (
-              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#FDBA2D] text-black animate-pulse">
+              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#F6A828] text-black animate-pulse">
                 {unreadCount}
               </span>
             )}
@@ -373,7 +373,7 @@ export function NotificationDrawer() {
               <>
                 <button
                   onClick={handleMarkAllRead}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs text-[#a0a0a0] hover:text-[#F6A828] hover:bg-[rgba(246,168,40,0.1)] transition-colors"
                   title="Mark all as read"
                 >
                   <CheckCheck className="w-3.5 h-3.5" />
@@ -530,7 +530,7 @@ export function NotificationDrawer() {
               <div className="border-t border-[rgba(255,255,255,0.03)] my-2" />
               <div className="mb-4">
                 <p className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 mb-2 flex items-center gap-1.5">
-                  <Bell className="w-3 h-3 text-[#FDBA2D]" />
+                  <Bell className="w-3 h-3 text-[#F6A828]" />
                   Alerts & Tips
                 </p>
                 <div className="space-y-1.5">
@@ -646,7 +646,7 @@ export function NotificationDrawer() {
             >
               <div className="flex items-start gap-2">
                 {!notif.read && (
-                  <div className="w-2 h-2 rounded-full bg-[#FDBA2D] mt-1.5 shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-[#F6A828] mt-1.5 shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

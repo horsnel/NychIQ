@@ -102,7 +102,7 @@ Return ONLY the JSON object.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Copy className="w-5 h-5 text-[#FDBA2D]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><Copy className="w-5 h-5 text-[#F6A828]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Copy Strategy</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Extract the exact title formula, thumbnail style, and posting strategy from any channel.</p>
@@ -114,7 +114,7 @@ Return ONLY the JSON object.`;
               placeholder="Enter channel name to analyze strategy..."
               className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 flex items-center gap-2 shrink-0">
+            <button onClick={handleAnalyze} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Copy className="w-4 h-4" />}
               Analyze Strategy
             </button>
@@ -136,7 +136,7 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Strategy Breakdown</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F6A828]" /> Strategy Breakdown</h3>
             <CopyBtn text={fullStrategy} />
           </div>
 
@@ -173,7 +173,7 @@ Return ONLY the JSON object.`;
             <div className="space-y-2">
               {result.contentPillars.map((pillar, i) => (
                 <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
-                  <span className="w-5 h-5 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-[10px] font-bold text-[#FDBA2D] shrink-0">{i + 1}</span>
+                  <span className="w-5 h-5 rounded-full bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center text-[10px] font-bold text-[#F6A828] shrink-0">{i + 1}</span>
                   <p className="text-sm text-[#FFFFFF]">{pillar}</p>
                 </div>
               ))}
@@ -181,8 +181,8 @@ Return ONLY the JSON object.`;
           </div>
 
           {/* Strategy to Replicate */}
-          <div className="rounded-lg bg-[rgba(253,186,45,0.05)] border border-[rgba(255,255,255,0.03)] p-4">
-            <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-2 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Actionable Strategy to Replicate</h4>
+          <div className="rounded-lg bg-[rgba(246,168,40,0.05)] border border-[rgba(255,255,255,0.03)] p-4">
+            <h4 className="text-xs font-bold text-[#F6A828] uppercase tracking-wider mb-2 flex items-center gap-2"><Target className="w-3.5 h-3.5" /> Actionable Strategy to Replicate</h4>
             <p className="text-sm text-[#FFFFFF] leading-relaxed">{result.strategyToReplicate}</p>
           </div>
         </div>
@@ -190,7 +190,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Copy className="w-8 h-8 text-[#FDBA2D]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Copy className="w-8 h-8 text-[#F6A828]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Extract Channel Strategy</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a channel name to get a complete breakdown of their content strategy.</p>
         </div>

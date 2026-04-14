@@ -133,7 +133,7 @@ Return ONLY the JSON object.`;
 
           {/* Viral Patterns */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
-            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#FDBA2D]" /> Viral Title Patterns</h4>
+            <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-[#F6A828]" /> Viral Title Patterns</h4>
             <div className="space-y-2">
               {result.viralPatterns.map((p, i) => (
                 <div key={i} className="p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">

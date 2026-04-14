@@ -44,17 +44,17 @@ interface CompareResult {
 function valueColor(value: number, goodHigh = true): string {
   if (goodHigh) {
     if (value >= 75) return '#888888';
-    if (value >= 50) return '#FDBA2D';
+    if (value >= 50) return '#F6A828';
     return '#888888';
   }
   if (value <= 25) return '#888888';
-  if (value <= 50) return '#FDBA2D';
+  if (value <= 50) return '#F6A828';
   return '#888888';
 }
 
 function compColor(level: string): string {
   if (level === 'Low') return '#888888';
-  if (level === 'Medium') return '#FDBA2D';
+  if (level === 'Medium') return '#F6A828';
   return '#888888';
 }
 

@@ -188,7 +188,7 @@ Return ONLY the JSON object.`;
             </div>
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Premium Rate</p>
-              <p className="text-2xl font-bold text-[#FDBA2D]">{fmtDollar(result.premiumRate)}</p>
+              <p className="text-2xl font-bold text-[#F6A828]">{fmtDollar(result.premiumRate)}</p>
               <p className="text-[10px] text-[#666666] mt-1">per integration</p>
             </div>
           </div>

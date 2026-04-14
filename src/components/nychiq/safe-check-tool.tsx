@@ -91,7 +91,7 @@ Return ONLY the JSON object.`;
   };
   const statusConfig: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
     Safe: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: <CheckCircle className="w-5 h-5" /> },
-    Caution: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)', icon: <AlertTriangle className="w-5 h-5" /> },
+    Caution: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.3)', icon: <AlertTriangle className="w-5 h-5" /> },
     Risky: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)', icon: <XCircle className="w-5 h-5" /> },
     Dangerous: { color: '#888888', bg: 'rgba(136,136,136,0.2)', border: 'rgba(136,136,136,0.2)', icon: <Shield className="w-5 h-5" /> },
   };
@@ -153,11 +153,11 @@ Return ONLY the JSON object.`;
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Safety Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#888888' : result.safetyScore >= 50 ? '#FDBA2D' : '#888888' }}>{result.safetyScore}</p>
+              <p className="text-2xl font-bold" style={{ color: result.safetyScore >= 80 ? '#888888' : result.safetyScore >= 50 ? '#F6A828' : '#888888' }}>{result.safetyScore}</p>
             </div>
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
               <p className="text-[10px] text-[#666666] uppercase mb-1">Advertiser Score</p>
-              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#888888' : result.advertiserFriendly >= 50 ? '#FDBA2D' : '#888888' }}>{result.advertiserFriendly}</p>
+              <p className="text-2xl font-bold" style={{ color: result.advertiserFriendly >= 80 ? '#888888' : result.advertiserFriendly >= 50 ? '#F6A828' : '#888888' }}>{result.advertiserFriendly}</p>
             </div>
           </div>
 
@@ -167,8 +167,8 @@ Return ONLY the JSON object.`;
               <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Found Risk Keywords ({result.riskKeywords.length})</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {result.riskKeywords.map((kw, i) => {
-                  const sevColor = kw.severity === 'high' ? '#888888' : kw.severity === 'medium' ? '#FDBA2D' : '#888888';
-                  const sevBg = kw.severity === 'high' ? 'rgba(0,0,0,0)' : kw.severity === 'medium' ? 'rgba(253,186,45,0.1)' : 'rgba(255,255,255,0.03)';
+                  const sevColor = kw.severity === 'high' ? '#888888' : kw.severity === 'medium' ? '#F6A828' : '#888888';
+                  const sevBg = kw.severity === 'high' ? 'rgba(0,0,0,0)' : kw.severity === 'medium' ? 'rgba(246,168,40,0.1)' : 'rgba(255,255,255,0.03)';
                   return (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-md border" style={{ backgroundColor: sevBg, borderColor: `${sevColor}20` }}>
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold shrink-0" style={{ color: sevColor, backgroundColor: `${sevColor}20` }}>

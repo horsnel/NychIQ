@@ -369,13 +369,13 @@ export function LegalPage({ type }: LegalPageProps) {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-[3px] bg-[#F6A828] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
       </div>
 
@@ -389,7 +389,7 @@ export function LegalPage({ type }: LegalPageProps) {
         <div className="space-y-8">
           {info.sections.map((section, idx) => (
             <section key={idx} className="nychiq-card p-6">
-              <h2 className="text-lg font-semibold text-[#FDBA2D] mb-4">{section.heading}</h2>
+              <h2 className="text-lg font-semibold text-[#F6A828] mb-4">{section.heading}</h2>
               <div className="space-y-3 text-sm text-[#a0a0a0] leading-relaxed">
                 {section.body.map((paragraph, pIdx) => (
                   <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />

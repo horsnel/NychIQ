@@ -26,7 +26,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
   return (
     <div className="space-y-4 mt-2">
       {/* Warning indicator */}
-      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)]">
         <div className="relative w-12 h-12 flex items-center justify-center">
           <svg className="w-12 h-12 -rotate-90" viewBox="0 0 36 36">
             <path
@@ -38,16 +38,16 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
             <path
               d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
               fill="none"
-              stroke="#FDBA2D"
+              stroke="#F6A828"
               strokeWidth="3"
               strokeDasharray={`${pct}, 100`}
               strokeLinecap="round"
             />
           </svg>
-          <span className="absolute text-xs font-bold text-[#FDBA2D]">{pct}%</span>
+          <span className="absolute text-xs font-bold text-[#F6A828]">{pct}%</span>
         </div>
         <div>
-          <p className="text-sm font-semibold text-[#FDBA2D]">Running Low</p>
+          <p className="text-sm font-semibold text-[#F6A828]">Running Low</p>
           <p className="text-xs text-[#a0a0a0]">
             {tokenBalance} of {maxTokens.toLocaleString()} tokens remaining
           </p>
@@ -77,7 +77,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
           </div>
         </div>
         <div className="flex items-center gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
-          <Zap className="w-4 h-4 text-[#FDBA2D]" />
+          <Zap className="w-4 h-4 text-[#F6A828]" />
           <div>
             <p className="text-xs font-medium text-[#FFFFFF]">Upgrade Plan</p>
             <p className="text-[11px] text-[#a0a0a0]">Get up to unlimited tokens with Elite plan</p>
@@ -95,7 +95,7 @@ function TokenWarningContent({ onUpgrade, onSkip }: { onUpgrade: () => void; onS
           Skip for Now
         </Button>
         <Button
-          className="flex-1 bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold"
+          className="flex-1 bg-[#F6A828] text-black hover:bg-[#FFB340] font-semibold"
           onClick={onUpgrade}
         >
           Upgrade Plan
@@ -146,7 +146,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
 
       {/* Current plan info */}
       <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
-        <Coins className="w-4 h-4 text-[#FDBA2D]" />
+        <Coins className="w-4 h-4 text-[#F6A828]" />
         <div className="flex-1">
           <p className="text-xs font-medium text-[#FFFFFF]">Current Plan: {userPlan.charAt(0).toUpperCase() + userPlan.slice(1)}</p>
           <p className="text-[11px] text-[#a0a0a0]">Monthly: ₦{planPrice.toLocaleString()}</p>
@@ -159,9 +159,9 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={onUpgrade}
-            className="p-3 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(253,186,45,0.15)] transition-colors text-left"
+            className="p-3 rounded-lg bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] hover:bg-[rgba(246,168,40,0.15)] transition-colors text-left"
           >
-            <p className="text-sm font-bold text-[#FDBA2D]">Elite</p>
+            <p className="text-sm font-bold text-[#F6A828]">Elite</p>
             <p className="text-[11px] text-[#a0a0a0]">Unlimited tokens</p>
             <p className="text-[10px] text-[#666666] mt-1">₦70,000/mo</p>
           </button>
@@ -178,7 +178,7 @@ function TokenExhaustedContent({ onUpgrade }: { onUpgrade: () => void }) {
 
       {/* UPGRADE button — ONLY action available, no skip */}
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] font-bold py-3 text-sm"
+        className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] font-bold py-3 text-sm"
         onClick={onUpgrade}
       >
         Upgrade Plan to Continue
@@ -260,7 +260,7 @@ export function TokenModal() {
       <DialogContent className="sm:max-w-md bg-[#0f0f0f] border-[rgba(255,255,255,0.03)] text-[#FFFFFF] p-6">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
-            <Coins className="w-5 h-5 text-[#FDBA2D]" />
+            <Coins className="w-5 h-5 text-[#F6A828]" />
             {isExhausted ? 'No Tokens Remaining' : 'Tokens Running Low'}
           </DialogTitle>
         </DialogHeader>

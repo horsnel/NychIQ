@@ -64,7 +64,7 @@ interface RetentionResult {
 
 const RETENTION_LABEL_COLORS: Record<string, { color: string; bg: string }> = {
   'high-skip': { color: '#888888', bg: 'rgba(136,136,136,0.2)' },
-  moderate: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.15)' },
+  moderate: { color: '#F6A828', bg: 'rgba(246,168,40,0.15)' },
   engaged: { color: '#888888', bg: 'rgba(255,255,255,0.03)' },
   peak: { color: '#888888', bg: 'rgba(34,197,94,0.1)' },
 };
@@ -400,12 +400,12 @@ Return ONLY the JSON object, no other text.`;
             </div>
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
-                <Zap className="w-4 h-4 text-[#FDBA2D]" />
+                <Zap className="w-4 h-4 text-[#F6A828]" />
                 <span className="text-xs text-[#a0a0a0]">Hook Score</span>
               </div>
               <div
                 className="text-2xl font-bold"
-                style={{ color: result.hookScore >= 70 ? '#888888' : result.hookScore >= 40 ? '#FDBA2D' : '#888888' }}
+                style={{ color: result.hookScore >= 70 ? '#888888' : result.hookScore >= 40 ? '#F6A828' : '#888888' }}
               >
                 {result.hookScore}/100
               </div>
@@ -440,7 +440,7 @@ Return ONLY the JSON object, no other text.`;
             {/* Lull Detector */}
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Timer className="w-4 h-4 text-[#FDBA2D]" />
+                <Timer className="w-4 h-4 text-[#F6A828]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Lull Detector</h3>
               </div>
               <div className="p-4 space-y-2">
@@ -449,11 +449,11 @@ Return ONLY the JSON object, no other text.`;
                     <div
                       key={i}
                       className="flex items-center gap-2 p-2 rounded-lg"
-                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.08)' }}
+                      style={{ backgroundColor: lull.severity === 'critical' ? 'rgba(0,0,0,0)' : 'rgba(246,168,40,0.08)' }}
                     >
                       <AlertTriangle
                         className="w-4 h-4 shrink-0"
-                        style={{ color: lull.severity === 'critical' ? '#888888' : '#FDBA2D' }}
+                        style={{ color: lull.severity === 'critical' ? '#888888' : '#F6A828' }}
                       />
                       <div className="flex-1 min-w-0">
                         <span className="text-xs font-medium text-[#FFFFFF]">
@@ -464,8 +464,8 @@ Return ONLY the JSON object, no other text.`;
                       <span
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded"
                         style={{
-                          color: lull.severity === 'critical' ? '#888888' : '#FDBA2D',
-                          backgroundColor: lull.severity === 'critical' ? 'rgba(136,136,136,0.2)' : 'rgba(253,186,45,0.15)',
+                          color: lull.severity === 'critical' ? '#888888' : '#F6A828',
+                          backgroundColor: lull.severity === 'critical' ? 'rgba(136,136,136,0.2)' : 'rgba(246,168,40,0.15)',
                         }}
                       >
                         {lull.severity.toUpperCase()}
@@ -553,13 +553,13 @@ Return ONLY the JSON object, no other text.`;
                   <div
                     className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                     style={{
-                      backgroundColor: trim.type === 'cut' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.1)',
+                      backgroundColor: trim.type === 'cut' ? 'rgba(0,0,0,0)' : 'rgba(246,168,40,0.1)',
                     }}
                   >
                     {trim.type === 'cut' ? (
                       <Scissors className="w-3.5 h-3.5 text-[#888888]" />
                     ) : (
-                      <Timer className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                      <Timer className="w-3.5 h-3.5 text-[#F6A828]" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -568,8 +568,8 @@ Return ONLY the JSON object, no other text.`;
                       <span
                         className="text-[9px] font-bold px-1.5 py-0.5 rounded uppercase"
                         style={{
-                          color: trim.type === 'cut' ? '#888888' : '#FDBA2D',
-                          backgroundColor: trim.type === 'cut' ? 'rgba(136,136,136,0.2)' : 'rgba(253,186,45,0.15)',
+                          color: trim.type === 'cut' ? '#888888' : '#F6A828',
+                          backgroundColor: trim.type === 'cut' ? 'rgba(136,136,136,0.2)' : 'rgba(246,168,40,0.15)',
                         }}
                       >
                         {trim.type}
@@ -586,7 +586,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Summary */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-[#FDBA2D]" />
+              <Sparkles className="w-4 h-4 text-[#F6A828]" />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">AI Summary</h3>
             </div>
             <p className="text-sm text-[#a0a0a0] leading-relaxed">{result.summary}</p>

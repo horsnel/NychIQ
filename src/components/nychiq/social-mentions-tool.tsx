@@ -31,7 +31,7 @@ const PLATFORM_STYLES: Record<string, { bg: string; text: string; border: string
   Reddit: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
   TikTok: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
   Instagram: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' },
-  News: { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]' },
+  News: { bg: 'bg-[rgba(246,168,40,0.1)]', text: 'text-[#F6A828]', border: 'border-[rgba(255,255,255,0.03)]' },
 };
 
 const SENTIMENT_STYLES: Record<string, { bg: string; text: string; border: string; icon: React.ReactNode }> = {
@@ -42,8 +42,8 @@ const SENTIMENT_STYLES: Record<string, { bg: string; text: string; border: strin
     icon: <ThumbsUp className="w-3 h-3" />,
   },
   neutral: {
-    bg: 'bg-[rgba(253,186,45,0.1)]',
-    text: 'text-[#FDBA2D]',
+    bg: 'bg-[rgba(246,168,40,0.1)]',
+    text: 'text-[#F6A828]',
     border: 'border-[rgba(255,255,255,0.03)]',
     icon: <Minus className="w-3 h-3" />,
   },
@@ -132,8 +132,8 @@ Return ONLY the JSON array, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <AtSign className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <AtSign className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Channel Mentions</h2>
@@ -153,12 +153,12 @@ Return ONLY the JSON array, no other text.`;
                 onChange={(e) => setChannelInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') searchMentions(); }}
                 placeholder="e.g. MrBeast, @mkbhd, Mark Rober"
-                className="flex-1 h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                className="flex-1 h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
               />
               <button
                 onClick={searchMentions}
                 disabled={loading || !channelInput.trim()}
-                className="px-5 h-11 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+                className="px-5 h-11 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
                 Search Mentions
@@ -179,7 +179,7 @@ Return ONLY the JSON array, no other text.`;
                     isActive
                       ? styles
                         ? `${styles.bg} ${styles.text} ${styles.border}`
-                        : 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border-[rgba(255,255,255,0.03)]'
+                        : 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border-[rgba(255,255,255,0.03)]'
                       : 'bg-[#0a0a0a] text-[#a0a0a0] border-[#1A1A1A] hover:border-[#1a1a1a]'
                   }`}
                 >
@@ -257,7 +257,7 @@ Return ONLY the JSON array, no other text.`;
 
                 {/* Author + Engagement */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#FDBA2D] flex items-center gap-1">
+                  <span className="text-xs font-medium text-[#F6A828] flex items-center gap-1">
                     {mention.author}
                     <ExternalLink className="w-3 h-3" />
                   </span>
@@ -288,8 +288,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <AtSign className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <AtSign className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Find Channel Mentions</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a YouTube channel name or handle to discover what people are saying across social platforms.</p>

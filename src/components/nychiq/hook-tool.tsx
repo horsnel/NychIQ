@@ -61,7 +61,7 @@ function CopyBtn({ text }: { text: string }) {
 function styleColor(index: number): { color: string; bg: string; border: string } {
   const styles = [
     { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
-    { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' },
+    { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.3)' },
     { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   ];
   return styles[index % 3];
@@ -88,12 +88,12 @@ function generateMockHookScore(): { score: number; metrics: HookScoreMetrics } {
 
 function scorePillColor(score: number): { bg: string; text: string; border: string } {
   if (score >= 80) return { bg: 'rgba(34,197,94,0.1)', text: '#888888', border: 'rgba(34,197,94,0.1)' };
-  if (score >= 60) return { bg: 'rgba(253,186,45,0.15)', text: '#FDBA2D', border: 'rgba(253,186,45,0.4)' };
+  if (score >= 60) return { bg: 'rgba(246,168,40,0.15)', text: '#F6A828', border: 'rgba(246,168,40,0.4)' };
   return { bg: 'rgba(136,136,136,0.2)', text: '#888888', border: 'rgba(136,136,136,0.2)' };
 }
 
 function TinyProgressBar({ value, label }: { value: number; label: string }) {
-  const color = value >= 80 ? '#888888' : value >= 60 ? '#FDBA2D' : '#888888';
+  const color = value >= 80 ? '#888888' : value >= 60 ? '#F6A828' : '#888888';
   return (
     <div className="flex items-center gap-2 flex-1 min-w-0">
       <span className="text-[9px] text-[#666666] whitespace-nowrap w-20 truncate">{label}</span>
@@ -190,7 +190,7 @@ Return ONLY the JSON array.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Anchor className="w-5 h-5 text-[#FDBA2D]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><Anchor className="w-5 h-5 text-[#F6A828]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Hook Generator</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Generate 3 different hook styles for the same topic — Shocking Stat, Personal Story, Provocative Question.</p>
@@ -201,18 +201,18 @@ Return ONLY the JSON array.`;
               type="text" value={topic} onChange={(e) => setTopic(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
               placeholder="Enter your video topic..."
-              className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
             />
             <div className="flex flex-col sm:flex-row gap-2">
               <div className="flex flex-wrap gap-2 flex-1">
                 {STYLES.map((s) => (
                   <button key={s.value} onClick={() => setStyle(s.value)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${style === s.value ? 'bg-[#FDBA2D] text-[#0a0a0a]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${style === s.value ? 'bg-[#F6A828] text-[#0a0a0a]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
                     {s.label}
                   </button>
                 ))}
               </div>
-              <button onClick={handleGenerate} disabled={loading || !topic.trim()} className="px-5 h-9 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+              <button onClick={handleGenerate} disabled={loading || !topic.trim()} className="px-5 h-9 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Generate Hooks
               </button>
@@ -247,10 +247,10 @@ Return ONLY the JSON array.`;
       {!loading && rawText && (
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Hook Results (Raw)
+            <Sparkles className="w-4 h-4 text-[#F6A828]" /> Hook Results (Raw)
           </h3>
-          <div className="rounded-lg bg-[#0f0f0f] border border-[#FDBA2D]/30 p-4">
-            <p className="text-[10px] text-[#FDBA2D] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
+          <div className="rounded-lg bg-[#0f0f0f] border border-[#F6A828]/30 p-4">
+            <p className="text-[10px] text-[#F6A828] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
             <pre className="text-sm text-[#FFFFFF] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
           </div>
         </div>
@@ -259,11 +259,11 @@ Return ONLY the JSON array.`;
       {!loading && results.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Generated Hooks</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F6A828]" /> Generated Hooks</h3>
             <button
               onClick={handleScoreAll}
               disabled={scoringAnim}
-              className="px-4 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-lg bg-[rgba(246,168,40,0.15)] border border-[rgba(255,255,255,0.03)] text-[#F6A828] text-xs font-bold hover:bg-[rgba(246,168,40,0.25)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
             >
               {scoringAnim ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Gauge className="w-3.5 h-3.5" />}
               Score All Hooks
@@ -312,7 +312,7 @@ Return ONLY the JSON array.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Anchor className="w-8 h-8 text-[#FDBA2D]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Anchor className="w-8 h-8 text-[#F6A828]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Create Viral Hooks</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a video topic to generate 3 different hook styles with scripts and timing.</p>
         </div>

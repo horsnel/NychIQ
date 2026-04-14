@@ -22,7 +22,7 @@ import {
 const PLAN_STYLES: Record<Plan, { bg: string; text: string; border: string; label: string }> = {
   trial: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#a0a0a0]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Free Trial' },
   starter: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Starter' },
-  pro: { bg: 'bg-[rgba(253,186,45,0.15)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Pro' },
+  pro: { bg: 'bg-[rgba(246,168,40,0.15)]', text: 'text-[#F6A828]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Pro' },
   elite: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Elite' },
   agency: { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]', label: 'Agency' },
 };
@@ -74,8 +74,8 @@ export function ProfileTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <User className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <User className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Profile</h2>
@@ -89,7 +89,7 @@ export function ProfileTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-2xl bg-[#FDBA2D] flex items-center justify-center text-[#0a0a0a] text-2xl font-bold shrink-0">
+          <div className="w-20 h-20 rounded-2xl bg-[#F6A828] flex items-center justify-center text-[#0a0a0a] text-2xl font-bold shrink-0">
             {getInitials(userName)}
           </div>
           <div className="flex-1 text-center sm:text-left">
@@ -105,7 +105,7 @@ export function ProfileTool() {
           </div>
           <button
             onClick={handleEditProfile}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] hover:border-[#FDBA2D]/50 transition-colors shrink-0"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-sm text-[#FFFFFF] hover:border-[#F6A828]/50 transition-colors shrink-0"
           >
             Edit Profile
             <ChevronRight className="w-4 h-4 text-[#666666]" />
@@ -122,10 +122,10 @@ export function ProfileTool() {
           color="bg-[rgba(255,255,255,0.03)]"
         />
         <StatCard
-          icon={<Crown className="w-3.5 h-3.5 text-[#FDBA2D]" />}
+          icon={<Crown className="w-3.5 h-3.5 text-[#F6A828]" />}
           label="Plan"
           value={planStyle.label}
-          color="bg-[rgba(253,186,45,0.1)]"
+          color="bg-[rgba(246,168,40,0.1)]"
         />
         <StatCard
           icon={<Coins className="w-3.5 h-3.5 text-[#888888]" />}
@@ -145,7 +145,7 @@ export function ProfileTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Coins className="w-4 h-4 text-[#FDBA2D]" />
+            <Coins className="w-4 h-4 text-[#F6A828]" />
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider">Token Usage</h4>
           </div>
           <span className="text-xs text-[#a0a0a0]">
@@ -158,7 +158,7 @@ export function ProfileTool() {
             className="h-full rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${usagePercent}%`,
-              background: usagePercent > 80 ? '#888888' : usagePercent > 50 ? '#FDBA2D' : '#888888',
+              background: usagePercent > 80 ? '#888888' : usagePercent > 50 ? '#F6A828' : '#888888',
             }}
           />
         </div>
@@ -166,7 +166,7 @@ export function ProfileTool() {
           <span className="text-[10px] text-[#666666]">
             {tokenBalance.toLocaleString()} tokens remaining
           </span>
-          <span className={`text-xs font-bold ${usagePercent > 80 ? 'text-[#888888]' : usagePercent > 50 ? 'text-[#FDBA2D]' : 'text-[#888888]'}`}>
+          <span className={`text-xs font-bold ${usagePercent > 80 ? 'text-[#888888]' : usagePercent > 50 ? 'text-[#F6A828]' : 'text-[#888888]'}`}>
             {usagePercent}%
           </span>
         </div>
@@ -176,7 +176,7 @@ export function ProfileTool() {
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleUpgrade}
-          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
         >
           <Sparkles className="w-4 h-4" />
           UPGRADE PLAN
@@ -193,8 +193,8 @@ export function ProfileTool() {
       {/* ── Preferences / Links ── */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
-          <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-            <Globe className="w-4 h-4 text-[#FDBA2D]" />
+          <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+            <Globe className="w-4 h-4 text-[#F6A828]" />
           </div>
           <h3 className="text-sm font-bold text-[#FFFFFF]">Preferences</h3>
         </div>

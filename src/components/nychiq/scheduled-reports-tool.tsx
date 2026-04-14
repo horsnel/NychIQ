@@ -61,7 +61,7 @@ const REPORT_TYPE_LABELS: Record<ReportType, string> = {
 const REPORT_TYPE_COLORS: Record<ReportType, string> = {
   weekly: '#888888',
   monthly: '#888888',
-  custom: '#FDBA2D',
+  custom: '#F6A828',
 };
 
 const INITIAL_SCHEDULES: Schedule[] = [
@@ -112,7 +112,7 @@ function StatusBadge({ status }: { status: DeliveryStatus }) {
   const config = {
     sent: { color: '#888888', icon: CheckCircle2, label: 'Sent' },
     failed: { color: '#888888', icon: XCircle, label: 'Failed' },
-    pending: { color: '#FDBA2D', icon: Clock, label: 'Pending' },
+    pending: { color: '#F6A828', icon: Clock, label: 'Pending' },
   }[status];
   const Icon = config.icon;
   return (
@@ -253,7 +253,7 @@ export function ScheduledReportsTool() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard label="Active Schedules" value={activeCount} color="#888888" icon={<CalendarClock className="w-4 h-4" />} />
         <StatCard label="Reports Delivered" value={sentCount} color="#888888" icon={<CheckCircle2 className="w-4 h-4" />} />
-        <StatCard label="Total Schedules" value={schedules.length} color="#FDBA2D" icon={<FileText className="w-4 h-4" />} />
+        <StatCard label="Total Schedules" value={schedules.length} color="#F6A828" icon={<FileText className="w-4 h-4" />} />
         <StatCard label="Delivery Rate" value="92%" change="+2.4%" changeType="up" color="#888888" icon={<TrendingUp className="w-4 h-4" />} />
       </div>
 
@@ -450,7 +450,7 @@ export function ScheduledReportsTool() {
             <button
               onClick={handlePreview}
               disabled={previewLoading}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.2)] transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] text-xs font-semibold text-[#F6A828] hover:bg-[rgba(246,168,40,0.2)] transition-colors disabled:opacity-50"
             >
               {previewLoading ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -549,8 +549,8 @@ export function ScheduledReportsTool() {
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold text-white"
                         style={{
-                          backgroundColor: c.score >= 80 ? 'rgba(34,197,94,0.1)' : c.score >= 60 ? 'rgba(253,186,45,0.2)' : 'rgba(255,255,255,0.03)',
-                          color: c.score >= 80 ? '#888888' : c.score >= 60 ? '#FDBA2D' : '#888888',
+                          backgroundColor: c.score >= 80 ? 'rgba(34,197,94,0.1)' : c.score >= 60 ? 'rgba(246,168,40,0.2)' : 'rgba(255,255,255,0.03)',
+                          color: c.score >= 80 ? '#888888' : c.score >= 60 ? '#F6A828' : '#888888',
                         }}
                       >
                         {c.score}

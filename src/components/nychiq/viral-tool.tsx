@@ -143,7 +143,7 @@ const MOCK_AUTOPSY: AutopsyResult = {
 
 const DNA_AXES = [
   { key: 'thumbnail' as const, label: 'Thumbnail', color: '#888888' },
-  { key: 'title' as const, label: 'Title', color: '#FDBA2D' },
+  { key: 'title' as const, label: 'Title', color: '#F6A828' },
   { key: 'hook' as const, label: 'Hook', color: '#888888' },
   { key: 'timing' as const, label: 'Timing', color: '#888888' },
   { key: 'content' as const, label: 'Content', color: '#888888' },
@@ -162,7 +162,7 @@ function ScoreCircle({ score }: { score: number }) {
   let color = '#a0a0a0';
   let bg = 'rgba(136,136,136,0.1)';
   if (score >= 90) { color = '#888888'; bg = 'rgba(34,197,94,0.1)'; }
-  else if (score >= 80) { color = '#FDBA2D'; bg = 'rgba(253,186,45,0.1)'; }
+  else if (score >= 80) { color = '#F6A828'; bg = 'rgba(246,168,40,0.1)'; }
   else if (score >= 70) { color = '#888888'; bg = 'rgba(255,255,255,0.03)'; }
   else if (score >= 50) { color = '#888888'; bg = 'rgba(255,255,255,0.03)'; }
 
@@ -216,7 +216,7 @@ function ViralGauge({ score }: { score: number }) {
 
   let strokeColor = '#888888';
   if (score >= 80) strokeColor = '#888888';
-  else if (score >= 60) strokeColor = '#FDBA2D';
+  else if (score >= 60) strokeColor = '#F6A828';
 
   return (
     <div className="flex flex-col items-center">
@@ -359,7 +359,7 @@ function AutopsyTab() {
     setLoading(false);
   };
 
-  const hookColors = { high: '#888888', medium: '#FDBA2D', low: '#888888' };
+  const hookColors = { high: '#888888', medium: '#F6A828', low: '#888888' };
 
   return (
     <div className="space-y-5">
@@ -417,7 +417,7 @@ function AutopsyTab() {
             {/* Viral Score gauge */}
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
               <h3 className="text-sm font-semibold text-[#FFFFFF] mb-4 flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#FDBA2D]" />
+                <Zap className="w-4 h-4 text-[#F6A828]" />
                 Viral Score
               </h3>
               <div className="flex justify-center">
@@ -447,13 +447,13 @@ function AutopsyTab() {
           {/* Section 3: Title Formula */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
-              <Target className="w-4 h-4 text-[#FDBA2D]" />
+              <Target className="w-4 h-4 text-[#F6A828]" />
               Title Formula
             </h3>
             <div className="flex flex-wrap gap-2 mb-3">
               {result.titleFormula.pattern.split(' + ').map((part, i) => (
                 <span key={i} className="inline-flex items-center gap-1.5">
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#FDBA2D]/10 text-[#FDBA2D] border border-[#FDBA2D]/20">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F6A828]/10 text-[#F6A828] border border-[#F6A828]/20">
                     {part}
                   </span>
                   {i < result.titleFormula.pattern.split(' + ').length - 1 && (
@@ -516,7 +516,7 @@ function AutopsyTab() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
               <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                  <Clock className="w-3.5 h-3.5 text-[#F6A828]" />
                   <span className="text-[10px] uppercase tracking-wider font-medium text-[#a0a0a0]">Timing</span>
                 </div>
                 <p className="text-xs text-[#a0a0a0] leading-relaxed">{result.algorithmSignals.timing}</p>
@@ -539,7 +539,7 @@ function AutopsyTab() {
             <div className="space-y-1.5">
               {result.algorithmSignals.details.map((detail, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <Star className="w-3 h-3 text-[#FDBA2D] shrink-0" />
+                  <Star className="w-3 h-3 text-[#F6A828] shrink-0" />
                   <span className="text-xs text-[#a0a0a0]">{detail}</span>
                 </div>
               ))}
@@ -560,9 +560,9 @@ function AutopsyTab() {
                     <span
                       className="text-[10px] font-bold px-2 py-0.5 rounded-full"
                       style={{
-                        color: trigger.score >= 85 ? '#888888' : trigger.score >= 70 ? '#FDBA2D' : '#888888',
-                        backgroundColor: trigger.score >= 85 ? 'rgba(34,197,94,0.1)' : trigger.score >= 70 ? 'rgba(253,186,45,0.1)' : 'rgba(0,0,0,0)',
-                        border: `1px solid ${trigger.score >= 85 ? 'rgba(34,197,94,0.1)' : trigger.score >= 70 ? 'rgba(253,186,45,0.25)' : 'rgba(136,136,136,0.2)'}`,
+                        color: trigger.score >= 85 ? '#888888' : trigger.score >= 70 ? '#F6A828' : '#888888',
+                        backgroundColor: trigger.score >= 85 ? 'rgba(34,197,94,0.1)' : trigger.score >= 70 ? 'rgba(246,168,40,0.1)' : 'rgba(0,0,0,0)',
+                        border: `1px solid ${trigger.score >= 85 ? 'rgba(34,197,94,0.1)' : trigger.score >= 70 ? 'rgba(246,168,40,0.25)' : 'rgba(136,136,136,0.2)'}`,
                       }}
                     >
                       {trigger.score}/100
@@ -575,7 +575,7 @@ function AutopsyTab() {
                       className="h-full rounded-full transition-all duration-700"
                       style={{
                         width: `${trigger.score}%`,
-                        backgroundColor: trigger.score >= 85 ? '#888888' : trigger.score >= 70 ? '#FDBA2D' : '#888888',
+                        backgroundColor: trigger.score >= 85 ? '#888888' : trigger.score >= 70 ? '#F6A828' : '#888888',
                       }}
                     />
                   </div>
@@ -587,13 +587,13 @@ function AutopsyTab() {
           {/* Section 7: Apply These Lessons */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-2">
-              <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
+              <Lightbulb className="w-4 h-4 text-[#F6A828]" />
               Apply These Lessons
             </h3>
             <div className="space-y-2">
               {result.recommendations.map((rec, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#FDBA2D]/20 transition-colors">
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#FDBA2D]/10 text-[#FDBA2D] text-[10px] font-bold shrink-0 mt-0.5">
+                <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#F6A828]/20 transition-colors">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#F6A828]/10 text-[#F6A828] text-[10px] font-bold shrink-0 mt-0.5">
                     {i + 1}
                   </span>
                   <p className="text-sm text-[#a0a0a0] leading-relaxed">{rec}</p>
@@ -767,7 +767,7 @@ export function ViralTool() {
               label="Hot (80+)"
               value={hotCount}
               change="↑ 3"
-              color="#FDBA2D"
+              color="#F6A828"
               dark
               icon={<Flame className="w-4 h-4" />}
             />
@@ -794,7 +794,7 @@ export function ViralTool() {
               <p className="text-sm text-[#FFFFFF]">{error}</p>
               <button
                 onClick={fetchViral}
-                className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+                className="mt-3 px-4 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
               >
                 Try Again
               </button>
@@ -864,7 +864,7 @@ export function ViralTool() {
 
                       {/* Info */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#FDBA2D] transition-colors">
+                        <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#F6A828] transition-colors">
                           {item.title}
                         </h3>
                         <div className="flex items-center gap-3 mt-1">

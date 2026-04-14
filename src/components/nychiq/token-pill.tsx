@@ -15,8 +15,8 @@ export function TokenPill() {
   const getStyling = () => {
     if (tokenBalance <= 0) return 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)] animate-pulse-live';
     if (pct <= 20) return 'bg-[rgba(255,255,255,0.03)] text-[#888888] border border-[rgba(255,255,255,0.03)]';
-    if (pct <= 40) return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]';
-    return 'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]';
+    if (pct <= 40) return 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]';
+    return 'bg-[rgba(246,168,40,0.1)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]';
   };
 
   return (

@@ -81,14 +81,14 @@ Provide actionable, data-driven YouTube growth advice. Be specific, concise, and
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-2.5 animate-fade-in-up">
-      <div className="w-7 h-7 rounded-full bg-[rgba(253,186,45,0.12)] flex items-center justify-center shrink-0">
-        <Bot className="w-3.5 h-3.5 text-[#FDBA2D]" />
+      <div className="w-7 h-7 rounded-full bg-[rgba(246,168,40,0.12)] flex items-center justify-center shrink-0">
+        <Bot className="w-3.5 h-3.5 text-[#F6A828]" />
       </div>
       <div className="rounded-2xl rounded-tl-sm bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] px-4 py-3">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-bounce" style={{ animationDelay: '0ms' }} />
-          <span className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-bounce" style={{ animationDelay: '150ms' }} />
-          <span className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-bounce" style={{ animationDelay: '300ms' }} />
+          <span className="w-2 h-2 rounded-full bg-[#F6A828] animate-bounce" style={{ animationDelay: '0ms' }} />
+          <span className="w-2 h-2 rounded-full bg-[#F6A828] animate-bounce" style={{ animationDelay: '150ms' }} />
+          <span className="w-2 h-2 rounded-full bg-[#F6A828] animate-bounce" style={{ animationDelay: '300ms' }} />
         </div>
       </div>
     </div>
@@ -99,8 +99,8 @@ function TypingIndicator() {
 function NoConfigState({ onConfigure }: { onConfigure: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center h-full min-h-[400px] px-4">
-      <div className="w-20 h-20 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
-        <Bot className="w-10 h-10 text-[#FDBA2D]" />
+      <div className="w-20 h-20 rounded-2xl bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-6">
+        <Bot className="w-10 h-10 text-[#F6A828]" />
       </div>
       <h2 className="text-lg font-bold text-[#FFFFFF] mb-2">Channel Assistant Not Configured</h2>
       <p className="text-sm text-[#a0a0a0] max-w-md text-center mb-6 leading-relaxed">
@@ -109,7 +109,7 @@ function NoConfigState({ onConfigure }: { onConfigure: () => void }) {
       </p>
       <button
         onClick={onConfigure}
-        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FDBA2D] text-[#0a0a0a] font-bold text-sm hover:bg-[#C69320] transition-colors"
+        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#F6A828] text-[#0a0a0a] font-bold text-sm hover:bg-[#FFB340] transition-colors"
       >
         <Sparkles className="w-4 h-4" />
         Configure Channel Assistant
@@ -162,7 +162,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
               {config.contentTypes.map((ct) => (
                 <span
                   key={ct}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] text-[11px] font-medium text-[#FDBA2D]"
+                  className="inline-flex items-center px-2.5 py-1 rounded-full bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] text-[11px] font-medium text-[#F6A828]"
                 >
                   {ct}
                 </span>
@@ -178,7 +178,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
             <ul className="space-y-1">
               {config.goals.map((goal) => (
                 <li key={goal} className="flex items-start gap-2 text-xs text-[#a0a0a0]">
-                  <span className="w-1 h-1 rounded-full bg-[#FDBA2D] mt-1.5 shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-[#F6A828] mt-1.5 shrink-0" />
                   {goal}
                 </li>
               ))}
@@ -263,7 +263,7 @@ function ContextSidebarContent({ config, onConfigure, onClose }: { config: Chann
       <div className="px-4 py-3 border-t border-[rgba(255,255,255,0.03)]">
         <button
           onClick={onConfigure}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] text-xs font-bold text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.15)] transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] text-xs font-bold text-[#F6A828] hover:bg-[rgba(246,168,40,0.15)] transition-colors"
         >
           <Sparkles className="w-3.5 h-3.5" />
           Edit Configuration
@@ -290,13 +290,13 @@ function MessageBubble({ message }: { message: ChatMessage }) {
       <div className={cn(
         'w-7 h-7 rounded-full flex items-center justify-center shrink-0',
         isUser
-          ? 'bg-[rgba(253,186,45,0.15)]'
-          : 'bg-[rgba(253,186,45,0.08)]'
+          ? 'bg-[rgba(246,168,40,0.15)]'
+          : 'bg-[rgba(246,168,40,0.08)]'
       )}>
         {isUser ? (
-          <User className="w-3.5 h-3.5 text-[#FDBA2D]" />
+          <User className="w-3.5 h-3.5 text-[#F6A828]" />
         ) : (
-          <Bot className="w-3.5 h-3.5 text-[#FDBA2D]" />
+          <Bot className="w-3.5 h-3.5 text-[#F6A828]" />
         )}
       </div>
 
@@ -500,8 +500,8 @@ export function ChannelPATool() {
 
         {/* Center: Title */}
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
-            <Bot className="w-3.5 h-3.5 text-[#FDBA2D]" />
+          <div className="w-6 h-6 rounded-full bg-[rgba(246,168,40,0.1)] flex items-center justify-center">
+            <Bot className="w-3.5 h-3.5 text-[#F6A828]" />
           </div>
           <h1 className="text-base font-semibold text-[#FFFFFF]">Channel Assistant</h1>
         </div>
@@ -512,7 +512,7 @@ export function ChannelPATool() {
           className={cn(
             'p-2 rounded-lg transition-colors',
             contextOpen
-              ? 'text-[#FDBA2D] bg-[rgba(253,186,45,0.1)]'
+              ? 'text-[#F6A828] bg-[rgba(246,168,40,0.1)]'
               : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.03)]'
           )}
           title={contextOpen ? 'Hide channel context' : 'Show channel context'}
@@ -530,8 +530,8 @@ export function ChannelPATool() {
             {/* Empty state: suggested prompts */}
             {messages.length === 0 && !isStreaming && (
               <div className="flex flex-col items-center justify-center min-h-[300px]">
-                <div className="w-14 h-14 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-                  <Sparkles className="w-7 h-7 text-[#FDBA2D]" />
+                <div className="w-14 h-14 rounded-2xl bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+                  <Sparkles className="w-7 h-7 text-[#F6A828]" />
                 </div>
                 <h2 className="text-base font-bold text-[#FFFFFF] mb-1">
                   Hi{channelConfig ? `, ${channelConfig.channelName}` : ''}!
@@ -549,7 +549,7 @@ export function ChannelPATool() {
                       disabled={isStreaming}
                       className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-left text-sm text-[#a0a0a0] hover:text-[#FFFFFF] hover:border-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.03)] transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
                     >
-                      <Sparkles className="w-3.5 h-3.5 text-[#FDBA2D] opacity-50 group-hover:opacity-100 transition-opacity shrink-0" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#F6A828] opacity-50 group-hover:opacity-100 transition-opacity shrink-0" />
                       <span>{prompt}</span>
                     </button>
                   ))}
@@ -588,7 +588,7 @@ export function ChannelPATool() {
               <button
                 onClick={() => handleSend()}
                 disabled={!inputValue.trim() || isStreaming}
-                className="w-9 h-9 rounded-full bg-[#FDBA2D] text-[#0a0a0a] flex items-center justify-center hover:bg-[#C69320] transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                className="w-9 h-9 rounded-full bg-[#F6A828] text-[#0a0a0a] flex items-center justify-center hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
               >
                 {isStreaming ? (
                   <Loader2 className="w-4 h-4 animate-spin" />

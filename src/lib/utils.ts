@@ -40,7 +40,7 @@ export function timeAgo(dateStr: string): string {
 /* ── Viral score classification ── */
 export function viralScore(score: number): { label: string; class: string; color: string } {
   if (score >= 80) return { label: 'Viral', class: 'text-green', color: '#22c55e' };
-  if (score >= 60) return { label: 'Hot', class: 'text-amber', color: '#FDBA2D' };
+  if (score >= 60) return { label: 'Hot', class: 'text-amber', color: '#F6A828' };
   if (score >= 40) return { label: 'Warm', class: 'text-blue', color: '#888888' };
   return { label: 'Cold', class: 'text-[#a0a0a0]', color: '#a0a0a0' };
 }

@@ -24,7 +24,7 @@ const SUGGESTIONS = [
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-2 animate-fade-in-up">
-      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shrink-0">
+      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center shrink-0">
         <Bot className="w-3.5 h-3.5 text-black" />
       </div>
       <div className="bg-[#1A1A1A] px-4 py-3 rounded-2xl rounded-tl-sm">
@@ -108,7 +108,7 @@ export function SakuPanel() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.03)] shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center">
               <Bot className="w-4.5 h-4.5 text-black" />
             </div>
             <div>
@@ -142,7 +142,7 @@ export function SakuPanel() {
           {/* Welcome state (no messages) */}
           {messages.length === 0 && !isTyping && (
             <div className="flex flex-col items-center justify-center h-full py-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center mx-auto mb-3">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center mx-auto mb-3">
                 <Bot className="w-7 h-7 text-black" />
               </div>
               <p className="text-sm font-semibold text-[#FFFFFF] mb-1">Hey! I&apos;m Saku</p>
@@ -157,7 +157,7 @@ export function SakuPanel() {
               className={cn('flex items-start gap-2', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               {msg.role === 'assistant' && (
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center shrink-0 mt-0.5">
                   <Bot className="w-3.5 h-3.5 text-black" />
                 </div>
               )}
@@ -165,7 +165,7 @@ export function SakuPanel() {
                 className={cn(
                   'max-w-[82%] px-3.5 py-2.5 text-[13px] leading-relaxed',
                   msg.role === 'user'
-                    ? 'bg-[#FDBA2D] text-black rounded-2xl rounded-tr-sm'
+                    ? 'bg-[#F6A828] text-black rounded-2xl rounded-tr-sm'
                     : 'bg-[#1A1A1A] text-[#FFFFFF] rounded-2xl rounded-tl-sm'
                 )}
               >
@@ -209,7 +209,7 @@ export function SakuPanel() {
 
           {/* Chat input bar */}
           <div className="p-4 pt-2">
-            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(255,255,255,0.03)] focus-within:shadow-[0_0_0_1px_rgba(253,186,45,0.1)] transition-all">
+            <div className="flex items-center gap-2.5 bg-[#1A1A1A] rounded-2xl px-4 py-3.5 border border-[rgba(255,255,255,0.03)] focus-within:border-[rgba(255,255,255,0.03)] focus-within:shadow-[0_0_0_1px_rgba(246,168,40,0.1)] transition-all">
               <input
                 ref={inputRef}
                 type="text"
@@ -223,7 +223,7 @@ export function SakuPanel() {
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isTyping}
-                className="p-1.5 rounded-lg text-[#FDBA2D] hover:bg-[rgba(253,186,45,0.1)] disabled:text-[#333] disabled:hover:bg-transparent transition-colors"
+                className="p-1.5 rounded-lg text-[#F6A828] hover:bg-[rgba(246,168,40,0.1)] disabled:text-[#333] disabled:hover:bg-transparent transition-colors"
               >
                 <Send className="w-4 h-4" />
               </button>

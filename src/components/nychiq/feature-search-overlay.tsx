@@ -125,7 +125,7 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
       <div className="relative w-full max-w-3xl max-h-[75vh] bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] rounded-2xl shadow-2xl animate-fade-in-up overflow-hidden flex flex-col">
         {/* Search header */}
         <div className="flex items-center gap-3 px-5 py-4 border-b border-[rgba(255,255,255,0.03)]">
-          <Search className="w-5 h-5 text-[#FDBA2D] shrink-0" />
+          <Search className="w-5 h-5 text-[#F6A828] shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -168,15 +168,15 @@ export function FeatureSearchOverlay({ onClose }: FeatureSearchOverlayProps) {
                         onClick={() => handleSelect(tool.id)}
                         className="flex items-start gap-3 p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)] hover:bg-[#1A1A1A] transition-all group text-left"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(253,186,45,0.12)] transition-colors">
-                          <Icon className="w-4 h-4 text-[#FDBA2D]" />
+                        <div className="w-9 h-9 rounded-lg bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center shrink-0 group-hover:bg-[rgba(246,168,40,0.12)] transition-colors">
+                          <Icon className="w-4 h-4 text-[#F6A828]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#FDBA2D] transition-colors truncate">
+                            <span className="text-sm font-semibold text-[#FFFFFF] group-hover:text-[#F6A828] transition-colors truncate">
                               {tool.label}
                             </span>
-                            <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#FDBA2D] shrink-0 opacity-0 group-hover:opacity-100 transition-all" />
+                            <ArrowRight className="w-3 h-3 text-[#666666] group-hover:text-[#F6A828] shrink-0 opacity-0 group-hover:opacity-100 transition-all" />
                           </div>
                           <p className="text-xs text-[#666666] mt-0.5 line-clamp-1 leading-relaxed">
                             {tool.description}

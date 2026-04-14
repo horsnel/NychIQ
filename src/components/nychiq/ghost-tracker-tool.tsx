@@ -86,7 +86,7 @@ interface GhostResult {
 /* ── Severity colors ── */
 function severityColor(s: string): string {
   if (s === 'high') return '#888888';
-  if (s === 'medium') return '#FDBA2D';
+  if (s === 'medium') return '#F6A828';
   return '#888888';
 }
 
@@ -99,7 +99,7 @@ function impactColor(i: string): string {
 function trendColor(t: string): string {
   if (t === 'accelerating') return '#888888';
   if (t === 'declining') return '#888888';
-  return '#FDBA2D';
+  return '#F6A828';
 }
 
 /* ── Mock fallback ── */
@@ -368,9 +368,9 @@ Return ONLY the JSON object, no other text.`;
           {result.velocityAlerts.length > 0 && (
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1A1A1A]">
-                <Zap className="w-4 h-4 text-[#FDBA2D]" />
+                <Zap className="w-4 h-4 text-[#F6A828]" />
                 <h3 className="text-sm font-semibold text-[#FFFFFF]">Velocity Alerts</h3>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>LIVE</span>
+                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse" style={{ backgroundColor: 'rgba(246,168,40,0.15)', color: '#F6A828' }}>LIVE</span>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {result.velocityAlerts.map((alert, i) => (

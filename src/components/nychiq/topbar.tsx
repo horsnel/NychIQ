@@ -149,7 +149,7 @@ export function Topbar() {
 
       {/* Token cost badge */}
       {tokenCost > 0 && (
-        <span className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded-full bg-[rgba(253,186,45,0.1)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]">
+        <span className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded-full bg-[rgba(246,168,40,0.1)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]">
           {tokenCost} token{tokenCost > 1 ? 's' : ''}
         </span>
       )}
@@ -198,7 +198,7 @@ export function Topbar() {
             onClick={() => setShowCountryDropdown(!showCountryDropdown)}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[rgba(255,255,255,0.03)] text-[#a0a0a0] text-xs hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF] transition-colors"
           >
-            <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#FDBA2D]">
+            <span className="w-4 h-4 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[9px] font-bold text-[#F6A828]">
               {region.charAt(0)}
             </span>
             <span className="font-medium">{region}</span>
@@ -215,10 +215,10 @@ export function Topbar() {
                   }}
                   className={cn(
                     'w-full flex items-center gap-2 px-3 py-2 text-xs hover:bg-[#1A1A1A] transition-colors',
-                    region === r.code ? 'text-[#FDBA2D]' : 'text-[#a0a0a0]'
+                    region === r.code ? 'text-[#F6A828]' : 'text-[#a0a0a0]'
                   )}
                 >
-                  <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#FDBA2D] shrink-0">
+                  <span className="w-5 h-5 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[10px] font-bold text-[#F6A828] shrink-0">
                     {r.code.charAt(0)}
                   </span>
                   <span>{r.code} — {r.label}</span>
@@ -282,7 +282,7 @@ export function Topbar() {
             onClick={() => handleAvatarAction('channel')}
             className="relative w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
             title={channelProfile.name}
-            style={{ backgroundColor: channelProfile.avatarColor || '#FDBA2D', color: '#0a0a0a' }}
+            style={{ backgroundColor: channelProfile.avatarColor || '#F6A828', color: '#0a0a0a' }}
           >
             {/* Animated ring layer 1 — amber */}
             <span className="absolute inset-[-3px] rounded-full channel-ring-amber" />
@@ -312,7 +312,7 @@ export function Topbar() {
         <div ref={avatarRef} className="relative">
           <button
             onClick={() => setShowAvatarMenu(!showAvatarMenu)}
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
             title={userName || 'User'}
             style={{ color: 'black' }}
           >

@@ -39,7 +39,7 @@ const MODE_SUGGESTIONS: Record<string, string[]> = {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in-up py-2">
-      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center shrink-0">
         <Bot className="w-4 h-4 text-black" />
       </div>
       <div className="bg-[#1A1A1A] px-4 py-3 rounded-2xl rounded-tl-sm">
@@ -170,7 +170,7 @@ export function SakuFullPage() {
           >
             <MessageSquare className="w-5 h-5" />
           </button>
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center">
             <Bot className="w-5 h-5 text-black" />
           </div>
           <div>
@@ -192,7 +192,7 @@ export function SakuFullPage() {
               onClick={() => setSakuMode('2.0')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 sakuMode === '2.0'
-                  ? 'bg-[#FDBA2D] text-black shadow-sm'
+                  ? 'bg-[#F6A828] text-black shadow-sm'
                   : 'text-[#555] hover:text-[#a0a0a0]'
               }`}
             >
@@ -242,7 +242,7 @@ export function SakuFullPage() {
                 onClick={() => setActiveMode(mode.id)}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeMode === mode.id
-                    ? 'bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D]'
+                    ? 'bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] text-[#F6A828]'
                     : 'hover:bg-[rgba(255,255,255,0.03)] text-[#666] hover:text-[#a0a0a0] border border-transparent'
                 }`}
               >
@@ -274,7 +274,7 @@ export function SakuFullPage() {
               {/* Welcome state */}
               {messages.length === 0 && !isTyping && (
                 <div className="text-center py-8 sm:py-16">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-black" />
                   </div>
                   <h3 className="text-xl font-bold text-[#FFFFFF] mb-2">How can I help you today?</h3>
@@ -290,7 +290,7 @@ export function SakuFullPage() {
                         onClick={() => handleSend(sug)}
                         className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] text-left hover:border-[#333] hover:bg-[#161616] transition-all group"
                       >
-                        <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#FDBA2D] transition-colors shrink-0" />
+                        <Zap className="w-3.5 h-3.5 text-[#444] group-hover:text-[#F6A828] transition-colors shrink-0" />
                         <span className="text-xs text-[#a0a0a0] group-hover:text-[#FFFFFF] transition-colors">{sug}</span>
                       </button>
                     ))}
@@ -310,7 +310,7 @@ export function SakuFullPage() {
                       )}
                     >
                       {msg.role === 'assistant' && (
-                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center shrink-0 mt-0.5">
                           <Bot className="w-4 h-4 text-black" />
                         </div>
                       )}
@@ -318,7 +318,7 @@ export function SakuFullPage() {
                         className={cn(
                           'max-w-[85%] px-4 py-3 text-sm leading-relaxed',
                           msg.role === 'user'
-                            ? 'bg-[#FDBA2D] text-black rounded-2xl rounded-tr-sm'
+                            ? 'bg-[#F6A828] text-black rounded-2xl rounded-tr-sm'
                             : 'bg-[#1A1A1A] text-[#FFFFFF] rounded-2xl rounded-tl-sm'
                         )}
                       >
@@ -370,7 +370,7 @@ export function SakuFullPage() {
                   disabled={!input.trim() || isTyping}
                   className={`p-2 rounded-lg transition-colors shrink-0 ${
                     sakuMode === '2.0'
-                      ? 'bg-[#FDBA2D] text-black hover:bg-[#C69320] disabled:opacity-30'
+                      ? 'bg-[#F6A828] text-black hover:bg-[#FFB340] disabled:opacity-30'
                       : 'bg-[#888888] text-white hover:bg-[#8560B5] disabled:opacity-30'
                   }`}
                 >

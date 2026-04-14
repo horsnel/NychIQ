@@ -55,7 +55,7 @@ function RevenueScoreRing({ score }: { score: number }) {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 75 ? '#888888' : score >= 50 ? '#FDBA2D' : '#888888';
+  const color = score >= 75 ? '#888888' : score >= 50 ? '#F6A828' : '#888888';
   const label = score >= 75 ? 'High' : score >= 50 ? 'Medium' : 'Low';
 
   return (
@@ -390,10 +390,10 @@ Return ONLY the JSON object, no other text.`;
               {result.revenueKeywords.map((k, i) => (
                 <div key={i} className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
-                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" style={{ color: '#FDBA2D' }} />
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" style={{ color: '#F6A828' }} />
                     <span className="text-sm text-[#FFFFFF]">{k.phrase}</span>
                   </div>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded shrink-0" style={{ color: '#FDBA2D', backgroundColor: 'rgba(253,186,45,0.1)' }}>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded shrink-0" style={{ color: '#F6A828', backgroundColor: 'rgba(246,168,40,0.1)' }}>
                     {k.multiplier}
                   </span>
                 </div>

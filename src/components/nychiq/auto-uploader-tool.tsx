@@ -23,9 +23,9 @@ const FEATURES = [
     icon: Clock,
     title: 'Smart Upload',
     description: 'Schedule and auto-upload videos at optimal times with AI timing analysis',
-    color: '#FDBA2D',
-    bg: 'rgba(253,186,45,0.1)',
-    border: 'rgba(253,186,45,0.2)',
+    color: '#F6A828',
+    bg: 'rgba(246,168,40,0.1)',
+    border: 'rgba(246,168,40,0.2)',
   },
   {
     icon: Bot,
@@ -72,9 +72,9 @@ function timelineConfig(status: typeof TIMELINE[number]['status']) {
       };
     case 'in-progress':
       return {
-        dotColor: '#FDBA2D',
-        ringColor: 'rgba(253,186,45,0.2)',
-        textColor: '#FDBA2D',
+        dotColor: '#F6A828',
+        ringColor: 'rgba(246,168,40,0.2)',
+        textColor: '#F6A828',
         lineColor: '#0f0f0f',
         icon: <Loader2 className="w-3 h-3 animate-spin" />,
       };
@@ -146,7 +146,7 @@ export function AutoUploaderTool() {
         <div
           className="absolute inset-0 rounded-lg animate-gradient-spin"
           style={{
-            background: 'conic-gradient(from 0deg, #FDBA2D, #888888, #FDBA2D, #888888, #FDBA2D)',
+            background: 'conic-gradient(from 0deg, #F6A828, #888888, #F6A828, #888888, #F6A828)',
             padding: '1.5px',
             WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             WebkitMaskComposite: 'xor',
@@ -174,7 +174,7 @@ export function AutoUploaderTool() {
               </h1>
               <span
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-[#0a0a0a] animate-pulse-badge"
-                style={{ backgroundColor: '#FDBA2D' }}
+                style={{ backgroundColor: '#F6A828' }}
               >
                 <Zap className="w-3 h-3" />
                 Coming Soon
@@ -264,9 +264,9 @@ export function AutoUploaderTool() {
                       'w-full h-11 pl-10 pr-4 rounded-lg bg-[#0a0a0a] border text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors',
                       emailError ? 'border-[#888888]' : 'border-[#1A1A1A]'
                     )}
-                    style={{ caretColor: '#FDBA2D' }}
+                    style={{ caretColor: '#F6A828' }}
                     onFocus={(e) => {
-                      if (!emailError) e.target.style.borderColor = 'rgba(253,186,45,0.5)';
+                      if (!emailError) e.target.style.borderColor = 'rgba(246,168,40,0.5)';
                     }}
                     onBlur={(e) => {
                       if (!emailError) e.target.style.borderColor = '#1A1A1A';
@@ -277,7 +277,7 @@ export function AutoUploaderTool() {
                   onClick={handleSubmit}
                   disabled={submitting || !email.trim()}
                   className="h-11 px-6 rounded-lg text-[#0a0a0a] text-sm font-bold flex items-center justify-center gap-2 shrink-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.98]"
-                  style={{ backgroundColor: '#FDBA2D' }}
+                  style={{ backgroundColor: '#F6A828' }}
                 >
                   {submitting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -304,7 +304,7 @@ export function AutoUploaderTool() {
       {/* ──────── STATUS TIMELINE ──────── */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 sm:p-8">
         <h3 className="text-sm font-bold text-[#FFFFFF] mb-5 flex items-center gap-2">
-          <Zap className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+          <Zap className="w-4 h-4" style={{ color: '#F6A828' }} />
           Development Progress
         </h3>
         <div className="flex flex-col gap-0">
@@ -347,7 +347,7 @@ export function AutoUploaderTool() {
                     {step.label}
                   </span>
                   {step.status === 'in-progress' && (
-                    <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ color: '#FDBA2D', backgroundColor: 'rgba(253,186,45,0.1)' }}>
+                    <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ color: '#F6A828', backgroundColor: 'rgba(246,168,40,0.1)' }}>
                       IN PROGRESS
                     </span>
                   )}
@@ -370,8 +370,8 @@ export function AutoUploaderTool() {
         }
 
         @keyframes pulse-badge {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(253,186,45,0.5); }
-          50%      { box-shadow: 0 0 0 8px rgba(253,186,45,0); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(246,168,40,0.5); }
+          50%      { box-shadow: 0 0 0 8px rgba(246,168,40,0); }
         }
 
         .animate-pulse-badge {
@@ -379,8 +379,8 @@ export function AutoUploaderTool() {
         }
 
         @keyframes pulse-dot {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(253,186,45,0.4); }
-          50%      { box-shadow: 0 0 0 6px rgba(253,186,45,0); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(246,168,40,0.4); }
+          50%      { box-shadow: 0 0 0 6px rgba(246,168,40,0); }
         }
 
         .animate-pulse-dot {

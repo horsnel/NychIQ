@@ -98,7 +98,7 @@ The channel has shown consistent month-over-month growth, adding approximately 6
 
 /* ── Category colors for pie chart bars ── */
 const CAT_COLORS = [
-  { bar: 'bg-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]' },
+  { bar: 'bg-[#F6A828]', bg: 'bg-[rgba(246,168,40,0.1)]', text: 'text-[#F6A828]' },
   { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
   { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
   { bar: 'bg-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]' },
@@ -107,7 +107,7 @@ const CAT_COLORS = [
 
 /* ── Stat card definitions ── */
 const STAT_CARDS = [
-  { key: 'subscribers', label: 'Subscribers', icon: Users, color: 'text-[#FDBA2D]', bg: 'bg-[rgba(253,186,45,0.1)]' },
+  { key: 'subscribers', label: 'Subscribers', icon: Users, color: 'text-[#F6A828]', bg: 'bg-[rgba(246,168,40,0.1)]' },
   { key: 'totalViews', label: 'Total Views', icon: Eye, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
   { key: 'videos', label: 'Videos', icon: Video, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
   { key: 'avgViews', label: 'Avg Views', icon: Play, color: 'text-[#888888]', bg: 'bg-[rgba(255,255,255,0.03)]' },
@@ -180,8 +180,8 @@ Return ONLY the JSON object, no other text.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <BarChart2 className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <BarChart2 className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Channel Stats</h2>
@@ -202,7 +202,7 @@ Return ONLY the JSON object, no other text.`;
             <button
               onClick={analyzeChannel}
               disabled={loading || !channelInput.trim()}
-              className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
+              className="px-5 h-11 rounded-full bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 justify-center"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart2 className="w-4 h-4" />}
               Analyze Channel
@@ -264,12 +264,12 @@ Return ONLY the JSON object, no other text.`;
           {/* Channel Profile Card */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.1)] border-2 border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
-                <span className="text-lg font-bold text-[#FDBA2D]">{result.profile.avatarInitial}</span>
+              <div className="w-16 h-16 rounded-full bg-[rgba(246,168,40,0.1)] border-2 border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
+                <span className="text-lg font-bold text-[#F6A828]">{result.profile.avatarInitial}</span>
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-lg font-bold text-[#FFFFFF]">{result.profile.name}</h3>
-                <p className="text-xs text-[#FDBA2D] mb-1.5">{result.profile.handle}</p>
+                <p className="text-xs text-[#F6A828] mb-1.5">{result.profile.handle}</p>
                 <p className="text-sm text-[#a0a0a0] leading-relaxed">{result.profile.description}</p>
               </div>
             </div>
@@ -311,12 +311,12 @@ Return ONLY the JSON object, no other text.`;
                     <div className="w-full relative" style={{ height: '100px' }}>
                       <div
                         className={`absolute bottom-0 w-full rounded-t-md transition-all duration-1000 ${
-                          isLast ? 'bg-[#FDBA2D]' : 'bg-[rgba(253,186,45,0.3)]'
+                          isLast ? 'bg-[#F6A828]' : 'bg-[rgba(246,168,40,0.3)]'
                         }`}
                         style={{ height: `${heightPct}%` }}
                       />
                     </div>
-                    <span className={`text-[10px] font-medium ${isLast ? 'text-[#FDBA2D]' : 'text-[#666666]'}`}>
+                    <span className={`text-[10px] font-medium ${isLast ? 'text-[#F6A828]' : 'text-[#666666]'}`}>
                       {month.month}
                     </span>
                   </div>
@@ -366,8 +366,8 @@ Return ONLY the JSON object, no other text.`;
           </div>
 
           {/* AI Summary */}
-          <div className="rounded-lg bg-[#0f0f0f] border border-[#FDBA2D]/20 p-5">
-            <h4 className="text-xs font-bold text-[#FDBA2D] uppercase tracking-wider mb-3 flex items-center gap-2">
+          <div className="rounded-lg bg-[#0f0f0f] border border-[#F6A828]/20 p-5">
+            <h4 className="text-xs font-bold text-[#F6A828] uppercase tracking-wider mb-3 flex items-center gap-2">
               <Sparkles className="w-3.5 h-3.5" /> AI Analysis
             </h4>
             <div className="text-sm text-[#FFFFFF] leading-relaxed whitespace-pre-line">
@@ -380,8 +380,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Empty State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <BarChart2 className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <BarChart2 className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Deep Channel Analytics</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a channel name or URL to unlock engagement rates, growth trends, and revenue estimates.</p>

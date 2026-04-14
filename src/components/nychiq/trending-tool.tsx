@@ -98,7 +98,7 @@ const MOCK_TRENDS: TrendTopic[] = [
   { id: 'ai-revolution', name: 'AI Revolution 2026', emoji: '🤖', category: 'Technology', momentum: 94, color: '#888888' },
   { id: 'react-20', name: 'React 20 Features', emoji: '⚛️', category: 'Programming', momentum: 87, color: '#888888' },
   { id: 'space-tourism', name: 'Space Tourism 2026', emoji: '🚀', category: 'Science', momentum: 82, color: '#888888' },
-  { id: 'crypto-comeback', name: 'Crypto Comeback', emoji: '₿', category: 'Finance', momentum: 79, color: '#FDBA2D' },
+  { id: 'crypto-comeback', name: 'Crypto Comeback', emoji: '₿', category: 'Finance', momentum: 79, color: '#F6A828' },
   { id: 'indie-games', name: 'Indie Game Renaissance', emoji: '🎮', category: 'Gaming', momentum: 76, color: '#888888' },
   { id: 'remote-work-2', name: 'Remote Work 2.0', emoji: '🏠', category: 'Business', momentum: 73, color: '#888888' },
   { id: 'climate-tech', name: 'Climate Tech Boom', emoji: '🌱', category: 'Environment', momentum: 70, color: '#22C55E' },
@@ -249,7 +249,7 @@ function TrendingHeader({
               className={cn(
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                 sortBy === s.key
-                  ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
+                  ? 'bg-[#F6A828]/15 text-[#F6A828] border border-[#F6A828]/30'
                   : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
               )}
             >
@@ -433,7 +433,7 @@ function LiveTab() {
           label="Top Viral Score"
           value={topViral || '—'
           }
-          color="#FDBA2D"
+          color="#F6A828"
           dark
           icon={<Zap className="w-4 h-4" />}
         />
@@ -454,7 +454,7 @@ function LiveTab() {
           <p className="text-sm text-[#a0a0a0] mb-4">{error}</p>
           <button
             onClick={fetchTrending}
-            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="flex items-center gap-2 mx-auto px-4 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Try Again
@@ -558,8 +558,8 @@ function PipelineTab() {
     setTimeout(() => setCopiedStep(null), 2000);
   }, []);
 
-  const scoreColor = pipeline.score >= 85 ? '#888888' : pipeline.score >= 70 ? '#FDBA2D' : '#888888';
-  const scoreBg = pipeline.score >= 85 ? 'rgba(34,197,94,0.1)' : pipeline.score >= 70 ? 'rgba(253,186,45,0.12)' : 'rgba(136,136,136,0.2)';
+  const scoreColor = pipeline.score >= 85 ? '#888888' : pipeline.score >= 70 ? '#F6A828' : '#888888';
+  const scoreBg = pipeline.score >= 85 ? 'rgba(34,197,94,0.1)' : pipeline.score >= 70 ? 'rgba(246,168,40,0.12)' : 'rgba(136,136,136,0.2)';
   const scoreLabel = pipeline.score >= 85 ? 'Excellent' : pipeline.score >= 70 ? 'Good' : 'Needs Work';
 
   return (
@@ -567,7 +567,7 @@ function PipelineTab() {
       {/* Pick a Trend Section */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-4">
-          <Flame className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+          <Flame className="w-4 h-4" style={{ color: '#F6A828' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Pick a Trend</h3>
           <span className="text-[10px] text-[#a0a0a0] ml-1">Select a trending topic to generate a full content pipeline</span>
         </div>
@@ -674,10 +674,10 @@ function PipelineTab() {
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>1</div>
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: 'rgba(246,168,40,0.15)', color: '#F6A828' }}>1</div>
                 <div>
                   <h4 className="text-sm font-bold text-[#FFFFFF] flex items-center gap-1.5">
-                    <FileText className="w-3.5 h-3.5 text-[#FDBA2D]" />
+                    <FileText className="w-3.5 h-3.5 text-[#F6A828]" />
                     Title &amp; Hook
                   </h4>
                   <p className="text-[10px] text-[#a0a0a0]">Generated title + hook script</p>
@@ -697,7 +697,7 @@ function PipelineTab() {
                   onClick={() => generateStep(1, selectedTrend)}
                   disabled={generatingStep === 1 || generatingAll}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 disabled:opacity-50"
-                  style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D', border: '1px solid rgba(253,186,45,0.3)' }}
+                  style={{ backgroundColor: 'rgba(246,168,40,0.15)', color: '#F6A828', border: '1px solid rgba(246,168,40,0.3)' }}
                 >
                   {generatingStep === 1 ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Generate
@@ -716,7 +716,7 @@ function PipelineTab() {
             {pipeline.step1 && generatingStep !== 1 && (
               <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
-                  <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider mb-1 block">Title</span>
+                  <span className="text-[10px] font-bold text-[#F6A828] uppercase tracking-wider mb-1 block">Title</span>
                   <p className="text-sm text-[#FFFFFF] font-medium">{pipeline.step1.title}</p>
                 </div>
                 <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
@@ -959,8 +959,8 @@ function PipelineTab() {
                 {/* Best Time */}
                 <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Clock className="w-3 h-3 text-[#FDBA2D]" />
-                    <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider">Best Publishing Time</span>
+                    <Clock className="w-3 h-3 text-[#F6A828]" />
+                    <span className="text-[10px] font-bold text-[#F6A828] uppercase tracking-wider">Best Publishing Time</span>
                   </div>
                   <p className="text-xs text-[#D4D4D4] leading-relaxed">{pipeline.step4.bestTime}</p>
                 </div>

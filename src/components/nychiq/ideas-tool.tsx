@@ -69,7 +69,7 @@ const FREQUENCY_OPTIONS: { value: Frequency; label: string; days: number[] }[] =
 
 const CONTENT_TYPE_COLORS: Record<CalendarContentType, { color: string; bg: string; border: string }> = {
   Tutorial: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
-  Reaction: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.25)' },
+  Reaction: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.25)' },
   List: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   Story: { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' },
   Challenge: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
@@ -79,7 +79,7 @@ const CONTENT_TYPE_COLORS: Record<CalendarContentType, { color: string; bg: stri
 
 const VIRAL_COLORS: Record<ViralPotential, { color: string; bg: string; border: string }> = {
   Low: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
-  Medium: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.25)' },
+  Medium: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.25)' },
   High: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
 };
 
@@ -169,7 +169,7 @@ function CopyBtn({ text }: { text: string }) {
 
 function viralColor(score: number) {
   if (score >= 80) return { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' };
-  if (score >= 60) return { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' };
+  if (score >= 60) return { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.3)' };
   if (score >= 40) return { color: '#888888', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.03)' };
   return { color: '#a0a0a0', bg: 'rgba(136,136,136,0.1)', border: 'rgba(136,136,136,0.3)' };
 }
@@ -223,7 +223,7 @@ function ToolTab({ active, onClick, icon: Icon, label }: { active: boolean; onCl
       onClick={onClick}
       className={`flex items-center gap-2 px-4 py-2.5 rounded-t-lg text-sm font-medium transition-colors border-b-2 ${
         active
-          ? 'text-[#FDBA2D] border-[#FDBA2D] bg-[#0f0f0f]'
+          ? 'text-[#F6A828] border-[#F6A828] bg-[#0f0f0f]'
           : 'text-[#a0a0a0] border-transparent hover:text-[#FFFFFF] hover:bg-[#0f0f0f]/50'
       }`}
     >
@@ -315,8 +315,8 @@ function CalendarTab() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <CalendarDays className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <CalendarDays className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">30-Day Content Calendar</h2>
@@ -330,7 +330,7 @@ function CalendarTab() {
               onChange={(e) => setNiche(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
               placeholder="Enter your niche or topic..."
-              className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+              className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
             />
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex flex-wrap gap-2 flex-1">
@@ -340,7 +340,7 @@ function CalendarTab() {
                     onClick={() => setFrequency(f.value)}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                       frequency === f.value
-                        ? 'bg-[#FDBA2D] text-[#0a0a0a]'
+                        ? 'bg-[#F6A828] text-[#0a0a0a]'
                         : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'
                     }`}
                   >
@@ -351,7 +351,7 @@ function CalendarTab() {
               <button
                 onClick={handleGenerate}
                 disabled={loading || !niche.trim()}
-                className="px-5 h-9 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+                className="px-5 h-9 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 Generate Calendar
@@ -385,7 +385,7 @@ function CalendarTab() {
             {/* Total ideas */}
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-1">
-                <BarChart3 className="w-4 h-4 text-[#FDBA2D]" />
+                <BarChart3 className="w-4 h-4 text-[#F6A828]" />
                 <span className="text-[10px] text-[#a0a0a0] uppercase tracking-wider font-medium">Total Ideas</span>
               </div>
               <span className="text-2xl font-bold text-[#FFFFFF]">{entries.length}</span>
@@ -432,7 +432,7 @@ function CalendarTab() {
               {/* Week header */}
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-                  <CalendarDays className="w-4 h-4 text-[#FDBA2D]" />
+                  <CalendarDays className="w-4 h-4 text-[#F6A828]" />
                   Week {weekIndex + 1}
                   <span className="text-xs text-[#666666] font-normal">
                     ({weekEntries[0]?.date} — {weekEntries[weekEntries.length - 1]?.date})
@@ -440,7 +440,7 @@ function CalendarTab() {
                 </h3>
                 <button
                   onClick={() => handleRegenerateWeek(weekIndex)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-[11px] text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-[11px] text-[#a0a0a0] hover:text-[#F6A828] hover:border-[#F6A828]/30 transition-colors"
                 >
                   <RotateCcw className="w-3 h-3" />
                   Regenerate Week
@@ -536,8 +536,8 @@ function CalendarTab() {
       {/* Empty state */}
       {!loading && !generated && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
-            <CalendarDays className="w-8 h-8 text-[#FDBA2D]" />
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4">
+            <CalendarDays className="w-8 h-8 text-[#F6A828]" />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Plan Your Month</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your niche and choose a posting frequency to generate a full 30-day content calendar.</p>
@@ -631,7 +631,7 @@ Return ONLY the JSON array.`;
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
             <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><Lightbulb className="w-5 h-5 text-[#FDBA2D]" /></div>
+                <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><Lightbulb className="w-5 h-5 text-[#F6A828]" /></div>
                 <div>
                   <h2 className="text-base font-bold text-[#FFFFFF]">Video Ideas</h2>
                   <p className="text-xs text-[#a0a0a0] mt-0.5">10 high-potential ideas based on your niche, with viral score prediction.</p>
@@ -641,18 +641,18 @@ Return ONLY the JSON array.`;
                 <input type="text" value={niche} onChange={(e) => setNiche(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleGenerate(); }}
                   placeholder="Enter your niche or topic..."
-                  className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#FDBA2D]/50 transition-colors"
+                  className="w-full h-11 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none focus:border-[#F6A828]/50 transition-colors"
                 />
                 <div className="flex flex-col sm:flex-row gap-2">
                   <div className="flex flex-wrap gap-2 flex-1">
                     {CONTENT_TYPES.map((t) => (
                       <button key={t} onClick={() => setContentType(t)}
-                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${contentType === t ? 'bg-[#FDBA2D] text-[#0a0a0a]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
+                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${contentType === t ? 'bg-[#F6A828] text-[#0a0a0a]' : 'bg-[#0a0a0a] border border-[#1A1A1A] text-[#a0a0a0] hover:text-[#FFFFFF]'}`}>
                         {t}
                       </button>
                     ))}
                   </div>
-                  <button onClick={handleGenerate} disabled={loading || !niche.trim()} className="px-5 h-9 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+                  <button onClick={handleGenerate} disabled={loading || !niche.trim()} className="px-5 h-9 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                     Generate Ideas
                   </button>
@@ -689,10 +689,10 @@ Return ONLY the JSON array.`;
           {!loading && rawText && (
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Ideas Results (Raw)
+                <Sparkles className="w-4 h-4 text-[#F6A828]" /> Ideas Results (Raw)
               </h3>
-              <div className="rounded-lg bg-[#0f0f0f] border border-[#FDBA2D]/30 p-4">
-                <p className="text-[10px] text-[#FDBA2D] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
+              <div className="rounded-lg bg-[#0f0f0f] border border-[#F6A828]/30 p-4">
+                <p className="text-[10px] text-[#F6A828] mb-2 font-medium">Could not format the AI response. Showing raw output:</p>
                 <pre className="text-sm text-[#FFFFFF] whitespace-pre-wrap leading-relaxed font-sans">{rawText}</pre>
               </div>
             </div>
@@ -701,7 +701,7 @@ Return ONLY the JSON array.`;
           {!loading && ideas.length > 0 && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> {ideas.length} Video Ideas Generated</h3>
+                <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F6A828]" /> {ideas.length} Video Ideas Generated</h3>
                 <button onClick={async () => { const text = ideas.map((id, i) => `${i + 1}. ${id.title}\n${id.description}\nViral Score: ${id.viralScore} | Views: ${id.estimatedViews} | Type: ${id.contentType}`).join('\n\n'); await copyToClipboard(text); }}
                   className="flex items-center gap-1 text-xs text-[#a0a0a0] hover:text-[#888888] transition-colors"><Copy className="w-3 h-3" /> Copy All</button>
               </div>
@@ -736,7 +736,7 @@ Return ONLY the JSON array.`;
 
           {!loading && !searched && (
             <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Lightbulb className="w-8 h-8 text-[#FDBA2D]" /></div>
+              <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><Lightbulb className="w-8 h-8 text-[#F6A828]" /></div>
               <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Get Video Ideas</h3>
               <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter your niche to get 10 video ideas with viral score predictions.</p>
             </div>

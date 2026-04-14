@@ -143,9 +143,9 @@ Return ONLY the JSON object.`;
           <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#888888]" /> A/B Test Results</h3>
 
           {/* Winner Banner */}
-          <div className="rounded-lg bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] p-4 text-center">
-            <Trophy className="w-6 h-6 text-[#FDBA2D] mx-auto mb-2" />
-            <p className="text-base font-bold text-[#FDBA2D]">Winner: Title {result.winner}</p>
+          <div className="rounded-lg bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] p-4 text-center">
+            <Trophy className="w-6 h-6 text-[#F6A828] mx-auto mb-2" />
+            <p className="text-base font-bold text-[#F6A828]">Winner: Title {result.winner}</p>
             <p className="text-xs text-[#a0a0a0] mt-1 flex items-center justify-center gap-1"><TrendingUp className="w-3 h-3" /> +{result.improvementPct}% predicted improvement</p>
           </div>
 

@@ -85,7 +85,7 @@ Return ONLY the JSON object.`;
   };
   const sevConfig: Record<string, { color: string; bg: string; border: string }> = {
     Low: { color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)' },
-    Medium: { color: '#FDBA2D', bg: 'rgba(253,186,45,0.1)', border: 'rgba(253,186,45,0.3)' },
+    Medium: { color: '#F6A828', bg: 'rgba(246,168,40,0.1)', border: 'rgba(246,168,40,0.3)' },
     High: { color: '#888888', bg: 'rgba(0,0,0,0)', border: 'rgba(136,136,136,0.2)' },
     Critical: { color: '#888888', bg: 'rgba(136,136,136,0.2)', border: 'rgba(136,136,136,0.2)' },
   };
@@ -158,7 +158,7 @@ Return ONLY the JSON object.`;
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3 flex items-center gap-2"><Wrench className="w-3.5 h-3.5" /> Fix Recommendations</h4>
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.fixRecommendations.map((rec, i) => {
-                const pColor = rec.priority === 'high' ? '#888888' : rec.priority === 'medium' ? '#FDBA2D' : '#888888';
+                const pColor = rec.priority === 'high' ? '#888888' : rec.priority === 'medium' ? '#F6A828' : '#888888';
                 return (
                   <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                     <ArrowRight className="w-4 h-4 mt-0.5 shrink-0" style={{ color: pColor }} />

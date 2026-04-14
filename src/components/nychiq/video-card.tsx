@@ -49,7 +49,7 @@ function ViralBadge({ score }: { score: number }) {
     return (
       <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-sm text-xs font-bold">
         <span>⚡</span>
-        <span className="text-[#FDBA2D]">HOT</span>
+        <span className="text-[#F6A828]">HOT</span>
       </span>
     );
   }
@@ -320,7 +320,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
           <VideoContextMenu video={video} />
         </div>
         <div className="flex flex-col justify-center min-w-0 flex-1">
-          <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors">
+          <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#F6A828] transition-colors">
             {video.title}
           </h3>
           <p className="text-xs text-[#a0a0a0] mt-1">{video.channelTitle}</p>
@@ -364,7 +364,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
         {/* Hover play overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full bg-[#FDBA2D]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 scale-75 group-hover:scale-100">
+          <div className="w-10 h-10 rounded-full bg-[#F6A828]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 scale-75 group-hover:scale-100">
             <Play className="w-4 h-4 text-white fill-white ml-0.5" />
           </div>
         </div>
@@ -390,7 +390,7 @@ export function VideoCard({ video, compact = false, showViralScore = false, onCl
 
       {/* Info */}
       <div className="p-3">
-        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#FDBA2D] transition-colors leading-snug">
+        <h3 className="text-sm font-medium text-[#FFFFFF] line-clamp-2 group-hover:text-[#F6A828] transition-colors leading-snug">
           {video.title}
         </h3>
         <p className="text-xs text-[#a0a0a0] mt-1.5">{video.channelTitle}</p>

@@ -71,8 +71,8 @@ const QUICK_ACTIONS: QuickAction[] = [
     label: 'Compare Videos',
     description: 'Underground head-to-head analysis',
     prompt: 'Run an underground comparison: How does this video stack up against the top 5 videos in the same niche? Compare CTR, average view duration, engagement rate, and subscriber conversion. What did competitors do differently?',
-    accent: 'text-[#FDBA2D]',
-    accentBg: 'bg-[rgba(253,186,45,0.08)]',
+    accent: 'text-[#F6A828]',
+    accentBg: 'bg-[rgba(246,168,40,0.08)]',
     accentBorder: 'border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.03)]',
   },
   {
@@ -346,9 +346,9 @@ You can ask me about:
             </div>
             <p className="text-xs text-[#a0a0a0] mt-0.5">Load any YouTube video for deep analysis</p>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)]">
-            <Coins className="w-3 h-3 text-[#FDBA2D]" />
-            <span className="text-[11px] font-bold text-[#FDBA2D]">{tokenBalance}</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)]">
+            <Coins className="w-3 h-3 text-[#F6A828]" />
+            <span className="text-[11px] font-bold text-[#F6A828]">{tokenBalance}</span>
           </div>
         </div>
       </div>
@@ -461,7 +461,7 @@ You can ask me about:
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Zap className="w-3.5 h-3.5 text-[#a0a0a0]" />
-                    <span className={`text-xs font-bold ${videoCtx.viralScore >= 80 ? 'text-[#888888]' : videoCtx.viralScore >= 60 ? 'text-[#FDBA2D]' : 'text-[#888888]'}`}>
+                    <span className={`text-xs font-bold ${videoCtx.viralScore >= 80 ? 'text-[#888888]' : videoCtx.viralScore >= 60 ? 'text-[#F6A828]' : 'text-[#888888]'}`}>
                       {videoCtx.viralScore}/100
                     </span>
                   </div>
@@ -486,9 +486,9 @@ You can ask me about:
                 <p className="text-xs text-[#a0a0a0] font-medium flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 text-[#888888]" /> Quick Actions
                 </p>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
-                  <Coins className="w-3 h-3 text-[#FDBA2D]" />
-                  <span className="text-[10px] font-bold text-[#FDBA2D]">{TOKEN_COSTS.deepchat} tokens per message</span>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)]">
+                  <Coins className="w-3 h-3 text-[#F6A828]" />
+                  <span className="text-[10px] font-bold text-[#F6A828]">{TOKEN_COSTS.deepchat} tokens per message</span>
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -545,13 +545,13 @@ You can ask me about:
                 ) : (
                   <>
                     <div className="flex-1 min-w-0 flex flex-col items-end">
-                      <div className="rounded-2xl rounded-tr-md bg-[rgba(253,186,45,0.12)] border border-[rgba(255,255,255,0.03)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
+                      <div className="rounded-2xl rounded-tr-md bg-[rgba(246,168,40,0.12)] border border-[rgba(255,255,255,0.03)] px-4 py-3 max-w-[85%] shadow-sm shadow-black/10">
                         <p className="text-sm text-[#F5F0E1] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
                       <span className="text-[10px] text-[#666666] mt-1 text-right block">You</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(253,186,45,0.25)] to-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-[#FDBA2D]">You</span>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgba(246,168,40,0.25)] to-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-[#F6A828]">You</span>
                     </div>
                   </>
                 )}
@@ -594,8 +594,8 @@ You can ask me about:
             </div>
             <div className="flex items-center justify-between mt-2 px-1">
               <div className="flex items-center gap-1.5">
-                <Coins className="w-3 h-3 text-[#FDBA2D]" />
-                <span className="text-[10px] font-semibold text-[#FDBA2D]">{TOKEN_COSTS.deepchat} tokens per message</span>
+                <Coins className="w-3 h-3 text-[#F6A828]" />
+                <span className="text-[10px] font-semibold text-[#F6A828]">{TOKEN_COSTS.deepchat} tokens per message</span>
               </div>
               <span className="text-[10px] text-[#666666]">Enter to send · Shift+Enter for new line</span>
             </div>

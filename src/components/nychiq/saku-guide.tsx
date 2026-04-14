@@ -36,7 +36,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'Your tactical command center for YouTube growth. Let me show you around — I\'m Saku, your AI assistant. Together we\'ll explore every tool at your disposal.',
     icon: Sparkles,
-    accentColor: '#FDBA2D',
+    accentColor: '#F6A828',
     targetHint: 'topbar',
     position: 'bottom-center',
   },
@@ -76,7 +76,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'The sidebar is your toolkit. Browse SEO analyzers, viral predictors, competitor trackers, thumbnail labs, and so much more. Every tool is built for creators.',
     icon: Wrench,
-    accentColor: '#FDBA2D',
+    accentColor: '#F6A828',
     targetHint: 'sidebar',
     position: 'center',
   },
@@ -106,7 +106,7 @@ const GUIDE_STEPS: GuideStep[] = [
     description:
       'The command center is fully operational. Start exploring, analyzing, and growing your channel. Remember — Saku AI is always one click away. Let\'s go viral!',
     icon: PartyPopper,
-    accentColor: '#FDBA2D',
+    accentColor: '#F6A828',
     targetHint: 'center',
     position: 'center',
   },
@@ -134,7 +134,7 @@ function SparkleParticles() {
             top: `${p.top}%`,
             width: `${p.size}px`,
             height: `${p.size}px`,
-            backgroundColor: p.id % 3 === 0 ? '#FDBA2D' : p.id % 3 === 1 ? '#888888' : '#888888',
+            backgroundColor: p.id % 3 === 0 ? '#F6A828' : p.id % 3 === 1 ? '#888888' : '#888888',
             opacity: 0.4,
             animationDelay: `${p.delay}s`,
             animationDuration: `${p.duration}s`,
@@ -159,7 +159,7 @@ function SakuAvatar({ size = 56, accentColor }: { size?: number; accentColor: st
       />
       {/* Avatar container */}
       <div
-        className="relative w-full h-full rounded-2xl bg-gradient-to-br from-[#FDBA2D] to-[#C69320] flex items-center justify-center shadow-lg animate-saku-glow"
+        className="relative w-full h-full rounded-2xl bg-gradient-to-br from-[#F6A828] to-[#D4921F] flex items-center justify-center shadow-lg animate-saku-glow"
       >
         <Bot className="text-black" style={{ width: size * 0.5, height: size * 0.5 }} />
       </div>
@@ -179,7 +179,7 @@ function ProgressDots({ current, total }: { current: number; total: number }) {
           style={{
             width: i === current ? 24 : 6,
             height: 6,
-            backgroundColor: i === current ? '#FDBA2D' : i < current ? '#888888' : '#0f0f0f',
+            backgroundColor: i === current ? '#F6A828' : i < current ? '#888888' : '#0f0f0f',
           }}
         />
       ))}
@@ -319,7 +319,7 @@ export function SakuGuide() {
       <div className="absolute top-0 left-0 right-0 z-[9999]">
         <div className="h-1 bg-[#0f0f0f]">
           <div
-            className="h-full bg-gradient-to-r from-[#FDBA2D] to-[#C69320] transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-[#F6A828] to-[#D4921F] transition-all duration-500 ease-out"
             style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
           />
         </div>

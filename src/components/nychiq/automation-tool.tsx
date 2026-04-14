@@ -93,7 +93,7 @@ Return ONLY the JSON object.`;
       setLoading(false);
     }
   };
-  const diffColor = (d: string) => d === 'Easy' ? '#888888' : d === 'Medium' ? '#FDBA2D' : '#888888';
+  const diffColor = (d: string) => d === 'Easy' ? '#888888' : d === 'Medium' ? '#F6A828' : '#888888';
 
   return (
     <div className="space-y-5 animate-fade-in-up">

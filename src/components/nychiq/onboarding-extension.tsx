@@ -30,7 +30,7 @@ const STEPS = [
     title: 'Pin the Extension',
     desc: 'After installing, click the puzzle icon in Chrome and pin NychIQ to your toolbar for easy access.',
     icon: Settings,
-    color: '#FDBA2D',
+    color: '#F6A828',
   },
   {
     num: '3',
@@ -48,7 +48,7 @@ const SETUP_STEPS = [
     title: 'Customize Your AI Assistant',
     desc: 'Set brand voice, audience goals & content strategy',
     icon: Bot,
-    color: '#FDBA2D',
+    color: '#F6A828',
   },
   {
     num: '2',
@@ -133,7 +133,7 @@ export function OnboardingExtension() {
       </div>
 
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+        className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] h-11 font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
         onClick={handleContinueToSetup}
       >
         Continue to Setup
@@ -146,7 +146,7 @@ export function OnboardingExtension() {
   const preInstallActions = !extensionClicked && (
     <>
       <Button
-        className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+        className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] h-11 font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
         onClick={handleGoToDashboard}
       >
         Go to Dashboard
@@ -167,13 +167,13 @@ export function OnboardingExtension() {
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-[#0f0f0f]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-[3px] bg-[#F6A828] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white" />
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white" />
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
@@ -181,7 +181,7 @@ export function OnboardingExtension() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= 2 ? 'bg-[#FDBA2D]' : 'bg-[#0f0f0f]'
+                  i <= 2 ? 'bg-[#F6A828]' : 'bg-[#0f0f0f]'
                 }`}
               />
             ))}
@@ -239,9 +239,9 @@ export function OnboardingExtension() {
 
           {/* Bonus pill */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)]">
-              <Coins className="w-4 h-4 text-[#FDBA2D]" />
-              <span className="text-xs font-semibold text-[#FDBA2D]">+10 daily tokens with extension installed</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)]">
+              <Coins className="w-4 h-4 text-[#F6A828]" />
+              <span className="text-xs font-semibold text-[#F6A828]">+10 daily tokens with extension installed</span>
             </div>
           </div>
 
@@ -282,10 +282,10 @@ export function OnboardingExtension() {
           <div className="relative w-full max-w-md bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] rounded-2xl p-6 sm:p-8 animate-fade-in-up shadow-2xl">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center">
-                  <PartyPopper className="w-8 h-8 text-[#FDBA2D]" />
+                <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center">
+                  <PartyPopper className="w-8 h-8 text-[#F6A828]" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#FDBA2D] flex items-center justify-center">
+                <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#F6A828] flex items-center justify-center">
                   <Sparkles className="w-3 h-3 text-black" />
                 </div>
               </div>
@@ -300,7 +300,7 @@ export function OnboardingExtension() {
               {['Brand Voice', 'Audience Goals', 'Content Strategy', 'Niche Targeting'].map((feature) => (
                 <span
                   key={feature}
-                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(253,186,45,0.08)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)]"
+                  className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-[rgba(246,168,40,0.08)] text-[#F6A828] border border-[rgba(255,255,255,0.03)]"
                 >
                   {feature}
                 </span>
@@ -308,7 +308,7 @@ export function OnboardingExtension() {
             </div>
             <div className="space-y-3">
               <Button
-                className="w-full bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.12)]"
+                className="w-full bg-[#F6A828] text-black hover:bg-[#FFB340] h-11 font-semibold shadow-lg shadow-[rgba(246,168,40,0.12)]"
                 onClick={handleCustomizeNow}
               >
                 Customize Now

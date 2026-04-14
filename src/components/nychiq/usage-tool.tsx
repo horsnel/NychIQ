@@ -42,7 +42,7 @@ import {
 const PLAN_STYLES: Record<Plan, { label: string; color: string }> = {
   trial: { label: 'Free Trial', color: '#a0a0a0' },
   starter: { label: 'Starter', color: '#888888' },
-  pro: { label: 'Pro', color: '#FDBA2D' },
+  pro: { label: 'Pro', color: '#F6A828' },
   elite: { label: 'Elite', color: '#888888' },
   agency: { label: 'Agency', color: '#888888' },
 };
@@ -52,27 +52,27 @@ const TOOL_ICONS: Record<string, React.ReactNode> = {
   'Trending': <TrendingUp className="w-4 h-4 text-[#888888]" />,
   'Search': <Zap className="w-4 h-4 text-[#888888]" />,
   'Rankings': <BarChart3 className="w-4 h-4 text-[#888888]" />,
-  'Viral Predictor': <Zap className="w-4 h-4 text-[#FDBA2D]" />,
+  'Viral Predictor': <Zap className="w-4 h-4 text-[#F6A828]" />,
   'Saku AI': <Bot className="w-4 h-4 text-[#888888]" />,
-  'Algorithm': <BrainCircuit className="w-4 h-4 text-[#FDBA2D]" />,
+  'Algorithm': <BrainCircuit className="w-4 h-4 text-[#F6A828]" />,
   'CPM Estimator': <DollarSign className="w-4 h-4 text-[#888888]" />,
   'Track Channels': <Users className="w-4 h-4 text-[#888888]" />,
   'Niche Spy': <Crosshair className="w-4 h-4 text-[#888888]" />,
   'SEO Optimizer': <Zap className="w-4 h-4 text-[#888888]" />,
-  'Hook Generator': <Anchor className="w-4 h-4 text-[#FDBA2D]" />,
+  'Hook Generator': <Anchor className="w-4 h-4 text-[#F6A828]" />,
   'Keyword Explorer': <Key className="w-4 h-4 text-[#888888]" />,
   'Script Writer': <FileText className="w-4 h-4 text-[#888888]" />,
-  'Video Ideas': <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />,
+  'Video Ideas': <Lightbulb className="w-4 h-4 text-[#F6A828]" />,
   'Best Post Time': <Clock className="w-4 h-4 text-[#888888]" />,
   'Channel Audit': <ClipboardCheck className="w-4 h-4 text-[#888888]" />,
   'A/B Tester': <GitCompare className="w-4 h-4 text-[#888888]" />,
   'VPH Tracker': <Activity className="w-4 h-4 text-[#888888]" />,
-  'Thumbnail Lab': <ImageIcon className="w-4 h-4 text-[#FDBA2D]" />,
+  'Thumbnail Lab': <ImageIcon className="w-4 h-4 text-[#F6A828]" />,
   'Safe Check': <ShieldCheck className="w-4 h-4 text-[#888888]" />,
   'Trend Alerts': <BellRing className="w-4 h-4 text-[#888888]" />,
   'Outlier Scout': <Radar className="w-4 h-4 text-[#888888]" />,
   'Automation': <Cpu className="w-4 h-4 text-[#888888]" />,
-  'Shorts': <Film className="w-4 h-4 text-[#FDBA2D]" />,
+  'Shorts': <Film className="w-4 h-4 text-[#F6A828]" />,
   'History Intel': <History className="w-4 h-4 text-[#888888]" />,
   'Monthly Reset': <RotateCcw className="w-4 h-4 text-[#888888]" />,
 };
@@ -83,8 +83,8 @@ function TxnTypeIcon({ type }: { type: TokenTransaction['type'] }) {
     case 'spend': return <ArrowDownRight className="w-3.5 h-3.5 text-[#888888]" />;
     case 'earn': return <ArrowUpRight className="w-3.5 h-3.5 text-[#888888]" />;
     case 'reset': return <RotateCcw className="w-3.5 h-3.5 text-[#888888]" />;
-    case 'bonus': return <Star className="w-3.5 h-3.5 text-[#FDBA2D]" />;
-    default: return <Coins className="w-3.5 h-3.5 text-[#FDBA2D]" />;
+    case 'bonus': return <Star className="w-3.5 h-3.5 text-[#F6A828]" />;
+    default: return <Coins className="w-3.5 h-3.5 text-[#F6A828]" />;
   }
 }
 
@@ -152,13 +152,13 @@ export function UsageTool() {
     }
 
     const colors: Record<string, string> = {
-      main: '#FDBA2D',
+      main: '#F6A828',
       studio: '#888888',
       intelligence: '#888888',
       competitor: '#888888',
       'ai-tools': '#888888',
       social: '#888888',
-      'ai-assistants': '#FDBA2D',
+      'ai-assistants': '#F6A828',
       agency: '#888888',
     };
 
@@ -193,15 +193,15 @@ export function UsageTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-              <Coins className="w-5 h-5 text-[#FDBA2D]" />
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+              <Coins className="w-5 h-5 text-[#F6A828]" />
             </div>
             <div className="flex-1">
               <h2 className="text-base font-bold text-[#FFFFFF]">Token Usage</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Track how you spend tokens across all tools.</p>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold text-[#FDBA2D]">
+              <p className="text-2xl font-bold text-[#F6A828]">
                 {isUnlimited ? '∞' : tokenBalance.toLocaleString()}
               </p>
               <p className="text-[10px] text-[#666666]">remaining</p>
@@ -215,7 +215,7 @@ export function UsageTool() {
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{
                     width: `${usagePct}%`,
-                    backgroundColor: usagePct > 80 ? '#888888' : usagePct > 50 ? '#FDBA2D' : '#888888',
+                    backgroundColor: usagePct > 80 ? '#888888' : usagePct > 50 ? '#F6A828' : '#888888',
                   }}
                 />
               </div>
@@ -236,8 +236,8 @@ export function UsageTool() {
         {/* Total Used */}
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-md bg-[rgba(253,186,45,0.1)] flex items-center justify-center">
-              <Coins className="w-4 h-4 text-[#FDBA2D]" />
+            <div className="w-8 h-8 rounded-md bg-[rgba(246,168,40,0.1)] flex items-center justify-center">
+              <Coins className="w-4 h-4 text-[#F6A828]" />
             </div>
           </div>
           <p className="text-xs text-[#666666]">Total Tokens Spent</p>
@@ -301,7 +301,7 @@ export function UsageTool() {
                       <span className="text-sm text-[#a0a0a0]">{row.uses}</span>
                     </td>
                     <td className="py-2.5 px-4 text-right">
-                      <span className="text-sm font-medium text-[#FDBA2D]">{row.tokens}</span>
+                      <span className="text-sm font-medium text-[#F6A828]">{row.tokens}</span>
                     </td>
                     <td className="py-2.5 pl-4 text-right">
                       <span className="text-sm text-[#a0a0a0]">{row.avgCost.toFixed(1)}</span>
@@ -314,7 +314,7 @@ export function UsageTool() {
           <div className="mt-3 pt-3 border-t border-[#1A1A1A] flex items-center justify-between">
             <span className="text-xs text-[#666666]">Showing {usageBreakdown.length} tools</span>
             <span className="text-xs text-[#666666]">
-              Total: <span className="text-[#FDBA2D] font-bold">
+              Total: <span className="text-[#F6A828] font-bold">
                 {usageBreakdown.reduce((s, r) => s + r.tokens, 0).toLocaleString()}
               </span> tokens
             </span>
@@ -381,7 +381,7 @@ export function UsageTool() {
                         txn.type === 'spend' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
                         txn.type === 'earn' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
                         txn.type === 'reset' ? 'bg-[rgba(255,255,255,0.03)] text-[#888888]' :
-                        'bg-[rgba(253,186,45,0.1)] text-[#FDBA2D]'
+                        'bg-[rgba(246,168,40,0.1)] text-[#F6A828]'
                       }`}>
                         {txn.type}
                       </span>
@@ -419,7 +419,7 @@ export function UsageTool() {
             { cost: '15-20', tools: ['Strategy', 'Perf Forensics', 'Agency Hub'] },
           ].map((tier) => (
             <div key={tier.cost} className="p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
-              <p className="text-xs font-bold text-[#FDBA2D]">{tier.cost} tokens</p>
+              <p className="text-xs font-bold text-[#F6A828]">{tier.cost} tokens</p>
               <ul className="mt-1 space-y-0.5">
                 {tier.tools.map((t) => (
                   <li key={t} className="text-[10px] text-[#666666]">{t}</li>
@@ -433,8 +433,8 @@ export function UsageTool() {
       {/* ── Buy More Tokens ── */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2.5 mb-4">
-          <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-            <Gift className="w-4 h-4 text-[#FDBA2D]" />
+          <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+            <Gift className="w-4 h-4 text-[#F6A828]" />
           </div>
           <h4 className="text-sm font-bold text-[#FFFFFF]">Buy More Tokens</h4>
         </div>
@@ -442,21 +442,21 @@ export function UsageTool() {
           {TOPUP_PLANS.map((plan) => (
             <div
               key={plan.price}
-              className={`relative rounded-lg p-4 text-center transition-all cursor-pointer hover:border-[#FDBA2D]/50 ${
+              className={`relative rounded-lg p-4 text-center transition-all cursor-pointer hover:border-[#F6A828]/50 ${
                 plan.popular
-                  ? 'bg-[#0a0a0a] border-2 border-[#FDBA2D]/50'
+                  ? 'bg-[#0a0a0a] border-2 border-[#F6A828]/50'
                   : 'bg-[#0a0a0a] border border-[#1A1A1A] hover:border-[#1a1a1a]'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#FDBA2D] text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider">
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#F6A828] text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider">
                   Popular
                 </div>
               )}
               <p className="text-lg font-bold text-[#FFFFFF]">{plan.price}</p>
               <div className="flex items-center justify-center gap-1 mt-1">
-                <Coins className="w-3.5 h-3.5 text-[#FDBA2D]" />
-                <span className="text-base font-bold text-[#FDBA2D]">{plan.tokens.toLocaleString()}</span>
+                <Coins className="w-3.5 h-3.5 text-[#F6A828]" />
+                <span className="text-base font-bold text-[#F6A828]">{plan.tokens.toLocaleString()}</span>
                 <span className="text-xs text-[#a0a0a0]">tokens</span>
               </div>
               {plan.bonus > 0 && (
@@ -469,8 +469,8 @@ export function UsageTool() {
                 onClick={() => setTokenModalOpen(true)}
                 className={`w-full mt-3 py-2 rounded-md text-xs font-bold transition-colors ${
                   plan.popular
-                    ? 'bg-[#FDBA2D] text-[#0a0a0a] hover:bg-[#C69320]'
-                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[rgba(255,255,255,0.03)] hover:border-[#FDBA2D]/50'
+                    ? 'bg-[#F6A828] text-[#0a0a0a] hover:bg-[#FFB340]'
+                    : 'bg-[#1A1A1A] text-[#FFFFFF] border border-[rgba(255,255,255,0.03)] hover:border-[#F6A828]/50'
                 }`}
               >
                 Get Tokens

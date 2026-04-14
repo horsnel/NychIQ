@@ -45,7 +45,7 @@ function HealthGauge({ score }: { score: number }) {
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
   const progress = score / 100 * circumference;
-  const color = score >= 80 ? '#888888' : score >= 60 ? '#FDBA2D' : score >= 40 ? '#888888' : '#888888';
+  const color = score >= 80 ? '#888888' : score >= 60 ? '#F6A828' : score >= 40 ? '#888888' : '#888888';
   const grade = score >= 90 ? 'A' : score >= 80 ? 'B' : score >= 65 ? 'C' : score >= 50 ? 'D' : 'F';
 
   return (
@@ -80,11 +80,11 @@ export function AuditTool() {
   const handleExportReport = () => {
     if (!result) return;
     const grade = result.healthScore >= 90 ? 'A' : result.healthScore >= 80 ? 'B' : result.healthScore >= 65 ? 'C' : result.healthScore >= 50 ? 'D' : 'F';
-    const scoreColor = result.healthScore >= 80 ? '#888888' : result.healthScore >= 60 ? '#FDBA2D' : result.healthScore >= 40 ? '#888888' : '#888888';
+    const scoreColor = result.healthScore >= 80 ? '#888888' : result.healthScore >= 60 ? '#F6A828' : result.healthScore >= 40 ? '#888888' : '#888888';
     const now = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
     const categoriesHtml = result.categories.map((cat) => {
-      const c = cat.score >= 80 ? '#888888' : cat.score >= 60 ? '#FDBA2D' : '#888888';
+      const c = cat.score >= 80 ? '#888888' : cat.score >= 60 ? '#F6A828' : '#888888';
       return `<div style="margin-bottom:12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
           <span style="color:#FFFFFF;font-size:13px;font-weight:500">${cat.icon} ${cat.name}</span>
@@ -97,7 +97,7 @@ export function AuditTool() {
     }).join('');
 
     const actionItemsHtml = result.actionItems.map((item) => {
-      const pColor = item.priority === 'high' ? '#888888' : item.priority === 'medium' ? '#FDBA2D' : '#888888';
+      const pColor = item.priority === 'high' ? '#888888' : item.priority === 'medium' ? '#F6A828' : '#888888';
       const pLabel = item.priority.toUpperCase();
       return `<div style="padding:10px 14px;background:#0f0f0f;border-radius:8px;margin-bottom:8px;border-left:3px solid ${pColor}">
         <span style="color:${pColor};font-size:10px;font-weight:700;letter-spacing:1px;margin-right:8px">${pLabel}</span>
@@ -118,7 +118,7 @@ export function AuditTool() {
 </head>
 <body>
   <div style="text-align:center;margin-bottom:40px;padding-bottom:24px;border-bottom:2px solid #0f0f0f">
-    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#FDBA2D;margin-bottom:8px">NYCHIQ AUDIT REPORT</div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#F6A828;margin-bottom:8px">NYCHIQ AUDIT REPORT</div>
     <h1 style="font-size:28px;font-weight:800;color:#FFFFFF;margin-bottom:6px">${channel.trim()}</h1>
     <div style="font-size:12px;color:#a0a0a0">${now}</div>
   </div>
@@ -303,7 +303,7 @@ Return ONLY the JSON object.`;
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#FDBA2D]" /></div>
+            <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]"><ClipboardCheck className="w-5 h-5 text-[#F6A828]" /></div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">Channel Audit</h2>
               <p className="text-xs text-[#a0a0a0] mt-0.5">Full health check: health score 0-100, SEO gaps, action plan.</p>
@@ -315,7 +315,7 @@ Return ONLY the JSON object.`;
               placeholder="Enter YouTube channel name or @handle..."
               className="flex-1 h-11 px-4 bg-transparent text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
             />
-            <button onClick={handleAudit} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
+            <button onClick={handleAudit} disabled={loading || !channel.trim()} className="px-5 h-11 rounded-full bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] hover:shadow-lg hover:shadow-[rgba(246,168,40,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ClipboardCheck className="w-4 h-4" />}
               Run Audit
             </button>
@@ -337,10 +337,10 @@ Return ONLY the JSON object.`;
       {!loading && result && (
         <div className="space-y-5">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#FDBA2D]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
+            <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F6A828]" /> Audit Results for &quot;{channel.trim()}&quot;</h3>
             <button
               onClick={handleExportReport}
-              className="px-3.5 py-1.5 rounded-lg bg-[rgba(253,186,45,0.15)] border border-[rgba(255,255,255,0.03)] text-[#FDBA2D] text-xs font-bold hover:bg-[rgba(253,186,45,0.25)] transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-lg bg-[rgba(246,168,40,0.15)] border border-[rgba(255,255,255,0.03)] text-[#F6A828] text-xs font-bold hover:bg-[rgba(246,168,40,0.25)] transition-colors flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" /> Export Report
             </button>
@@ -357,7 +357,7 @@ Return ONLY the JSON object.`;
                     className="w-16 h-16 rounded-full object-cover border-2 border-[rgba(255,255,255,0.03)]"
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-[#FDBA2D]/20 border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
+                  <div className="w-16 h-16 rounded-full bg-[#F6A828]/20 border-2 border-[#F6A828]/40 flex items-center justify-center text-xl font-bold text-[#F6A828]">
                     {channelData.title.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -392,7 +392,7 @@ Return ONLY the JSON object.`;
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider mb-3">Category Scores</h4>
             <div className="space-y-3">
               {result.categories.map((cat) => {
-                const color = cat.score >= 80 ? '#888888' : cat.score >= 60 ? '#FDBA2D' : '#888888';
+                const color = cat.score >= 80 ? '#888888' : cat.score >= 60 ? '#F6A828' : '#888888';
                 return (
                   <div key={cat.name}>
                     <div className="flex items-center justify-between mb-1">
@@ -414,7 +414,7 @@ Return ONLY the JSON object.`;
             <div className="space-y-2 max-h-72 overflow-y-auto">
               {result.actionItems.map((item, i) => {
                 const Icon = item.priority === 'high' ? XCircle : item.priority === 'medium' ? AlertTriangle : CheckCircle;
-                const pColor = item.priority === 'high' ? '#888888' : item.priority === 'medium' ? '#FDBA2D' : '#888888';
+                const pColor = item.priority === 'high' ? '#888888' : item.priority === 'medium' ? '#F6A828' : '#888888';
                 return (
                   <div key={i} className="flex items-start gap-2.5 p-3 rounded-md bg-[#0a0a0a] border border-[#1A1A1A]">
                     <Icon className="w-4 h-4 mt-0.5 shrink-0" style={{ color: pColor }} />
@@ -435,7 +435,7 @@ Return ONLY the JSON object.`;
 
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#FDBA2D]" /></div>
+          <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.1)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mb-4"><ClipboardCheck className="w-8 h-8 text-[#F6A828]" /></div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Audit Your Channel</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">Enter a YouTube channel name to get a comprehensive health check with actionable insights.</p>
         </div>

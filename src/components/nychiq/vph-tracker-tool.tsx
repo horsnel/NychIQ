@@ -145,7 +145,7 @@ Return ONLY the JSON object.`;
               <span className="text-[10px] text-[#666666]">Total Views</span>
             </div>
             <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-3 text-center">
-              <div className="flex items-center justify-center gap-1 mb-1"><Activity className="w-3.5 h-3.5 text-[#FDBA2D]" /></div>
+              <div className="flex items-center justify-center gap-1 mb-1"><Activity className="w-3.5 h-3.5 text-[#F6A828]" /></div>
               <p className="text-base font-bold text-[#FFFFFF]">{result.avgVelocity}</p>
               <span className="text-[10px] text-[#666666]">Avg Velocity</span>
             </div>
@@ -168,7 +168,7 @@ Return ONLY the JSON object.`;
                     <span className="text-[9px] text-[#666666]">{(d.views / 1000).toFixed(1)}K</span>
                     <div className="w-full rounded-t transition-all duration-500" style={{
                       height: `${Math.max(4, pct)}%`,
-                      backgroundColor: isPeak ? '#FDBA2D' : result.isViral ? '#888888' : '#888888',
+                      backgroundColor: isPeak ? '#F6A828' : result.isViral ? '#888888' : '#888888',
                       opacity: isPeak ? 1 : 0.6,
                     }} />
                     <span className="text-[9px] text-[#666666]">H{i + 1}</span>

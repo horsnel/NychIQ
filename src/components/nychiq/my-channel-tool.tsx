@@ -28,14 +28,14 @@ type ChannelTab = 'overview' | 'videos' | 'shorts' | 'revenue' | 'audience';
    ═══════════════════════════════════════════════════════════════ */
 function scoreColor(v: number): string {
   if (v >= 80) return '#22c55e';
-  if (v >= 60) return '#FDBA2D';
+  if (v >= 60) return '#F6A828';
   if (v >= 40) return '#888888';
   return '#666666';
 }
 
 function scoreBadgeBg(v: number): string {
   if (v >= 80) return 'rgba(34,197,94,0.1)';
-  if (v >= 60) return 'rgba(253,186,45,0.15)';
+  if (v >= 60) return 'rgba(246,168,40,0.15)';
   return 'rgba(255,255,255,0.03)';
 }
 
@@ -66,8 +66,8 @@ function UnlinkedView() {
   return (
     <div className="flex flex-col items-center justify-center py-32 animate-fade-in-up">
       <div className="w-24 h-24 rounded-2xl flex items-center justify-center mb-8"
-        style={{ background: 'rgba(253,186,45,0.08)', border: '1px solid rgba(253,186,45,0.15)' }}>
-        <MonitorPlay size={44} color="#FDBA2D" />
+        style={{ background: 'rgba(246,168,40,0.08)', border: '1px solid rgba(246,168,40,0.15)' }}>
+        <MonitorPlay size={44} color="#F6A828" />
       </div>
       <h2 className="text-2xl font-bold mb-2" style={{ color: '#FFFFFF' }}>No Channel Linked</h2>
       <p className="text-sm max-w-md text-center leading-relaxed mb-8" style={{ color: '#a0a0a0' }}>
@@ -76,7 +76,7 @@ function UnlinkedView() {
       </p>
       <button onClick={() => setActiveTool('audit')}
         className="px-8 py-3 rounded-xl text-sm font-bold flex items-center gap-2 transition-all duration-200 hover:scale-105"
-        style={{ background: '#FDBA2D', color: '#0a0a0a', boxShadow: '0 8px 32px rgba(253,186,45,0.25)' }}>
+        style={{ background: '#F6A828', color: '#0a0a0a', boxShadow: '0 8px 32px rgba(246,168,40,0.25)' }}>
         <ClipboardCheck size={18} />
         Go to Channel Audit
       </button>
@@ -176,7 +176,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           <div key={di} className="flex gap-1 mb-0.5">
             <div className="flex items-center" style={{ width: 32, fontSize: 9, color: '#666666' }}>{DAY_LABELS[di]}</div>
             {row.map((val, hi) => {
-              const bg = val >= 80 ? 'rgba(34,197,94,0.1)' : val >= 60 ? 'rgba(34,197,94,0.1)' : val >= 40 ? 'rgba(253,186,45,0.35)' : val >= 20 ? 'rgba(255,255,255,0.03)' : '#1A1A1A';
+              const bg = val >= 80 ? 'rgba(34,197,94,0.1)' : val >= 60 ? 'rgba(34,197,94,0.1)' : val >= 40 ? 'rgba(246,168,40,0.35)' : val >= 20 ? 'rgba(255,255,255,0.03)' : '#1A1A1A';
               return <div key={hi} className="flex-1 h-5 rounded-sm transition-colors" style={{ background: bg }} title={`${val}%`} />;
             })}
           </div>
@@ -189,13 +189,13 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
     <div className="animate-fade-in-up" style={{ maxWidth: 960, margin: '0 auto' }}>
 
       {/* CTA BANNER */}
-      <div className="overflow-hidden relative" style={{ background: 'linear-gradient(135deg, rgba(253,186,45,0.12) 0%, rgba(13,13,13,0.95) 60%)', border: '1px solid rgba(253,186,45,0.25)', borderRadius: 16, padding: '20px 24px' }}>
-        <div className="absolute inset-0" style={{ opacity: 0.1, backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(253,186,45,0.05) 40px, rgba(253,186,45,0.05) 41px)' }} />
+      <div className="overflow-hidden relative" style={{ background: 'linear-gradient(135deg, rgba(246,168,40,0.12) 0%, rgba(13,13,13,0.95) 60%)', border: '1px solid rgba(246,168,40,0.25)', borderRadius: 16, padding: '20px 24px' }}>
+        <div className="absolute inset-0" style={{ opacity: 0.1, backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(246,168,40,0.05) 40px, rgba(246,168,40,0.05) 41px)' }} />
         <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <Rocket size={16} color="#FDBA2D" />
-              <span className="text-sm font-bold" style={{ color: '#FDBA2D' }}>Unlock Full Channel Analytics</span>
+              <Rocket size={16} color="#F6A828" />
+              <span className="text-sm font-bold" style={{ color: '#F6A828' }}>Unlock Full Channel Analytics</span>
             </div>
             <p className="text-xs leading-relaxed" style={{ color: '#a0a0a0' }}>
               Your channel &quot;{config.channelName}&quot; is configured. Run a Channel Audit to link your YouTube data, get a real health score, and unlock personalized insights.
@@ -203,7 +203,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           </div>
           <button onClick={() => setActiveTool('audit')}
             className="shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all duration-200 hover:scale-105"
-            style={{ background: '#FDBA2D', color: '#0a0a0a', boxShadow: '0 4px 16px rgba(253,186,45,0.2)' }}>
+            style={{ background: '#F6A828', color: '#0a0a0a', boxShadow: '0 4px 16px rgba(246,168,40,0.2)' }}>
             <ClipboardCheck size={16} />
             Run Channel Audit
           </button>
@@ -212,24 +212,24 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
 
       {/* CHANNEL IDENTITY */}
       <div className="mt-6 overflow-hidden" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
-        <div className="relative" style={{ height: 120, background: 'linear-gradient(to right, #0a0a0a, #0f0f0f, rgba(253,186,45,0.08))' }}>
-          <div className="absolute inset-0" style={{ opacity: 0.2, backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(253,186,45,0.06) 50px, rgba(253,186,45,0.06) 51px)' }} />
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)' }}>
-            <Settings2 size={12} color="#FDBA2D" />
-            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#FDBA2D' }}>Preview Mode</span>
+        <div className="relative" style={{ height: 120, background: 'linear-gradient(to right, #0a0a0a, #0f0f0f, rgba(246,168,40,0.08))' }}>
+          <div className="absolute inset-0" style={{ opacity: 0.2, backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(246,168,40,0.06) 50px, rgba(246,168,40,0.06) 51px)' }} />
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.3)' }}>
+            <Settings2 size={12} color="#F6A828" />
+            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#F6A828' }}>Preview Mode</span>
           </div>
-          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full" style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)' }}>
-            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#FDBA2D' }}>{userPlan}</span>
+          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full" style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.3)' }}>
+            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#F6A828' }}>{userPlan}</span>
           </div>
         </div>
         <div className="px-6 pb-5 -mt-10 relative z-10">
           <div className="flex items-end gap-4">
             <div className="rounded-full flex items-center justify-center text-2xl font-bold"
-              style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0a0a0a', border: '3px solid #0f0f0f', boxShadow: '0 4px 16px rgba(0,0,0,0.4)' }}>
+              style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #F6A828, #D4921F)', color: '#0a0a0a', border: '3px solid #0f0f0f', boxShadow: '0 4px 16px rgba(0,0,0,0.4)' }}>
               {config.channelName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0 pb-1">
-              <p className="font-semibold uppercase tracking-wider mb-0.5" style={{ fontSize: 10, color: '#FDBA2D' }}>
+              <p className="font-semibold uppercase tracking-wider mb-0.5" style={{ fontSize: 10, color: '#F6A828' }}>
                 Welcome back, {userName || 'Creator'}
               </p>
               <h1 className="text-xl font-bold truncate" style={{ color: '#FFFFFF' }}>{config.channelName}</h1>
@@ -239,7 +239,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
             </div>
             <button onClick={() => setActiveTool('channel-assistant')}
               className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors"
-              style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)', color: '#FDBA2D' }}>
+              style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.3)', color: '#F6A828' }}>
               <Settings2 size={12} /> Edit Config
             </button>
           </div>
@@ -249,7 +249,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       {/* CONFIG INFO CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
         {[
-          { icon: Crosshair, label: 'Niche', value: config.niche, sub: config.subNiche, color: '#FDBA2D' },
+          { icon: Crosshair, label: 'Niche', value: config.niche, sub: config.subNiche, color: '#F6A828' },
           { icon: Video, label: 'Content Types', tags: config.contentTypes, color: '#888888' },
           { icon: Target, label: 'Goals', goals: config.goals, color: '#888888' },
           { icon: UserCircle, label: 'Audience', value: config.audience || 'General', sub: `${config.brandVoice}${config.tone ? ` · ${config.tone}` : ''}`, color: '#888888' },
@@ -287,17 +287,17 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
       {/* GROWTH TREND (locked) */}
       <div className="mt-5 p-5 relative" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         <div className="flex items-center gap-2 mb-4">
-          <Activity size={14} color="#FDBA2D" />
+          <Activity size={14} color="#F6A828" />
           <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Growth Trend</span>
           <span className="px-1.5 py-0.5 rounded font-bold uppercase tracking-wider"
-            style={{ fontSize: 9, color: '#FDBA2D', background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
+            style={{ fontSize: 9, color: '#F6A828', background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.2)' }}>
             Simulated
           </span>
         </div>
         {renderGrowthChart()}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ background: 'rgba(20,20,20,0.3)', backdropFilter: 'blur(1px)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ background: 'rgba(13,13,13,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <Lock size={14} color="#FDBA2D" />
+            <Lock size={14} color="#F6A828" />
             <span className="text-xs" style={{ color: '#a0a0a0' }}>Run audit to see real data</span>
           </div>
         </div>
@@ -309,13 +309,13 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
         <div className="p-5" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <BrainCircuit size={14} color="#FDBA2D" />
+              <BrainCircuit size={14} color="#F6A828" />
               <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>AI Insights</span>
             </div>
             {!aiInsights ? (
               <button onClick={handleAnalyze} disabled={aiLoading}
                 className="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors disabled:opacity-50"
-                style={{ background: '#FDBA2D', color: '#0a0a0a' }}>
+                style={{ background: '#F6A828', color: '#0a0a0a' }}>
                 {aiLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
                 Analyze
               </button>
@@ -331,7 +331,7 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           {!aiLoading && aiInsights && (
             <div className="space-y-2.5 max-h-96 overflow-y-auto pr-1">
               {aiInsights.map((ins, i) => {
-                const pc = ins.priority === 'high' ? '#888888' : ins.priority === 'medium' ? '#FDBA2D' : '#888888';
+                const pc = ins.priority === 'high' ? '#888888' : ins.priority === 'medium' ? '#F6A828' : '#888888';
                 const PI = ins.priority === 'high' ? XCircle : ins.priority === 'medium' ? AlertTriangle : CheckCircle;
                 return (
                   <div key={i} className="p-3 rounded-lg" style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -348,8 +348,8 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
           )}
           {!aiLoading && !aiInsights && (
             <div className="flex flex-col items-center py-8">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3" style={{ background: 'rgba(253,186,45,0.08)' }}>
-                <Lightbulb size={24} color="#FDBA2D" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3" style={{ background: 'rgba(246,168,40,0.08)' }}>
+                <Lightbulb size={24} color="#F6A828" />
               </div>
               <p className="text-xs text-center max-w-56" style={{ color: '#a0a0a0' }}>Click Analyze to generate personalized AI insights based on your channel configuration.</p>
             </div>
@@ -359,17 +359,17 @@ function ChannelLiteView({ config }: { config: ChannelAssistantConfig }) {
         {/* Heatmap (locked) */}
         <div className="p-5 relative" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 mb-3">
-            <Clock size={14} color="#FDBA2D" />
+            <Clock size={14} color="#F6A828" />
             <span className="font-bold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Best Post Times</span>
             <span className="px-1.5 py-0.5 rounded font-bold uppercase tracking-wider"
-              style={{ fontSize: 9, color: '#FDBA2D', background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}>
+              style={{ fontSize: 9, color: '#F6A828', background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.2)' }}>
               Simulated
             </span>
           </div>
           {renderHeatmap()}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ background: 'rgba(20,20,20,0.3)', backdropFilter: 'blur(1px)', borderRadius: 16 }}>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ background: 'rgba(13,13,13,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <Lock size={14} color="#FDBA2D" />
+              <Lock size={14} color="#F6A828" />
               <span className="text-xs" style={{ color: '#a0a0a0' }}>Run audit to personalize</span>
             </div>
           </div>
@@ -418,9 +418,9 @@ function ChannelSidebar({
             className="flex items-center gap-3 w-full text-left transition-all duration-150 group"
             style={{
               height: 44, paddingLeft: 16, paddingRight: 16,
-              color: isActive ? '#FDBA2D' : '#a0a0a0',
-              background: isActive ? 'rgba(253,186,45,0.1)' : 'transparent',
-              borderLeft: isActive ? '3px solid #FDBA2D' : '3px solid transparent',
+              color: isActive ? '#F6A828' : '#a0a0a0',
+              background: isActive ? 'rgba(246,168,40,0.1)' : 'transparent',
+              borderLeft: isActive ? '3px solid #F6A828' : '3px solid transparent',
             }}>
             <item.icon size={18} style={{ opacity: isActive ? 1 : 0.7 }} />
             <span className="text-sm font-medium">{item.label}</span>
@@ -454,7 +454,7 @@ function ChannelSidebar({
         </button>
         <div className="mt-3 flex items-center gap-2">
           <div className="rounded-full flex items-center justify-center text-xs font-bold"
-            style={{ width: 28, height: 28, background: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>
+            style={{ width: 28, height: 28, background: 'rgba(246,168,40,0.15)', color: '#F6A828' }}>
             {channelName.charAt(0).toUpperCase()}
           </div>
           <div className="min-w-0">
@@ -486,8 +486,8 @@ function MobileTabBar({ activeTab, onTabChange }: { activeTab: ChannelTab; onTab
           <button key={t.id} onClick={() => onTabChange(t.id)}
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all"
             style={{
-              color: isActive ? '#FDBA2D' : '#a0a0a0',
-              background: isActive ? 'rgba(253,186,45,0.1)' : 'transparent',
+              color: isActive ? '#F6A828' : '#a0a0a0',
+              background: isActive ? 'rgba(246,168,40,0.1)' : 'transparent',
             }}>
             <t.icon size={14} />
             {t.label}
@@ -571,7 +571,7 @@ function GrowthTrendChart({ data, prevData, period }: {
       {/* Area */}
       <path d={areaPath} fill="url(#gt-fill)" />
       {/* Line */}
-      <path d={linePath} fill="none" stroke="#FDBA2D" strokeWidth="2.5" strokeLinecap="round" />
+      <path d={linePath} fill="none" stroke="#F6A828" strokeWidth="2.5" strokeLinecap="round" />
       {/* Data points */}
       {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3.5" fill="#888888" stroke="#0f0f0f" strokeWidth="2" />)}
     </svg>
@@ -688,7 +688,7 @@ function OverviewTab({
   /* Content mix data */
   const contentMix = useMemo(() => [
     { name: 'Tutorials', pct: 35, color: '#888888' },
-    { name: 'Reviews', pct: 25, color: '#FDBA2D' },
+    { name: 'Reviews', pct: 25, color: '#F6A828' },
     { name: 'Vlogs', pct: 20, color: '#888888' },
     { name: 'Challenges', pct: 15, color: '#888888' },
     { name: 'Other', pct: 5, color: '#666666' },
@@ -743,12 +743,12 @@ function OverviewTab({
       <div className="overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
         {/* Banner */}
         <div className="relative h-[180px] md:h-[300px]" style={{
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 40%, rgba(253,186,45,0.08) 100%)',
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 40%, rgba(246,168,40,0.08) 100%)',
         }}>
           {/* Pattern overlay */}
           <div className="absolute inset-0" style={{
             opacity: 0.15,
-            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(253,186,45,0.03) 20px, rgba(253,186,45,0.03) 21px)',
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(246,168,40,0.03) 20px, rgba(246,168,40,0.03) 21px)',
           }} />
           {/* LIVE badge */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
@@ -758,8 +758,8 @@ function OverviewTab({
           </div>
           {/* Plan badge */}
           <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full"
-            style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)' }}>
-            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#FDBA2D' }}>{userPlan}</span>
+            style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.3)' }}>
+            <span className="font-bold uppercase tracking-wider" style={{ fontSize: 10, color: '#F6A828' }}>{userPlan}</span>
           </div>
         </div>
 
@@ -769,10 +769,10 @@ function OverviewTab({
             {pc.avatar ? (
               <img src={pc.avatar} alt={pc.title}
                 className="rounded-full object-cover shadow-2xl"
-                style={{ width: 80, height: 80, border: '3px solid #FDBA2D' }} />
+                style={{ width: 80, height: 80, border: '3px solid #F6A828' }} />
             ) : (
               <div className="rounded-full flex items-center justify-center text-3xl font-bold shadow-2xl"
-                style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #FDBA2D, #C69320)', color: '#0a0a0a', border: '3px solid #FDBA2D' }}>
+                style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #F6A828, #D4921F)', color: '#0a0a0a', border: '3px solid #F6A828' }}>
                 {pc.title.charAt(0).toUpperCase()}
               </div>
             )}
@@ -787,7 +787,7 @@ function OverviewTab({
             </div>
             <button onClick={() => setActiveTool('audit')}
               className="shrink-0 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors"
-              style={{ background: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.3)', color: '#FDBA2D' }}>
+              style={{ background: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.3)', color: '#F6A828' }}>
               <ClipboardCheck size={14} /> Re-audit
             </button>
           </div>
@@ -795,7 +795,7 @@ function OverviewTab({
           <div className="flex flex-wrap gap-2 mt-4">
             {nicheTags.map((tag, i) => (
               <span key={i} className="px-3 py-1 rounded-full font-medium"
-                style={{ fontSize: 12, color: '#FDBA2D', background: 'rgba(253,186,45,0.15)' }}>
+                style={{ fontSize: 12, color: '#F6A828', background: 'rgba(246,168,40,0.15)' }}>
                 {tag}
               </span>
             ))}
@@ -842,8 +842,8 @@ function OverviewTab({
               <button key={p} onClick={() => setActivePeriod(p)}
                 className="px-3 py-1 rounded-md text-xs font-medium transition-all"
                 style={{
-                  color: activePeriod === p ? '#FDBA2D' : '#666666',
-                  background: activePeriod === p ? 'rgba(253,186,45,0.15)' : 'transparent',
+                  color: activePeriod === p ? '#F6A828' : '#666666',
+                  background: activePeriod === p ? 'rgba(246,168,40,0.15)' : 'transparent',
                 }}>
                 {p}
               </button>
@@ -859,7 +859,7 @@ function OverviewTab({
           <span className="font-semibold" style={{ fontSize: 16, color: '#FFFFFF' }}>Top Performing Videos</span>
           <button onClick={() => setActiveTool('search')}
             className="flex items-center gap-1 text-xs font-medium transition-colors"
-            style={{ color: '#FDBA2D' }}>
+            style={{ color: '#F6A828' }}>
             View All <ChevronRight size={14} />
           </button>
         </div>
@@ -895,7 +895,7 @@ function OverviewTab({
                 {/* Bottom badges */}
                 <div className="flex items-center gap-2 px-3 pb-3">
                   <span className="px-2 py-0.5 rounded-md font-bold"
-                    style={{ fontSize: 11, color: '#FDBA2D', background: 'rgba(253,186,45,0.15)' }}>
+                    style={{ fontSize: 11, color: '#F6A828', background: 'rgba(246,168,40,0.15)' }}>
                     SEO 92
                   </span>
                   <span className="px-2 py-0.5 rounded-md font-bold"
@@ -904,7 +904,7 @@ function OverviewTab({
                   </span>
                   <button onClick={() => handleCopy(vid, title)}
                     className="ml-auto p-1.5 rounded-md transition-colors"
-                    style={{ color: '#FDBA2D' }}>
+                    style={{ color: '#F6A828' }}>
                     {isCopied ? <Check size={14} /> : <Copy size={14} />}
                   </button>
                 </div>
@@ -948,7 +948,7 @@ function OverviewTab({
           <span className="font-semibold uppercase tracking-wider" style={{ fontSize: 12, color: '#a0a0a0' }}>Avg View Duration</span>
           <div className="mt-2">
             <span className="font-bold" style={{ fontSize: 28, color: '#FFFFFF', lineHeight: 1 }}>6:42</span>
-            <span className="ml-2 font-semibold" style={{ fontSize: 14, color: retention >= 70 ? '#888888' : retention >= 50 ? '#FDBA2D' : '#888888' }}>
+            <span className="ml-2 font-semibold" style={{ fontSize: 14, color: retention >= 70 ? '#888888' : retention >= 50 ? '#F6A828' : '#888888' }}>
               {retention}% retention
             </span>
           </div>
@@ -956,7 +956,7 @@ function OverviewTab({
           <div className="mt-6">
             <div className="w-full rounded-full" style={{ height: 8, background: '#0a0a0a' }}>
               <div className="h-full rounded-full transition-all duration-1000"
-                style={{ width: `${retention}%`, background: retention >= 70 ? '#888888' : retention >= 50 ? '#FDBA2D' : '#888888' }} />
+                style={{ width: `${retention}%`, background: retention >= 70 ? '#888888' : retention >= 50 ? '#F6A828' : '#888888' }} />
             </div>
             <div className="flex justify-between mt-1">
               <span style={{ fontSize: 10, color: '#666666' }}>0:00</span>
@@ -993,7 +993,7 @@ function OverviewTab({
           <div className="grid grid-cols-2 gap-2 mt-5">
             {[
               { icon: Zap, label: 'Viral Predictor', id: 'viral', color: '#888888' },
-              { icon: Crosshair, label: 'Niche Radar', id: 'niche', color: '#FDBA2D' },
+              { icon: Crosshair, label: 'Niche Radar', id: 'niche', color: '#F6A828' },
               { icon: SearchCode, label: 'SEO Optimizer', id: 'seo', color: '#888888' },
               { icon: GitCompare, label: 'Competitor Track', id: 'competitor', color: '#888888' },
             ].map(tool => (
@@ -1012,16 +1012,16 @@ function OverviewTab({
         {/* Trending in Your Niche */}
         <div className="shrink-0 p-5 overflow-hidden w-full lg:w-[320px]" style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 16 }}>
           <div className="flex items-center gap-2 mb-4">
-            <Sparkles size={16} color="#FDBA2D" />
+            <Sparkles size={16} color="#F6A828" />
             <span className="font-semibold" style={{ fontSize: 14, color: '#FFFFFF' }}>Trending in Your Niche</span>
           </div>
           <div className="space-y-0">
             {trendingTopics.map((topic, i) => (
               <div key={i} className="flex items-center gap-3 py-2.5 transition-colors cursor-pointer group"
                 style={{ borderBottom: i < trendingTopics.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', borderLeft: '2px solid transparent' }}
-                onMouseEnter={e => (e.currentTarget.style.borderLeftColor = '#FDBA2D')}
+                onMouseEnter={e => (e.currentTarget.style.borderLeftColor = '#F6A828')}
                 onMouseLeave={e => (e.currentTarget.style.borderLeftColor = 'transparent')}>
-                <span className="font-bold shrink-0" style={{ fontSize: 14, color: '#FDBA2D', width: 20 }}>{i + 1}</span>
+                <span className="font-bold shrink-0" style={{ fontSize: 14, color: '#F6A828', width: 20 }}>{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <p className="truncate font-medium" style={{ fontSize: 13, color: '#FFFFFF' }}>{topic.title}</p>
                   <p className="truncate" style={{ fontSize: 11, color: '#666666' }}>
@@ -1030,7 +1030,7 @@ function OverviewTab({
                 </div>
                 <button onClick={() => copyToClipboard(topic.title)}
                   className="shrink-0 p-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ color: '#FDBA2D' }}>
+                  style={{ color: '#F6A828' }}>
                   <Copy size={12} />
                 </button>
               </div>
@@ -1086,7 +1086,7 @@ function OverviewTab({
                     <span className="font-semibold shrink-0 ml-2" style={{ fontSize: 12, color: '#a0a0a0' }}>{c.pct}%</span>
                   </div>
                   <div className="w-full rounded-full mt-1" style={{ height: 4, background: '#0a0a0a' }}>
-                    <div className="h-full rounded-full" style={{ width: `${c.pct}%`, background: '#FDBA2D' }} />
+                    <div className="h-full rounded-full" style={{ width: `${c.pct}%`, background: '#F6A828' }} />
                   </div>
                 </div>
               </div>
@@ -1107,7 +1107,7 @@ function OverviewTab({
               <div key={di} className="flex gap-1 mb-0.5">
                 <div className="flex items-center" style={{ width: 28, fontSize: 9, color: '#666666' }}>{DAY_LABELS[di]}</div>
                 {row.map((val, hi) => {
-                  const bg = val >= 85 ? '#888888' : val >= 60 ? '#FDBA2D' : '#0f0f0f';
+                  const bg = val >= 85 ? '#888888' : val >= 60 ? '#F6A828' : '#0f0f0f';
                   return <div key={hi} className="flex-1 rounded-sm transition-colors" style={{ height: 20, background: bg }} title={`${val}%`} />;
                 })}
               </div>
@@ -1129,8 +1129,8 @@ function OverviewTab({
 function PlaceholderTab({ label, icon: Icon }: { label: string; icon: React.ElementType }) {
   return (
     <div className="flex flex-col items-center justify-center py-24">
-      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(253,186,45,0.08)', border: '1px solid rgba(253,186,45,0.15)' }}>
-        <Icon size={28} color="#FDBA2D" />
+      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(246,168,40,0.08)', border: '1px solid rgba(246,168,40,0.15)' }}>
+        <Icon size={28} color="#F6A828" />
       </div>
       <h3 className="text-lg font-bold mb-1" style={{ color: '#FFFFFF' }}>{label}</h3>
       <p className="text-sm text-center max-w-sm" style={{ color: '#666666' }}>

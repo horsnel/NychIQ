@@ -93,7 +93,7 @@ function ScoreRing({ score, size = 72, label }: { score: number; size?: number; 
   const radius = (size - 12) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 75 ? '#888888' : score >= 50 ? '#FDBA2D' : '#888888';
+  const color = score >= 75 ? '#888888' : score >= 50 ? '#F6A828' : '#888888';
 
   return (
     <div className="flex flex-col items-center gap-1.5">
@@ -256,8 +256,8 @@ export function ScriptFlowTool() {
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.1)' }}>
-              <ScrollText className="w-5 h-5" style={{ color: '#FDBA2D' }} />
+            <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(246,168,40,0.1)' }}>
+              <ScrollText className="w-5 h-5" style={{ color: '#F6A828' }} />
             </div>
             <div>
               <h2 className="text-base font-bold text-[#FFFFFF]">ScriptFlow</h2>
@@ -273,7 +273,7 @@ export function ScriptFlowTool() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-[rgba(253,186,45,0.15)] text-[#FDBA2D] border border-[rgba(255,255,255,0.03)] shadow-[rgba(0,0,0,0.3)]'
+                    ? 'bg-[rgba(246,168,40,0.15)] text-[#F6A828] border border-[rgba(255,255,255,0.03)] shadow-[rgba(0,0,0,0.3)]'
                     : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] border border-transparent'
                 }`}
               >
@@ -397,8 +397,8 @@ Return ONLY the JSON object, no other text.`;
             placeholder="Paste your video transcript here... (minimum 50 characters for analysis)"
             rows={8}
             className="w-full p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors resize-none leading-relaxed"
-            style={{ caretColor: '#FDBA2D' }}
-            onFocus={(e) => { e.target.style.borderColor = 'rgba(253,186,45,0.5)'; }}
+            style={{ caretColor: '#F6A828' }}
+            onFocus={(e) => { e.target.style.borderColor = 'rgba(246,168,40,0.5)'; }}
             onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
           />
           <div className="flex items-center justify-between mt-2">
@@ -407,7 +407,7 @@ Return ONLY the JSON object, no other text.`;
               onClick={handleAudit}
               disabled={loading || transcript.trim().length < 50}
               className="px-5 h-10 rounded-lg text-[#0a0a0a] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              style={{ backgroundColor: '#FDBA2D' }}
+              style={{ backgroundColor: '#F6A828' }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Audit Script
@@ -457,11 +457,11 @@ Return ONLY the JSON object, no other text.`;
           {/* Results Header */}
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-[#FFFFFF] flex items-center gap-2">
-              <Sparkles className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+              <Sparkles className="w-4 h-4" style={{ color: '#F6A828' }} />
               Script Audit Results
             </h3>
             <div className="flex items-center gap-2">
-              <button onClick={handleCopyAll} className="flex items-center gap-1 text-xs font-medium hover:opacity-80 transition-opacity" style={{ color: '#FDBA2D' }}>
+              <button onClick={handleCopyAll} className="flex items-center gap-1 text-xs font-medium hover:opacity-80 transition-opacity" style={{ color: '#F6A828' }}>
                 <Copy className="w-3 h-3" /> Copy All
               </button>
               <button onClick={handleAudit} className="flex items-center gap-1 text-xs text-[#a0a0a0] hover:text-[#FFFFFF] transition-colors">
@@ -484,7 +484,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Power Words */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <Zap className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Power Word Replacements
+              <Zap className="w-3.5 h-3.5" style={{ color: '#F6A828' }} /> Power Word Replacements
             </h4>
             <div className="space-y-2">
               {result.powerWords.map((w, i) => (
@@ -511,7 +511,7 @@ Return ONLY the JSON object, no other text.`;
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                     <span className="text-sm text-[#888888] line-through">&ldquo;{w.phrase}&rdquo;</span>
                     <ArrowRight className="w-3 h-3 text-[#666666] hidden sm:block" />
-                    <span className="text-sm font-medium" style={{ color: '#FDBA2D' }}>&ldquo;{w.alternative}&rdquo;</span>
+                    <span className="text-sm font-medium" style={{ color: '#F6A828' }}>&ldquo;{w.alternative}&rdquo;</span>
                   </div>
                   <p className="text-[11px] text-[#666666] mt-1">{w.reason}</p>
                 </div>
@@ -522,7 +522,7 @@ Return ONLY the JSON object, no other text.`;
           {/* Hook Analysis */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <Target className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Hook Analysis (First 10 Seconds)
+              <Target className="w-3.5 h-3.5" style={{ color: '#F6A828' }} /> Hook Analysis (First 10 Seconds)
             </h4>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-3">
               <ScoreRing score={result.hookAnalysis.score} size={64} label="hook" />
@@ -532,7 +532,7 @@ Return ONLY the JSON object, no other text.`;
               <div className="space-y-1.5">
                 {result.hookAnalysis.suggestions.map((s, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm">
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(253,186,45,0.15)', color: '#FDBA2D' }}>
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(246,168,40,0.15)', color: '#F6A828' }}>
                       {i + 1}
                     </span>
                     <span className="text-[#a0a0a0]">{s}</span>
@@ -545,12 +545,12 @@ Return ONLY the JSON object, no other text.`;
           {/* Pacing Analysis */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <Gauge className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> Pacing Analysis
+              <Gauge className="w-3.5 h-3.5" style={{ color: '#F6A828' }} /> Pacing Analysis
             </h4>
             <div className="space-y-2">
               {result.pacingAnalysis.map((p, i) => {
-                const issueColor = p.issue === 'good' ? '#888888' : p.issue === 'too_fast' ? '#888888' : '#FDBA2D';
-                const issueBg = p.issue === 'good' ? 'rgba(34,197,94,0.1)' : p.issue === 'too_fast' ? 'rgba(0,0,0,0)' : 'rgba(253,186,45,0.08)';
+                const issueColor = p.issue === 'good' ? '#888888' : p.issue === 'too_fast' ? '#888888' : '#F6A828';
+                const issueBg = p.issue === 'good' ? 'rgba(34,197,94,0.1)' : p.issue === 'too_fast' ? 'rgba(0,0,0,0)' : 'rgba(246,168,40,0.08)';
                 const issueLabel = p.issue === 'good' ? 'Good' : p.issue === 'too_fast' ? 'Too Fast' : 'Too Slow';
                 return (
                   <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
@@ -566,7 +566,7 @@ Return ONLY the JSON object, no other text.`;
           {/* CTA Evaluation */}
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
             <h4 className="text-xs font-bold text-[#a0a0a0] uppercase tracking-wider flex items-center gap-1.5 mb-3">
-              <Megaphone className="w-3.5 h-3.5" style={{ color: '#FDBA2D' }} /> CTA Strength
+              <Megaphone className="w-3.5 h-3.5" style={{ color: '#F6A828' }} /> CTA Strength
             </h4>
             <div className="flex items-center gap-4 mb-3">
               <ScoreRing score={result.ctaEvaluation.score} size={64} label="CTA" />
@@ -592,8 +592,8 @@ Return ONLY the JSON object, no other text.`;
       {/* Initial State */}
       {!loading && !searched && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
-            <ScrollText className="w-8 h-8" style={{ color: '#FDBA2D' }} />
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(246,168,40,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
+            <ScrollText className="w-8 h-8" style={{ color: '#F6A828' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Audit Your Script</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">
@@ -707,9 +707,9 @@ Return ONLY the JSON array, no other text.`;
   };
 
   const viralColor = (level: ShortClip['viralPotential']) =>
-    level === 'High' ? '#888888' : level === 'Medium' ? '#FDBA2D' : '#888888';
+    level === 'High' ? '#888888' : level === 'Medium' ? '#F6A828' : '#888888';
   const viralBg = (level: ShortClip['viralPotential']) =>
-    level === 'High' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(253,186,45,0.12)' : 'rgba(136,136,136,0.2)';
+    level === 'High' ? 'rgba(34,197,94,0.1)' : level === 'Medium' ? 'rgba(246,168,40,0.12)' : 'rgba(136,136,136,0.2)';
 
   // Timeline: compute total seconds and cut point positions
   const totalDurationSec = shorts.length > 0
@@ -730,7 +730,7 @@ Return ONLY the JSON array, no other text.`;
       {/* Input Area */}
       <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Scissors className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+          <Scissors className="w-4 h-4" style={{ color: '#F6A828' }} />
           <h3 className="text-sm font-bold text-[#FFFFFF]">Convert Long Script → Viral Shorts</h3>
         </div>
         <p className="text-xs text-[#a0a0a0] mb-4">
@@ -746,8 +746,8 @@ Return ONLY the JSON array, no other text.`;
             onChange={(e) => setNiche(e.target.value)}
             placeholder="e.g., Fitness, Tech Reviews, Personal Finance..."
             className="w-full h-10 px-4 rounded-full bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors"
-            style={{ caretColor: '#FDBA2D' }}
-            onFocus={(e) => { e.target.style.borderColor = 'rgba(253,186,45,0.5)'; }}
+            style={{ caretColor: '#F6A828' }}
+            onFocus={(e) => { e.target.style.borderColor = 'rgba(246,168,40,0.5)'; }}
             onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
           />
         </div>
@@ -759,8 +759,8 @@ Return ONLY the JSON array, no other text.`;
           placeholder="Paste your long-form video script here... (minimum 500 characters for best results)"
           rows={10}
           className="w-full p-4 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] text-sm text-[#FFFFFF] placeholder:text-[#666666] focus:outline-none transition-colors resize-none leading-relaxed"
-          style={{ caretColor: '#FDBA2D' }}
-          onFocus={(e) => { e.target.style.borderColor = 'rgba(253,186,45,0.5)'; }}
+          style={{ caretColor: '#F6A828' }}
+          onFocus={(e) => { e.target.style.borderColor = 'rgba(246,168,40,0.5)'; }}
           onBlur={(e) => { e.target.style.borderColor = '#1A1A1A'; }}
         />
 
@@ -772,7 +772,7 @@ Return ONLY the JSON array, no other text.`;
             onClick={handleConvert}
             disabled={loading || script.trim().length < 500}
             className="px-5 h-10 rounded-lg text-[#0a0a0a] text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-            style={{ backgroundColor: '#FDBA2D' }}
+            style={{ backgroundColor: '#F6A828' }}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Scissors className="w-4 h-4" />}
             Convert to Shorts
@@ -785,11 +785,11 @@ Return ONLY the JSON array, no other text.`;
         <div className="space-y-3">
           <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5">
             <div className="flex items-center gap-3 mb-4">
-              <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#FDBA2D' }} />
+              <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#F6A828' }} />
               <span className="text-sm font-medium text-[#FFFFFF]">Analyzing script &amp; generating shorts...</span>
             </div>
             <div className="w-full h-1.5 rounded-full bg-[#1A1A1A] overflow-hidden">
-              <div className="h-full rounded-full animate-pulse" style={{ width: '60%', background: 'linear-gradient(90deg, #FDBA2D, #888888)' }} />
+              <div className="h-full rounded-full animate-pulse" style={{ width: '60%', background: 'linear-gradient(90deg, #F6A828, #888888)' }} />
             </div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
@@ -811,18 +811,18 @@ Return ONLY the JSON array, no other text.`;
           {/* Results header + Export */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Film className="w-4 h-4" style={{ color: '#FDBA2D' }} />
+              <Film className="w-4 h-4" style={{ color: '#F6A828' }} />
               <h3 className="text-sm font-semibold text-[#FFFFFF]">
                 {shorts.length} Shorts Generated
               </h3>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold" style={{ color: '#FDBA2D', backgroundColor: 'rgba(253,186,45,0.12)' }}>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold" style={{ color: '#F6A828', backgroundColor: 'rgba(246,168,40,0.12)' }}>
                 {niche || 'General'}
               </span>
             </div>
             <button
               onClick={handleExportAll}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 hover:opacity-80"
-              style={{ color: '#FDBA2D', backgroundColor: 'rgba(253,186,45,0.1)', border: '1px solid rgba(253,186,45,0.2)' }}
+              style={{ color: '#F6A828', backgroundColor: 'rgba(246,168,40,0.1)', border: '1px solid rgba(246,168,40,0.2)' }}
             >
               {copiedAll ? <Check className="w-3.5 h-3.5" /> : <Download className="w-3.5 h-3.5" />}
               {copiedAll ? 'Copied!' : 'Export All'}
@@ -871,8 +871,8 @@ Return ONLY the JSON array, no other text.`;
                       className="absolute top-0 h-full w-0.5 z-10"
                       style={{
                         left: `${pct}%`,
-                        backgroundColor: '#FDBA2D',
-                        boxShadow: '0 0 4px rgba(253,186,45,0.5)',
+                        backgroundColor: '#F6A828',
+                        boxShadow: '0 0 4px rgba(246,168,40,0.5)',
                       }}
                     />
                   );
@@ -885,7 +885,7 @@ Return ONLY the JSON array, no other text.`;
                   <span className="text-[10px] text-[#666666]">High Viral</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.3)', borderTop: '1px solid #FDBA2D', borderBottom: '1px solid #FDBA2D' }} />
+                  <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(246,168,40,0.3)', borderTop: '1px solid #F6A828', borderBottom: '1px solid #F6A828' }} />
                   <span className="text-[10px] text-[#666666]">Medium</span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -908,7 +908,7 @@ Return ONLY the JSON array, no other text.`;
                   <div className="flex items-center gap-2">
                     <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
-                      style={{ backgroundColor: 'rgba(253,186,45,0.1)', color: '#FDBA2D' }}
+                      style={{ backgroundColor: 'rgba(246,168,40,0.1)', color: '#F6A828' }}
                     >
                       {s.number}
                     </div>
@@ -932,8 +932,8 @@ Return ONLY the JSON array, no other text.`;
                 {/* Hook */}
                 <div className="p-3 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A] mb-2">
                   <div className="flex items-center gap-1.5 mb-1">
-                    <Zap className="w-3 h-3" style={{ color: '#FDBA2D' }} />
-                    <span className="text-[10px] font-bold text-[#FDBA2D] uppercase tracking-wider">Hook (First 2s)</span>
+                    <Zap className="w-3 h-3" style={{ color: '#F6A828' }} />
+                    <span className="text-[10px] font-bold text-[#F6A828] uppercase tracking-wider">Hook (First 2s)</span>
                   </div>
                   <p className="text-sm text-[#FFFFFF] font-medium leading-relaxed">{s.hook}</p>
                 </div>
@@ -983,14 +983,14 @@ Return ONLY the JSON array, no other text.`;
                       className="h-full rounded-full transition-all duration-1000 ease-out"
                       style={{
                         width: `${s.retention}%`,
-                        backgroundColor: s.retention >= 80 ? '#888888' : s.retention >= 60 ? '#FDBA2D' : '#888888',
-                        boxShadow: `0 0 8px ${s.retention >= 80 ? 'rgba(34,197,94,0.1)' : s.retention >= 60 ? 'rgba(253,186,45,0.4)' : 'rgba(136,136,136,0.2)'}`,
+                        backgroundColor: s.retention >= 80 ? '#888888' : s.retention >= 60 ? '#F6A828' : '#888888',
+                        boxShadow: `0 0 8px ${s.retention >= 80 ? 'rgba(34,197,94,0.1)' : s.retention >= 60 ? 'rgba(246,168,40,0.4)' : 'rgba(136,136,136,0.2)'}`,
                       }}
                     />
                   </div>
                   <span
                     className="text-xs font-bold shrink-0"
-                    style={{ color: s.retention >= 80 ? '#888888' : s.retention >= 60 ? '#FDBA2D' : '#888888' }}
+                    style={{ color: s.retention >= 80 ? '#888888' : s.retention >= 60 ? '#F6A828' : '#888888' }}
                   >
                     {s.retention}%
                   </span>
@@ -1009,8 +1009,8 @@ Return ONLY the JSON array, no other text.`;
       {/* Initial State */}
       {!loading && !generated && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(253,186,45,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
-            <Scissors className="w-8 h-8" style={{ color: '#FDBA2D' }} />
+          <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(246,168,40,0.1)', borderColor: 'rgba(255,255,255,0.03)' }}>
+            <Scissors className="w-8 h-8" style={{ color: '#F6A828' }} />
           </div>
           <h3 className="text-base font-semibold text-[#FFFFFF] mb-1">Script → Shorts Converter</h3>
           <p className="text-sm text-[#a0a0a0] max-w-xs text-center">

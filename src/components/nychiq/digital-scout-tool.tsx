@@ -143,7 +143,7 @@ function typeBadgeStyle(type: ProductOpportunity['type']) {
     case 'Notion':
       return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Video Course':
-      return { bg: 'bg-[rgba(253,186,45,0.1)]', text: 'text-[#FDBA2D]', border: 'border-[rgba(255,255,255,0.03)]' };
+      return { bg: 'bg-[rgba(246,168,40,0.1)]', text: 'text-[#F6A828]', border: 'border-[rgba(255,255,255,0.03)]' };
     case 'Toolkit':
       return { bg: 'bg-[rgba(255,255,255,0.03)]', text: 'text-[#888888]', border: 'border-[rgba(255,255,255,0.03)]' };
     default:
@@ -153,7 +153,7 @@ function typeBadgeStyle(type: ProductOpportunity['type']) {
 
 /* ── Priority badge ── */
 function PriorityBadge({ score }: { score: number }) {
-  const color = score >= 90 ? '#888888' : score >= 80 ? '#FDBA2D' : score >= 70 ? '#888888' : '#a0a0a0';
+  const color = score >= 90 ? '#888888' : score >= 80 ? '#F6A828' : score >= 70 ? '#888888' : '#a0a0a0';
   const label = score >= 90 ? 'HIGH' : score >= 80 ? 'MEDIUM' : 'LOW';
   return (
     <div className="flex items-center gap-1.5">
@@ -267,8 +267,8 @@ Return ONLY valid JSON matching this schema:
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-                <Package className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+                <Package className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
@@ -281,8 +281,8 @@ Return ONLY valid JSON matching this schema:
         {/* Input Section */}
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-5 sm:p-6">
           <div className="text-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-[rgba(253,186,45,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-4">
-              <Package className="w-8 h-8 text-[#FDBA2D]" />
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(246,168,40,0.08)] border border-[rgba(255,255,255,0.03)] flex items-center justify-center mx-auto mb-4">
+              <Package className="w-8 h-8 text-[#F6A828]" />
             </div>
             <h3 className="text-lg font-bold text-[#FFFFFF] mb-2">Find What Audiences Will Pay For</h3>
             <p className="text-sm text-[#a0a0a0] max-w-lg mx-auto">
@@ -307,7 +307,7 @@ Return ONLY valid JSON matching this schema:
                 disabled={!input.trim()}
                 className="px-5 py-3 rounded-full text-white text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg shrink-0"
                 style={{
-                  background: input.trim() ? 'linear-gradient(135deg, #FDBA2D, #E09100)' : '#1a1a1a',
+                  background: input.trim() ? 'linear-gradient(135deg, #F6A828, #E09100)' : '#1a1a1a',
                 }}
               >
                 <span className="flex items-center gap-2">
@@ -341,7 +341,7 @@ Return ONLY valid JSON matching this schema:
               <button
                 key={ex}
                 onClick={() => setInput(ex)}
-                className="px-3 py-1.5 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                className="px-3 py-1.5 rounded-full bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)] text-[11px] text-[#a0a0a0] hover:text-[#F6A828] hover:border-[#F6A828]/30 transition-all"
               >
                 {ex}
               </button>
@@ -362,8 +362,8 @@ Return ONLY valid JSON matching this schema:
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)] animate-pulse">
-                <Package className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)] animate-pulse">
+                <Package className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <div className="h-4 bg-[#1A1A1A] rounded animate-pulse w-44 mb-1" />
@@ -374,15 +374,15 @@ Return ONLY valid JSON matching this schema:
         </div>
 
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6 text-center">
-          <div className="w-12 h-12 rounded-xl bg-[rgba(253,186,45,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
-            <Loader2 className="w-6 h-6 text-[#FDBA2D] animate-spin" />
+          <div className="w-12 h-12 rounded-xl bg-[rgba(246,168,40,0.1)] animate-pulse mx-auto mb-4 flex items-center justify-center">
+            <Loader2 className="w-6 h-6 text-[#F6A828] animate-spin" />
           </div>
           <h3 className="text-sm font-semibold text-[#FFFFFF] mb-2">Scouting Product Opportunities...</h3>
           <p className="text-xs text-[#a0a0a0] mb-4">Analyzing audience demand and comment signals</p>
           <div className="space-y-2 max-w-sm mx-auto">
             {['Scanning audience pain points', 'Evaluating product market fit', 'Calculating revenue estimates'].map((step, i) => (
               <div key={step} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#FDBA2D] animate-pulse" style={{ animationDelay: `${i * 300}ms` }} />
+                <div className="w-2 h-2 rounded-full bg-[#F6A828] animate-pulse" style={{ animationDelay: `${i * 300}ms` }} />
                 <div className="h-2.5 bg-[#1A1A1A] rounded animate-pulse flex-1" />
               </div>
             ))}
@@ -399,8 +399,8 @@ Return ONLY valid JSON matching this schema:
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] overflow-hidden">
           <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-                <Package className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+                <Package className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
@@ -445,8 +445,8 @@ Return ONLY valid JSON matching this schema:
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-                <Package className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+                <Package className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Digital Product Scout</h2>
@@ -467,7 +467,7 @@ Return ONLY valid JSON matching this schema:
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
           <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Opportunities Found</p>
-          <p className="text-2xl font-bold text-[#FDBA2D]">{results?.opportunities.length || 0}</p>
+          <p className="text-2xl font-bold text-[#F6A828]">{results?.opportunities.length || 0}</p>
         </div>
         <div className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4 text-center">
           <p className="text-[10px] text-[#a0a0a0] font-medium uppercase tracking-wider mb-1">Est. Views</p>
@@ -482,7 +482,7 @@ Return ONLY valid JSON matching this schema:
       {/* Product Opportunity Cards */}
       <div>
         <h3 className="text-sm font-semibold text-[#FFFFFF] mb-3 flex items-center gap-1.5">
-          <TrendingUp className="w-4 h-4 text-[#FDBA2D]" /> Product Opportunities
+          <TrendingUp className="w-4 h-4 text-[#F6A828]" /> Product Opportunities
           <span className="text-[10px] text-[#666666] font-normal ml-1">Sorted by priority</span>
         </h3>
         <div className="space-y-3">
@@ -504,9 +504,9 @@ Return ONLY valid JSON matching this schema:
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
                         style={{
-                          backgroundColor: idx === 0 ? 'rgba(253,186,45,0.15)' : '#1A1A1A',
-                          border: `1px solid ${idx === 0 ? 'rgba(253,186,45,0.3)' : '#0f0f0f'}`,
-                          color: idx === 0 ? '#FDBA2D' : '#666666',
+                          backgroundColor: idx === 0 ? 'rgba(246,168,40,0.15)' : '#1A1A1A',
+                          border: `1px solid ${idx === 0 ? 'rgba(246,168,40,0.3)' : '#0f0f0f'}`,
+                          color: idx === 0 ? '#F6A828' : '#666666',
                         }}
                       >
                         #{idx + 1}
@@ -572,7 +572,7 @@ Return ONLY valid JSON matching this schema:
                       <h5 className="text-[11px] font-bold text-[#a0a0a0] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <TrendingUp className="w-3 h-3" /> Sales Hook
                       </h5>
-                      <div className="px-3 py-2.5 rounded-md bg-[rgba(253,186,45,0.04)] border border-[rgba(255,255,255,0.03)]">
+                      <div className="px-3 py-2.5 rounded-md bg-[rgba(246,168,40,0.04)] border border-[rgba(255,255,255,0.03)]">
                         <p className="text-sm text-[#FFFFFF] leading-relaxed">{opp.salesHook}</p>
                       </div>
                     </div>
@@ -589,7 +589,7 @@ Return ONLY valid JSON matching this schema:
                       </div>
                       <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] px-3 py-2.5 text-center">
                         <p className="text-[10px] text-[#666666]">Priority</p>
-                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#888888' : opp.priorityScore >= 80 ? '#FDBA2D' : '#888888' }}>
+                        <p className="text-sm font-semibold mt-0.5" style={{ color: opp.priorityScore >= 90 ? '#888888' : opp.priorityScore >= 80 ? '#F6A828' : '#888888' }}>
                           {opp.priorityScore}/100
                         </p>
                       </div>
@@ -598,7 +598,7 @@ Return ONLY valid JSON matching this schema:
                     {/* Copy Sales Hook */}
                     <button
                       onClick={() => handleCopy(opp.salesHook, opp.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:text-[#FDBA2D] hover:border-[#FDBA2D]/30 transition-all"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md bg-[#1A1A1A] border border-[rgba(255,255,255,0.03)] text-xs text-[#a0a0a0] hover:text-[#F6A828] hover:border-[#F6A828]/30 transition-all"
                     >
                       {isCopied ? (
                         <>

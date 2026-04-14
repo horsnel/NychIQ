@@ -121,7 +121,7 @@ const TABS: { id: UploaderTab; label: string; icon: React.ElementType }[] = [
 /* ── Score color helper ── */
 function scoreColor(score: number): string {
   if (score >= 80) return '#888888';
-  if (score >= 60) return '#FDBA2D';
+  if (score >= 60) return '#F6A828';
   if (score >= 40) return '#888888';
   return '#888888';
 }
@@ -137,14 +137,14 @@ function scoreLabel(score: number): string {
 
 function noveltyLevel(score: number): { label: string; color: string } {
   if (score >= 75) return { label: 'High', color: '#888888' };
-  if (score >= 45) return { label: 'Medium', color: '#FDBA2D' };
+  if (score >= 45) return { label: 'Medium', color: '#F6A828' };
   return { label: 'Low', color: '#888888' };
 }
 
 /* ── Retention bar color based on value ── */
 function retentionColor(retention: number): string {
   if (retention >= 70) return '#888888';
-  if (retention >= 50) return '#FDBA2D';
+  if (retention >= 50) return '#F6A828';
   if (retention >= 30) return '#888888';
   return '#888888';
 }
@@ -349,7 +349,7 @@ function GoNoGoBadge({ verdict }: { verdict: 'go' | 'nogo' | 'caution' }) {
   const config = {
     go: { label: 'GO', color: '#888888', bg: 'rgba(34,197,94,0.1)', border: 'rgba(34,197,94,0.1)', icon: CheckCircle2, desc: 'Strong signal — recommended to publish' },
     nogo: { label: 'NO-GO', color: '#888888', bg: 'rgba(136,136,136,0.2)', border: 'rgba(136,136,136,0.2)', icon: XCircle, desc: 'Weak signal — recommend pivoting' },
-    caution: { label: 'CAUTION', color: '#FDBA2D', bg: 'rgba(253,186,45,0.12)', border: 'rgba(253,186,45,0.3)', icon: AlertTriangle, desc: 'Moderate potential — optimize before publishing' },
+    caution: { label: 'CAUTION', color: '#F6A828', bg: 'rgba(246,168,40,0.12)', border: 'rgba(246,168,40,0.3)', icon: AlertTriangle, desc: 'Moderate potential — optimize before publishing' },
   }[verdict];
   const Icon = config.icon;
 
@@ -452,8 +452,8 @@ function MetricPill({ label, value, color }: { label: string; value: string; col
 /* ── Enhanced Video Card ── */
 function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number }) {
   const retColor = retentionColor(video.retentionRate);
-  const sentColor = video.sentimentPositive >= 70 ? '#888888' : video.sentimentPositive >= 50 ? '#FDBA2D' : '#888888';
-  const thumbColor = video.thumbnailScore >= 75 ? '#888888' : video.thumbnailScore >= 50 ? '#FDBA2D' : '#888888';
+  const sentColor = video.sentimentPositive >= 70 ? '#888888' : video.sentimentPositive >= 50 ? '#F6A828' : '#888888';
+  const thumbColor = video.thumbnailScore >= 75 ? '#888888' : video.thumbnailScore >= 50 ? '#F6A828' : '#888888';
   const engDiff = video.engagement - video.nicheAvgEngagement;
   const engPositive = engDiff >= 0;
 
@@ -515,7 +515,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
       {/* CTR Analysis */}
       <div className="rounded-md bg-[#0a0a0a] border border-[#1A1A1A] p-2 mb-2">
         <div className="flex items-center gap-1.5 mb-1">
-          <Target className="w-3 h-3 text-[#FDBA2D]" />
+          <Target className="w-3 h-3 text-[#F6A828]" />
           <span className="text-[9px] text-[#666666] uppercase tracking-wider">CTR Analysis</span>
         </div>
         <p className="text-[10px] text-[#a0a0a0] leading-relaxed">{video.ctrAnalysis}</p>
@@ -529,7 +529,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
         </div>
         <div className="flex gap-1.5 h-2 rounded-full overflow-hidden">
           <div className="rounded-l-full" style={{ width: `${video.sentimentPositive}%`, backgroundColor: '#888888' }} title="Positive" />
-          <div style={{ width: `${video.sentimentNeutral}%`, backgroundColor: '#FDBA2D' }} title="Neutral" />
+          <div style={{ width: `${video.sentimentNeutral}%`, backgroundColor: '#F6A828' }} title="Neutral" />
           <div className="rounded-r-full" style={{ width: `${video.sentimentNegative}%`, backgroundColor: '#888888' }} title="Negative" />
         </div>
         <div className="flex items-center justify-between mt-1.5">
@@ -538,7 +538,7 @@ function EnhancedVideoCard({ video, index }: { video: LatestVideo; index: number
             <span className="text-[9px] text-[#a0a0a0]">{video.sentimentPositive}%</span>
           </div>
           <div className="flex items-center gap-1">
-            <CircleDot className="w-2.5 h-2.5 text-[#FDBA2D]" />
+            <CircleDot className="w-2.5 h-2.5 text-[#F6A828]" />
             <span className="text-[9px] text-[#a0a0a0]">{video.sentimentNeutral}%</span>
           </div>
           <div className="flex items-center gap-1">
@@ -570,8 +570,8 @@ function HeatmapGrid() {
   const getHeatColor = (val: number): string => {
     if (val >= 80) return 'rgba(34,197,94,0.1)';
     if (val >= 65) return 'rgba(34,197,94,0.1)';
-    if (val >= 50) return 'rgba(253,186,45,0.5)';
-    if (val >= 35) return 'rgba(253,186,45,0.25)';
+    if (val >= 50) return 'rgba(246,168,40,0.5)';
+    if (val >= 35) return 'rgba(246,168,40,0.25)';
     return 'rgba(255,255,255,0.03)';
   };
 
@@ -604,8 +604,8 @@ function HeatmapGrid() {
         <span className="text-[8px] text-[#666666]">Low</span>
         <div className="flex gap-0.5">
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.25)' }} />
-          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(253,186,45,0.5)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(246,168,40,0.25)' }} />
+          <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(246,168,40,0.5)' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
           <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: '#1a1a1a' }} />
         </div>
@@ -636,7 +636,7 @@ function CPMAnalysis() {
           <div key={cat.label}>
             <div className="flex items-center justify-between mb-1">
               <span className="text-[10px] text-[#a0a0a0]">{cat.label}</span>
-              <span className="text-[10px] font-bold text-[#FDBA2D]">${cat.cpm.toFixed(2)}</span>
+              <span className="text-[10px] font-bold text-[#F6A828]">${cat.cpm.toFixed(2)}</span>
             </div>
             <div className="relative h-3 rounded-full bg-[#1A1A1A] overflow-hidden">
               {/* Niche average line */}
@@ -647,7 +647,7 @@ function CPMAnalysis() {
               {/* Your CPM bar */}
               <div
                 className="absolute top-0 h-full rounded-full transition-all duration-700"
-                style={{ width: `${barWidth}%`, backgroundColor: '#FDBA2D', boxShadow: '0 0 8px rgba(253,186,45,0.3)' }}
+                style={{ width: `${barWidth}%`, backgroundColor: '#F6A828', boxShadow: '0 0 8px rgba(246,168,40,0.3)' }}
               />
             </div>
           </div>
@@ -655,7 +655,7 @@ function CPMAnalysis() {
       })}
       <div className="flex items-center gap-3 pt-1">
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-1.5 rounded-sm bg-[#FDBA2D]" />
+          <div className="w-3 h-1.5 rounded-sm bg-[#F6A828]" />
           <span className="text-[8px] text-[#666666]">Your est. CPM</span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -672,7 +672,7 @@ function DemographicsBreakdown() {
   const ageData = [
     { label: '18-24', pct: 32, color: '#888888' },
     { label: '25-34', pct: 38, color: '#888888' },
-    { label: '35-44', pct: 17, color: '#FDBA2D' },
+    { label: '35-44', pct: 17, color: '#F6A828' },
     { label: '45-54', pct: 8, color: '#888888' },
     { label: '55+', pct: 5, color: '#888888' },
   ];
@@ -680,7 +680,7 @@ function DemographicsBreakdown() {
   const genderData = [
     { label: 'Male', pct: 62, color: '#888888' },
     { label: 'Female', pct: 31, color: '#888888' },
-    { label: 'Other', pct: 7, color: '#FDBA2D' },
+    { label: 'Other', pct: 7, color: '#F6A828' },
   ];
 
   return (
@@ -951,7 +951,7 @@ Return ONLY the JSON object, no other text.`;
                 <div
                   className="absolute -inset-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background: 'conic-gradient(from var(--angle, 0deg), #888888, #888888, #888888, #FDBA2D, #888888, #888888)',
+                    background: 'conic-gradient(from var(--angle, 0deg), #888888, #888888, #888888, #F6A828, #888888, #888888)',
                     animation: 'rotateBorder 3s linear infinite',
                   }}
                 />
@@ -1026,8 +1026,8 @@ Return ONLY the JSON object, no other text.`;
           {!input.trim() && !loading && !searched && (
             <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
               <div className="flex items-center gap-2 mb-3">
-                <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(253,186,45,0.2) 0%, transparent 70%)' }}>
-                  <Lightbulb className="w-4 h-4 text-[#FDBA2D]" />
+                <div className="p-1.5 rounded-lg" style={{ background: 'radial-gradient(circle, rgba(246,168,40,0.2) 0%, transparent 70%)' }}>
+                  <Lightbulb className="w-4 h-4 text-[#F6A828]" />
                 </div>
                 <div>
                   <h3 className="text-xs font-bold text-[#FFFFFF]">Suggested Ideas</h3>
@@ -1176,11 +1176,11 @@ Return ONLY the JSON object, no other text.`;
                     const isHighDrop = drop >= 20;
                     return (
                       <div key={point.mark} className="flex items-center gap-2 text-[10px]">
-                        {isHighDrop ? <AlertTriangle className="w-3 h-3 text-[#FDBA2D] shrink-0" /> : <div className="w-3 shrink-0" />}
+                        {isHighDrop ? <AlertTriangle className="w-3 h-3 text-[#F6A828] shrink-0" /> : <div className="w-3 shrink-0" />}
                         <span className="text-[#a0a0a0]">
                           <span className="text-[#FFFFFF] font-medium">{point.mark}</span> &mdash; {point.label}
                         </span>
-                        {isHighDrop && <span className="font-bold text-[#FDBA2D]">(-{drop}% drop)</span>}
+                        {isHighDrop && <span className="font-bold text-[#F6A828]">(-{drop}% drop)</span>}
                       </div>
                     );
                   })}
@@ -1342,8 +1342,8 @@ Return ONLY the JSON object, no other text.`;
               {/* Revenue per 1000 views (CPM Analysis) */}
               <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
-                    <DollarSign className="w-4 h-4 text-[#FDBA2D]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(246,168,40,0.15)' }}>
+                    <DollarSign className="w-4 h-4 text-[#F6A828]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Revenue per 1000 Views (CPM Analysis)</h3>
@@ -1370,8 +1370,8 @@ Return ONLY the JSON object, no other text.`;
               {/* Content Gap Opportunities */}
               <TacticalCorners className="rounded-lg bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(253,186,45,0.15)' }}>
-                    <Target className="w-4 h-4 text-[#FDBA2D]" />
+                  <div className="p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(246,168,40,0.15)' }}>
+                    <Target className="w-4 h-4 text-[#F6A828]" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-[#FFFFFF]">Content Gap Opportunities</h3>
@@ -1381,8 +1381,8 @@ Return ONLY the JSON object, no other text.`;
                 <div className="space-y-2">
                   {result.deeperAnalytics.contentGaps.map((gap, i) => (
                     <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-[#0a0a0a] border border-[#1A1A1A]">
-                      <div className="w-5 h-5 rounded-md bg-[#FDBA2D]/10 flex items-center justify-center shrink-0 mt-0.5">
-                        <span className="text-[9px] font-bold text-[#FDBA2D]">{i + 1}</span>
+                      <div className="w-5 h-5 rounded-md bg-[#F6A828]/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="text-[9px] font-bold text-[#F6A828]">{i + 1}</span>
                       </div>
                       <p className="text-[11px] text-[#a0a0a0] leading-relaxed">{gap}</p>
                     </div>

@@ -121,8 +121,8 @@ export function RankingsTool() {
         <div className="px-4 sm:px-5 py-4 border-b border-[#1A1A1A]">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[rgba(253,186,45,0.1)]">
-                <BarChart3 className="w-5 h-5 text-[#FDBA2D]" />
+              <div className="p-2 rounded-lg bg-[rgba(246,168,40,0.1)]">
+                <BarChart3 className="w-5 h-5 text-[#F6A828]" />
               </div>
               <div>
                 <h2 className="text-base font-bold text-[#FFFFFF]">Rankings</h2>
@@ -149,7 +149,7 @@ export function RankingsTool() {
                 className={cn(
                   'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150',
                   tab === t.key
-                    ? 'bg-[#FDBA2D]/15 text-[#FDBA2D] border border-[#FDBA2D]/30'
+                    ? 'bg-[#F6A828]/15 text-[#F6A828] border border-[#F6A828]/30'
                     : 'bg-[#0a0a0a] text-[#a0a0a0] border border-[#1A1A1A] hover:border-[rgba(255,255,255,0.03)] hover:text-[#FFFFFF]'
                 )}
               >
@@ -168,7 +168,7 @@ export function RankingsTool() {
           <p className="text-sm text-[#FFFFFF]">{error}</p>
           <button
             onClick={fetchRankings}
-            className="mt-3 px-4 py-2 rounded-lg bg-[#FDBA2D] text-[#0a0a0a] text-sm font-bold hover:bg-[#C69320] transition-colors"
+            className="mt-3 px-4 py-2 rounded-lg bg-[#F6A828] text-[#0a0a0a] text-sm font-bold hover:bg-[#FFB340] transition-colors"
           >
             Try Again
           </button>
@@ -231,7 +231,7 @@ export function RankingsTool() {
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#FDBA2D] transition-colors">
+                  <h3 className="text-sm font-medium text-[#FFFFFF] truncate hover:text-[#F6A828] transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-xs text-[#a0a0a0] mt-0.5 truncate">{item.channelTitle}</p>

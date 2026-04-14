@@ -596,7 +596,7 @@ export function SovereignVaultTool() {
                             ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
                             : entry.winner === 'B'
                             ? 'bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.03)] text-[#888888]'
-                            : 'bg-[rgba(253,186,45,0.1)] border-[rgba(255,255,255,0.03)] text-[#FDBA2D]'
+                            : 'bg-[rgba(246,168,40,0.1)] border-[rgba(255,255,255,0.03)] text-[#F6A828]'
                         }`}
                       >
                         {entry.winner === 'pending' ? '⏳ Pending' : `Winner: ${entry.winner}`}

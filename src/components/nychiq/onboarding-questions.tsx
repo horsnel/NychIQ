@@ -25,7 +25,7 @@ const DISCOVERY_OPTIONS = [
   { id: 'tiktok', label: 'TikTok', icon: Monitor, color: '#888888' },
   { id: 'friend', label: 'Friend', icon: Users, color: '#888888' },
   { id: 'google', label: 'Google', icon: Search, color: '#888888' },
-  { id: 'ads', label: 'Ads', icon: Megaphone, color: '#FDBA2D' },
+  { id: 'ads', label: 'Ads', icon: Megaphone, color: '#F6A828' },
   { id: 'other', label: 'Other', icon: CircleHelp, color: '#a0a0a0' },
 ];
 
@@ -43,13 +43,13 @@ export function OnboardingQuestions() {
       {/* Top bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-[#0f0f0f]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-[3px] bg-[#FDBA2D] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-[3px] bg-[#F6A828] flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M10 6L18 12L10 18V6Z" fill="white"/>
               <rect x="5" y="5" width="2.5" height="14" rx="1" fill="white"/>
             </svg>
           </div>
-          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#FDBA2D]">CHIQ</span></span>
+          <span className="text-sm font-black tracking-[1.5px] uppercase">NY<span className="text-[#F6A828]">CHIQ</span></span>
         </div>
         <div className="flex items-center gap-3">
           {/* Progress dots */}
@@ -58,7 +58,7 @@ export function OnboardingQuestions() {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i === 0 ? 'bg-[#FDBA2D]' : 'bg-[#0f0f0f]'
+                  i === 0 ? 'bg-[#F6A828]' : 'bg-[#0f0f0f]'
                 }`}
               />
             ))}
@@ -89,7 +89,7 @@ export function OnboardingQuestions() {
                   onClick={() => setSelected(opt.id)}
                   className={`flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl border transition-all duration-200 group cursor-pointer ${
                     isSelected
-                      ? 'bg-[rgba(253,186,45,0.08)] border-[#FDBA2D] shadow-lg shadow-[rgba(253,186,45,0.12)]'
+                      ? 'bg-[rgba(246,168,40,0.08)] border-[#F6A828] shadow-lg shadow-[rgba(246,168,40,0.12)]'
                       : 'bg-[#0a0a0a] border-[rgba(255,255,255,0.03)] hover:border-[#333] hover:bg-[#0f0f0f]'
                   }`}
                 >
@@ -109,14 +109,14 @@ export function OnboardingQuestions() {
                   </div>
                   <span
                     className={`text-xs font-medium transition-colors ${
-                      isSelected ? 'text-[#FDBA2D]' : 'text-[#a0a0a0] group-hover:text-[#FFFFFF]'
+                      isSelected ? 'text-[#F6A828]' : 'text-[#a0a0a0] group-hover:text-[#FFFFFF]'
                     }`}
                   >
                     {opt.label}
                   </span>
                   {/* Check indicator */}
                   {isSelected && (
-                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#FDBA2D] flex items-center justify-center">
+                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#F6A828] flex items-center justify-center">
                       <Check className="w-2.5 h-2.5 text-black" />
                     </div>
                   )}
@@ -128,7 +128,7 @@ export function OnboardingQuestions() {
           {/* Action */}
           <div className="mt-8 flex flex-col items-center gap-3">
             <Button
-              className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(253,186,45,0.12)]"
+              className="w-full max-w-xs bg-[#F6A828] text-black hover:bg-[#FFB340] font-semibold h-11 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[rgba(246,168,40,0.12)]"
               onClick={handleContinue}
               disabled={!selected}
             >
