@@ -49,7 +49,7 @@ export function StatCard({
         )}
       </div>
       <div className="mt-3 flex items-end gap-2">
-        <span className="text-2xl font-bold text-[#FFFFFF]">
+        <span className="text-2xl font-black text-[#F6A828]" style={{ textShadow: '0 0 12px rgba(246,168,40,0.3)' }}>
           {typeof value === 'number' ? fmtV(value) : value}
         </span>
         {change && (

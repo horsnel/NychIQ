@@ -12,17 +12,25 @@ import {
 } from 'lucide-react';
 
 /* ── Constants ── */
+/* ── Color wash helper ── */
+function wash(hex: string, a: number) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
 const QUICK_TOOLS = [
-  { id: 'hooklab', label: 'HookLab', icon: Flame, color: '#888888' },
-  { id: 'thumbnail-lab', label: 'Thumbnail Lab', icon: Image, color: '#888888' },
-  { id: 'viral', label: 'Viral Predictor', icon: Zap, color: '#888888' },
-  { id: 'posttime', label: 'Best Post Time', icon: Clock, color: '#F6A828' },
-  { id: 'audit', label: 'Channel Audit', icon: ShieldCheck, color: '#888888' },
-  { id: 'ideas', label: 'Video Ideas', icon: Sparkles, color: '#888888' },
-  { id: 'seo', label: 'SEO Optimizer', icon: SearchCode, color: '#888888' },
-  { id: 'scriptflow', label: 'ScriptFlow', icon: FileText, color: '#888888' },
-  { id: 'competitor', label: 'Competitor Track', icon: Target, color: '#888888' },
-  { id: 'trending', label: 'Analytics Deep Dive', icon: BarChart3, color: '#888888' },
+  { id: 'hooklab', label: 'HookLab', icon: Flame, color: '#F87171', cat: 'Strategy' },
+  { id: 'thumbnail-lab', label: 'Thumbnail Lab', icon: Image, color: '#818CF8', cat: 'Design' },
+  { id: 'viral', label: 'Viral Predictor', icon: Zap, color: '#F6A828', cat: 'Intelligence' },
+  { id: 'posttime', label: 'Best Post Time', icon: Clock, color: '#10B981', cat: 'Analytics' },
+  { id: 'audit', label: 'Channel Audit', icon: ShieldCheck, color: '#38BDF8', cat: 'Health' },
+  { id: 'ideas', label: 'Video Ideas', icon: Sparkles, color: '#10B981', cat: 'Analytics' },
+  { id: 'seo', label: 'SEO Optimizer', icon: SearchCode, color: '#818CF8', cat: 'Design' },
+  { id: 'scriptflow', label: 'ScriptFlow', icon: FileText, color: '#F87171', cat: 'Strategy' },
+  { id: 'competitor', label: 'Competitor Track', icon: Target, color: '#F6A828', cat: 'Intelligence' },
+  { id: 'trending', label: 'Analytics Deep Dive', icon: BarChart3, color: '#10B981', cat: 'Analytics' },
 ];
 
 const ACTIVITY_ITEMS = [
@@ -159,7 +167,14 @@ function GrowthChart() {
   return (
     <div className="w-full h-[200px] md:h-[280px] rounded-2xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-[#FFFFFF]">Growth Trend</h3>
+        <div className="flex items-center gap-3">
+          <div className="flex gap-[5px]">
+            <div className="w-[8px] h-[8px] rounded-full bg-[#FF5F56]" />
+            <div className="w-[8px] h-[8px] rounded-full bg-[#FFBD2E]" />
+            <div className="w-[8px] h-[8px] rounded-full bg-[#27C93F]" />
+          </div>
+          <h3 className="text-base font-semibold text-[#FFFFFF] font-display" style={{ letterSpacing: '-0.02em' }}>Growth Trend</h3>
+        </div>
         <div className="flex gap-1 p-0.5 rounded-lg bg-[#0a0a0a] border border-[rgba(255,255,255,0.03)]">
           {rangeBtns.map((b) => (
             <button key={b.key} onClick={() => setRange(b.key)}
@@ -218,22 +233,48 @@ function GrowthChart() {
   );
 }
 
-/* ── Quick Tool Card ── */
+/* ── Quick Tool Card — Color Wash ── */
 function QuickToolCard({ tool }: { tool: typeof QUICK_TOOLS[0] }) {
   const { setActiveTool } = useNychIQStore();
   const Icon = tool.icon;
+  const c = tool.color;
   return (
-    <button onClick={() => setActiveTool(tool.id)}
-      className="flex items-center justify-between w-[160px] h-[80px] p-3 rounded-xl bg-[#0f0f0f] border border-[rgba(255,255,255,0.03)] hover:bg-[#111111] transition-colors group">
+    <button
+      onClick={() => setActiveTool(tool.id)}
+      className="flex items-center justify-between w-[164px] h-[80px] p-3 rounded-xl cursor-pointer"
+      style={{
+        backgroundColor: wash(c, 0.05),
+        border: `1px solid ${wash(c, 0.1)}`,
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget;
+        el.style.backgroundColor = wash(c, 0.12);
+        el.style.borderColor = wash(c, 0.35);
+        el.style.boxShadow = `0 0 20px ${wash(c, 0.06)}, 0 4px 16px rgba(0,0,0,0.2)`;
+        el.style.transform = 'translateY(-1px)';
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        el.style.backgroundColor = wash(c, 0.05);
+        el.style.borderColor = wash(c, 0.1);
+        el.style.boxShadow = 'none';
+        el.style.transform = 'translateY(0)';
+      }}
+    >
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#1a1a1a] border border-[rgba(255,255,255,0.03)]" style={{ color: '#aaa' }}>
-          <Icon className="w-4 h-4" />
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+          style={{ backgroundColor: wash(c, 0.1), border: `1px solid ${wash(c, 0.15)}` }}
+        >
+          <Icon className="w-4 h-4" style={{ color: c }} />
         </div>
-        <span className="text-[13px] font-medium text-[#FFFFFF] text-left leading-tight">{tool.label}</span>
+        <div className="text-left">
+          <span className="block text-[13px] font-medium text-[#FFFFFF] leading-tight">{tool.label}</span>
+          <span className="block text-[9px] tracking-widest uppercase mt-0.5" style={{ color: wash(c, 0.6) }}>{tool.cat}</span>
+        </div>
       </div>
-      <button className="p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity text-[#666666] hover:text-[#a0a0a0]">
-        <MoreHorizontal className="w-4 h-4" />
-      </button>
+      <MoreHorizontal className="w-4 h-4 opacity-0 group-hover:opacity-100" style={{ color: wash(c, 0.5), transition: 'opacity 0.3s' }} />
     </button>
   );
 }
@@ -297,7 +338,7 @@ export function DashboardTool() {
   return (
     <div className="space-y-0 animate-fade-in-up">
       {/* ═══ WELCOME + VIDEO INDEX ═══ */}
-      <h2 className="font-display text-2xl font-bold mb-6" style={{ background: 'linear-gradient(135deg, #F6A828, #D4921F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <h2 className="font-display text-2xl font-black leading-[0.9] mb-6" style={{ letterSpacing: '-0.03em', color: '#F6A828', textShadow: '0 0 20px rgba(246, 168, 40, 0.3)' }}>
         Welcome back, {displayName}!
       </h2>
 
@@ -335,7 +376,14 @@ export function DashboardTool() {
       {/* ═══ QUICK TOOLS GRID ═══ */}
       <div className="mt-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-[#FFFFFF]">Quick Tools</h3>
+          <div className="flex items-center gap-3">
+            <div className="flex gap-[5px]">
+              <div className="w-[8px] h-[8px] rounded-full bg-[#FF5F56]" />
+              <div className="w-[8px] h-[8px] rounded-full bg-[#FFBD2E]" />
+              <div className="w-[8px] h-[8px] rounded-full bg-[#27C93F]" />
+            </div>
+            <h3 className="text-base font-semibold text-[#FFFFFF] font-display" style={{ letterSpacing: '-0.02em' }}>Quick Tools</h3>
+          </div>
           <div className="flex gap-1">
             <button onClick={() => scrollTools(-1)} className="p-1.5 rounded-lg hover:bg-[#0f0f0f] text-[#666666] hover:text-[#a0a0a0] transition-colors">
               <ChevronLeft className="w-4 h-4" />

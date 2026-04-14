@@ -134,7 +134,9 @@ export function Sidebar() {
                           : 'text-[#a0a0a0] hover:text-[#FFFFFF] hover:bg-[rgba(255,255,255,0.04)]'
                       )}
                     >
-                      <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F6A828]' : '')} />
+                      <div className={cn('w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-all duration-200', isActive ? 'bg-[rgba(246,168,40,0.12)]' : '')}>
+                        <Icon className={cn('w-4 h-4 shrink-0', isActive ? 'text-[#F6A828]' : '')} />
+                      </div>
                       <span className="truncate">{tool.label}</span>
                       {!hasAccess && (() => {
                         const badge = getUpsellBadge(toolId, userPlan);
