@@ -14,11 +14,13 @@ import {
   Users,
   Eye,
   Video,
+  AlertTriangle,
+  RefreshCw,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useNychIQStore } from '@/lib/store';
-import { ytFetch } from '@/lib/api';
+import { ytFetch, askAI } from '@/lib/api';
 import { fmtV } from '@/lib/utils';
 
 /* ── Animated steps ── */
@@ -104,6 +106,8 @@ export function OnboardingAudit() {
   const [currentStep, setCurrentStep] = useState(-1);
   const [report, setReport] = useState(false);
   const [channelData, setChannelData] = useState<any>(null);
+  const [aiInsights, setAiInsights] = useState<string[]>([]);
+  const [apiError, setApiError] = useState(false);
 
   const handleAudit = useCallback(async () => {
     if (!channelUrl.trim()) return;
@@ -111,6 +115,8 @@ export function OnboardingAudit() {
     setCurrentStep(-1);
     setReport(false);
     setChannelData(null);
+    setAiInsights([]);
+    setApiError(false);
 
     // Animate through steps
     for (let i = 0; i < AUDIT_STEPS.length; i++) {
@@ -121,7 +127,6 @@ export function OnboardingAudit() {
     // Fetch real YouTube channel data
     try {
       const data = await ytFetch('channel', { handle: channelUrl.trim() });
-      // Normalize from YouTube API v3 format to expected shape
       const normalizedChannel = {
         name: data.snippet?.title || channelUrl.split('/').pop()?.replace('@', '') || 'My Channel',
         avatarUrl: data.snippet?.thumbnails?.high?.url || data.snippet?.thumbnails?.default?.url || '',
@@ -130,7 +135,7 @@ export function OnboardingAudit() {
         videoCount: parseInt(data.statistics?.videoCount || '0', 10),
         description: data.snippet?.description || '',
         publishedAt: data.snippet?.publishedAt || '',
-        keywords: [],
+        keywords: data.snippet?.keywords || [],
       };
       setChannelData(normalizedChannel);
 
@@ -142,8 +147,58 @@ export function OnboardingAudit() {
         avatarUrl,
         avatarColor: avatarUrl ? '#FDBA2D' : '#FDBA2D',
       }));
+
+      // Generate AI insights from real channel data
+      const avgViews = normalizedChannel.videoCount > 0
+        ? Math.floor(normalizedChannel.totalViews / normalizedChannel.videoCount)
+        : 0;
+      const channelAge = normalizedChannel.publishedAt
+        ? Math.floor((Date.now() - new Date(normalizedChannel.publishedAt).getTime()) / (1000 * 60 * 60 * 24))
+        : 0;
+      const channelAgeYears = (channelAge / 365).toFixed(1);
+
+      const prompt = `You are a YouTube channel growth analyst. Analyze this channel and provide exactly 4 concise, specific, actionable insights (each 1-2 sentences max):
+
+Channel: "${normalizedChannel.name}"
+- Subscribers: ${fmtV(normalizedChannel.subscribers)}
+- Total Videos: ${fmtV(normalizedChannel.videoCount)}
+- Total Views: ${fmtV(normalizedChannel.totalViews)}
+- Avg Views per Video: ${fmtV(avgViews)}
+- Channel Age: ${channelAgeYears} years
+- Description: ${(normalizedChannel.description || 'No description').substring(0, 300)}
+
+Focus on:
+1. Content volume and upload consistency assessment
+2. View-to-subscriber ratio and audience engagement quality
+3. SEO and discoverability optimization opportunities
+4. A specific, data-backed growth recommendation
+
+Return ONLY a JSON array of 4 strings. No explanations, no markdown, just the array.`;
+
+      try {
+        const aiResponse = await askAI(prompt);
+        const cleaned = aiResponse.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setAiInsights(parsed.slice(0, 4));
+        }
+      } catch {
+        // If AI fails, generate basic data-driven insights (no mock data)
+        const insights = [
+          `Your channel "${normalizedChannel.name}" has ${fmtV(normalizedChannel.subscribers)} subscribers with ${fmtV(normalizedChannel.videoCount)} videos published over ${channelAgeYears} years.`,
+          `Average views per video: ${fmtV(avgViews)} — ${avgViews > normalizedChannel.subscribers * 0.1 ? 'strong' : avgViews > normalizedChannel.subscribers * 0.01 ? 'moderate' : 'below-average'} relative to your subscriber base.`,
+          normalizedChannel.description
+            ? `Your ${normalizedChannel.description.length > 200 ? 'detailed' : 'brief'} channel description can be optimized with more target keywords for better YouTube SEO.`
+            : 'Your channel has no description — adding one with relevant keywords will significantly improve discoverability.',
+          channelAgeYears !== '0.0'
+            ? `At ${channelAgeYears} years old with ${normalizedChannel.videoCount} videos, your upload frequency is ${channelAge > 0 ? (channelAge / Math.max(1, normalizedChannel.videoCount)).toFixed(1) : 'N/A'} days per video — ${normalizedChannel.videoCount > 50 ? 'a strong content library' : 'consider increasing upload frequency'}.`
+            : `With ${normalizedChannel.videoCount} videos and ${fmtV(normalizedChannel.totalViews)} total views, focus on consistent uploads to build momentum.`,
+        ];
+        setAiInsights(insights);
+      }
     } catch {
-      // Fallback: generate profile from URL
+      setApiError(true);
+      // Fallback: generate profile from URL only
       const channelName = channelUrl.split('/').pop()?.replace('@', '') || 'My Channel';
       localStorage.setItem('nychiq_channel_profile', JSON.stringify({
         name: channelName,
@@ -156,7 +211,7 @@ export function OnboardingAudit() {
     setReport(true);
   }, [channelUrl]);
 
-  // Generate dynamic health score from channel data
+  // Generate dynamic health score from real channel data
   const calcHealthScore = (data: any) => {
     const subs = data.subscribers || 0;
     const views = data.totalViews || 0;
@@ -170,22 +225,29 @@ export function OnboardingAudit() {
     else if (avgViews >= 1000) score += 10;
     if (vids >= 100) score += 10;
     else if (vids >= 50) score += 5;
-    if (data.keywords) score += 5;
+    if (data.keywords && data.keywords.length > 0) score += 5;
+    // Bonus for description length (SEO signal)
+    if (data.description && data.description.length > 200) score += 3;
     return Math.min(100, Math.max(10, score));
   };
-  const healthScore = channelData ? calcHealthScore(channelData) : 73;
 
-  const insights = channelData ? [
-    `Your channel has ${fmtV(channelData.subscribers)} subscribers with ${channelData.videoCount} videos — ${channelData.videoCount > 50 ? 'strong' : channelData.videoCount > 20 ? 'good' : 'growing'} content foundation.`,
-    `Average views per video: ${fmtV(Math.floor((channelData.totalViews || 0) / Math.max(1, channelData.videoCount || 1)))} — ${((channelData.totalViews || 0) / Math.max(1, channelData.videoCount || 1)) > 5000 ? 'above-average' : 'solid'} engagement.`,
-    channelData.description ? `Description is ${channelData.description.length > 200 ? 'well-optimized for SEO' : 'under 200 characters — add more keywords'} for better discoverability.` : 'Ensure your channel description includes relevant keywords for YouTube SEO.',
-    'Audience retention drops significantly after the 2-minute mark — use pattern interrupts and hook variations.',
-  ] : [
-    'Your upload consistency is strong — posting every 3.2 days on average.',
-    'Video titles could be more click-optimized. Consider adding power words and numbers.',
-    'Thumbnail contrast scores are below average — increase text visibility.',
-    'Your audience retention drops significantly after the 2-minute mark.',
-  ];
+  const healthScore = channelData ? calcHealthScore(channelData) : 0;
+
+  // Calculate real engagement from channel data
+  const calcEngagement = (data: any) => {
+    if (!data) return null;
+    const subs = data.subscribers || 0;
+    const totalViews = data.totalViews || 0;
+    const vids = data.videoCount || 0;
+    // Engagement proxy: avg views / subscribers ratio (as percentage)
+    if (subs === 0) return null;
+    const avgViews = vids > 0 ? totalViews / vids : 0;
+    const engagementRatio = (avgViews / subs) * 100;
+    // Cap at 200% for display purposes
+    return Math.min(engagementRatio, 200).toFixed(1);
+  };
+
+  const engagement = calcEngagement(channelData);
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
@@ -260,7 +322,7 @@ export function OnboardingAudit() {
                   onClick={() => setPage('ob-extension')}
                   className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
                 >
-                  Skip for now →
+                  Skip for now &rarr;
                 </button>
               </div>
             </div>
@@ -306,104 +368,135 @@ export function OnboardingAudit() {
           {/* ── Report state ── */}
           {report && (
             <div className="animate-fade-in-up">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Audit Report</h2>
-                <p className="text-xs text-[#555] font-mono">{channelUrl}{channelData ? ` — ${channelData.name}` : ''}</p>
-              </div>
+              {/* ── API Error state ── */}
+              {apiError && !channelData && (
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] flex items-center justify-center mx-auto mb-6">
+                    <AlertTriangle className="w-8 h-8 text-[#EF4444]" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Could Not Analyze Channel</h2>
+                  <p className="text-sm text-[#666] mb-8 max-w-sm mx-auto">
+                    We couldn&apos;t fetch data for this channel. Make sure the URL is correct and the channel is publicly accessible.
+                  </p>
 
-              {/* Health Score Gauge */}
-              <div className="flex justify-center mb-8">
-                <HealthGauge score={healthScore} />
-              </div>
-
-              {/* AI Insights */}
-              <div className="bg-[#0D0D0D] border border-[#1E1E1E] rounded-xl p-5 mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
-                  <span className="text-xs font-semibold text-[#8B5CF6]">AI INSIGHTS</span>
-                </div>
-                <ul className="space-y-2.5">
-                  {insights.map((insight, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3] leading-relaxed">
-                      <span className="w-1 h-1 rounded-full bg-[#FDBA2D] shrink-0 mt-1.5" />
-                      {insight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Channel Profile Card with avatar */}
-              {channelData && (
-                <div className="rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] p-5 mb-6">
-                  <div className="flex items-center gap-4">
-                    {channelData.avatarUrl ? (
-                      <img
-                        src={channelData.avatarUrl}
-                        alt={channelData.name}
-                        className="w-16 h-16 rounded-full object-cover border-2 border-[#FDBA2D]/40"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.15)] border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
-                        {(channelData.name || 'M').charAt(0).toUpperCase()}
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-base font-bold text-[#FFFFFF] truncate">{channelData.name || 'Channel'}</h3>
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
-                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
-                          <Users className="w-3.5 h-3.5" /> {fmtV(channelData.subscribers)} subs
-                        </span>
-                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
-                          <Video className="w-3.5 h-3.5" /> {fmtV(channelData.videoCount)} videos
-                        </span>
-                        <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
-                          <Eye className="w-3.5 h-3.5" /> {fmtV(channelData.totalViews)} views
-                        </span>
-                      </div>
-                    </div>
+                  <div className="flex flex-col items-center gap-3">
+                    <Button
+                      className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                      onClick={() => { setReport(false); setCurrentStep(-1); setApiError(false); }}
+                    >
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      Try Again
+                    </Button>
+                    <button
+                      onClick={() => setPage('ob-extension')}
+                      className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
+                    >
+                      Skip for now &rarr;
+                    </button>
                   </div>
                 </div>
               )}
 
-              {/* Stats pills */}
-              <div className="flex flex-wrap gap-2 mb-8 justify-center">
-                {(channelData ? [
-                  { label: 'Videos', value: fmtV(channelData.videoCount), color: '#FDBA2D' },
-                  { label: 'Subscribers', value: fmtV(channelData.subscribers), color: '#10B981' },
-                  { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#3B82F6' },
-                  { label: 'Engagement', value: `${(Math.random() * 4 + 4).toFixed(1)}%`, color: '#8B5CF6' },
-                ] : [
-                  { label: 'Videos', value: '47', color: '#FDBA2D' },
-                  { label: 'Subscribers', value: '12.4K', color: '#10B981' },
-                  { label: 'Avg Views', value: '3.2K', color: '#3B82F6' },
-                  { label: 'Engagement', value: '6.8%', color: '#8B5CF6' },
-                ]).map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]"
-                  >
-                    <div className="text-sm font-bold" style={{ color: stat.color }}>{stat.value}</div>
-                    <div className="text-[10px] text-[#555]">{stat.label}</div>
+              {/* ── Success state (with real data) ── */}
+              {!apiError && channelData && (
+                <>
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-bold text-[#FFFFFF] mb-2">Audit Report</h2>
+                    <p className="text-xs text-[#555] font-mono">{channelUrl} &mdash; {channelData.name}</p>
                   </div>
-                ))}
-              </div>
 
-              {/* Action */}
-              <div className="flex flex-col items-center gap-3">
-                <Button
-                  className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
-                  onClick={() => setPage('ob-extension')}
-                >
-                  Continue
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <button
-                  onClick={() => { setReport(false); setCurrentStep(-1); }}
-                  className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
-                >
-                  ← Re-analyze another channel
-                </button>
-              </div>
+                  {/* Health Score Gauge */}
+                  <div className="flex justify-center mb-8">
+                    <HealthGauge score={healthScore} />
+                  </div>
+
+                  {/* AI Insights */}
+                  {aiInsights.length > 0 && (
+                    <div className="bg-[#0D0D0D] border border-[#1E1E1E] rounded-xl p-5 mb-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+                        <span className="text-xs font-semibold text-[#8B5CF6]">AI INSIGHTS</span>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {aiInsights.map((insight, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-[#A3A3A3] leading-relaxed">
+                            <span className="w-1 h-1 rounded-full bg-[#FDBA2D] shrink-0 mt-1.5" />
+                            {insight}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Channel Profile Card with avatar */}
+                  <div className="rounded-xl bg-[#0D0D0D] border border-[#1E1E1E] p-5 mb-6">
+                    <div className="flex items-center gap-4">
+                      {channelData.avatarUrl ? (
+                        <img
+                          src={channelData.avatarUrl}
+                          alt={channelData.name}
+                          className="w-16 h-16 rounded-full object-cover border-2 border-[#FDBA2D]/40"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 rounded-full bg-[rgba(253,186,45,0.15)] border-2 border-[#FDBA2D]/40 flex items-center justify-center text-xl font-bold text-[#FDBA2D]">
+                          {(channelData.name || 'M').charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-bold text-[#FFFFFF] truncate">{channelData.name || 'Channel'}</h3>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5">
+                          <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
+                            <Users className="w-3.5 h-3.5" /> {fmtV(channelData.subscribers)} subs
+                          </span>
+                          <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
+                            <Video className="w-3.5 h-3.5" /> {fmtV(channelData.videoCount)} videos
+                          </span>
+                          <span className="text-xs text-[#A3A3A3] flex items-center gap-1.5">
+                            <Eye className="w-3.5 h-3.5" /> {fmtV(channelData.totalViews)} views
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stats pills — all from real data */}
+                  <div className="flex flex-wrap gap-2 mb-8 justify-center">
+                    {[
+                      { label: 'Videos', value: fmtV(channelData.videoCount), color: '#FDBA2D' },
+                      { label: 'Subscribers', value: fmtV(channelData.subscribers), color: '#10B981' },
+                      { label: 'Total Views', value: fmtV(channelData.totalViews), color: '#3B82F6' },
+                      ...(engagement !== null
+                        ? [{ label: 'Avg View / Sub', value: `${engagement}%`, color: '#8B5CF6' }]
+                        : []),
+                    ].map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="px-3 py-2 rounded-lg bg-[#0D0D0D] border border-[#1E1E1E]"
+                      >
+                        <div className="text-sm font-bold" style={{ color: stat.color }}>{stat.value}</div>
+                        <div className="text-[10px] text-[#555]">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Action */}
+                  <div className="flex flex-col items-center gap-3">
+                    <Button
+                      className="w-full max-w-xs bg-[#FDBA2D] text-black hover:bg-[#C69320] h-11 font-semibold shadow-lg shadow-[rgba(253,186,45,0.15)]"
+                      onClick={() => setPage('ob-extension')}
+                    >
+                      Continue
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                    <button
+                      onClick={() => { setReport(false); setCurrentStep(-1); setApiError(false); }}
+                      className="text-xs text-[#444] hover:text-[#A3A3A3] transition-colors"
+                    >
+                      &larr; Re-analyze another channel
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
