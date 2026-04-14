@@ -169,3 +169,27 @@ Stage Summary:
 - All gold colors unified to #F6A828 (Sunset Gold)
 - Hover glow system implemented with #FFB340 + box-shadow
 - Build and deployment status: Build succeeded (compiled in 4.6s). CF Pages deployment failed with API error 7003 — account ID or API token appears invalid; credentials need verification. Git push to GitHub succeeded (commit a237b9e).
+
+---
+Task ID: 2
+Agent: main
+Task: Add Inter Tight + JetBrains Mono typography system
+
+Work Log:
+- Added Inter_Tight (700, 800 weights) via next/font/google in layout.tsx
+- Added JetBrains_Mono via next/font/google in layout.tsx
+- Updated tailwind.config.ts with fontFamily: display (Inter Tight), sans (Inter), mono (JetBrains Mono)
+- Updated globals.css @theme inline font variables to reference next/font CSS variables
+- Added global CSS rules for h1 (800, -0.04em tracking), h2 (700, -0.02em), h3 (700, -0.01em)
+- Added utility classes: .font-display, .font-display-tight, .stat-number, .font-terminal
+- Updated .terminal-tag to use JetBrains Mono
+- Replaced all font-mono → font-terminal across 14 component files
+- Applied font-display-tight to all NYCHIQ branding elements (sidebar, login, onboarding, welcome, company pages)
+- Applied font-display to dashboard welcome heading and company hero heading
+- Applied stat-number to welcome page hero stats
+- Build status: ✅ SUCCEEDED (compiled in 4.0s, 23 files changed)
+
+Stage Summary:
+- Typography system: Inter Tight for headlines, Inter for body, JetBrains Mono for terminal/code
+- All h1/h2/h3 automatically use Inter Tight via global CSS rules
+- Build and push to GitHub succeeded (commit dcecb81, GitHub Actions will deploy to CF Pages)
